@@ -1,0 +1,87 @@
+\title{CS254 Algorithmic Graph Theory - Lecture Notes}
+\author{Based on lectures by Prof. Maxim Sviridenko \\ Typeset by WULNR contributors}
+\date{\today}
+
+\documentclass{book}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\newtheorem*{thm}{Theorem}
+\newtheorem*{lem}{Lemma}
+\newtheorem*{cor}{Corollary}
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem*{ex}{Example}
+\newtheorem*{rem}{Remark}
+\newtheorem*{nota}{Notation}
+
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\NN}{\mathbb{N}}
+
+\setcounter{chapter}{0}
+
+\begin{document}
+\maketitle
+
+\chapter{Basics}
+\section{Graphs}
+\begin{defn}
+A graph $G$ is an ordered pair $V(G),E(G))$ consisting of a set $V(G)$ of vertices and a set $E(g)$ of edges.
+Each edge $e\in E(G)$ is associated with a pair of vertices $\{u,v\}$.
+We will say that $u,v$ are endpoints of $e$.
+We also say $u,v$ are incident to $e$ and vice versa.
+\end{defn}
+\begin{defn}
+Two vertices which are incident with a common edge are adjacent (or neighbours).
+Two or more edges with the same pair of endpoints are said to be parallel.
+\end{defn}
+\begin{defn}
+A simple graph is one without parallel edges.
+\end{defn}
+\begin{nota}
+By convention, $G$ will denote a graph, $n$ and $m$ will be the number of vertices $|V(G)|$ and the number of edges $|E(G)|$ respectively.
+\end{nota}
+\section{Special graphs}
+\begin{defn}
+A complete graph is a simple graph in which every two vertices are adjacent. \\
+Such a graph on $n$ vertices is denoted $K_n$.
+\end{defn}
+%TODO: pictures
+We can see that $|E(K_n)| = \frac{n(n-1)}{2}$.
+\begin{defn}
+A graph $G=(V,E)$ is called empty if $E=\emptyset$.
+\end{defn}
+\begin{defn}
+A graph is called bipartite is it's vertex set can be partitioned into two subsets $X$ and $Y$ so that every edge has one endpoint in $X$ and one in $Y$.
+\end{defn}
+\begin{ex}
+The set of all (monogamous) people can be represented by a graph with edges joining married couples, this graph is bipartite.
+\end{ex}
+We will call $X,Y$ the parts of the graph. So a bipartite graph is often denoted as $G = (X,Y,E)$.
+\begin{nota}
+We write $K_{m,n}$ for the complete bipartite graph with $|X| = m,\ |Y| = n$ and $E$ containing all edges between $X$ and $Y$.
+\end{nota}
+\begin{defn}
+The graph $K_{1,n}$ is often called a star.
+\end{defn}
+%TODO: pictures
+\begin{defn}
+A path is a simple graph whose vertices can be rearranges into a linear sequence in such a wayy that two adjacent vertices are always consecutive in the sequence and vice versa, non-adjacent vertices are non-consecutive, such a graph on $n$ vertices is often denoted $P_n$.
+\end{defn}
+%TODO: pictures
+\begin{defn}
+A cycle on $n$ vertices is a graph defined in a similar way but a cyclic sequence of vertices.
+\end{defn}
+%TODO: pictures
+\begin{nota}
+The length of a path or cycle is the number of it's edges. A path or cycle of length $k$ is often called a $k$-path of $k$-cycle.
+\end{nota}
+%TODO: pictures
+\subsection{Adjacency and incidence matrices}
+\end{document}
+
+\end{defn}
+\end{document}
