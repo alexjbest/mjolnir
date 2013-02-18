@@ -34,54 +34,110 @@ Each edge $e\in E(G)$ is associated with a pair of vertices $\{u,v\}$.
 We will say that $u,v$ are endpoints of $e$.
 We also say $u,v$ are incident to $e$ and vice versa.
 \end{defn}
+
 \begin{defn}
 Two vertices which are incident with a common edge are adjacent (or neighbours).
 Two or more edges with the same pair of endpoints are said to be parallel.
 \end{defn}
+
 \begin{defn}
 A simple graph is one without parallel edges.
 \end{defn}
+
 \begin{nota}
 By convention, $G$ will denote a graph, $n$ and $m$ will be the number of vertices $|V(G)|$ and the number of edges $|E(G)|$ respectively.
 \end{nota}
+
 \section{Special graphs}
 \begin{defn}
 A complete graph is a simple graph in which every two vertices are adjacent. \\
 Such a graph on $n$ vertices is denoted $K_n$.
 \end{defn}
 %TODO: pictures
+
 We can see that $|E(K_n)| = \frac{n(n-1)}{2}$.
 \begin{defn}
 A graph $G=(V,E)$ is called empty if $E=\emptyset$.
 \end{defn}
+
 \begin{defn}
 A graph is called bipartite is it's vertex set can be partitioned into two subsets $X$ and $Y$ so that every edge has one endpoint in $X$ and one in $Y$.
 \end{defn}
+
 \begin{ex}
 The set of all (monogamous) people can be represented by a graph with edges joining married couples, this graph is bipartite.
 \end{ex}
+
 We will call $X,Y$ the parts of the graph. So a bipartite graph is often denoted as $G = (X,Y,E)$.
 \begin{nota}
 We write $K_{m,n}$ for the complete bipartite graph with $|X| = m,\ |Y| = n$ and $E$ containing all edges between $X$ and $Y$.
 \end{nota}
+
 \begin{defn}
 The graph $K_{1,n}$ is often called a star.
 \end{defn}
 %TODO: pictures
+
 \begin{defn}
 A path is a simple graph whose vertices can be rearranges into a linear sequence in such a wayy that two adjacent vertices are always consecutive in the sequence and vice versa, non-adjacent vertices are non-consecutive, such a graph on $n$ vertices is often denoted $P_n$.
 \end{defn}
 %TODO: pictures
+
 \begin{defn}
 A cycle on $n$ vertices is a graph defined in a similar way but a cyclic sequence of vertices.
 \end{defn}
 %TODO: pictures
+
 \begin{nota}
 The length of a path or cycle is the number of it's edges. A path or cycle of length $k$ is often called a $k$-path of $k$-cycle.
 \end{nota}
 %TODO: pictures
-\subsection{Adjacency and incidence matrices}
-\end{document}
 
+\subsection{Adjacency and incidence matrices}
+\begin{defn}
+The incidence matrix of $G = (V,E)$ when $|V| = m$ and $|E| = n$ is the $m\times n$ matrix $M_G = (m_{ve})$ where $m_{ve}$ is the number of times that vertex $v$ and $e$ are incident ($m_{ve} \in \{0, 1\}$).
 \end{defn}
+\begin{ex}
+%TODO: pics + matrices
+\end{ex}
+\begin{defn}
+The adjacency matrix of $G = (V,E)$ when $|V| = m$ is the $m\times m$ matrix $A_G = (a_{uv})$ where $m_{uv}$ is the number of edges joining $u$ and $v$.
+\end{defn}
+\begin{ex}
+$$ = A_{K_{3}}$$
+%TODO: pics + matrices
+\end{ex}
+\begin{defn}
+An adjacency list is a list $(N(v),v\in V)$ used to represent matrices, $N(v)$ is the set of neighbours of $v$ in arbitary order.
+\end{defn}
+
+\subsection{Adjacency and incidence matrices}
+\begin{defn}
+The degree of a vertex $v$ in a graph $G$ is denoted $d_G(v)$ or $d_v$ and is the number of edges of $G$ incident with $v$.
+\end{defn}
+\begin{thm}[Handshake lemma]
+For any graph
+\begin{equation}
+\label{eq:hand}
+\sum_{v\in V}d_v = 2|E|
+\end{equation}
+\end{thm}
+\begin{thm}
+In any graph, the number of vertices of odd degree is even.
+\end{thm}
+\begin{proof}
+Consider the equation \ref{eq:hand} module 2.
+We have degree of each vertex $d_v \equiv$ 1 if $d_v$ is odd, or 0 is $d_v$ is even.
+Therefore the left hand side of \ref{eq:hand} is congruent to the number of vertices of odd degree and the RHS is 0.
+Therefore the number of vertices of odd degree is congruent to 0 mod 2.
+\end{proof}
+\begin{defn}
+A graph $G$ is called $k$=regular is $d_G(v) = k$ for all $v\in V(G)$.
+A graph is regular if it is $k$-regular for some $k$.
+\end{defn}
+\begin{ex}
+$K_n$ is $(n-1)$-regular. \\
+$C_n$ is $2$-regular. \\
+$P_n$ is not regular. \\
+\end{ex}
 \end{document}
