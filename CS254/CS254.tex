@@ -482,7 +482,7 @@ Induction on $d(x,y)$.
 If $\exists e=(x,y)$ then $d(x,y) = 1$.
 Also we know that $G\setminus e$ is connected.
 Let $P$ be an $x$-$y$ path in $G\setminus e$.
-Then $e$ and $f$ are internally disjont. \\
+Then $e$ and $f$ are internally disjoint. \\
 Assume that the statement is true for any $x',y'$ such that $d(x',y')\le k-1$.
 Let $x,y\in V(G)$ and $d(x,y) = k$. \\
 Consider a path between $x$ and $y$ of length $k$.
@@ -530,7 +530,7 @@ Consider $u$ and $v\in V(G)$ where $G$ is a 2-connected graph.
 We add a path between $u$ and $v$.
 To prove that the new graph is 2-connected it is enough to show that there are 2 paths $P_1$ and $P_2$ such that they are internally disjoint and $P_1$ connects $y$ to $u$ and $P_2$ connects $y$ to $v$ for any vertex $y$. \\
 We take $Q_1$ and $Q_2$ two internally disjoint paths between $y$ and $u$, and any path $R$ between $y$ and $v$.
-Assume that $R$ interset $Q_1$ or $Q_2$ and $z$ is the latest intersection point.
+Assume that $R$ intersects $Q_1$ or $Q_2$ and $z$ is the latest intersection point.
 Without loss of generality $z\in Q_2$.
 Choose $Q_1$ and follow $Q_2$ till $z$ and $R$ from $z$ to $v$.
 \end{proof}
@@ -572,7 +572,8 @@ A graph is 3-connected $\iff$ it is a wheel or can be obtained from a wheel by a
 \item Replacing a vertex of degree at least 4 by two new vertices $v^1$ and $v^2$ so that $d(v^1) \ge 3$ and $d(v^2)\ge 3$.
 \end{enumerate}
 \end{thm}
-\paragraph{Problem} Given positive integers $n$ and $k$, find a $k$-connected $n$-vertex graph having the smallest possible number of edges.
+\paragraph{Problem} Given positive integers $n$ and $k$, find a $k$-connected $n$-vertex graph having the smallest possible number of edges. \\
+This has a number of real world applications, most notably in the design of reliable communications networks that use the least possible resources.
 \marginpar{Lecture 9}
 \begin{prop}
 Let $h_k(n)$ denote the minimum number of edges a $k$-connected graph on $n$ vertices must have.
@@ -580,7 +581,27 @@ Then $h_k(n) \ge \left[\frac{kn}{2}\right]$.
 ($h_1(n) = n-1$).
 \end{prop}
 \begin{proof}
-We know that $2|E(G)| \ge$ %TODO:finish
+We know that $2|E(G)| \ge  n\delta_{\text{min}}(G)$ where $\delta_{\text{min}}(G)$ is the minimum degree of $G$.
+We also know that $\delta_{\text{min}}(G) \ge K_e(G) \ge K_v(G)$.
+Therefore $|E(G)| \ge \left[\frac{nK_v(G)}{2}\right]$.
 \end{proof}
-
+We are given a cycle on $n$ vertices $0,1,\ldots,n-1$.
+For any two vertices of the cycle the mod $n$ distance between $i$ and $j$ is denoted $|i-j|_n$ is the smaller of the two numbers $|j-i|$ and $n-|j-i|$. \\
+We look at a class of graphs that are a possible candidate for 
+\begin{defn}
+%TODO:finish
+We define the class of \emph{Harary graphs} $H_{k,n}$ in three cases as follows: \\
+\textbf{Case 1}
+\textbf{Case 2}
+\textbf{Case 3}
+\end{defn}
+\begin{thm}
+The Harary graph $H_{k,n}$ is $k$-connected.
+\end{thm}
+\begin{proof}
+\textbf{Case 1}
+\textbf{Case 2}
+\textbf{Case 3}
+\end{proof}
+\marginpar{Lecture 10}
 \end{document}
