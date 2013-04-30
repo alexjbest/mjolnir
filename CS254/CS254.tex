@@ -2,7 +2,7 @@
 \author{Based on lectures by Prof. Maxim Sviridenko \\ Typeset by Alex J. Best}
 \date{\today}
 
-\documentclass{book}
+\documentclass{article}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -16,6 +16,7 @@
 \newtheorem*{defn}{Definition}
 \newtheorem*{defns}{Definitions}
 \newtheorem*{ex}{Example}
+\newtheorem*{exer}{Exercise}
 \newtheorem*{rem}{Remark}
 \newtheorem*{nota}{Notation}
 \newtheorem*{alg}{Algorithm}
@@ -27,12 +28,12 @@
 \DeclareMathOperator{\wt}{wt}
 \DeclareMathOperator{\depth}{depth}
 
+\setcounter{tocdepth}{3}
 
-\setcounter{chapter}{0}
 
 \begin{document}
 \maketitle
-\chapter{Basics}
+\tableofcontents
 \section{Graphs}
 \marginpar{Lecture 1}
 \begin{defn}
@@ -118,7 +119,7 @@ $$ = A_{K_{3}}$$
 An adjacency list is a list $(N(v),v\in V)$ used to represent matrices, $N(v)$ is the set of neighbours of $v$ in arbitrary order.
 \end{defn}
 
-\subsection{Adjacency and incidence matrices}
+\subsection{Vertex degrees}
 \begin{defn}
 The degree of a vertex $v$ in a graph $G$ is denoted $d_G(v)$ or $d_v$ and is the number of edges of $G$ incident with $v$.
 \end{defn}
@@ -379,7 +380,207 @@ Moreover, $d_T(w) = d_{T^*}(w) + 1$ and $l(w)$ has one more occurrence in $S$ th
 \begin{alg}[for Pr\"ufer decoding]~\\
 \textbf{Input} A Pr\"ufer sequence of length $n-2$.\\
 \textbf{Output} An $n$-vertex labelled tree.\\
-%TODO:Finish
+Initialise list $P$ as a Pr\"ufer input sequence. \\
+Initialise list $L$ as $1,\ldots, n$. \\
+Initialise $F$ (forest) as $n$ isolated vertices labelled $1,\ldots, n$. \\
+For $i=1,\ldots, n-2$ \\
+\indent Let $k$ be the smallest number in the list $L$ that is not in the list $P$ (Exists as $P<L$). \\
+\indent Let $j$ be the first number in the list $P$. \\
+\indent Add an edge $(k,j)$ to the forest $F$.\\
+\indent Remove $k$ from $L$.\\
+\indent Remove the first occurrence of $j$ from $P$.\\
+Add an edge joining the two vertices labelled with two remaining numbers in the list $L$.\\
+Return $F$ with its vertex labelling.
 \end{alg}
+\marginpar{Lecture 6}
+\begin{prop}
+The decoding procedure defines a function $f'\colon P_{n-2} \to T_n$.
+\end{prop}
+\begin{proof}
+$f'$ that corresponds to the decoding algorithm maps a sequence to a graph.
+We need to show that this graph is a tree. \\
+Proceed by induction: \\
+\textbf{Base case} For $n=2$, the sequence is empty and the algorithm produces a single edge. \\
+\textbf{Inductive step} Assume that the claim is true for some $n\ge 2$.
+Consider a Pr\"ufer sequence on $\langle p_1,\ldots,p_{n-1}\rangle$ and a set of vertices $\{1,2,\ldots,n+1\}$.
+The first iteration draws an edge from $b$ to $p_1$, where $b$ is the smallest index not appearing among the $p_i$'s.
+None of the $n-1$ edges that are produced in iterations $2,\ldots,n$ will be incident with $b$.
+Thus, continuing the procedure from iteration 2 is equivalent to applying the procedure to the Pr\"ufer sequence $\langle p_2,\ldots,p_{n-1}\rangle$ for the set of vertices $X = \{1,\ldots,n+1\}\setminus b$.
+By induction we will provide a tree on $X$.
+This tree plus an edge of $p_1$ forms a tree on $\{1,\ldots,n+1\}$.
+\end{proof}
+\begin{exer}
+Prove that different elements of $P_{n-2}$ are mapped into different trees and conversely.
+\end{exer}
+\section{Catalan numbers}
+Let $b_n$ be the number of unlabelled binary trees on $n$ vertices.
+By convention we define $b_0 = 1$.
+Trivially $b_1 = 1$.
+For $n>1$ a binary tree on $n$ vertices could have $j$ vertices on the left and $n-1-j$ vertices on the right, for $j=0,\ldots,n-1$. \\
+There are $b_jb_{n-1-j}$ different ways to pair up such subtrees.
+Therefore we have
+$$b_n =\sum_{j=0}^{n-1} b_jb_{n-1-j}$$
+\begin{thm}
+$$b_n = \frac{1}{n+1}\binom{2n}{n}$$
+\end{thm}
+So $b_2=2,\ b_3=5$.
+\begin{ex}
+Consider a sequence of $n$ parenthesis that are correctly matched.
+For $n=2$ we have $\{(()),\ ()()\}$.
+For $n=3$ we have $\{((())),\ (())(),\ (()()),\ ()(()),\ ()()()\}$.
+The number such expressions is $b_n$ -- the Catalan numbers.
+\end{ex}
+\section{Connectivity}
+\begin{defn}
+A \emph{vertex-cut} in a graph is a set of vertices $V$ such that $G\setminus V$ has more connected components than $G$. \\
+We often write $k$-connectivity to mean $k$-vertex connectivity, $k$-edge connectivity is a similarly defined but different concept.
+\end{defn}
+When $k=1$ a tree is an example of a one-edge connected graph.\\
+When $k=2$ a cycle is an example of a two-vertex connected graph.
+\begin{prop}
+Let $e$ be any edge of a $k$-connected graph for $k\ge 3$.
+Then graph $G\setminus e$ is $(k-1)$-connected.
+\end{prop}
+\begin{proof}
+Let $W=\{w_1,\ldots,w_{k-2}\}$ be any set of $k-2$ vertices and $G\setminus e$ and let $x$ and $y$ be any two different vertices in $(G\setminus e)\setminus W$.
+It is enough to show that there is an $x$-$y$ walk in $(G\setminus e)\setminus W$. \\
+If $e=(u,v)$ and $u\in W$ or $v\in W$, then $G\setminus W = (G\setminus e) \setminus W$ and we know that $G\setminus W$ has a path between $x$ and $y$ since $G$ is $k$-connected. \\
+Assume that $u\not\in W$ and $v\not\in W$. \\
+\textbf{Case 1} The vertices $x,y$ are the endpoints of $e$.
+Graph $G$ has at least $k+1$ vertices.
+Since $G$ is $k$-connected. 
+So $\exists z\in G\setminus\{W\cup\{x,y\}\}$.
+Since $G$ is $k$-connected, there exists an $x$-$z$ path $P_1$ in the graph $G\setminus W\cup\{x\}$.
+These paths do not contain $e$.
+Therefore $(P_1,P_2)$ is an $x$-$y$ path in $(G\setminus e)\setminus W$. \\
+\textbf{Case 2} One of the vertices $x$ or $y$, say $x$ is not an endpoint of $e$.
+Let $u$ be an endpoint of $e$ that is different from $y$.
+Since $G$ is $k$-connected, the graph $G' = G\setminus W\cup\{u\}$ is connected and there is an $x$-$y$ path $P$ in $G'$.
+$G'$ does not contain $e$.
+Therefore there is an $x$-$y$ path in $(G\setminus e)\setminus W$.
+\end{proof}
+\marginpar{Lecture 7}
+\begin{cor}
+Let $G$ be a $k$-connected graph and let $D$ be any set of $m$ edges of $G$ for $m\le k-1$.
+Then the graph $G\setminus D$ is $(k-m)$-connected.
+\end{cor}
+\begin{defn}
+A collection of paths in $G$ is said to be \emph{internally disjoint} if no two paths in the collection have an internal node in common.
+\end{defn}
+\begin{thm}[Whitney's 2-connected characterisation]
+Let $G$ be a connected graph with $|V(G)| \ge 3$.
+Then $G$ is 2-connected $\iff$ for each pair of vertices in $G$, there are two internally disjoint paths between them.
+\end{thm}
+\begin{proof}
+($\Leftarrow$) Suppose $G$ is not 2-connected.
+Then there is a cut-vertex $v\in V(G)$.
+Therefore $\exists x,y\in G\setminus v$ such that there is no $x$-$y$ path in $V\setminus v$.
+Therefore $v$ must be an internal vertex of any $x$-$y$ path in $G$. \\
+%TODO: possible diagram
+($\Rightarrow$) Suppose $G$ is 2-connected, and let $x$ and $y$ be any two vertices of $G$.
+Induction on $d(x,y)$.
+If $\exists e=(x,y)$ then $d(x,y) = 1$.
+Also we know that $G\setminus e$ is connected.
+Let $P$ be an $x$-$y$ path in $G\setminus e$.
+Then $e$ and $f$ are internally disjont. \\
+Assume that the statement is true for any $x',y'$ such that $d(x',y')\le k-1$.
+Let $x,y\in V(G)$ and $d(x,y) = k$. \\
+Consider a path between $x$ and $y$ of length $k$.
+Let $w$ be the vertex on this path immediately preceding $y$ and let $e=(w,y)$.
+Since $d(x,w)<k$ we know that there are two internally disjoint paths in $G$, say $P$ and $Q$ connecting $x$ and $w$.
+Also, there should be a path $R$ in $G\setminus w$ connecting $x$ and $y$.
+Let $z$ be the vertex on $R$ that precedes $y$ and is also on one of the paths $P$ or $Q$ ($z$ could be vertex $x$).
+Assume WLOG on $P$. \\
+\textbf{Option 1}
+Consider two paths constructed as follows: \\
+Follow $P$ from $x$ to $z$ and $R$ from $z$ to $y$, call this path 1.
+For path 2 we follow $Q$ from $x$ to $w$ and $e$ from $w$ to $y$. \\
+\textbf{Option 2}
+The first path is as above. \\
+The second path follows $Q$ from $x$ to $y$.
+\end{proof}
+\begin{cor}
+$G$ is 2-connected $\iff$ Any two vertices lie on a common cycle.
+\end{cor}
+\begin{thm}
+The following are equivalent:
+\begin{enumerate}
+\item $G$ is 2-connected.
+\item For any two vertices there is a cycle in $G$ containing both of them.
+\item For any vertex and any edge of $G$, there is a cycle containing both.
+\item For any two edges of $G$, there is a cycle containing both.
+\item For any two vertices and one edge, there is a path containing all three.
+\item For any three vertices and one edge there is a a path containing all four.
+\item For any three distinct vertices of $G$, there is a path containing any two of them which does not contain the third.
+\end{enumerate}
+\end{thm}
+\section{Constructing Reliable Networks}
+\begin{defns}
+A \emph{Whitney-Robbins synthesis} of graph $G$ from a graph $H$ is a sequence of graphs $G_0=H,G_1,\ldots,G_l=G$ and $G_i$ is the result of a path or a cycle addition in $G_{i-1}$ for $i=1,\ldots,l$. \\
+A \emph{path addition} in $G$ is the addition of a path between two vertices of $G$, all internal vertices and edges are new. \\
+A \emph{cycle addition} in $G$ is the addition of a cycle that has exactly one vertex in common with $G$. \\
+If the graph $G_i$ is the result of a path additions only from $H$, then the sequence $G_0,\ldots,G_l$ is called a \emph{Whitney synthesis}.
+\end{defns}
+\marginpar{Lecture 8}
+\begin{lem}
+Adding a path to a 2-connected graph keeps it 2-connected.
+\end{lem}
+\begin{proof}
+Consider $u$ and $v\in V(G)$ where $G$ is a 2-connected graph.
+We add a path between $u$ and $v$.
+To prove that the new graph is 2-connected it is enough to show that there are 2 paths $P_1$ and $P_2$ such that they are internally disjoint and $P_1$ connects $y$ to $u$ and $P_2$ connects $y$ to $v$ for any vertex $y$. \\
+We take $Q_1$ and $Q_2$ two internally disjoint paths between $y$ and $u$, and any path $R$ between $y$ and $v$.
+Assume that $R$ interset $Q_1$ or $Q_2$ and $z$ is the latest intersection point.
+Without loss of generality $z\in Q_2$.
+Choose $Q_1$ and follow $Q_2$ till $z$ and $R$ from $z$ to $v$.
+\end{proof}
+\begin{thm}
+A graph $G$ is 2-connected $\iff$ $G$ is a cycle or a Whitney synthesis from a cycle.
+\end{thm}
+\begin{proof}
+($\Leftarrow$) Let $C=G_0,\ldots,G_l=G$ is a Whitney synthesis.
+The cycle is 2-connected, so from the lemma above $G$ is also.\\
+($\Rightarrow$) Suppose $G$ is a 2-connected graph and let $C$ be any cycle in $G$.
+Let $\mathcal{H}$ be a collection of all subgraphs of $G$ that are Whitney syntheses from a cycle $C$.
+The collection $\mathcal{H}$ is non-empty since $c\in\mathcal{H}$.
+Let $H^*$ be a graph in $\mathcal{H}$ with maximum number of edges.
+Suppose $H^*\ne G$.
+The connectedness of $G$ implies that $\exists e=(v,w)\in E_G\setminus E_{H^*}$ such that $v\in V(H^*)$.
+The 2-connectedness of $G$ implies that there is a cycle in $G$ that contains $e$.
+Also there should be at least one such cycle $C_e$ that contains some other $z\in V(H^*)\setminus v$.
+Let $z$ be the first vertex of $c_e$ in $H^*$ after $w$.
+The portion on $C_e$ from $v$ to $z$ is a path addition to $H^*$.
+Contradiction to maximality of $H^*$.
+Therefore $H^* = G$.
+\end{proof}
+\begin{lem}
+Let $H$ be a 2-edge-connected graph.
+The graph that results from a path or cycle addition is 2-edge-connected.
+\end{lem}
+\begin{thm}[Whitney Robbins synthesis]
+A graoh $G$ is 2-edge connected $\iff$ $G$ is a cycle or a Whitney-Robbins synthesis from a cycle.
+\end{thm}
+
+\section{Tutte's Synthesis of 3-connected graphs}
+\begin{defn}
+The $n$-spoke wheel $W_n$ is a cycle on $n$ vertices and one additional vertex (the center) connected directly to all vertices of the cycle.
+\end{defn}
+\begin{thm}[Tutte's Synthesis Theorem]
+A graph is 3-connected $\iff$ it is a wheel or can be obtained from a wheel by a sequence of the following two operations:
+\begin{enumerate}
+\item Adding an edge between 2 non-adjacent vertices
+\item Replacing a vertex of degree at least 4 by two new vertices $v^1$ and $v^2$ so that $d(v^1) \ge 3$ and $d(v^2)\ge 3$.
+\end{enumerate}
+\end{thm}
+\paragraph{Problem} Given positive integers $n$ and $k$, find a $k$-connected $n$-vertex graph having the smallest possible number of edges.
+\marginpar{Lecture 9}
+\begin{prop}
+Let $h_k(n)$ denote the minimum number of edges a $k$-connected graph on $n$ vertices must have.
+Then $h_k(n) \ge \left[\frac{kn}{2}\right]$. 
+($h_1(n) = n-1$).
+\end{prop}
+\begin{proof}
+We know that $2|E(G)| \ge$ %TODO:finish
+\end{proof}
 
 \end{document}
