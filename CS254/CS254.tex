@@ -1,5 +1,5 @@
 \title{CS254 Algorithmic Graph Theory - Lecture Notes}
-\author{Based on lectures by Prof. Maxim Sviridenko \\ Typeset by WULNR contributors}
+\author{Based on lectures by Prof. Maxim Sviridenko \\ Typeset by Alex J. Best}
 \date{\today}
 
 \documentclass{book}
@@ -11,23 +11,30 @@
 \newtheorem*{thm}{Theorem}
 \newtheorem*{lem}{Lemma}
 \newtheorem*{cor}{Corollary}
+\newtheorem*{prop}{Proposition}
 \theoremstyle{definition}
 \newtheorem*{defn}{Definition}
+\newtheorem*{defns}{Definitions}
 \newtheorem*{ex}{Example}
 \newtheorem*{rem}{Remark}
 \newtheorem*{nota}{Notation}
+\newtheorem*{alg}{Algorithm}
 
 \newcommand{\ZZ}{\mathbb{Z}}
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\NN}{\mathbb{N}}
+\newcommand{\RR}{\mathbb{R}}
+\DeclareMathOperator{\wt}{wt}
+\DeclareMathOperator{\depth}{depth}
+
 
 \setcounter{chapter}{0}
 
 \begin{document}
 \maketitle
-
 \chapter{Basics}
 \section{Graphs}
+\marginpar{Lecture 1}
 \begin{defn}
 A graph $G$ is an ordered pair $V(G),E(G))$ consisting of a set $V(G)$ of vertices and a set $E(g)$ of edges.
 Each edge $e\in E(G)$ is associated with a pair of vertices $\{u,v\}$.
@@ -61,7 +68,7 @@ A graph $G=(V,E)$ is called empty if $E=\emptyset$.
 \end{defn}
 
 \begin{defn}
-A graph is called bipartite is it's vertex set can be partitioned into two subsets $X$ and $Y$ so that every edge has one endpoint in $X$ and one in $Y$.
+A graph is called bipartite is its vertex set can be partitioned into two subsets $X$ and $Y$ so that every edge has one endpoint in $X$ and one in $Y$.
 \end{defn}
 
 \begin{ex}
@@ -79,7 +86,7 @@ The graph $K_{1,n}$ is often called a star.
 %TODO: pictures
 
 \begin{defn}
-A path is a simple graph whose vertices can be rearranges into a linear sequence in such a wayy that two adjacent vertices are always consecutive in the sequence and vice versa, non-adjacent vertices are non-consecutive, such a graph on $n$ vertices is often denoted $P_n$.
+A path is a simple graph whose vertices can be rearranges into a linear sequence in such a way that two adjacent vertices are always consecutive in the sequence and vice versa, non-adjacent vertices are non-consecutive, such a graph on $n$ vertices is often denoted $P_n$.
 \end{defn}
 %TODO: pictures
 
@@ -89,7 +96,7 @@ A cycle on $n$ vertices is a graph defined in a similar way but a cyclic sequenc
 %TODO: pictures
 
 \begin{nota}
-The length of a path or cycle is the number of it's edges. A path or cycle of length $k$ is often called a $k$-path of $k$-cycle.
+The length of a path or cycle is the number of its edges. A path or cycle of length $k$ is often called a $k$-path of $k$-cycle.
 \end{nota}
 %TODO: pictures
 
@@ -108,7 +115,7 @@ $$ = A_{K_{3}}$$
 %TODO: pics + matrices
 \end{ex}
 \begin{defn}
-An adjacency list is a list $(N(v),v\in V)$ used to represent matrices, $N(v)$ is the set of neighbours of $v$ in arbitary order.
+An adjacency list is a list $(N(v),v\in V)$ used to represent matrices, $N(v)$ is the set of neighbours of $v$ in arbitrary order.
 \end{defn}
 
 \subsection{Adjacency and incidence matrices}
@@ -140,4 +147,239 @@ $K_n$ is $(n-1)$-regular. \\
 $C_n$ is $2$-regular. \\
 $P_n$ is not regular. \\
 \end{ex}
+\marginpar{Lecture 2}
+\begin{thm}
+Let $G=(X,Y,E)$ be a bipartite graph without isolated vertices s.t. $d_x\geq d_y$ for all $x\in X$ and $y\in Y$ s.t. $(x,y)\in E$.
+Then $|X| \leq |Y|$ with equality iff $d_x = d_y \forall (x,y)\in E$ .
+\end{thm}
+\begin{proof}
+Take the adjacency matrix $B$.
+Define the matrix $B'$ by dividing each row of $B$ corresponding to vertex $u$ by $d_u$.
+consider one column sum corresponding to $y\in Y$.
+$$\sum_{x\in X} b'_{xy} = \sum_{(x,y)\in E} \frac{1}{d_x} = \frac{d_y}{d_x} \leq 1$$
+Therefore $|X|=\sum_{x\in X}\sum_{y\in Y,(x,y)\in E} \frac{1}{d_x}$
+$$=\sum_{x\in X, y\in Y}\sum_{(x,y)\in E} \frac{1}{d_x} \leq \sum_{x\in X, y\in Y}^{(x,y)\in E} \frac{1}{d_y}$$
+$$=\sum_{y\in Y} \sum_{x\in X,(x,y)\in E} \frac{1}{d_y} = |Y|$$
+If $|X|=|Y|$, then the middle inequality must be an inequality implying that $d_x=d_y$ for all $(x,y)\in E$.
+\end{proof}
+\subsection{Isomorphisms}
+\begin{defn}
+Two graphs $G$ and $H$ are isomorphic, written $G\cong H$, if there is a bijection $\Theta\colon V(G) \to V(H)$ such that $(u,v)\in E$ iff $(\Theta(u),\Theta(v))\in E(H)$.
+\end{defn}
+\begin{ex}
+%TODO: Examples
+\end{ex}
+\begin{rem}
+\begin{itemize}
+\item The mapping $\Theta$ is not unique.
+\item Isomorphic graphs have the same number of vertices and edges.
+\item Up to isomorphism there is only one complete graph on $n$ vertices denoted $K_n$.
+So $K_n$ is a class of graphs that are all isomorphic to each other.
+\item The same as above goes for each of $K_{m,n},\ P_n,\ C_n$.
+\end{itemize}
+\end{rem}
+\subsection{Directed graphs}
+\begin{defns}
+In a graph $G= (V,E)$ a \emph{walk} from a starting vertex $v_0$ to a destination vertex $v_n$ is a sequence
+$$W=\langle v_0,e_1,v_1,e_2,\ldots,e_n,v_n\rangle\text{ s.t. }e_i=(v_{i-1},v_i)$$
+The \emph{length} of the walk is the number of edges in the sequence $W$.
+A \emph{closed walk} has the same starting and ending vertices.
+A \emph{path} is a walk where every vertex appears at most once.\\
+The \emph{distance} $d(s,t)$ between a vertex $s$ and a vertex $t$ in a graph $G$ is the length of the shortest path between $s$ and $t$ (if one exists) and $d(s,t)=+\infty$ otherwise.\\
+A \emph{weighted graph} $G= (V,E,\omega)$ is a graph and a function $\omega\colon E\to \RR$ assigning weights to edges.
+\end{defns}
+
+We now define some problems that drive our study of algorithms in graph theory.
+\paragraph{Problem 1}
+Given an edge weighted graph $G=(V,E,\omega)$.
+Find a shortest path between $s$ and $t$ (length is the sum of the edge weights).
+
+\paragraph{Problem 2}
+Minimum-weight spanning tree:
+Given an undirected graph $G=(V,E,\omega)$ find an acyclic connected subgraph of $G$ of smallest weight.
+
+\paragraph{Problem 3}
+Travelling salesman problem:
+We are given a complete weighted graph $G$.
+Find a cycle that visits every vertex exactly once and minimises its length.
+
+\paragraph{Problem 4}
+Maximum flow problem:
+You have a directed graph $G$ representing a system of pipes, each pipe has a capacity.
+We are given also the source $S$ and the sink $T$, $S,T\in V(G)$.
+How much water can we pump through the network per time unit?
+
+\begin{defn}
+A \emph{leaf} is a vertex of degree one.
+\end{defn}
+
+\begin{prop}
+Every tree $T$ has at least two leaves.
+\end{prop}
+\begin{proof}
+Consider $P=\langle v_1,\ldots,v_k\rangle$ a path of maximum length in $T$.
+Consider $v_1$ if $v_1$ has degree more than one then we can either extend the path or $T$ is not acyclic.
+\end{proof}
+\marginpar{Lecture 3}
+\begin{cor}
+If the degree of each node in $G$ is $\ge 2$ then $G$ has a cycle.
+\end{cor}
+\begin{prop}
+Each tree has exactly $|V| -1$ edges.
+\end{prop}
+\begin{proof}
+\lbrack By induction\rbrack
+\end{proof}
+\begin{defns}
+An acyclic graph is called a \emph{forest}.\\
+A \emph{connected component} of $G$ is a maximal connected subgraph of $G$.
+Let $c(G)$ be the number of connected components of $G$. %0th betti number
+\end{defns}
+\begin{cor}
+Any graph on $n$ vertices has at least $n-c(G)$ edges.
+\end{cor}
+\begin{prop}
+If $G$ is a simple graph with $n$ vertices then
+$$|E(G)| \le \frac{(n-k)(n-k+1)}{2} \text{ where }k=c(G)$$
+\end{prop}
+\begin{proof}
+Let $c_1,\ldots,c_k$ be the connected components of $G$, i.e. $c_i=(V_i,E_i)$ and $E(G) = \bigcup_{i=1}^k E_i,\ V=\bigcup_{i=1}^k V_i,\ n=|V|$.
+Then $n=\sum_{i=1}^k n_i$ and $n_i \ge 1$.
+Obviously $|E(G_i)| \le \frac{n_i^2 -n_i}{2}$.
+Thus $|E(G)| \le \sum_{i=1}^k \frac{n_i^2-n_i}{2}$.
+The maximum of RHS occurs when $|C_1| = |C_2| = \ldots = |C_{k-1}| = 1$ and $|C_k| = n-k +1$. \\
+Assume the contrary that the maximum occurs when $c_i = k$, and $c_j = k_s$ where $r\ge s \ge 2$.
+Then $|E(c_i)| + |E(c_j)| = \frac{r^2 + s^2 - r -s}{2}$.
+But is $c_i = k_{r+1}$ and $c_j = k_{s-1}$, then we have $\frac{(r+1)^2 + (s-1)^2 - (r+1) -(s-1)}{2}$ edges.
+We get a contradiction since $(r+1)^2 + (s-1)^2 > r^2 + s^2$.
+\end{proof}
+\begin{defn}
+A \emph{cut-edge} is an edge whose removal increases the number of connected components.
+\end{defn}
+\begin{thm}
+Let $T$ be a graph with $n$ vertices, then the following statements are equivalent:
+\begin{enumerate}
+\item $T$ is a tree.
+\item $T$ contains no cycles and has $(n-1)$ edges.
+\item $T$ is connected and has $(n-1)$ edges.
+\item $T$ is connected and every edge is a cut-edge.
+\item Any two vertices of $T$ are connected by exactly one path.
+\item $T$ contains no cycles and for any new edges the graph $T + e$ has exactly one cycle.
+\end{enumerate}
+\end{thm}
+\begin{proof}
+$(1\implies 2)$ \lbrack Previous proposition\rbrack and definition of tree. \\
+$(2\implies 3)$ Suppose $T$ has $k$ connected components.
+Then each component must be a tree (because they have no cycles) therefore $T$ must contain $n-k$ edges, exactly $\implies k=1$. \\
+$(3\implies 4)$ Let $e$ be an edges of $T$.
+Since $T\setminus e$ has $n-2$ edges by one of the corollaries, we must have $c(T)\ge 2$. \\
+$(4\implies 5)$ (By contradiction) Suppose $x$ and $y$ are two vertices of tress $T$ that have two different paths, say $p_1$ and $p_2$ connecting them.
+Let $u$ be the the first vertex where the paths diverge and let $v$ be the first vertex where the paths meet again.
+Any edge of the cycle containing $u$ and $v$ is not a cut edge which contradicts (4). \\
+$(5\implies 6)$ $T$ contains no cycles otherwise we would have two paths between $x,y\in$ cycle.
+If we add an edge $e= (u,v)$ we will create a cycle since $T$ contains a path between $u$ and $v$. If $T+e$ contains two cycles then both cycles must contain $e$.
+$u,v$ have two different paths containing them in $T$ is a contradiction. \\
+$(6\implies 1)$ \lbrack By definition \rbrack \\
+\end{proof}
+\subsection{Huffman Trees and Optimal Prefix Codes}
+\begin{defns}
+A \emph{binary code} is an assignment of symbols or other meanings to a set of bitstrings.\\
+A \emph{prefix code} is a binary code with the property that no codeword is an initial substring of any other codeword.
+\end{defns}
+This allows for transmission without confusion.
+\begin{ex}
+A prefix code for an alphabet: construct a binary tree with a leaf corresponding to a letter of your alphabet, every left-hand edge is labelled by 0 and right-hand edge is labelled by 1.
+%TODO: Pictures!
+\end{ex}
+\marginpar{Lecture 4}
+\begin{defns}
+Assume we have a code.
+Each codeword has a length $l_c$ and each symbol has its frequency $p_c$.
+The \emph{code efficiency} is then$\sum p_cl_c$. \\
+Let $T$ be a binary tree with leaves $s_1,\ldots,s_l$ such that each leaf $s_i$ is assigned weight $w_i$.\\
+The \emph{average weighted depth} of the binary tree $T$ is $\wt(T) = \sum_{i=1}^l\depth(s_i)w_i$ where depth is the number of edges to the root.
+\end{defns}
+\begin{alg}[Constructing Huffman Prefix Codes]~\\
+\textbf{Input} $s_1,\ldots,s_l$ of symbols and a list of $w_1,\ldots,w_l$ of weights $w_i$ corresponding to $s_i$.\\
+\textbf{Output} A binary tree representing a prefix code for a set of symbols whose codewords have minimum average weighted length.\\
+Initialise $F$ to be a forest of isolated vertices, labelled $s_1,\ldots,s_l$ with respective weights $w_1,\ldots, w_l$. \\
+For $i=1$ to $l-1$ Choose two trees $T$ and $T'$ from the forest of smallest weights.\\
+Create a binary tree by adding a new vertex with $T$ as a child on the left and $T'$ a child on the right. Label the edges to these new child trees 0 and 1 respectively. \\
+Assign to the new tree the weight $\wt(T)+\wt(T')$. \\
+Replace $T$ and $T'$ in $F$ by the new tree. \\
+When finished return F.
+\end{alg}
+\begin{ex}
+%TODO:examples
+\end{ex}
+\begin{lem}
+If the leaves of a binary tree are assigned weights and if each internal vertex (node) is assigned a weight equal to the sum of its children's weights, then the tree's average weighted depth equals the sum of the weights of its internal (non-leaf) vertices.
+\end{lem}
+\begin{proof}
+In assignments.
+\end{proof}
+\begin{thm}
+For a given list of weights $w_1,\ldots,w_l$ a Huffman tree has the smallest average weighted depth among all binary trees whose leaves are assigned these weights.
+\end{thm}
+\begin{proof}
+Induction on $l$.
+Let $T$ be the Huffman tree.
+\textbf{Base case} $l=2$. Then $\wt(T) = w_1 + w_2$, because $T$ is the only tree on 3 vertices.
+\textbf{Inductive step} Assume that for some $l\ge 2$ the Huffman algorithm produces a Huffman tree of minimum average weighted depth for any list of $l$ weights. \\
+We are given $w_1\le w_2\le \ldots\le w_{l+1}$. The Huffman tree $H$ that is constructed by the algorithm consists of the Huffman tree $\bar{H}$ for the weights $w_1+w_2,w_3,\ldots,w_{l+1}$ where the leaf with weight $w_1+w_2$ is replaced by a tree with two children of weights $w_1$ and $w_2$.
+By the previous lemma, we know $\wt(H) = \wt(\bar{H}) + w_1 + w_2$.
+By the inductive hypothesis, $\bar{H}$ is optimal among all binary trees whose leaves are assigned weights  $w_1+w_2,w_3,\ldots,w_{l+1}$. \\
+Suppose $T^*$ is an optimal binary tree for the weights $w_1,\ldots,w_l$.
+Let $x$ be an internal vertex of $T^*$ of greatest depth and suppose $y$ and $z$ are its left child and right child respectively. Without loss of generality, $y$ and $z$ have weights $w_1$ and $w_2$ otherwise we can swap their weights with $w_1$ and $w_2$ and produce a tree with the same or better weights.
+Delete $y$ and $z$ from $T^*$ and call this tree $\bar{T}$, we have $\wt(T^*) = \wt(\bar{T}) + w_1 + w_2$. We also know that $\wt(\bar{T}) \ge \wt(\bar{H})\implies \wt(T^*)\ge \wt(H)$.
+\end{proof}
+\marginpar{Lecture 5}
+\begin{defn}
+Given trees $T=(V,E)$ and $T' = (V,E')$ we say $T=T'$ if $E = E'$.
+\end{defn}
+\begin{ex}
+%TODO:examples of unequal but isomorphic trees.
+\end{ex}
+\begin{thm}[Cayley's Formula]
+The number of $n$ vertex labelled trees is $n^{n-2}$.
+\end{thm}
+\begin{defn}
+A \emph{Pr\"ufer sequence} of length $n-2$ for $n\ge 2$ is any sequence of integers between 1 and $n$ with repetitions allowed.
+There are $n^{n-2}$ of these.
+\end{defn}
+\begin{alg}~\\
+\textbf{Input} An $n$-vertex tree.\\
+\textbf{Output} A Pr\"ufer sequence of length $n-2$.\\
+Initialise $T$ to be a given tree \\
+For $i=1$ to $n-2$ \\
+\indent Let $v$ be the vertex of degree 1 with smallest label.\\
+\indent Let $s_i$ be the only neighbour of $v$.\\
+\indent Define $T = T\setminus v$\\
+Return the sequence $\langle s_1,\ldots,s_{n-2}\rangle$
+\end{alg}
+\begin{ex}
+%TODO:yet more examples
+\end{ex}
+\begin{prop}
+Let $d_k$ be the number of occurrences of the number $k$ in a Pr\"ufer encoding sequence for a labelled tree $T$.
+Then the degree of $k$ in $T$ is $d_k+1$.
+\end{prop}
+\begin{proof}
+By induction: \\
+The assertion is true for any tree on 3 vertices since the Pr\"ufer sequence consists of a single label of the vertex of degree 2. \\
+Assume the assertion is true for all labelled trees on $n$ vertices for some $n\ge 3$.\\
+Let $T$ be a labelled tree on $n+1$ vertices.
+Let $v$ be a leaf with smallest label $l(v)$.
+Let $w$ be a neighbour of $v$.
+Then the Pr\"ufer sequence $S$ for $T$ consists of $l(w)$ followed by $S^*$, the Pr\"ufer sequence of $T^* = T\setminus v$. \\
+Now by the inductive hypothesis, for each $u\in T^*$ the number of occurrences of $l(W)$ in $S^*$ is $d_{T^*}(u)-1$.
+But for all $u\ne w$ the number of occurrences of the label $l(u)$ in $S^*$ is the same as in $S$, and $d_T(u)=d_{T^*}(u)$.
+Moreover, $d_T(w) = d_{T^*}(w) + 1$ and $l(w)$ has one more occurrence in $S$ than in $S^*$.
+\end{proof}
+\begin{alg}[for Pr\"ufer decoding]~\\
+\textbf{Input} A Pr\"ufer sequence of length $n-2$.\\
+\textbf{Output} An $n$-vertex labelled tree.\\
+%TODO:Finish
+\end{alg}
+
 \end{document}
