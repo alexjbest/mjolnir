@@ -587,21 +587,102 @@ Therefore $|E(G)| \ge \left[\frac{nK_v(G)}{2}\right]$.
 \end{proof}
 We are given a cycle on $n$ vertices $0,1,\ldots,n-1$.
 For any two vertices of the cycle the mod $n$ distance between $i$ and $j$ is denoted $|i-j|_n$ is the smaller of the two numbers $|j-i|$ and $n-|j-i|$. \\
-We look at a class of graphs that are a possible candidate for 
+We look at a class of graphs that are a possible candidate for the solution to our problem above.
 \begin{defn}
 %TODO:finish
-We define the class of \emph{Harary graphs} $H_{k,n}$ in three cases as follows: \\
-\textbf{Case 1}
-\textbf{Case 2}
-\textbf{Case 3}
+We define the class of \emph{Harary graphs} $H_{k,n}$ by starting with $n$ vertices and adding edges in three cases as follows: \\
+\textbf{Case 1} $k$ even. \\
+Let $k=2r$.
+Define an edge $(i,j)$ if $|i-j|_n \le 2$.
+\textbf{Case 2} $k$ odd, $n$ even. \\
+Let $k=2r+1$.
+We start with the graph $H_{2r,n}$ and add $\frac{n}{2}$ diameters of the original $n$-cycle, i.e. an edge between $i$ and $i+\frac{n}{2}$.
+The total number of edges $rn +\frac{n}{2} = \frac{(2r+1)n}{2} = \frac{kn}{2}$.
+\textbf{Case 3} $k$ odd, $n$ odd. \\
+Let $k = 2r+1$.
+Start with $H_{2r,n}$ and add $\frac{n+1}{2}$ quasi-diameters.
+Draw an edge from 0 to $\frac{n-1}{2}$ and from 0 to $\frac{n+1}{2}$.
+Draw edges from $i$ to $i+\frac{n+1}{2}$ for $i=1,\ldots,\frac{n-3}{2}$.
+Then $E(G) = 2n + \frac{n+1}{2} = \frac{(2r+1)n+1}{2} = \left[\frac{kn}{2}\right]$.
 \end{defn}
 \begin{thm}
 The Harary graph $H_{k,n}$ is $k$-connected.
 \end{thm}
 \begin{proof}
-\textbf{Case 1}
-\textbf{Case 2}
-\textbf{Case 3}
+\textbf{Case 1} $k=2r$ \\
+Suppose that $2r-1$ vertices $i_1,\ldots,i_{2r-1}$ are deleted from $H_{2r,n}$ and let $x$ and $y$ be any two vertices in $H_{2r,n}\setminus \{i_1,\ldots,i_{2r-1}\}$.
+We need to show that there is an $x$-$y$ path in this graph.
+We either deleted $\le r-1$ vertices on this section of the cycle from $x$ to $y$ or from $y$ to $x$.
+Assume WLOG that we delete $\le r-1$ vertices on the section from $x$ to $y$.
+Let $S$ be the remaining vertices.
+The deletions create gaps on the path from $x$ to $y$, but each gap is $\le r-1$.
+Therefore, there is an edge that connects two vertices neighbouring each gap.
+Therefore $x$ and $y$ are connected.
+\textbf{Case 2} $k=2r+1$, $n$ is even. \\
+Suppose $D$ is a set of $2r$ vertices that are deleted from $H_{2r+1,n}$.
+Let $x$ and $y$ be two arbitrary vertices in $H_{2r+1,n}\setminus D$.
+%TODO:diagrams
+Consider $H_{2r+1}\setminus D$.
+The only bad case is $r$-consecutive vertices are deleted (set $A$) between $x$ and $y$ and $r$-consecutive vertices are deleted between $y$ and $x$ (set $B$).
+Let $A=\{0,\ldots,a+r-1\}$ and $B=\{0,\ldots,b+r-1\}$, where the addition is modulo $n$.
+Let $l = |(b+r)-(a-1)|_n$ and $w = b+r + \lfloor \frac{l}{2}\rfloor$.
+The $w$ is halfway between $b+r$ and $a-1$.
+Let $z=w+\frac{n}{2}$ i.e. $z$ is halfway between $b+r$ and $a-1$ moving counter-clockwise.
+The vertex $w$ is not among those deleted by the definition.
+The vertex $z$ is not among those deleted either since $z$ is in the middle of the stretch from $b+r$ to $a-1$, we delete equal pieces of size $r$ from both sides of the stretch and the non-deleted piece is non-empty.
+%\textbf{Case 3}
 \end{proof}
 \marginpar{Lecture 10}
+\begin{thm}[Menger's theorem]
+Let $u,v$ be distinct non-adjacent vertices in a connected graph.
+Then the maximum number of internally disjoint $u$-$v$ paths in $G$ equals the minimum number of vertices needed to separate $u$ and $v$.
+\end{thm}
+\section{Optimal Graph Traversals}
+\begin{defns}
+An \emph{Eulerian walk} in a graph $G$ is a walk that contains every edge of the graph exactly once. \\
+An \emph{Eulerian tour} is a closed Eulerian walk. \\
+An \emph{Eulerian graph} is a graph permitting an Eulerian tour. \\
+\end{defns}
+\begin{thm}[Euler]
+The following statements are equivalent for a connected graph $G$:
+\begin{enumerate}
+\item $G$ is Eulerian.
+\item The degree of every vertex in $G$ is even.
+\item $E(G)$ is the union of the edge sets of a set of edge disjoint cycles in $G$.
+\end{enumerate}
+\end{thm}
+\begin{proof}
+($1\Rightarrow 2$) Let $C$ be an Eulerian tour in $G$ and let $v$ be the starting vertex of some transversal of $C$.
+The initial edge and the final edge of the transversal contribute 2 towards the degree of $v$ and each time the traversal passes through a vertex a contribution of 2 towards the degree also results. \\
+($2\Rightarrow 3$) Since $G$ is connected and every vertex has degree $\ge 2$, $G$ contains a cycle say $C_1$.
+If $C_1 = G$, there is nothing to prove.
+Otherwise, consider $G_1=G\setminus C_1$.
+Thus the graph has at least one non-trivial component (isolated vertices are trivial components).
+Each vertex of $G_1$ has even degree.
+The connected component must contain a cycle $C_2$.
+If $E(G_1) = E(C_2)$, we stop.
+Otherwise, $G_2 = G_1\setminus E(C_2)$ and we continue.
+In the end, $E(G) = \bigcup_{i=1}^r E(C_i)$ where $r$ is the number of iterations. \\
+($3\Rightarrow 1$) Assume that $E(G) = \bigcup_{i=1}^r E(C_i)$ for some edge-disjoint cycles $C_i$ and $G$ is connected.
+Start ar vertex $v_1\in C_1$ and walk along $C_1$.
+Let $T_1 = C_1$.
+There must be some vertex $v_2$ of $T_1$ belonging to some other cycle say $C_2'$.
+We add $C_2'$ into $T_1$ as follows, walk along $T_1$ from $v_1$ to $v_2$, walk along $C_2'$, after that walk from $v_2$ to $v_1$ along $T_1$.
+This defines $T_2$ and we repeat this procedure to obtain the proof.
+\end{proof}
+\begin{thm}
+A connected graph has an open Eulerian trail $\iff$ it has exactly two vertices of odd degree.
+\end{thm}
+\begin{thm}
+The following statements are equivalent for a connected digraph $\bar{G}$.
+\begin{enumerate}
+\item Digraph $\bar{G}$ is Eulerian.
+\item For every vertex $v$, $d^+(v) = d^-(v)$.
+\item The edge set of $D$ is the union of edge-sets of edge-disjoint directed cycles in $D$.
+\end{enumerate}
+\end{thm}
+\begin{defn}
+A bitstring of length $2^n$ is called a \emph{$(2,n)$-de Bruijn sequence} if each of the $2^n$ possible bitstrings of length $n$ occurs exactly once as a substring, where wraparound is allowed.
+\end{defn}
+%TODO: finish
 \end{document}
