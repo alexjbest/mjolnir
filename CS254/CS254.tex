@@ -34,6 +34,10 @@
 \begin{document}
 \maketitle
 \tableofcontents
+~\\
+These are some notes I typeset for CS254 Algorithmic graph theory in 2013, they are currently full of gaps, mistakes, wrong statements and other badness.
+However they might be useful to someone, despite the fact they lack any pictures at present.
+
 \section{Graphs}
 \marginpar{Lecture 1}
 \begin{defn}
@@ -101,7 +105,7 @@ The length of a path or cycle is the number of its edges. A path or cycle of len
 \end{nota}
 %TODO: pictures
 
-\subsection{Adjacency and incidence matrices}
+\section{Adjacency and incidence matrices}
 \begin{defn}
 The incidence matrix of $G = (V,E)$ when $|V| = m$ and $|E| = n$ is the $m\times n$ matrix $M_G = (m_{ve})$ where $m_{ve}$ is the number of times that vertex $v$ and $e$ are incident ($m_{ve} \in \{0, 1\}$).
 \end{defn}
@@ -119,7 +123,7 @@ $$ = A_{K_{3}}$$
 An adjacency list is a list $(N(v),v\in V)$ used to represent matrices, $N(v)$ is the set of neighbours of $v$ in arbitrary order.
 \end{defn}
 
-\subsection{Vertex degrees}
+\section{Vertex degrees}
 \begin{defn}
 The degree of a vertex $v$ in a graph $G$ is denoted $d_G(v)$ or $d_v$ and is the number of edges of $G$ incident with $v$.
 \end{defn}
@@ -163,7 +167,7 @@ $$=\sum_{x\in X, y\in Y}\sum_{(x,y)\in E} \frac{1}{d_x} \leq \sum_{x\in X, y\in 
 $$=\sum_{y\in Y} \sum_{x\in X,(x,y)\in E} \frac{1}{d_y} = |Y|$$
 If $|X|=|Y|$, then the middle inequality must be an inequality implying that $d_x=d_y$ for all $(x,y)\in E$.
 \end{proof}
-\subsection{Isomorphisms}
+\section{Isomorphisms}
 \begin{defn}
 Two graphs $G$ and $H$ are isomorphic, written $G\cong H$, if there is a bijection $\Theta\colon V(G) \to V(H)$ such that $(u,v)\in E$ iff $(\Theta(u),\Theta(v))\in E(H)$.
 \end{defn}
@@ -179,7 +183,7 @@ So $K_n$ is a class of graphs that are all isomorphic to each other.
 \item The same as above goes for each of $K_{m,n},\ P_n,\ C_n$.
 \end{itemize}
 \end{rem}
-\subsection{Directed graphs}
+\section{Directed graphs}
 \begin{defns}
 In a graph $G= (V,E)$ a \emph{walk} from a starting vertex $v_0$ to a destination vertex $v_n$ is a sequence
 $$W=\langle v_0,e_1,v_1,e_2,\ldots,e_n,v_n\rangle\text{ s.t. }e_i=(v_{i-1},v_i)$$
@@ -282,7 +286,7 @@ If we add an edge $e= (u,v)$ we will create a cycle since $T$ contains a path be
 $u,v$ have two different paths containing them in $T$ is a contradiction. \\
 $(6\implies 1)$ \lbrack By definition \rbrack \\
 \end{proof}
-\subsection{Huffman Trees and Optimal Prefix Codes}
+\section{Huffman Trees and Optimal Prefix Codes}
 \begin{defns}
 A \emph{binary code} is an assignment of symbols or other meanings to a set of bitstrings.\\
 A \emph{prefix code} is a binary code with the property that no codeword is an initial substring of any other codeword.
@@ -681,8 +685,203 @@ The following statements are equivalent for a connected digraph $\bar{G}$.
 \item The edge set of $D$ is the union of edge-sets of edge-disjoint directed cycles in $D$.
 \end{enumerate}
 \end{thm}
+\begin{defns}
+A bitstring of length $2^n$ is called a \emph{$(2,n)$-de Bruijn sequence} if each of the $2^n$ possible bitstrings of length $n$ occurs exactly once as a substring, where wraparound is allowed. \\
+The \emph{$(2,n)$-de Bruijn digraph}, denoted $D_{2,n}$, consists of $2^{n-1}$ vertices labelled by the bitstrings of length $n-1$ and $2^n$ arcs labelled by the bitstrings of length $n$.
+The arc from the vertex $a_1,\ldots,a_{n-1}$ to the vertex $b_2,\ldots,b_n$ is labelled $b_1,\ldots,b_n$.
+\end{defns}
+\begin{prop}
+The $(2,n)$-de Bruijn digraph $D_{2,n}$ is Eulerian.
+\end{prop}
+\begin{proof}
+Show that the indegree $=$ the out degree.
+\end{proof}
+\marginpar{Lecture 11}
 \begin{defn}
-A bitstring of length $2^n$ is called a \emph{$(2,n)$-de Bruijn sequence} if each of the $2^n$ possible bitstrings of length $n$ occurs exactly once as a substring, where wraparound is allowed.
+A \emph{postman tour} in a graph $G$ is a closed walk that uses each edge at least once. \\
+In an edge weighted graph an \emph{optimal postman tour} is one whose total edge-weight is minimal.
 \end{defn}
-%TODO: finish
+\begin{alg}[Finding optimal postman tours]~\\
+\textbf{Input} A connected edge-weighted graph. \\
+\textbf{Output} An optimal postman tour $W$. \\
+First find the set of odd degree vertices in $G$. \\
+For each pair of odd degree vertices $u$ and $v$ in $S$: \\
+\indent Find a shortest path $P$ in $G$ between $u$ and $v$. \\
+Let $d_{uv}$ be the length of path $P$. \\
+Form a complete graph $K_{|S|}$ on the vertices of $S$.\\
+For each edge $e = (u,v)$ in $K_{|S|}$, assign the weight $d_{uv}$ to the edge $e$.\\
+Find a minimum weight perfect matching $M$ in $K_{|S|}$.\\
+For each edge $e=(u,v)$ of the matching $M$: \\
+\indent Let $P_e$ be the corresponding path in $G$ between $u$ and $v$. \\
+\indent For each edge $f\in P_e$ add a duplicate copy of $f$ to $G$ including its edge-weight. \\
+Let $G^*$ be the Eulerian graph consisting of $G$ and edge duplications defined above.
+Note that all vertices of odd degree will have an odd number of edges added.
+All vertices of even degree will have an even number of edges added. \\
+So to finish we construct an Eulerian tour $W$ in $G^*$.
+\end{alg}
+\section{Hamiltonian paths and cycles}
+\begin{defn}
+A \emph{Hamiltonian path (or cycle)} of a graph is a path (resp. cycle) that contains all the vertices of the graph.
+\end{defn}
+For digraphs the path (or cycle) must be directed.
+\begin{thm}[Ore, 1960]
+Let $G$ be a simple $n$-vertex undirected graph where $n\ge 3$ such that $d(x) + d(y) \ge n$ for each non-adjacent pair $x,y\in V(G)$.
+Then $G$ is Hamiltonian.
+\end{thm}
+\begin{proof}
+(by contradiction).
+Assume that $G$ is a maximal counterexample (i.e. adding another edge makes it Hamiltonian).
+Let $x$ and $y$ be any two non-adjacent vertices.
+We will show that $d(x) + d(y)  \le n-1$.
+Since $G\cup (x,y)$ is Hamiltonian, $G$ contains a Hamiltonian path with endpoints $x$ and $y$.
+Let $x = v_1,v_2,\ldots,v_n=y$.
+For each $i=2,\ldots,n-1$ at least one of the pairs $v_1,v_{i+1}$ and $v_i,v_n$ is non-adjacent since otherwise $\langle v_1,\ldots,v_i,v_n,v_{n-1},\ldots,v_{i+1},v_1\rangle$ is a Hamiltonian cycle.
+If $(a_{ij}$ is the adjacency matrix of $G$ then $a_{1,i+1} + a_{i,n}\le 1$ for $i=2,\ldots,n-1$.
+Thus
+$$d(x)+d(y) = \sum_{i=2}^{n-1}a_{1,i} + \sum_{i=2}^{n-1} a_{i,n} = a_{1,2,} (\sum_{i=2}^{n-2}a_{1,i+1} + \sum_{i=2}^{n-2} a_{i,n}) + a_{n-1,n} $$
+$$= 2 + \sum_{i=2}^{n-2}(a_{1,i+1} +a_{i,n}) \le 2+n-3 = n-1$$
+\end{proof}
+\begin{cor}[Dirac, 1952]
+Let $G$ be a simple $n$-vertex graph with $n\ge 3$ such that $d(v) \ge \frac{n}{2}$, for each $v$.
+Then $G$ is Hamiltonian.
+\end{cor}
+\begin{thm}
+Let $D$ be a simple $n$-vertex digraph.
+Suppose for every pair $u,v$ such that $(u,v)\not\in E(D)$, $d_{\text{out}}(u) + d_{\text{in}}(v) \ge n$.
+Then $D$ is Hamiltonian.
+\end{thm}
+\begin{thm}
+The $n$-dimensional hypercube $Q_n$ is Hamiltonian.
+\end{thm}
+\begin{proof}
+(by induction). \\
+\textbf{Base case} $Q_4$ is a 4-cycle. \\
+\textbf{Inductive step} Assume for $n\ge 2$ that there is a Hamiltonian cycle $\langle b_1,b_2,\ldots,b_{2^n},b_1\rangle$ in $Q_n$.
+Then $\langle b_10,b_20,\ldots,b_{2^n}0,b_{2^n}1,b_{2^{n-1}}1,\ldots,b_11,b_01,b_00\rangle$ is a Hamiltonian cycle in $Q_{n+1}$.
+\end{proof}
+\marginpar{Lecture 12}
+\section{Approximation Algorithms}
+\begin{defn}
+A polynomial time algorithm for maximisation problems is called a \emph{polynomial time approximation algorithm} with performance guarantee $\rho\in [ 0,1 ]$ if it always finds an approximate solution of value at most $\rho$ times the optimal value.
+\end{defn}
+\begin{alg}[Nearest Neighbour Heuristic for TSP]~\\
+\textbf{Input} A weighted complete graph. \\
+\textbf{Output} A sequence of labelled vertices that forms a Hamiltonian cycle.\\
+Start at any vertex $v$.\\
+Initialise $l(v) = 0$.\\
+Initialise $i=0$.\\
+While there are unlabelled vertices: \\
+\indent $i = i+1$ \\
+\indent Traverse the cheapest edge that joins $v$ to an unlabelled vertex $w$. \\
+\indent Set $l(w) = i,\ v=w$.\\
+Return $l$.
+\end{alg}
+
+\paragraph{Counterexample}
+%TODO : add in
+
+\begin{defn}
+Given wighted complete undirected $G=(K_n, c)$ we say that $G$ satisfies the \emph{triangle inequality} if $c_{i,j}\le c_{i,k} + c_{k,j}\ \forall i,j,k$.
+\end{defn}
+
+\begin{thm}
+For every $r > 1$ there exists an instance of the TSP obeying the triangle inequality for which the solution obtained by the nearest neighbour algorithm is at least $r$ times the optimal value.
+\end{thm}
+
+\begin{alg}[Nearest Addition]~\\
+Find two closest vertices $i$ and $j$.
+Define a closed walk $i,j,i$. \\
+Assume we are given a closed walk $W$, that visits all vertices in some set $S\subseteq V$.\\
+\indent Find a vertex $k\in V\setminus S$ such that $\min_{y\in S} c_{k,u} = \min_{x\in V\setminus S \\ y\in S} c_{x,y}$, $k$ is the closest vertex of $V\setminus S$ to the set $S$. \\
+\indent Let $c_{kv} = \min_{u\in S} c_{ku}$ and $v \in S$. \\
+\indent Consider the walk from $i$ to $v$ according to $W$.
+Add two edges $(v,k)$ and $(k,v)$ to the walk, and continue from $v$ to $i$ according to $W$.
+\end{alg}
+
+\begin{rem}
+\begin{enumerate}
+\item The sequence of vertices and edges generated by the nearest addition algorithm is the same as the sequence of vertices and edges generated Prim's algorithm for finding the minimum spanning tree (MST), i.e $\wt(w) = 2\wt(T)$ where $T$ is the spanning tree generated by Prim's. \\
+\item Let $H$ be an optimal solution to $TSP$. Then $\wt(H) \ge \wt(T)$.
+(Delete and edge from $H$ -- we obtain a path i.e. a tree). \\
+\item Any walk $W$ that visits every vertex in a complete weighted graph can be transformed into a Hamiltonian cycle $H^*$ such that $\wt(H^*) \le \wt(W)$, if the edge weights satisfy the triangle inequality.
+\end{enumerate}
+\end{rem}
+
+\marginpar{Lecture 13}
+
+\paragraph{Another interpretation}
+\begin{enumerate}
+\item Find an MST denoted $T$.
+\item Consider a multigraph with edge sets $E(T)\cup E(T')$ where $T'$ is another copy of $T$ (aka, double $T$).
+\item Find an Eulerian walk $W$ in this graph.
+Transform $W$ into a Hamiltonian cycle $H$ according to remark 3 above.
+\end{enumerate}
+
+We now consider another algorithm for TSP.
+
+\begin{alg}[Christofides']~\\
+\begin{enumerate}
+\item Compute an MST $T$.
+\item Let $O$ be the set of all odd degree vertices of $T$.
+\item Define a complete graph $K_{|O|}$ with original edge weights.
+\item Find a minimum weight perfect matching $M$ in $K_{|O|}$.
+\item Consider the Eulerian graph $T\cup M$, find an Eulerian walk $W$ in $T\cup M$.
+\item Transform $W$ into a Hamiltonian cycle $H$ according to remark 3.
+\end{enumerate}
+\end{alg}
+
+\begin{thm}
+$\wt(H)\le\frac{3}{2}\wt(\text{OPT})$, where OPT is an optimal TSP solution.
+\end{thm}
+\begin{proof}
+We know by remark 4 $\wt(H) \le \wt(W) = \wt(T) + \wt(M)$.
+Additionally we know that $\wt(T) \le \frac{1}{2}\wt(\text{OPT})$.
+Consider the tour $H_0$ obtained from OPT by short-cutting.
+We have $\wt(H_0) \le \wt(H)$ by the triangle inequality.
+Also $H_0 = M_1\cup M_2$ where $M_1$ contains an odd number of edges and $M_2$ contains an even number of edges along $H_0$.
+Since $M$ is the minimum matching we derive:
+$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{1}{2}(\wt(M_1),\wt(M_2)) = \frac{1}{2}\wt(H_0) \le \frac{1}{2}\wt(\text{OPT})$$
+\end{proof}
+
+\section{$k$-center Problem}
+We are given an undirected complete graph $G=(V,E)$ with edge weights $d_{ij} \ge 0$, $(G,d)$ satisfied the triangle inequality.
+Find a set $S\subseteq V$ such that $|S| = k$ and $\max_{u\in V\setminus S}\min_{v\in S} d_{uv}$ is minimised, i.e. the objective is to minimise the maximum distance of a vertex to its cluster center.
+
+\begin{alg}[Greedy approximation]~\\
+\begin{enumerate}
+\item Pick $i\in V$ arbitrarily, and put it in the set $S$.
+\item While $|S| < k$, find $j\in V\setminus S$ for which distance $d(j,S) =\max_{u\in V\setminus S}\min_{v\in S} d_{uv}$, add this $j$ to $S$.
+\item Output set $S$.
+\end{enumerate}
+\end{alg}
+
+\begin{thm}
+The greedy algorithm above has performance guarantee of 2 for the $k$-center problem.
+\end{thm}
+\begin{proof}
+Let $S^*=\{j_1,\ldots,j_k\}$ denote an optimal solution and let $r^*$ be its value, i.e radius.
+This solution partitions the nodes of $V$ into clusters $V_1,\ldots,V_k$ where each point $j\in V$ is placed in $V_i$ if it is closest to $j_i$ among all points in $S^*$ (ties are broken arbitrarily).
+Each pair of points (or nodes) $j,j'\in V$ are at most $2r^*$ apart (using the triangle inequality).
+Consider the set $S\subseteq V$ of the nodes selected by the greedy algorithm.
+If one center in $S$ is selected from each cluster $V_1,\ldots,V_k$ of the optimal solution, then every point in $V$ is within $2r^*$ of some point in $S$.
+If the algorithm selects two points in the same cluster $V_i$, i..e on some iteration the algorithm chooses $j\in V_i$ even though the algorithm already chose $j'\in V_i$ in an earlier iteration.
+Again $d_{jj'}\le 2r^*$.
+Since $j$ is the furthest point in $V\setminus S$ from $S$ we know that all remaining points in $V\setminus S$ must be within distance $2r^*$ from $S$.
+\end{proof}
+
+\marginpar{Lecture 14}
+
+\section{Finding MSTs}
+Given a connected graph $G=(V,E)$ find a spanning tree $T$ of $G$ so as to minimise the maximum degree of $T$.
+Let $T^*$ be the spanning tree minimising the maximum degree and let OPT be the maximum degree in $T^*$.
+Let $l =\lceil log_2n\rceil$.
+
+\begin{alg}[Local search]~\\
+\begin{enumerate}
+\item
+\item
+\item
+\end{enumerate}
+\end{alg}
+% TODO : finsih!!
 \end{document}
