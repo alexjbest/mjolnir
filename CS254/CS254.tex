@@ -25,18 +25,19 @@
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\RR}{\mathbb{R}}
+\newcommand{\bb}[1]{\mathbb{#1}}
 \DeclareMathOperator{\wt}{wt}
 \DeclareMathOperator{\depth}{depth}
 
 \setcounter{tocdepth}{3}
 
-
 \begin{document}
 \maketitle
 \tableofcontents
 ~\\
-These are some notes I typeset for CS254 Algorithmic graph theory in 2013, they are currently full of gaps, mistakes, wrong statements, notation abuse and lots of other badness.
+These are lecture notes I typeset for CS254 Algorithmic Graph Theory in 2013, they are currently full of gaps, mistakes, wrong statements, notation abuse and lots of other badness.
 However they might be useful to someone, despite the fact they lack any pictures at present.
+If you find anything that could be improved send me an email at a.j.best@warwick.ac.uk, thanks.
 
 \section{Graphs}
 \marginpar{Lecture 1}
@@ -106,27 +107,34 @@ The length of a path or cycle is the number of its edges. A path or cycle of len
 %TODO: pictures
 
 \section{Adjacency and incidence matrices}
+
 \begin{defn}
 The incidence matrix of $G = (V,E)$ when $|V| = m$ and $|E| = n$ is the $m\times n$ matrix $M_G = (m_{ve})$ where $m_{ve}$ is the number of times that vertex $v$ and $e$ are incident ($m_{ve} \in \{0, 1\}$).
 \end{defn}
+
 \begin{ex}
 %TODO: pics + matrices
 \end{ex}
+
 \begin{defn}
 The adjacency matrix of $G = (V,E)$ when $|V| = m$ is the $m\times m$ matrix $A_G = (a_{uv})$ where $m_{uv}$ is the number of edges joining $u$ and $v$.
 \end{defn}
+
 \begin{ex}
 $$ = A_{K_{3}}$$
 %TODO: pics + matrices
 \end{ex}
+
 \begin{defn}
 An adjacency list is a list $(N(v),v\in V)$ used to represent matrices, $N(v)$ is the set of neighbours of $v$ in arbitrary order.
 \end{defn}
 
 \section{Vertex degrees}
+
 \begin{defn}
 The degree of a vertex $v$ in a graph $G$ is denoted $d_G(v)$ or $d_v$ and is the number of edges of $G$ incident with $v$.
 \end{defn}
+
 \begin{thm}[Handshake lemma]
 For any graph
 \begin{equation}
@@ -134,25 +142,31 @@ For any graph
 \sum_{v\in V}d_v = 2|E|
 \end{equation}
 \end{thm}
+
 \begin{thm}
 In any graph, the number of vertices of odd degree is even.
 \end{thm}
+
 \begin{proof}
-Consider the equation \ref{eq:hand} module 2.
+Consider the equation \ref{eq:hand} modulo 2.
 We have degree of each vertex $d_v \equiv$ 1 if $d_v$ is odd, or 0 is $d_v$ is even.
 Therefore the left hand side of \ref{eq:hand} is congruent to the number of vertices of odd degree and the RHS is 0.
 Therefore the number of vertices of odd degree is congruent to 0 mod 2.
 \end{proof}
+
 \begin{defn}
 A graph $G$ is called $k$=regular is $d_G(v) = k$ for all $v\in V(G)$.
 A graph is regular if it is $k$-regular for some $k$.
 \end{defn}
+
 \begin{ex}
 $K_n$ is $(n-1)$-regular. \\
 $C_n$ is $2$-regular. \\
 $P_n$ is not regular. \\
 \end{ex}
+
 \marginpar{Lecture 2}
+
 \begin{thm}
 Let $G=(X,Y,E)$ be a bipartite graph without isolated vertices s.t. $d_x\geq d_y$ for all $x\in X$ and $y\in Y$ s.t. $(x,y)\in E$.
 Then $|X| \leq |Y|$ with equality iff $d_x = d_y \forall (x,y)\in E$ .
@@ -167,13 +181,17 @@ $$=\sum_{x\in X, y\in Y}\sum_{(x,y)\in E} \frac{1}{d_x} \leq \sum_{x\in X, y\in 
 $$=\sum_{y\in Y} \sum_{x\in X,(x,y)\in E} \frac{1}{d_y} = |Y|$$
 If $|X|=|Y|$, then the middle inequality must be an inequality implying that $d_x=d_y$ for all $(x,y)\in E$.
 \end{proof}
+
 \section{Isomorphisms}
+
 \begin{defn}
 Two graphs $G$ and $H$ are isomorphic, written $G\cong H$, if there is a bijection $\Theta\colon V(G) \to V(H)$ such that $(u,v)\in E$ iff $(\Theta(u),\Theta(v))\in E(H)$.
 \end{defn}
+
 \begin{ex}
 %TODO: Examples
 \end{ex}
+
 \begin{rem}
 \begin{itemize}
 \item The mapping $\Theta$ is not unique.
@@ -183,7 +201,9 @@ So $K_n$ is a class of graphs that are all isomorphic to each other.
 \item The same as above goes for each of $K_{m,n},\ P_n,\ C_n$.
 \end{itemize}
 \end{rem}
+
 \section{Directed graphs}
+
 \begin{defns}
 In a graph $G= (V,E)$ a \emph{walk} from a starting vertex $v_0$ to a destination vertex $v_n$ is a sequence
 $$W=\langle v_0,e_1,v_1,e_2,\ldots,e_n,v_n\rangle\text{ s.t. }e_i=(v_{i-1},v_i)$$
@@ -221,32 +241,41 @@ A \emph{leaf} is a vertex of degree one.
 \begin{prop}
 Every tree $T$ has at least two leaves.
 \end{prop}
+
 \begin{proof}
 Consider $P=\langle v_1,\ldots,v_k\rangle$ a path of maximum length in $T$.
 Consider $v_1$ if $v_1$ has degree more than one then we can either extend the path or $T$ is not acyclic.
 \end{proof}
+
 \marginpar{Lecture 3}
+
 \begin{cor}
 If the degree of each node in $G$ is $\ge 2$ then $G$ has a cycle.
 \end{cor}
+
 \begin{prop}
 Each tree has exactly $|V| -1$ edges.
 \end{prop}
+
 \begin{proof}
 \lbrack By induction\rbrack
 \end{proof}
+
 \begin{defns}
 An acyclic graph is called a \emph{forest}.\\
 A \emph{connected component} of $G$ is a maximal connected subgraph of $G$.
 Let $c(G)$ be the number of connected components of $G$. %0th betti number
 \end{defns}
+
 \begin{cor}
 Any graph on $n$ vertices has at least $n-c(G)$ edges.
 \end{cor}
+
 \begin{prop}
 If $G$ is a simple graph with $n$ vertices then
 $$|E(G)| \le \frac{(n-k)(n-k+1)}{2} \text{ where }k=c(G)$$
 \end{prop}
+
 \begin{proof}
 Let $c_1,\ldots,c_k$ be the connected components of $G$, i.e. $c_i=(V_i,E_i)$ and $E(G) = \bigcup_{i=1}^k E_i,\ V=\bigcup_{i=1}^k V_i,\ n=|V|$.
 Then $n=\sum_{i=1}^k n_i$ and $n_i \ge 1$.
@@ -258,9 +287,11 @@ Then $|E(c_i)| + |E(c_j)| = \frac{r^2 + s^2 - r -s}{2}$.
 But is $c_i = k_{r+1}$ and $c_j = k_{s-1}$, then we have $\frac{(r+1)^2 + (s-1)^2 - (r+1) -(s-1)}{2}$ edges.
 We get a contradiction since $(r+1)^2 + (s-1)^2 > r^2 + s^2$.
 \end{proof}
+
 \begin{defn}
 A \emph{cut-edge} is an edge whose removal increases the number of connected components.
 \end{defn}
+
 \begin{thm}
 Let $T$ be a graph with $n$ vertices, then the following statements are equivalent:
 \begin{enumerate}
@@ -272,6 +303,7 @@ Let $T$ be a graph with $n$ vertices, then the following statements are equivale
 \item $T$ contains no cycles and for any new edges the graph $T + e$ has exactly one cycle.
 \end{enumerate}
 \end{thm}
+
 \begin{proof}
 $(1\implies 2)$ \lbrack Previous proposition\rbrack and definition of tree. \\
 $(2\implies 3)$ Suppose $T$ has $k$ connected components.
@@ -286,17 +318,23 @@ If we add an edge $e= (u,v)$ we will create a cycle since $T$ contains a path be
 $u,v$ have two different paths containing them in $T$ is a contradiction. \\
 $(6\implies 1)$ \lbrack By definition \rbrack \\
 \end{proof}
+
 \section{Huffman Trees and Optimal Prefix Codes}
+
 \begin{defns}
 A \emph{binary code} is an assignment of symbols or other meanings to a set of bitstrings.\\
 A \emph{prefix code} is a binary code with the property that no codeword is an initial substring of any other codeword.
 \end{defns}
+
 This allows for transmission without confusion.
+
 \begin{ex}
 A prefix code for an alphabet: construct a binary tree with a leaf corresponding to a letter of your alphabet, every left-hand edge is labelled by 0 and right-hand edge is labelled by 1.
 %TODO: Pictures!
 \end{ex}
+
 \marginpar{Lecture 4}
+
 \begin{defns}
 Assume we have a code.
 Each codeword has a length $l_c$ and each symbol has its frequency $p_c$.
@@ -304,6 +342,7 @@ The \emph{code efficiency} is then$\sum p_cl_c$. \\
 Let $T$ be a binary tree with leaves $s_1,\ldots,s_l$ such that each leaf $s_i$ is assigned weight $w_i$.\\
 The \emph{average weighted depth} of the binary tree $T$ is $\wt(T) = \sum_{i=1}^l\depth(s_i)w_i$ where depth is the number of edges to the root.
 \end{defns}
+
 \begin{alg}[Constructing Huffman Prefix Codes]~\\
 \textbf{Input} $s_1,\ldots,s_l$ of symbols and a list of $w_1,\ldots,w_l$ of weights $w_i$ corresponding to $s_i$.\\
 \textbf{Output} A binary tree representing a prefix code for a set of symbols whose codewords have minimum average weighted length.\\
@@ -314,18 +353,23 @@ Assign to the new tree the weight $\wt(T)+\wt(T')$. \\
 Replace $T$ and $T'$ in $F$ by the new tree. \\
 When finished return F.
 \end{alg}
+
 \begin{ex}
 %TODO:examples
 \end{ex}
+
 \begin{lem}
 If the leaves of a binary tree are assigned weights and if each internal vertex (node) is assigned a weight equal to the sum of its children's weights, then the tree's average weighted depth equals the sum of the weights of its internal (non-leaf) vertices.
 \end{lem}
+
 \begin{proof}
 In assignments.
 \end{proof}
+
 \begin{thm}
 For a given list of weights $w_1,\ldots,w_l$ a Huffman tree has the smallest average weighted depth among all binary trees whose leaves are assigned these weights.
 \end{thm}
+
 \begin{proof}
 Induction on $l$.
 Let $T$ be the Huffman tree.
@@ -338,20 +382,26 @@ Suppose $T^*$ is an optimal binary tree for the weights $w_1,\ldots,w_l$.
 Let $x$ be an internal vertex of $T^*$ of greatest depth and suppose $y$ and $z$ are its left child and right child respectively. Without loss of generality, $y$ and $z$ have weights $w_1$ and $w_2$ otherwise we can swap their weights with $w_1$ and $w_2$ and produce a tree with the same or better weights.
 Delete $y$ and $z$ from $T^*$ and call this tree $\bar{T}$, we have $\wt(T^*) = \wt(\bar{T}) + w_1 + w_2$. We also know that $\wt(\bar{T}) \ge \wt(\bar{H})\implies \wt(T^*)\ge \wt(H)$.
 \end{proof}
+
 \marginpar{Lecture 5}
+
 \begin{defn}
 Given trees $T=(V,E)$ and $T' = (V,E')$ we say $T=T'$ if $E = E'$.
 \end{defn}
+
 \begin{ex}
 %TODO:examples of unequal but isomorphic trees.
 \end{ex}
+
 \begin{thm}[Cayley's Formula]
 The number of $n$ vertex labelled trees is $n^{n-2}$.
 \end{thm}
+
 \begin{defn}
 A \emph{Pr\"ufer sequence} of length $n-2$ for $n\ge 2$ is any sequence of integers between 1 and $n$ with repetitions allowed.
 There are $n^{n-2}$ of these.
 \end{defn}
+
 \begin{alg}~\\
 \textbf{Input} An $n$-vertex tree.\\
 \textbf{Output} A Pr\"ufer sequence of length $n-2$.\\
@@ -362,13 +412,16 @@ For $i=1$ to $n-2$ \\
 \indent Define $T = T\setminus v$\\
 Return the sequence $\langle s_1,\ldots,s_{n-2}\rangle$
 \end{alg}
+
 \begin{ex}
 %TODO:yet more examples
 \end{ex}
+
 \begin{prop}
 Let $d_k$ be the number of occurrences of the number $k$ in a Pr\"ufer encoding sequence for a labelled tree $T$.
 Then the degree of $k$ in $T$ is $d_k+1$.
 \end{prop}
+
 \begin{proof}
 By induction: \\
 The assertion is true for any tree on 3 vertices since the Pr\"ufer sequence consists of a single label of the vertex of degree 2. \\
@@ -381,6 +434,7 @@ Now by the inductive hypothesis, for each $u\in T^*$ the number of occurrences o
 But for all $u\ne w$ the number of occurrences of the label $l(u)$ in $S^*$ is the same as in $S$, and $d_T(u)=d_{T^*}(u)$.
 Moreover, $d_T(w) = d_{T^*}(w) + 1$ and $l(w)$ has one more occurrence in $S$ than in $S^*$.
 \end{proof}
+
 \begin{alg}[for Pr\"ufer decoding]~\\
 \textbf{Input} A Pr\"ufer sequence of length $n-2$.\\
 \textbf{Output} An $n$-vertex labelled tree.\\
@@ -396,10 +450,13 @@ For $i=1,\ldots, n-2$ \\
 Add an edge joining the two vertices labelled with two remaining numbers in the list $L$.\\
 Return $F$ with its vertex labelling.
 \end{alg}
+
 \marginpar{Lecture 6}
+
 \begin{prop}
 The decoding procedure defines a function $f'\colon P_{n-2} \to T_n$.
 \end{prop}
+
 \begin{proof}
 $f'$ that corresponds to the decoding algorithm maps a sequence to a graph.
 We need to show that this graph is a tree. \\
@@ -413,10 +470,13 @@ Thus, continuing the procedure from iteration 2 is equivalent to applying the pr
 By induction we will provide a tree on $X$.
 This tree plus an edge of $p_1$ forms a tree on $\{1,\ldots,n+1\}$.
 \end{proof}
+
 \begin{exer}
 Prove that different elements of $P_{n-2}$ are mapped into different trees and conversely.
 \end{exer}
+
 \section{Catalan numbers}
+
 Let $b_n$ be the number of unlabelled binary trees on $n$ vertices.
 By convention we define $b_0 = 1$.
 Trivially $b_1 = 1$.
@@ -424,27 +484,35 @@ For $n>1$ a binary tree on $n$ vertices could have $j$ vertices on the left and 
 There are $b_jb_{n-1-j}$ different ways to pair up such subtrees.
 Therefore we have
 $$b_n =\sum_{j=0}^{n-1} b_jb_{n-1-j}$$
+
 \begin{thm}
 $$b_n = \frac{1}{n+1}\binom{2n}{n}$$
 \end{thm}
+
 So $b_2=2,\ b_3=5$.
+
 \begin{ex}
 Consider a sequence of $n$ parenthesis that are correctly matched.
 For $n=2$ we have $\{(()),\ ()()\}$.
 For $n=3$ we have $\{((())),\ (())(),\ (()()),\ ()(()),\ ()()()\}$.
 The number such expressions is $b_n$ -- the Catalan numbers.
 \end{ex}
+
 \section{Connectivity}
+
 \begin{defn}
 A \emph{vertex-cut} in a graph is a set of vertices $V$ such that $G\setminus V$ has more connected components than $G$. \\
 We often write $k$-connectivity to mean $k$-vertex connectivity, $k$-edge connectivity is a similarly defined but different concept.
 \end{defn}
+
 When $k=1$ a tree is an example of a one-edge connected graph.\\
 When $k=2$ a cycle is an example of a two-vertex connected graph.
+
 \begin{prop}
 Let $e$ be any edge of a $k$-connected graph for $k\ge 3$.
 Then graph $G\setminus e$ is $(k-1)$-connected.
 \end{prop}
+
 \begin{proof}
 Let $W=\{w_1,\ldots,w_{k-2}\}$ be any set of $k-2$ vertices and $G\setminus e$ and let $x$ and $y$ be any two different vertices in $(G\setminus e)\setminus W$.
 It is enough to show that there is an $x$-$y$ walk in $(G\setminus e)\setminus W$. \\
@@ -463,18 +531,23 @@ Since $G$ is $k$-connected, the graph $G' = G\setminus W\cup\{u\}$ is connected 
 $G'$ does not contain $e$.
 Therefore there is an $x$-$y$ path in $(G\setminus e)\setminus W$.
 \end{proof}
+
+
 \marginpar{Lecture 7}
 \begin{cor}
 Let $G$ be a $k$-connected graph and let $D$ be any set of $m$ edges of $G$ for $m\le k-1$.
 Then the graph $G\setminus D$ is $(k-m)$-connected.
 \end{cor}
+
 \begin{defn}
 A collection of paths in $G$ is said to be \emph{internally disjoint} if no two paths in the collection have an internal node in common.
 \end{defn}
+
 \begin{thm}[Whitney's 2-connected characterisation]
 Let $G$ be a connected graph with $|V(G)| \ge 3$.
 Then $G$ is 2-connected $\iff$ for each pair of vertices in $G$, there are two internally disjoint paths between them.
 \end{thm}
+
 \begin{proof}
 ($\Leftarrow$) Suppose $G$ is not 2-connected.
 Then there is a cut-vertex $v\in V(G)$.
@@ -503,9 +576,11 @@ For path 2 we follow $Q$ from $x$ to $w$ and $e$ from $w$ to $y$. \\
 The first path is as above. \\
 The second path follows $Q$ from $x$ to $y$.
 \end{proof}
+
 \begin{cor}
 $G$ is 2-connected $\iff$ Any two vertices lie on a common cycle.
 \end{cor}
+
 \begin{thm}
 The following are equivalent:
 \begin{enumerate}
@@ -518,17 +593,22 @@ The following are equivalent:
 \item For any three distinct vertices of $G$, there is a path containing any two of them which does not contain the third.
 \end{enumerate}
 \end{thm}
+
 \section{Constructing Reliable Networks}
+
 \begin{defns}
 A \emph{Whitney-Robbins synthesis} of graph $G$ from a graph $H$ is a sequence of graphs $G_0=H,G_1,\ldots,G_l=G$ and $G_i$ is the result of a path or a cycle addition in $G_{i-1}$ for $i=1,\ldots,l$. \\
 A \emph{path addition} in $G$ is the addition of a path between two vertices of $G$, all internal vertices and edges are new. \\
 A \emph{cycle addition} in $G$ is the addition of a cycle that has exactly one vertex in common with $G$. \\
 If the graph $G_i$ is the result of a path additions only from $H$, then the sequence $G_0,\ldots,G_l$ is called a \emph{Whitney synthesis}.
 \end{defns}
+
 \marginpar{Lecture 8}
+
 \begin{lem}
 Adding a path to a 2-connected graph keeps it 2-connected.
 \end{lem}
+
 \begin{proof}
 Consider $u$ and $v\in V(G)$ where $G$ is a 2-connected graph.
 We add a path between $u$ and $v$.
@@ -538,9 +618,11 @@ Assume that $R$ intersects $Q_1$ or $Q_2$ and $z$ is the latest intersection poi
 Without loss of generality $z\in Q_2$.
 Choose $Q_1$ and follow $Q_2$ till $z$ and $R$ from $z$ to $v$.
 \end{proof}
+
 \begin{thm}
 A graph $G$ is 2-connected $\iff$ $G$ is a cycle or a Whitney synthesis from a cycle.
 \end{thm}
+
 \begin{proof}
 ($\Leftarrow$) Let $C=G_0,\ldots,G_l=G$ is a Whitney synthesis.
 The cycle is 2-connected, so from the lemma above $G$ is also.\\
@@ -557,10 +639,12 @@ The portion on $C_e$ from $v$ to $z$ is a path addition to $H^*$.
 Contradiction to maximality of $H^*$.
 Therefore $H^* = G$.
 \end{proof}
+
 \begin{lem}
 Let $H$ be a 2-edge-connected graph.
 The graph that results from a path or cycle addition is 2-edge-connected.
 \end{lem}
+
 \begin{thm}[Whitney Robbins synthesis]
 A graoh $G$ is 2-edge connected $\iff$ $G$ is a cycle or a Whitney-Robbins synthesis from a cycle.
 \end{thm}
@@ -569,6 +653,7 @@ A graoh $G$ is 2-edge connected $\iff$ $G$ is a cycle or a Whitney-Robbins synth
 \begin{defn}
 The $n$-spoke wheel $W_n$ is a cycle on $n$ vertices and one additional vertex (the center) connected directly to all vertices of the cycle.
 \end{defn}
+
 \begin{thm}[Tutte's Synthesis Theorem]
 A graph is 3-connected $\iff$ it is a wheel or can be obtained from a wheel by a sequence of the following two operations:
 \begin{enumerate}
@@ -576,24 +661,29 @@ A graph is 3-connected $\iff$ it is a wheel or can be obtained from a wheel by a
 \item Replacing a vertex of degree at least 4 by two new vertices $v^1$ and $v^2$ so that $d(v^1) \ge 3$ and $d(v^2)\ge 3$.
 \end{enumerate}
 \end{thm}
+
 \paragraph{Problem} Given positive integers $n$ and $k$, find a $k$-connected $n$-vertex graph having the smallest possible number of edges. \\
 This has a number of real world applications, most notably in the design of reliable communications networks that use the least possible resources.
+
 \marginpar{Lecture 9}
+
 \begin{prop}
 Let $h_k(n)$ denote the minimum number of edges a $k$-connected graph on $n$ vertices must have.
 Then $h_k(n) \ge \left[\frac{kn}{2}\right]$. 
 ($h_1(n) = n-1$).
 \end{prop}
+
 \begin{proof}
 We know that $2|E(G)| \ge  n\delta_{\text{min}}(G)$ where $\delta_{\text{min}}(G)$ is the minimum degree of $G$.
 We also know that $\delta_{\text{min}}(G) \ge K_e(G) \ge K_v(G)$.
 Therefore $|E(G)| \ge \left[\frac{nK_v(G)}{2}\right]$.
 \end{proof}
+
 We are given a cycle on $n$ vertices $0,1,\ldots,n-1$.
 For any two vertices of the cycle the mod $n$ distance between $i$ and $j$ is denoted $|i-j|_n$ is the smaller of the two numbers $|j-i|$ and $n-|j-i|$. \\
 We look at a class of graphs that are a possible candidate for the solution to our problem above.
+
 \begin{defn}
-%TODO:finish
 We define the class of \emph{Harary graphs} $H_{k,n}$ by starting with $n$ vertices and adding edges in three cases as follows: \\
 \textbf{Case 1} $k$ even. \\
 Let $k=2r$.
@@ -609,9 +699,11 @@ Draw an edge from 0 to $\frac{n-1}{2}$ and from 0 to $\frac{n+1}{2}$.
 Draw edges from $i$ to $i+\frac{n+1}{2}$ for $i=1,\ldots,\frac{n-3}{2}$.
 Then $E(G) = 2n + \frac{n+1}{2} = \frac{(2r+1)n+1}{2} = \left[\frac{kn}{2}\right]$.
 \end{defn}
+
 \begin{thm}
 The Harary graph $H_{k,n}$ is $k$-connected.
 \end{thm}
+
 \begin{proof}
 \textbf{Case 1} $k=2r$ \\
 Suppose that $2r-1$ vertices $i_1,\ldots,i_{2r-1}$ are deleted from $H_{2r,n}$ and let $x$ and $y$ be any two vertices in $H_{2r,n}\setminus \{i_1,\ldots,i_{2r-1}\}$.
@@ -636,17 +728,22 @@ The vertex $w$ is not among those deleted by the definition.
 The vertex $z$ is not among those deleted either since $z$ is in the middle of the stretch from $b+r$ to $a-1$, we delete equal pieces of size $r$ from both sides of the stretch and the non-deleted piece is non-empty.
 %\textbf{Case 3}
 \end{proof}
+
 \marginpar{Lecture 10}
-\begin{thm}[Menger's theorem]
+
+\begin{thm}[Menger]
 Let $u,v$ be distinct non-adjacent vertices in a connected graph.
 Then the maximum number of internally disjoint $u$-$v$ paths in $G$ equals the minimum number of vertices needed to separate $u$ and $v$.
 \end{thm}
+
 \section{Optimal Graph Traversals}
+
 \begin{defns}
 An \emph{Eulerian walk} in a graph $G$ is a walk that contains every edge of the graph exactly once. \\
 An \emph{Eulerian tour} is a closed Eulerian walk. \\
 An \emph{Eulerian graph} is a graph permitting an Eulerian tour. \\
 \end{defns}
+
 \begin{thm}[Euler]
 The following statements are equivalent for a connected graph $G$:
 \begin{enumerate}
@@ -655,6 +752,7 @@ The following statements are equivalent for a connected graph $G$:
 \item $E(G)$ is the union of the edge sets of a set of edge disjoint cycles in $G$.
 \end{enumerate}
 \end{thm}
+
 \begin{proof}
 ($1\Rightarrow 2$) Let $C$ be an Eulerian tour in $G$ and let $v$ be the starting vertex of some transversal of $C$.
 The initial edge and the final edge of the transversal contribute 2 towards the degree of $v$ and each time the traversal passes through a vertex a contribution of 2 towards the degree also results. \\
@@ -674,9 +772,11 @@ There must be some vertex $v_2$ of $T_1$ belonging to some other cycle say $C_2'
 We add $C_2'$ into $T_1$ as follows, walk along $T_1$ from $v_1$ to $v_2$, walk along $C_2'$, after that walk from $v_2$ to $v_1$ along $T_1$.
 This defines $T_2$ and we repeat this procedure to obtain the proof.
 \end{proof}
+
 \begin{thm}
 A connected graph has an open Eulerian trail $\iff$ it has exactly two vertices of odd degree.
 \end{thm}
+
 \begin{thm}
 The following statements are equivalent for a connected digraph $\bar{G}$.
 \begin{enumerate}
@@ -685,22 +785,28 @@ The following statements are equivalent for a connected digraph $\bar{G}$.
 \item The edge set of $D$ is the union of edge-sets of edge-disjoint directed cycles in $D$.
 \end{enumerate}
 \end{thm}
+
 \begin{defns}
 A bitstring of length $2^n$ is called a \emph{$(2,n)$-de Bruijn sequence} if each of the $2^n$ possible bitstrings of length $n$ occurs exactly once as a substring, where wraparound is allowed. \\
 The \emph{$(2,n)$-de Bruijn digraph}, denoted $D_{2,n}$, consists of $2^{n-1}$ vertices labelled by the bitstrings of length $n-1$ and $2^n$ arcs labelled by the bitstrings of length $n$.
-The arc from the vertex $a_1,\ldots,a_{n-1}$ to the vertex $b_2,\ldots,b_n$ is labelled $b_1,\ldots,b_n$.
+The arc from the vertex $a_1,\ldots,a_{n-1}$ to the vertex $b_2,\ldots,b_n$ is labelled $a_1,b_2,\ldots,b_n$.
 \end{defns}
+
 \begin{prop}
 The $(2,n)$-de Bruijn digraph $D_{2,n}$ is Eulerian.
 \end{prop}
+
 \begin{proof}
 Show that the indegree $=$ the out degree.
 \end{proof}
+
 \marginpar{Lecture 11}
+
 \begin{defn}
 A \emph{postman tour} in a graph $G$ is a closed walk that uses each edge at least once. \\
 In an edge weighted graph an \emph{optimal postman tour} is one whose total edge-weight is minimal.
 \end{defn}
+
 \begin{alg}[Finding optimal postman tours]~\\
 \textbf{Input} A connected edge-weighted graph. \\
 \textbf{Output} An optimal postman tour $W$. \\
@@ -719,15 +825,20 @@ Note that all vertices of odd degree will have an odd number of edges added.
 All vertices of even degree will have an even number of edges added. \\
 So to finish we construct an Eulerian tour $W$ in $G^*$.
 \end{alg}
+
 \section{Hamiltonian paths and cycles}
+
 \begin{defn}
 A \emph{Hamiltonian path (or cycle)} of a graph is a path (resp. cycle) that contains all the vertices of the graph.
 \end{defn}
+
 For digraphs the path (or cycle) must be directed.
+
 \begin{thm}[Ore, 1960]
 Let $G$ be a simple $n$-vertex undirected graph where $n\ge 3$ such that $d(x) + d(y) \ge n$ for each non-adjacent pair $x,y\in V(G)$.
 Then $G$ is Hamiltonian.
 \end{thm}
+
 \begin{proof}
 (by contradiction).
 Assume that $G$ is a maximal counterexample (i.e. adding another edge makes it Hamiltonian).
@@ -736,29 +847,34 @@ We will show that $d(x) + d(y)  \le n-1$.
 Since $G\cup (x,y)$ is Hamiltonian, $G$ contains a Hamiltonian path with endpoints $x$ and $y$.
 Let $x = v_1,v_2,\ldots,v_n=y$.
 For each $i=2,\ldots,n-1$ at least one of the pairs $v_1,v_{i+1}$ and $v_i,v_n$ is non-adjacent since otherwise $\langle v_1,\ldots,v_i,v_n,v_{n-1},\ldots,v_{i+1},v_1\rangle$ is a Hamiltonian cycle.
-If $(a_{ij}$ is the adjacency matrix of $G$ then $a_{1,i+1} + a_{i,n}\le 1$ for $i=2,\ldots,n-1$.
+If $(a_{ij})$ is the adjacency matrix of $G$ then $a_{1,i+1} + a_{i,n}\le 1$ for $i=2,\ldots,n-1$.
 Thus
 $$d(x)+d(y) = \sum_{i=2}^{n-1}a_{1,i} + \sum_{i=2}^{n-1} a_{i,n} = a_{1,2,} (\sum_{i=2}^{n-2}a_{1,i+1} + \sum_{i=2}^{n-2} a_{i,n}) + a_{n-1,n} $$
 $$= 2 + \sum_{i=2}^{n-2}(a_{1,i+1} +a_{i,n}) \le 2+n-3 = n-1$$
 \end{proof}
+
 \begin{cor}[Dirac, 1952]
 Let $G$ be a simple $n$-vertex graph with $n\ge 3$ such that $d(v) \ge \frac{n}{2}$, for each $v$.
 Then $G$ is Hamiltonian.
 \end{cor}
+
 \begin{thm}
 Let $D$ be a simple $n$-vertex digraph.
 Suppose for every pair $u,v$ such that $(u,v)\not\in E(D)$, $d_{\text{out}}(u) + d_{\text{in}}(v) \ge n$.
 Then $D$ is Hamiltonian.
 \end{thm}
+
 \begin{thm}
 The $n$-dimensional hypercube $Q_n$ is Hamiltonian.
 \end{thm}
+
 \begin{proof}
 (by induction). \\
 \textbf{Base case} $Q_4$ is a 4-cycle. \\
 \textbf{Inductive step} Assume for $n\ge 2$ that there is a Hamiltonian cycle $\langle b_1,b_2,\ldots,b_{2^n},b_1\rangle$ in $Q_n$.
 Then $\langle b_10,b_20,\ldots,b_{2^n}0,b_{2^n}1,b_{2^{n-1}}1,\ldots,b_11,b_01,b_00\rangle$ is a Hamiltonian cycle in $Q_{n+1}$.
 \end{proof}
+
 \marginpar{Lecture 12}
 
 \section{Approximation Algorithms}
@@ -772,6 +888,7 @@ And now back to our scheduled programming.
 \begin{defn}
 A polynomial time algorithm for maximisation problems is called a \emph{polynomial time approximation algorithm} with performance guarantee $\rho\in [ 0,1 ]$ if it always finds an approximate solution of value at most $\rho$ times the optimal value.
 \end{defn}
+
 \begin{alg}[Nearest Neighbour Heuristic for TSP]~\\
 \textbf{Input} A weighted complete graph. \\
 \textbf{Output} A sequence of labelled vertices that forms a Hamiltonian cycle.\\
@@ -888,7 +1005,7 @@ Let $l =\lceil \log_2n\rceil$.
 \begin{enumerate}
 \item Start with an arbitrary spanning tree $T$.
 \item Let $d_T(u)$ be the degree of $u$ in $T$.
-The local move picks a vertec $u$ and tries to reduce it's degree by looking at all edges $(v,w)$ that are not in $T$ but if added to $T$ create a cycle $C$ containing $u$.
+The local move picks a vertex $u$ and tries to reduce it's degree by looking at all edges $(v,w)$ that are not in $T$ but if added to $T$ create a cycle $C$ containing $u$.
 If $\max\{d_T(v),d_T(w)\} \le d_T(u)-2$ then add $(v,w)$ to $T$ and remove an edge of $C$ incident to $u$. \\
 After implementing the move the degree of $u$ drops by 1 and the degrees of $v$ and $w$ increase by 1.
 Let $\Delta(T) = \max d_T(u)$.
@@ -940,14 +1057,64 @@ If there is such a swap for $i,i'$ then let $S=(S\setminus\{i\})\cup\{i'\}$.
 
 Let $S^*$ be an optimal solution.
 For each $j\in V$ let $\sigma(j)$ be the closest facility in $S$ and let $\sigma^*(j)$ be the closest facility (or vertex) in $S^*$.
+Note that $\sigma$ and $\sigma^*$ are defined for any vertex in $V$.
 
 \begin{thm}
 For any input to the $k$-median problem any locally optimal solution $S$ has a cost that is at most five times the optimal value.
 \end{thm}
 
+\marginpar{Kill me now}
+
 \begin{proof}
-
+Let $O\subseteq S$ consist of those facilities $i\in S$ that have exactly one facility $i^*\in S^*$ such that $\sigma(i^*) = i$. \\
+Let $Z \subseteq S$ consist of those facilities $i\in S$ for which none of the facilities $i^* \in S^*$ have $\sigma(i^*) = i^*$. \\
+Let $T\subseteq S$ consist of those facilities $i\in S$ s.t. $i$ has at least two locations in $S^*$ assigned to it. \\
+The mapping $\sigma$ provides a matching (or one-to-one mapping) between a subset $O^*\subseteq S^*$ and the set $O\subseteq S$.
+Let $l= |R^*|$ where $R^* = S^*\setminus O^*$.
+Note that $l=|T\cup Z|$ since $|O^*| = |O| = k$.
+We also know that $|T|\le \frac{l}{2}$ since each element of $T$ is an image of at least two elements of $R^*$.
+Therefore $|Z| \ge \frac{l}{2}$. \\
+Consider the collection of swaps $(i^*,\sigma(i^*))$ for each $i\in O^*$.
+In addition consider a collection of $l$ swaps $(x,y)$ where $x\in R^*$, $y\in Z$ each element of $R^*$ is swapped exactly once and each element of $Z^*$ is swapped at most twice.
+Consider one swap between $i^*\in S^*$ and $i\in S$.
+We reallocate the demand assigned to $i$. %TODO check
+If for some $j\in V$, we have $\sigma^*(j)= i^*$.
+We assign $j$ to $i^*$.
+For each location $j$ such that $\sigma^*(j) \ne i^8$ but $\sigma(j) = i$, we reassign to $\sigma(\sigma^*(j))$.
+All our demands remain served by $\sigma(j)$.
+First we argue that $\sigma(\sigma^*(j))\ne i$, when $\sigma^*(j) \ne i^*$ (feasibility).
+Assume for contradiction $\sigma(\sigma^*(j)) = i$.
+then $i\in O$ since we define swaps with $Z$ and $O$ only and $Z$ is not used by $\sigma$.
+Since $i\in O$ we know that $i$ is the image of exactly one element $i^*$,
+There is for $\sigma^*(j) = i^*$ which is a contradiction.
+We know that the value of $S' = (S\setminus \{i\})\cup i^*$ minus the value of $S$ is $\ge 0$.
+Therefore the value of the assignment we defined for $S'$ minus value of $S$ is $\ge 0$.
+We now compute this difference for clients $j$ for which $\sigma^*(j) = i^*$ or both ($\sigma^*(j) \ne i^*$ and $\sigma(j) = i$) which is
+$$\sum_{j\colon \sigma^*(j) = i^*} (c_{\sigma^*(j)j} - c_{\sigma(j)j}) + \sum_{j\colon \sigma^*(j) \ne i^* \atop \& \sigma(j) = i} (c_{\sigma(\sigma^*(j))j} - c_{\sigma(j)j}) + 0 \ge 0$$
+By the triangle inequality, 
+$$c_{\sigma(\sigma^*(j))j}\le c_{\sigma(\sigma^*(j))\sigma^*(j)} + c_{\sigma^*(j)j}$$
+In addition we know that $c_{\sigma(\sigma^*(j))\sigma^*(j)}\le c_{\sigma(j)\sigma^*(j)}$ because in $S$ the city $\sigma^*(j)$ is assigned to $\sigma(\sigma^*(j))$ instead of $\sigma(j)$.
+Also $c_{\sigma(j)\sigma^*(j)}\le c_{\sigma^*(j)j} + c_{\sigma(j)j}$.
+Therefore (by applying the above),
+$$c_{\sigma(\sigma^*(j))j}\le 2c_{\sigma^*(j)j}+c_{\sigma(j)j}$$
+and
+$$\sum_{j\colon \sigma^*(j)=i} (c_{\sigma^*(j)j} - c_{\sigma(j)j}) + \sum_{j\colon \sigma^*(j)\ne i \atop \& \sigma(j) = i} (2c_{\sigma^*(j)j})\ge 0$$
+Add this inequality over $k$ swaps.
+The first sum ranges over all $j$ and gives us $f(S^*) - f(S)$.
+The second term is upper-bounded by $f(S^*)$ and we derive $5f(S^*) - f(S) \ge 0$.
 \end{proof}
-%TODO finish 
 
+\marginpar{Lecture 16}
+
+\section{The max-cut problem}
+
+The problem is to find a cut of a graph (a partition of its vertex set) so that the max possible number of edges lie across the cut (going from one partition to the other).\\
+We can make several basic attempts at writing an algorithm to do this:
+The first would be a greedy approach, keep choosing vertices to place as many more edges across the cut at each step as is possible.
+This is often very ineffective however. \\
+We could try a randomised approach flipping a coin for each vertex to decide which of the two sets of the partition it should go in.
+This gives us an expected value of the cut:
+$$\bb E[\#\text{edges cut}] = \sum_{u,v\in E}\bb E[uv\text{ is cut}] = \sum_{u,v\in E} \frac{1}{2} = \frac{|E|}{2}$$
+And $|E|\le \text{OPT}$. \\
+We can do better than this however and achieve a value of around 0.878.
 \end{document}
