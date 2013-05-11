@@ -1,5 +1,5 @@
 \title{CS254 Algorithmic Graph Theory - Lecture Notes}
-\author{Based on lectures by Prof. Maxim Sviridenko \\ Typeset by Alex J. Best}
+\author{Based on lectures by Prof. Maxim Sviridenko and Dr. Justin Ward \\ Typeset by Alex J. Best}
 \date{\today}
 
 \documentclass{article}
@@ -25,6 +25,11 @@
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\RR}{\mathbb{R}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\J}{\mathcal{J}}
+
 \newcommand{\bb}[1]{\mathbb{#1}}
 \DeclareMathOperator{\wt}{wt}
 \DeclareMathOperator{\depth}{depth}
@@ -1116,5 +1121,101 @@ We could try a randomised approach flipping a coin for each vertex to decide whi
 This gives us an expected value of the cut:
 $$\bb E[\#\text{edges cut}] = \sum_{u,v\in E}\bb E[uv\text{ is cut}] = \sum_{u,v\in E} \frac{1}{2} = \frac{|E|}{2}$$
 And $|E|\le \text{OPT}$. \\
-We can do better than this however and achieve a value of around 0.878.
+We can do better than this however and achieve a value of around 0.878, using semi-definite programming.
+
+\section{Semi-Definite Programming}
+
+Initially we have a choice for each vertex of wether to place it in one side or the other, so for each vertex we write $x_i\in\{-1,1\}$.
+We try to find
+$$\max \sum_{(i,j)\in E} \frac{1}{2}(1-x_ix_j) \text{ s.t. } x_i\in \{-1,1\} \forall i\in V$$
+This is not a linear programme as we have a product $x_ix_j$ appearing which is not linear.
+So we relax the constraints on $x_i$ and instead just ask that $||\x_i|| = 1$, for $\x_i\in\RR^n$ where $n = |V|$.
+Now our problem is to
+$$\max \sum_{(i,j)\in E} \frac{1}{2}(1-\x_i\cdot \x_j)$$
+
+\begin{defn}
+A $n\times n$ matrix $M$ is called \emph{positive semi-definite} if
+\begin{enumerate}
+\item $\x^TM\x \ge 0\ \forall \x_i$.
+\item There exists another $n\times m$ matrix $B$ s.t. $M=BB^T$
+\end{enumerate}
+\end{defn}
+
+Note this does not mean that the matrix $M$ cannot have negative entries.
+
+%TODO finish when it becomes examinable
+
+\marginpar{Lecture 17}
+
+\section{Independent Set problem}
+
+\paragraph{fact}
+It is NP-hard to approximate independent set to \emph{any} constant factor $\alpha$.
+
+\begin{defns}
+A \emph{$k$-claw} is a complete bipartite graph $K_{1,k}$. \\
+A graph is called \emph{$k$-claw free} if it does not contain a $k$-claw.
+\end{defns}
+
+A number of real world problems can be considered as statements about graphs which turn out to be $k$-claw free.
+
+\begin{ex}
+Given a set of tasks, each with a start and finish time, and a job number.
+The problem is to find a set of non-overlapping tasks (at most one from each job) of maximum size.
+We can view these constraints via a graph, by having a node for each task and placing edges if two tasks overlap or have the same number. \\
+This graph is 4-claw free as each task can only overlap with two other tasks, and only have the same number as one other. %i r confuse by this... TODO revise.
+\end{ex}
+
+A similar problem to the above can be considered where all tasks start at 30 minute intervals and no task is longer than 3.30.
+For this problem a corresponding graph will be 8-claw free, as no more than 7 tasks can be placed inside another.
+
+\section{Weighted independent sets}
+
+%TODO finish these lectures, too painfull to type right now
+
+\marginpar{Lecture 19}
+
+\section{Matroids}
+
+\begin{defn}
+Take a ground set $\X$ and a nonempty collection of subsets of $\X$ called $\I$.
+If given $A\in \I,\ B\subseteq A$ then $B\in \I$, then we call the sets in $\I$ \emph{independent}.\\
+And we then call $(\X,\I)$ an independence system.
+\end{defn}
+
+\begin{defn}
+Given an independence system $(\X,\I)$ we call it a \emph{matroid} if 
+$$A,B\in \I \text{ with } |A|<|B|, \text{ then } \exists x\in B\setminus A \text{ s.t. } A\cup \{x\} \in \I$$
+\end{defn}
+
+\begin{defns}
+We say a set $B$ is a \emph{base} of $(\X,\I)$ if $B\in \I$ and $B\cup \{x\}\not\in\I\ \forall x\in\X\setminus B$.\\
+All bases of a matroid have the same size.
+This size is called the \emph{rank} of the matroid.
+\end{defns}
+
+We can also analogously define the base of a set $A\subseteq \X$ to be a maximal independent subset of $A$.
+
+\begin{ex}
+Given a graph $G = (V,E)$ we can take $\X = E$ and define $\I$ to be the set of forests in $G$.
+This is clearly an independence system, so we just show that it is a matroid. \\
+Suppose $A$ and $B$ are forests with $|A|<|B|$, then $B$ has fewer connected components than $A$.
+So there is some $x\in B$ with enpoints in two different connected components of $A$ (by the pidgeonhole principle).
+So, $A\cup\{x\}$ must be a forest, so $A\cup\{x\} \in \I$. \\
+The bases of this matroid are the spanning trees of the graph.
+\end{ex}
+
+\begin{ex}
+Another historically important example of a matroid is a \emph{linear matroid} over a field $Q$.
+Here $\X$ is a set of vectors in $Q^r$, and the independence system consists of independent sets of vectors.
+\end{ex}
+
+\begin{ex}
+The \emph{uniform matroid} (of rank $k$) is defined an any ground set $\X$ by taking $\I$ to be all sets of at most $k$ elements from $\X$. 
+\end{ex}
+
+\begin{ex}
+The \emph{partition matroid} is 
+\end{ex}
+
 \end{document}
