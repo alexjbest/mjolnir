@@ -142,8 +142,8 @@ The degree of a vertex $v$ in a graph $G$ is denoted $d_G(v)$ or $d_v$ and is th
 
 \begin{thm}[Handshake lemma]
 For any graph
-\begin{equation}
 \label{eq:hand}
+\begin{equation}
 \sum_{v\in V}d_v = 2|E|
 \end{equation}
 \end{thm}
@@ -885,7 +885,7 @@ Then $\langle b_10,b_20,\ldots,b_{2^n}0,b_{2^n}1,b_{2^{n-1}}1,\ldots,b_11,b_01,b
 \section{Approximation Algorithms}
 We take a break for a fun quote I found in Gondran and Minoux.
 \begin{quotation}
-``Amid many opinons... I always choose the most moderate... for the reason that, in the event of my falling into error, I might be at less distance from the truth than if, having chosen one of the extremes, it should turn out to be the other which I ought to have adopted.'' Descartes, \emph{Discours de la M\'ethode, Vol III.}
+``Amid many opinions... I always choose the most moderate... for the reason that, in the event of my falling into error, I might be at less distance from the truth than if, having chosen one of the extremes, it should turn out to be the other which I ought to have adopted.'' Descartes, \emph{Discours de la M\'ethode, Vol III.}
 \end{quotation}
 
 And now back to our scheduled programming.
@@ -911,7 +911,7 @@ Return $l$.
 %TODO : add in
 
 \begin{defn}
-Given wighted complete undirected $G=(K_n, c)$ we say that $G$ satisfies the \emph{triangle inequality} if $c_{i,j}\le c_{i,k} + c_{k,j}\ \forall i,j,k$.
+Given weighted complete undirected $G=(K_n, c)$ we say that $G$ satisfies the \emph{triangle inequality} if $c_{i,j}\le c_{i,k} + c_{k,j}\ \forall i,j,k$.
 \end{defn}
 
 \begin{thm}
@@ -1125,7 +1125,7 @@ We can do better than this however and achieve a value of around 0.878, using se
 
 \section{Semi-Definite Programming}
 
-Initially we have a choice for each vertex of wether to place it in one side or the other, so for each vertex we write $x_i\in\{-1,1\}$.
+Initially we have a choice for each vertex of whether to place it in one side or the other, so for each vertex we write $x_i\in\{-1,1\}$.
 We try to find
 $$\max \sum_{(i,j)\in E} \frac{1}{2}(1-x_ix_j) \text{ s.t. } x_i\in \{-1,1\} \forall i\in V$$
 This is not a linear programme as we have a product $x_ix_j$ appearing which is not linear.
@@ -1200,7 +1200,7 @@ We can also analogously define the base of a set $A\subseteq \X$ to be a maximal
 Given a graph $G = (V,E)$ we can take $\X = E$ and define $\I$ to be the set of forests in $G$.
 This is clearly an independence system, so we just show that it is a matroid. \\
 Suppose $A$ and $B$ are forests with $|A|<|B|$, then $B$ has fewer connected components than $A$.
-So there is some $x\in B$ with enpoints in two different connected components of $A$ (by the pidgeonhole principle).
+So there is some $x\in B$ with endpoints in two different connected components of $A$ (by the pigeonhole principle).
 So, $A\cup\{x\}$ must be a forest, so $A\cup\{x\} \in \I$. \\
 The bases of this matroid are the spanning trees of the graph.
 \end{ex}
