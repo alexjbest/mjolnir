@@ -383,7 +383,7 @@ Let $T$ be the Huffman tree.
 We are given $w_1\le w_2\le \ldots\le w_{l+1}$. The Huffman tree $H$ that is constructed by the algorithm consists of the Huffman tree $\bar{H}$ for the weights $w_1+w_2,w_3,\ldots,w_{l+1}$ where the leaf with weight $w_1+w_2$ is replaced by a tree with two children of weights $w_1$ and $w_2$.
 By the previous lemma, we know $\wt(H) = \wt(\bar{H}) + w_1 + w_2$.
 By the inductive hypothesis, $\bar{H}$ is optimal among all binary trees whose leaves are assigned weights  $w_1+w_2,w_3,\ldots,w_{l+1}$. \\
-Suppose $T^*$ is an optimal binary tree for the weights $w_1,\ldots,w_l$.
+Suppose $T^*$ is an optimal binary tree for the weights $w_1,\ldots,w_{l+1}$.
 Let $x$ be an internal vertex of $T^*$ of greatest depth and suppose $y$ and $z$ are its left child and right child respectively. Without loss of generality, $y$ and $z$ have weights $w_1$ and $w_2$ otherwise we can swap their weights with $w_1$ and $w_2$ and produce a tree with the same or better weights.
 Delete $y$ and $z$ from $T^*$ and call this tree $\bar{T}$, we have $\wt(T^*) = \wt(\bar{T}) + w_1 + w_2$. We also know that $\wt(\bar{T}) \ge \wt(\bar{H})\implies \wt(T^*)\ge \wt(H)$.
 \end{proof}
