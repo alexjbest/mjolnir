@@ -29,10 +29,12 @@
 \newcommand{\X}{\mathcal{X}}
 \newcommand{\I}{\mathcal{I}}
 \newcommand{\J}{\mathcal{J}}
+\newcommand{\B}{\mathcal{B}}
 
 \newcommand{\bb}[1]{\mathbb{#1}}
 \DeclareMathOperator{\wt}{wt}
 \DeclareMathOperator{\depth}{depth}
+\DeclareMathOperator{\OPT}{OPT}
 
 \setcounter{tocdepth}{3}
 
@@ -961,16 +963,16 @@ We now consider another algorithm for TSP.
 \end{alg}
 
 \begin{thm}
-$\wt(H)\le\frac{3}{2}\wt(\text{OPT})$, where OPT is an optimal TSP solution.
+$\wt(H)\le\frac{3}{2}\wt(\OPT)$, where OPT is an optimal TSP solution.
 \end{thm}
 \begin{proof}
 We know by remark 3, $\wt(H) \le \wt(W) = \wt(T) + \wt(M)$.
-Additionally we know that $\wt(T) \le \wt(\text{OPT})$. We also claim that $\wt(M) \le \frac{1}{2}\wt(\text{OPT})$.
+Additionally we know that $\wt(T) \le \wt(\OPT)$. We also claim that $\wt(M) \le \frac{1}{2}\wt(\OPT)$.
 Consider the tour $H_0$ obtained from OPT by short-cutting.
 We have $\wt(H_0) \le \wt(H)$ by the triangle inequality.
 Also $H_0 = M_1\cup M_2$ where $M_1$ contains an odd number of edges and $M_2$ contains an even number of edges along $H_0$.
 Since $M$ is the minimum matching we derive:
-$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{1}{2}(\wt(M_1),\wt(M_2)) = \frac{1}{2}\wt(H_0) \le \frac{1}{2}\wt(\text{OPT})$$
+$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{1}{2}(\wt(M_1),\wt(M_2)) = \frac{1}{2}\wt(H_0) \le \frac{1}{2}\wt(\OPT)$$
 \end{proof}
 
 \section{$k$-center Problem}
@@ -1021,7 +1023,7 @@ If there is no way to reduce the degree any node with $d_T(u)\ge \Delta(T) - l$,
 
 \begin{thm}
 Let $T$ be a locally optimal tree.
-Then $\Delta(T)\le 2\text{OPT} + l$, where $l=\lceil \log_2n \rceil$.
+Then $\Delta(T)\le 2\OPT + l$, where $l=\lceil \log_2n \rceil$.
 \end{thm}
 
 \begin{thm}
@@ -1120,7 +1122,7 @@ This is often very ineffective however. \\
 We could try a randomised approach flipping a coin for each vertex to decide which of the two sets of the partition it should go in.
 This gives us an expected value of the cut:
 $$\bb E[\#\text{edges cut}] = \sum_{u,v\in E}\bb E[uv\text{ is cut}] = \sum_{u,v\in E} \frac{1}{2} = \frac{|E|}{2}$$
-And $|E|\le \text{OPT}$. \\
+And $|E|\le \OPT$. \\
 We can do better than this however and achieve a value of around 0.878, using semi-definite programming.
 
 \section{Semi-Definite Programming}
@@ -1215,7 +1217,57 @@ The \emph{uniform matroid} (of rank $k$) is defined an any ground set $\X$ by ta
 \end{ex}
 
 \begin{ex}
-The \emph{partition matroid} is 
+The \emph{partition matroid} is defined by taking a partition $\X_1,\X_2,\ldots,\X_m$ of $\X$, and non-negative integers $p_1,p_2,\ldots,p_m$ corresponding to the sets of the partition.
+We then define $\I$ to be all the sets obtained by taking no more than $p_i$ elements from each $\X_i$.
 \end{ex}
 
+\begin{defn}
+Let $\X$ be a ground set.
+$\B$ is called the set of bases of a matroid if:
+\begin{enumerate}
+\item No set of $\B$ is contained in any other set of $\B$.
+\item $\forall A,B\in\B$ and $x\in A\setminus B$, $\exists y\in B\setminus A$ s.t. $A\setminus\{x\}\cup\{y\} \in \B$.
+\end{enumerate}
+%TODO finish this
+\end{defn}
+
+\marginpar{Lecture 20}
+
+\section{Max Spanning Trees}
+
+\begin{alg}[Kruskal]~\\
+Sort the edges $E$ into a list $e_1,\ldots,e_m$ by weight descending. \\
+Let $S=\emptyset$ \\
+For $i = 1$ to $m$:\\
+\indent If $S\cup \{e_i\}$ does not contain a cycle then add $e_i$ to $S$.
+\end{alg}
+
+We can generalise this idea to other independence systems to get:
+
+\begin{alg}[Standard greedy algorithm for independence system $\X,\I$]~\\
+Sort the elements of $\X$ into a list $e_1,\ldots,e_m$ by weight descending. \\
+Let $S=\emptyset$ \\
+For $i = 1$ to $m$:\\
+\indent If $S\cup \{e_i\}\in\I$ then add $e_i$ to $S$.
+\end{alg}
+
+When does this algorithm work?
+It turns out this algorithm is optimal for an independence system $(\X,\I)$ iff the system is a matroid.
+
+\begin{thm}
+An independence system $(\X,\I)$ is a matroid iff (G), the standard greedy algorithm is optimal for all weight functions on $\X$.
+\end{thm}
+
+\begin{proof}
+If $(\X,\I)$ is a matroid, then (G) holds.
+We use the base characterisation.
+(B2) if A and B are bases then for all $x\in B\setminus A$ $\exists y\in A\setminus B$ s.t. $A\setminus \{y\}\cup\{x\}$ is a base.
+Let $w$ be an arbitrary function $w\colon \X \to \RR$ and $\OPT\in \I$ with $w(\OPT)$ maximum, and $G$ be a solution produced by the standard greedy algorithm.
+Order the elements of OPT and $G$ by non-increasing weight.
+Suppose that OPT and $G$ agree on $i$ elements and let $g$ be the first element they disagree on.
+$\exists x \in \OPT$ s.t. $\OPT'=(\OPT \setminus \{x\}) \cup \{g\}\in\I$.
+Let $C=\OPT\cap G$.
+$$C\cup\{x\}\in \I,\ C\cup\{g\} \in \I\ \text{ and } w(x)\le w(g)$$
+$$w(\OPT') $$
+\end{proof}
 \end{document}
