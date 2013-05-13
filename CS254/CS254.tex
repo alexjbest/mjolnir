@@ -35,6 +35,7 @@
 \DeclareMathOperator{\wt}{wt}
 \DeclareMathOperator{\depth}{depth}
 \DeclareMathOperator{\OPT}{OPT}
+\DeclareMathOperator{\ecr}{ecr}
 
 \setcounter{tocdepth}{3}
 
@@ -42,9 +43,12 @@
 \maketitle
 \tableofcontents
 ~\\
+\section*{Introduction}
 These are lecture notes I typeset for CS254 Algorithmic Graph Theory in 2013, they are currently full of gaps, mistakes, wrong statements, notation abuse and lots of other badness.
 However they might be useful to someone, despite the fact they lack any pictures at present.
-If you find anything that could be improved send me an email at a.j.best@warwick.ac.uk, thanks.
+Thanks are due to Julian Bhardwaj and Rosie Nasrin for telling me about all sorts of wrong things.
+If you find anything else that can be improved send me an email at a.j.best@warwick.ac.uk, thanks.
+\clearpage
 
 \section{Graphs}
 \marginpar{Lecture 1}
@@ -694,11 +698,11 @@ We look at a class of graphs that are a possible candidate for the solution to o
 We define the class of \emph{Harary graphs} $H_{k,n}$ by starting with $n$ vertices and adding edges in three cases as follows: \\
 \textbf{Case 1} $k$ even. \\
 Let $k=2r$.
-Define an edge $(i,j)$ if $|i-j|_n \le 2$.
+Define an edge $(i,j)$ if $|i-j|_n \le 2$. \\
 \textbf{Case 2} $k$ odd, $n$ even. \\
 Let $k=2r+1$.
 We start with the graph $H_{2r,n}$ and add $\frac{n}{2}$ diameters of the original $n$-cycle, i.e. an edge between $i$ and $i+\frac{n}{2}$.
-The total number of edges $rn +\frac{n}{2} = \frac{(2r+1)n}{2} = \frac{kn}{2}$.
+The total number of edges $rn +\frac{n}{2} = \frac{(2r+1)n}{2} = \frac{kn}{2}$.\\
 \textbf{Case 3} $k$ odd, $n$ odd. \\
 Let $k = 2r+1$.
 Start with $H_{2r,n}$ and add $\frac{n+1}{2}$ quasi-diameters.
@@ -1269,5 +1273,280 @@ $\exists x \in \OPT$ s.t. $\OPT'=(\OPT \setminus \{x\}) \cup \{g\}\in\I$.
 Let $C=\OPT\cap G$.
 $$C\cup\{x\}\in \I,\ C\cup\{g\} \in \I\ \text{ and } w(x)\le w(g)$$
 $$w(\OPT') $$
+\end{proof}
+
+%TODO finish all that....
+
+\marginpar{Lecture 21}
+
+\section{Graph Colourings}
+
+\begin{defns}
+A \emph{vertex $k$-colouring} is an assignment $f\colon V(G)\to C=\{1,\ldots,k\}$ from its vertex set onto the set of colours $C$ whose elements are called colours. \\
+A vertex colouring is called \emph{proper} (or \emph{feasible}) if the endpoints for any edge are assigned different colours.\\
+A \emph{colour class} is a set of vertices coloured with the same colour. \\
+The \emph{vertex chromatic number} (or \emph{index}) of a graph $G$, denoted $\chi(G)$, is the minimum number of different colours required for a proper vertex colouring of $G$. \\
+A graph $G$ is called $k$-vertex colourable if $\chi(G) = k$.
+\end{defns}
+
+\begin{alg}[Sequential (or Greedy)]~\\
+\textbf{Input} a graph with vertex set $v_1,\ldots,v_n$. \\
+\textbf{Output} a proper vertex colouring $f\colon V(G)\to \{1,\ldots,k\}$. \\
+For $i = 1$ to $n$ \\
+\indent Let $f(v_i)$ be the smallest colour number not used by any neighbours of $v_i$ with smaller index. \\
+Return $f$.
+\end{alg}
+
+\begin{prop}
+Let $G$ be a graph that has $k$ mutually adjacent vertices, then $\chi(G) \ge k$.
+\end{prop}
+
+\begin{defns}
+A \emph{clique} in graph $G$ is a maximal subset of $V(G)$ whose vertices are mutually adjacent. \\
+The \emph{clique number} $w(G)$ of $G$ is the number of vertices in the largest (maximum) clique in $G$.
+\end{defns}
+
+\begin{prop}
+For any graph $\chi(G) \ge w(G)$.
+\end{prop}
+
+\begin{defn}
+The \emph{independence number} $\alpha(G)$ of a graph $G$ is the number of vertices in an independent set of maximum cardinality.
+\end{defn}
+
+\begin{prop}
+For any graph $G$, $\chi(G) \ge \left[ \frac{|V(G)|}{\alpha(G)}\right]$
+\end{prop}
+
+\begin{ex}
+%TODO insert
+\end{ex}
+
+\begin{prop}
+Let $H$ be a subgraph of $G$, then $\chi(G) \ge \chi(H)$.
+\end{prop}
+
+\begin{defn}
+The join $G+H$ of two graphs $G$ and $H$ is obtained from $G\cup H$ by adding all edges between $V(G)$ and $V(H)$.
+\end{defn}
+
+\begin{prop}
+$\chi(G+H) = \chi(G) + \chi(H)$.
+\end{prop}
+
+\begin{proof}
+In the graoh $G+H$ no colour used to colour $V(G)$ can be used for colouring $V(H)$ and conversely no colour used to colour $V(H)$ can be used to colour $V(G)$.
+Therefore $\chi(G+H) \ge \chi(G) + \chi(H)$.
+Colour $V(G)$ using proper colouring with colours $\{1,\ldots,\chi(G)\}$ and colour $V(H)$ using colours $\{\chi(G) + 1,\ldots, \chi(G) + \chi(H)\}$.
+Therefore $\chi(G+G) \le \chi(G)  + \chi(H) $.
+\end{proof}
+
+\begin{prop}
+\begin{enumerate}
+\item A bipartite graph $G$ has $\chi(G) = 2$.
+\item Path graphs $\chi(P_n) = 2$ for $n \ge 2$.
+\item $\chi(T) =2 $ for any non-trivial tree (as trees are actually bipartite graphs).
+\item For the hypercube graph $Q_n$, $\chi(Q_n) \le n$.
+\item For even cycles $C_{2n}$ we have $\chi(C_{2n}) = 2$ (as bipartite).
+\item For an odd cycle $C_{2n+1}$ we have $\chi(C_{2n+1}) = 3$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}[Proof (of 6)]
+$\chi(C_{2n+1}) \ge \left[ \frac{|V(G)|}{\alpha(G)}\right] = \left[\frac{2n+1}{n} \right] = 3$.
+\end{proof}
+
+\marginpar{Lecture 22}
+
+\section{Brooks Theorem}
+
+\begin{defns}
+A \emph{block} is a maximal connected subgraph $H$ s.t. no vertex of $H$ is a cut vertex of $H$. \\
+A \emph{leaf block} of a graph $G$ is a block that contains exactly one cut vertex of $G$.
+\end{defns}
+
+\begin{ex}
+%TODO input
+\end{ex}
+
+\begin{prop}
+Two different blocks of a grapjh have at most once vertex in common.
+\end{prop}
+
+\begin{prop}
+Let $B_1$ and $B_2$ be two distinct blocks of a connected graph.
+Let $y_1\in B_1$ and $y_2\in B_2$ be vertices that are not cut vertices in $G$.
+Then $y_1$ is not adjacent to $y_2$.
+\end{prop}
+
+\begin{prop}
+A graph with at least one cut-vertex has at least two blocks.
+\end{prop}
+
+\begin{lem}
+Let $G$ be a non-complete $k$-regular 2-conected graph with $k \ge 3$.
+Then $G$ has a vertex $x$ with two non-adjacent neighbours $y$ and $z$ s.t. $G\setminus \{y,z\}$ is a connected graph.
+\end{lem}
+
+\begin{proof}
+Let $w$ be any vertex in $G$. If $G\setminus\{w\}$ is 2-connected then let $z$ be ant vertex at distance 2 from $w$.
+If $x$ is the vertex between $w$ and $z$ and $y = w$ then the conditions of the lemma are satisfied. \\
+Alternatively assume $k_V(G\setminus w) = 1$.
+Then let $B_1$ and $B_2$ we two leaf blocks of $G\setminus w$.
+Since $G$ has no cut vertices we know that $w$ must be adjacent to some vertex $y_1 \in B_1$ which is not a cut vertex of $G\setminus w$ and it should be adjacent to some $y_2 \in B_2$ that is no a cut vertex of $G\setminus w$.
+By the above proposition $y_1$ is not adjacent to $y_2$.
+We define $x = w$, $y = y_1$, $z = y_2$.
+\end{proof}
+
+\begin{thm}[Brooks]
+Let $G$ be a non-complete connected graph with maximum degree $\Delta(G) \ge 3$.
+Then $\chi(G) \le \Delta(G)$.
+\end{thm}
+
+\begin{proof}
+\textbf{Case 1} $G$ is not regular.
+Let $n = |V(G)|$.
+Choose $v_n$ to be any vertex of degree less than $\Delta(G)$.
+Next grow a spanning tree from $v_n$, assigning indices in decreasing order.
+Apply a sequential greedy algorithm to the ordering $v_1,\ldots,v_n$. \\
+\textbf{Case 2} $G$ is regular and $G$ has a cut-vertex $x$.
+Let $C_1,\ldots, C_m$ be the components of $G\setminus x$.
+Let $G_i$ be the subgraph induced by $C_i\cup x$.
+The degree of $x$ in $G_i$ is $< \Delta(G)$.
+Each $G_i$ has a proper colouring with $\Delta(G)$ colours.
+By permuting colour classes we can ensure that vertex $x$ is coloured using the same colour in all $G_i$.
+Therefore we can continue colourings of $G_i$ into a proper colouring of $G$. \\
+\textbf{Case 3} $G$ is regular and 2-connected.
+By the previous lemma, $G$ has a vertex $v_n$ with two non-adjacent neighbours $v_1, v_2$ s.t. $G\setminus\{v_1,v_2\}$ is connected.
+Grow a spanning tree in $G\setminus \{v_1,v_2\}$ starting from $v_n$ assigning indices in decreasing order.
+The sequential algorithm will use at most $\Delta(G)$ colours for $v_3,\ldots, v_{n-1}$, we can use the same colour for $v_1$ and $v_2$.
+Therefore $\Delta(G)$ colours is feasible for $v_n$.
+\end{proof}
+
+\marginpar{Lecture 23}
+
+\section{Edge-colouring}
+
+\begin{defns}
+An \emph{edge $k$-colouring} is an assignment $f\colon E(G) \to C$ from its edge set onto the set $C=\{1,\ldots, k\}$ (or indeed any set of cardinality $k$), whose elements are called colours. \\
+An \emph{edge colour class} is a subset of $E(G)$ in which all edges have the same colour. \\
+A \emph{proper edge colouring} of a graph is an edge colouring such that adjacent edges are assigned different colours. \\
+The \emph{edge chromatic number} of $G$ is denoted by $\chi'(G)$ is the minimum number of different colours required for a proper edge-colouring of $G$.
+\end{defns}
+
+\begin{ex}
+Matching teachers to classes where they can't be matched to two at the same time is an example of bipartite graph colouring.
+\end{ex}
+
+\begin{prop}
+Let $\alpha'(G)$ be the cardinality of a maximum matching in $G$, then $\chi'(G) \ge \lceil\frac{|V(G)|}{\alpha'(G)}\rceil$.
+\end{prop}
+
+\begin{defns}
+The \emph{chromatic incidence} at vertex $v$ of a given edge colouring $f$ is the number of different edge colours incident on $v$.
+It is denoted $\ecr_v(f)$.\\
+The \emph{total chromatic incidence} for an edge colouring $f$ of $G$ is $\ecr(f) = \sum_{v\in V(G)} \ecr_v(f)$.
+\end{defns}
+
+\begin{prop}
+An edge colouring $f$ of $G$ is proper $\iff$ for all $v\in V(G)$ we have $\ecr_v(f) = d_v$ (the degree of $v$).
+\end{prop}
+
+\begin{defn}
+A \emph{Kempe $i$-$j$ edge-chain} is a component of rhe subgraph of $G$ induced on all edges coloured $i$ and $j$.
+\end{defn}
+
+\begin{lem}
+Let $f$ be an edge $k$-colouring of $G$ with the largest possible chromatic incidence.
+Let $v$ be a vertex on which some colour $i$ is incident at least twice and on which some colour $j$ is not incident at all.
+Then a Kempe $i$-$j$ chain containing $v$ is an odd cycle.
+\end{lem}
+
+Proof later.
+
+\begin{lem}
+Let $G$ be a connected graph with at least two edges that is not an odd-cycle graph.
+Then $G$ has an edge-colouring such that both colours are incident on every vertex of degree at least 2.
+\end{lem}
+
+\begin{proof}
+We have three cases: \\
+\begin{itemize}
+\item Even cycle
+\item Not a cycle but eulerian
+\item Not eulerian
+\end{itemize}
+\end{proof}
+
+\begin{proof}[Proof of first lemma]
+Assume it is not an odd cycle - then we are in the case of the second lemma.
+So each vertex will get at least two colours.
+So we can increase the chromatic incidence, but this is a contradiction, so it is an odd cycle.
+\end{proof}
+
+\begin{thm}[K\"onig]
+Let $G$ be a bipartite graph.
+Then $\chi'(G) = \Delta(G)$ (maximal degree).
+\end{thm}
+
+\begin{proof}
+Suppose $\chi'(G) \ne \Delta(G)$.
+Then $\Delta(G) < \chi'(G)$ (as we know $\Delta(G) \le \chi'(G)$ always).
+Let $f$ be an edge $\Delta$-colouring of $G$ fro whish $\ecr(f)$ is maximised.
+Since $f$ is not proper $\exists v\in V(G)$ such that $\ecr_v(f) < d_v$.
+Thus some colour occurs on at least two edges incident on $v$.
+Since there are $\Delta$ colours in total, and $\Delta-2$ remaining edges incident on $v$, there should be some colour not incident on $v$.
+By previous lemma the graph $G$ contains an odd cycle, this is a contradiction with $G$ being bipartite.
+\end{proof}
+
+\begin{thm}[Vizing]
+Let $G$ be a simple graph.
+Then there exists a proper edge colouring of $G$ using less than $\Delta(G) + 1$ colours.
+\end{thm}
+
+(It is actually NP hard to show whether your graph will need $\Delta(G)$ or $\Delta(G) + 1$ colours.)
+
+%TODO some more stuff here maybes
+
+\marginpar{Lecture 24} 
+
+\section{Tree width}
+
+We define the tree decomposition $T$ of a graph $G$ as follows: \\
+$T$ has vertices $i$ labelled with sets $X_i$ of vertices from $G$, satisfying:
+\begin{enumerate}
+\item $T$ is a tree.
+\item For every edge $(u,v)\in E(G)\ \exists$ a vertex in $T$ with both $u$ and $v$ in its set.
+\item For all $i,j,k\in V(T)$ if $j$ is on the path from $i$ to $k$ then $X_i\cap X_k\subseteq X_j$.
+\end{enumerate}
+
+\begin{ex}
+%TODO like every other example lols.
+\end{ex}
+
+\begin{defn}
+The \emph{tree width} of a tree decomposition $T$ is the maximum size of a label set $- 1$:
+$$\max_{i\in V(T)} \{|X_i| -1\}$$
+The \emph{tree width} a graph $G$ is defined to be the minimum tree width of any tree decomposition of $G$.
+\end{defn}
+
+\begin{thm}
+Every tree has tree width 1.
+\end{thm}
+
+\begin{proof}[Proof sketch]
+\begin{itemize}
+\item Pick a root.
+\item Put a vertex for every parent and child.
+\end{itemize}
+\end{proof}
+
+\begin{lem}
+Every clique of size $n$ has tree width at least $n-1$.
+\end{lem}
+
+\begin{proof}
+Suppose there is a tree decomposition of width $\le n-2$ for $K_n$.
+%TODO end is in sight
 \end{proof}
 \end{document}
