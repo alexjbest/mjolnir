@@ -7,6 +7,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{tikz}
 
 \newtheorem*{thm}{Theorem}
 \newtheorem*{lem}{Lemma}
@@ -37,6 +38,13 @@
 \DeclareMathOperator{\OPT}{OPT}
 \DeclareMathOperator{\ecr}{ecr}
 
+%TODO use this example code and others to make cool pictures!
+%\begin{tikzpicture}
+%  \node[draw,circle] (G-1) at (0,0) {1};
+%  \node[draw,circle] (G-2) at (-1,1) {2};
+%  \node[draw,circle] (G-3) at (-1,-1) {3};
+%  \draw (G-1) -- (G-2) -- (G-3) -- cycle ;
+%\end{tikzpicture}
 \setcounter{tocdepth}{3}
 
 \begin{document}
@@ -100,22 +108,54 @@ We write $K_{m,n}$ for the complete bipartite graph with $|X| = m,\ |Y| = n$ and
 \begin{defn}
 The graph $K_{1,n}$ is often called a star.
 \end{defn}
+\begin{tikzpicture}
+  \node[draw,circle] (G-1) at (0,0) {};
+  \node[draw,circle] (G-2) at (1,0) {};
+  \node[draw,circle] (G-3) at (0.5,0.866) {};
+  \node[draw,circle] (G-4) at (-0.5,0.866) {};
+  \node[draw,circle] (G-5) at (-1,0) {};
+  \node[draw,circle] (G-6) at (-0.5,-0.866) {};
+  \node[draw,circle] (G-7) at (0.5,-0.866) {};
+  \draw (G-1) -- (G-2);
+  \draw (G-1) -- (G-3);
+  \draw (G-1) -- (G-4);
+  \draw (G-1) -- (G-5);
+  \draw (G-1) -- (G-6);
+  \draw (G-1) -- (G-7);
+\end{tikzpicture}
 %TODO: pictures
 
 \begin{defn}
 A path is a simple graph whose vertices can be rearranges into a linear sequence in such a way that two adjacent vertices are always consecutive in the sequence and vice versa, non-adjacent vertices are non-consecutive, such a graph on $n$ vertices is often denoted $P_n$.
 \end{defn}
+\begin{tikzpicture}
+  \node[draw,circle] (G-1) at (0,0) {};
+  \node[draw,circle] (G-2) at (1,0) {};
+  \node[draw,circle] (G-3) at (2,0) {};
+  \node[draw,circle] (G-4) at (3,0) {};
+  \node[draw,circle] (G-5) at (4,0) {};
+  \draw (G-1) -- (G-2) -- (G-3) -- (G-4) -- (G-5);
+\end{tikzpicture}
 %TODO: pictures
 
 \begin{defn}
 A cycle on $n$ vertices is a graph defined in a similar way but a cyclic sequence of vertices.
 \end{defn}
-%TODO: pictures
+\begin{tikzpicture}
+  \node[draw,circle] (G-1) at (1,0) {};
+  \node[draw,circle] (G-2) at (0.5,0.866) {};
+  \node[draw,circle] (G-3) at (-0.5,0.866) {};
+  \node[draw,circle] (G-4) at (-1,0) {};
+  \node[draw,circle] (G-5) at (-0.5,-0.866) {};
+  \node[draw,circle] (G-6) at (0.5,-0.866) {};
+  \draw (G-1) -- (G-2) -- (G-3) -- (G-4)  -- (G-5)  -- (G-6) -- (G-1);
+\end{tikzpicture}
+%TODO pictures
 
 \begin{nota}
 The length of a path or cycle is the number of its edges. A path or cycle of length $k$ is often called a $k$-path of $k$-cycle.
 \end{nota}
-%TODO: pictures
+%TODO pictures
 
 \section{Adjacency and incidence matrices}
 
@@ -124,7 +164,7 @@ The incidence matrix of $G = (V,E)$ when $|V| = m$ and $|E| = n$ is the $m\times
 \end{defn}
 
 \begin{ex}
-%TODO: pics + matrices
+%TODO pics + matrices
 \end{ex}
 
 \begin{defn}
@@ -132,8 +172,20 @@ The adjacency matrix of $G = (V,E)$ when $|V| = m$ is the $m\times m$ matrix $A_
 \end{defn}
 
 \begin{ex}
-$$ = A_{K_{3}}$$
-%TODO: pics + matrices
+$$
+\begin{tikzpicture}
+  \node[draw,circle] (G-1) at (-0.5,0) {};
+  \node[draw,circle] (G-2) at (0.5,0) {};
+  \node[draw,circle] (G-3) at (0,1) {};
+  \draw (G-1) -- (G-2) -- (G-3) -- (G-1);
+\end{tikzpicture}
+\text{ has matrix }
+\begin{pmatrix}
+0 && 1 && 1 \\
+1 && 0 && 1 \\
+1 && 1 && 0 
+\end{pmatrix} = A_{K_{3}}$$
+%TODO pics + matrices (check this is right lawl)
 \end{ex}
 
 \begin{defn}
@@ -166,7 +218,7 @@ Therefore the number of vertices of odd degree is congruent to 0 mod 2.
 \end{proof}
 
 \begin{defn}
-A graph $G$ is called $k$=regular is $d_G(v) = k$ for all $v\in V(G)$.
+A graph $G$ is called $k$-regular is $d_G(v) = k$ for all $v\in V(G)$.
 A graph is regular if it is $k$-regular for some $k$.
 \end{defn}
 
@@ -316,7 +368,7 @@ Let $T$ be a graph with $n$ vertices, then the following statements are equivale
 \end{thm}
 
 \begin{proof}
-$(1\implies 2)$ \lbrack Previous proposition\rbrack and definition of tree. \\
+$(1\implies 2)$ Previous proposition and definition of tree. \\
 $(2\implies 3)$ Suppose $T$ has $k$ connected components.
 Then each component must be a tree (because they have no cycles) therefore $T$ must contain $n-k$ edges, exactly $\implies k=1$. \\
 $(3\implies 4)$ Let $e$ be an edges of $T$.
@@ -777,7 +829,7 @@ If $E(G_1) = E(C_2)$, we stop.
 Otherwise, $G_2 = G_1\setminus E(C_2)$ and we continue.
 In the end, $E(G) = \bigcup_{i=1}^r E(C_i)$ where $r$ is the number of iterations. \\
 ($3\Rightarrow 1$) Assume that $E(G) = \bigcup_{i=1}^r E(C_i)$ for some edge-disjoint cycles $C_i$ and $G$ is connected.
-Start ar vertex $v_1\in C_1$ and walk along $C_1$.
+Start at vertex $v_1\in C_1$ and walk along $C_1$.
 Let $T_1 = C_1$.
 There must be some vertex $v_2$ of $T_1$ belonging to some other cycle say $C_2'$.
 We add $C_2'$ into $T_1$ as follows, walk along $T_1$ from $v_1$ to $v_2$, walk along $C_2'$, after that walk from $v_2$ to $v_1$ along $T_1$.
@@ -1335,7 +1387,7 @@ $\chi(G+H) = \chi(G) + \chi(H)$.
 \end{prop}
 
 \begin{proof}
-In the graoh $G+H$ no colour used to colour $V(G)$ can be used for colouring $V(H)$ and conversely no colour used to colour $V(H)$ can be used to colour $V(G)$.
+In the graph $G+H$ no colour used to colour $V(G)$ can be used for colouring $V(H)$ and conversely no colour used to colour $V(H)$ can be used to colour $V(G)$.
 Therefore $\chi(G+H) \ge \chi(G) + \chi(H)$.
 Colour $V(G)$ using proper colouring with colours $\{1,\ldots,\chi(G)\}$ and colour $V(H)$ using colours $\{\chi(G) + 1,\ldots, \chi(G) + \chi(H)\}$.
 Therefore $\chi(G+G) \le \chi(G)  + \chi(H) $.
@@ -1345,7 +1397,7 @@ Therefore $\chi(G+G) \le \chi(G)  + \chi(H) $.
 \begin{enumerate}
 \item A bipartite graph $G$ has $\chi(G) = 2$.
 \item Path graphs $\chi(P_n) = 2$ for $n \ge 2$.
-\item $\chi(T) =2 $ for any non-trivial tree (as trees are actually bipartite graphs).
+\item $\chi(T) = 2$ for any non-trivial tree (as trees are actually bipartite graphs).
 \item For the hypercube graph $Q_n$, $\chi(Q_n) \le n$.
 \item For even cycles $C_{2n}$ we have $\chi(C_{2n}) = 2$ (as bipartite).
 \item For an odd cycle $C_{2n+1}$ we have $\chi(C_{2n+1}) = 3$.
@@ -1370,7 +1422,7 @@ A \emph{leaf block} of a graph $G$ is a block that contains exactly one cut vert
 \end{ex}
 
 \begin{prop}
-Two different blocks of a grapjh have at most once vertex in common.
+Two different blocks of a graph have at most once vertex in common.
 \end{prop}
 
 \begin{prop}
@@ -1384,7 +1436,7 @@ A graph with at least one cut-vertex has at least two blocks.
 \end{prop}
 
 \begin{lem}
-Let $G$ be a non-complete $k$-regular 2-conected graph with $k \ge 3$.
+Let $G$ be a non-complete $k$-regular 2-connected graph with $k \ge 3$.
 Then $G$ has a vertex $x$ with two non-adjacent neighbours $y$ and $z$ s.t. $G\setminus \{y,z\}$ is a connected graph.
 \end{lem}
 
@@ -1453,7 +1505,7 @@ An edge colouring $f$ of $G$ is proper $\iff$ for all $v\in V(G)$ we have $\ecr_
 \end{prop}
 
 \begin{defn}
-A \emph{Kempe $i$-$j$ edge-chain} is a component of rhe subgraph of $G$ induced on all edges coloured $i$ and $j$.
+A \emph{Kempe $i$-$j$ edge-chain} is a component of the subgraph of $G$ induced on all edges coloured $i$ and $j$.
 \end{defn}
 
 \begin{lem}
@@ -1473,8 +1525,8 @@ Then $G$ has an edge-colouring such that both colours are incident on every vert
 We have three cases: \\
 \begin{itemize}
 \item Even cycle
-\item Not a cycle but eulerian
-\item Not eulerian
+\item Not a cycle but Eulerian
+\item Not Eulerian
 \end{itemize}
 \end{proof}
 
@@ -1492,7 +1544,7 @@ Then $\chi'(G) = \Delta(G)$ (maximal degree).
 \begin{proof}
 Suppose $\chi'(G) \ne \Delta(G)$.
 Then $\Delta(G) < \chi'(G)$ (as we know $\Delta(G) \le \chi'(G)$ always).
-Let $f$ be an edge $\Delta$-colouring of $G$ fro whish $\ecr(f)$ is maximised.
+Let $f$ be an edge $\Delta$-colouring of $G$ for which $\ecr(f)$ is maximised.
 Since $f$ is not proper $\exists v\in V(G)$ such that $\ecr_v(f) < d_v$.
 Thus some colour occurs on at least two edges incident on $v$.
 Since there are $\Delta$ colours in total, and $\Delta-2$ remaining edges incident on $v$, there should be some colour not incident on $v$.
