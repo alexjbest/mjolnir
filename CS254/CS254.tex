@@ -50,7 +50,6 @@
 \begin{document}
 \maketitle
 \tableofcontents
-~\\
 \section*{Introduction}
 These are lecture notes I typeset for CS254 Algorithmic Graph Theory in 2013, they are currently full of gaps, mistakes, wrong statements, notation abuse and lots of other badness.
 However they might be useful to someone, despite the fact they lack any pictures at present.
@@ -85,7 +84,13 @@ By convention, $G$ will denote a graph, $n$ and $m$ will be the number of vertic
 A complete graph is a simple graph in which every two vertices are adjacent. \\
 Such a graph on $n$ vertices is denoted $K_n$.
 \end{defn}
-%TODO: pictures
+\begin{tikzpicture}
+  \node[draw,circle] (G-1) at (0,0) {};
+  \node[draw,circle] (G-2) at (0,1) {};
+  \node[draw,circle] (G-3) at (1,1) {};
+  \node[draw,circle] (G-4) at (1,0) {};
+  \draw (G-1) -- (G-2) -- (G-3) -- (G-4) -- (G-1) -- (G-3) -- (G-2) -- (G-4) ;
+\end{tikzpicture}
 
 We can see that $|E(K_n)| = \frac{n(n-1)}{2}$.
 \begin{defn}
@@ -800,6 +805,11 @@ Then the maximum number of internally disjoint $u$-$v$ paths in $G$ equals the m
 \end{thm}
 
 \section{Optimal Graph Traversals}
+
+\begin{quotation}
+``This question is so banal...'' \\
+``Thus you see, most noble Sir, how this type of solution bears little relationship to mathematics, and I do not understand why you expect a     mathematician to produce it, rather than anyone else, for the solution is based on reason alone, and its discovery does not depend on any mathematical principle.'' Euler on solving the bridges of K\"onigsberg problem.
+\end{quotation}
 
 \begin{defns}
 An \emph{Eulerian walk} in a graph $G$ is a walk that contains every edge of the graph exactly once. \\
