@@ -160,7 +160,17 @@ A cycle on $n$ vertices is a graph defined in a similar way but a cyclic sequenc
 \begin{nota}
 The length of a path or cycle is the number of its edges. A path or cycle of length $k$ is often called a $k$-path of $k$-cycle.
 \end{nota}
-%TODO pictures
+\begin{tikzpicture}
+  \node[draw,circle] (G-1) at (1,0) {};
+  \node[draw,circle] (G-2) at (0.707,0.707) {};
+  \node[draw,circle] (G-3) at (0,1) {};
+  \node[draw,circle] (G-4) at (-0.707,0.707) {};
+  \node[draw,circle] (G-5) at (-1,0) {};
+  \node[draw,circle] (G-6) at (-0.707,-0.707) {};
+  \node[draw,circle] (G-7) at (0,-1) {};
+  \node[draw,circle] (G-8) at (0.707,-0.707) {};
+  \draw (G-1) -- (G-2) -- (G-3) -- (G-4)  -- (G-5)  -- (G-6) -- (G-7) -- (G-8) -- (G-1);
+\end{tikzpicture}
 
 \section{Adjacency and incidence matrices}
 
@@ -257,6 +267,21 @@ Two graphs $G$ and $H$ are isomorphic, written $G\cong H$, if there is a bijecti
 \end{defn}
 
 \begin{ex}
+$$
+\begin{tikzpicture}
+  \node[draw,circle] (G-1) at (0,0) {a};
+  \node[draw,circle] (G-2) at (0,2) {b};
+  \node[draw,circle] (G-3) at (2,2) {c};
+  \node[draw,circle] (G-4) at (2,0) {d};
+  \draw (G-1) -- (G-2) -- (G-3) -- (G-4);
+\end{tikzpicture}\cong
+\begin{tikzpicture}
+  \node[draw,circle] (G-1) at (0,0) {w};
+  \node[draw,circle] (G-2) at (0,2) {z};
+  \node[draw,circle] (G-3) at (2,2) {x};
+  \node[draw,circle] (G-4) at (2,0) {y};
+  \draw (G-1) -- (G-4) -- (G-3) -- (G-2);
+\end{tikzpicture}$$
 %TODO: Examples
 \end{ex}
 
