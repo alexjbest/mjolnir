@@ -2,7 +2,7 @@
 \author{Based on lectures by Alex Bartel \\ Typeset by Alex J. Best}
 \date{\today}
 
-\documentclass{book}
+\documentclass{article}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -21,13 +21,15 @@
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\NN}{\mathbb{N}}
 
-\setcounter{chapter}{0}
+\setcounter{tocdepth}{3}
 
 \begin{document}
 \maketitle
+\tableofcontents
+\section*{Introduction}
 
-\chapter{Revision}
-\section{Divisibility}
+\section{Revision}
+\subsection{Divisibility}
 \begin{defn}
 Given $a,b \in \ZZ$ we say $a$ divides $b$, written $a|b \iff b=an$ for some $n \in \ZZ$. 
 \end{defn}
@@ -64,7 +66,7 @@ Suppose $qb+r=q'b+r'$, $0\leq r,r' \leq|b|-1$ then,
 	Let $q=\max\{m:mb\leq a\}$ \\
 	This is our $q$ and $r = a-qb$
 \end{proof}
-\section{Ideals}
+\subsection{Ideals}
 \begin{defn}
 A ring $R$ is a set together with two operations $+,\cdot$ such that $(R,+)$ is a commutative group and:
 \begin{itemize}
@@ -122,7 +124,7 @@ Such a function is called a euclidean function and exists in other circumstances
 \item $\QQ[x]$ the ring of polynomials over $\QQ$ has a euclidean function that takes a polynomial to it's degree.
 \end{enumerate}
 \end{ex}
-\section{GCD}
+\subsection{GCD}
 \begin{thm}
 Let $a_1,...,a_n \in \ZZ$ and $c$ be any element s.t. $c|a_i\ \forall i$ then
 $$\exists! d \in \NN\setminus\{0\} \text{ s.t. } d|a_i\ \forall i \text{ and also } c|d$$
@@ -181,14 +183,14 @@ then $d|a$ and $d|n$ so $\frac a d (b-b_0)=\frac m d (t-t_0) \implies \exists r 
 $\#\{[b]_n|ab\equiv x \pmod{n}\} = \#\left\{[b]_n - \left[ \frac{nr}{d}\right]_n : r\in\ZZ\right\} = \#\{r\in\ZZ|0\leq \frac{nr}{d} \leq n-1\} = d = \gcd(a,n)$
 \end{enumerate}
 \end{proof}
-\chapter{Chinese Remainder theorem \& Fermat's Little theorem}
+\section{Chinese Remainder theorem \& Fermat's Little theorem}
 
-\chapter{Revision}
+\section{Revision}
 
-\chapter{Revision}
+\section{Revision}
 
-\chapter{Revision}
+\section{Revision}
 
-\chapter{Revision}
+\section{Revision}
 
 \end{document}
