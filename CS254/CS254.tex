@@ -190,6 +190,23 @@ The incidence matrix of $G = (V,E)$ when $|V| = m$ and $|E| = n$ is the $m\times
 \end{defn}
 
 \begin{ex}
+$$G=
+\begin{tikzpicture}[baseline=-0.5ex]
+  \node[draw,circle] (G-1) at (0,0) {$v_1$};
+  \node[draw,circle] (G-2) at (1,0) {$v_2$};
+  \node[draw,circle] (G-3) at (0,1) {$v_3$};
+  \node[draw,circle] (G-4) at (0,-1) {$v_4$};
+  \node[draw,circle] (G-5) at (-1,0) {$v_5$};
+  \draw (G-1) -- (G-2) -- (G-3) -- (G-1) -- (G-4) -- (G-5) -- (G-1);
+\end{tikzpicture}
+\text{ has incidence matrix }
+\begin{pmatrix}
+1 & 1 & 0 & 1 & 1 & 0 \\
+1 & 0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 1 \\
+0 & 0 & 0 & 0 & 1 & 1
+\end{pmatrix} = M_{G}$$
 %TODO pics + matrices
 \end{ex}
 
@@ -198,14 +215,14 @@ The adjacency matrix of $G = (V,E)$ when $|V| = m$ is the $m\times m$ matrix $A_
 \end{defn}
 
 \begin{ex}
-$$
+$$K_3 = 
 \begin{tikzpicture}[baseline=2ex]
   \node[draw,circle] (G-1) at (-0.5,0) {};
   \node[draw,circle] (G-2) at (0.5,0) {};
   \node[draw,circle] (G-3) at (0,1) {};
   \draw (G-1) -- (G-2) -- (G-3) -- (G-1);
 \end{tikzpicture}
-\text{ has matrix }
+\text{ has adjacency matrix }
 \begin{pmatrix}
 0 && 1 && 1 \\
 1 && 0 && 1 \\
@@ -263,7 +280,7 @@ Then $|X| \leq |Y|$ with equality iff $d_x = d_y \forall (x,y)\in E$ .
 \begin{proof}
 Take the adjacency matrix $B$.
 Define the matrix $B'$ by dividing each row of $B$ corresponding to vertex $u$ by $d_u$.
-consider one column sum corresponding to $y\in Y$.
+Consider one column sum corresponding to $y\in Y$.
 $$\sum_{x\in X} b'_{xy} = \sum_{(x,y)\in E} \frac{1}{d_x} = \frac{d_y}{d_x} \leq 1$$
 Therefore $|X|=\sum_{x\in X}\sum_{y\in Y,(x,y)\in E} \frac{1}{d_x}$
 $$=\sum_{x\in X, y\in Y}\sum_{(x,y)\in E} \frac{1}{d_x} \leq \sum_{x\in X, y\in Y}^{(x,y)\in E} \frac{1}{d_y}$$
@@ -415,7 +432,7 @@ Then each component must be a tree (because they have no cycles) therefore $T$ m
 $(3\implies 4)$ Let $e$ be an edges of $T$.
 Since $T\setminus e$ has $n-2$ edges by one of the corollaries, we must have $c(T)\ge 2$. \\
 $(4\implies 5)$ (By contradiction) Suppose $x$ and $y$ are two vertices of tress $T$ that have two different paths, say $p_1$ and $p_2$ connecting them.
-Let $u$ be the the first vertex where the paths diverge and let $v$ be the first vertex where the paths meet again.
+Let $u$ be the first vertex where the paths diverge and let $v$ be the first vertex where the paths meet again.
 Any edge of the cycle containing $u$ and $v$ is not a cut edge which contradicts (4). \\
 $(5\implies 6)$ $T$ contains no cycles otherwise we would have two paths between $x,y\in$ cycle.
 If we add an edge $e= (u,v)$ we will create a cycle since $T$ contains a path between $u$ and $v$. If $T+e$ contains two cycles then both cycles must contain $e$.
@@ -455,7 +472,7 @@ For $i=1$ to $l-1$ Choose two trees $T$ and $T'$ from the forest of smallest wei
 Create a binary tree by adding a new vertex with $T$ as a child on the left and $T'$ a child on the right. Label the edges to these new child trees 0 and 1 respectively. \\
 Assign to the new tree the weight $\wt(T)+\wt(T')$. \\
 Replace $T$ and $T'$ in $F$ by the new tree. \\
-When finished return F.
+When finished return $F$.
 \end{alg}
 
 \begin{ex}
@@ -693,7 +710,7 @@ The following are equivalent:
 \item For any vertex and any edge of $G$, there is a cycle containing both.
 \item For any two edges of $G$, there is a cycle containing both.
 \item For any two vertices and one edge, there is a path containing all three.
-\item For any three vertices and one edge there is a a path containing all four.
+\item For any three vertices and one edge there is a path containing all four.
 \item For any three distinct vertices of $G$, there is a path containing any two of them which does not contain the third.
 \end{enumerate}
 \end{thm}
@@ -750,12 +767,12 @@ The graph that results from a path or cycle addition is 2-edge-connected.
 \end{lem}
 
 \begin{thm}[Whitney Robbins synthesis]
-A graoh $G$ is 2-edge connected $\iff$ $G$ is a cycle or a Whitney-Robbins synthesis from a cycle.
+A graph $G$ is 2-edge connected $\iff$ $G$ is a cycle or a Whitney-Robbins synthesis from a cycle.
 \end{thm}
 
 \section{Tutte's Synthesis of 3-connected graphs}
 \begin{defn}
-The $n$-spoke wheel $W_n$ is a cycle on $n$ vertices and one additional vertex (the center) connected directly to all vertices of the cycle.
+The $n$-spoke wheel $W_n$ is a cycle on $n$ vertices and one additional vertex (the centre) connected directly to all vertices of the cycle.
 \end{defn}
 
 \begin{thm}[Tutte's Synthesis Theorem]
@@ -1093,12 +1110,12 @@ Find a set $S\subseteq V$ such that $|S| = k$ and $\max_{u\in V\setminus S}\min_
 The greedy algorithm above has performance guarantee of 2 for the $k$-center problem.
 \end{thm}
 \begin{proof}
-Let $S^*=\{j_1,\ldots,j_k\}$ denote an optimal solution and let $r^*$ be its value, i.e radius.
+Let $S^*=\{j_1,\ldots,j_k\}$ denote an optimal solution and let $r^*$ be its value, i.e. radius.
 This solution partitions the nodes of $V$ into clusters $V_1,\ldots,V_k$ where each point $j\in V$ is placed in $V_i$ if it is closest to $j_i$ among all points in $S^*$ (ties are broken arbitrarily).
 Each pair of points (or nodes) $j,j'\in V$ are at most $2r^*$ apart (using the triangle inequality).
 Consider the set $S\subseteq V$ of the nodes selected by the greedy algorithm.
 If one center in $S$ is selected from each cluster $V_1,\ldots,V_k$ of the optimal solution, then every point in $V$ is within $2r^*$ of some point in $S$.
-If the algorithm selects two points in the same cluster $V_i$, i..e on some iteration the algorithm chooses $j\in V_i$ even though the algorithm already chose $j'\in V_i$ in an earlier iteration.
+If the algorithm selects two points in the same cluster $V_i$, i.e. on some iteration the algorithm chooses $j\in V_i$ even though the algorithm already chose $j'\in V_i$ in an earlier iteration.
 Again $d_{jj'}\le 2r^*$.
 Since $j$ is the furthest point in $V\setminus S$ from $S$ we know that all remaining points in $V\setminus S$ must be within distance $2r^*$ from $S$.
 \end{proof}
@@ -1193,7 +1210,7 @@ For each location $j$ such that $\sigma^*(j) \ne i^*$ but $\sigma(j) = i$, we re
 All our demands remain served by $\sigma(j)$.
 First we argue that $\sigma(\sigma^*(j))\ne i$, when $\sigma^*(j) \ne i^*$ (feasibility).
 Assume for contradiction $\sigma(\sigma^*(j)) = i$.
-then $i\in O$ since we define swaps with $Z$ and $O$ only and $Z$ is not used by $\sigma$.
+Then $i\in O$ since we define swaps with $Z$ and $O$ only and $Z$ is not used by $\sigma$.
 Since $i\in O$ we know that $i$ is the image of exactly one element $i^*$,
 There is for $\sigma^*(j) = i^*$ which is a contradiction.
 We know that the value of $S' = (S\setminus \{i\})\cup i^*$ minus the value of $S$ is $\ge 0$.
@@ -1215,9 +1232,9 @@ The second term is upper-bounded by $f(S^*)$ and we derive $5f(S^*) - f(S) \ge 0
 
 \marginpar{Lecture 16}
 
-\section{The max-cut problem}
+\section{The Max-cut problem}
 
-The problem is to find a cut of a graph (a partition of its vertex set) so that the max possible number of edges lie across the cut (going from one partition to the other).\\
+The problem is to find a cut of a graph (a partition of its vertex set) so that the maximum possible number of edges lie across the cut (going from one partition to the other).\\
 We can make several basic attempts at writing an algorithm to do this:
 The first would be a greedy approach, keep choosing vertices to place as many more edges across the cut at each step as is possible.
 This is often very ineffective however. \\
@@ -1275,7 +1292,7 @@ For this problem a corresponding graph will be 8-claw free, as no more than 7 ta
 
 \section{Weighted independent sets}
 
-%TODO finish these lectures, too painfull to type right now
+%TODO finish these lectures, too painful to type right now
 
 \marginpar{Lecture 19}
 
@@ -1697,7 +1714,7 @@ By restricting to graphs with bounded tree width (that is at most $k$ for some c
 
 \begin{thm}[Courcelle]
 Any property that can be expressed in Monadic second order logic can be tested in time $f(k,p)\cdot O(n)$ on graphs of tree width $\le k$.
-Where $p$ is the sixe of the monadic second order logic property, $n = |V|$ and $k$ is the tree width.
+Where $p$ is the size of the monadic second order logic property, $n = |V|$ and $k$ is the tree width.
 \end{thm}
 
 We have a few :
