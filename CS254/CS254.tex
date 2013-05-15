@@ -53,7 +53,7 @@
 \section*{Introduction}
 These are lecture notes I typeset for CS254 Algorithmic Graph Theory in 2013, they are currently full of gaps, mistakes, wrong statements, notation abuse and lots of other badness.
 However they might be useful to someone, despite the fact they lack any pictures at present.
-Thanks are due to Julian ``Catlover2k13'' Bhardwaj and Rosie Nasrin for telling me I'm wrong.
+Thanks are due to Julian ``Boolean'' Bhardwaj and Rosie Nasrin for telling me I'm wrong.
 If you find anything else that can be improved send me an email at a.j.best@warwick.ac.uk, thanks.
 \clearpage
 
@@ -84,13 +84,15 @@ By convention, $G$ will denote a graph, $n$ and $m$ will be the number of vertic
 A complete graph is a simple graph in which every two vertices are adjacent. \\
 Such a graph on $n$ vertices is denoted $K_n$.
 \end{defn}
+\begin{center}
 \begin{tikzpicture}
   \node[draw,circle] (G-1) at (0,0) {};
-  \node[draw,circle] (G-2) at (0,1) {};
-  \node[draw,circle] (G-3) at (1,1) {};
-  \node[draw,circle] (G-4) at (1,0) {};
+  \node[draw,circle] (G-2) at (0,2) {};
+  \node[draw,circle] (G-3) at (2,2) {};
+  \node[draw,circle] (G-4) at (2,0) {};
   \draw (G-1) -- (G-2) -- (G-3) -- (G-4) -- (G-1) -- (G-3) -- (G-2) -- (G-4) ;
 \end{tikzpicture}
+\end{center}
 
 We can see that $|E(K_n)| = \frac{n(n-1)}{2}$.
 \begin{defn}
@@ -113,6 +115,7 @@ We write $K_{m,n}$ for the complete bipartite graph with $|X| = m,\ |Y| = n$ and
 \begin{defn}
 The graph $K_{1,n}$ is often called a star.
 \end{defn}
+\begin{center}
 \begin{tikzpicture}
   \node[draw,circle] (G-1) at (0,0) {};
   \node[draw,circle] (G-2) at (1,0) {};
@@ -128,11 +131,13 @@ The graph $K_{1,n}$ is often called a star.
   \draw (G-1) -- (G-6);
   \draw (G-1) -- (G-7);
 \end{tikzpicture}
+\end{center}
 %TODO: pictures
 
 \begin{defn}
 A path is a simple graph whose vertices can be rearranges into a linear sequence in such a way that two adjacent vertices are always consecutive in the sequence and vice versa, non-adjacent vertices are non-consecutive, such a graph on $n$ vertices is often denoted $P_n$.
 \end{defn}
+\begin{center}
 \begin{tikzpicture}
   \node[draw,circle] (G-1) at (0,0) {};
   \node[draw,circle] (G-2) at (1,0) {};
@@ -141,11 +146,13 @@ A path is a simple graph whose vertices can be rearranges into a linear sequence
   \node[draw,circle] (G-5) at (4,0) {};
   \draw (G-1) -- (G-2) -- (G-3) -- (G-4) -- (G-5);
 \end{tikzpicture}
+\end{center}
 %TODO: pictures
 
 \begin{defn}
 A cycle on $n$ vertices is a graph defined in a similar way but a cyclic sequence of vertices.
 \end{defn}
+\begin{center}
 \begin{tikzpicture}
   \node[draw,circle] (G-1) at (1,0) {};
   \node[draw,circle] (G-2) at (0.5,0.866) {};
@@ -155,11 +162,13 @@ A cycle on $n$ vertices is a graph defined in a similar way but a cyclic sequenc
   \node[draw,circle] (G-6) at (0.5,-0.866) {};
   \draw (G-1) -- (G-2) -- (G-3) -- (G-4)  -- (G-5)  -- (G-6) -- (G-1);
 \end{tikzpicture}
+\end{center}
 %TODO pictures
 
 \begin{nota}
 The length of a path or cycle is the number of its edges. A path or cycle of length $k$ is often called a $k$-path of $k$-cycle.
 \end{nota}
+\begin{center}
 \begin{tikzpicture}
   \node[draw,circle] (G-1) at (1,0) {};
   \node[draw,circle] (G-2) at (0.707,0.707) {};
@@ -171,6 +180,7 @@ The length of a path or cycle is the number of its edges. A path or cycle of len
   \node[draw,circle] (G-8) at (0.707,-0.707) {};
   \draw (G-1) -- (G-2) -- (G-3) -- (G-4)  -- (G-5)  -- (G-6) -- (G-7) -- (G-8) -- (G-1);
 \end{tikzpicture}
+\end{center}
 
 \section{Adjacency and incidence matrices}
 
@@ -188,7 +198,7 @@ The adjacency matrix of $G = (V,E)$ when $|V| = m$ is the $m\times m$ matrix $A_
 
 \begin{ex}
 $$
-\begin{tikzpicture}
+\begin{tikzpicture}[baseline=2ex]
   \node[draw,circle] (G-1) at (-0.5,0) {};
   \node[draw,circle] (G-2) at (0.5,0) {};
   \node[draw,circle] (G-3) at (0,1) {};
@@ -268,14 +278,14 @@ Two graphs $G$ and $H$ are isomorphic, written $G\cong H$, if there is a bijecti
 
 \begin{ex}
 $$
-\begin{tikzpicture}
+\begin{tikzpicture}[baseline=5ex]
   \node[draw,circle] (G-1) at (0,0) {a};
   \node[draw,circle] (G-2) at (0,2) {b};
   \node[draw,circle] (G-3) at (2,2) {c};
   \node[draw,circle] (G-4) at (2,0) {d};
   \draw (G-1) -- (G-2) -- (G-3) -- (G-4);
 \end{tikzpicture}\cong
-\begin{tikzpicture}
+\begin{tikzpicture}[baseline=5ex]
   \node[draw,circle] (G-1) at (0,0) {w};
   \node[draw,circle] (G-2) at (0,2) {z};
   \node[draw,circle] (G-3) at (2,2) {x};
