@@ -1640,11 +1640,79 @@ Every tree has tree width 1.
 \end{proof}
 
 \begin{lem}
+If there is a tree decomposition with tree width $k$ then there is one $T$ that satisfies $\forall i, j\in V(T)\ X_i\not\subseteq X_j$.
+\end{lem}
+
+\begin{proof}
+Let $X_i\subseteq X_j$, and $X_k\supseteq X_i\cap X_j = X_i$.
+Now delete $X_i$. \\
+%Assume this is not a tree decomposition but TODO make sure this acutally makes sense
+\end{proof}
+
+\begin{lem}
 Every clique of size $n$ has tree width at least $n-1$.
 \end{lem}
 
 \begin{proof}
 Suppose there is a tree decomposition of width $\le n-2$ for $K_n$.
-%TODO end is in sight
+By the above lemma all $X_i$ must be missing at least one vertex of $K_n$.
+If $I$ has only one vertex $i$ in $T$, then $I$ does not have edges in the vertex of $G$ missing from $X_k$.
+So $I$ must have at lest two vertices (say $i$ \& $j$).
+There is some $v\in V(G)$ s.t. $v\not\in X_i$.
+$X_j \not\subseteq X_i$, $X_i$ has a vertex $v\not\in X_j$.
+$X_i \not\subseteq X_i$, $X_j$ has a vertex $v\not\in X_i$.
+So $\{v,u\} \not\in X_i$, $\{v,u\} \not\in X_j$ but $\{v,u\}\in E(K_n)$.
+$\exists X_k$ s.t. $v,u\in X_k$ but $X_k$ needs to connect to $X_i \& X_j \implies $ a cycle, not a tree.
+So the tree width is $n-1$. %TODO make this make sense too
 \end{proof}
+
+\begin{ex}
+Consider $C_6$:
+\begin{center}
+\begin{tikzpicture}
+  \node[draw,circle] (G-1) at (1,0) {2};
+  \node[draw,circle] (G-2) at (0.5,0.866) {1};
+  \node[draw,circle] (G-3) at (-0.5,0.866) {6};
+  \node[draw,circle] (G-4) at (-1,0) {5};
+  \node[draw,circle] (G-5) at (-0.5,-0.866) {4};
+  \node[draw,circle] (G-6) at (0.5,-0.866) {3};
+  \draw (G-1) -- (G-2) -- (G-3) -- (G-4)  -- (G-5)  -- (G-6) -- (G-1);
+\end{tikzpicture}
+\begin{tikzpicture}
+  \node[draw,circle] (G-1) at (-1.5,0) {6,1};
+  \node[draw,circle] (G-2) at (0,0) {5,6,1};
+  \node[draw,circle] (G-3) at (1.5,0) {4,5};
+  \node[draw,circle] (G-4) at (1.5,1.5) {3,4};
+  \node[draw,circle] (G-5) at (0,1.5) {2,3};
+  \draw (G-1) -- (G-2) -- (G-3) -- (G-4)  -- (G-5);
+\end{tikzpicture}
+\end{center}
+\end{ex}
+
+By restricting to graphs with bounded tree width (that is at most $k$ for some constant $k$) we can find exact algorithms for a large class of problems that take $O(n)$ time.
+
+%\section{Max independent set for trees} TODO whole section yawn
+
+\section{Monadic second order logic}
+
+\begin{thm}[Courcelle]
+Any property that can be expressed in Monadic second order logic can be tested in time $f(k,p)\cdot O(n)$ on graphs of tree width $\le k$.
+Where $p$ is the sixe of the monadic second order logic property, $n = |V|$ and $k$ is the tree width.
+\end{thm}
+
+We have a few :
+\begin{itemize}
+\item Relations $R(x,y)$
+\item Conjectures $\neg,\implies,\vee,\wedge$
+\item Equality
+\end{itemize}
+
+First order logic has $\forall$ and $\exists$ that can be used to quantify elements of the universe.\\
+Second order logic can quantify elements of the universe and relations on them, e.g. $\forall R\ \exists x\ \exists y$ s.t. $R(x,y)$. \\
+Monadic second order logic can quantify over elements of the universe and only sets (relations with only one element) are allowed.
+
+%\begin{thm}
+%We can also test that $\exists S\in 
+%\end{thm}
+
 \end{document}
