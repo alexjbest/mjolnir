@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{tikz}
+\usepackage{hyperref}
 
 \newtheorem*{thm}{Theorem}
 \newtheorem*{lem}{Lemma}
@@ -278,14 +279,14 @@ Two graphs $G$ and $H$ are isomorphic, written $G\cong H$, if there is a bijecti
 
 \begin{ex}
 $$
-\begin{tikzpicture}[baseline=5ex]
+\begin{tikzpicture}[baseline=5.5ex]
   \node[draw,circle] (G-1) at (0,0) {a};
   \node[draw,circle] (G-2) at (0,2) {b};
   \node[draw,circle] (G-3) at (2,2) {c};
   \node[draw,circle] (G-4) at (2,0) {d};
   \draw (G-1) -- (G-2) -- (G-3) -- (G-4);
 \end{tikzpicture}\cong
-\begin{tikzpicture}[baseline=5ex]
+\begin{tikzpicture}[baseline=5.5ex]
   \node[draw,circle] (G-1) at (0,0) {w};
   \node[draw,circle] (G-2) at (0,2) {z};
   \node[draw,circle] (G-3) at (2,2) {x};
