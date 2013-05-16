@@ -1418,11 +1418,11 @@ Let $G$ be a graph that has $k$ mutually adjacent vertices, then $\chi(G) \ge k$
 
 \begin{defns}
 A \emph{clique} in graph $G$ is a maximal subset of $V(G)$ whose vertices are mutually adjacent. \\
-The \emph{clique number} $w(G)$ of $G$ is the number of vertices in the largest (maximum) clique in $G$.
+The \emph{clique number} $\omega(G)$ of $G$ is the number of vertices in the largest (maximum) clique in $G$.
 \end{defns}
 
 \begin{prop}
-For any graph $\chi(G) \ge w(G)$.
+For any graph $\chi(G) \ge \omega(G)$.
 \end{prop}
 
 \begin{defn}
@@ -1453,7 +1453,7 @@ $\chi(G+H) = \chi(G) + \chi(H)$.
 In the graph $G+H$ no colour used to colour $V(G)$ can be used for colouring $V(H)$ and conversely no colour used to colour $V(H)$ can be used to colour $V(G)$.
 Therefore $\chi(G+H) \ge \chi(G) + \chi(H)$.
 Colour $V(G)$ using proper colouring with colours $\{1,\ldots,\chi(G)\}$ and colour $V(H)$ using colours $\{\chi(G) + 1,\ldots, \chi(G) + \chi(H)\}$.
-Therefore $\chi(G+G) \le \chi(G)  + \chi(H) $.
+Therefore $\chi(G+H) \le \chi(G)  + \chi(H) $.
 \end{proof}
 
 \begin{prop}
