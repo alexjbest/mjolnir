@@ -58,19 +58,19 @@ If you find anything else that can be improved send me an email at a.j.best@warw
 \section{Graphs}
 \marginpar{Lecture 1}
 \begin{defn}
-A graph $G$ is an ordered pair $(V(G),E(G))$ consisting of a set $V(G)$ of vertices and a set $E(g)$ of edges.
+A \emph{graph} $G$ is an ordered pair $(V(G),E(G))$ consisting of a set $V(G)$ of vertices and a set $E(g)$ of edges.
 Each edge $e\in E(G)$ is associated with a pair of vertices $\{u,v\}$.
 We will say that $u,v$ are endpoints of $e$.
 We also say $u,v$ are incident to $e$ and vice versa.
 \end{defn}
 
 \begin{defn}
-Two vertices which are incident with a common edge are adjacent (or neighbours).
-Two or more edges with the same pair of endpoints are said to be parallel.
+Two vertices which are incident with a common edge are called \emph{adjacent} (or sometimes \emph{neighbours}). \\
+Two or more edges with the same pair of endpoints are said to be \emph{parallel}.
 \end{defn}
 
 \begin{defn}
-A simple graph is one without parallel edges.
+A \emph{simple} graph is one without parallel edges.
 \end{defn}
 
 \begin{nota}
@@ -79,7 +79,7 @@ By convention, $G$ will denote a graph, $n$ and $m$ will be the number of vertic
 
 \section{Special graphs}
 \begin{defn}
-A complete graph is a simple graph in which every two vertices are adjacent. \\
+A \emph{complete} graph is a simple graph in which every two vertices are adjacent. \\
 Such a graph on $n$ vertices is denoted $K_n$.
 \end{defn}
 \begin{center}
@@ -98,14 +98,15 @@ A graph $G=(V,E)$ is called empty if $E=\emptyset$.
 \end{defn}
 
 \begin{defn}
-A graph is called bipartite is its vertex set can be partitioned into two subsets $X$ and $Y$ so that every edge has one endpoint in $X$ and one in $Y$.
+A graph is called \emph{bipartite} is its vertex set can be partitioned into two subsets $X$ and $Y$ so that every edge has one endpoint in $X$ and one in $Y$.
 \end{defn}
 
 \begin{ex}
 The set of all (monogamous) people can be represented by a graph with edges joining married couples, this graph is bipartite.
 \end{ex}
 
-We will call $X,Y$ the parts of the graph. So a bipartite graph is often denoted as $G = (X,Y,E)$.
+We will call $X,Y$ the parts of the graph.
+So a bipartite graph is often denoted as $G = (X,Y,E)$.
 \begin{nota}
 We write $K_{m,n}$ for the complete bipartite graph with $|X| = m,\ |Y| = n$ and $E$ containing all edges between $X$ and $Y$.
 \end{nota}
@@ -133,7 +134,8 @@ The graph $K_{1,n}$ is often called a star.
 %TODO: pictures
 
 \begin{defn}
-A path is a simple graph whose vertices can be rearranges into a linear sequence in such a way that two adjacent vertices are always consecutive in the sequence and vice versa, non-adjacent vertices are non-consecutive, such a graph on $n$ vertices is often denoted $P_n$.
+A \emph{path} is a simple graph whose vertices can be rearranged into a linear sequence in such a way that two adjacent vertices are always consecutive in the sequence and vice versa, non-adjacent vertices are non-consecutive.
+Such a graph on $n$ vertices is often denoted $P_n$.
 \end{defn}
 \begin{center}
 \begin{tikzpicture}
@@ -147,7 +149,7 @@ A path is a simple graph whose vertices can be rearranges into a linear sequence
 \end{center}
 
 \begin{defn}
-A cycle on $n$ vertices is a graph defined in a similar way but a cyclic sequence of vertices.
+A \emph{cycle} on $n$ vertices is a graph defined in the same way but with a cyclic sequence of vertices.
 \end{defn}
 \begin{center}
 \begin{tikzpicture}
@@ -181,7 +183,7 @@ The length of a path or cycle is the number of its edges. A path or cycle of len
 \section{Adjacency and incidence matrices}
 
 \begin{defn}
-The incidence matrix of $G = (V,E)$ when $|V| = m$ and $|E| = n$ is the $m\times n$ matrix $M_G = (m_{ve})$ where $m_{ve}$ is the number of times that vertex $v$ and $e$ are incident ($m_{ve} \in \{0, 1\}$).
+The \emph{incidence matrix} of $G = (V,E)$ when $|V| = m$ and $|E| = n$ is the $m\times n$ matrix $M_G = (m_{ve})$ where $m_{ve}$ is the number of times that vertex $v$ and $e$ are incident ($m_{ve} \in \{0, 1\}$).
 \end{defn}
 
 \begin{ex}
@@ -205,7 +207,7 @@ $$G=
 \end{ex}
 
 \begin{defn}
-The adjacency matrix of $G = (V,E)$ when $|V| = m$ is the $m\times m$ matrix $A_G = (a_{uv})$ where $a_{uv}$ is the number of edges joining $u$ and $v$.
+The \emph{adjacency matrix} of $G = (V,E)$ when $|V| = m$ is the $m\times m$ matrix $A_G = (a_{uv})$ where $a_{uv}$ is the number of edges joining $u$ and $v$.
 \end{defn}
 
 \begin{ex}
@@ -225,19 +227,18 @@ $$K_3 =
 \end{ex}
 
 \begin{defn}
-An adjacency list is a list $(N(v),v\in V)$ used to represent matrices, $N(v)$ is the set of neighbours of $v$ in arbitrary order.
+An \emph{adjacency list} is a list $(N(v),v\in V)$ used to represent matrices, $N(v)$ is the set of neighbours of $v$ in arbitrary order.
 \end{defn}
 
 \section{Vertex degrees}
 
 \begin{defn}
-The degree of a vertex $v$ in a graph $G$ is denoted $d_G(v)$ or $d_v$ and is the number of edges of $G$ incident with $v$.
+The \emph{degree} of a vertex $v$ in a graph $G$ is denoted $d_G(v)$ or $d_v$ and is the number of edges of $G$ incident with $v$.
 \end{defn}
 
 \begin{thm}[Handshake lemma]
 For any graph
-\label{eq:hand}
-\begin{equation}
+\begin{equation} \label{eq:hand}
 \sum_{v\in V}d_v = 2|E|
 \end{equation}
 \end{thm}
@@ -254,8 +255,8 @@ Therefore the number of vertices of odd degree is congruent to 0 mod 2.
 \end{proof}
 
 \begin{defn}
-A graph $G$ is called $k$-regular is $d_G(v) = k$ for all $v\in V(G)$.
-A graph is regular if it is $k$-regular for some $k$.
+A graph $G$ is called \emph{$k$-regular} if $d_G(v) = k$ for all $v\in V(G)$.
+A graph is \emph{regular} if it is $k$-regular for some $k$.
 \end{defn}
 
 \begin{ex}
@@ -270,6 +271,7 @@ $P_n$ is not regular. \\
 Let $G=(X,Y,E)$ be a bipartite graph without isolated vertices s.t. $d_x\geq d_y$ for all $x\in X$ and $y\in Y$ s.t. $(x,y)\in E$.
 Then $|X| \leq |Y|$ with equality iff $d_x = d_y \forall (x,y)\in E$ .
 \end{thm}
+
 \begin{proof}
 Take the adjacency matrix $B$.
 Define the matrix $B'$ by dividing each row of $B$ corresponding to vertex $u$ by $d_u$.
@@ -284,7 +286,7 @@ If $|X|=|Y|$, then the middle inequality must be an inequality implying that $d_
 \section{Isomorphisms}
 
 \begin{defn}
-Two graphs $G$ and $H$ are isomorphic, written $G\cong H$, if there is a bijection $\Theta\colon V(G) \to V(H)$ such that $(u,v)\in E$ iff $(\Theta(u),\Theta(v))\in E(H)$.
+Two graphs $G$ and $H$ are \emph{isomorphic}, written $G\cong H$, if there is a bijection $\Theta\colon V(G) \to V(H)$ such that $(u,v)\in E$ iff $(\Theta(u),\Theta(v))\in E(H)$.
 \end{defn}
 
 \begin{ex}
