@@ -931,10 +931,10 @@ In an edge weighted graph an \emph{optimal postman tour} is one whose total edge
 \begin{alg}[Finding optimal postman tours]~\\
 \textbf{Input} A connected edge-weighted graph. \\
 \textbf{Output} An optimal postman tour $W$. \\
-First find the set of odd degree vertices in $G$. \\
+First find the set of odd degree vertices in $G$, call it $S$. \\
 For each pair of odd degree vertices $u$ and $v$ in $S$: \\
 \indent Find a shortest path $P$ in $G$ between $u$ and $v$. \\
-Let $d_{uv}$ be the length of path $P$. \\
+\indent Let $d_{uv}$ be the length of path $P$. \\
 Form a complete graph $K_{|S|}$ on the vertices of $S$.\\
 For each edge $e = (u,v)$ in $K_{|S|}$, assign the weight $d_{uv}$ to the edge $e$.\\
 Find a minimum weight perfect matching $M$ in $K_{|S|}$.\\
