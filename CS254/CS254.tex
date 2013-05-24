@@ -1287,9 +1287,39 @@ For this problem a corresponding graph will be 8-claw free, as no more than 7 ta
 
 \section{Weighted independent sets}
 
-%TODO finish these lectures, too painful to type right now
+\begin{alg}[Greedy]~\\
+Sort by weight. \\
+Traverse list starting with the heaviest: \\
+\indent Add in anything that does not interfere with what you already have.
+\end{alg}
+
+This gives us a $k$-approximation, where the $k$ is the same as the $k$ + 1 claw freeness.
+This can give us some really bad results though.
+
+\begin{ex}
+\begin{tikzpicture}
+  \node[draw,circle] (G-1) at (0,0) {$1+\epsilon$};
+  \node[draw,circle] (G-2) at (1,0) {1};
+  \node[draw,circle] (G-3) at (0.5,0.866) {1};
+  \node[draw,circle] (G-4) at (-0.5,0.866) {1};
+  \node[draw,circle] (G-5) at (-1,0) {1};
+  \node[draw,circle] (G-6) at (-0.5,-0.866) {1};
+  \node[draw,circle] (G-7) at (0.5,-0.866) {1};
+  \draw (G-1) -- (G-2);
+  \draw (G-1) -- (G-3);
+  \draw (G-1) -- (G-4);
+  \draw (G-1) -- (G-5);
+  \draw (G-1) -- (G-6);
+  \draw (G-1) -- (G-7);
+\end{tikzpicture}
+\end{ex}
+%TODO add the rest
 
 \marginpar{Lecture 19}
+%TODO add the rest
+
+
+\marginpar{Lecture 20}
 
 \section{Matroids}
 
@@ -1335,17 +1365,25 @@ The \emph{partition matroid} is defined by taking a partition $\X_1,\X_2,\ldots,
 We then define $\I$ to be all the sets obtained by taking no more than $p_i$ elements from each $\X_i$.
 \end{ex}
 
-\begin{defn}
+\begin{prop}
 Let $\X$ be a ground set.
 $\B$ is called the set of bases of a matroid if:
 \begin{enumerate}
 \item No set of $\B$ is contained in any other set of $\B$.
 \item $\forall A,B\in\B$ and $x\in A\setminus B$, $\exists y\in B\setminus A$ s.t. $A\setminus\{x\}\cup\{y\} \in \B$.
 \end{enumerate}
-%TODO finish this
-\end{defn}
+\end{prop}
 
-\marginpar{Lecture 20}
+\begin{proof}
+(M$\cap$ I $\implies 1$): If any base $B\subset A$ then (M) says we can find $x\in A\setminus B$ s.t. $B\cup\{x\}\in \I$.
+So $B$ is not a base, contradiction. \\
+(M$\cap$ I $\implies 2$): Let A \& B be two bases of $(\X,\I)$ (note then we have $|A| = |B|$).
+Let $x\in A\setminus B$.
+Then $A' = (A\setminus\{x\})\in \I$, $|A'|<|A| = |B|$, so by (M) we can find $y\in B\setminus A' = B\setminus A$ s.t. $A'\cup \{y\}\in\I$.
+Thus $A\setminus\{x\}\cup\{y\}\in\I$.
+\end{proof} %TODO complete
+
+\marginpar{Lecture 21}
 
 \section{Max Spanning Trees}
 
@@ -1387,7 +1425,7 @@ $$w(\OPT') $$
 
 %TODO finish all that....
 
-\marginpar{Lecture 21}
+\marginpar{Lecture 22}
 
 \section{Graph Colourings}
 
@@ -1466,7 +1504,7 @@ Therefore $\chi(G+H) \le \chi(G)  + \chi(H) $.
 $\chi(C_{2n+1}) \ge \left[ \frac{|V(G)|}{\alpha(G)}\right] = \left[\frac{2n+1}{n} \right] = 3$.
 \end{proof}
 
-\marginpar{Lecture 22}
+\marginpar{Lecture 23}
 
 \section{Brooks Theorem}
 
@@ -1533,7 +1571,7 @@ The sequential algorithm will use at most $\Delta(G)$ colours for $v_3,\ldots, v
 Therefore $\Delta(G)$ colours is feasible for $v_n$.
 \end{proof}
 
-\marginpar{Lecture 23}
+\marginpar{Lecture 24}
 
 \section{Edge-colouring}
 
@@ -1580,7 +1618,7 @@ Then $G$ has an edge-colouring such that both colours are incident on every vert
 \end{lem}
 
 \begin{proof}
-We have three cases: \\
+We have three cases:
 \begin{itemize}
 \item Even cycle
 \item Not a cycle but Eulerian
@@ -1618,7 +1656,7 @@ Then there exists a proper edge colouring of $G$ using less than $\Delta(G) + 1$
 
 %TODO some more stuff here maybes
 
-\marginpar{Lecture 24} 
+\marginpar{Lecture 25} 
 
 \section{Tree width}
 
