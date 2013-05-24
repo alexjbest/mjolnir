@@ -1120,7 +1120,7 @@ Since $j$ is the furthest point in $V\setminus S$ from $S$ we know that all rema
 \section{Finding MSTs}
 Given a connected graph $G=(V,E)$ find a spanning tree $T$ of $G$ so as to minimise the maximum degree of $T$.
 Let $T^*$ be the spanning tree minimising the maximum degree and let OPT be the maximum degree in $T^*$.
-Let $l =\lceil \log_2n\rceil$.
+Let $l =\lceil \log_2n\rceil$ with $n = |V|$.
 
 \begin{alg}[Local search]~\\
 \begin{enumerate}
@@ -1145,7 +1145,7 @@ The algorithm finds a locally optimal tree in polynomial time.
 \end{thm}
 
 \begin{proof}
-For every tree we let the potential $\Phi(T)$ of $T$ be $\Phi(T) = \sum_{v\in V} 3^{d_T(u)}$. \\
+For every tree we let the potential $\Phi(T)$ of $T$ be $\Phi(T) = \sum_{v\in V} 3^{d_T(v)}$. \\
 Note that $\Phi(T) \le n3^n$.
 On the other hand we claim $\Phi(T) \ge$ the potential of a Hamiltonian path (proof in homework).
 This potential is $2\cdot3 + (n-2)3^2> n$.
