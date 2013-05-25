@@ -1120,7 +1120,7 @@ Since $j$ is the furthest point in $V\setminus S$ from $S$ we know that all rema
 \section{Finding MSTs}
 Given a connected graph $G=(V,E)$ find a spanning tree $T$ of $G$ so as to minimise the maximum degree of $T$.
 Let $T^*$ be the spanning tree minimising the maximum degree and let OPT be the maximum degree in $T^*$.
-Let $l =\lceil \log_2n\rceil$.
+Let $l =\lceil \log_2n\rceil$ with $n = |V|$.
 
 \begin{alg}[Local search]~\\
 \begin{enumerate}
@@ -1145,7 +1145,7 @@ The algorithm finds a locally optimal tree in polynomial time.
 \end{thm}
 
 \begin{proof}
-For every tree we let the potential $\Phi(T)$ of $T$ be $\Phi(T) = \sum_{v\in V} 3^{d_T(u)}$. \\
+For every tree we let the potential $\Phi(T)$ of $T$ be $\Phi(T) = \sum_{v\in V} 3^{d_T(v)}$. \\
 Note that $\Phi(T) \le n3^n$.
 On the other hand we claim $\Phi(T) \ge$ the potential of a Hamiltonian path (proof in homework).
 This potential is $2\cdot3 + (n-2)3^2> n$.
@@ -1665,7 +1665,7 @@ $T$ has vertices $i$ labelled with sets $X_i$ of vertices from $G$, satisfying:
 \begin{enumerate}
 \item $T$ is a tree.
 \item For every edge $(u,v)\in E(G)\ \exists$ a vertex in $T$ with both $u$ and $v$ in its set.
-\item For all $i,j,k\in V(T)$ if $j$ is on the path from $i$ to $k$ then $X_i\cap X_k\subseteq X_j$.
+\item For all $X_i,X_j,X_k\in V(T)$ if $X_j$ is on the path from $X_i$ to $X_k$ then $X_i\cap X_k\subseteq X_j$. In other words, if $X_i$ and $X_k$ both contain a vertex $v$, then all vertices $X_j$ of the tree in the (unique) path between $X_i$ and $X_j$ contain $v$ as well. This is known as the `running intersection property' (Diestel, 2005).
 \end{enumerate}
 
 \begin{ex}
