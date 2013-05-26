@@ -1566,6 +1566,37 @@ An edge colouring $f$ of $G$ is proper $\iff$ for all $v\in V(G)$ we have $\ecr_
 A \emph{Kempe $i$-$j$ edge-chain} is a component of the subgraph of $G$ induced on all edges coloured $i$ and $j$.
 \end{defn}
 
+A slightly clearer definition, courtesy of Wikipedia:
+\begin{defn}
+	Let $G$ be a graph $G$ with a particular edge colouring. For an edge $e \in E(G)$ which is coloured $i$, the \emph{Kempe $i$-$j$ edge-chain of $G$ containing $e$} is the maximal connected subset of $E(G)$ containing $e$ and all other edges which are coloured either $i$ or $j$.
+\end{defn}
+\begin{ex}
+	An edge 4-colouring, with the two Kempe 1-2 edge chains shown as dashed edges.
+$$
+\begin{tikzpicture}[baseline=5.5ex]
+  \node[draw,circle] (1) at (1,3) {};
+  \node[draw,circle] (2) at (0,2) {};
+  \node[draw,circle] (3) at (2,2) {};
+  \node[draw,circle] (4) at (0,1) {};
+  \node[draw,circle] (5) at (2,1) {};
+  \node[draw,circle] (6) at (1,0) {};
+  \path[every node/.style={font=\sffamily\small}]
+  (1) edge node [right]{3} (3)
+    (2) edge node {3} (3)
+    (3) edge node [left]{4} (4)
+    (4) edge node [left]{4} (6)
+    (5) edge node [right]{4} (2)
+    (6) edge node [right]{3} (5)
+    (2) edge node [right]{3} (6);
+  \draw[dashed]
+  (1) edge node [left]{1} (2)
+  (2) edge node [left]{2} (4)
+  (6) edge node [left]{1} (3)
+    (3) edge node [right]{2} (5);
+\end{tikzpicture}$$
+%TODO: Examples
+\end{ex}
+
 \begin{lem}
 Let $f$ be an edge $k$-colouring of $G$ with the largest possible chromatic incidence.
 Let $v$ be a vertex on which some colour $i$ is incident at least twice and on which some colour $j$ is not incident at all.
