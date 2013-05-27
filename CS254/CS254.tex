@@ -9,6 +9,8 @@
 \usepackage{amsthm}
 \usepackage{tikz}
 \usepackage{hyperref}
+\usetikzlibrary{arrows}
+
 
 \newtheorem*{thm}{Theorem}
 \newtheorem*{lem}{Lemma}
@@ -1606,19 +1608,21 @@ A \emph{Kempe $i$-$j$ edge-chain} is a component of the subgraph of $G$ induced 
 
 A slightly clearer definition, courtesy of Wikipedia:
 \begin{defn}
-	Let $G$ be a graph $G$ with a particular edge colouring. For an edge $e \in E(G)$ which is coloured $i$, the \emph{Kempe $i$-$j$ edge-chain of $G$ containing $e$} is the maximal connected subset of $E(G)$ containing $e$ and all other edges which are coloured either $i$ or $j$.
+Let $G$ be a graph $G$ with a particular edge colouring.
+For an edge $e \in E(G)$ which is coloured $i$, the \emph{Kempe $i$-$j$ edge-chain of $G$ containing $e$} is the maximal connected subset of $E(G)$ containing $e$ and all other edges which are coloured either $i$ or $j$.
 \end{defn}
 \begin{ex}
-	An edge 4-colouring, with the two Kempe 1-2 edge chains shown as dashed edges.
+An edge 4-colouring, with the two Kempe 1-2 edge chains shown as dashed edges.
 $$
 \begin{tikzpicture}[baseline=5.5ex]
-  \node[draw,circle] (1) at (1,3) {};
-  \node[draw,circle] (2) at (0,2) {};
-  \node[draw,circle] (3) at (2,2) {};
-  \node[draw,circle] (4) at (0,1) {};
-  \node[draw,circle] (5) at (2,1) {};
-  \node[draw,circle] (6) at (1,0) {};
-  \path[every node/.style={font=\sffamily\small}]
+  \tikzstyle{every node}=[font=\small]
+  \node[draw,circle] (1) at (1.5,4.5) {};
+  \node[draw,circle] (2) at (0,3) {};
+  \node[draw,circle] (3) at (3,3) {};
+  \node[draw,circle] (4) at (0,1.5) {};
+  \node[draw,circle] (5) at (3,1.5) {};
+  \node[draw,circle] (6) at (1.5,0) {};
+  \path[]
   (1) edge node [right]{3} (3)
     (2) edge node {3} (3)
     (3) edge node [left]{4} (4)
@@ -1631,7 +1635,8 @@ $$
   (2) edge node [left]{2} (4)
   (6) edge node [left]{1} (3)
     (3) edge node [right]{2} (5);
-\end{tikzpicture}$$
+\end{tikzpicture}
+$$
 %TODO: Examples
 \end{ex}
 
