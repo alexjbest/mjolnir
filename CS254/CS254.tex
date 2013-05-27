@@ -1067,7 +1067,7 @@ Transform $W$ into a Hamiltonian cycle $H$ according to remark 3 above.
 
 We now consider another algorithm for TSP.
 
-\begin{alg}[Christofides']~\\
+\begin{alg}[Christofides']~
 \begin{enumerate}
 \item Compute an MST $T$.
 \item Let $O$ be the set of all odd degree vertices of $T$.
@@ -1083,22 +1083,23 @@ $\wt(H)\le\frac{3}{2}\wt(\OPT)$, where OPT is an optimal TSP solution.
 \end{thm}
 \begin{proof}
 We know by remark 3, $\wt(H) \le \wt(W) = \wt(T) + \wt(M)$.
-Additionally we know that $\wt(T) \le \wt(\OPT)$. We also claim that $\wt(M) \le \frac{1}{2}\wt(\OPT)$.
+Additionally we know that $\wt(T) \le \wt(\OPT)$.
+We also claim that $\wt(M) \le \frac{1}{2}\wt(\OPT)$.
 Consider the tour $H_0$ obtained from OPT by short-cutting.
 We have $\wt(H_0) \le \wt(H)$ by the triangle inequality.
 Also $H_0 = M_1\cup M_2$ where $M_1$ contains an odd number of edges and $M_2$ contains an even number of edges along $H_0$.
 Since $M$ is the minimum matching we derive:
-$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{1}{2}(\wt(M_1),\wt(M_2)) = \frac{1}{2}\wt(H_0) \le \frac{1}{2}\wt(\OPT)$$
+$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{(\wt(M_1),\wt(M_2))}{2} = \frac{\wt(H_0)}{2} \le \frac{\wt(\OPT)}{2}$$
 \end{proof}
 
 \section{$k$-center Problem}
 We are given an undirected complete graph $G=(V,E)$ with edge weights $d_{ij} \ge 0$, $(G,d)$ satisfied the triangle inequality.
 Find a set $S\subseteq V$ such that $|S| = k$ and $\max_{u\in V\setminus S}\min_{v\in S} d_{uv}$ is minimised, i.e. the objective is to minimise the maximum distance of a vertex to its cluster center.
 
-\begin{alg}[Greedy approximation]~\\
+\begin{alg}[Greedy approximation]~
 \begin{enumerate}
 \item Pick $i\in V$ arbitrarily, and put it in the set $S$.
-\item While $|S| < k$, find $j\in V\setminus S$ for which distance $d(j,S) =\max_{u\in V\setminus S}\min_{v\in S} d_{uv}$, add this $j$ to $S$.
+\item While $|S| < k$, find $j\in V\setminus S$ for which distance $\displaystyle d(j,S) =\max_{u\in V\setminus S}\min_{v\in S} d_{uv}$, add this $j$ to $S$.
 \item Output set $S$.
 \end{enumerate}
 \end{alg}
@@ -1124,7 +1125,7 @@ Given a connected graph $G=(V,E)$ find a spanning tree $T$ of $G$ so as to minim
 Let $T^*$ be the spanning tree minimising the maximum degree and let OPT be the maximum degree in $T^*$.
 Let $l =\lceil \log_2n\rceil$ with $n = |V|$.
 
-\begin{alg}[Local search]~\\
+\begin{alg}[Local search]~
 \begin{enumerate}
 \item Start with an arbitrary spanning tree $T$.
 \item Let $d_T(u)$ be the degree of $u$ in $T$.
@@ -1169,7 +1170,7 @@ Assume that the matrix $(c_{ij})$ satisfies the triangle inequality.
 
 \marginpar{Lecture 15} 
 
-\begin{alg}~\\
+\begin{alg}~
 \begin{enumerate}
 \item We start with an arbitrary solution, i.e. $S\subseteq V$ with $|S| = k$.
 \item Check if there is a swap, i.e. $i\in S$ and $i'\in V\setminus S$ s.t. $(S\setminus\{i\})\cup\{i'\}$ has a better value of the objective function.
@@ -1213,7 +1214,7 @@ There is for $\sigma^*(j) = i^*$ which is a contradiction.
 We know that the value of $S' = (S\setminus \{i\})\cup i^*$ minus the value of $S$ is $\ge 0$.
 Therefore the value of the assignment we defined for $S'$ minus value of $S$ is $\ge 0$.
 We now compute this difference for clients $j$ for which $\sigma^*(j) = i^*$ or both ($\sigma^*(j) \ne i^*$ and $\sigma(j) = i$) which is
-$$\sum_{j\colon \sigma^*(j) = i^*} (c_{\sigma^*(j)j} - c_{\sigma(j)j}) + \sum_{j\colon \sigma^*(j) \ne i^* \atop \& \sigma(j) = i} (c_{\sigma(\sigma^*(j))j} - c_{\sigma(j)j}) + 0 \ge 0$$
+$$\sum_{j\colon \sigma^*(j) = i^*} (c_{\sigma^*(j)j} - c_{\sigma(j)j}) + \sum_{j\colon \sigma^*(j) \ne i^* \atop \sigma(j) = i} (c_{\sigma(\sigma^*(j))j} - c_{\sigma(j)j}) + 0 \ge 0$$
 By the triangle inequality, 
 $$c_{\sigma(\sigma^*(j))j}\le c_{\sigma(\sigma^*(j))\sigma^*(j)} + c_{\sigma^*(j)j}$$
 In addition we know that $c_{\sigma(\sigma^*(j))\sigma^*(j)}\le c_{\sigma(j)\sigma^*(j)}$ because in $S$ the city $\sigma^*(j)$ is assigned to $\sigma(\sigma^*(j))$ instead of $\sigma(j)$.
@@ -1221,7 +1222,7 @@ Also $c_{\sigma(j)\sigma^*(j)}\le c_{\sigma^*(j)j} + c_{\sigma(j)j}$.
 Therefore (by applying the above),
 $$c_{\sigma(\sigma^*(j))j}\le 2c_{\sigma^*(j)j}+c_{\sigma(j)j}$$
 and
-$$\sum_{j\colon \sigma^*(j)=i} (c_{\sigma^*(j)j} - c_{\sigma(j)j}) + \sum_{j\colon \sigma^*(j)\ne i \atop \& \sigma(j) = i} (2c_{\sigma^*(j)j})\ge 0$$
+$$\sum_{j\colon \sigma^*(j)=i} (c_{\sigma^*(j)j} - c_{\sigma(j)j}) + \sum_{j\colon \sigma^*(j)\ne i \atop \sigma(j) = i} (2c_{\sigma^*(j)j})\ge 0$$
 Add this inequality over $k$ swaps.
 The first sum ranges over all $j$ and gives us $f(S^*) - f(S)$.
 The second term is upper-bounded by $f(S^*)$ and we derive $5f(S^*) - f(S) \ge 0$.
