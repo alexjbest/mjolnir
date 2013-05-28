@@ -1089,7 +1089,7 @@ Consider the tour $H_0$ obtained from OPT by short-cutting.
 We have $\wt(H_0) \le \wt(H)$ by the triangle inequality.
 Also $H_0 = M_1\cup M_2$ where $M_1$ contains an odd number of edges and $M_2$ contains an even number of edges along $H_0$.
 Since $M$ is the minimum matching we derive:
-$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{(\wt(M_1),\wt(M_2))}{2} = \frac{\wt(H_0)}{2} \le \frac{\wt(\OPT)}{2}$$
+$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{\wt(M_1)+\wt(M_2)}{2} = \frac{\wt(H_0)}{2} \le \frac{\wt(\OPT)}{2}$$
 \end{proof}
 
 \section{$k$-center Problem}
@@ -1300,6 +1300,7 @@ This gives us a $k$-approximation, where the $k$ is the same as the $k$ + 1 claw
 This can give us some really bad results though.
 
 \begin{ex}
+$$
 \begin{tikzpicture}
   \node[draw,circle] (G-1) at (0,0) {$1+\epsilon$};
   \node[draw,circle] (G-2) at (1,0) {1};
@@ -1315,6 +1316,7 @@ This can give us some really bad results though.
   \draw (G-1) -- (G-6);
   \draw (G-1) -- (G-7);
 \end{tikzpicture}
+$$
 \end{ex}
 %TODO add the rest
 
