@@ -9,6 +9,8 @@
 \usepackage{amsthm}
 \usepackage{tikz}
 \usepackage{hyperref}
+\usetikzlibrary{arrows}
+
 
 \newtheorem*{thm}{Theorem}
 \newtheorem*{lem}{Lemma}
@@ -862,7 +864,7 @@ Then the maximum number of internally disjoint $u$-$v$ paths in $G$ equals the m
 \begin{defns}
 An \emph{Eulerian walk} in a graph $G$ is a walk that contains every edge of the graph exactly once. \\
 An \emph{Eulerian tour} is a closed Eulerian walk. \\
-An \emph{Eulerian graph} is a graph permitting an Eulerian tour. \\
+An \emph{Eulerian graph} is a graph permitting an Eulerian tour.
 \end{defns}
 
 \begin{thm}[Euler]
@@ -1007,7 +1009,7 @@ We take a break for a fun quote I found in Gondran and Minoux.
 And now back to our scheduled programming.
 
 \begin{defn}
-A polynomial time algorithm for maximisation problems is called a \emph{polynomial time approximation algorithm} with performance guarantee $\rho\in [ 0,1 ]$ if it always finds an approximate solution of value at most $\rho$ times the optimal value.
+A polynomial time algorithm for maximisation problems is called a polynomial time \emph{approximation} algorithm with \emph{performance guarantee} $\rho\in [ 0,1 ]$ if it always finds an approximate solution of value at most $\rho$ times the optimal value.
 \end{defn}
 
 \begin{alg}[Nearest Neighbour Heuristic for TSP]~\\
@@ -1065,7 +1067,7 @@ Transform $W$ into a Hamiltonian cycle $H$ according to remark 3 above.
 
 We now consider another algorithm for TSP.
 
-\begin{alg}[Christofides']~\\
+\begin{alg}[Christofides']~
 \begin{enumerate}
 \item Compute an MST $T$.
 \item Let $O$ be the set of all odd degree vertices of $T$.
@@ -1081,22 +1083,23 @@ $\wt(H)\le\frac{3}{2}\wt(\OPT)$, where OPT is an optimal TSP solution.
 \end{thm}
 \begin{proof}
 We know by remark 3, $\wt(H) \le \wt(W) = \wt(T) + \wt(M)$.
-Additionally we know that $\wt(T) \le \wt(\OPT)$. We also claim that $\wt(M) \le \frac{1}{2}\wt(\OPT)$.
+Additionally we know that $\wt(T) \le \wt(\OPT)$.
+We also claim that $\wt(M) \le \frac{1}{2}\wt(\OPT)$.
 Consider the tour $H_0$ obtained from OPT by short-cutting.
 We have $\wt(H_0) \le \wt(H)$ by the triangle inequality.
 Also $H_0 = M_1\cup M_2$ where $M_1$ contains an odd number of edges and $M_2$ contains an even number of edges along $H_0$.
 Since $M$ is the minimum matching we derive:
-$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{1}{2}(\wt(M_1),\wt(M_2)) = \frac{1}{2}\wt(H_0) \le \frac{1}{2}\wt(\OPT)$$
+$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{\wt(M_1)+\wt(M_2)}{2} = \frac{\wt(H_0)}{2} \le \frac{\wt(\OPT)}{2}$$
 \end{proof}
 
 \section{$k$-center Problem}
 We are given an undirected complete graph $G=(V,E)$ with edge weights $d_{ij} \ge 0$, $(G,d)$ satisfied the triangle inequality.
 Find a set $S\subseteq V$ such that $|S| = k$ and $\max_{u\in V\setminus S}\min_{v\in S} d_{uv}$ is minimised, i.e. the objective is to minimise the maximum distance of a vertex to its cluster center.
 
-\begin{alg}[Greedy approximation]~\\
+\begin{alg}[Greedy approximation]~
 \begin{enumerate}
 \item Pick $i\in V$ arbitrarily, and put it in the set $S$.
-\item While $|S| < k$, find $j\in V\setminus S$ for which distance $d(j,S) =\max_{u\in V\setminus S}\min_{v\in S} d_{uv}$, add this $j$ to $S$.
+\item While $|S| < k$, find $j\in V\setminus S$ for which distance $\displaystyle d(j,S) =\max_{u\in V\setminus S}\min_{v\in S} d_{uv}$, add this $j$ to $S$.
 \item Output set $S$.
 \end{enumerate}
 \end{alg}
@@ -1122,7 +1125,7 @@ Given a connected graph $G=(V,E)$ find a spanning tree $T$ of $G$ so as to minim
 Let $T^*$ be the spanning tree minimising the maximum degree and let OPT be the maximum degree in $T^*$.
 Let $l =\lceil \log_2n\rceil$ with $n = |V|$.
 
-\begin{alg}[Local search]~\\
+\begin{alg}[Local search]~
 \begin{enumerate}
 \item Start with an arbitrary spanning tree $T$.
 \item Let $d_T(u)$ be the degree of $u$ in $T$.
@@ -1167,7 +1170,7 @@ Assume that the matrix $(c_{ij})$ satisfies the triangle inequality.
 
 \marginpar{Lecture 15} 
 
-\begin{alg}~\\
+\begin{alg}~
 \begin{enumerate}
 \item We start with an arbitrary solution, i.e. $S\subseteq V$ with $|S| = k$.
 \item Check if there is a swap, i.e. $i\in S$ and $i'\in V\setminus S$ s.t. $(S\setminus\{i\})\cup\{i'\}$ has a better value of the objective function.
@@ -1211,7 +1214,7 @@ There is for $\sigma^*(j) = i^*$ which is a contradiction.
 We know that the value of $S' = (S\setminus \{i\})\cup i^*$ minus the value of $S$ is $\ge 0$.
 Therefore the value of the assignment we defined for $S'$ minus value of $S$ is $\ge 0$.
 We now compute this difference for clients $j$ for which $\sigma^*(j) = i^*$ or both ($\sigma^*(j) \ne i^*$ and $\sigma(j) = i$) which is
-$$\sum_{j\colon \sigma^*(j) = i^*} (c_{\sigma^*(j)j} - c_{\sigma(j)j}) + \sum_{j\colon \sigma^*(j) \ne i^* \atop \& \sigma(j) = i} (c_{\sigma(\sigma^*(j))j} - c_{\sigma(j)j}) + 0 \ge 0$$
+$$\sum_{j\colon \sigma^*(j) = i^*} (c_{\sigma^*(j)j} - c_{\sigma(j)j}) + \sum_{j\colon \sigma^*(j) \ne i^* \atop \sigma(j) = i} (c_{\sigma(\sigma^*(j))j} - c_{\sigma(j)j}) + 0 \ge 0$$
 By the triangle inequality, 
 $$c_{\sigma(\sigma^*(j))j}\le c_{\sigma(\sigma^*(j))\sigma^*(j)} + c_{\sigma^*(j)j}$$
 In addition we know that $c_{\sigma(\sigma^*(j))\sigma^*(j)}\le c_{\sigma(j)\sigma^*(j)}$ because in $S$ the city $\sigma^*(j)$ is assigned to $\sigma(\sigma^*(j))$ instead of $\sigma(j)$.
@@ -1219,7 +1222,7 @@ Also $c_{\sigma(j)\sigma^*(j)}\le c_{\sigma^*(j)j} + c_{\sigma(j)j}$.
 Therefore (by applying the above),
 $$c_{\sigma(\sigma^*(j))j}\le 2c_{\sigma^*(j)j}+c_{\sigma(j)j}$$
 and
-$$\sum_{j\colon \sigma^*(j)=i} (c_{\sigma^*(j)j} - c_{\sigma(j)j}) + \sum_{j\colon \sigma^*(j)\ne i \atop \& \sigma(j) = i} (2c_{\sigma^*(j)j})\ge 0$$
+$$\sum_{j\colon \sigma^*(j)=i} (c_{\sigma^*(j)j} - c_{\sigma(j)j}) + \sum_{j\colon \sigma^*(j)\ne i \atop \sigma(j) = i} (2c_{\sigma^*(j)j})\ge 0$$
 Add this inequality over $k$ swaps.
 The first sum ranges over all $j$ and gives us $f(S^*) - f(S)$.
 The second term is upper-bounded by $f(S^*)$ and we derive $5f(S^*) - f(S) \ge 0$.
@@ -1287,9 +1290,41 @@ For this problem a corresponding graph will be 8-claw free, as no more than 7 ta
 
 \section{Weighted independent sets}
 
-%TODO finish these lectures, too painful to type right now
+\begin{alg}[Greedy]~\\
+Sort by weight. \\
+Traverse list starting with the heaviest: \\
+\indent Add in anything that does not interfere with what you already have.
+\end{alg}
+
+This gives us a $k$-approximation, where the $k$ is the same as the $k$ + 1 claw freeness.
+This can give us some really bad results though.
+
+\begin{ex}
+$$
+\begin{tikzpicture}
+  \node[draw,circle] (G-1) at (0,0) {$1+\epsilon$};
+  \node[draw,circle] (G-2) at (1,0) {1};
+  \node[draw,circle] (G-3) at (0.5,0.866) {1};
+  \node[draw,circle] (G-4) at (-0.5,0.866) {1};
+  \node[draw,circle] (G-5) at (-1,0) {1};
+  \node[draw,circle] (G-6) at (-0.5,-0.866) {1};
+  \node[draw,circle] (G-7) at (0.5,-0.866) {1};
+  \draw (G-1) -- (G-2);
+  \draw (G-1) -- (G-3);
+  \draw (G-1) -- (G-4);
+  \draw (G-1) -- (G-5);
+  \draw (G-1) -- (G-6);
+  \draw (G-1) -- (G-7);
+\end{tikzpicture}
+$$
+\end{ex}
+%TODO add the rest
 
 \marginpar{Lecture 19}
+%TODO add the rest
+
+
+\marginpar{Lecture 20}
 
 \section{Matroids}
 
@@ -1335,17 +1370,25 @@ The \emph{partition matroid} is defined by taking a partition $\X_1,\X_2,\ldots,
 We then define $\I$ to be all the sets obtained by taking no more than $p_i$ elements from each $\X_i$.
 \end{ex}
 
-\begin{defn}
+\begin{prop}
 Let $\X$ be a ground set.
 $\B$ is called the set of bases of a matroid if:
 \begin{enumerate}
 \item No set of $\B$ is contained in any other set of $\B$.
 \item $\forall A,B\in\B$ and $x\in A\setminus B$, $\exists y\in B\setminus A$ s.t. $A\setminus\{x\}\cup\{y\} \in \B$.
 \end{enumerate}
-%TODO finish this
-\end{defn}
+\end{prop}
 
-\marginpar{Lecture 20}
+\begin{proof}
+(M$\cap$ I $\implies 1$): If any base $B\subset A$ then (M) says we can find $x\in A\setminus B$ s.t. $B\cup\{x\}\in \I$.
+So $B$ is not a base, contradiction. \\
+(M$\cap$ I $\implies 2$): Let A \& B be two bases of $(\X,\I)$ (note then we have $|A| = |B|$).
+Let $x\in A\setminus B$.
+Then $A' = (A\setminus\{x\})\in \I$, $|A'|<|A| = |B|$, so by (M) we can find $y\in B\setminus A' = B\setminus A$ s.t. $A'\cup \{y\}\in\I$.
+Thus $A\setminus\{x\}\cup\{y\}\in\I$.
+\end{proof} %TODO complete
+
+\marginpar{Lecture 21}
 
 \section{Max Spanning Trees}
 
@@ -1387,7 +1430,7 @@ $$w(\OPT') $$
 
 %TODO finish all that....
 
-\marginpar{Lecture 21}
+\marginpar{Lecture 22}
 
 \section{Graph Colourings}
 
@@ -1466,7 +1509,7 @@ Therefore $\chi(G+H) \le \chi(G)  + \chi(H) $.
 $\chi(C_{2n+1}) \ge \left[ \frac{|V(G)|}{\alpha(G)}\right] = \left[\frac{2n+1}{n} \right] = 3$.
 \end{proof}
 
-\marginpar{Lecture 22}
+\marginpar{Lecture 23}
 
 \section{Brooks Theorem}
 
@@ -1533,7 +1576,7 @@ The sequential algorithm will use at most $\Delta(G)$ colours for $v_3,\ldots, v
 Therefore $\Delta(G)$ colours is feasible for $v_n$.
 \end{proof}
 
-\marginpar{Lecture 23}
+\marginpar{Lecture 24}
 
 \section{Edge-colouring}
 
@@ -1568,19 +1611,21 @@ A \emph{Kempe $i$-$j$ edge-chain} is a component of the subgraph of $G$ induced 
 
 A slightly clearer definition, courtesy of Wikipedia:
 \begin{defn}
-	Let $G$ be a graph $G$ with a particular edge colouring. For an edge $e \in E(G)$ which is coloured $i$, the \emph{Kempe $i$-$j$ edge-chain of $G$ containing $e$} is the maximal connected subset of $E(G)$ containing $e$ and all other edges which are coloured either $i$ or $j$.
+Let $G$ be a graph $G$ with a particular edge colouring.
+For an edge $e \in E(G)$ which is coloured $i$, the \emph{Kempe $i$-$j$ edge-chain of $G$ containing $e$} is the maximal connected subset of $E(G)$ containing $e$ and all other edges which are coloured either $i$ or $j$.
 \end{defn}
 \begin{ex}
-	An edge 4-colouring, with the two Kempe 1-2 edge chains shown as dashed edges.
+An edge 4-colouring, with the two Kempe 1-2 edge chains shown as dashed edges.
 $$
 \begin{tikzpicture}[baseline=5.5ex]
-  \node[draw,circle] (1) at (1,3) {};
-  \node[draw,circle] (2) at (0,2) {};
-  \node[draw,circle] (3) at (2,2) {};
-  \node[draw,circle] (4) at (0,1) {};
-  \node[draw,circle] (5) at (2,1) {};
-  \node[draw,circle] (6) at (1,0) {};
-  \path[every node/.style={font=\sffamily\small}]
+  \tikzstyle{every node}=[font=\small]
+  \node[draw,circle] (1) at (1.5,4.5) {};
+  \node[draw,circle] (2) at (0,3) {};
+  \node[draw,circle] (3) at (3,3) {};
+  \node[draw,circle] (4) at (0,1.5) {};
+  \node[draw,circle] (5) at (3,1.5) {};
+  \node[draw,circle] (6) at (1.5,0) {};
+  \path[]
   (1) edge node [right]{3} (3)
     (2) edge node {3} (3)
     (3) edge node [left]{4} (4)
@@ -1593,7 +1638,8 @@ $$
   (2) edge node [left]{2} (4)
   (6) edge node [left]{1} (3)
     (3) edge node [right]{2} (5);
-\end{tikzpicture}$$
+\end{tikzpicture}
+$$
 %TODO: Examples
 \end{ex}
 
@@ -1611,7 +1657,7 @@ Then $G$ has an edge-colouring such that both colours are incident on every vert
 \end{lem}
 
 \begin{proof}
-We have three cases: \\
+We have three cases:
 \begin{itemize}
 \item Even cycle
 \item Not a cycle but Eulerian
@@ -1649,7 +1695,7 @@ Then there exists a proper edge colouring of $G$ using less than $\Delta(G) + 1$
 
 %TODO some more stuff here maybes
 
-\marginpar{Lecture 24} 
+\marginpar{Lecture 25} 
 
 \section{Tree width}
 
