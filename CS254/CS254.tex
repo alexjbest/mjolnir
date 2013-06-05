@@ -8,8 +8,6 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{tikz}
-\usepackage{pgf}
-%\usepackage{tkz-graph}
 \usepackage{hyperref}
 \usetikzlibrary{arrows}
 
@@ -1784,11 +1782,11 @@ Consider $C_6$:
 \begin{tikzpicture}
   \node[draw,circle] (G-1) at (-1.5,0) {6,1};
   \node[draw,circle] (G-2) at (0,0) {5,6,1};
-  \node[draw,circle] (G-3) at (1.5,0) {4,5};
-  \node[draw,circle] (G-4) at (1.5,1.5) {3,4};
-  \node[draw,circle] (G-5) at (0,1.5) {2,3};
+  \node[draw,circle] (G-3) at (1.5,0) {4,5,1};
+  \node[draw,circle] (G-4) at (1.5,1.5) {3,4,1};
+  \node[draw,circle] (G-5) at (0,1.5) {2,3,1};
   \draw (G-1) -- (G-2) -- (G-3) -- (G-4)  -- (G-5);
-\end{tikzpicture}
+\end{tikzpicture} %TODO make sure this is right....
 \end{center}
 \end{ex}
 
