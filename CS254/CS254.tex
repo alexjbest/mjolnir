@@ -795,8 +795,8 @@ Then $h_k(n) \ge \left[\frac{kn}{2}\right]$.
 
 \begin{proof}
 We know that $2|E(G)| \ge  n\delta_{\text{min}}(G)$ where $\delta_{\text{min}}(G)$ is the minimum degree of $G$.
-We also know that $\delta_{\text{min}}(G) \ge K_e(G) \ge K_v(G)$.
-Therefore $|E(G)| \ge \left[\frac{nK_v(G)}{2}\right]$.
+We also know that $\delta_{\text{min}}(G) \ge \kappa_e(G) \ge \kappa_v(G)$.
+Therefore $|E(G)| \ge \left[\frac{n\kappa_v(G)}{2}\right]$.
 \end{proof}
 
 We are given a cycle on $n$ vertices $0,1,\ldots,n-1$.
@@ -974,7 +974,7 @@ Let $x = v_1,v_2,\ldots,v_n=y$.
 For each $i=2,\ldots,n-1$ at least one of the pairs $v_1,v_{i+1}$ and $v_i,v_n$ is non-adjacent since otherwise $\langle v_1,\ldots,v_i,v_n,v_{n-1},\ldots,v_{i+1},v_1\rangle$ is a Hamiltonian cycle.
 If $(a_{ij})$ is the adjacency matrix of $G$ then $a_{1,i+1} + a_{i,n}\le 1$ for $i=2,\ldots,n-1$.
 Thus
-$$d(x)+d(y) = \sum_{i=2}^{n-1}a_{1,i} + \sum_{i=2}^{n-1} a_{i,n} = a_{1,2,} (\sum_{i=2}^{n-2}a_{1,i+1} + \sum_{i=2}^{n-2} a_{i,n}) + a_{n-1,n} $$
+$$d(x)+d(y) = \sum_{i=2}^{n-1}a_{1,i} + \sum_{i=2}^{n-1} a_{i,n} = a_{1,2}+(\sum_{i=2}^{n-2}a_{1,i+1} + \sum_{i=2}^{n-2} a_{i,n}) + a_{n-1,n} $$
 $$= 2 + \sum_{i=2}^{n-2}(a_{1,i+1} +a_{i,n}) \le 2+n-3 = n-1$$
 \end{proof}
 
@@ -1694,7 +1694,7 @@ Then $\chi'(G) = \Delta(G)$ (maximal degree).
 Suppose $\chi'(G) \ne \Delta(G)$.
 Then $\Delta(G) < \chi'(G)$ (as we know $\Delta(G) \le \chi'(G)$ always).
 Let $f$ be an edge $\Delta$-colouring of $G$ for which $\ecr(f)$ is maximised.
-Since $f$ is not proper $\exists v\in V(G)$ such that $\ecr_v(f) < d_v$.
+Since $f$ is not proper $\exists v\in V(G)$ such that $\ecr_v(f) < d(v)$.
 Thus some colour occurs on at least two edges incident on $v$.
 Since there are $\Delta$ colours in total, and at most $\Delta-2$ remaining edges incident on $v$, there should be some colour not incident on $v$.
 By previous lemma the graph $G$ contains an odd cycle, this is a contradiction with $G$ being bipartite.
