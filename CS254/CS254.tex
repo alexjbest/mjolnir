@@ -8,6 +8,8 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{tikz}
+\usepackage{pgf}
+%\usepackage{tkz-graph}
 \usepackage{hyperref}
 \usetikzlibrary{arrows}
 
@@ -491,7 +493,7 @@ For a given list of weights $w_1,\ldots,w_l$ a Huffman tree has the smallest ave
 \begin{proof}
 Induction on $l$.
 Let $T$ be the Huffman tree.
-\textbf{Base case} $l=2$. Then $\wt(T) = w_1 + w_2$, because $T$ is the only tree on 3 vertices.
+\textbf{Base case} $l=2$. Then $\wt(T) = w_1 + w_2$, because $T$ is the only tree on 3 vertices. \\
 \textbf{Inductive step} Assume that for some $l\ge 2$ the Huffman algorithm produces a Huffman tree of minimum average weighted depth for any list of $l$ weights. \\
 We are given $w_1\le w_2\le \ldots\le w_{l+1}$. The Huffman tree $H$ that is constructed by the algorithm consists of the Huffman tree $\bar{H}$ for the weights $w_1+w_2,w_3,\ldots,w_{l+1}$ where the leaf with weight $w_1+w_2$ is replaced by a tree with two children of weights $w_1$ and $w_2$.
 By the previous lemma, we know $\wt(H) = \wt(\bar{H}) + w_1 + w_2$.
@@ -1472,7 +1474,19 @@ For any graph $G$, $\chi(G) \ge \left[ \frac{|V(G)|}{\alpha(G)}\right]$
 \end{prop}
 
 \begin{ex}
-%TODO insert
+%$$
+%\begin{tikzpicture}
+%  \node[draw,circle] (G-1) at (1,0) {1};
+%  \node[draw,circle] (G-2) at (0.5,0.866) {2};
+%  \node[draw,circle] (G-3) at (-0.5,0.866) {3};
+%  \node[draw,circle] (G-4) at (-1,0) {4};
+%  \node[draw,circle] (G-5) at (-0.5,-0.866) {2};
+%  \node[draw,circle] (G-6) at (0.5,-0.866) {3};
+%  \node[draw,circle] (G-7) at (0,0) {4};
+%  \draw (G-1) -- (G-2) -- (G-3) -- (G-4)  -- (G-5)  -- (G-6) -- (G-1) -- (G-7) -- (G-2) -- (G-3) -- (G-7) -- (G-6) -- (G-4) -- (G-2) -- (G-3) -- (G-5) -- (G-1);
+%\end{tikzpicture}
+%$$
+Here $\alpha(G) = 2$ so $\chi(G) \ge \lceil\frac{7}{2}\rceil = 4$.
 \end{ex}
 
 \begin{prop}
