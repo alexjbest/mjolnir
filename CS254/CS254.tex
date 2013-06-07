@@ -1382,7 +1382,7 @@ $\B$ is called the set of bases of a matroid if:
 \begin{proof}
 (M$\cap$ I $\implies 1$): If any base $B\subset A$ then (M) says we can find $x\in A\setminus B$ s.t. $B\cup\{x\}\in \I$.
 So $B$ is not a base, contradiction. \\
-(M$\cap$ I $\implies 2$): Let A \& B be two bases of $(\X,\I)$ (note then we have $|A| = |B|$).
+(M$\cap$ I $\implies 2$): Let $A$ \& $B$ be two bases of $(\X,\I)$ (note then we have $|A| = |B|$).
 Let $x\in A\setminus B$.
 Then $A' = (A\setminus\{x\})\in \I$, $|A'|<|A| = |B|$, so by (M) we can find $y\in B\setminus A' = B\setminus A$ s.t. $A'\cup \{y\}\in\I$.
 Thus $A\setminus\{x\}\cup\{y\}\in\I$.
@@ -1792,11 +1792,11 @@ Consider $C_6$:
 
 By restricting to graphs with bounded tree width (that is at most $k$ for some constant $k$) we can find exact algorithms for a large class of problems that take $O(n)$ time.
 
-%\section{Max independent set for trees} TODO whole section yawn
+%\section{Max independent set for trees} %TODO whole section yawn, fortunately probs not in exam.
 
 \section{Monadic second order logic}
 
-\begin{thm}[Courcelle]
+\begin{thm}[Courcelle \& Courcelle]
 Any property that can be expressed in Monadic second order logic can be tested in time $f(k,p)\cdot O(n)$ on graphs of tree width $\le k$.
 Where $p$ is the size of the monadic second order logic property, $n = |V|$ and $k$ is the tree width.
 \end{thm}
