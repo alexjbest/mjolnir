@@ -50,14 +50,15 @@
 \begin{document}
 \maketitle
 \tableofcontents
-\section*{Introduction}
+\section{Basics}
+\subsection{Introduction}
 These are lecture notes I typeset for CS254 Algorithmic Graph Theory in 2013, they are currently full of gaps, mistakes, wrong statements, notation abuse and lots of other badness.
-However they might be useful to someone, despite the fact they lack any pictures at present.
+However they might be useful to someone, despite the fact they lack very many pictures at present.
 Thanks are due to Julian ``Boolean'' Bhardwaj and Rosie Nasrin for telling me I'm wrong.
 If you find anything else that can be improved send me an email at a.j.best@warwick.ac.uk, thanks.
 \clearpage
 
-\section{Graphs}
+\subsection{Graphs}
 \marginpar{Lecture 1}
 \begin{defn}
 A \emph{graph} $G$ is an ordered pair $(V(G),E(G))$ consisting of a set $V(G)$ of vertices and a set $E(g)$ of edges.
@@ -79,7 +80,7 @@ A \emph{simple} graph is one without parallel edges.
 By convention, $G$ will denote a graph, $n$ and $m$ will be the number of vertices $|V(G)|$ and the number of edges $|E(G)|$ respectively.
 \end{nota}
 
-\section{Special graphs}
+\subsection{Special graphs}
 \begin{defn}
 A \emph{complete} graph is a simple graph in which every two vertices are adjacent. \\
 Such a graph on $n$ vertices is denoted $K_n$.
@@ -182,7 +183,7 @@ The length of a path or cycle is the number of its edges. A path or cycle of len
 \end{tikzpicture}
 \end{center}
 
-\section{Adjacency and incidence matrices}
+\subsection{Adjacency and incidence matrices}
 
 \begin{defn}
 The \emph{incidence matrix} of $G = (V,E)$ when $|V| = m$ and $|E| = n$ is the $m\times n$ matrix $M_G = (m_{ve})$ where $m_{ve}$ is the number of times that vertex $v$ and $e$ are incident ($m_{ve} \in \{0, 1\}$).
@@ -232,7 +233,7 @@ $$K_3 =
 An \emph{adjacency list} is a list $(N(v),v\in V)$ used to represent matrices, $N(v)$ is the set of neighbours of $v$ in arbitrary order.
 \end{defn}
 
-\section{Vertex degrees}
+\subsection{Vertex degrees}
 
 \begin{defn}
 The \emph{degree} of a vertex $v$ in a graph $G$ is denoted $d_G(v)$ or $d_v$ and is the number of edges of $G$ incident with $v$.
@@ -285,7 +286,7 @@ $$=\sum_{y\in Y} \sum_{x\in X,(x,y)\in E} \frac{1}{d_y} = |Y|$$
 If $|X|=|Y|$, then the middle inequality must be an inequality implying that $d_x=d_y$ for all $(x,y)\in E$.
 \end{proof}
 
-\section{Isomorphisms}
+\subsection{Isomorphisms}
 
 \begin{defn}
 Two graphs $G$ and $H$ are \emph{isomorphic}, written $G\cong H$, if there is a bijection $\Theta\colon V(G) \to V(H)$ such that $(u,v)\in E$ iff $(\Theta(u),\Theta(v))\in E(H)$.
@@ -320,7 +321,7 @@ So $K_n$ is a class of graphs that are all isomorphic to each other.
 \end{itemize}
 \end{rem}
 
-\section{Directed graphs}
+\subsection{Directed graphs}
 
 \begin{defns}
 In a graph $G= (V,E)$ a \emph{walk} from a starting vertex $v_0$ to a destination vertex $v_n$ is a sequence
@@ -437,7 +438,8 @@ $u,v$ have two different paths containing them in $T$ is a contradiction. \\
 $(6\implies 1)$ \lbrack By definition \rbrack \\
 \end{proof}
 
-\section{Huffman Trees and Optimal Prefix Codes}
+\section{Trees}
+\subsection{Huffman Trees and Optimal Prefix Codes}
 
 \begin{defns}
 A \emph{binary code} is an assignment of symbols or other meanings to a set of bitstrings.\\
@@ -593,7 +595,7 @@ This tree plus an edge of $p_1$ forms a tree on $\{1,\ldots,n+1\}$.
 Prove that different elements of $P_{n-2}$ are mapped into different trees and conversely.
 \end{exer}
 
-\section{Catalan numbers}
+\subsection{Catalan numbers}
 
 Let $b_n$ be the number of unlabelled binary trees on $n$ vertices.
 By convention we define $b_0 = 1$.
@@ -617,6 +619,7 @@ The number such expressions is $b_n$ -- the Catalan numbers.
 \end{ex}
 
 \section{Connectivity}
+\subsection{Connectivity}
 
 \begin{defn}
 A \emph{vertex-cut} in a graph is a set of vertices $V$ such that $G\setminus V$ has more connected components than $G$. \\
@@ -712,7 +715,7 @@ The following are equivalent:
 \end{enumerate}
 \end{thm}
 
-\section{Constructing Reliable Networks}
+\subsection{Constructing Reliable Networks}
 
 \begin{defns}
 A \emph{Whitney-Robbins synthesis} of graph $G$ from a graph $H$ is a sequence of graphs $G_0=H,G_1,\ldots,G_l=G$ and $G_i$ is the result of a path or a cycle addition in $G_{i-1}$ for $i=1,\ldots,l$. \\
@@ -732,7 +735,7 @@ Consider $u$ and $v\in V(G)$ where $G$ is a 2-connected graph.
 We add a path between $u$ and $v$.
 To prove that the new graph is 2-connected it is enough to show that there are 2 paths $P_1$ and $P_2$ such that they are internally disjoint and $P_1$ connects $y$ to $u$ and $P_2$ connects $y$ to $v$ for any vertex $y$. \\
 We take $Q_1$ and $Q_2$ two internally disjoint paths between $y$ and $u$, and any path $R$ between $y$ and $v$.
-Assume that $R$ intersects $Q_1$ or $Q_2$ and $z$ is the latest intersection point.
+Assume that $R$ intersects $Q_1$ or $Q_2$ and $z$ is the latest intersubsection point.
 Without loss of generality $z\in Q_2$.
 Choose $Q_1$ and follow $Q_2$ till $z$ and $R$ from $z$ to $v$.
 \end{proof}
@@ -767,7 +770,7 @@ The graph that results from a path or cycle addition is 2-edge-connected.
 A graph $G$ is 2-edge connected $\iff$ $G$ is a cycle or a Whitney-Robbins synthesis from a cycle.
 \end{thm}
 
-\section{Tutte's Synthesis of 3-connected graphs}
+\subsection{Tutte's Synthesis of 3-connected graphs}
 \begin{defn}
 The $n$-spoke wheel $W_n$ is a cycle on $n$ vertices and one additional vertex (the centre) connected directly to all vertices of the cycle.
 \end{defn}
@@ -826,8 +829,8 @@ The Harary graph $H_{k,n}$ is $k$-connected.
 \textbf{Case 1} $k=2r$ \\
 Suppose that $2r-1$ vertices $i_1,\ldots,i_{2r-1}$ are deleted from $H_{2r,n}$ and let $x$ and $y$ be any two vertices in $H_{2r,n}\setminus \{i_1,\ldots,i_{2r-1}\}$.
 We need to show that there is an $x$-$y$ path in this graph.
-We either deleted $\le r-1$ vertices on this section of the cycle from $x$ to $y$ or from $y$ to $x$.
-Assume WLOG that we delete $\le r-1$ vertices on the section from $x$ to $y$.
+We either deleted $\le r-1$ vertices on this subsection of the cycle from $x$ to $y$ or from $y$ to $x$.
+Assume WLOG that we delete $\le r-1$ vertices on the subsection from $x$ to $y$.
 Let $S$ be the remaining vertices.
 The deletions create gaps on the path from $x$ to $y$, but each gap is $\le r-1$.
 Therefore, there is an edge that connects two vertices neighbouring each gap.
@@ -854,7 +857,8 @@ Let $u,v$ be distinct non-adjacent vertices in a connected graph.
 Then the maximum number of internally disjoint $u$-$v$ paths in $G$ equals the minimum number of vertices needed to separate $u$ and $v$.
 \end{thm}
 
-\section{Optimal Graph Traversals}
+\section{Graph Traversals}
+\subsection{Optimal Graph Traversals}
 
 \begin{quotation}
 ``This question is so banal...'' \\
@@ -949,7 +953,7 @@ All vertices of even degree will have an even number of edges added. \\
 So to finish we construct an Eulerian tour $W$ in $G^*$.
 \end{alg}
 
-\section{Hamiltonian paths and cycles}
+\subsection{Hamiltonian paths and cycles}
 
 \begin{defn}
 A \emph{Hamiltonian path (or cycle)} of a graph is a path (resp. cycle) that contains all the vertices of the graph.
@@ -998,9 +1002,10 @@ The $n$-dimensional hypercube $Q_n$ is Hamiltonian.
 Then $\langle b_10,b_20,\ldots,b_{2^n}0,b_{2^n}1,b_{2^{n-1}}1,\ldots,b_11,b_01,b_00\rangle$ is a Hamiltonian cycle in $Q_{n+1}$.
 \end{proof}
 
+\section{Approximation Algorithms}
 \marginpar{Lecture 12}
 
-\section{Approximation Algorithms}
+\subsection{Approximation Algorithms}
 We take a break for a fun quote I found in Gondran and Minoux.
 \begin{quotation}
 ``Amid many opinions... I always choose the most moderate... for the reason that, in the event of my falling into error, I might be at less distance from the truth than if, having chosen one of the extremes, it should turn out to be the other which I ought to have adopted.'' Descartes, \emph{Discours de la M\'ethode, Vol III.}
@@ -1092,7 +1097,7 @@ Since $M$ is the minimum matching we derive:
 $$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{\wt(M_1)+\wt(M_2)}{2} = \frac{\wt(H_0)}{2} \le \frac{\wt(\OPT)}{2}$$
 \end{proof}
 
-\section{$k$-center Problem}
+\subsection{$k$-center Problem}
 We are given an undirected complete graph $G=(V,E)$ with edge weights $d_{ij} \ge 0$, $(G,d)$ satisfied the triangle inequality.
 Find a set $S\subseteq V$ such that $|S| = k$ and $\max_{u\in V\setminus S}\min_{v\in S} d_{uv}$ is minimised, i.e. the objective is to minimise the maximum distance of a vertex to its cluster center.
 
@@ -1120,7 +1125,7 @@ Since $j$ is the furthest point in $V\setminus S$ from $S$ we know that all rema
 
 \marginpar{Lecture 14}
 
-\section{Finding MSTs}
+\subsection{Finding MSTs}
 Given a connected graph $G=(V,E)$ find a spanning tree $T$ of $G$ so as to minimise the maximum degree of $T$.
 Let $T^*$ be the spanning tree minimising the maximum degree and let OPT be the maximum degree in $T^*$.
 Let $l =\lceil \log_2n\rceil$ with $n = |V|$.
@@ -1163,7 +1168,7 @@ The overall decrease in the potential function is at least $$2\cdot 3^{i-1}-4\cd
 Thus for the resulting tree $T'$ we have $\Phi(T') \le \Phi(T) - \frac{2}{27n^3}\Phi(T)$.
 \end{proof}
 
-\section{$k$-median problem}
+\subsection{$k$-median problem}
 We are given $V$, a set of $N$ cities.
 We are required to open $k$ service locations and optimise the service cost for the clients $\sum_{j\in V} \min_{i\in S} c_{ij}$.
 Assume that the matrix $(c_{ij})$ satisfies the triangle inequality.
@@ -1230,7 +1235,7 @@ The second term is upper-bounded by $f(S^*)$ and we derive $5f(S^*) - f(S) \ge 0
 
 \marginpar{Lecture 16}
 
-\section{The Max-cut problem}
+\subsection{The Max-cut problem}
 
 The problem is to find a cut of a graph (a partition of its vertex set) so that the maximum possible number of edges lie across the cut (going from one partition to the other).\\
 We can make several basic attempts at writing an algorithm to do this:
@@ -1242,7 +1247,7 @@ $$\bb E[\#\text{edges cut}] = \sum_{u,v\in E}\bb E[uv\text{ is cut}] = \sum_{u,v
 And $|E|\le \OPT$. \\
 We can do better than this however and achieve a value of around 0.878, using semi-definite programming.
 
-\section{Semi-Definite Programming}
+\subsection{Semi-Definite Programming}
 
 Initially we have a choice for each vertex of whether to place it in one side or the other, so for each vertex we write $x_i\in\{-1,1\}$.
 We try to find
@@ -1266,7 +1271,7 @@ Note this does not mean that the matrix $M$ cannot have negative entries.
 
 \marginpar{Lecture 17}
 
-\section{Independent Set problem}
+\subsection{Independent Set problem}
 
 \paragraph{Fact}
 It is NP-hard to approximate independent set to \emph{any} constant factor $\alpha$.
@@ -1288,7 +1293,7 @@ This graph is 4-claw free as each task can only overlap with two other tasks, an
 A similar problem to the above can be considered where all tasks start at 30 minute intervals and no task is longer than 3.30.
 For this problem a corresponding graph will be 8-claw free, as no more than 7 tasks can be placed inside another.
 
-\section{Weighted independent sets}
+\subsection{Weighted independent sets}
 
 \begin{alg}[Greedy]~\\
 Sort by weight. \\
@@ -1323,10 +1328,10 @@ $$
 \marginpar{Lecture 19}
 %TODO add the rest
 
-
+\section{Greedy Algorithms and Matroids} %TODO check this is in right place
 \marginpar{Lecture 20}
 
-\section{Matroids}
+\subsection{Matroids}
 
 \begin{defn}
 Take a ground set $\X$ and a nonempty collection of subsets of $\X$ called $\I$.
@@ -1390,7 +1395,7 @@ Thus $A\setminus\{x\}\cup\{y\}\in\I$.
 
 \marginpar{Lecture 21}
 
-\section{Max Spanning Trees}
+\subsection{Max Spanning Trees}
 
 \begin{alg}[Kruskal]~\\
 Sort the edges $E$ into a list $e_1,\ldots,e_m$ by weight descending. \\
@@ -1430,9 +1435,10 @@ $$w(\OPT') $$
 
 %TODO finish all that....
 
+\section{Graph Colourings}
 \marginpar{Lecture 22}
 
-\section{Graph Colourings}
+\subsection{Graph Colourings}
 
 \begin{defns}
 A \emph{vertex $k$-colouring} is an assignment $f\colon V(G)\to C=\{1,\ldots,k\}$ from its vertex set onto the set of colours $C$ whose elements are called colours. \\
@@ -1523,7 +1529,7 @@ $\chi(C_{2n+1}) \ge \left[ \frac{|V(G)|}{\alpha(G)}\right] = \left[\frac{2n+1}{n
 
 \marginpar{Lecture 23}
 
-\section{Brooks Theorem}
+\subsection{Brooks Theorem}
 
 \begin{defns}
 A \emph{block} is a maximal connected subgraph $H$ s.t. no vertex of $H$ is a cut vertex of $H$. \\
@@ -1590,7 +1596,7 @@ Therefore $\Delta(G)$ colours is feasible for $v_n$.
 
 \marginpar{Lecture 24}
 
-\section{Edge-colouring}
+\subsection{Edge-colouring}
 
 \begin{defns}
 An \emph{edge $k$-colouring} is an assignment $f\colon E(G) \to C$ from its edge set onto the set $C=\{1,\ldots, k\}$ (or indeed any set of cardinality $k$), whose elements are called colours. \\
@@ -1707,16 +1713,17 @@ Then there exists a proper edge colouring of $G$ using less than $\Delta(G) + 1$
 
 %TODO some more stuff here maybes
 
-\marginpar{Lecture 25} 
+\section{Treewidth and Algorithmic Implications}
+\marginpar{Lecture 25}
 
-\section{Tree width}
+\subsection{Tree width}
 
 We define the tree decomposition $T$ of a graph $G$ as follows: \\
 $T$ has vertices $i$ labelled with sets $X_i$ of vertices from $G$, satisfying:
 \begin{enumerate}
 \item $T$ is a tree.
 \item For every edge $(u,v)\in E(G)\ \exists$ a vertex in $T$ with both $u$ and $v$ in its set.
-\item For all $X_i,X_j,X_k\in V(T)$ if $X_j$ is on the path from $X_i$ to $X_k$ then $X_i\cap X_k\subseteq X_j$. In other words, if $X_i$ and $X_k$ both contain a vertex $v$, then all vertices $X_j$ of the tree in the (unique) path between $X_i$ and $X_j$ contain $v$ as well. This is known as the `running intersection property' (Diestel, 2005).
+\item For all $X_i,X_j,X_k\in V(T)$ if $X_j$ is on the path from $X_i$ to $X_k$ then $X_i\cap X_k\subseteq X_j$. In other words, if $X_i$ and $X_k$ both contain a vertex $v$, then all vertices $X_j$ of the tree in the (unique) path between $X_i$ and $X_j$ contain $v$ as well. This is known as the `running intersubsection property' (Diestel, 2005).
 \end{enumerate}
 
 \begin{ex}
@@ -1792,9 +1799,9 @@ Consider $C_6$:
 
 By restricting to graphs with bounded tree width (that is at most $k$ for some constant $k$) we can find exact algorithms for a large class of problems that take $O(n)$ time.
 
-%\section{Max independent set for trees} %TODO whole section yawn, fortunately probs not in exam.
+%\subsection{Max independent set for trees} %TODO whole subsection yawn, fortunately probs not in exam.
 
-\section{Monadic second order logic}
+\subsection{Monadic second order logic}
 
 \begin{thm}[Courcelle \& Courcelle]
 Any property that can be expressed in Monadic second order logic can be tested in time $f(k,p)\cdot O(n)$ on graphs of tree width $\le k$.
