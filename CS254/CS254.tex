@@ -735,7 +735,7 @@ Consider $u$ and $v\in V(G)$ where $G$ is a 2-connected graph.
 We add a path between $u$ and $v$.
 To prove that the new graph is 2-connected it is enough to show that there are 2 paths $P_1$ and $P_2$ such that they are internally disjoint and $P_1$ connects $y$ to $u$ and $P_2$ connects $y$ to $v$ for any vertex $y$. \\
 We take $Q_1$ and $Q_2$ two internally disjoint paths between $y$ and $u$, and any path $R$ between $y$ and $v$.
-Assume that $R$ intersects $Q_1$ or $Q_2$ and $z$ is the latest intersubsection point.
+Assume that $R$ intersects $Q_1$ or $Q_2$ and $z$ is the latest intersection point.
 Without loss of generality $z\in Q_2$.
 Choose $Q_1$ and follow $Q_2$ till $z$ and $R$ from $z$ to $v$.
 \end{proof}
@@ -829,8 +829,8 @@ The Harary graph $H_{k,n}$ is $k$-connected.
 \textbf{Case 1} $k=2r$ \\
 Suppose that $2r-1$ vertices $i_1,\ldots,i_{2r-1}$ are deleted from $H_{2r,n}$ and let $x$ and $y$ be any two vertices in $H_{2r,n}\setminus \{i_1,\ldots,i_{2r-1}\}$.
 We need to show that there is an $x$-$y$ path in this graph.
-We either deleted $\le r-1$ vertices on this subsection of the cycle from $x$ to $y$ or from $y$ to $x$.
-Assume WLOG that we delete $\le r-1$ vertices on the subsection from $x$ to $y$.
+We either deleted $\le r-1$ vertices on this section of the cycle from $x$ to $y$ or from $y$ to $x$.
+Assume WLOG that we delete $\le r-1$ vertices on the section from $x$ to $y$.
 Let $S$ be the remaining vertices.
 The deletions create gaps on the path from $x$ to $y$, but each gap is $\le r-1$.
 Therefore, there is an edge that connects two vertices neighbouring each gap.
@@ -1723,7 +1723,7 @@ $T$ has vertices $i$ labelled with sets $X_i$ of vertices from $G$, satisfying:
 \begin{enumerate}
 \item $T$ is a tree.
 \item For every edge $(u,v)\in E(G)\ \exists$ a vertex in $T$ with both $u$ and $v$ in its set.
-\item For all $X_i,X_j,X_k\in V(T)$ if $X_j$ is on the path from $X_i$ to $X_k$ then $X_i\cap X_k\subseteq X_j$. In other words, if $X_i$ and $X_k$ both contain a vertex $v$, then all vertices $X_j$ of the tree in the (unique) path between $X_i$ and $X_j$ contain $v$ as well. This is known as the `running intersubsection property' (Diestel, 2005).
+\item For all $X_i,X_j,X_k\in V(T)$ if $X_j$ is on the path from $X_i$ to $X_k$ then $X_i\cap X_k\subseteq X_j$. In other words, if $X_i$ and $X_k$ both contain a vertex $v$, then all vertices $X_j$ of the tree in the (unique) path between $X_i$ and $X_j$ contain $v$ as well. This is known as the `running intersection property' (Diestel, 2005).
 \end{enumerate}
 
 \begin{ex}
@@ -1799,7 +1799,7 @@ Consider $C_6$:
 
 By restricting to graphs with bounded tree width (that is at most $k$ for some constant $k$) we can find exact algorithms for a large class of problems that take $O(n)$ time.
 
-%\subsection{Max independent set for trees} %TODO whole subsection yawn, fortunately probs not in exam.
+%\subsection{Max independent set for trees} %TODO whole section yawn, fortunately probs not in exam.
 
 \subsection{Monadic second order logic}
 
