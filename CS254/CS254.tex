@@ -50,7 +50,7 @@
 \maketitle
 \tableofcontents
 
-\subsection{Introduction}
+\section{Introduction}
 These are lecture notes I typeset for CS254 Algorithmic Graph Theory in 2013, they are currently full of gaps, mistakes, wrong statements, notation abuse and lots of other badness.
 However they might be useful to someone, despite the fact they lack very many pictures at present.
 Thanks are due to Julian ``Boolean'' Bhardwaj and Rosie Nasrin for telling me I'm wrong.
@@ -353,6 +353,8 @@ You have a directed graph $G$ representing a system of pipes, each pipe has a ca
 We are given also the source $S$ and the sink $T$, $S,T\in V(G)$.
 How much water can we pump through the network per time unit?
 
+\section{Trees}
+
 \begin{defn}
 A \emph{leaf} is a vertex of degree one.
 \end{defn}
@@ -435,10 +437,9 @@ Any edge of the cycle containing $u$ and $v$ is not a cut edge which contradicts
 $(5\implies 6)$ $T$ contains no cycles otherwise we would have two paths between $x,y\in$ cycle.
 If we add an edge $e= (u,v)$ we will create a cycle since $T$ contains a path between $u$ and $v$. If $T+e$ contains two cycles then both cycles must contain $e$.
 $u,v$ have two different paths containing them in $T$ is a contradiction. \\
-$(6\implies 1)$ \lbrack By definition \rbrack \\
+$(6\implies 1)$ \lbrack By definition\rbrack \\
 \end{proof}
 
-\section{Trees}
 \subsection{Huffman Trees and Optimal Prefix Codes}
 
 \begin{defns}
@@ -1367,7 +1368,7 @@ Here $\X$ is a set of vectors in $Q^r$, and the independence system consists of 
 \end{ex}
 
 \begin{ex}
-The \emph{uniform matroid} (of rank $k$) is defined an any ground set $\X$ by taking $\I$ to be all sets of at most $k$ elements from $\X$. 
+The \emph{uniform matroid} (of rank $k$) is defined on any ground set $\X$ by taking $\I$ to be all sets of at most $k$ elements from $\X$. 
 \end{ex}
 
 \begin{ex}
@@ -1404,7 +1405,8 @@ For $i = 1$ to $m$:\\
 \indent If $S\cup \{e_i\}$ does not contain a cycle then add $e_i$ to $S$.
 \end{alg}
 
-We can generalise this idea to other independence systems to get:
+This algorithm is a classic and we can see very similar algorithms appearing in other areas.
+In fact it turns out we can generalise this idea to other independence systems to get:
 
 \begin{alg}[Standard greedy algorithm for independence system $\X,\I$]~\\
 Sort the elements of $\X$ into a list $e_1,\ldots,e_m$ by weight descending. \\
@@ -1754,7 +1756,7 @@ If there is a tree decomposition with tree width $k$ then there is one $T$ that 
 \begin{proof}
 Let $X_i\subseteq X_j$, and $X_k\supseteq X_i\cap X_j = X_i$.
 Now delete $X_i$. \\
-%Assume this is not a tree decomposition but TODO make sure this acutally makes sense
+%Assume this is not a tree decomposition but TODO make sure this actually makes sense
 \end{proof}
 
 \begin{lem}
