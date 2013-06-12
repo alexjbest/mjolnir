@@ -1091,12 +1091,12 @@ $\wt(H)\le\frac{3}{2}\wt(\OPT)$, where OPT is an optimal TSP solution.
 \begin{proof}
 We know by remark 3, $\wt(H) \le \wt(W) = \wt(T) + \wt(M)$.
 Additionally we know that $\wt(T) \le \wt(\OPT)$.
-We also claim that $\wt(M) \le \frac{1}{2}\wt(\OPT)$.
-Consider the tour $H_0$ obtained from OPT by short-cutting.
-We have $\wt(H_0) \le \wt(H)$ by the triangle inequality.
-Also $H_0 = M_1\cup M_2$ where $M_1$ contains an odd number of edges and $M_2$ contains an even number of edges along $H_0$.
+It suffices to show that $\wt(M) \le \frac{1}{2}\wt(\OPT)$.
+Consider the tour $H_O$ on the set of vertices $O$ obtained from OPT by short-cutting (which is of total cost at most OPT).
+We have $\wt(H_O) \le \wt(H)$ by the triangle inequality.
+Also $H_O = M_1\cup M_2$ where $M_1$ contains edges of an odd distance along $H_O$ and $M_2$ contains edges of an even distance along $H_O$. $M_1$ and $M_2$ are two possible matchings of vertices in the set $O$.
 Since $M$ is the minimum matching we derive:
-$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{\wt(M_1)+\wt(M_2)}{2} = \frac{\wt(H_0)}{2} \le \frac{\wt(\OPT)}{2}$$
+$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{\wt(M_1)+\wt(M_2)}{2} = \frac{\wt(H_O)}{2} \le \frac{\wt(\OPT)}{2}$$
 \end{proof}
 
 \subsection{$k$-center Problem}
