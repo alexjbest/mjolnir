@@ -1336,13 +1336,18 @@ $$
 
 \begin{defn}
 Take a ground set $\X$ and a nonempty collection of subsets of $\X$ called $\I$.
-If given $A\in \I,\ B\subseteq A$ then $B\in \I$, then we call the sets in $\I$ \emph{independent}.\\
-And we then call $(\X,\I)$ an independence system.
+If,
+\begin{description}
+	\item[I.] $A\in \I,\ B\subseteq A \implies B\in \I$
+\end{description}
+Then we call the sets in $\I$ \emph{independent}, and we then call $(\X,\I)$ an independence system.
 \end{defn}
 
 \begin{defn}
-Given an independence system $(\X,\I)$ we call it a \emph{matroid} if 
-$$A,B\in \I \text{ with } |A|<|B|, \text{ then } \exists x\in B\setminus A \text{ s.t. } A\cup \{x\} \in \I$$
+Given an independence system $(\X,\I)$ we call it a \emph{matroid} iff
+\begin{description}
+	\item[M.] $A,B\in \I \text{ with } |A|<|B|, \text{ then } \exists x\in B\setminus A \text{ s.t. } A\cup \{x\} \in \I$
+\end{description}
 \end{defn}
 
 \begin{defns}
@@ -1379,19 +1384,19 @@ We then define $\I$ to be all the sets obtained by taking no more than $p_i$ ele
 \begin{prop}
 Let $\X$ be a ground set.
 $\B$ is called the set of bases of a matroid if:
-\begin{enumerate}
-\item No set of $\B$ is contained in any other set of $\B$.
-\item $\forall A,B\in\B$ and $x\in A\setminus B$, $\exists y\in B\setminus A$ s.t. $A\setminus\{x\}\cup\{y\} \in \B$.
-\end{enumerate}
+\begin{description}
+	\item[B1.] No set of $\B$ is contained in any other set of $\B$.
+	\item[B2.] $\forall A,B\in\B$ and $x\in A\setminus B$, $\exists y\in B\setminus A$ s.t. $A\setminus\{x\}\cup\{y\} \in \B$.
+\end{description}
 \end{prop}
 
 \begin{proof}
-(M$\cap$ I $\implies 1$): If any base $B\subset A$ then (M) says we can find $x\in A\setminus B$ s.t. $B\cup\{x\}\in \I$.
+(M$\cap$ I $\implies$ B1): If any base $B\subset A$ then (M) says we can find $x\in A\setminus B$ s.t. $B\cup\{x\}\in \I$.
 So $B$ is not a base, contradiction. \\
-(M$\cap$ I $\implies 2$): Let $A$ \& $B$ be two bases of $(\X,\I)$ (note then we have $|A| = |B|$).
+(M$\cap$ I $\implies$ B2): Let $A$ \& $B$ be two bases of $(\X,\I)$ (note then we have $|A| = |B|$).
 Let $x\in A\setminus B$.
 Then $A' = (A\setminus\{x\})\in \I$, $|A'|<|A| = |B|$, so by (M) we can find $y\in B\setminus A' = B\setminus A$ s.t. $A'\cup \{y\}\in\I$.
-Thus $A\setminus\{x\}\cup\{y\}\in\I$.
+Thus $(A\setminus\{x\})\cup\{y\}\in\I$, and as $|(A\setminus\{x\})\cup\{y\}|=|A|$ we also have $(A\setminus\{x\})\cup\{y\}\in\B$.
 \end{proof} %TODO complete
 
 \marginpar{Lecture 21}
@@ -1408,7 +1413,7 @@ For $i = 1$ to $m$:\\
 This algorithm is a classic and we can see very similar algorithms appearing in other areas.
 In fact it turns out we can generalise this idea to other independence systems to get:
 
-\begin{alg}[Standard greedy algorithm for independence system $\X,\I$]~\\
+\begin{alg}[Standard greedy algorithm for independence system $(\X,\I)$ ]~\\
 Sort the elements of $\X$ into a list $e_1,\ldots,e_m$ by weight descending. \\
 Let $S=\emptyset$ \\
 For $i = 1$ to $m$:\\
