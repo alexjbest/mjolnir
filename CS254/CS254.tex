@@ -972,12 +972,13 @@ Then $G$ is Hamiltonian.
 Assume that $G$ is a maximal counterexample (i.e. adding another edge makes it Hamiltonian).
 Let $x$ and $y$ be any two non-adjacent vertices.
 We will show that $d(x) + d(y)  \le n-1$.
-Since $G\cup (x,y)$ is Hamiltonian, $G$ contains a Hamiltonian path with endpoints $x$ and $y$.
+Since $G\cup \{x,y\}$ is Hamiltonian, $G$ contains a Hamiltonian path with endpoints $x$ and $y$.
 Let $x = v_1,v_2,\ldots,v_n=y$.
 For each $i=2,\ldots,n-1$ at least one of the pairs $v_1,v_{i+1}$ and $v_i,v_n$ is non-adjacent since otherwise $\langle v_1,\ldots,v_i,v_n,v_{n-1},\ldots,v_{i+1},v_1\rangle$ is a Hamiltonian cycle.
 If $(a_{ij})$ is the adjacency matrix of $G$ then $a_{1,i+1} + a_{i,n}\le 1$ for $i=2,\ldots,n-1$.
 Thus
-$$d(x)+d(y) = \sum_{i=2}^{n-1}a_{1,i} + \sum_{i=2}^{n-1} a_{i,n} = a_{1,2}+(\sum_{i=2}^{n-2}a_{1,i+1} + \sum_{i=2}^{n-2} a_{i,n}) + a_{n-1,n} $$
+$$d(x)+d(y) = \sum_{i=2}^{n-1}a_{1,i} + \sum_{i=2}^{n-1} a_{i,n} = a_{1,2}+(\sum_{i=3}^{n-1}a_{1,i} + \sum_{i=2}^{n-2} a_{i,n}) + a_{n-1,n} $$
+$$= a_{1,2}+(\sum_{i=2}^{n-2}a_{1,i+1} + \sum_{i=2}^{n-2} a_{i,n}) + a_{n-1,n} $$
 $$= 2 + \sum_{i=2}^{n-2}(a_{1,i+1} +a_{i,n}) \le 2+n-3 = n-1$$
 \end{proof}
 
@@ -1090,12 +1091,12 @@ $\wt(H)\le\frac{3}{2}\wt(\OPT)$, where OPT is an optimal TSP solution.
 \begin{proof}
 We know by remark 3, $\wt(H) \le \wt(W) = \wt(T) + \wt(M)$.
 Additionally we know that $\wt(T) \le \wt(\OPT)$.
-We also claim that $\wt(M) \le \frac{1}{2}\wt(\OPT)$.
-Consider the tour $H_0$ obtained from OPT by short-cutting.
-We have $\wt(H_0) \le \wt(H)$ by the triangle inequality.
-Also $H_0 = M_1\cup M_2$ where $M_1$ contains an odd number of edges and $M_2$ contains an even number of edges along $H_0$.
+It suffices to show that $\wt(M) \le \frac{1}{2}\wt(\OPT)$.
+Consider the tour $H_O$ on the set of vertices $O$ obtained from OPT by short-cutting (which is of total cost at most OPT).
+We have $\wt(H_O) \le \wt(H)$ by the triangle inequality.
+Also $H_O = M_1\cup M_2$ where $M_1$ contains edges of an odd distance along $H_O$ and $M_2$ contains edges of an even distance along $H_O$. $M_1$ and $M_2$ are two possible matchings of vertices in the set $O$.
 Since $M$ is the minimum matching we derive:
-$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{\wt(M_1)+\wt(M_2)}{2} = \frac{\wt(H_0)}{2} \le \frac{\wt(\OPT)}{2}$$
+$$\wt(M) \le \min\{\wt(M_1),\wt(M_2)\} \le \frac{\wt(M_1)+\wt(M_2)}{2} = \frac{\wt(H_O)}{2} \le \frac{\wt(\OPT)}{2}$$
 \end{proof}
 
 \subsection{$k$-center Problem}
@@ -1119,14 +1120,14 @@ This solution partitions the nodes of $V$ into clusters $V_1,\ldots,V_k$ where e
 Each pair of points (or nodes) $j,j'\in V$ are at most $2r^*$ apart (using the triangle inequality).
 Consider the set $S\subseteq V$ of the nodes selected by the greedy algorithm.
 If one center in $S$ is selected from each cluster $V_1,\ldots,V_k$ of the optimal solution, then every point in $V$ is within $2r^*$ of some point in $S$.
-If the algorithm selects two points in the same cluster $V_i$, i.e. on some iteration the algorithm chooses $j\in V_i$ even though the algorithm already chose $j'\in V_i$ in an earlier iteration.
+Else, suppose the algorithm selects two points in the same cluster $V_i$, i.e. on some iteration the algorithm chooses $j\in V_i$ even though the algorithm already chose $j'\in V_i$ in an earlier iteration.
 Again $d_{jj'}\le 2r^*$.
 Since $j$ is the furthest point in $V\setminus S$ from $S$ we know that all remaining points in $V\setminus S$ must be within distance $2r^*$ from $S$.
 \end{proof}
 
 \marginpar{Lecture 14}
 
-\subsection{Finding MSTs}
+\subsection{Finding Minimum-degree Spanning Trees}
 Given a connected graph $G=(V,E)$ find a spanning tree $T$ of $G$ so as to minimise the maximum degree of $T$.
 Let $T^*$ be the spanning tree minimising the maximum degree and let OPT be the maximum degree in $T^*$.
 Let $l =\lceil \log_2n\rceil$ with $n = |V|$.
@@ -1336,13 +1337,18 @@ $$
 
 \begin{defn}
 Take a ground set $\X$ and a nonempty collection of subsets of $\X$ called $\I$.
-If given $A\in \I,\ B\subseteq A$ then $B\in \I$, then we call the sets in $\I$ \emph{independent}.\\
-And we then call $(\X,\I)$ an independence system.
+If,
+\begin{description}
+	\item[I.] $A\in \I,\ B\subseteq A \implies B\in \I$
+\end{description}
+Then we call the sets in $\I$ \emph{independent}, and we then call $(\X,\I)$ an independence system.
 \end{defn}
 
 \begin{defn}
-Given an independence system $(\X,\I)$ we call it a \emph{matroid} if 
-$$A,B\in \I \text{ with } |A|<|B|, \text{ then } \exists x\in B\setminus A \text{ s.t. } A\cup \{x\} \in \I$$
+Given an independence system $(\X,\I)$ we call it a \emph{matroid} iff
+\begin{description}
+	\item[M.] $A,B\in \I \text{ with } |A|<|B|, \text{ then } \exists x\in B\setminus A \text{ s.t. } A\cup \{x\} \in \I$
+\end{description}
 \end{defn}
 
 \begin{defns}
@@ -1379,19 +1385,19 @@ We then define $\I$ to be all the sets obtained by taking no more than $p_i$ ele
 \begin{prop}
 Let $\X$ be a ground set.
 $\B$ is called the set of bases of a matroid if:
-\begin{enumerate}
-\item No set of $\B$ is contained in any other set of $\B$.
-\item $\forall A,B\in\B$ and $x\in A\setminus B$, $\exists y\in B\setminus A$ s.t. $A\setminus\{x\}\cup\{y\} \in \B$.
-\end{enumerate}
+\begin{description}
+	\item[B1.] No set of $\B$ is contained in any other set of $\B$.
+	\item[B2.] $\forall A,B\in\B$ and $x\in A\setminus B$, $\exists y\in B\setminus A$ s.t. $A\setminus\{x\}\cup\{y\} \in \B$.
+\end{description}
 \end{prop}
 
 \begin{proof}
-(M$\cap$ I $\implies 1$): If any base $B\subset A$ then (M) says we can find $x\in A\setminus B$ s.t. $B\cup\{x\}\in \I$.
+(M$\cap$ I $\implies$ B1): If any base $B\subset A$ then (M) says we can find $x\in A\setminus B$ s.t. $B\cup\{x\}\in \I$.
 So $B$ is not a base, contradiction. \\
-(M$\cap$ I $\implies 2$): Let $A$ \& $B$ be two bases of $(\X,\I)$ (note then we have $|A| = |B|$).
+(M$\cap$ I $\implies$ B2): Let $A$ \& $B$ be two bases of $(\X,\I)$ (note then we have $|A| = |B|$).
 Let $x\in A\setminus B$.
 Then $A' = (A\setminus\{x\})\in \I$, $|A'|<|A| = |B|$, so by (M) we can find $y\in B\setminus A' = B\setminus A$ s.t. $A'\cup \{y\}\in\I$.
-Thus $A\setminus\{x\}\cup\{y\}\in\I$.
+Thus $(A\setminus\{x\})\cup\{y\}\in\I$, and as $|(A\setminus\{x\})\cup\{y\}|=|A|$ we also have $(A\setminus\{x\})\cup\{y\}\in\B$.
 \end{proof} %TODO complete
 
 \marginpar{Lecture 21}
@@ -1408,7 +1414,7 @@ For $i = 1$ to $m$:\\
 This algorithm is a classic and we can see very similar algorithms appearing in other areas.
 In fact it turns out we can generalise this idea to other independence systems to get:
 
-\begin{alg}[Standard greedy algorithm for independence system $\X,\I$]~\\
+\begin{alg}[Standard greedy algorithm for independence system $(\X,\I)$ ]~\\
 Sort the elements of $\X$ into a list $e_1,\ldots,e_m$ by weight descending. \\
 Let $S=\emptyset$ \\
 For $i = 1$ to $m$:\\
