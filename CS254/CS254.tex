@@ -972,7 +972,7 @@ Then $G$ is Hamiltonian.
 Assume that $G$ is a maximal counterexample (i.e. adding another edge makes it Hamiltonian).
 Let $x$ and $y$ be any two non-adjacent vertices.
 We will show that $d(x) + d(y)  \le n-1$.
-Since $G\cup (x,y)$ is Hamiltonian, $G$ contains a Hamiltonian path with endpoints $x$ and $y$.
+Since $G\cup \{x,y\}$ is Hamiltonian, $G$ contains a Hamiltonian path with endpoints $x$ and $y$.
 Let $x = v_1,v_2,\ldots,v_n=y$.
 For each $i=2,\ldots,n-1$ at least one of the pairs $v_1,v_{i+1}$ and $v_i,v_n$ is non-adjacent since otherwise $\langle v_1,\ldots,v_i,v_n,v_{n-1},\ldots,v_{i+1},v_1\rangle$ is a Hamiltonian cycle.
 If $(a_{ij})$ is the adjacency matrix of $G$ then $a_{1,i+1} + a_{i,n}\le 1$ for $i=2,\ldots,n-1$.
