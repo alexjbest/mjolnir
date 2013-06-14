@@ -972,7 +972,7 @@ Then $G$ is Hamiltonian.
 Assume that $G$ is a maximal counterexample (i.e. adding another edge makes it Hamiltonian).
 Let $x$ and $y$ be any two non-adjacent vertices.
 We will show that $d(x) + d(y)  \le n-1$.
-Since $G\cup \{x,y\}$ is Hamiltonian, $G$ contains a Hamiltonian path with endpoints $x$ and $y$.
+Since $G\cup (x,y)$ is Hamiltonian, $G$ contains a Hamiltonian path with endpoints $x$ and $y$.
 Let $x = v_1,v_2,\ldots,v_n=y$.
 For each $i=2,\ldots,n-1$ at least one of the pairs $v_1,v_{i+1}$ and $v_i,v_n$ is non-adjacent since otherwise $\langle v_1,\ldots,v_i,v_n,v_{n-1},\ldots,v_{i+1},v_1\rangle$ is a Hamiltonian cycle.
 If $(a_{ij})$ is the adjacency matrix of $G$ then $a_{1,i+1} + a_{i,n}\le 1$ for $i=2,\ldots,n-1$.
@@ -1120,9 +1120,8 @@ This solution partitions the nodes of $V$ into clusters $V_1,\ldots,V_k$ where e
 Each pair of points (or nodes) $j,j'\in V$ are at most $2r^*$ apart (using the triangle inequality).
 Consider the set $S\subseteq V$ of the nodes selected by the greedy algorithm.
 If one center in $S$ is selected from each cluster $V_1,\ldots,V_k$ of the optimal solution, then every point in $V$ is within $2r^*$ of some point in $S$.
-Else, suppose the algorithm selects two points in the same cluster $V_i$, i.e. on some iteration the algorithm chooses $j\in V_i$ even though the algorithm already chose $j'\in V_i$ in an earlier iteration.
-Again $d_{jj'}\le 2r^*$.
-Since $j$ is the furthest point in $V\setminus S$ from $S$ we know that all remaining points in $V\setminus S$ must be within distance $2r^*$ from $S$.
+If instead we suppose the algorithm selects two points in the same cluster $V_i$, i.e. on some iteration the algorithm chooses $j\in V_i$ even though the algorithm already chose $j'\in V_i$ in an earlier iteration.
+We can again see that $d_{jj'}\le 2r^*$, since $j$ is the furthest point in $V\setminus S$ from $S$ we know that all remaining points in $V\setminus S$ must be within distance $2r^*$ from $S$.
 \end{proof}
 
 \marginpar{Lecture 14}
@@ -1811,7 +1810,7 @@ By restricting to graphs with bounded tree width (that is at most $k$ for some c
 
 \subsection{Monadic second order logic}
 
-\begin{thm}[Courcelle \& Courcelle]
+\begin{thm}[Courcelle]
 Any property that can be expressed in Monadic second order logic can be tested in time $f(k,p)\cdot O(n)$ on graphs of tree width $\le k$.
 Where $p$ is the size of the monadic second order logic property, $n = |V|$ and $k$ is the tree width.
 \end{thm}
