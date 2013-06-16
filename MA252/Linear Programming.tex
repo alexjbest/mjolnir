@@ -1,0 +1,294 @@
+%% LyX 2.0.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\setlength{\parindent}{0bp}
+\usepackage{amsbsy}
+\usepackage{amstext}
+\usepackage{amssymb}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\newenvironment{lyxlist}[1]
+{\begin{list}{}
+{\settowidth{\labelwidth}{#1}
+ \setlength{\leftmargin}{\labelwidth}
+ \addtolength{\leftmargin}{\labelsep}
+ \renewcommand{\makelabel}[1]{##1\hfil}}}
+{\end{list}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\date{}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\title{MA252 Combinatorial Optimisation - Linear Programming}
+
+\maketitle
+These notes are for the second half of MA252, as taught by Dr. Diane
+Maclagan in 2012. They are not exhaustive, but instead are designed
+to provide an overview and a quick reference guide. Please send corrections
+to Julian Bhardwaj <j.bhardwaj@warwick.ac.uk>.
+
+
+\section{Definitions}
+
+A \textbf{linear programme} (LP) is a problem of the form:
+
+\[
+\min\boldsymbol{c}.\boldsymbol{x}\text{ for }\boldsymbol{x}\in\mathbb{R}^{n}\text{ subject to }\boldsymbol{Ax}\leq\boldsymbol{b},\,\boldsymbol{b}\in\mathbb{R}^{d}
+\]
+
+
+Note, the problem can be to maximise instead of minimise, and the
+conditions can have varying inequalities ($\leq,\,\geq,\,<,\,>$)\\
+
+
+In the above formulation, $\boldsymbol{c}$ is called the \textbf{cost
+function} and the \textbf{feasible region} is defined as:
+
+\[
+\{\boldsymbol{x}\in\mathbb{R}^{n}\::\:\boldsymbol{Ax\leq b}\}
+\]
+\\
+
+
+A \textbf{polyhedron} is a set in $\mathbb{R}^{n}$ of the form:
+
+\[
+\{\boldsymbol{x}\in\mathbb{R}^{n}\::\:\boldsymbol{Ax\leq b}\}
+\]
+\\
+
+
+A \textbf{polytope} is a bounded polyhedron.\\
+
+
+The \textbf{face} of a polyhedron $P=\{\boldsymbol{x}\in\mathbb{R}^{n}\::\:\boldsymbol{Ab}\leq\boldsymbol{b}$\}
+minimising $\boldsymbol{c}$ is:
+
+\[
+\text{face}_{\boldsymbol{c}}(P)=\{\boldsymbol{x}\in P\::\:\boldsymbol{c.x\leq c.y}\:\forall\boldsymbol{y}\in P\}
+\]
+\\
+
+
+The \textbf{linear span} of $P$ is the subspace span $(\boldsymbol{x-y}\,;\,\boldsymbol{x},\,\boldsymbol{y}\in P)$
+of $\mathbb{R}^{n}$. The \textbf{dimension} of $P$ is the dimension
+of its linear span.\\
+
+
+A linear program is in \textbf{standard form }if it is:
+
+\[
+\min\boldsymbol{c.x}\text{ for }\boldsymbol{x\in}\mathbb{R}^{n}\text{ satisfying }\boldsymbol{Ax=b},\,\boldsymbol{x\geq0}
+\]
+\\
+A vector $\boldsymbol{y}\in\mathbb{R}^{n}$ is a \textbf{basic solution}
+if $\boldsymbol{Ay=b}$ and $\{A_{i}\::\: y_{i}\neq0\}\subseteq\mathbb{R}^{d}$
+is linearly independent.\\
+
+
+A vector $\boldsymbol{y}\in\mathbb{R}^{n}$ is a \textbf{basic feasible
+solution }if $\boldsymbol{y}$ is a basic solution with $y_{i}\geq0,\,\forall i$.\\
+
+
+Let $\boldsymbol{x}\in P$. A vector $\boldsymbol{d}$ is a \textbf{feasible
+direction} at $\boldsymbol{x}$ if $\exists\theta>0\: s.t.\:\boldsymbol{x}+\theta\boldsymbol{d}\in P$\\
+
+
+A basic feasible solution $\boldsymbol{y}$ is\textbf{ degenerate
+}if $|\{i\::\: y_{i}\neq0\}|<d$. It is \textbf{nondegenerate} otherwise.\\
+
+
+The \textbf{reduced cost vector }in direction $i$ w.r.t. a basic
+feasible solution $\boldsymbol{x}$ corresponding to $I$ is defined
+by:
+
+\[
+\bar{c_{i}}=c_{i}-\boldsymbol{c_{I}^{T}}\boldsymbol{B^{-1}A_{i}}
+\]
+\\
+The full \textbf{Simplex Tableau }for the basic feasible solution
+corresponding to $I$ is the $(d+1)\times(n+1)$ matrix:
+
+\[
+\left[\begin{array}{c|c}
+-\boldsymbol{c}_{I}\boldsymbol{B}^{-1}\boldsymbol{b} & \boldsymbol{c}-\boldsymbol{c}_{I}^{T}\boldsymbol{B}^{-1}\boldsymbol{A}\\
+\boldsymbol{B}^{-1}\boldsymbol{B} & \boldsymbol{B}_{I}^{-1}\boldsymbol{A}
+\end{array}\right]
+\]
+\\
+For $\boldsymbol{u,\, v}\in R^{n}$ we write $\boldsymbol{u}>_{lex}\boldsymbol{v}$
+if the first nonzero element of $\boldsymbol{u-v}$ is positive.\\
+
+
+Let $\boldsymbol{T}$ be a Simplex tabeau and choose any $i$ with
+$\bar{c_{i}}<0$. The \textbf{lexicographic pivot rule }is to choose
+$s$ amongst those with $\boldsymbol{T}_{s,1}>0$ and $\frac{\boldsymbol{T}_{s,0}}{\boldsymbol{T}_{s,i}}$
+minimum such that $\frac{1}{\boldsymbol{T}_{s,i}}(rows)$ is smallest
+w.r.t. lex order.
+
+
+\section{Formulation}
+
+
+\subsection{Conversion to Standard Form}
+\begin{enumerate}
+\item Make $\boldsymbol{x}\geq0$. 
+
+\begin{enumerate}
+\item If there is no inequality $x_{i}\geq0$ or $x_{i}\leq0$ for some
+$i$, write $x_{i}=x_{i}^{+}-x_{i}^{-}$ with $x_{i}^{+},\, x_{i}^{-}\geq0$. 
+\item If there is $x_{i}\leq0$, replace $x_{i}$ by $-x_{i}$.
+\end{enumerate}
+\item Add slack variables.
+
+\begin{enumerate}
+\item $\boldsymbol{a.x\leq b}\rightarrow\boldsymbol{a.x+s=b},\,\boldsymbol{s\geq0}$
+\end{enumerate}
+\item Update $\boldsymbol{c}$.
+
+\begin{enumerate}
+\item $c_{i}\rightarrow(c_{i}^{+},\,-c_{i}^{-})$
+\item $c_{s}=0$
+\end{enumerate}
+\end{enumerate}
+
+\section{Simplex Algorithm}
+
+
+\subsection{Finding basic solutions}
+
+(Not actually part of the Simplex Algorithm)
+\begin{enumerate}
+\item Choose $d$ linearly independant columns of $\boldsymbol{A}\::\:\{A_{i}\::\: i\in I_{d}\}$
+\item Let $\boldsymbol{B}$ be the submatrix of $\boldsymbol{A}$ with columns
+indexed by $I_{d}$.
+\item Solve $\boldsymbol{By_{B}=b}$ for $\boldsymbol{y_{B}}\in\mathbb{R}^{d}$
+\item Set $\boldsymbol{y}\in\mathbb{R}^{n}$ to be the vector with $\boldsymbol{y_{B}}$
+in the coordinates indexed by $I$, and $0$ otherwise.
+\end{enumerate}
+Then $\boldsymbol{Ay=b}$ and $\{A_{i}\::\: y_{i}\neq0\}$ is linearly
+indepedent.
+
+
+\subsection{Finding an intial basic feasible solution}
+\begin{description}
+\item [{Easy-Case}] $\boldsymbol{A}$ contains an identity matrix and $\boldsymbol{b\geq0}$.
+
+\begin{lyxlist}{00.00.0000}
+\item [{i)}] Choose $I$ to be the indices of the identity submatrix of
+$\boldsymbol{A}$.
+\item [{ii)}] Set $\boldsymbol{x}$ accordingly: $\boldsymbol{Ix=b}$
+\end{lyxlist}
+\item [{Hard-Case}] 'Clever Trick'
+
+\begin{lyxlist}{00.00.0000}
+\item [{i)}] Multiply rows by $-1$ to make $\boldsymbol{b\geq0}$.
+\item [{ii)}] Set up new LP: $\min\, y_{1}+\dots+y_{d}\text{ for }(\boldsymbol{x,\, y)}\in\mathbb{R}^{n+d}\: s.t.\:\boldsymbol{Ax+y=b};\,\boldsymbol{x,\, y\geq0}$
+\item [{iii)}] Rewrite the objective function in terms of the non-basic
+variables.
+\item [{iv)}] Apply 'Easy-Case' to get a BFS for this new LP and solve.
+\item [{v)}] If the optimal value for the new LP is $0$, then the solution
+gives a BFS for the original LP.
+\end{lyxlist}
+\end{description}
+
+\subsection{The Algorithm}
+\begin{enumerate}
+\item Find a vertex of $P$
+
+\begin{enumerate}
+\item Find a basic feasible solution $\boldsymbol{x}$ corresponding to
+$I$.
+\end{enumerate}
+\item If there is no edge leading to a vertex of lower cost, stop.
+
+\begin{enumerate}
+\item Compute the reduced cost vector $\bar{\boldsymbol{c}}$.
+\item Stop when there is no such $\bar{c_{i}}<0$.
+\end{enumerate}
+\item Walk along an edge of $P$ moving to a vertex of lower cost.
+
+\begin{enumerate}
+\item Choose $i\notin I$ with $\bar{c_{i}}<0$ .
+\item Move in the $i$th basic feasible direction to $\boldsymbol{x}^{\prime}=\boldsymbol{x}+\theta^{*}\boldsymbol{d}$
+
+\begin{enumerate}
+\item Compute $\boldsymbol{d}$ with $d_{i}=1,\;\boldsymbol{d}_{I}=-\boldsymbol{B}_{I}^{-1}\boldsymbol{A_{i}},\; d_{j}=0\,\forall j\notin I\cup\{i\}$
+\item If $\boldsymbol{d\geq0}$ then the optimal cost is $-\infty$, stop.
+\item Else, let $\theta^{*}=\min_{d_{j}<0}\frac{x_{j}}{-d_{j}}$ and let
+$l=\text{argmin}_{d_{j}<0}\frac{x_{j}}{-d_{j}}$.
+\item Set $\boldsymbol{x}^{\prime}=\boldsymbol{x}+\theta^{*}\boldsymbol{d}$
+\end{enumerate}
+\end{enumerate}
+\item Goto 2.
+\end{enumerate}
+
+\section{Results}
+
+
+\paragraph*{Prop.}
+
+If the feasible region of the LP is a polytope, then the LP has a
+solution.
+
+
+\paragraph*{Thm.}
+\begin{lyxlist}{00.00.0000}
+\item [{a)}] A vector $\boldsymbol{y}$ is a basic feasible solution iff
+$\boldsymbol{y}$ is a vertex of $P=\{\boldsymbol{x}\in\mathbb{R}\::\:\boldsymbol{Ax=b},\,\boldsymbol{x\geq0}\}$
+\item [{b)}] Either $\min_{\boldsymbol{x}\in P}\boldsymbol{c.x}=-\infty$
+or there exists a basic feasible solution $\boldsymbol{y}$ with $\boldsymbol{c.y\leq c.x}\:\forall\boldsymbol{x}\in P$
+\end{lyxlist}
+
+\paragraph*{Prop.}
+
+If $\boldsymbol{x}$ is a nondegenerate basic feasible solution then
+the ith basic direction is feasible.
+
+
+\paragraph*{Prop.}
+
+Let $\boldsymbol{x}$ be a basic feasible solution corresponding to
+$I\subseteq\{1,\,\dots,\, n\}$ and let $\boldsymbol{\bar{c}}$ be
+the corresponding reduced cost vector.
+\begin{lyxlist}{00.00.0000}
+\item [{a)}] If $\bar{\boldsymbol{c}}\geq0$ then $\boldsymbol{x}$ is
+optimal.
+\item [{b)}] If $\boldsymbol{x}$ is optimal and nondegenerate then $\bar{\boldsymbol{c}}\geq0$.
+\end{lyxlist}
+
+\paragraph*{Thm.}
+
+With the lexicographic pivot rule, the Simplex algorithm terminates
+correctly.
+
+
+\paragraph*{Thm.}
+
+(Linear Programming Duality) If the primal LP $\min\boldsymbol{c.x}$
+for $\boldsymbol{x}\in\mathbb{R}^{n}$ with $\boldsymbol{Ax=b,\, x\geq0}$
+has an optimal solution then so does the dual programme $\max\boldsymbol{b.p}$
+for $\boldsymbol{p}\in\mathbb{R}^{d}$ with $\boldsymbol{A}^{T}\boldsymbol{p}\leq\boldsymbol{c}$
+and the respective costs are the same:
+
+\[
+\min_{\boldsymbol{Ax=b},\,\boldsymbol{x\geq0}}\boldsymbol{c.x}=\max_{\boldsymbol{A}^{T}\boldsymbol{p}}\boldsymbol{b.p}
+\]
+
+
+Moreover,
+\begin{lyxlist}{00.00.0000}
+\item [{a)}] If the primal is feasible and bounded then so is the dual.
+\item [{b)}] If the primal is unbounded then the dual is not feasible.
+\item [{c)}] If the primal is not feasible then the dual is unbounded.\end{lyxlist}
+
+\end{document}
