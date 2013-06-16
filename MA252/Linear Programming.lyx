@@ -587,6 +587,175 @@ Update
 \end_layout
 
 \end_deeper
+\begin_layout Subsection
+Minimum Spanning Trees
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $G=(V,\, E)$
+\end_inset
+
+ be a graph with weights 
+\begin_inset Formula $w:\: E\rightarrow\mathbb{Z}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\boldsymbol{x}\in\mathbb{R}^{|E|}$
+\end_inset
+
+ such that 
+\begin_inset Formula $x_{e}=\begin{cases}
+1 & :\: e\text{ is in the spanning tree}\\
+0 & :\:\text{otherwise}
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Minimise
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\boldsymbol{w.x}=\sum_{e\in E}w(e)x_{e}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Subject to
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+ &  & x_{e}\in\{0,\,1\}\forall e\in E\\
+ &  & \sum_{e=(u,v);\, u,v\in S}x_{e}\leq|S|-1\:\forall S\subseteq V\::\: S\not=\emptyset\\
+ &  & \sum_{e\in E}x_{e}=|V|-1
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Shortest Paths
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $G=(V,\, E)$
+\end_inset
+
+ be a digraph with weights 
+\begin_inset Formula $w:\: E\rightarrow\mathbb{Z}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Maximise
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y_{v}=\boldsymbol{e}_{v}.\boldsymbol{y}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Subject to
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{v^{\prime}}-y_{v^{\prime\prime}} & \leq & w(v^{\prime\prime},\, v^{\prime})\\
+y_{u} & = & 0
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $\boldsymbol{e_{v}}=(0,\,0,\,\dots1,\:\dots,\,0)$
+\end_inset
+
+ with the 
+\begin_inset Formula $1$
+\end_inset
+
+ in position 
+\begin_inset Formula $v$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Max Flow
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $N=(V,\, E,\, s,\, t,\, c)$
+\end_inset
+
+ be a network.
+\end_layout
+
+\begin_layout Standard
+Maximise
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sum_{e=(s,\, u)}f(e)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Subject to
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+ &  & 0\leq f(e)\leq c(e)\:\forall e\in E\\
+ &  & \sum_{e=(u,v)}f(e)-\sum_{e=(v,u^{\prime})}f(e)=0\:\forall v\not=s,t
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Simplex Algorithm
 \end_layout
@@ -604,7 +773,7 @@ Choose
 \begin_inset Formula $d$
 \end_inset
 
- linearly independant columns of 
+ linearly independent columns of 
 \begin_inset Formula $\boldsymbol{A}\::\:\{A_{i}\::\: i\in I_{d}\}$
 \end_inset
 
@@ -668,11 +837,11 @@ Then
 \begin_inset Formula $\{A_{i}\::\: y_{i}\neq0\}$
 \end_inset
 
- is linearly indepedent.
+ is linearly independent.
 \end_layout
 
 \begin_layout Subsection
-Finding an intial basic feasible solution
+Finding an initial basic feasible solution
 \end_layout
 
 \begin_layout Description
@@ -953,8 +1122,11 @@ If
 \begin_inset Formula $\boldsymbol{x}$
 \end_inset
 
- is a nondegenerate basic feasible solution then the ith basic direction
- is feasible.
+ is a nondegenerate basic feasible solution then the 
+\begin_inset Formula $i$
+\end_inset
+
+th basic direction is feasible.
 \end_layout
 
 \begin_layout Paragraph*
