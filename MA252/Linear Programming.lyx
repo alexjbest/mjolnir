@@ -423,7 +423,7 @@ for the basic feasible solution corresponding to
 \[
 \left[\begin{array}{c|c}
 -\boldsymbol{c}_{I}\boldsymbol{B}^{-1}\boldsymbol{b} & \boldsymbol{c}-\boldsymbol{c}_{I}^{T}\boldsymbol{B}^{-1}\boldsymbol{A}\\
-\boldsymbol{B}^{-1}\boldsymbol{B} & \boldsymbol{B}_{I}^{-1}\boldsymbol{A}
+\boldsymbol{B_{I}}^{-1}\boldsymbol{b} & \boldsymbol{B}_{I}^{-1}\boldsymbol{A}
 \end{array}\right]
 \]
 
