@@ -1,4 +1,4 @@
-%% LyX 2.0.3 created this file.  For more info, see http://www.lyx.org/.
+%% LyX 2.0.2 created this file.  For more info, see http://www.lyx.org/.
 %% Do not edit unless you really know what you are doing.
 \documentclass[english]{article}
 \usepackage[T1]{fontenc}
@@ -6,8 +6,7 @@
 \usepackage{geometry}
 \geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
 \setlength{\parindent}{0bp}
-\usepackage{amsbsy}
-\usepackage{amstext}
+\usepackage{amsmath}
 \usepackage{amssymb}
 
 \makeatletter
@@ -121,7 +120,7 @@ corresponding to $I$ is the $(d+1)\times(n+1)$ matrix:
 \[
 \left[\begin{array}{c|c}
 -\boldsymbol{c}_{I}\boldsymbol{B}^{-1}\boldsymbol{b} & \boldsymbol{c}-\boldsymbol{c}_{I}^{T}\boldsymbol{B}^{-1}\boldsymbol{A}\\
-\boldsymbol{B}^{-1}\boldsymbol{B} & \boldsymbol{B}_{I}^{-1}\boldsymbol{A}
+\boldsymbol{B_{I}}^{-1}\boldsymbol{b} & \boldsymbol{B}_{I}^{-1}\boldsymbol{A}
 \end{array}\right]
 \]
 \\
@@ -160,6 +159,75 @@ $i$, write $x_{i}=x_{i}^{+}-x_{i}^{-}$ with $x_{i}^{+},\, x_{i}^{-}\geq0$.
 \item $c_{s}=0$
 \end{enumerate}
 \end{enumerate}
+
+\subsection{Minimum Spanning Trees}
+
+Let $G=(V,\, E)$ be a graph with weights $w:\: E\rightarrow\mathbb{Z}$.
+
+Let $\boldsymbol{x}\in\mathbb{R}^{|E|}$ such that $x_{e}=\begin{cases}
+1 & :\: e\text{ is in the spanning tree}\\
+0 & :\:\text{otherwise}
+\end{cases}$
+
+Minimise
+
+\[
+\boldsymbol{w.x}=\sum_{e\in E}w(e)x_{e}
+\]
+
+
+Subject to
+
+\begin{eqnarray*}
+ &  & x_{e}\in\{0,\,1\}\forall e\in E\\
+ &  & \sum_{e=(u,v);\, u,v\in S}x_{e}\leq|S|-1\:\forall S\subseteq V\::\: S\not=\emptyset\\
+ &  & \sum_{e\in E}x_{e}=|V|-1
+\end{eqnarray*}
+
+
+
+\subsection{Shortest Paths}
+
+Let $G=(V,\, E)$ be a digraph with weights $w:\: E\rightarrow\mathbb{Z}$
+
+Maximise
+
+\[
+y_{v}=\boldsymbol{e}_{v}.\boldsymbol{y}
+\]
+
+
+Subject to
+
+\begin{eqnarray*}
+y_{v^{\prime}}-y_{v^{\prime\prime}} & \leq & w(v^{\prime\prime},\, v^{\prime})\\
+y_{u} & = & 0
+\end{eqnarray*}
+
+
+where $\boldsymbol{e_{v}}=(0,\,0,\,\dots1,\:\dots,\,0)$ with the
+$1$ in position $v$.
+
+
+\subsection{Max Flow}
+
+Let $N=(V,\, E,\, s,\, t,\, c)$ be a network.
+
+Maximise
+
+\[
+\sum_{e=(s,\, u)}f(e)
+\]
+
+
+Subject to
+
+\begin{eqnarray*}
+ &  & 0\leq f(e)\leq c(e)\:\forall e\in E\\
+ &  & \sum_{e=(u,v)}f(e)-\sum_{e=(v,u^{\prime})}f(e)=0\:\forall v\not=s,t
+\end{eqnarray*}
+
+
 
 \section{Simplex Algorithm}
 
