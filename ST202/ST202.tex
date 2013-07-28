@@ -497,7 +497,7 @@ $$\left.\begin{aligned}i &\rightarrow k \\ k &\rightarrow j\end{aligned}\right\}
 so $k$ is essential.
 \end{proof}
 
-\subsection{Periodicity}
+\subsection*{Periodicity}
 \begin{defn}
 The \emph{period} of a state is the greatest common divisor (gcd) of times at which the chain might return to the state. Thus:
 \begin{enumerate}[(a)]
@@ -543,7 +543,118 @@ Then $\exists N>0$ s.t. $\forall k\ge N$, $P_{ii}^{(kd)} >0$.
 period$(i) = 2$
 \end{ex}
 
-\section{--/--/-- Lecture 7}
+\section{16/10/12 Lecture 7}
+
+\subsection*{Recurrence and Transience}
+
+\begin{ex} You play a gambler's ruin game. Your capital is \pounds 10. You opponent has unlimited credit. What happens if you win with probability $p > 0.5$? $S = \{0, 1, 2, \ldots\}$.\\
+
+Two communicating classes
+\begin{itemize}
+\item
+\{0\} - essential and aperiodic
+\item
+\{1,2,$\ldots$\} - not essential and of period 2
+\end{itemize}
+\end{ex}
+
+\paragraph*{Questions}
+\begin{itemize}
+\item
+$\PP$(X hits 0 before time $n$ = $r_n$ = ?
+\item
+$\lim_{n \rightarrow \inf} r_n$ = 1? (It may depend on $p$)
+\end{itemize}
+
+\begin{defn}
+First Passage time distribution - Let $f_{i,j}^{(n)} = \PP(X_n = j, X_m \neq j$ for $m = 1, 2, \ldots n-1$)\\
+
+$T_{i,j}$ - the first passage time from $i$ to $j$, is a random variable distributed as $\PP[T_{i,j} = n \mid X_0 = i ] = 1 - f_{i,j}^{(n)}$. Also $\PP[T_{i,j} = \inf \mid X_0 = i] = 1 - f_{i,j}^{(\ast)}$ with $f_{i,j}^{(\ast)} = \sum_{n=1}^{\inf} f_{ij}^{(n)}$. 
+\end{defn}
+
+\begin{defn}
+The state j is
+\begin{enumerate}
+\item
+recurrent (or persistent) if $f_{j,j}^{(\ast)} = 1$.
+\item
+transient if $f_{j,j}^{(\ast)} < 1$.
+\end{enumerate}
+\end{defn}
+
+\subsection*{First-step decomposition}
+
+\[
+f_{i,j}^{(1)} = p_{i,j}
+\]
+\[
+n \geq 1, f_{i,j}^{n+1} = \sum_{l:l\neq j} p_{i,l}f_{l,j}^{(n)} = \sum_{l: l \rightarrow j, l \neq j} p_{i,l}f_{l,j}
+\]
+if we sum over $n$:
+\[
+f_{i,j}^{(\ast)} = p_{i,j} + \sum_{l : l \rightarrow j, l \neq j} p_{i,j}f_{l,j}^{(\ast)}
+\]
+
+\begin{ex}
+Players A and B choosing sequences of coin tosses $\{H, T\}$.
+Player A chooses THH.
+Player B choose TTH.
+And they wait until one of the sequences occurs first for e.g. THTHTHH, then A wins.\\
+
+We can model the game by a Markov Chain. We let state 1 be no pattern of note, state 2 'T', 3 'TT', 4 'TTH', 5 'TH' and 6 'THH'.
+
+\[
+\uuline{P} = \left [ \begin{array}{cccccc}
+0.5 & 0.5 & 0 & 0 & 0 & 0\\
+0 & 0 & 0.5 & 0 & 0.5 & 0\\
+0 & 0 & 0.5 & 0.5 & 0 & 0\\
+0 & 0 & 0 & 1 & 0 & 0\\
+0 & 0.5 & 0 & 0 & 0 & 0.5\\
+0 & 0 & 0 & 0 & 0 & 1
+\end{array} \right ]
+\]
+
+we want to calculate $f_{1,4}^{(\ast)}$ and $f_{1,6}^{(\ast)}$. To find out, which one has a better chance of winning?\\
+
+\[
+f_{1,4}^{(\ast)} = 0.5 f_{1,4}^{(\ast)} + 0.5 f_{2,4}^{(\ast)} \hspace*{0.5 in} \Rightarrow \hspace*{0.5 in} f_{1,4}^{(\ast)} = f_{2,4}^{(\ast)}
+\]
+Now
+\[
+f_{2,4}^{(\ast)} = 0.5 f_{3,4}^{(\ast)} + 0.5 f_{5,4}^{(\ast)}
+\]
+So lets look at the first element $f_{3,4}^{(\ast)}$
+\[
+f_{3,4}^{(\ast)} = 0.5 f_{3,4}^{(\ast)} + 0.5 f_{4,4}^{(\ast)} = 0.5 + f_{3,4}^{(\ast)} 0.5 \hspace*{0.5 in} \Rightarrow \hspace*{0.5 in} f_{3,4}^{(\ast)} = 1
+\]
+then the second element $f_{5,4}^{(\ast)}$
+\[
+f_{5,4}^{(\ast)} = 0.5 f_{2,4}^{(\ast)} + 0.5 f_{6,4}^{(\ast)} = 0.5 f_{2,4}^{(\ast)}
+\]
+putting it all together
+\[
+f_{1,4}^{(\ast)} = 0.5 (1) + 0.5 (0.5 f_{2,4}^{(\ast)}) = 0.5 + 0.25 f_{1,4}^{(\ast)} \hspace*{0.5 in} \Rightarrow \hspace*{0.5 in} f_{1,4}^{(\ast)} = 2/3
+\]
+What is $f_{1,6}^{\ast}$ You can repeat as above or realise that the game must end so we have $f_{1,6}^{\ast} = 1 - f_{1,4}^{\ast} = 1/3$.
+\end{ex}
+
+\subsection*{First Passage decomposition}
+\[
+p_{i,j}^{(n)} = \sum_{m=1}^n f_{i,j}^{(m)}p_{j,j}^{n-m} \hspace*{0.5 in} n > 0
+\]
+Prove this by dividing $\PP(X_n = j \mid X_0 = i)$ into a partition according to the first time $X$ visits $j$. Alternatively, setting $m = n - u$, rewrite
+\[
+p_{i,j}^{(n)} = \sum_{u = 0}^{n-1} f_{i,j}^{(n-u)}p_{j,j}^{(u)} \hspace*{0.5 in} n> 0
+\]
+\subsection*{Converting into generating functions}
+\[
+P_{i,j}(s) = \sum_{n=0}^{\inf} p_{i,j}^{(n)}s^n; \hspace*{0.5 in} F_{i,j}(s) = \sum_{n=0}^{\inf}f_{i,j}s^n
+\]
+\begin{lem} For $\mid s \mid < 1$
+\[
+P_{i,j}(s) = p_{i,j}^{(0)} + F_{i,j}(s)P_{j,j}(s)
+\]
+\end{lem}
 
 \section{--/--/-- Lecture 8}
 
