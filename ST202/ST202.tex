@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{hyperref}
+\usepackage{ulem,MnSymbol}
 
 \newtheorem*{thm}{Theorem}
 \newtheorem*{lem}{Lemma}
@@ -44,7 +45,331 @@
 Notes for ST202.
 \clearpage
 
-\section{}
-\subsection{}
+\section*{02/10/12 Lecture 1}
+
+\paragraph*{Into/Recap}
+
+Stochastic Process is a random phenomenon evolving in time.
+
+\begin{defn} A stochastic process X is a family $\{ X_t$, $t$ $\in$ $T$ \} of R.Vs indexed by a time-set $T$. The hard part about this is that it is dependent (behaving in a dynamic way).\\
+
+$T$: time set ($T$ is typically the natural numbers but not always).\\
+
+State space of $X$: all the possible states that $X$ can be in.\\
+\end{defn}
+
+\begin{ex}
+Gambler's Ruin - We toss a sequence of fair coins. You pay me £1 for each head and I pay you £1 for each tail. I start with £10 and you start with £100, don't spend it all at once. We play until one of us runs out of money.
+
+\paragraph*{Define that game}
+
+Define $X_n$ = $x$ if you have £$x$ after toss $n$ (then $X_0$ = 100). The sequence \{ $X_1$, $X_2$, $\ldots$ \} is a stochastic process. The state-space is \{0, 1, 2, $\ldots$, 110 \}.
+\end{ex}
+
+\section*{05/10/12 Lecture 2}
+
+\begin{ex}
+Hanging words - This is a stochastic process with a large S "roughly $26^3$"
+
+\[
+\begin{array}{ccccccc}
+\mbox{\underline{Start Word}} & & & & & \mbox{\underline{Finish Word}} \\
+\downarrow & & & & & \downarrow \\
+\mbox{rat} & \rightarrow & \mbox{rot} & \rightarrow \mbox{dot} & \rightarrow & \mbox{dog}
+\end{array}
+\]
+
+You have to change from start to finish by changing one letter at a time, so that all intermediate steps are words.
+\end{ex}
+
+\paragraph*{Use a Computer}
+
+\begin{itemize}
+\item
+Dictionary
+\item
+random number Generator
+\end{itemize}
+
+Then we apply the following algorithm.
+
+\begin{enumerate}
+\item
+Choose a position in the word at random
+\item
+Choose one of the letters that previously hasn't been in this position (at random)
+\item
+Check if the word is in the dictionary
+\item
+If not decline
+\item
+If in the dictionary accept
+\item
+Repeat this process until you have the word
+\end{enumerate}
+
+\begin{ex}Simple random Walk - Here is a random walk with a variable probability $p$ and $1-p$.\\
+
+$X_0$ = 0\\
+$X_n$ = $X_{n-1}$ $\pm$ 1 $\rightarrow$ Probability $p$, $1-p$ respectively.
+\indent $S$ = $\mathbb{Z}$, $T$ = $\mathbb{N}$
+\end{ex}
+
+\begin{defn} The path space, is a set of all paths that you process can take eg your state space raised to the power of the amount of iterations you process can take.
+\end{defn}
+
+\begin{defn} An \underline{Event} is a sub set of the path-space.\\
+\end{defn}
+ 
+e.g. all paths that do not exceed 10 for the first 100 steps.\\
+
+e.g Event: all paths that satisfies $X_2$ = 0
+
+\begin{defn} $X$ = \{ $X_n$ : n = 0,1,2, $\ldots$ \} is said to be a discrete state-space Markov chain if
+
+\begin{enumerate}
+\item
+$S$ - is a discrete state space
+\item
+Markov property holds
+\end{enumerate}
+\indent\indent The conditional probabilities of the future given the past depend only on the present.
+\[
+\mathbb{P} ( X_{n+1} = x_{n+1} \mid X_n = x_n, X_{n-1} = x_{n-1}, \ldots, X_0 = x_0 ) =
+\]
+\[
+\indent\indent \mathbb{P}(X_{n+1} = x_{n+1} \mid X_n = x_n) \hspace*{0.05 in} \forall \mbox{ n } \forall x_i \mbox{ i } \in \{1,2, \ldots, N \}
+\]
+\end{defn}
+
+\paragraph*{Intuition} $\mathbb{P}$ ( future $\mid$ present and past) = $\mathbb{P}$ ( future $\mid$ present )
+
+\begin{defn} The discrete state space Markov Chains is said to have stationary transition probabilities if
+\[
+p_{i,j} = \mathbb{P} ( X_{m+1} = i \mid X_m = j) 
+\] 
+
+do not get 'large' with time.
+\end{defn}
+
+\begin{ex} A really simple weather model\\
+
+$X_n$ = $w$ if wet on day $n$\\
+$\hspace*{0.15 in}$ $X_n$ = $d$ if dry on day $n$\\
+
+$\mathbb{P}$ (wet tomorrow $\mid$ wet today ) = 0.8\\
+$\hspace*{0.15 in}$ $\mathbb{P}$ (dry tomorrow $\mid$ dry today ) = 0.7\\
+
+or\\
+
+$\mathbb{P} (X_{n+1} = w \mid X_n = w) = 0.8$ $\Leftrightarrow$ $\mathbb{P}$ ($X_{n+1}$ = $d$ $\mid$ $X_n$ = $w$ ) = 0.2\\
+$\hspace*{0.15 in}$ $\mathbb{P}$ ($X_{n+1}$ = $d$ $\mid$ $X_n$ = $d$ ) = 0.7 $\Leftrightarrow$ $\mathbb{P}$ ($X_{n+1}$ = $w$ $\mid$ $X_n$ = $d$ ) = 0.3\\
+\end{ex}
+
+\begin{ex} A simple weather model\\
+
+$\mathbb{P}$ ($X_{n+1}$ = $w$ $\mid$ $X_n$ = $w$ ) = 0.6 + $\frac{\mid J(n) - 180 \mid}{350}$ 
+$\hspace*{0.15 in}$ $\mathbb{P}$ ($X_{n+1}$ = $d$ $\mid$ $X_n$ = $d$ ) = 0.5 - $\frac{\mid J(n) - 180 \mid}{350}$
+
+with $J(n)$ is equal to the number of days in years. 
+\end{ex}
+
+\section*{05/10/12 Lecture 3}
+
+\begin{defn} Mc = discrete state-space Markov chain with stationary transition probabilities.
+\end{defn}
+
+\begin{defn} Stationary transition probabilities and transition probability matrices.
+\end{defn}
+
+\begin{enumerate}
+\item
+the (one-step)probability (kernel) from $j$ to $k$ is denoted by
+\[
+P_{jk} = p(j,k) = \mathbb{P}(X_{m+1} = K \mid X_m = j) \mbox{k, j }\in S^{\infty} = \{1,2,\ldots, N\}
+\]
+\item
+the (one-step) transition probability matrix is denoted by
+\[
+\uuline{P} = [P(j,k)]_{j,k \in S}
+\]
+\item
+the $n$-step transition probabilities and transition probability matrices are respectively defined as
+\[
+P_{jk}^{(n)} = P^{(n)} (j, k) = \mathbb{P}(X_{m+n} = k \mid X_m = j) 
+\]
+and
+\[
+\uuline{P}^{(n)} = [P^{(n)} (j,k) ]_{j,k \in S}
+\]
+\end{enumerate}
+
+\begin{ex}
+The really simple weather model - let d=2 and w = 1, so S = \{d,w\} = \{2,1\}
+
+\[
+\uuline{P}^{(n)} = \left [ \begin{array}{cc} 0.8 & 0.2 \\ 0.3 & 0.7 \end{array} \right ] \hspace*{0.5 in} n > 0
+\]
+
+with
+
+\[
+\uuline{P}^{(0)} = \left [ \begin{array}{cc} 1 & 0 \\ 1 & 1 \end{array} \right ]
+\]
+\end{ex}
+
+\begin{rem} $\uuline{P}^{(0)} = T_{\mid S \mid \times \mid S \mid}$ because
+\[
+P^{(0)}(j,k) = \begin{cases} 1 \mbox{ j = k}\\ 0 \mbox{ j} \neq \mbox{ k} \end{cases}
+\]
+\end{rem}
+
+\begin{rem} $\uuline{P}$ is a stochastic matrix, i.e
+\begin{itemize}
+\item
+row sums = 1
+\item
+entries $\geq$ 0
+\end{itemize}
+also $\uuline{P}^n$ is a stochastic matrix.
+\end{rem}
+
+\begin{thm} Distribution of a MC is fully specified by (1) and (2)
+\begin{itemize}
+\item
+the distribution of its initial state $x_0$
+\item
+its (one step) transition probability
+\end{itemize}
+\end{thm}
+
+i.e. given (1) and (2) we can calculate the probability of any event occurring X.
+
+\begin{proof} For any path \{$k_0$, $k_1$, $\ldots$, $k_{n-1}$, $k_n$\} over the initial time segment \{0, 2, $\ldots$, n \}
+
+\[
+\mathbb{P}(x \mbox{ follows } \{k_0, k_1, \ldots, k_n \}) = \mathbb{P}(X \mbox{ follows } \{k_0, k_1, \ldots, k_n \} \mid X \mbox{ follows } \{k_0, k_1, \ldots, k_{n-1} \}) 
+\]
+\[
+\times \mathbb{P}(X \mbox{ follows } \{k_0, k_1, \ldots, k_{n-1} \}) =
+\]
+\[
+= \mathbb{P}(X_n = k_n \mid X \mbox{ follows } \{(k_0, k_1, \ldots, k_{n-1} \}) \times \mathbb{P}(X \mbox{ follows } \{ k_0, k_1, \ldots, k_{n-1} \} ) =
+\]
+\[ = \mathbb{P}(X_n = k_n \mid X_{n-1} = k_{n-1} ) \times \mathbb{P}(X \mbox{ follows } \{k_0, k_1, \ldots, k_{n-1} \}) =
+\]
+\[
+= \mathbb{P}(k_{n-1}, k_{n} ) \mathbb{P}(k_{n-2}, k_{n-1}) \mathbb{P}(X \mbox{ follows } \{ k_0, k_1, \ldots, k_{n-2} \}) = \ldots
+\]
+\[
+\ldots = \mathbb{P}(k_{n-1}, k_{n} ) \mathbb{P}(k_{n-2}, k_{n-1}) \ldots \mathbb{P}(k_0, k_1) \frac{\mathbb{P}(X \mbox{ follows } \{k_0\})}{\mathbb{P} (x_0 = k_0)}
+\]
+\end{proof}
+
+\begin{ex} Weather model
+
+\[
+\uuline{P} = \left [ \begin{array}{cc} 0.8 & 0.2 \\ 0.3 & 0.7 \end{array} \right ] \hspace*{0.5 in} n > 0
+\]
+
+We start with dry weather 
+\[
+\mathbb{P}(ddwd) = \mathbb{P}(\{X_1, X_2, X_3,X_4\} ) = \{d,d,w,d\} = 1 \times 0.7 \times 0.3 \times 0.2
+\] 
+\end{ex}
+
+\begin{thm} Chapman Kolmogorov equations -
+Suppose X is a MC, then
+\[
+\uuline{P}^{(n + m)} = \uuline{P}^{(n)} \uuline{P}^{(m)} \mbox{ ie } \uuline{P}_{ij}^{(n+m)} = \sum_{k \in S} P_{ik}^{(n)} P_{kj}^{(m)}
+\]
+\end{thm}
+
+\begin{proof} First we start with
+
+\[
+P_{ij}^{n+m} = \mathbb{P}(X_{n+m} = j \mid X_0 = i )= \mathbb{P}((\bigcup_{k \in S} \{ X_{n+m} = j, X_n = k \} \mid X_0 = i) =
+\]
+\[ = \sum_{k \in S} \mathbb{P}(X_{n+m} = j, X_n = k \mid X_0 = i) = \sum_{k \in S} \mathbb{P}(X_{n+m} = j \mid X_n = k, X_0 = i ) \times \mathbb{P} (X_n = k \mid X_0 = i) = 
+\]
+\[ = \sum_{k \in S} \mathbb{P} (X_{n+m} = j \mid X_n = k) \times \mathbb{P}(X_n = k \mid X_0 = i) = \sum_{k \in S} P^{(m)}(k,j) P^{(n)}(i,k)
+\]
+\end{proof}
+
+\begin{thm} Distribution of $X_n$
+\[
+a_i^{(n)} = \mathbb{P}(X_n) = i
+\]
+Then $a^{(n)} = a^{(0)} \uuline{P}^{(n)}$, with $a^{(n)}$ being a vector.
+\end{thm}
+
+\begin{proof}
+\[
+a_i^n = \sum_{k \in S} \mathbb{P} (X_n = i \mid X_0 = k ) \times \mathbb{P}[X_0 = k] = \sum_{k \in S} P^{(n)} (k,i) a_k^{(0)}
+\] 
+\end{proof}
+
+\section*{09/10/12 Lecture 4}
+
+\paragraph*{Recall:} transition matrix
+\[
+\uuline{P^{n+m}} = \uuline{P^{n}} \cdot \uuline{P^{m}} 
+\]
+if $a^{(n)}$ is the distribution of $X_n$, then $a^{(n)}$ = $a^{(0)} \times \uuline{P^{n}} = a^{(n-1)}\uuline{P}$.
+
+\begin{ex} Let $S = \{1, 2, 3\}$ be our state-space and
+\[
+\uuline{P^{1}} =  \left [ \begin{array}{ccc}
+1 & 0 & 0\\ 0.5 & 0 & 0.5\\ 0 & 0.5 & 0.5 \end{array} \right ]
+\]
+If we start with $X_0 ~ a^{(0)} = [ 0,0,1 ]$ then, $X_1 ~ a^{(1)} = a^{(0)} \uuline{P^{1}} = [0,0.5,0.5]$, then $X_2 ~ a^{(2)} = a^{(0)} \uuline{P^{2}} = a^{1}\uuline{P^1} = [ 0.25, 0.25, 0.5 ]$ and so on $\ldots$
+\end{ex}
+
+\paragraph*{Note} Easy to do 2x2 or 3x3 matrices but for bigger matrices it is easier to use some software.
+
+\paragraph*{State diagram:} directed graph, vertices are the states, directed edges are the possible one step transitions
+
+\begin{ex} $\{Y_n, n \geq 1 \}$ idd taking values in $\{-1, 0, 1\}$ with probabilities $\{q, r, p\}$. Obviously $q + r + p = 1$, the sequence of partial sums $\{X_n = X_{n-1} + Y_n L n \geq 1\}$ forms a Markov chain with tridiagonal transition matrix
+\[
+\uuline{P^1} = \left [ \begin{array}{ccccccc}
+\ddots & \vdots & \vdots & \vdots & \vdots & \vdots & \udots\\
+\hdots & q & r & p & 0 & 0 & \hdots\\
+\hdots & 0 & q & r & p & 0 & \hdots\\
+\hdots & 0 & 0 & q & r & p & \hdots\\
+\udots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots\\
+\end{array} \right ]
+\]
+$a_i^{(0)} = \mathbb{P}(X_0 = i)$ - infinite vector. Distribution of $Y$ is the jump distribution.
+\end{ex}
+
+\paragraph*{Variations}
+\begin{enumerate}
+\item
+Absorbing or reflecting barriers.
+\item
+Random walk behaviours on $\mathbb{Z}^2, \mathbb{Z}^3$ etc
+\item
+Can take arbitrary jump distribution for $Y$.
+\end{enumerate}
+
+\begin{ex}
+Algorithm at the production line
+\begin{enumerate}
+\item
+Test every item until $i+1$ consecutive non-deflective items are found.
+\item
+Test each item at random  with probability $1/r$ until a defective item is found; switch to $(1)$.
+\end{enumerate}
+Our task is to model this with a Markov chain. So we set our statespace as $S = \{E_0, E_1, \ldots E_i, E_{\ast} \}$, with state $E_j$ begin checking the $j^{th}$ item and $E_{\ast}$ be the state where we check an item with probability $1/r$. $X_m$ is the state of the machine at the $m^{th}$ time.
+\[
+\mathbb{P}[ \mbox{go from } E_{\ast} \mbox{ to } E_0 ] = 1/r \times p = p/r
+\] 
+\[
+\uuline{P} = \left [ \begin{array}{ccccc} p & 1-p & 0 & \hdots & 0\\ p & 0 & 1 - p & \hdots & 0\\ \vdots & \vdots & \vdots & \vdots & \vdots\\ p & 0 & 0 & \hdots & 1 - p\\ p/r & 0 & 0 & \hdots & 1 - p/r \end{array} \right ]
+\]
+\end{ex}
+
+\begin{ex} Discrete time m/G/1 queue - service times are iid and independent distributed as $\mathbb{P}(S_n = r)$, number of arrivals = $b_r$.
+\end{ex}
 
 \end{document}
