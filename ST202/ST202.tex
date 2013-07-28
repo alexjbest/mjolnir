@@ -375,7 +375,98 @@ Our task is to model this with a Markov chain. So we set our statespace as $S = 
 
 \section{09/10/12 Lecture 5}
 
-\section{--/--/-- Lecture 6}
+\section{12/10/12 Lecture 6}
+\begin{ex}
+%TODO add picture
+$$\uuline{P} = \begin{bmatrix}
+1 & 0 & 0 & 0 \\
+\frac13 & 0 & \frac13 & \frac13 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & \frac12 & \frac12 \\
+\end{bmatrix}$$
+\end{ex}
+
+\paragraph{Recall example} Random walk with two barriers:
+%TODO picture
+Conclusion: pattern of zeros in $\uuline{P}$ implies division into communicating classes.
+
+\begin{defn}
+\begin{enumerate}[(a)]
+\item $i\in S$ is \emph{essential} if $\forall j\in S\ (i\rightarrow j \text{ implies } j\rightarrow i)$.
+\item The stochastic matrix $\uuline P$ is \emph{irreducible} if all states intercommunicate ($S$ is one single communicating class).
+\end{enumerate}
+\end{defn}
+
+In example 23 only $\{1\}$ is essential and $\uuline P$ is not irreducible. \\
+In recalled example, $O$ and $K$ are essential $\uuline P$ is not irreducible.
+
+\begin{ex}
+M/G/1 queue is irreducible.
+$$\uuline P = \begin{bmatrix}
+k_0 & k_1 & k_2 & \hdots \\
+k_0 & k_1 & k_2 & \hdots \\
+0 & k_0 & k_1 & \hdots \\
+\vdots & \vdots & \vdots & \ddots \\
+\end{bmatrix}$$
+Note that if $k_0,k_1,k_2$ are positive then the MC is irreducible.
+\end{ex}
+
+\begin{lem}
+Suppose $i\rightarrow k$ and $i$ is essential.
+Then $k$ is essential and $i\~k$
+%TODO picture
+\end{lem}
+\begin{proof}
+$i\rightarrow k$, $i$ is essential, then by definition 26(a) $k\rightarrow i$ and $i\~ k$. \\
+Moreover suppose $k\rightarrow j$, then 
+$$\left.\begin{aligned}i &\rightarrow k \\ k &\rightarrow j\end{aligned}\right\} \implies i\rightarrow j \text{ therefore }\left.\begin{aligned}j &\rightarrow i \\ i &\rightarrow k\end{aligned}\right\} \implies j\rightarrow k$$
+so $k$ is essential.
+
+\section{Periodicity}
+\begin{defn}
+The \emph{period} of a state is the greatest common divisor (gcd) of times at which the chain might return to the state. Thus:
+\begin{enumerate}[(a)]
+\item $i$ has period $\gcd\{n \colon P_{ii}^{(n)} > 0\}$ if $i \rightarrow i$.
+\item If $i\rightarrow i$ doesn't hold then the period of $i$ is not defined.
+\item If $i$ has period 1 then it is said to be aperiodic.
+\end{enumerate}
+\end{defn}
+
+\begin{ex}
+\paragraph{(a)}
+%TODO picture
+What is the period of 1 in this example? 3,4,\ldots (number of steps you can return to 1 in).
+$\gcd\{3,4,\ldots\} = 1$ so this example is aperiodic.
+\paragraph{(b)}
+%TODO picture
+Period of 1: \\
+2,4,6,8,\ldots \\
+$\gcd\{2,4,6,8,\ldots\} = 2$.
+So the period of 1 is 2.
+\end{ex}
+
+\begin{thm} Periodicity is a class property \end{thm}
+\begin{proof}
+$a\mid b$ -- positive integer $a$ divides positive integer $b$. \\
+Suppose $a\leftrightarrow j$ and $i$ has period $d$.
+Since $i\leftrightarrow j$ $\exists n,m$ s.t. $P_{ij}^{(n)} > 0$ and $P_{ji}^{(m)}>0$.
+Since period $(i) = d$, if $P_{ii}^{(k)}>0 \implies d\mid k$.
+If $P_{jj}^{(r)}> 0$ then $P_{ii}^{(n+r+m)} \ge P_{ij}^{(n)}P_{jj}^{(r)}P_{ji}^{(m)}>0$ thus $d\mid n+r+m$.
+Since also $d\mid n+m$, thus $d\mid r$.
+Therefore period $(j)$ is a multiple of period $(i) = d$.
+Swap the role of $i$ and $j$ to obtain that period $(i)$ is a multiple of period $(j)$.
+Therefore they are the same.
+\end{proof}
+
+\begin{lem}
+Suppose that $i\rightarrow i$ and that period$(i) = d$.
+Then $\exists N>0$ s.t. $\forall k\ge N$, $P_{ii}^{(kd)} >0$.
+\end{lem}
+
+\begin{ex}
+%TODO picture
+period$(i) = 2$
+\end{ex}
 
 \section{--/--/-- Lecture 7}
 
