@@ -10,23 +10,24 @@
 \usepackage{hyperref}
 \usepackage{ulem,MnSymbol}
 
-\newtheorem*{thm}{Theorem}
-\newtheorem*{lem}{Lemma}
-\newtheorem*{cor}{Corollary}
-\newtheorem*{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
 \theoremstyle{definition}
-\newtheorem*{defn}{Definition}
-\newtheorem*{defns}{Definitions}
-\newtheorem*{ex}{Example}
-\newtheorem*{exer}{Exercise}
-\newtheorem*{rem}{Remark}
-\newtheorem*{nota}{Notation}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exer}{Exercise}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{nota}{Notation}
 %\newtheorem*{alg}{Algorithm}
 
 \newcommand{\ZZ}{\mathbb{Z}}
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\RR}{\mathbb{R}}
+\newcommand{\PP}{\mathbb{P}}
 %\newcommand{\x}{\mathbf{x}}
 %\newcommand{\X}{\mathcal{X}}
 %\newcommand{\I}{\mathcal{I}}
@@ -45,7 +46,7 @@
 Notes for ST202.
 \clearpage
 
-\section*{02/10/12 Lecture 1}
+\section{02/10/12 Lecture 1}
 
 \paragraph*{Into/Recap}
 
@@ -66,7 +67,7 @@ Gambler's Ruin - We toss a sequence of fair coins. You pay me £1 for each head 
 Define $X_n$ = $x$ if you have £$x$ after toss $n$ (then $X_0$ = 100). The sequence \{ $X_1$, $X_2$, $\ldots$ \} is a stochastic process. The state-space is \{0, 1, 2, $\ldots$, 110 \}.
 \end{ex}
 
-\section*{05/10/12 Lecture 2}
+\section{05/10/12 Lecture 2}
 
 \begin{ex}
 Hanging words - This is a stochastic process with a large S "roughly $26^3$"
@@ -174,7 +175,7 @@ $\hspace*{0.15 in}$ $\mathbb{P}$ ($X_{n+1}$ = $d$ $\mid$ $X_n$ = $d$ ) = 0.5 - $
 with $J(n)$ is equal to the number of days in years. 
 \end{ex}
 
-\section*{05/10/12 Lecture 3}
+\section{05/10/12 Lecture 3}
 
 \begin{defn} Mc = discrete state-space Markov chain with stationary transition probabilities.
 \end{defn}
@@ -309,7 +310,7 @@ a_i^n = \sum_{k \in S} \mathbb{P} (X_n = i \mid X_0 = k ) \times \mathbb{P}[X_0 
 \] 
 \end{proof}
 
-\section*{09/10/12 Lecture 4}
+\section{09/10/12 Lecture 4}
 
 \paragraph*{Recall:} transition matrix
 \[
@@ -369,7 +370,59 @@ Our task is to model this with a Markov chain. So we set our statespace as $S = 
 \]
 \end{ex}
 
-\begin{ex} Discrete time m/G/1 queue - service times are iid and independent distributed as $\mathbb{P}(S_n = r)$, number of arrivals = $b_r$.
+\begin{ex} Discrete time m/G/1 queue - service times are iid and independent distributed as $\mathbb{P}(S_n = r)$, number of arrivals = $b_r$. 
 \end{ex}
+
+\section{09/10/12 Lecture 5}
+
+\section{--/--/-- Lecture 6}
+
+\section{--/--/-- Lecture 7}
+
+\section{--/--/-- Lecture 8}
+
+\section{--/--/-- Lecture 9}
+
+\section{--/--/-- Lecture 10}
+
+\section{--/--/-- Lecture 11}
+
+\section{--/--/-- Lecture 12}
+
+\section{--/--/-- Lecture 13}
+
+\section{--/--/-- Lecture 14}
+
+\section{--/--/-- Lecture 15}
+
+\section{--/--/-- Lecture 16}
+
+\section{--/--/-- Lecture 17}
+
+\section{--/--/-- Lecture 18}
+
+\section{--/--/-- Lecture 19}
+
+\section{--/--/-- Lecture 20}
+
+\section{--/--/-- Lecture 21}
+
+\section{--/--/-- Lecture 22}
+
+\section{--/--/-- Lecture 23}
+
+\section{--/--/-- Lecture 24}
+
+\section{--/--/-- Lecture 25}
+
+\section{--/--/-- Lecture 26}
+
+\section{--/--/-- Lecture 27}
+
+\section{--/--/-- Lecture 28}
+
+\section{--/--/-- Lecture 29}
+
+\section{--/--/-- Lecture 30}
 
 \end{document}
