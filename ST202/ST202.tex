@@ -8,7 +8,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{hyperref}
-\usepackage{ulem,MnSymbol}
+\usepackage{ulem,MnSymbol,enumerate}
 
 \newtheorem{thm}{Theorem}
 \newtheorem{lem}[thm]{Lemma}
@@ -52,7 +52,7 @@ Notes for ST202.
 
 Stochastic Process is a random phenomenon evolving in time.
 
-\begin{defn} A stochastic process X is a family $\{ X_t$, $t$ $\in$ $T$ \} of R.Vs indexed by a time-set $T$. The hard part about this is that it is dependent (behaving in a dynamic way).\\
+\begin{defn} A stochastic process $X$ is a family $\{ X_t$, $t$ $\in$ $T$ \} of R.Vs indexed by a time-set $T$. The hard part about this is that it is dependent (behaving in a dynamic way).\\
 
 $T$: time set ($T$ is typically the natural numbers but not always).\\
 
@@ -60,11 +60,11 @@ State space of $X$: all the possible states that $X$ can be in.\\
 \end{defn}
 
 \begin{ex}
-Gambler's Ruin - We toss a sequence of fair coins. You pay me £1 for each head and I pay you £1 for each tail. I start with £10 and you start with £100, don't spend it all at once. We play until one of us runs out of money.
+Gambler's Ruin - We toss a sequence of fair coins. You pay me \pounds1 for each head and I pay you \pounds1 for each tail. I start with \pounds10 and you start with \pounds100, don't spend it all at once. We play until one of us runs out of money.
 
 \paragraph*{Define that game}
 
-Define $X_n$ = $x$ if you have £$x$ after toss $n$ (then $X_0$ = 100). The sequence \{ $X_1$, $X_2$, $\ldots$ \} is a stochastic process. The state-space is \{0, 1, 2, $\ldots$, 110 \}.
+Define $X_n$ = $x$ if you have \pounds$x$ after toss $n$ (then $X_0$ = 100). The sequence \{ $X_1$, $X_2$, $\ldots$ \} is a stochastic process. The state-space is \{0, 1, 2, $\ldots$, 110 \}.
 \end{ex}
 
 \section{05/10/12 Lecture 2}
@@ -413,16 +413,17 @@ Note that if $k_0,k_1,k_2$ are positive then the MC is irreducible.
 
 \begin{lem}
 Suppose $i\rightarrow k$ and $i$ is essential.
-Then $k$ is essential and $i\~k$
+Then $k$ is essential and $i\sim k$
 %TODO picture
 \end{lem}
 \begin{proof}
-$i\rightarrow k$, $i$ is essential, then by definition 26(a) $k\rightarrow i$ and $i\~ k$. \\
+$i\rightarrow k$, $i$ is essential, then by definition 26(a) $k\rightarrow i$ and $i\sim k$. \\
 Moreover suppose $k\rightarrow j$, then 
 $$\left.\begin{aligned}i &\rightarrow k \\ k &\rightarrow j\end{aligned}\right\} \implies i\rightarrow j \text{ therefore }\left.\begin{aligned}j &\rightarrow i \\ i &\rightarrow k\end{aligned}\right\} \implies j\rightarrow k$$
 so $k$ is essential.
+\end{proof}
 
-\section{Periodicity}
+\subsection{Periodicity}
 \begin{defn}
 The \emph{period} of a state is the greatest common divisor (gcd) of times at which the chain might return to the state. Thus:
 \begin{enumerate}[(a)]
@@ -433,11 +434,11 @@ The \emph{period} of a state is the greatest common divisor (gcd) of times at wh
 \end{defn}
 
 \begin{ex}
-\paragraph{(a)}
+\textbf{(a)}
 %TODO picture
 What is the period of 1 in this example? 3,4,\ldots (number of steps you can return to 1 in).
-$\gcd\{3,4,\ldots\} = 1$ so this example is aperiodic.
-\paragraph{(b)}
+$\gcd\{3,4,\ldots\} = 1$ so this example is aperiodic.\\
+\textbf{(b)}
 %TODO picture
 Period of 1: \\
 2,4,6,8,\ldots \\
