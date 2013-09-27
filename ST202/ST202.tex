@@ -1,5 +1,5 @@
 \title{ST202 Stochastic Processes - Lecture Notes}
-\author{Based on lectures by ...}
+\author{Based on lectures by Dr Krzysztof \L atuszy\'nski}
 \date{\today}
 
 \documentclass{article}
@@ -9,6 +9,7 @@
 \usepackage{amsthm}
 \usepackage{hyperref}
 \usepackage{ulem,MnSymbol,enumerate}
+
 
 \newtheorem{thm}{Theorem}
 \newtheorem{lem}[thm]{Lemma}
@@ -323,7 +324,7 @@ if $a^{(n)}$ is the distribution of $X_n$, then $a^{(n)}$ = $a^{(0)} \times \uul
 \uuline{P^{1}} =  \left [ \begin{array}{ccc}
 1 & 0 & 0\\ 0.5 & 0 & 0.5\\ 0 & 0.5 & 0.5 \end{array} \right ]
 \]
-If we start with $X_0 ~ a^{(0)} = [ 0,0,1 ]$ then, $X_1 ~ a^{(1)} = a^{(0)} \uuline{P^{1}} = [0,0.5,0.5]$, then $X_2 ~ a^{(2)} = a^{(0)} \uuline{P^{2}} = a^{1}\uuline{P^1} = [ 0.25, 0.25, 0.5 ]$ and so on $\ldots$
+If we start with $X_0 \sim a^{(0)} = [ 0,0,1 ]$ then, $X_1 \sim a^{(1)} = a^{(0)} \uuline{P^{1}} = [0,0.5,0.5]$, then $X_2 \sim a^{(2)} = a^{(0)} \uuline{P^{2}} = a^{1}\uuline{P^1} = [ 0.25, 0.25, 0.5 ]$ and so on $\ldots$
 \end{ex}
 
 \paragraph*{Note} Easy to do 2x2 or 3x3 matrices but for bigger matrices it is easier to use some software.
@@ -370,10 +371,83 @@ Our task is to model this with a Markov chain. So we set our statespace as $S = 
 \]
 \end{ex}
 
-\begin{ex} Discrete time m/G/1 queue - service times are iid and independent distributed as $\mathbb{P}(S_n = r)$, number of arrivals = $b_r$. 
+\begin{ex} Discrete time m/G/1 queue - service times are iid and independent distributed as $\mathbb{P}(S_n = r)$, number of arrivals = $b_r$.  At each point of time, there is a new arrival with probability p; arrivals are idd. Inter arrival times $\{A_n : n > 0\}$ are idd, geometric. $\PP(A_n = r) = (1-p)^{-1}p$. The number of people in the queue at time $m$ is not in general a Markov Chain. However define\\
+
+$Q_n$ - the length of the queue at the time of $n^{th}$ departure. This is a stochastic process we are interested in.
 \end{ex}
 
-\section{09/10/12 Lecture 5}
+\section{12/10/12 Lecture 5}
+
+\paragraph*{Note} $Q_{n+1} - Q_n$ - the number of people arrived during the service time of $(n+1)^st$ customer minus 1. This is independent of $Q_0, Q_1, \ldots Q_{n-1}$ once $Q_n$ is known. Hence $Q_n$ is a Markov chain.
+
+\[
+Q_{n+1} = \begin{cases} Q_n - 1 + N_{n+1} & \mbox{ if } Q_n > 0,\\ N_{n+1} & \mbox{ if } Q_n = 0 \end{cases}
+\]
+
+$N_{n+1}$ - the number of arrivals to the queue in the time-interval during which customer $n+1$ is being served.\\
+
+$\PP(N_n = j) = k_j = \sum_{r=j}^{\inf}$ $\PP(j$ arrivals in service time $\mid$ service time = r)$b_r$ = $\sum_{r=k}^{\inf} \binom{r}{j} p^j(1-p)^{r-j}b_r$.\\
+
+Hence the transition matrix of $Q_n$ is
+
+\[
+\uuline{P} = \left [ \begin{array}{ccccc}
+k_0 & k_1 & k_2 & k_3 & \hdots\\
+k_0 & k_1 & k_2 & k_3 & \hdots\\
+0 & k_0 & k_1 & k_2 & \hdots\\
+0 & 0 & k_0 & k_1 & \hdots\\
+\vdots & \vdots & \vdots & \vdots & \ddots\\
+\end{array} \right ]
+\]
+
+$Q_n^{\ast}$ - the length of the queue at time of $n^{th}$ arrival.\\
+
+$Q_n^{\ast}$ is not a Markov chain. (Has something to do with the forgetting property of the geometric distributions).\\
+
+What is the distribution of the waiting time for a typical customer?
+
+\paragraph*{Classification of States}
+
+If it is possible to travel from $a \rightarrow b$ and $b \rightarrow a$, then $a$ and $b$ share many properties.
+
+\begin{defn} $i,j \in S$
+\begin{enumerate}
+\item
+$i$ \uline{leads to} $j$ ($i \rightarrow j$) if $\exists_{n>0}$ such that $p_{ij}^{(n)} > 0$.
+\item
+$i$, $j$ \uline{intercommunicate} ($i \leftrightarrow j$) if $i \rightarrow j$ and $j \rightarrow i$.
+\item
+$i, j$ are in the same \uline{communicating class} ($i \sim j$) of states if either $i \leftrightarrow j$ or $i = j$.
+\end{enumerate}
+\end{defn}
+
+\paragraph*{For example 23:}
+
+\begin{itemize}
+\item
+2 leads to 1 $(p_{2,1}^{(1)} = 1/3 > 0)$
+\item
+2 leads to 2 $(p_{2,2}^{(3)} \geq p_{2,4}^(1)p_{4,3}^{(1)}p_{3,2}^{(1)} > 0)$
+\item
+2 leads to 3 $(p_{2,3}^{(1)} = 1/3 > 0)$
+\item
+2 leads to 4 $(p_{2,4}^{(1)} = 1/3 > 0)$
+\end{itemize}
+
+Similarly, 3 leads to 1,2,3,4 and 4 leads to 1,2,3,4. However 1 leads to 1 and nothing else. States $\{2,3,4\}$ intercommunicate and also 1 intercommunicates with itself.
+
+\begin{thm} The relation $\sim$ is an equivalence relation. \end{thm}
+
+\begin{proof}
+\begin{enumerate}
+\item
+Reflexive: $i \sim i$ since $i=i$.
+\item
+Symmetric: $i \sim j$ then $j \sim i$ immediate from definition.
+\item
+Transitive: suppose $i \sim j$ and $j \sim k$ if either $i=j$ or $i=k$ or $j=k$ then we are done. Otherwise if $i \rightarrow j$ and $k \rightarrow k$ then $p_{i,j}^{(n)} > 0$ and $p_{j,k}^{(m)}$ for some $m,n > 0$. Thus from Chapman-Kolmogorov  $p_{i,k}^{(m+n)} \geq p_{i,j}^{(n)}p_{j,k}^{(m)}>0$ and $i \rightarrow k$. We get $k \rightarrow i$ by a symmetric arguments therefore $i \sim k$.
+\end{enumerate}
+\end{proof}
 
 \section{12/10/12 Lecture 6}
 \begin{ex}
@@ -423,7 +497,7 @@ $$\left.\begin{aligned}i &\rightarrow k \\ k &\rightarrow j\end{aligned}\right\}
 so $k$ is essential.
 \end{proof}
 
-\subsection{Periodicity}
+\subsection*{Periodicity}
 \begin{defn}
 The \emph{period} of a state is the greatest common divisor (gcd) of times at which the chain might return to the state. Thus:
 \begin{enumerate}[(a)]
@@ -469,7 +543,118 @@ Then $\exists N>0$ s.t. $\forall k\ge N$, $P_{ii}^{(kd)} >0$.
 period$(i) = 2$
 \end{ex}
 
-\section{--/--/-- Lecture 7}
+\section{16/10/12 Lecture 7}
+
+\subsection*{Recurrence and Transience}
+
+\begin{ex} You play a gambler's ruin game. Your capital is \pounds 10. You opponent has unlimited credit. What happens if you win with probability $p > 0.5$? $S = \{0, 1, 2, \ldots\}$.\\
+
+Two communicating classes
+\begin{itemize}
+\item
+\{0\} - essential and aperiodic
+\item
+\{1,2,$\ldots$\} - not essential and of period 2
+\end{itemize}
+\end{ex}
+
+\paragraph*{Questions}
+\begin{itemize}
+\item
+$\PP$(X hits 0 before time $n$ = $r_n$ = ?
+\item
+$\lim_{n \rightarrow \inf} r_n$ = 1? (It may depend on $p$)
+\end{itemize}
+
+\begin{defn}
+First Passage time distribution - Let $f_{i,j}^{(n)} = \PP(X_n = j, X_m \neq j$ for $m = 1, 2, \ldots n-1$)\\
+
+$T_{i,j}$ - the first passage time from $i$ to $j$, is a random variable distributed as $\PP[T_{i,j} = n \mid X_0 = i ] = 1 - f_{i,j}^{(n)}$. Also $\PP[T_{i,j} = \inf \mid X_0 = i] = 1 - f_{i,j}^{(\ast)}$ with $f_{i,j}^{(\ast)} = \sum_{n=1}^{\inf} f_{ij}^{(n)}$. 
+\end{defn}
+
+\begin{defn}
+The state j is
+\begin{enumerate}
+\item
+recurrent (or persistent) if $f_{j,j}^{(\ast)} = 1$.
+\item
+transient if $f_{j,j}^{(\ast)} < 1$.
+\end{enumerate}
+\end{defn}
+
+\subsection*{First-step decomposition}
+
+\[
+f_{i,j}^{(1)} = p_{i,j}
+\]
+\[
+n \geq 1, f_{i,j}^{n+1} = \sum_{l:l\neq j} p_{i,l}f_{l,j}^{(n)} = \sum_{l: l \rightarrow j, l \neq j} p_{i,l}f_{l,j}
+\]
+if we sum over $n$:
+\[
+f_{i,j}^{(\ast)} = p_{i,j} + \sum_{l : l \rightarrow j, l \neq j} p_{i,j}f_{l,j}^{(\ast)}
+\]
+
+\begin{ex}
+Players A and B choosing sequences of coin tosses $\{H, T\}$.
+Player A chooses THH.
+Player B choose TTH.
+And they wait until one of the sequences occurs first for e.g. THTHTHH, then A wins.\\
+
+We can model the game by a Markov Chain. We let state 1 be no pattern of note, state 2 'T', 3 'TT', 4 'TTH', 5 'TH' and 6 'THH'.
+
+\[
+\uuline{P} = \left [ \begin{array}{cccccc}
+0.5 & 0.5 & 0 & 0 & 0 & 0\\
+0 & 0 & 0.5 & 0 & 0.5 & 0\\
+0 & 0 & 0.5 & 0.5 & 0 & 0\\
+0 & 0 & 0 & 1 & 0 & 0\\
+0 & 0.5 & 0 & 0 & 0 & 0.5\\
+0 & 0 & 0 & 0 & 0 & 1
+\end{array} \right ]
+\]
+
+we want to calculate $f_{1,4}^{(\ast)}$ and $f_{1,6}^{(\ast)}$. To find out, which one has a better chance of winning?\\
+
+\[
+f_{1,4}^{(\ast)} = 0.5 f_{1,4}^{(\ast)} + 0.5 f_{2,4}^{(\ast)} \hspace*{0.5 in} \Rightarrow \hspace*{0.5 in} f_{1,4}^{(\ast)} = f_{2,4}^{(\ast)}
+\]
+Now
+\[
+f_{2,4}^{(\ast)} = 0.5 f_{3,4}^{(\ast)} + 0.5 f_{5,4}^{(\ast)}
+\]
+So lets look at the first element $f_{3,4}^{(\ast)}$
+\[
+f_{3,4}^{(\ast)} = 0.5 f_{3,4}^{(\ast)} + 0.5 f_{4,4}^{(\ast)} = 0.5 + f_{3,4}^{(\ast)} 0.5 \hspace*{0.5 in} \Rightarrow \hspace*{0.5 in} f_{3,4}^{(\ast)} = 1
+\]
+then the second element $f_{5,4}^{(\ast)}$
+\[
+f_{5,4}^{(\ast)} = 0.5 f_{2,4}^{(\ast)} + 0.5 f_{6,4}^{(\ast)} = 0.5 f_{2,4}^{(\ast)}
+\]
+putting it all together
+\[
+f_{1,4}^{(\ast)} = 0.5 (1) + 0.5 (0.5 f_{2,4}^{(\ast)}) = 0.5 + 0.25 f_{1,4}^{(\ast)} \hspace*{0.5 in} \Rightarrow \hspace*{0.5 in} f_{1,4}^{(\ast)} = 2/3
+\]
+What is $f_{1,6}^{\ast}$ You can repeat as above or realise that the game must end so we have $f_{1,6}^{\ast} = 1 - f_{1,4}^{\ast} = 1/3$.
+\end{ex}
+
+\subsection*{First Passage decomposition}
+\[
+p_{i,j}^{(n)} = \sum_{m=1}^n f_{i,j}^{(m)}p_{j,j}^{n-m} \hspace*{0.5 in} n > 0
+\]
+Prove this by dividing $\PP(X_n = j \mid X_0 = i)$ into a partition according to the first time $X$ visits $j$. Alternatively, setting $m = n - u$, rewrite
+\[
+p_{i,j}^{(n)} = \sum_{u = 0}^{n-1} f_{i,j}^{(n-u)}p_{j,j}^{(u)} \hspace*{0.5 in} n> 0
+\]
+\subsection*{Converting into generating functions}
+\[
+P_{i,j}(s) = \sum_{n=0}^{\inf} p_{i,j}^{(n)}s^n; \hspace*{0.5 in} F_{i,j}(s) = \sum_{n=0}^{\inf}f_{i,j}s^n
+\]
+\begin{lem} For $\mid s \mid < 1$
+\[
+P_{i,j}(s) = p_{i,j}^{(0)} + F_{i,j}(s)P_{j,j}(s)
+\]
+\end{lem}
 
 \section{--/--/-- Lecture 8}
 
