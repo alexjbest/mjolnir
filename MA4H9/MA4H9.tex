@@ -1,0 +1,345 @@
+\title{MA4H9 Modular Forms - Lecture Notes}
+\author{Based on lectures by Dr Peter Bruin \\ Typeset by Alex J. Best}
+\date{\today}
+
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{upgreek}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usetikzlibrary{arrows}
+
+\newtheorem*{thm}{Theorem}
+\newtheorem*{lem}{Lemma}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem*{defns}{Definitions}
+\newtheorem*{ex}{Example}
+\newtheorem*{exer}{Exercise}
+\newtheorem*{rem}{Remark}
+\newtheorem*{nota}{Notation}
+\newtheorem*{alg}{Algorithm}
+
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\PSL}{PSL}
+%\DeclareMathOperator{\Im}{Im}
+%\DeclareMathOperator{\Re}{Re}
+
+\setcounter{tocdepth}{3}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+These are lecture notes for the 2013 Modular forms course, taught at the University of Warwick by Peter Bruin.
+
+
+The recommended books are:
+\begin{itemize}
+\item F. Diamond \& J. Sherman - A first course in Modular Forms
+\item J. S. Milne - Modular functions and Modular forms
+\item T. Miyake - Modular Forms
+\item J-P. Serre - Cours d'Arithmetique
+\end{itemize}
+\clearpage
+
+\section{Motivation}
+\marginpar{Lecture 1}
+The big picture: %TODO put in
+
+\subsection{Historical prologue: Sums of squares}
+Famous question: given integers $n \ge 0,\ k\ge 0$, in how many ways can $n$ be written as a sum of $k$ squares (of integers).
+
+In other words, what is
+\[
+r_k(n) = \#\{(x_1,\ldots,x_n)\in \mathbb{Z}^k \mid x_1^2 + \cdots + x_k^2 = n\}?
+\]
+Note that sign changes and permutations of $(x_1,\ldots, x_k)$ count separately.
+
+\begin{ex}
+$k=5,\ n=2$
+
+$5 = 1^2 + 2^2 = (-1)^2 + 2^2 = 1^2 + (-2)^2 = (-1)^2 + (-2)^2 = 2^2 + 1^2 = \cdots$
+
+So $r_2(5) = 8$.
+
+We can reinterpret this geometrically (using Pythagoras) as the statement that there are 8 points in $\mathbb{Z}^2$ of distance $\sqrt{5}$ from the origin.
+\end{ex}
+
+Trivial cases: $k=0$, $k=1$.
+\[
+r_0(n) = \begin{cases}
+1,\ n=0 \\
+0,\ \text{otw}
+\end{cases},\ 
+r_1(n) = \begin{cases}
+1,\ n=0 \\
+2,\ n\text{ is a square} \\
+0,\ \text{otw}
+\end{cases}
+\]
+
+The case: $k=2$.
+
+Diophantus in the $3^\text{rd}$ century showed that if $m,\ n$ are numbers each of which is the sum of two squares then $mn$ is also a sum of two squares.
+In our language this says that if $r_2(m) > 0$ and $r_2(n) > 0$ then $r_2(mn)>0$.
+
+\begin{exer}
+Prove this!
+\end{exer}
+
+Fermat (1637): If $n$ is a positive odd integer then $n$ is a sum of two squares $\iff$ every prime number $p\mid n$ with $p\equiv 3 \pmod{4}$ occurs an even number of times in the factorisation of $n$.
+
+In particular a prime $p$ is a sum of two squares $\iff p = 2$ or $p\equiv 1\pmod{4}$.
+
+\subsubsection{Formulas for $r_k(n)$}
+Jacobi (1829): $r_2(n) = 4\sum_{d\mid n} \chi(d)$, for $n > 0$.
+Where
+\[\chi(d) = \begin{cases}
+0, \text{ if } 2\mid d \\
+1, \text{ if } d\equiv 1 \pmod{4} \\
+-1, \text{ if } d\equiv 3 \pmod{4}
+\end{cases}
+\]
+
+Gauss (1801) found a formula for $r_3(n)$, but it is much more complicated.
+
+Jacobi (1829): $r_4(n) = 8\sum_{d\mid n,\ 4\nmid d}d$ for all $n > 0$.
+In particular the positivity of this sum implies Lagrange's Theorem.
+
+Jacobi, F. G. Eisenstein, H. J. Smith found that
+\[
+r_6(n) = \sum_{d\mid n}(16 \chi\left(\frac n d\right) - 4\chi(d))d^2
+\text{ and }r_8(n) = \sum_{d\mid n}(-1)^{n-d}d^3.
+\]
+
+J. Liouville (1864/65) found 
+\[
+r_{10}(n) = \frac 4 5\sum_{d\mid n}(16\chi\left(\frac n d\right)  + \chi(d))d^2 + \frac 8 5 \sum_{z\in\mathbb{Z}[i]}.
+\]
+For even $n$ the formula 
+\[
+r_{12}(n) = 8\sum_{d\mid n} d^5 - 512\sum_{d\mid\frac n 4}d^5
+\]
+holds, the second sum is omitted if $4\nmid n$.
+
+\begin{rem}
+We note the following about the above formulae:
+\begin{itemize}
+\item Many are sums over the positive divisors of $n$.
+\item The function $\chi(d)$ appears in the formulas for $k \equiv 2 \pmod 4$.
+\item When $k=10$ there is an unexpected term involving $\mathbb{Z}[i]$.
+\item Formulas exist only for $k\le 12$.
+\end{itemize}
+\end{rem}
+
+Amazingly, all these facts can be explained using modular forms.
+
+\subsubsection{Generating series for $r_k(n)$}
+The generating series of $r_k(n)$ is 
+\[\sum_{n=0}^{\infty}r_k(n) q^n \in \mathbb{Z}[[q]]\]
+
+When $k=1$ this is $1 + 2q + 2q^4 + 2q^9 + \ldots = 1 + 2\sum_{n=1}^{\infty}q^{n^2} = \sum_{n\in \mathbb{Z}} q^{n^2}$.
+This series is known as Jacobi's $\upvartheta$ series, and is an example of a modular form.
+
+\begin{exer}
+Try to show that for all $k \ge 0$ we have $\sum_{n=0}^{\infty}r_k(n)q^n = \upvartheta(q)^k$.
+
+One can show that these power series for $k$ even are examples of ``$q$-expansions of modular forms''.
+\end{exer}
+
+\subsection{$\mathbb{H}$ and the group $SL_2(\mathbb{R})$} %TODO make this nice
+\marginpar{Lecture 2}
+
+We now introduce some of the basic objects of use when studying modular forms.
+
+The complex upper half plane $\mathbb{H}$ is $\{z\in \mathbb{C} \colon \Im z > 0\}$.
+\[\SL_2(\mathbb{R}) =\left\{\begin{pmatrix} a & b\\c&d\end{pmatrix} \colon a,b,c,d\in\mathbb{R},\ ad-bc = 1\right\}.\]
+
+\begin{nota}
+For $\gamma\in\SL_2(\mathbb{R})$ and $z\in \mathbb{H}$, write
+\[ \gamma z = \frac{az+b}{cz+d} \text{ noting that } cz+d \ne 0.\]
+\end{nota}
+
+\begin{prop}
+This formula defines a map
+\[
+\SL_2(\mathbb{R})\times \mathbb{H} \to \mathbb{H},\ (\gamma,z)\mapsto\gamma z
+\]
+which is a group action.
+\end{prop}
+
+\begin{proof}
+First note that for all $\gamma \in \SL_2(\mathbb{R})$ and all $z\in \mathbb{H}$
+\[\Im(\gamma z) = \Im\left(\frac{az+b}{cz+d}\right) = \Im\left(\frac{(az+b)(c{\bar z} + d)}{|cz+d|^2}\right) = \frac{\Im((az+b)(c{\bar z} +d))}{|az+d|^2}.\]
+Now $\Im((az+b)(c{\bar z} + d)) = \Im(ac|z|^2 + bd + adz + bc{\bar z})$, so letting $z= x+iy$ we see this equals
+\[\Im(adz + bc{\bar z}) + \Im((ad-bc)iy) = \Im(iy) = y = \Im(z).\]
+Therefore
+\[\Im(\gamma z) = \frac{\Im(z)}{|cz+d|^2}\]
+
+This shows the action is well defined.
+It is a group action as $\begin{pmatrix}1&0\\0&1\end{pmatrix}z = \frac{z+0}{0+1} = z$, and $\gamma(\gamma'z) = (\gamma\gamma')z$.
+\end{proof}
+
+\subsection{The modular group}
+
+\begin{defn}
+The modular group is the group 
+\[\SL_2(\mathbb{Z}) =\left\{\begin{pmatrix} a & b\\c&d\end{pmatrix} \colon a,b,c,d\in\mathbb{Z},\ ad-bc = 1\right\}\subset \SL_2(\mathbb{R}).\]
+As a subgroup of $\SL_2(\mathbb{R})$, $\SL_2(\mathbb{Z})$ acts on $\mathbb{H}$.
+\end{defn}
+
+\begin{rem}
+Apart from $\begin{pmatrix}
+1&0\\0&1
+\end{pmatrix}$ the matrix $\begin{pmatrix}
+-1&0\\0&-1
+\end{pmatrix}$ acts trivially on $\mathbb{H}$.
+
+
+Since $N=\left\{\pm\begin{pmatrix}
+1&0\\0&1
+\end{pmatrix} \right\}$ is a normal subgroup of $\SL_2(\mathbb{R})$ (and $\SL_2(\mathbb{Z})$), the quotient $\PSL_2(\mathbb{R})= \SL_2(\mathbb{R})/N$ (resp. $\PSL_2(\mathbb{Z})=\ldots$) is again a group with an action on $\mathbb{H}$.
+
+Sometimes it is convenient to work with $\PSL$ rather than $\SL$.
+\end{rem}
+
+We now give names to some useful elements of the modular group, let
+\[S=\begin{pmatrix}
+0&-1\\1&0
+\end{pmatrix},\ T= \begin{pmatrix}
+1&1\\0&1
+\end{pmatrix},\ \text{ then } ST = \begin{pmatrix}
+0&-1\\1&1
+\end{pmatrix},\ \text{etc.}\]
+
+We can see for all $z\in\mathbb{H}$ we have $Sz = \frac{-1}{z}$ and $Tz = z+1$.
+
+\subsection{A fundamental domain}
+Let $D=\{z\in \mathbb{H}\colon |z|\ge 1\text{ and }\frac{-1}{2}\le \Re(z)\le \frac{1}{2}\}$ and let $\rho= e^{2\pi i/3} = -\frac{1}{2} + \frac{\sqrt{3}}{2}i$, then $\rho+1= e^{2\pi i/3} +1= \frac{1}{2} + \frac{\sqrt{3}}{2}i$.
+
+
+\begin{thm}[Properties of $\SL_2(\mathbb{Z})$ and $\mathbb{H}$]~
+\begin{enumerate}
+\item For all $z\in \mathbb{H}$ there exists some $\gamma \in \SL_2(\mathbb{Z})$ s.t. $\gamma z\in D$.
+\item $z,z'\in D$ are in the same $\SL_2(\mathbb{Z})$ orbit $\iff$ either $z=z'$ or $\Re(z) \pm\frac{1}{2}$ and $z= z' \pm 1$ or $|z|=1$ and $z' = -\frac 1 z$.
+\item Let $z\in D$ and let $H_z = \{\gamma \in \SL_2(\mathbb{Z}) \colon \gamma z=z\}$ be that stabilisser of $z$ under the action of $\SL_2(\mathbb{Z})$, then 
+\[
+H_z \text{ is } \begin{cases} %TODO finish
+\text{ cyclic of order 6, generated by } ST \text{ when } z = \rho. \\
+\text{ cyclic of order 6, generated by } ? \text{ when } z = \rho + 1. \\
+\text{ cyclic of order 4, generated by } ? \text{ when } z = i. \\
+\text{ cyclic of order 2, generated by } ? \text{ otherwise.}\\
+\end{cases}
+\]
+
+\item The group $\SL_2(\mathbb{Z})$ is generated by the two elements $S$ and $T$.
+\end{enumerate}
+\end{thm}
+
+\marginpar{Lecture 3}
+\begin{proof}
+\begin{enumerate}
+\item Let $z \in \mathbb{H}$.
+For $c,d\in \mathbb{Z}$ we have $|cz+d|^2 = |(cx+d) + (cy)i|^2 = (cx+d)^2 + (cy)^2$, so there are only finitely many $c,d$ s.t. $|cz+d|< 1$.
+I.e. only finitely many s.t. $\Im(\gamma z) > \Im(z)$ this implies that there is some $\gamma \in \langle S,T\rangle$ s.t. $\Im(\gamma z) \ge \Im(\gamma'z)$ for all $\gamma' \in \langle S,T\rangle$.
+By multiplying on the left by an appropriate power of $T$ (i.e. by translating $\gamma z$ by some integer) we may assume that $\gamma$ is chosen s.t. $|\Re(\gamma z)| \le \frac 1 2$.
+
+\paragraph{Claim}
+With this $\gamma$ we have $|\gamma z| \ge 1$, and hence $\gamma z \in D$, this proves part 1, with moreover the result that $\gamma$ can be chosen in $\langle S,T\rangle$.
+\begin{proof}[Proof of the claim]
+By the choice of $\gamma$ we have $\Im(\gamma z) \ge \Im(S\gamma z) = \Im(\frac{-1}{\gamma z}) = \frac{\Im(\gamma z)}{|\gamma z|^2}$ this implies that $|\gamma z| \ge 1$ which proves the claim.
+\end{proof}
+
+\item We now let $z,z'\in D$ be in the same $\SL_2(\mathbb{Z})$ orbit.
+We may assume $\Im(z') \ge \Im(z)$.
+Let $\gamma \in \SL_2(\mathbb{Z})$ be such that $z' = \gamma z$ in particular, 
+\[ \Im z' = \frac{\Im z}{|cz+d|^2} \le \frac{\Im z'}{|cz+d|^2}\]
+so $|cz+d|^2 \le 1$.
+Since $|cz+d|^2 = |cx+d|^2 + |cy|^2$ and $y \ge \frac{\sqrt{3}}{2} > \frac{1}{2}$ this gives $|c| \le 1$, so we deal with the three possible cases for $c\in\{-1,0,1\}$ separately.
+
+\paragraph{Case $c=0$}
+\[\gamma =\begin{pmatrix}a&b\\0&d
+\end{pmatrix} \implies ad= 1\implies a=d=\pm1\implies z' = \gamma z = \frac{\pm z + b}{\pm 1} = z \pm b.\]
+This is only possible if $b\in\{0,\pm 1\}$, and in non-zero cases we must have $|\Re z | = |\Re z'| = \frac 1 2$.
+
+\paragraph{Case $c=1$}
+$\gamma =\begin{pmatrix}a&b\\1&d\end{pmatrix},$
+\[ 1\ge |cz+d|^2= (x+d)^2 +y^2 = x^2 +y^2 +2xd+d^2 = |z|^2 + 2xd + d^2 \ge 1 + 2xd + d^2\]
+So we have $|cz+d| = 1$ and $2xd + d^2 = 0$, hence either $d=0$ or $d = -2x$ which gives $d= \pm 1$, $x = \pm\frac 1 2$.
+If $d=-1$, $x = -\frac12$ then $z = \rho$, $z'= \frac{a\rho + b}{\rho +1}$.
+\begin{exer}
+Show this only lies in $D$ if $(a,b) = (0,-1)$ or $(1,0)$.
+\end{exer}
+The cases $d= 0,\ d=-1$ are similar, every time we get a small finite number of $\gamma$ and the corresponding possibilities for $z,z'\in D$ s.t. $z' = \gamma z$.
+
+\paragraph{Case $c=-1$} is  completely analogous since $\gamma$ and $-\gamma$ act in the same way on $\mathbb{H}$.
+
+So we are left with a few different possibilities which are summarised in the table.
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|}
+\hline
+$\gamma$ & $z$ & $z'$ & Fixed points of $\gamma$ \\
+\hline
+$\pm$Id & any $z\in D$ & $z$ & all of $D$ \\
+$\pm T$ &i & i& i\\
+\hline
+\end{tabular}
+\caption{\label{}Pairs $(\gamma,z)$ with $z$ and $z' = \gamma z$ both in $D$}
+\end{table}
+
+Parts 2. and 3. of the theorem can be read off of this table, it remains to show 4.
+\setcounter{enumi}{3}
+
+\item Choose any $z$ in the interior of $D$ (e.g. $z= 2i$) and $\gamma\in \SL_2(\mathbb{z})$.
+There exists $\gamma_0\in\langle S,T\rangle$ s.t. $\gamma_0(\gamma z)\in D$ this means that both $z$ and $(\gamma_0 \gamma)z$ are in $D$, and $z$ is not on the boundary, so $\gamma_0\gamma =\pm I$ and $\gamma\in\langle S,T\rangle$.
+\end{enumerate}
+\end{proof}
+
+\section{Modular forms}
+\begin{defn}
+Let $f$ be a meromorphic function on $\mathbb{H}$ and let $k$ be an integer.
+
+We say that $f$ is \emph{weakly modular of weight $k$} if
+\[f\left(\frac{az+b}{cz+d}\right)= (cz+d)^kf(z)\] for all $z\in\mathbb{H},\ \begin{pmatrix}a&b\\c&d\end{pmatrix} \in\SL_z(\mathbb{Z})$.
+\end{defn}
+
+\begin{nota}
+\[(f|_k\gamma)(z)=(cz+d)^{-k}f\left(\frac{az+b}{cz+d}\right)\text{, for }\gamma\in\SL_2(\mathbb{R}).\]
+\end{nota}
+
+\begin{exer}
+Show that if $\mathcal{F}$ is the set of all meromorphic functions on $\mathbb{H}$, then the map $\mathcal{F}\times\SL_2(\mathbb{R})\to \mathcal{F}$ sending $(f,\gamma)$ to $f|_k\gamma$ is a right action of $\SL_2(\mathbb{R})$ on $\mathcal{F}$.
+\end{exer}
+
+\begin{rem}
+Note that $f$ is weakly modular of weight $k$ $\iff$ $f$ is $\SL_2(\mathbb{Z})$ invariant with respect to the $|_k$ action.
+
+Since $\SL_2(\mathbb{Z})$ is generated by $S$ and $T$ this is equivalent to saying that $f|_k S = f$ and $f|_k T = f$ i.e. $f(z+1) = f(z)$ and $f(\frac{-1}{z}) = z^kf(z)$.
+\end{rem}
+
+\marginpar{Lecture 4}
+In particular $f$ is weakly modular of weight $k$ $\implies$ $f$ is periodic of period 1.
+Consider the exponential map $z\mapsto e^{2\pi i z}$, this is also periodic of period 1.
+
+Consider the diagram
+%TODO put in
+
+There is a \emph{unique} function $\tilde f \colon \mathbb{D}^* \to \mathbb{C}\cup\{\infty\}$ s.t. $f(z) = \tilde f(e^{2\pi i z})$.
+$\tilde f(q) = f(\frac{\log q}{2\pi i})$ is well defined as $f$ is periodic.
+
+\begin{defn}
+Let $f$ be meromorphic on $\mathbb{H}$ and weakly modular of weight $k$.
+We say that $f$ is \emph{meromorphic at infinity} if $\tilde f(q)$ can be continued to a meromorphic function on the whole open unit disc $\mathbb{D} = \{q\in \mathbb{C}\colon |q|< 1\}$.
+Equivalently as a Laurent series
+\[\tilde f(q) = \sum_{n=-\infty}^{\infty} a_nq ^n,\ a_n\in\mathbb{C}\text{ with }a_n = 0\text{ for all $n$ sufficiently negative}.\]
+\end{defn}
+
+\end{document}
