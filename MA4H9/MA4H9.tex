@@ -24,11 +24,16 @@
 \newtheorem*{rem}{Remark}
 \newtheorem*{nota}{Notation}
 \newtheorem*{alg}{Algorithm}
+\newtheorem*{fact}{Fact}
 
 \DeclareMathOperator{\SL}{SL}
 \DeclareMathOperator{\PSL}{PSL}
-%\DeclareMathOperator{\Im}{Im}
-%\DeclareMathOperator{\Re}{Re}
+
+\providecommand{\newoperator}[3]{\newcommand*{#1}{\mathop{#2}#3}}
+\providecommand{\renewoperator}[3]{\renewcommand*{#1}{\mathop{#2}#3}}
+
+\renewoperator{\Re}{\mathrm{Re}}{\nolimits}
+\renewoperator{\Im}{\mathrm{Im}}{\nolimits} % all about dem standards
 
 \setcounter{tocdepth}{3}
 
@@ -338,8 +343,119 @@ $\tilde f(q) = f(\frac{\log q}{2\pi i})$ is well defined as $f$ is periodic.
 \begin{defn}
 Let $f$ be meromorphic on $\mathbb{H}$ and weakly modular of weight $k$.
 We say that $f$ is \emph{meromorphic at infinity} if $\tilde f(q)$ can be continued to a meromorphic function on the whole open unit disc $\mathbb{D} = \{q\in \mathbb{C}\colon |q|< 1\}$.
-Equivalently as a Laurent series
-\[\tilde f(q) = \sum_{n=-\infty}^{\infty} a_nq ^n,\ a_n\in\mathbb{C}\text{ with }a_n = 0\text{ for all $n$ sufficiently negative}.\]
+Equivalently, as a Laurent series
+\[\tilde f(q) = \sum_{n=-\infty}^{\infty} a_nq ^n,\ a_n\in\mathbb{C}\text{ with }a_n = 0\text{ for all $n$ sufficiently negative},\]
+converges in some open neighbourhood of $0\in\mathbb{D}$ (but potentially having a pole at 0.
+
+We say that $f$ is \emph{holomorphic at infinity} if this Laurent series is a power series, i.e.
+\[\tilde{f}(z) = \sum_{n=0}^{\infty} a_nq^n.\]
+In this case we define $f(\infty) = \tilde f(0) = a_0$.
 \end{defn}
+
+\begin{defn}
+A \emph{modular form of weight $k$} is a holomorphic function $f\colon\mathbb{H}\to\mathbb{C}$ which is weakly modular of weight $k$ and holomorphic at $\infty$.
+
+A \emph{cusp form} of weight $k$ is a modular form of weight $k$ which vanishes at infinity.
+\end{defn}
+
+The reason for this terminology is if we construct the quotient space $\SL_2(\mathbb{Z})\backslash \mathbb{H}$ we can do this by gluing the edges of $D$.
+Upon doing this we observe a surface that looks like a raindrop, the squeezed point at infinity is called the cusp.
+%TODO diagram
+
+By the above definition a modular form of weight $k$ is a holomorphic function $f\colon\mathbb{H}\to\mathbb{C}$ that can be expressed as a convergent series
+\[f(z)=\sum_{n=0}^{\infty}a_nq^n = \sum_{n=0}^{\infty} a_ne^{2\pi i z},\]
+with $f\left(\frac{-1}{z}\right) = z^kf(z)$.
+
+It is a cusp form if $a_0 = 0$.
+
+The series $\sum_{n=0}^{\infty}a_nq^n$ is called the $q$-expansion (or Fourier expansion) of $f$.
+
+\section{Eisenstein series}
+Let $k$ be an even integer with $k \ge 4$.
+Consider the infinite sum 
+\[G_k(z) = \sum_{(m,n)\in\mathbb{Z}^2\setminus(0,0)} \frac{1}{(mz+n)^k} = \sideset{}{'}\sum_{m,n}\frac{1}{(mz+n)^k},\ z\in\mathbb{H}.\]
+
+\begin{prop}
+This series converges absolutely and uniformly on subsets of $\mathbb{H}$ of the form
+\[R_{r,s} = \left\{ x+iy\colon |x|\leq r,\ y\geq s\right\},\ r,s>0\]
+\end{prop}
+
+\begin{proof}(Sketch) Given $r,s>0$ one first shows that there exists $c >0$ (depending on $r,s$) such that $|mz+n|^2 \ge c(m^2+n^2)$ for all $m,n\in\mathbb{Z}$, $z\in R_{r,s}$.
+This means 
+\begin{multline*}
+|G_k(z)|\le c^{-k/2}\sideset{}{'}\sum_{m,n}\frac{1}{(mz+n)^{k/2}} = c^{-k/2}\sum_{j=1}^{\infty}\sideset{}{'}\sum_{m,n\text{ in $j$th } \square}\frac{1}{(mz+n)^{k/2}} \\
+\le c^{-k/2}\sum_{j=1}^{\infty}8j\frac{1}{j^k} = \frac{8}{c^{k/2}}\sum_{j=1}^{\infty} \frac{1}{j^{k-1}} \le \frac{8}{c^{k/2}}\left(1 + \int_{j=1}^{\infty} \frac{1}{t^{k-1}} dt\right) \\
+= \frac{8}{c^{k/2}}\left(1+ \frac{1}{k-2}\right)<\infty
+\end{multline*}
+\end{proof}
+
+In fact this proposition implies that $G_k(z)$ is a holomorphic function on $\mathbb{H}$.
+
+\begin{thm}
+For all even integers $\ge 4$ the function $G_k$ is a modular form of weight $k$.
+\end{thm}
+
+\begin{proof}
+It is holomorphic on $\mathbb{H}$ by the proposition.
+We need to check it's invariance under $\SL_2(\mathbb{Z})$, i.e. that
+\[G_k(z+1) = G_k(z) \text{ and } G_k\left(\frac{-1}{z}\right) = z^kG_k(z).\]
+\begin{proof} of $G_k(\frac{-1}{z}) = z^kG_k(z)$
+\[G_k\left(\frac{-1}{z}\right) = \sideset{}{'}\sum_{m,n} \frac{1}{(m\cdot\frac{-1}{z} + n)^k} = z^k\sideset{}{'}\sum_{m,n}\frac{1}{(-m + nz)^k} = G_k(z).\]
+The last step is by a couple of variable changes, we can see that the sum will always run over the same values.
+\end{proof}
+
+It just remains to check that $G_k$ is holomorphic at infinity, we will do this by calculating the $q$-expansion at infinity, however this is long and requires its own section.
+\end{proof}
+
+\section{$q$-expansions of Eisenstein series}
+\begin{nota}
+\[\sigma_t(n) = \sum_{d|n,\ d > 0} d^t \text{ for } n\ge 1,\ t\ge 0.\]
+The Riemann zeta function is
+\[\zeta(s) := \sum_{n=1}^{\infty} \frac{1}{n^s},\ s\in\mathbb{C},\ \Re s > 1.\]
+\end{nota}
+
+We will only need the zeta function for $s\in \mathbb{N}$ even.
+
+These values can be expressed in terms of the Bernoulli numbers $B_k\in\mathbb{Q}$, defined by the identity
+\[\frac{t}{e^t - 1} = \sum_{k=0}^{\infty}\frac{B_k}{k!}t^k\text{ in } \mathbb{Q}[[t]].\]
+
+We have $B_k\ne 0\iff k=1$ or $k\ge 0$ even.
+The first few non-zero terms are
+\[B_0 = 1,\ B_1= -\frac{1}{2},\ B_2=\frac{1}{6},\ B_4=-\frac{1}{30},\ B_6=\frac{1}{42},\ldots.\]
+
+\begin{fact}
+For any even positive integer $k$
+\[\zeta(k) = -\frac{(2\pi i)^kB_k}{2k!}\text{ for example } \zeta(2) = \sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}.\]
+\end{fact}
+
+We can rewrite the series defining $G_k$ as follows
+\begin{multline*}
+G_k(z) = \sum_{n\ne 0}\frac{1}{n^k} + \sum_{m\ne 0}\sum_{n\in\mathbb{Z}}\frac{1}{(mz+n)^k} = 2\sum_{n=1}^{\infty}\frac{1}{n^k} + 2 \sum_{m=1}^{\infty}\sum_{n\in\mathbb{Z}}\frac{1}{(mz+n)^k} \\
+= 2\zeta(k) + 2\sum_{m=1}^{\infty}\sum_{n\in\mathbb{Z}}\frac{1}{(mz+n)^k}.\end{multline*}
+
+\begin{fact}
+For $k\ge 2$ we have
+\[\sum_{n\in\mathbb{Z}}\frac{1}{(z+n)^k} = \frac{(-2\pi i)^k}{(k-1)!}\sum_{d=1}^{\infty}d^{k-1}q^d\text{ where } q= e^{2\pi i z}.\]
+\end{fact}
+
+\begin{proof} sketch.
+Start with the following product formula for the sine function
+\[\sin(\pi z) = \pi z\Pi_{n=1}^{\infty}\left(1-\frac{z^2}{n^2}\right)\]
+Take logarithmic derivatives ($\frac{d}{dz}\log f(z) = \frac{f'(z)}{f(z)}$) gives
+\[\pi \frac{\cos(\pi z)}{\sin(\pi z)} = \frac{1}{z} + \sum_{n=1}^{\infty}\left(\frac{1}{z-n}+ \frac{1}{z+n}\right).\]
+On the other hand, using$e^{\pm \pi i z} = \cos\pi z\pm i\sin \pi z$ and $1/1-q = \sum_{d=0}^{\infty}$, one can prove that 
+\[\pi\frac{\cos(\pi z)}{\sin(\pi z)} = i\pi i - 2\pi i \sum_{d=1}^{\infty}e^{2 \pi i dz}.\]
+Comparing gives
+\[\frac{1}{z} + \sum_{n=1}^{\infty}\left(\frac{1}{z-n} + \frac{1}{z+n}\right) = -\pi i -2\pi i\sum_{d=1}^{\infty}e^{2\pi i d z},\]
+then taking derivatives gives
+\[\sum_{n\in\mathbb{Z}} \frac{1}{(z+n)^2} = (2\pi i)^2\sum_{d=1}^{\infty}de^{2\pi i dz}\]
+as required for $k=1$, the general case follows by induction upon taking successive derivatives.
+\end{proof}
+
+Applying this fact gives a series for $G_k$, we obtain
+\begin{multline*}
+G_k(Z) = 2\zeta(k) + 2\frac{(2\pi i)^k}{(k-1)!}\sum_{m=1}^{\infty}\sum_{d=1}^{\infty}d^{k-1}e^{2 \pi i d m z} \\
+= 2\zeta(k) + 2\frac{(2\pi i)^k}{(k-1)!}\sum_{n=1}^\infty\sum_{d|n}d^{k-1}e^{2\pi i n z} =2\zeta(k) + 2\frac{(2\pi i)^k}{(k-1)!}\sum_{n=1}^\infty \sigma_{k-1}(n)q^n.\end{multline*}
+This gives the $q$-expansion of $G_k$ and shows at the same time that $G_k$ is holomorphic at infinity.
 
 \end{document}
