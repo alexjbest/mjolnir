@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{upgreek}
+\usepackage{mathrsfs}
 \usepackage{tikz}
 \usepackage{hyperref}
 \usetikzlibrary{arrows}
@@ -28,6 +29,8 @@
 
 \DeclareMathOperator{\SL}{SL}
 \DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\res}{Res}
+\DeclareMathOperator{\ord}{ord}
 
 \providecommand{\newoperator}[3]{\newcommand*{#1}{\mathop{#2}#3}}
 \providecommand{\renewoperator}[3]{\renewcommand*{#1}{\mathop{#2}#3}}
@@ -397,7 +400,7 @@ For all even integers $\ge 4$ the function $G_k$ is a modular form of weight $k$
 
 \begin{proof}
 It is holomorphic on $\mathbb{H}$ by the proposition.
-We need to check it's invariance under $\SL_2(\mathbb{Z})$, i.e. that
+We need to check its invariance under $\SL_2(\mathbb{Z})$, i.e. that
 \[G_k(z+1) = G_k(z) \text{ and } G_k\left(\frac{-1}{z}\right) = z^kG_k(z).\]
 \begin{proof} of $G_k(\frac{-1}{z}) = z^kG_k(z)$
 \[G_k\left(\frac{-1}{z}\right) = \sideset{}{'}\sum_{m,n} \frac{1}{(m\cdot\frac{-1}{z} + n)^k} = z^k\sideset{}{'}\sum_{m,n}\frac{1}{(-m + nz)^k} = G_k(z).\]
@@ -457,5 +460,122 @@ Applying this fact gives a series for $G_k$, we obtain
 G_k(Z) = 2\zeta(k) + 2\frac{(2\pi i)^k}{(k-1)!}\sum_{m=1}^{\infty}\sum_{d=1}^{\infty}d^{k-1}e^{2 \pi i d m z} \\
 = 2\zeta(k) + 2\frac{(2\pi i)^k}{(k-1)!}\sum_{n=1}^\infty\sum_{d|n}d^{k-1}e^{2\pi i n z} =2\zeta(k) + 2\frac{(2\pi i)^k}{(k-1)!}\sum_{n=1}^\infty \sigma_{k-1}(n)q^n.\end{multline*}
 This gives the $q$-expansion of $G_k$ and shows at the same time that $G_k$ is holomorphic at infinity.
+Indeed we have now shown that $G_k$ is a modular form of weight $k$.
+
+It is useful to introduce a rescaled version of $G_k$
+\[E_k(z) = \frac{(k-1)!}{2(2\pi i)^k}G_k(z) = \frac{-B_k}{2_k} + \sum_{n=1}^{\infty}\sigma_{k-1}(n)q^n.\]
+
+In particular, note that all $q$-expansion coefficients of $E_k$ are rational numbers.
+
+\begin{rem}
+Another common normalisation of $G_k$ is s.t. the constant coefficient becomes 1.
+\end{rem}
+
+\begin{ex}
+$k=4$:
+\[E_4(z) = \frac{1}{240} + \sum_{n=1}^{\infty} \sigma_3(n)q^n = \frac{1}{240} + q + 9q^2 + \ldots.\]
+\end{ex}
+
+\section{Motivation: Lattices in $\mathbb{C}$}
+
+\begin{defn}
+A \emph{lattice} in the complex plane $\mathbb{C}$ is a subgroup $L\subset \mathbb{C}$ of the form
+\[L = \mathbb{Z}\omega_1 + \mathbb{X}\omega_2,\]
+where $\omega_1,\omega_2\in\mathbb{C}$ are $\mathbb{R}$ linearly independent.
+\end{defn}
+
+\begin{ex}
+$\omega_1=z\in\mathbb{H}$, $\omega_2=1$ then we let $L_z = \mathbb{Z}z + \mathbb{Z}\cdot 1$ and we see
+\[G_k(z) = \sideset{}{'}\sum_{m,n}\frac{1}{(mz+n)^k} = \sum_{\omega\in L_z\setminus 0} \frac{1}{\omega^k}.\]
+
+For an arbitrary lattice $L$ one can similarly define
+\[\mathscr{G}_k(L) = \sum_{\omega\in L\setminus0} \frac{1}{\omega^k}.\]
+\end{ex}
+
+Lattices can be scaled by complex numbers $\lambda\in\mathbb{C}^\times$, if $L$ is a lattice we put $\lambda L = \{\lambda\omega\mid \omega\in L\}$.
+This is again a lattice.
+Scaling defines an equivalence relation on the set $\mathcal{L}$ of all lattices in $\mathbb{C}$, two lattices $L,L'$ are \emph{homothetic} if $L'=  \lambda L$ for some $\lambda\in\mathbb{C}^\times$.
+
+
+
+If $\begin{pmatrix}
+a&b\\c&d
+\end{pmatrix}\in\SL_2(\mathbb{Z})$ then another basis  of $L$ is $(a\omega_1 + b\omega_2, c\omega_1 + d\omega_2)$.
+We observe that
+\[L_z = \mathbb{Z}z + \mathbb{Z}\cdot 1 = \mathbb{Z}(az+b) + \mathbb{Z}(cz+d),\]
+this hints at a connection between lattices and modular forms.
+
+Consider functions $\mathcal{F}\colon\{\text{lattices in }\mathbb{C}\}\to\mathbb{C}$ with the property that $\mathcal{F}(\lambda L) = \lambda^{-k}\mathcal{F}(L)$.
+Given such an $\mathcal{F}$ we put $f(z) = \mathcal{F}(L_z)$.
+Then we have
+\begin{align*}
+f(z) &= \mathcal{F}(\mathbb{Z}z+\mathbb{Z}\cdot 1) = \mathcal{F}(\mathbb{Z}(az+b) +\mathbb{Z}(cz+d)) \\ 
+&= \mathcal{F}\left((cz+d)\left(\mathbb{Z}\left(\frac{az+b}{cz+d}\right) + \mathbb{Z}\cdot 1\right)\right)=(cz+d)^{-k}\mathcal{F}\left(\mathbb{Z}\frac{az+b}{cz+d} + \mathbb{Z}\cdot 1\right)\\
+&= \lambda^{-k}\mathcal{F}\left(L_{\frac{az+b}{cz+d}}\right) = \lambda^{-k}f\left(\frac{az+b}{cz+d}\right) = \left(f|_k\begin{pmatrix}a&b\\c&d\end{pmatrix}\right)(z).\end{align*}
+
+So there is an interpretation of modular forms as functions of \emph{lattices} instead of functions on $\mathbb{H}$.
+However in the setting of functions on $\mathbb{H}$ with the property of being holomorphic (both on $\mathbb{H}$ and at infinity) many statements are easier to formulate.
+
+\section{More examples: the modular form $\Delta$ and the modular function $j$}
+Recall that
+\[E_4 = \frac{1}{240} + q + \ldots,\ E_6 = \frac{1}{540}+ q+ \ldots.\]
+
+\begin{defn}
+We define
+\[\Delta = \frac{(240E_4)^3 - (-504E_6)^2}{1728}.\]
+\end{defn}
+
+Working out the $q$-expansion we see that
+\[\Delta = q - 24 q^2 + 252q^3 - 1472q^4+ \ldots\]
+is a cusp form of weight 12.
+One can in fact show that all the $q$-expansion coefficients are integral.
+
+Moreover we define the function $\tau\colon\mathbb{Z}\to\mathbb{Z}$ through the following equality
+\[\Delta = q \prod_{n=1}^\infty(1-q^n)^{24} = \sum_{n=1}^\infty \tau(n)q^n.\]
+$\tau$ is known as Ramanujan's $\tau$ function.
+
+$\tau$ has many interesting number-theoretic properties e.g.
+\[\tau(n) \equiv \sigma_{11}(n)\pmod{691}.\]
+
+\begin{defn}
+The $j$-function is defined as
+\[j(z) = \frac{(240E_4)^3}{\Delta} = q^{-1} + 744 +196884q + \ldots.\]
+This is not a modular form as it is not holomorphic at infinity, it is however an example of a \emph{modular function}.
+\end{defn}
+
+\begin{defn}
+A \emph{modular function} is a function $f$ satisfying $f(\gamma z) = f(z)$ for all $z\in\mathbb{H}$, $\gamma\in\SL_2(\mathbb{Z})$ that is also meromorphic on $\mathbb{H}$ and at infinity.
+\end{defn}
+
+\section{The valence formula}
+
+The valence formula gives us information about the zeroes and poles of modular and weakly modular functions.
+
+Let $f$ be a meromorphic function on an open subset $U\subseteq\mathbb{C}$, and $w\in U$.
+Then $f$ can be expanded in a Laurent series around $w$.
+\[f(z) = c_n(z-w)^n + c_{n+1}(z-w)^{n+1} + \ldots\ (n\in\mathbb{Z},\ c_j\in\mathbb{C},\ c_n\ne 0).\]
+
+The \emph{order} or \emph{valuation} of $f$ at $w$ (denoted $\ord_w(f)$ or $\nu_w(f)$) is the $n$ in the above expansion.
+The \emph{residue} of $f$ at $w$ is $c_{-1}$ ($ = 0$ if $n\ge 0$).
+We denote this by $\res_w(f)$
+
+From this expression we can deduce that
+\[\frac{f'}{f}(z) = \frac{n}{z-w} + b_0 + b_1(z-w) + \ldots.\]
+
+In particular $\frac{f'}{f}$ has a simple zero precisely at the zeroes and poles of $f$ and
+\[\res_w\left(\frac{f'}{f}\right) = n = \ord_w(f).\]
+
+\begin{thm}[Cauchy's integral formula] Let $g$ be holomorphic on an open subset $U\subseteq\mathbb{C}$.
+Let $\mathcal{C}$ be a contour (simple closed curve) in $U$, and let $w\in U$.
+Then we have
+\[\oint_{\mathcal{C}} \frac{g(z)}{z-w}dz = 2\pi i g(w).\]
+\end{thm}
+
+\begin{thm}[Argument principle] Let $f$ be meromorphic on an open subset $U\in\mathbb{C}$, let $\mathcal{C}$ be a contour in $U$.
+Assume $f$ has no zeroes or poles on $\mathcal{C}$.
+Then
+\[\oint_{\mathcal{C}} \frac{f'(z)}{f(z)} \mathrm{d}z = 2\pi i \sum_{z\in\mathop{interior}(\mathcal{C})} \ord_z(f)\ (=2\pi i \cdot(\textrm{number of zeroes} - \textrm{number of poles, with multiplicity})).\]
+\end{thm}
+
 
 \end{document}
