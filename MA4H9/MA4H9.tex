@@ -574,8 +574,68 @@ Then we have
 \begin{thm}[Argument principle] Let $f$ be meromorphic on an open subset $U\in\mathbb{C}$, let $\mathcal{C}$ be a contour in $U$.
 Assume $f$ has no zeroes or poles on $\mathcal{C}$.
 Then
-\[\oint_{\mathcal{C}} \frac{f'(z)}{f(z)} \mathrm{d}z = 2\pi i \sum_{z\in\operatorname{interior}(\mathcal{C})} \ord_z(f)\ (=2\pi i \cdot(\textrm{number of zeroes} - \textrm{number of poles, with multiplicity})).\]
+\begin{align*}
+\oint_{\mathcal{C}} \frac{f'(z)}{f(z)} \mathrm{d}z &= 2\pi i \sum_{z\in\operatorname{interior}(\mathcal{C})} \ord_z(f) \\
+(&=2\pi i \cdot(\textrm{number of zeroes } - \textrm{ number of poles, with multiplicity})).\end{align*}
 \end{thm}
 
+There are variants of this statement, such as:
 
+Let $\mathcal{C}$ be an arc around $w\in U$ with angle $\alpha$ and radius $r$.
+If $g$ is holomorphic at $w$ we have 
+\[\lim_{r\to 0} \oint_{\mathcal{C}}\frac{g(z)}{z-w}\mathrm{d}z = \alpha i g(w).\]
+If $f$ is meromorphic at $w$ we have 
+\[\lim_{r\to 0} \oint_{\mathcal{C}}\frac{f'(z)}{z-w}\mathrm{d}z = \alpha i \ord_i f.\]
+
+Let $f$ be meromorphic on $\mathbb{H}$ and weakly modular of some weight $k$.
+Let $z\in \mathbb{H}$, $\gamma\in\SL_2(\mathbb{Z})$.
+Using the transformation formula it is not hard to check that $\ord_{\gamma z} f = \ord_z f$.
+Finally if in addition $f$ is meromorphic at infinity and $\tilde{f}(q)$ is defined by
+\[f(z) = \tilde{f}(e^{2\pi i z} = \tilde{f}(q)\]
+we define $\ord_{z=\infty} f = \ord_{q=0} \tilde{f}$.
+
+\begin{thm}[Valence formula]
+Let $f$ be meromorphic on $\mathbb{H}$, weakly modular of weight $k$ and meromorphic at infinity.
+Then we have 
+\[\ord_\infty f + \frac{1}{2}\ord_i f + \frac{1}{3} \ord_\rho f + \sum_{w\in W}\ord_w f = \frac{k}{12}.\]
+Where $W$ is the set of $\SL_2(\mathbb{Z})$-orbits in $\mathbb{H}$ with the orbits of $i$ and $\rho$ omitted.
+\end{thm}
+
+\begin{proof}
+We may take all orbit representatives in the set $D$.
+We assume for simplicity that $f$ has no poles or zeroes on the boundary except for possibly at $i$, $\rho$ or $\rho + 1$.
+Let $\mathcal{C}$ be the following contour
+%TODO picture.
+
+By the argument principle
+\[\oint_{\mathcal{C}}\frac{f'(z)}{f(z)}\mathrm{d}z = 2\pi i \sum_{w\in W}\ord_w f.\]
+
+On  the other hand we can compute the same integral by cutting $\mathcal{C}$ into 8 pieces and using the transformation formula.
+We consider the pieces as follows
+\begin{itemize}
+\item We have
+\[\int_{D'}^{E}\frac{f'(z)}{f(z)}\mathrm{d}z = \int_{B}^A \frac{f'}{f}(z' + 1)\mathrm{d}z' = \int_B^A \frac{f'}{f}(z)\mathrm{d}z = \int_A^B \frac{f'}{f}(z)\mathrm{d}z.\]
+I.e. the integrals $\int_B^A$ and $\int_E^{D'}$ cancel.
+\item From the equation $f(-1/z) = z^kf(z)$ we deduce
+\[z^{-2}f'\left(\frac{-1}{z}\right) = kz^{k-1}f(z) + z^k f'(z) \implies z^{-2}\frac{f'}{f}\left(\frac{-1}{z}\right) = \frac{k}{2} + \frac{f'}{f}(z).\]
+So
+\begin{align*}
+\int_{C'}^D \frac{f'}{f}(z)\mathrm{d}z &= \int_C^{B'}\frac{f'}{f}\left(\frac{-1}{z}\right)(z')^{-2}\mathrm{d} z' \text{ where } z' = \frac{-1}{z} \\
+&=\int_C^{B'} \frac{k}{z'} + \frac{f'}{f}(z)\mathrm{d}z' \\
+&=k\int_C^{B'}\frac{1}{z}\mathrm{d}z - \int_{B'}^C \frac{f'}{f}(z)\mathrm{d}z.
+\end{align*}
+
+This implies 
+\[\int_{B'}^C\frac{f'}{f}(z)\mathrm{d}z + \int_{C'}^D \to k^{\frac{\pi i}{6}} \text{ as } r\to \infty.\]
+
+\item As $r\to 0$, we have (by a result quoted above).
+\begin{align*}
+\int_B^{B'} \frac{f'}{f}(z)\mathrm{d}z &\to -\frac{\pi i}{3}\ord_\rho f, \\
+\int_C^{C'} \frac{f'}{f}(z)\mathrm{d}z &\to -\pi i\ord_i f, \\
+\int_D^{D'} \frac{f'}{f}(z)\mathrm{d}z &\to -\frac{\pi i}{3}\ord_{\rho+1} f = -\frac{\pi i}{3}\ord_\rho f.
+\end{align*}
+
+\item To calculate the integral from $E$ to $A$ we make the change of variables $q = e^{2 \pi i z}$.
+\end{itemize}
+\end{proof}
 \end{document}
