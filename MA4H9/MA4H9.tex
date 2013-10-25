@@ -8,9 +8,9 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{upgreek}
-\usepackage{mathrsfs}
 \usepackage{tikz}
 \usepackage{hyperref}
+\usepackage{stmaryrd}
 \usetikzlibrary{arrows}
 
 \newtheorem*{thm}{Theorem}
@@ -489,7 +489,7 @@ $\omega_1=z\in\mathbb{H}$, $\omega_2=1$ then we let $L_z = \mathbb{Z}z + \mathbb
 \[G_k(z) = \sideset{}{'}\sum_{m,n}\frac{1}{(mz+n)^k} = \sum_{\omega\in L_z\setminus 0} \frac{1}{\omega^k}.\]
 
 For an arbitrary lattice $L$ one can similarly define
-\[\mathscr{G}_k(L) = \sum_{\omega\in L\setminus0} \frac{1}{\omega^k}.\]
+\[\mathcal{G}_k(L) = \sum_{\omega\in L\setminus0} \frac{1}{\omega^k}.\]
 \end{ex}
 
 Lattices can be scaled by complex numbers $\lambda\in\mathbb{C}^\times$, if $L$ is a lattice we put $\lambda L = \{\lambda\omega\mid \omega\in L\}$.
@@ -636,6 +636,95 @@ This implies
 \end{align*}
 
 \item To calculate the integral from $E$ to $A$ we make the change of variables $q = e^{2 \pi i z}$.
+Recall that $\tilde{f}$ is defined by
+\[f(z) = \tilde{f}(e^{2\pi i z}.\]
+This gives
+\[\tilde{f}' = 2\pi i e^{2\pi i z}\text{ and so }\frac{f'}{f} = 2\pi i e^{2\pi i z}\frac{\tilde{f}'}{\tilde{f}}(e^{2\pi i z}.\]
+Furthermore $\mathrm{d}q/\mathrm{d}z = 2\pi ie^{2\pi i z}$.
+Hence we get
+\[\int_{E}^{A} \frac{f'}{f}\mathrm{d}z = -\oint_{|q| = e^{-2\pi R}}\frac{\tilde{f}'}{\tilde{f}}(q)\mathrm{d}q = -2\pi i \ord_{q=0}\tilde{f} = -2\pi i \ord_{z=\infty}f.\]
 \end{itemize}
+Summing the eight contributions we get
+\[\oint_{C'}\frac{f'}{f}(z)\mathrm{d}z = k\frac{\pi i}{6}- \pi i \ord_{i}f-\frac{2\pi i}{3}\ord_{\rho} f - 2\pi i \ord_\infty f.\]
+Combining the expressions for $\oint f'/f(z)$ found in these two ways we obtain
+\[2\sum_{w\in W}^{}\ord_w f = \frac{k\pi i}{6} - \pi i \ord_i f -\frac{2\pi i}{3}\ord_\rho f -2\pi i \ord_\infty f.\]
+Rearranging gives the result.
+\end{proof}
+
+We will use this theorem to prove a finiteness theorem about the space of modular forms.
+But first we define the following corollary of the theorem.
+
+\begin{thm}
+\begin{enumerate}
+\item The Eisenstein series $E_4$ has a simple zero at $\rho$ and no other zeroes in $\mathbb{H}$ or at infinity.
+\item The Eisenstein series $E_6$ has a simple zero at $i$ and no other zeroes in $\mathbb{H}$ or at infinity.
+\item The modular form $\Delta$ of weight 12 has a simple zero at infinity and no other zeroes in $\mathbb{H}$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+Using the valence formula
+\[\ord_\infty f + \frac{1}{2}\ord_i f + \frac{1}{3}\ord_\rho f + \sum_{w\in W}^{} \ord_w f=\begin{cases}
+\frac{1}{3}\text{ in case 1},\\
+\frac{1}{2}\text{ in case 2},\\
+1\text{ in case 3}.
+\end{cases}\]
+all terms on the left are non-negative, in case 3 we know moreover $\ord_\infty \Delta \ge 1$.
+The only way to satisfy the formula is if the location of the zeroes is as claimed.
+\end{proof}
+
+\begin{nota}
+$M_k =$ the set of all modular forms of weight $k$.
+
+$S_k =$ the subset of $M_k$ consisting of cusp forms.
+\end{nota}
+
+\begin{cor}
+Multiplication by $\Delta$ is an isomorphism
+\[M_k\tilde{\to}S_{k+12},\ f\mapsto \Delta f,\ \frac{g}{\Delta}\mapsfrom g.\]
+\end{cor}
+
+Note that $M_k$ and $S_k$ are $\mathbb{C}$ vector spaces (a $\mathbb{C}$ linear combination of modular forms of weight $k$ (resp. cusp forms) is again such a form).
+
+\begin{thm}
+The spaces $M_k$ and $S_k$ are finite dimensional for every b$k\in \mathbb{Z}$.
+Furthermore $M_k=\{0\}$ is $k< 0$ or $k$ is odd, and the dimension of $M_k$ for $k\ge 0$ even is 
+\[\dim_\mathbb{C} M_k =\begin{cases}
+\lfloor\frac{k}{12}\rfloor\text{ if } k\equiv 2 \pmod{12}, \\
+\lfloor\frac{k}{12}\rfloor+1\text{ if } k\not\equiv 2 \pmod{12}.
+\end{cases}\]
+
+Note that this also gives the dimension of $S_k\cong M_{k-12}$ for all $k\in\mathbb{Z}$.
+
+In particular we can compute
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+$k$ & $\dim M_k$& $\dim S_k$\\
+\hline
+0 & 1 & 0 \\
+2 & 0 & 0 \\
+4 & 1 & 0 \\
+6 & 1 & 0 \\
+8 & 1 & 0 \\
+10 & 1 & 0 \\
+12 & 2 & 1 \\
+14 & 1 & 0 \\
+16 & 2 & 1 \\
+\hline
+\end{tabular}
+\caption{\label{}Dimensions of the spaces of modular and cusp form of weight $k$ for even $k\le 16$}
+\end{table}
+\end{thm}
+
+\begin{proof}
+The claim that $M_k=\{0\}$ if $k< 0$ follows from the valence formula.
+
+For $k$ odd, note that if $f$ is a modular form of weight $k$, then applying the transformation formula
+\[f\left(\frac{az+b}{cz+d}\right) = (cz+d)^kf(z)\text{ with } a=d=-1,\ b=c=0\]
+shows $f(z) = -f(z)$ so $f= 0$.
+
+
 \end{proof}
 \end{document}
