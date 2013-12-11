@@ -53,7 +53,7 @@ Notes for ST202.
 
 Stochastic Process is a random phenomenon evolving in time.
 
-\begin{defn} A stochastic process $X$ is a family $\{ X_t$, $t$ $\in$ $T$ \} of R.Vs indexed by a time-set $T$. The hard part about this is that it is dependent (behaving in a dynamic way).\\
+\begin{defn} A stochastic process $X$ is a family $\{ X_t | t \in T \}$ of R.Vs indexed by a time-set $T$. The hard part about this is that it is dependent (behaving in a dynamic way).\\
 
 $T$: time set ($T$ is typically the natural numbers but not always).\\
 
@@ -65,13 +65,13 @@ Gambler's Ruin - We toss a sequence of fair coins. You pay me \pounds1 for each 
 
 \paragraph*{Define that game}
 
-Define $X_n$ = $x$ if you have \pounds$x$ after toss $n$ (then $X_0$ = 100). The sequence \{ $X_1$, $X_2$, $\ldots$ \} is a stochastic process. The state-space is \{0, 1, 2, $\ldots$, 110 \}.
+Define $X_n = x$ if you have \pounds$x$ after toss $n$ (then $X_0 = 100$). The sequence $\{ X_1, X_2, \ldots \}$ is a stochastic process. The state-space is $\{0, 1, 2, \ldots, 110 \}$.
 \end{ex}
 
 \section{05/10/12 Lecture 2}
 
 \begin{ex}
-Hanging words - This is a stochastic process with a large S "roughly $26^3$"
+Hanging words - This is a stochastic process with a large $S$ ``roughly $26^3$''
 
 \[
 \begin{array}{ccccccc}
@@ -112,12 +112,12 @@ Repeat this process until you have the word
 
 \begin{ex}Simple random Walk - Here is a random walk with a variable probability $p$ and $1-p$.\\
 
-$X_0$ = 0\\
-$X_n$ = $X_{n-1}$ $\pm$ 1 $\rightarrow$ Probability $p$, $1-p$ respectively.
-\indent $S$ = $\mathbb{Z}$, $T$ = $\mathbb{N}$
+$X_0 = 0$\\
+$X_n = X_{n-1} \pm 1 \rightarrow$ Probability $p$, $1-p$ respectively.
+\indent $S = \mathbb{Z}$, $T = \mathbb{N}$
 \end{ex}
 
-\begin{defn} The path space, is a set of all paths that you process can take eg your state space raised to the power of the amount of iterations you process can take.
+\begin{defn} The path space, is a set of all paths that you process can take e.g. your state space raised to the power of the amount of iterations you process can take.
 \end{defn}
 
 \begin{defn} An \underline{Event} is a sub set of the path-space.\\
@@ -125,7 +125,7 @@ $X_n$ = $X_{n-1}$ $\pm$ 1 $\rightarrow$ Probability $p$, $1-p$ respectively.
  
 e.g. all paths that do not exceed 10 for the first 100 steps.\\
 
-e.g Event: all paths that satisfies $X_2$ = 0
+e.g. Event: all paths that satisfies $X_2 = 0$
 
 \begin{defn} $X = \{ X_n : n = 0,1,2, \ldots \}$ is said to be a discrete state-space Markov chain if
 
@@ -164,14 +164,14 @@ $\hspace*{0.15 in}$ $\mathbb{P}$ (dry tomorrow $\mid$ dry today ) = 0.7\\
 
 or\\
 
-$\mathbb{P} (X_{n+1} = w \mid X_n = w) = 0.8$ $\Leftrightarrow$ $\mathbb{P}$ ($X_{n+1}$ = $d$ $\mid$ $X_n$ = $w$ ) = 0.2\\
-$\hspace*{0.15 in}$ $\mathbb{P}$ ($X_{n+1}$ = $d$ $\mid$ $X_n$ = $d$ ) = 0.7 $\Leftrightarrow$ $\mathbb{P}$ ($X_{n+1}$ = $w$ $\mid$ $X_n$ = $d$ ) = 0.3\\
+$\mathbb{P} (X_{n+1} = w \mid X_n = w) = 0.8\Leftrightarrow\mathbb{P} (X_{n+1} = d \mid X_n = w ) = 0.2$\\
+$\hspace*{0.15 in} \mathbb{P} (X_{n+1} = d \mid X_n = d ) = 0.7 \Leftrightarrow \mathbb{P} (X_{n+1} = w \mid X_n = d ) = 0.3$\\
 \end{ex}
 
 \begin{ex} A simple weather model\\
 
-$\mathbb{P}$ ($X_{n+1}$ = $w$ $\mid$ $X_n$ = $w$ ) = 0.6 + $\frac{\mid J(n) - 180 \mid}{350}$ 
-$\hspace*{0.15 in}$ $\mathbb{P}$ ($X_{n+1}$ = $d$ $\mid$ $X_n$ = $d$ ) = 0.5 - $\frac{\mid J(n) - 180 \mid}{350}$
+$\mathbb{P} (X_{n+1} = w \mid X_n = w ) = 0.6 + \frac{\mid J(n) - 180 \mid}{350}$ 
+$\hspace*{0.15 in} \mathbb{P} (X_{n+1} = d \mid X_n = d ) = 0.5 - \frac{\mid J(n) - 180 \mid}{350}$
 
 with $J(n)$ is equal to the number of days in years. 
 \end{ex}
@@ -207,7 +207,7 @@ and
 \end{enumerate}
 
 \begin{ex}
-The really simple weather model - let d=2 and w = 1, so S = \{d,w\} = \{2,1\}
+The really simple weather model - let $d=2$ and $w = 1$, so $S = \{d,w\} = \{2,1\}$
 
 \[
 \uuline{P}^{(n)} = \left [ \begin{array}{cc} 0.8 & 0.2 \\ 0.3 & 0.7 \end{array} \right ] \hspace*{0.5 in} n > 0
@@ -226,7 +226,7 @@ P^{(0)}(j,k) = \begin{cases} 1 \mbox{ j = k}\\ 0 \mbox{ j} \neq \mbox{ k} \end{c
 \]
 \end{rem}
 
-\begin{rem} $\uuline{P}$ is a stochastic matrix, i.e
+\begin{rem} $\uuline{P}$ is a stochastic matrix, i.e.
 \begin{itemize}
 \item
 row sums = 1
@@ -247,7 +247,7 @@ its (one step) transition probability
 
 i.e. given (1) and (2) we can calculate the probability of any event occurring X.
 
-\begin{proof} For any path \{$k_0$, $k_1$, $\ldots$, $k_{n-1}$, $k_n$\} over the initial time segment \{0, 2, $\ldots$, n \}
+\begin{proof} For any path $\{k_0, k_1, \ldots, k_{n-1}, k_n\}$ over the initial time segment $\{0, 2, \ldots, n \}$
 
 \[
 \mathbb{P}(x \mbox{ follows } \{k_0, k_1, \ldots, k_n \}) = \mathbb{P}(X \mbox{ follows } \{k_0, k_1, \ldots, k_n \} \mid X \mbox{ follows } \{k_0, k_1, \ldots, k_{n-1} \}) 
@@ -317,7 +317,7 @@ a_i^n = \sum_{k \in S} \mathbb{P} (X_n = i \mid X_0 = k ) \times \mathbb{P}[X_0 
 \[
 \uuline{P^{n+m}} = \uuline{P^{n}} \cdot \uuline{P^{m}} 
 \]
-if $a^{(n)}$ is the distribution of $X_n$, then $a^{(n)}$ = $a^{(0)} \times \uuline{P^{n}} = a^{(n-1)}\uuline{P}$.
+if $a^{(n)}$ is the distribution of $X_n$, then $a^{(n)} = a^{(0)} \times \uuline{P^{n}} = a^{(n-1)}\uuline{P}$.
 
 \begin{ex} Let $S = \{1, 2, 3\}$ be our state-space and
 \[
@@ -327,7 +327,7 @@ if $a^{(n)}$ is the distribution of $X_n$, then $a^{(n)}$ = $a^{(0)} \times \uul
 If we start with $X_0 \sim a^{(0)} = [ 0,0,1 ]$ then, $X_1 \sim a^{(1)} = a^{(0)} \uuline{P^{1}} = [0,0.5,0.5]$, then $X_2 \sim a^{(2)} = a^{(0)} \uuline{P^{2}} = a^{1}\uuline{P^1} = [ 0.25, 0.25, 0.5 ]$ and so on $\ldots$
 \end{ex}
 
-\paragraph*{Note} Easy to do 2x2 or 3x3 matrices but for bigger matrices it is easier to use some software.
+\paragraph*{Note} Easy to do $2\times2$ or $3\times3$ matrices but for bigger matrices it is easier to use some software.
 
 \paragraph*{State diagram:} directed graph, vertices are the states, directed edges are the possible one step transitions
 
@@ -349,7 +349,7 @@ $a_i^{(0)} = \mathbb{P}(X_0 = i)$ - infinite vector. Distribution of $Y$ is the 
 \item
 Absorbing or reflecting barriers.
 \item
-Random walk behaviours on $\mathbb{Z}^2, \mathbb{Z}^3$ etc
+Random walk behaviours on $\mathbb{Z}^2, \mathbb{Z}^3$ etc.
 \item
 Can take arbitrary jump distribution for $Y$.
 \end{enumerate}
@@ -371,7 +371,7 @@ Our task is to model this with a Markov chain. So we set our statespace as $S = 
 \]
 \end{ex}
 
-\begin{ex} Discrete time m/G/1 queue - service times are iid and independent distributed as $\mathbb{P}(S_n = r)$, number of arrivals = $b_r$.  At each point of time, there is a new arrival with probability p; arrivals are idd. Inter arrival times $\{A_n : n > 0\}$ are idd, geometric. $\PP(A_n = r) = (1-p)^{-1}p$. The number of people in the queue at time $m$ is not in general a Markov Chain. However define\\
+\begin{ex} Discrete time m/G/1 queue - service times are iid and independent distributed as $\mathbb{P}(S_n = r)$, number of arrivals = $b_r$.  At each point of time, there is a new arrival with probability $p$; arrivals are idd. Inter arrival times $\{A_n : n > 0\}$ are idd, geometric. $\PP(A_n = r) = (1-p)^{-1}p$. The number of people in the queue at time $m$ is not in general a Markov Chain. However define\\
 
 $Q_n$ - the length of the queue at the time of $n^{th}$ departure. This is a stochastic process we are interested in.
 \end{ex}
@@ -386,7 +386,7 @@ Q_{n+1} = \begin{cases} Q_n - 1 + N_{n+1} & \mbox{ if } Q_n > 0,\\ N_{n+1} & \mb
 
 $N_{n+1}$ - the number of arrivals to the queue in the time-interval during which customer $n+1$ is being served.\\
 
-$\PP(N_n = j) = k_j = \sum_{r=j}^{\inf}$ $\PP(j$ arrivals in service time $\mid$ service time = r)$b_r$ = $\sum_{r=k}^{\inf} \binom{r}{j} p^j(1-p)^{r-j}b_r$.\\
+$\PP(N_n = j) = k_j = \sum_{r=j}^{\inf}$ $\PP(j$ arrivals in service time $\mid$ service time $= r)b_r$ = $\sum_{r=k}^{\inf} \binom{r}{j} p^j(1-p)^{r-j}b_r$.\\
 
 Hence the transition matrix of $Q_n$ is
 
@@ -561,9 +561,9 @@ Two communicating classes
 \paragraph*{Questions}
 \begin{itemize}
 \item
-$\PP$(X hits 0 before time $n$ = $r_n$ = ?
+$\PP$(X hits 0 before time $n = r_n = $?
 \item
-$\lim_{n \rightarrow \inf} r_n$ = 1? (It may depend on $p$)
+$\lim_{n \rightarrow \inf} r_n = 1$? (It may depend on $p$)
 \end{itemize}
 
 \begin{defn}
