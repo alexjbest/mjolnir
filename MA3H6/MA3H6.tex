@@ -1,0 +1,330 @@
+\title{MA3H6 Algebraic Topology - Lecture Notes}
+\author{Based on lectures by Dr. Saul Schleimer \\ Typeset by Alex J. Best}
+\date{\today}
+
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{enumerate}
+
+
+\newtheorem*{thm}{Theorem}
+\newtheorem*{lem}{Lemma}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem*{defns}{Definitions}
+\newtheorem*{ex}{Example}
+\newtheorem*{nex}{Non Example}
+\newtheorem*{exer}{Exercise}
+\newtheorem*{rem}{Remark}
+\newtheorem*{nota}{Notation}
+\newtheorem*{alg}{Algorithm}
+\newtheorem*{hint}{Hint}
+
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\RR}{\mathbb{R}}
+
+\DeclareMathOperator{\im}{im}
+
+
+%TODO List:
+
+\setcounter{tocdepth}{3}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+These are lecture notes that I typeset for MA3H6 Algebraic Topology in 2014, they are currently full of gaps, mistakes, wrong statements, notation abuse and lots of other badness.
+However they might be useful to someone, despite the fact they lack very many pictures at present.
+If you find anything else that can be improved send me an email at a.j.best@warwick.ac.uk, thanks.
+\clearpage
+
+\section{Basics}
+\subsection{Topological Review}
+
+\begin{nota}
+\marginpar{Lecture 1}
+\begin{align*}
+\RR^n &= \{(x_1, \ldots,x_n)\mid x_j\in\RR\}\text{ with the product topology of open intervals}.\\
+\|x\| &= \sqrt{\sum x_i^2}.\\
+B^n &= \{x\in \RR^n \mid \|x\| \le 1\}\text{ the $n-1$ sphere}.\\
+S^{n-1} &= \{x\in\RR^n\mid\|x\| = 1\}.\\
+\RR^0 &= \{()\}.
+\end{align*}
+\end{nota}
+
+%TODO pictures
+
+\begin{exer}
+\[B^n \times B^m \cong B^{n+m}.\]
+\end{exer}
+
+\begin{exer}
+\[S^n \times S^m\not\cong S^{n+m}.\]
+\end{exer}
+
+\begin{hint}
+Find an invariant of topological spaces that distinguishes them.
+\end{hint}
+
+\paragraph{Invariants}
+Connectedness, Hausdorffness, $\pi_1$, compactness, Euler characteristic.
+But none of these work.
+
+\paragraph{Quotients}
+We recall that the quotient topology is defined by $a \subseteq X/\sim$ is open iff its preimage under the map $f\colon X \to X/\sim$ is open.
+This topology makes as many of the sets of the quotient as possible open while keeping the quotient map continuous.
+
+There are more ways to produce $S^1$, for example
+\[S^1 \cong [0,1]/0\sim1\]
+when equipped with the quotient topology.
+
+Another way is to consider $\RR/\ZZ = \RR/\{x\sim y \iff x-y\in \ZZ\}$.
+So there is a map $\RR \to \RR/\ZZ$ which is the covering map of $\RR/\ZZ$ by its universal cover.
+
+\subsection{Simplices}
+\begin{defn}
+We define the $n$-simplex to be
+\[\Delta^n = \left\{x\in \RR^{n+1} \mid x_i \ge 0\ \forall i,\ \sum x_i = 1\right\}.\]
+\end{defn}
+
+%TODO pictures
+
+\begin{exer}
+What is a ``hedron''?
+\end{exer}
+
+In general if $v_i\in \RR^m$ are a collection of $n+1$ affinely independent points (do not lie in an $n-1$ dimensional subspace) then we define
+\[[v] = [v_0,v_1,\ldots,v_n] = \left\{\sum x_i v_i \mid x_i\in \Delta^n\right\}.\]
+
+%TODO picture
+
+If we omit some of the $v_i$ we obtain a facet of $[v]$.
+If we only omit one of them we get a face.
+This is denoted by
+\[[v_0,v_1, \ldots, \hat v_i, \ldots , v_n]\]
+where the $v_i$ is read to be omitted.
+
+The vertices are ordered and if $[v]$, $[w]$ are simplices of the same dimension then there exists a unique affine map extending the ordering of the vertices.
+The standard map $f\colon [v]\to [w]$ sends $v_i$ to $w_i$ and respects barycentric coordinates. 
+
+
+\begin{defn}
+\marginpar{Lecture 2}
+A facet of $\Delta$ is a subsimplex (i.e. pick some $x_i$ and set them to zero).
+\end{defn}
+
+\begin{defn}
+A face is a codimension one facet.
+\end{defn}
+
+\begin{defn}
+The boundary of $\Delta^n$ is denoted by $\partial \Delta^n$ and consists of the union of its faces.
+\end{defn}
+
+We have that $\mathring{\Delta} =\Delta - \partial \Delta$.
+
+\begin{ex}
+%TODO pictures
+\end{ex}
+
+\begin{exer}
+Count the $k$-dimensional faces of $\Delta^n$.
+\end{exer}
+
+\subsection{$\Delta$-complexes}
+\begin{defn}
+Fix $X$ a topological space and a collection of maps
+\[\{\sigma_\alpha \colon \Delta_\alpha \to X \mid \alpha \in A\}.\]
+This is known as a \emph{$\Delta$-complex structure} on $X$ if:
+\begin{enumerate}[(i)]
+\item (Partition) for all $\alpha$ $\sigma_\alpha|\mathring{\Delta}_\alpha$ is injective and for $x\in X$ there is a \emph{unique} $\alpha\in A$ s.t. $x\in\sigma_\alpha(\mathring{\Delta}_\alpha)$.
+\item (Tiling) If $\Delta\subset \Delta_\alpha$ is a face then there is a unique $\beta\in A$ s.t. $\sigma_\setminus|\Delta = \sigma_\beta\circ f$ where $f \colon \Delta \to \Delta_\beta$ is the canonical map.
+\item (Topology) $U\subset X$ is open iff $\forall \alpha\ \sigma^{-1}_\alpha (U) \subset \Delta_\alpha$ is open.
+\end{enumerate}
+\end{defn}
+
+We can state this equivalently as: $X$ must be homeomorphic to the quotient space
+\[\bigsqcup_{\alpha\in A} \Delta_\alpha / \text{face gluings}.\]
+
+\begin{ex}
+%TODO
+\end{ex}
+
+\begin{ex}
+$\partial \Delta^n$ gives a $\Delta$-complex structure on $S^{n-1}$.
+\end{ex}
+
+\begin{ex}
+If we double $\Delta^n$ across $\partial \Delta$ we get a $\Delta$-complex structure on $S^n$.
+%TODO picture
+\end{ex}
+
+\begin{ex}
+Check these are homeomorphic to $S^n$.
+\end{ex}
+
+\begin{nex}
+%TODO picture
+Violates tiling on the edge marked $[0,2]$ and so is not a $\Delta$-complex structure.
+\end{nex}
+
+\begin{exer}
+\begin{enumerate}
+\item Find a $\Delta$-complex structure on the space in the non-example above.
+\item Show that every graph admits a $\Delta$-complex structure.
+\end{enumerate}
+\end{exer}
+
+\begin{ex}
+%TODO picture 
+Here the indexing set $A = \RR$ (very big!).
+\end{ex}
+
+\begin{defn}
+A $\Delta$-complex is \emph{finite dimensional} if there exists $n$ s.t. for all $\alpha$ $\dim(\Delta_\alpha) \le n$.
+\end{defn}
+
+\begin{defn}
+A $\Delta$-complex structure is \emph{finite} if $|A| < \infty$ (where as above $A$ is the index set).
+\end{defn}
+
+\begin{exer}
+Show that if $X$ admits a $\Delta$-complex structure then $X$ is Hausdorff.
+\end{exer}
+
+\begin{exer}
+Show that if $\{\sigma_\alpha\}$ is a $\Delta$-complex structure on $X$ and $K\subset X$ is compact then $K$ meets the interiors of only finitely many of the $\sigma_\alpha$'s.
+\end{exer}
+
+\begin{exer}
+If $X,Y$ admit $\Delta$-complex structures then so does $X\times Y$.
+\end{exer}
+
+\subsection{Abelian groups}
+Fix $A$ a set.
+Define $\ZZ[A]$ to be the \emph{free abelian group} on $A$ given by
+\begin{align*}
+\ZZ[A] &= \left\{ \sum_{\alpha\in A} n_\alpha \cdot \alpha \middle| n_\alpha\in\ZZ\text{ and all but finitely many are non-zero}\right\} \\
+&= \text{all finite $\ZZ$-linear sums}.
+\end{align*}
+
+\begin{ex}
+\[\ZZ[\{\alpha,\beta\}] \cong \ZZ^2 = \{n\alpha + m\beta \mid m,n\in \ZZ\}.\]
+If $A$ is finite then $\ZZ[A] \cong \ZZ^A$.
+But if $|A| = \infty$ then this is false.
+\end{ex}
+
+\begin{exer}
+$\QQ$ is \emph{not} a free abelian group.
+\end{exer}
+
+\subsection{Chains}
+Suppose $(X,\{\sigma\})$ is a space equipped with a $\Delta$-complex structure.
+
+\begin{defn}
+We define the set of \emph{$n$-chains} to be
+\[C_n^\Delta = \ZZ[\{\sigma_\alpha \mid \dim(\Delta_\alpha) = n\}].\]
+\end{defn}
+
+\begin{ex}
+%TODO
+\end{ex}
+
+\subsection{Boundary Operators}
+\marginpar{Lecture 3}
+Recall $\Delta_v = [v_0, v_1,\ldots,v_n]$ is an $n$-simplex.
+
+The $i$th face of $\Delta$ is $[v_0, v_1, \ldots , \hat{v}_i, \ldots ,v_n]$. %TODO th
+
+\begin{defn}
+We define the \emph{boundary operator} as follows.
+First suppose $\sigma \colon \Delta \to X$ is a map.
+
+We then define
+\[\partial \sigma = \sum_{i=0}^{n} (-1)^i \sigma \mid_{[v_0,\ldots,\hat{v}_i, \ldots, v_n]}.\]
+Which is an $(n-1)$-chain.
+
+So we extend linearly to define 
+\[\partial \colon C_n^\Delta(X) \to C_{n-1}^\Delta (X)\]
+given by
+\[\sum n_\alpha \sigma_\alpha \mapsto \sum n_\alpha \partial \sigma_\alpha.\]
+\end{defn}
+
+\begin{ex}
+%TODO
+\end{ex}
+
+\begin{lem}
+\[\partial_{n-1} \circ \partial_n = 0.\]
+``The extremes of the extremes are empty''.
+\end{lem}
+\begin{proof}
+It suffices to check this on a basis element
+\[\sigma \colon \Delta^n \to X\]
+so
+\[\partial_n \sigma = \sum_{i=0}^{n} (-1)^i \sigma \mid_{[v_0, \ldots, \hat{v}_i,\ldots,v_n]}\]
+now we apply $\partial_{n-1}$:
+\begin{align*}
+\partial_{n-1} \partial_n \sigma &= \partial_{n-1} \left(\sum_{i=0}^{n} (-1)^i \sigma \mid_{[v_0, \ldots, \hat{v}_i,\ldots,v_n]} \right) = \sum_{i=0}^{n} (-1)^i \partial_{n-1} \left(\sigma \mid_{[v_0, \ldots, \hat{v}_i,\ldots,v_n]}\right)\\
+&= \sum_{i=0}^{n} (-1)^i \sum_{j= 0}^{n-1} (-1)^j\left(\sigma \mid_{[v_0, \ldots, \hat{v}_i,\ldots,v_n]}\right)\mid_{[w_0, \ldots, \hat{w}_j,\ldots,w_{n-1}]}\\
+&= \sum_{i=0}^{n} (-1)^i\left( \sum_{j< i} (-1)^j \sigma \mid_{[v_0, \ldots,\hat{v}_j, \ldots, \hat{v}_i,\ldots,v_n]} + \sum_{j> i} (-1)^{j+1} \sigma \mid_{[v_0, \ldots, \hat{v}_i,\ldots,\hat{v}_j,\ldots,v_n]}\right) \\
+&= \sum_{j< i} (-1)^{j+i} \sigma \mid_{[v_0, \ldots,\hat{v}_j, \ldots, \hat{v}_i,\ldots,v_n]} - \sum_{j> i} (-1)^{j+i} \sigma \mid_{[v_0, \ldots, \hat{v}_i,\ldots,\hat{v}_j,\ldots,v_n]} \\
+&= 0
+\end{align*}
+\end{proof}
+
+\subsection{Chain Complexes}
+\begin{defn}
+A sequence $\{C_n\}_{n=0}^{\infty}$ of abelian groups with homomorphisms
+\[\partial_n\colon C_n\to C_{n-1}\]
+ s.t. $\partial^2 = 0$ is called a \emph{chain complex}.
+\end{defn}
+
+By convention we take $C_{-1}$ to be 0.
+
+\begin{ex}
+\[0\to\ZZ\xrightarrow{\times 2} \ZZ \to 0.\]
+\end{ex}
+
+\paragraph{Terminology}
+If $c\in C_n$ we call $c$ an \emph{$n$-chain}.
+
+If $z\in Z_n = \ker(\partial_n)$ we call $z$ an \emph{$n$-cycle}.
+
+If $b\in B_n = \im(\partial_{n-1})$ we call $b$ an \emph{$n$-boundary}.
+
+If $h\in Z_n/B_n = H_n$ we call $h$ a \emph{homology classs}.
+
+%TODO diagram
+
+Since $\partial^2 = 0$ we deduce that $B_n \le Z_n$ and $H_n = Z_n/B_n$ makes sense.
+
+\begin{ex}
+For
+\[0\to\ZZ\xrightarrow{\times 2} \ZZ \to 0\]
+we have $H_1 = 0$, $H_0 = \ZZ/2\ZZ$ and $H_k = 0$ for all $k \ge 1$.
+\end{ex}
+
+\begin{defn}
+If $(X,\sigma)$ is a $\Delta$-complex then set $C_n^\Delta(X) = \ZZ[\{\sigma_\alpha \mid \dim(\Delta_\alpha) = n\}]$ and $\partial_n\colon C_n^\Delta(X) \to C_{n-1}^\Delta(X)$ is the boundary operator.
+
+Then $H_n^\Delta(X)$ are called the \emph{simplicial homology groups} of $X$.
+\end{defn}
+
+\begin{thm}
+This is independent of the choice of $\Delta$-complex structure on $X$.
+\end{thm}
+
+%TODO some computations here
+
+\end{document}
