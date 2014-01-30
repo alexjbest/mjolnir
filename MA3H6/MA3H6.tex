@@ -49,7 +49,7 @@ If you find anything else that can be improved send me an email at a.j.best@warw
 \clearpage
 
 \section{Basics}
-\subsection{Topological Review}
+\subsection{Topological review}
 
 \begin{nota}
 \marginpar{Lecture 1}
@@ -91,6 +91,7 @@ when equipped with the quotient topology.
 Another way is to consider $\RR/\ZZ = \RR/\{x\sim y \iff x-y\in \ZZ\}$.
 So there is a map $\RR \to \RR/\ZZ$ which is the covering map of $\RR/\ZZ$ by its universal cover.
 
+\section{Simplicial homology}
 \subsection{Simplices}
 \begin{defn}
 We define the $n$-simplex to be
@@ -240,7 +241,7 @@ We define the set of \emph{$n$-chains} to be
 %TODO
 \end{ex}
 
-\subsection{Boundary Operators}
+\subsection{Boundary operators}
 \marginpar{Lecture 3}
 Recall $\Delta_v = [v_0, v_1,\ldots,v_n]$ is an $n$-simplex.
 
@@ -283,7 +284,7 @@ now we apply $\partial_{n-1}$:
 \end{align*}
 \end{proof}
 
-\subsection{Chain Complexes}
+\subsection{Chain complexes}
 \begin{defn}
 A sequence $\{C_n\}_{n=0}^{\infty}$ of abelian groups with homomorphisms
 \[\partial_n\colon C_n\to C_{n-1}\]
@@ -303,7 +304,7 @@ If $z\in Z_n = \ker(\partial_n)$ we call $z$ an \emph{$n$-cycle}.
 
 If $b\in B_n = \im(\partial_{n-1})$ we call $b$ an \emph{$n$-boundary}.
 
-If $h\in Z_n/B_n = H_n$ we call $h$ a \emph{homology classs}.
+If $h\in Z_n/B_n = H_n$ we call $h$ a \emph{homology class}.
 
 %TODO diagram
 
@@ -325,6 +326,72 @@ Then $H_n^\Delta(X)$ are called the \emph{simplicial homology groups} of $X$.
 This is independent of the choice of $\Delta$-complex structure on $X$.
 \end{thm}
 
-%TODO some computations here
+\subsection{Computations}
+\begin{enumerate}
+\item $X = \{\text{pt}\}$. $C_0^\Delta (X) \cong \ZZ$ and all others are 0, so we have the chain complex:
+\[
+\cdots \rightarrow 0 \rightarrow 0 \rightarrow \ZZ \rightarrow 0.
+\]
+So $H_0^\Delta(\text{pt}) \cong \ZZ$ and $H_k^\Delta(\text{pt}) \cong 0$ if $k\ge 1$.
+
+\item $X = S^1$.
+$C_0^\Delta (X) \cong \ZZ$, $C_1^\Delta (X) \cong \ZZ$ and all others are 0, so we have the chain complex:
+\[
+\cdots \rightarrow 0 \rightarrow \ZZ \xrightarrow{\partial} \ZZ \rightarrow 0.
+\]
+We see that $\partial e = \sum_{i=0}^{1} (-1)^i e|_{[v_0,\ldots,\hat{v}_i,\ldots,v_1]} = e|_{[v_1]} - e|_{[v_0]} = v-v = 0$.
+So 
+\[H_k^\Delta(S^1) \cong\begin{cases}
+\ZZ &\text{ if } k = 0 \text{ or }1, \\
+0 &\text{ otherwise}.
+\end{cases} \]
+
+%TODO more here?
+
+
+
+
+\end{enumerate}
+
+\begin{exer}
+Compute $H_\bullet^\Delta (S^1)$ for the $\Delta$-complex structure on $S^1$ with $k$ vertices and $k$ edges.
+\end{exer}
+
+\begin{exer}
+Compute $H_\bullet^\Delta (X)$ for the $X = B^2,\ S^1$ and $K^2$ (the Klein bottle).
+\end{exer}
+
+\begin{exer}
+Using the fact that $\Delta^n$ is a $\Delta$-complex structure on $B^n$ compute $H_\bullet^\Delta (B^n)$.
+
+In general you'll want to make use of the Smith normal form.
+\end{exer}
+
+\section{Singular homology}
+\begin{defn}
+A \emph{singular $n$-simplex} in $X$ is a map $\sigma \colon \Delta^n \to X$.
+\end{defn}
+
+\begin{defn}
+\[
+C_n^{\text{sing}}(X) = \ZZ[\{\sigma\colon \Delta^n \to X\}].\]
+\end{defn}
+
+We call $c \in C_n^\text{sing}(X)$ a singular $n$-chain.
+
+\begin{defn}
+We define $\partial\colon C_n^\text{sing}(X) \to C_{n-1}^\text{sing}(X)$ exactly as before by
+\[\partial \sigma = \sum_{i=0}^{n} (-1)^i \sigma|_{[v_0,\ldots,\hat{v})i, \ldots, v_n]}.\]
+\end{defn}
+
+And again we define $Z_n^\text{sing}(X)$ (resp. $B_n^\text{sing}(X)$) exactly as above and call it the group of singular $n$-cycles (resp. $n$-boundaries).
+
+\begin{defn}
+Now $H_n^\text{sing}(X) = Z_n^\text{sing}(X)/B_n^\text{sing}(X)$ is the $n$-th \emph{singular homology group}.
+\end{defn}
+
+\begin{rem}
+We have that $\partial_{n-1}\circ \partial_n = 0$ exactly as before.
+\end{rem}
 
 \end{document}
