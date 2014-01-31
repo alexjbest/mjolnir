@@ -862,8 +862,9 @@ Then the maximum number of internally disjoint $u$-$v$ paths in $G$ equals the m
 \subsection{Optimal Graph Traversals}
 
 \begin{quotation}
-``This question is so banal...'' \\
-``Thus you see, most noble Sir, how this type of solution bears little relationship to mathematics, and I do not understand why you expect a     mathematician to produce it, rather than anyone else, for the solution is based on reason alone, and its discovery does not depend on any mathematical principle.'' Euler's thoughts on solving the bridges of K\"onigsberg problem.
+``This question is so banal...''
+
+``Thus you see, most noble Sir, how this type of solution bears little relationship to mathematics, and I do not understand why you expect a mathematician to produce it, rather than anyone else, for the solution is based on reason alone, and its discovery does not depend on any mathematical principle.'' Euler's thoughts on solving the bridges of K\"onigsberg problem.
 \end{quotation}
 
 \begin{defns}
@@ -977,9 +978,11 @@ Let $x = v_1,v_2,\ldots,v_n=y$.
 For each $i=2,\ldots,n-1$ at least one of the pairs $v_1,v_{i+1}$ and $v_i,v_n$ is non-adjacent since otherwise $\langle v_1,\ldots,v_i,v_n,v_{n-1},\ldots,v_{i+1},v_1\rangle$ is a Hamiltonian cycle.
 If $(a_{ij})$ is the adjacency matrix of $G$ then $a_{1,i+1} + a_{i,n}\le 1$ for $i=2,\ldots,n-1$.
 Thus
-$$d(x)+d(y) = \sum_{i=2}^{n-1}a_{1,i} + \sum_{i=2}^{n-1} a_{i,n} = a_{1,2}+(\sum_{i=3}^{n-1}a_{1,i} + \sum_{i=2}^{n-2} a_{i,n}) + a_{n-1,n} $$
-$$= a_{1,2}+(\sum_{i=2}^{n-2}a_{1,i+1} + \sum_{i=2}^{n-2} a_{i,n}) + a_{n-1,n} $$
-$$= 2 + \sum_{i=2}^{n-2}(a_{1,i+1} +a_{i,n}) \le 2+n-3 = n-1$$
+\begin{align*}
+d(x)+d(y) &= \sum_{i=2}^{n-1}a_{1,i} + \sum_{i=2}^{n-1} a_{i,n} = a_{1,2}+\left(\sum_{i=3}^{n-1}a_{1,i} + \sum_{i=2}^{n-2} a_{i,n}\right) + a_{n-1,n} \\
+&= a_{1,2}+\left(\sum_{i=2}^{n-2}a_{1,i+1} + \sum_{i=2}^{n-2} a_{i,n}\right) + a_{n-1,n} \\
+&= 2 + \sum_{i=2}^{n-2}(a_{1,i+1} +a_{i,n}) \le 2+n-3 = n-1
+\end{align*}
 \end{proof}
 
 \begin{cor}[Dirac, 1952]
