@@ -119,13 +119,13 @@ The graph $K_{1,n}$ is often called a star.
 \end{defn}
 \begin{center}
 \begin{tikzpicture}
-  \node[draw,circle] (G-1) at (0,0) {};
-  \node[draw,circle] (G-2) at (1,0) {};
-  \node[draw,circle] (G-3) at (0.5,0.866) {};
-  \node[draw,circle] (G-4) at (-0.5,0.866) {};
-  \node[draw,circle] (G-5) at (-1,0) {};
-  \node[draw,circle] (G-6) at (-0.5,-0.866) {};
-  \node[draw,circle] (G-7) at (0.5,-0.866) {};
+  \node[draw,circle] (G-1) at (0:0) {};
+  \node[draw,circle] (G-2) at (60:1) {};
+  \node[draw,circle] (G-3) at (120:1) {};
+  \node[draw,circle] (G-4) at (180:1) {};
+  \node[draw,circle] (G-5) at (240:1) {};
+  \node[draw,circle] (G-6) at (300:1) {};
+  \node[draw,circle] (G-7) at (0:1) {};
   \draw (G-1) -- (G-2);
   \draw (G-1) -- (G-3);
   \draw (G-1) -- (G-4);
@@ -156,12 +156,12 @@ A \emph{cycle} on $n$ vertices is a graph defined in the same way but with a cyc
 \end{defn}
 \begin{center}
 \begin{tikzpicture}
-  \node[draw,circle] (G-1) at (1,0) {};
-  \node[draw,circle] (G-2) at (0.5,0.866) {};
-  \node[draw,circle] (G-3) at (-0.5,0.866) {};
-  \node[draw,circle] (G-4) at (-1,0) {};
-  \node[draw,circle] (G-5) at (-0.5,-0.866) {};
-  \node[draw,circle] (G-6) at (0.5,-0.866) {};
+  \node[draw,circle] (G-1) at (60:1) {};
+  \node[draw,circle] (G-2) at (120:1) {};
+  \node[draw,circle] (G-3) at (180:1) {};
+  \node[draw,circle] (G-4) at (240:1) {};
+  \node[draw,circle] (G-5) at (300:1) {};
+  \node[draw,circle] (G-6) at (0:1) {};
   \draw (G-1) -- (G-2) -- (G-3) -- (G-4)  -- (G-5)  -- (G-6) -- (G-1);
 \end{tikzpicture}
 \end{center}
@@ -171,14 +171,14 @@ The length of a path or cycle is the number of its edges. A path or cycle of len
 \end{nota}
 \begin{center}
 \begin{tikzpicture}
-  \node[draw,circle] (G-1) at (1,0) {};
-  \node[draw,circle] (G-2) at (0.707,0.707) {};
-  \node[draw,circle] (G-3) at (0,1) {};
-  \node[draw,circle] (G-4) at (-0.707,0.707) {};
-  \node[draw,circle] (G-5) at (-1,0) {};
-  \node[draw,circle] (G-6) at (-0.707,-0.707) {};
-  \node[draw,circle] (G-7) at (0,-1) {};
-  \node[draw,circle] (G-8) at (0.707,-0.707) {};
+  \node[draw,circle] (G-1) at (45:1) {};
+  \node[draw,circle] (G-2) at (90:1) {};
+  \node[draw,circle] (G-3) at (135:1) {};
+  \node[draw,circle] (G-4) at (180:1) {};
+  \node[draw,circle] (G-5) at (225:1) {};
+  \node[draw,circle] (G-6) at (270:1) {};
+  \node[draw,circle] (G-7) at (315:1) {};
+  \node[draw,circle] (G-8) at (0:1) {};
   \draw (G-1) -- (G-2) -- (G-3) -- (G-4)  -- (G-5)  -- (G-6) -- (G-7) -- (G-8) -- (G-1);
 \end{tikzpicture}
 \end{center}
@@ -604,7 +604,7 @@ Trivially $b_1 = 1$.
 For $n>1$ a binary tree on $n$ vertices could have $j$ vertices on the left and $n-1-j$ vertices on the right, for $j=0,\ldots,n-1$. \\
 There are $b_jb_{n-1-j}$ different ways to pair up such subtrees.
 Therefore we have
-$$b_n =\sum_{j=0}^{n-1} b_jb_{n-1-j}$$
+$$b_n =\sum_{j=0}^{n-1} b_jb_{n-1-j}.$$
 
 \begin{thm}
 $$b_n = \frac{1}{n+1}\binom{2n}{n}$$
