@@ -1,0 +1,409 @@
+\author{Based on lectures by Dr. Matthias Englert\\
+\small{Notes by Alex J. Best}}
+\date{\today}
+\title{CS301 Complexity of Algorithms Notes}
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsfonts, fullpage, amsthm, enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{claim}{Claim}
+\newtheorem{prop}{Proposition}
+\newtheorem{defn}{Definition}
+\newtheorem{defns}{Definitions}
+\newtheorem{prob}{Problem}
+\newtheorem{ex}{Example}
+\newtheorem{rem}{Remark}
+\newtheorem{nota}{Notation}
+\newtheorem{alg}{Algorithm}
+
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\U}{\mathcal{U}}
+
+\begin{document}
+\maketitle
+
+\paragraph{Introduction}
+These are some rough notes put together for CS301 in 2014 to make it a little easier to revise.
+The headings correspond roughly to the contents of the module that is on the module webpage so hopefully these are fairly complete, however they are not guaranteed to be.
+
+\paragraph{What is a problem?}
+\begin{defn}
+A \emph{problem} is a function
+\[
+f\colon\{0,1\}^*\to\{0,1\}^*.
+\]
+A \emph{decision problem} is a function
+\[
+f\colon\{0,1\}^*\to\{0,1\}.
+\]
+We identify a decision problem $f$ with the language
+\[
+L_f = \{x : f(x) = 1\}.
+\]
+and call the problem of computing $f$ the problem of deciding the language $L_f$.
+\end{defn}
+
+\paragraph{What is a computation?}
+A set of fixed mechanical rules for computing a function for any input.
+
+\paragraph{Definition of a Turing machine.}
+\begin{defn}
+A \emph{Turing machine} consists of an infinite tape with letters of the alphabet $\Gamma$ (usually $=\{0,1,\square\}$) written on it.
+At the start the input is written on the tape beginning at the head and the state is $q_\text{start}$.
+The transition function
+\[
+\delta\colon Q\times \Gamma \to Q\times \Gamma \times \{L,S,R\}
+\]
+dictates what to read, which state to switch to and which direction to move to after reading a symbol while in a given state.
+So the machine is given by $(\Gamma,Q,\delta)$.
+When the machine reaches the state $q_\text{end}$ the computation halts and the output is the section of tape starting at the head until the first blank $\square$.
+\end{defn}
+
+\begin{defn}
+A Turing machine $M$ computes a function $f\colon \{0,1\}^* \to \{0,1\}^*$ in time $T\colon \NN \to \NN$ if for every $x\in \{0,1\}^*$ the output of $M$ when given $x$ initially is $f(x)$, this computation must finish after at most $T(|x|)$ steps (this implies $M$ halts on every input).
+
+We say $M$ computes $f$ if it computes $f$ in $T(n)$ time for any function $T$.
+\end{defn}
+%TODO maybe examples?
+
+\paragraph{What happens if we increase the alphabet?}
+\begin{claim}
+Let $f\colon\{0,1\}^*\to\{0,1\}^*$ and $T\colon \NN \to \NN$ be some functions.
+If $f$ is computable in time $T(n)$ by a Turing machine $M$ using alphabet $\Gamma$ then $f$ is computable in time
+\[
+3\lceil\log|\Gamma|\rceil T(n)
+\]
+by a Turing machine $\tilde{M}$ that uses only the alphabet $\{0,1,\square\}$.
+\end{claim}
+To see this we can encode all the old symbols in terms of only $\{0,1,\square\}$ and create a new Turing machine that does what the old one would do, we have to move back an fourth along a strip of size $\log|\Gamma|$ at most 3 times to do this however.
+
+\paragraph{$k$-tape Turing machines.}
+We can also using Turing machines that have $k$ tapes and $k$ heads rather than simply one however this doesn't make much difference either.
+\begin{claim}
+Let $f\colon\{0,1\}^*\to\{0,1\}^*$ and $T\colon \NN \to \NN$ be some functions.
+If $f$ is computable in time $T(n)$ by a $k$-tape Turing machine $M$ using then $f$ is computable in time
+\[
+7kT(n)^2
+\]
+by a single tape Turing machine $\tilde{M}$.
+\end{claim}
+
+\paragraph{Church-Turing thesis.}
+The Church-Turing thesis is the statement that
+\begin{quote}
+Every physically realisable computation device (be it silicon-based, DNA-based, neuron based, ...) can be simulated by a Turing machine.
+\end{quote}
+This is generally believed to be true.
+
+\paragraph{Universal Turing machines.}
+As a Turing machine is given by some finite amount of data we can represent it by some string encoding.
+We assume that we have picked an encoding so that every string represents a Turing machine and every Turing machine can be encoded by infinitely many strings.
+The Turing machine encoded by a string $\alpha$ is denoted $M_\alpha$.
+\begin{thm}
+There exists a Turing machine (a universal Turing machine) that when given a pair $\langle \alpha,x\rangle$ as input outputs the result of running the Turing machine encoded by $\alpha$ with input $x$.
+Moreover if the machine encoded by $\alpha$ halts within $T(|x|)$ steps on input $x$ then the universal Turing machine halts within $C\operatorname{poly}(T(|x|))$ steps, where $C$ is independent of $|x|$.
+\end{thm}
+
+We assume we have fixed some encoding for Turing machines and a corresponding universal Turing machine, denoted $\U$.
+
+\paragraph{Uncomputable functions.}
+The set of all functions
+\[
+f\colon\{0,1\}^*\to\{0,1\}
+\]
+is uncountable.
+So as any Turing machine can be encoded as a finite string of bits under some fixed encoding, there are countably many Turing machines.
+\begin{cor}
+So there are functions
+\[
+f\colon\{0,1\}^*\to\{0,1\}
+\]
+that are not computable.
+\end{cor}
+
+\begin{ex}\label{firstuncomp}
+The function
+\[
+f(\alpha) =\begin{cases} 0 & M_\alpha (\alpha) = 1,\\
+1 &\text{otherwise}
+\end{cases}
+\]
+is not computable.
+
+This is as if we had a Turing machine $M$ that computed $f$ then $M$ halts for all $x$, with $M(x) = f(x)$.
+So if we let $x$ be a string representing the Turing machine $M$ then $M(x) = f(x)$, but this is a contradiction by the definition of $f$.
+\end{ex}
+
+\paragraph{HALT is not computable.}
+Another function that is not computable is
+\[
+\mathrm{HALT}(\langle \alpha,x\rangle) =\begin{cases}
+1 & M_\alpha \text{ halts on input }x,\\
+0 &\text{otherwise}.
+\end{cases}
+\]
+\begin{proof}
+Assume that $M_{\mathrm{HALT}}$ is a Turing machine that computes HALT, then we can design a Turing machine to compute the function $f$ in example~\ref{firstuncomp}, thus deriving a contradiction.
+
+The Turing machine for $f$ would first run $M_{\mathrm{HALT}}(\langle \alpha,\alpha\rangle)$ outputting 0 if this returned 1.
+Otherwise it would then use the universal Turing machine $\U$ to compute $M_\alpha (\alpha)$, outputting 1 if this returned 0 and 0 otherwise.
+\end{proof}
+
+There are more functions that are practically useful that are not computable.
+For example deciding if a Diophantine equation (a possibly multivariate polynomial with integer coefficients) has a solution in the integers is impossible in general.
+
+The language
+\[
+\{\alpha : M_{\alpha} \text{ halts on all inputs}\}
+\]
+is also undecidable.
+This is as if we could compute this language we could compute HALT by taking a pair $\langle \alpha,x\rangle$ and forming a Turing machine the always computes $M_\alpha(x)$ no matter what input it is given.
+If we could decide if the new Turing machine halted on all inputs we could decide if $M_\alpha$ halts on input $x$.
+
+\paragraph{Rice's Theorem.}
+All Turing machines correspond to a function
+\[
+f\colon\{0,1\}^*\to\{0,1\}^*\cup\{\bot\}
+\]
+where $f(x) = \bot$ means that the Turing machine does not halt on input $x$.
+Not all of these functions correspond to Turing machines, but we can take $\mathcal{R}$ to be the set of all such functions that do correspond to Turing machines.
+
+\begin{thm}[Rice's Theorem]
+Let $\mathcal{C}$ be a non-empty proper subset of $\mathcal{R}$, then the language
+\[
+\{\alpha : M_\alpha \text{ corresponds to a function } f\in \mathcal{C}\}
+\]
+is undecidable.
+\end{thm}
+\begin{proof}
+%TODO
+\end{proof}
+
+\paragraph{The complexity class P.}
+We now define some \emph{complexity classes}, sets of functions that can be computed with some given resources.
+\begin{defn}[The class DTIME]
+Let $T\colon \NN\to\NN$ be a function, then we let $\mathrm{DTIME}(T(n))$ be the set of boolean functions computable in $O(T(n))$ time.
+\end{defn}
+\begin{defn}[The class P]
+\[
+\mathrm{P} = \bigcup_{k\ge 1} \mathrm{DTIME}(n^k).
+\]
+This class does not depend on the exact definition of Turing machine used.
+Problems in P are thought of as efficiently solvable and are a very natural model for this concept.
+\end{defn}
+
+\paragraph{Strong Church-Turing thesis.}
+The strong Church-Turing thesis is the statement that
+\begin{quote}
+Every physically realisable computation device (be it silicon-based, DNA-based, neuron based, ...) can be simulated by a Turing machine \emph{with only a polynomial overhead}.
+\end{quote}
+This is more controversial than the normal Church-Turing thesis as either
+\begin{enumerate}[a)]
+\item quantum mechanics does not behave as we currently understand it to,
+\item a classical computer can factor integer's in polynomial time or
+\item the strong Church-Turing thesis is wrong.
+\end{enumerate}
+
+\paragraph{Reductions.}
+\begin{defn}[Karp reduction]
+A language $L\subseteq\{0,1\}^*$ is \emph{Karp reducible} to a language $L'\subseteq \{0,1\}^*$ if there exists a computable function 
+\[
+f\colon \{0,1\}^* \to \{0,1\}^*,
+\]
+such that for all $x$ 
+\[
+x\in L \iff f(x) \in L'.
+\]
+\end{defn}
+
+\begin{defn}[Polynomial time Karp reduction]
+A language $L\subseteq\{0,1\}^*$ is \emph{polynomial time} Karp reducible to a language $L'\subseteq \{0,1\}^*$ if there exists a \emph{polynomial time} computable function 
+\[
+f\colon \{0,1\}^* \to \{0,1\}^*,
+\]
+such that for all $x$ 
+\[
+x\in L \iff f(x) \in L'.
+\]
+We denote this relationship by 
+\[
+L\le_p L'.
+\]
+\end{defn}
+
+\paragraph{Vertex Cover and Independent Set are equivalent.}
+
+\paragraph{Vertex Cover reduces to Set Cover.}
+
+\paragraph{3-SAT reduces to Independent Set.}
+
+\paragraph{Transitivity for the reducibility-relation.}
+
+\paragraph{Definition of NP.}
+
+\paragraph{Definition of NP-completeness.}
+
+\paragraph{An easy artificial NP-complete problem: TMSAT.}
+
+\paragraph{Alternative definition of NP using reductions and a representative (i.e. complete) problem of the class.}
+
+\paragraph{Cook-Levin theorem.}
+
+\paragraph{Oblivious Turing machines.}
+
+\paragraph{Cook-Levin theorem.}
+
+\paragraph{Oblivious Turing machines.}
+
+\paragraph{Proof of the Cook-Levin theorem.}
+
+\paragraph{3-SAT is NP-complete.}
+
+\paragraph{Subset-Sum is NP-complete.}
+
+\paragraph{Scheduling With Release Times is NP-complete.}
+
+\paragraph{Hamiltonian cycle is NP-complete.}
+
+\paragraph{TSP is NP-complete.}
+
+\paragraph{3-Colouring is NP-complete.}
+
+\paragraph{Planar 3-Coloring is NP-complete.}
+
+\paragraph{Planar $k$-Coloring.}
+
+\paragraph{Oracle Turing Machines.}
+
+\paragraph{Cook-reductions.}
+
+\paragraph{Oracle Turing Machines.}
+
+\paragraph{Cook-reductions.}
+
+\paragraph{Self-Reducibility.}
+
+\paragraph{Gödel's first incompleteness Theorem.}
+
+\paragraph{Test your intuition - complexity of (Longest Path, Shortest Path, Perfect Matching, MaxCut, Halt within 4000 steps, Min spanning tree, Degree bounded min spanning tree).}
+
+\paragraph{Where does TAUTOLOGY fit?}
+
+\paragraph{Asymmetry of NP.}
+
+\paragraph{NP versus coNP.}
+
+\paragraph{Some properties of NP and coNP.}
+
+\paragraph{Well characterized problems.}
+
+\paragraph{PRIMES is in NP.}
+
+\paragraph{FACTOR is well characterized.}
+\paragraph{PSPACE.}
+
+\paragraph{QSAT is in PSPACE.}
+
+\paragraph{NP is a subset of PSPACE.}
+
+\paragraph{PSPACE is a subset of EXPTIME.}
+
+\paragraph{Competitive Facility Location is PSPACE-complete.}
+
+\paragraph{Sliding Blocks.}
+
+\paragraph{Randomization.}
+
+\paragraph{RP.}
+
+\paragraph{Probability Amplification.}
+
+\paragraph{coRP.}
+
+\paragraph{Polynomial equality.}
+\paragraph{Polynomial identity testing.}
+
+\paragraph{BPP.}
+
+\paragraph{Probability Amplification for BPP.}
+
+\paragraph{ZPP.}
+
+\paragraph{ZPP$=$RP $\cap$ coRP.}
+
+\paragraph{ZPP as expected poly-time.}
+
+\paragraph{IP.}
+
+\paragraph{IP protocol for Graph-Non-Isomorphism.}
+
+\paragraph{dIP=NP.}
+
+\paragraph{coNP is contained in IP, arithmetization, and the sumcheck protocol.}
+
+\paragraph{IP.}
+
+\paragraph{Program checking.}
+
+\paragraph{Zero knowledge proofs.}
+
+\paragraph{Zero knowledge proof protocol for graph isomorphism.}
+
+\paragraph{Communication Complexity.}
+
+\paragraph{Computing OR.}
+
+\paragraph{Computing MEDIAN.}
+
+\paragraph{Communication Complexity.}
+
+\paragraph{Computing MEDIAN.}
+
+\paragraph{Protocol Trees.}
+\paragraph{EQUALITY.}
+
+\paragraph{Deciding Palindromes requires quadratic time.}
+
+\paragraph{Communication Complexity.}
+
+\paragraph{Protocol trees and combinatorial rectangles.}
+
+\paragraph{EQUALITY (again).}
+
+\paragraph{DISJOINTNESS.}
+
+\paragraph{INNER PRODUCT and the rank technique.}
+
+\paragraph{Area-Time tradeoffs for VLSI chips.}
+
+\paragraph{NP-hard.}
+
+\paragraph{Approximation Algorithms.}
+
+\paragraph{2-approximation for Max Sat.}
+
+\paragraph{2-approximation for Load Balancing (List Scheduling).}
+
+\paragraph{3/2-approximation for Load Balancing (LPT).}
+
+\paragraph{$O(\log n)$-approximation for Set Cover.}
+
+\paragraph{2-approximation for Vertex Cover.}
+
+\paragraph{PTAS and FPTAS.}
+
+\paragraph{An FPTAS for Knapsack.}
+
+\paragraph{Linear Programming based approximation algorithm for Weighted Set Cover.}
+
+\end{document}
