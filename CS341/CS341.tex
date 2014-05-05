@@ -1,0 +1,42 @@
+\author{Based on lectures by Dr. Alex Tiskin\\
+\small{Notes by Alex J. Best}}
+\date{\today}
+\title{CS341 Advanced Topics in Algorithms Notes}
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath, amssymb, amsfonts, fullpage, amsthm, enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+These are some rough notes put together for CS341 in 2014 to make it a little easier to revise.
+The headings correspond roughly to the contents of the module that is on the module webpage so hopefully these are fairly complete, however they are not guaranteed to be.
+
+\section{Computation by circuits}
+A computational model is an abstract computing device used to reason about computations and algorithms.
+For example, Turing machines and quantum computers.
+
+An algorithm in a specific model is a description of some input, processing steps and output.
+The encoding for the input and output along with the steps in a specific model should be given.
+
+The complexity of an algorithm can depend on the model used, for example sorting can be easier if we can do more than simply compare two objects and factoring large numbers can be done faster on a quantum computer.
+
+A basic special-purpose computational model we will use is a \emph{circuit}, this is a directed acyclic graph where nodes represent operations and edges represent the flow of inputs and outputs.
+The computation is \emph{oblivious} the order of operations is independent of the input.
+A circuit will only allow for input and output of a fixed size, so to compute with a varying number of inputs we must give an infinite family of circuits, this may or may not admit a finite description!
+
+\section{Parallel computation models}
+
+\section{Basic parallel algorithms}
+
+\section{Further parallel algorithms}
+% except sections on Selection and Convex Hull.
+
+\section{Parallel matrix algorithms}
+%, only sections on Matrix-Vector Multiplication and Matrix Multiplication. Section on Fast Matrix Multiplication is not examinable, despite having been partially covered in lectures.
+
+
+\end{document}
