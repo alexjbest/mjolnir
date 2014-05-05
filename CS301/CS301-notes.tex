@@ -147,15 +147,15 @@ So if we let $x$ be a string representing the Turing machine $M$ then $M(x) = f(
 \paragraph{HALT is not computable.}
 Another function that is not computable is
 \[
-\mathrm{HALT}(\langle \alpha,x\rangle) =\begin{cases}
+\text{HALT}(\langle \alpha,x\rangle) =\begin{cases}
 1 & M_\alpha \text{ halts on input }x,\\
 0 &\text{otherwise}.
 \end{cases}
 \]
 \begin{proof}
-Assume that $M_{\mathrm{HALT}}$ is a Turing machine that computes HALT, then we can design a Turing machine to compute the function $f$ in example~\ref{firstuncomp}, thus deriving a contradiction.
+Assume that $M_{\text{HALT}}$ is a Turing machine that computes HALT, then we can design a Turing machine to compute the function $f$ in example~\ref{firstuncomp}, thus deriving a contradiction.
 
-The Turing machine for $f$ would first run $M_{\mathrm{HALT}}(\langle \alpha,\alpha\rangle)$ outputting 0 if this returned 1.
+The Turing machine for $f$ would first run $M_{\text{HALT}}(\langle \alpha,\alpha\rangle)$ outputting 0 if this returned 1.
 Otherwise it would then use the universal Turing machine $\U$ to compute $M_\alpha (\alpha)$, outputting 1 if this returned 0 and 0 otherwise.
 \end{proof}
 
@@ -192,11 +192,11 @@ is undecidable.
 \paragraph{The complexity class P.}
 We now define some \emph{complexity classes}, sets of functions that can be computed with some given resources.
 \begin{defn}[The class DTIME]
-Let $T\colon \NN\to\NN$ be a function, then we let $\mathrm{DTIME}(T(n))$ be the set of boolean functions computable in $O(T(n))$ time.
+Let $T\colon \NN\to\NN$ be a function, then we let $\text{DTIME}(T(n))$ be the set of boolean functions computable in $O(T(n))$ time.
 \end{defn}
 \begin{defn}[The class P]
 \[
-\mathrm{P} = \bigcup_{k\ge 1} \mathrm{DTIME}(n^k).
+\text{P} = \bigcup_{k\ge 1} \text{DTIME}(n^k).
 \]
 This class does not depend on the exact definition of Turing machine used.
 Problems in P are thought of as efficiently solvable and are a very natural model for this concept.
@@ -239,27 +239,113 @@ We denote this relationship by
 \[
 L\le_p L'.
 \]
+
+If $L\le_p L'$ and $L'\le_p L$ then we write $L\equiv_p L'$.
 \end{defn}
 
 \paragraph{Vertex Cover and Independent Set are equivalent.}
+INDEPENDENT SET: Given a graph $G = (V,E)$ and an integer $k$ is there set $S\subset V$ of size at least $k$ where each edge of $G$ has at most one endpoint in $S$.\\
+VERTEX COVER: Given a graph $G = (V,E)$ and an integer $k$ is there set $S\subset V$ of size at most $k$ where each edge of $G$ has at least one endpoint in $S$.
+
+\begin{claim}
+VERTEX COVER $\equiv_p$ INDEPENDENT SET.
+\end{claim}
+\begin{proof}
+$S$ is an independent set if and only if $V\setminus S$ is a vertex cover.
+\end{proof}
 
 \paragraph{Vertex Cover reduces to Set Cover.}
+SET COVER: Given a set $U$, a collection $S_1,\ldots,S_m$ of subsets of $U$ and an integer $k$, does there exist a collection of $\le k$ of the subsets whose union is all of $U$.
+\begin{claim}
+VERTEX COVER $\le_p$ SET COVER.
+\end{claim}
+\begin{proof}
+We create a set cover instance for a graph $G = (E,V)$ by letting $U = E$ and $S_v = \{e\in E : e \text{ is incident to } v\}$ be our collection of subsets.
+Then there exists a set cover of size at most $k$ if and only if there exists a vertex cover of size at most $k$ in the graph $G$.
+\end{proof}
 
 \paragraph{3-SAT reduces to Independent Set.}
+\begin{defn}
+A \emph{literal} is a boolean variable or its negation.\\
+A \emph{clause} is a disjunction (OR) of literals.\\
+A propositional formula $\Phi$ is in \emph{conjunctive normal form} if it is a conjunction (AND) of clauses.\\
+The problem SAT asks if a given propositional formula $\Phi$ that is in CNF has a satisfying assignment of variables.\\
+A special case of this is 3-SAT where we require that each clause be a disjunction of exactly three literals.
+\end{defn}
+\begin{claim}
+3-SAT $\le_p$ INDEPENDENT SET.
+\end{claim}
+\begin{proof}
+We use the given proposition formula to construct an instance of INDEPENDENT SET as follows.
+For each clause we add a triangle of vertices to a graph $G$, labelled by each literal.
+We then connect all literals appearing to all of their negations.
+Then $G$ contains an independent set of size $k$ if and only if $\Phi$ is satisfiable.
+\end{proof}
 
 \paragraph{Transitivity for the reducibility-relation.}
+Reduction is transitive, i.e. if $X \le_p Y$ and $Y \le_p Z$ then $X\le_p Z$.
+To see this we can think of composing the functions that provide the reductions from $X$ to $Y$ and $Y$ to $Z$.
+\begin{ex}
+\[
+3\text{-SAT}\le_p \text{INDEPENDENT-SET} \le_p \text{VERTEX-COVER} \le_p \text{SET-COVER}
+\]
+\end{ex}
 
 \paragraph{Definition of NP.}
+For comparison we give an equivalent definition of the class P to the one given above.
+\begin{defn}[Complexity class P]
+A language $L$ is in the class P if there exists a Turing machine $M$ and polynomial $T$ so that $M$ terminates on input $x$ after at most $T(|x|)$ steps and $M$ accepts $x$ if and only if $x\in L$.
+\end{defn}
+\begin{defn}[Complexity class NP]
+A language $L$ is in the class NP if there exists a Turing machine $M$ and polynomials $T$ and $p$ so that $M$ terminates on any input $x$ after at most $T(|x|)$ steps.
+We also require that if $x\in L$ then there exists a certificate $t\in\{0,1\}^{p(|x|)}$ so that $M$ accepts $\langle x, t\rangle$, conversely if $x\not\in L$ we require that $M$ rejects any pair $\langle x,t\rangle$ where $t\in\{0,1\}^{p(|x|)}$.
+\end{defn}
+
+In the definition of NP above $M$ is called a certifier or verifier and $t$ a certificate or proof for $x$.
+\begin{claim}
+$\text{P}\subseteq \text{NP}$
+\end{claim}
+\begin{proof}
+Take the certifier $M$ to be the decider for the problem from P, ignoring the second element of the input pair.
+\end{proof}
+
+\begin{ex}
+The language
+\[
+\text{COMPOSITES} = \{s\in \NN : s \text{ is composite}\}
+\]
+is in NP.
+This is as we can use a non-trivial proper factor as a certificate, and then the certifier just needs to check the factor is as claimed by checking bounds and dividing.
+Here $|t| \le |s|$.
+\end{ex}
+
+\begin{ex}
+The problem SAT is in NP as we can take a satisfying assignment of the $n$ boolean variables in the formula as the certificate.
+The verifier then needs only run through the formula checking that each clause has at least one true literal.
+\end{ex}
+
+\begin{ex}
+Another problem in NP is HAM-CYCLE which asks if a given graph $G = (V,E)$ has a simple cycle that visits every node.
+The certificate for this problem is a permutation of the nodes of $G$ and so the certifier need only check that all nodes are in this permutation exactly once and that there are edges between consecutive nodes in the permutation.
+\end{ex}
 
 \paragraph{Definition of NP-completeness.}
+\begin{defn}[NP-completeness]
+A (decision) problem $Y$ is called \emph{NP-complete} if it is in NP and has the property that every other problem $X$ in NP reduces to it in polynomial time.
+\end{defn}
+
+\begin{thm}
+Let $Y$ be an NP-complete problem, then $Y$ is solvable in polynomial time if and only if P $=$ NP.
+\end{thm}
+\begin{proof}
+($\Leftarrow$) If P $=$ NP then $Y$ can be solved in polynomial time as $Y$ is in NP.\\
+($\Rightarrow$) If $Y$ can be solved in polynomial time then as any problem $X$ in NP reduces to $Y$ in polynomial time we can solve $X$ is polynomial time.
+Hence NP $\subseteq$ P and so P $=$ NP.
+\end{proof}
 
 \paragraph{An easy artificial NP-complete problem: TMSAT.}
 
 \paragraph{Alternative definition of NP using reductions and a representative (i.e. complete) problem of the class.}
-
-\paragraph{Cook-Levin theorem.}
-
-\paragraph{Oblivious Turing machines.}
 
 \paragraph{Cook-Levin theorem.}
 
@@ -310,6 +396,7 @@ L\le_p L'.
 \paragraph{PRIMES is in NP.}
 
 \paragraph{FACTOR is well characterized.}
+
 \paragraph{PSPACE.}
 
 \paragraph{QSAT is in PSPACE.}
