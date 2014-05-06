@@ -3,7 +3,7 @@
 \date{\today}
 
 \documentclass[12pt]{article}
-\usepackage{amsfonts, amsmath, amssymb, amsthm, hyperref, enumerate}
+\usepackage{amsfonts, amsmath, amssymb, amsthm, hyperref, enumerate, fullpage}
 \usepackage[all]{xy}
 
 \theoremstyle{definition}
@@ -17,7 +17,7 @@
 \newtheorem*{ex}{Example}
 \newtheorem*{nex}{Non Example}
 \newtheorem*{exer}{Exercise}
-\newtheorem*{rem}{Remark}
+\newtheorem*{rmk}{Remark}
 \newtheorem*{nota}{Notation}
 \newtheorem*{alg}{Algorithm}
 \newtheorem*{hint}{Hint}
@@ -26,11 +26,10 @@
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\RR}{\mathbb{R}}
+\newcommand{\C}{C_\bullet}
+\renewcommand{\H}{H_\bullet}
 
 \DeclareMathOperator{\im}{im}
-
-%TODO List:
-%Fix/complete lecture numbering
 
 \setcounter{tocdepth}{3}
 
@@ -42,17 +41,15 @@
 These are lecture notes that I typeset for MA3H6 Algebraic Topology in 2014, they are currently full of gaps, mistakes, wrong statements, notation abuse and lots of other badness.
 However they might be useful to someone, despite the fact they lack very many pictures at present.
 If you find anything else that can be improved send me an email at a.j.best@warwick.ac.uk, thanks.
-\clearpage
 
 \section{Basics}
 \subsection{Topological review}
 
 \begin{nota}
-\marginpar{Lecture 1}
 \begin{align*}
 \RR^n &= \{(x_1, \ldots,x_n)\mid x_j\in\RR\}\text{ with the product topology of open intervals}.\\
 \|x\| &= \sqrt{\sum x_i^2}.\\
-B^n &= \{x\in \RR^n \mid \|x\| \le 1\}\text{ the $n-1$ sphere}.\\
+B^n &= \{x\in \RR^n \mid \|x\| \le 1\}\text{ the }n-1\text{ sphere}.\\
 S^{n-1} &= \{x\in\RR^n\mid\|x\| = 1\}.\\
 \RR^0 &= \{()\}.
 \end{align*}
@@ -112,7 +109,6 @@ The standard map $f\colon [v]\to [w]$ sends $v_i$ to $w_i$ and respects barycent
 
 
 \begin{defn}
-\marginpar{Lecture 2}
 A facet of $\Delta$ is a subsimplex (i.e. pick some $x_i$ and set them to zero).
 \end{defn}
 
@@ -234,7 +230,6 @@ We define the set of \emph{$n$-chains} to be
 \end{ex}
 
 \subsection{Boundary operators}
-\marginpar{Lecture 3}
 Recall $\Delta_v = [v_0, v_1,\ldots,v_n]$ is an $n$-simplex.
 
 The $i$th face of $\Delta$ is $[v_0, v_1, \ldots , \hat{v}_i, \ldots ,v_n]$. %TODO th
@@ -282,8 +277,10 @@ now we apply $\partial_{n-1}$:
 \subsection{Chain complexes}
 \begin{defn}
 A sequence $\{C_n\}_{n=0}^{\infty}$ of abelian groups with homomorphisms
-\[\partial_n\colon C_n\to C_{n-1}\]
- s.t. $\partial^2 = 0$ is called a \emph{chain complex}.
+\[
+\partial_n\colon C_n\to C_{n-1}
+\]
+such that $\partial^2 = 0$ is called a \emph{chain complex}.
 \end{defn}
 
 By convention we take $C_{-1}$ to be 0.
@@ -291,6 +288,8 @@ By convention we take $C_{-1}$ to be 0.
 \begin{ex}
 \[0\to\ZZ\xrightarrow{\times 2} \ZZ \to 0.\]
 \end{ex}
+
+Given two chain complexes we can form the direct sum by taking the direct sum of each of the groups and letting the operators act elementwise.
 
 \paragraph{Terminology}
 If $c\in C_n$ we call $c$ an \emph{$n$-chain}.
@@ -349,15 +348,15 @@ So
 \end{enumerate}
 
 \begin{exer}
-Compute $H_\bullet^\Delta (S^1)$ for the $\Delta$-complex structure on $S^1$ with $k$ vertices and $k$ edges.
+Compute $\H^\Delta (S^1)$ for the $\Delta$-complex structure on $S^1$ with $k$ vertices and $k$ edges.
 \end{exer}
 
 \begin{exer}
-Compute $H_\bullet^\Delta (X)$ for the $X = B^2,\ S^1$ and $K^2$ (the Klein bottle).
+Compute $\H^\Delta (X)$ for the $X = B^2,\ S^1$ and $K^2$ (the Klein bottle).
 \end{exer}
 
 \begin{exer}
-Using the fact that $\Delta^n$ is a $\Delta$-complex structure on $B^n$ compute $H_\bullet^\Delta (B^n)$.
+Using the fact that $\Delta^n$ is a $\Delta$-complex structure on $B^n$ compute $\H^\Delta (B^n)$.
 
 In general you'll want to make use of the Smith normal form.
 \end{exer}
@@ -385,14 +384,14 @@ And again we define $Z_n^\text{sing}(X)$ (resp. $B_n^\text{sing}(X)$) exactly as
 Now $H_n^\text{sing}(X) = Z_n^\text{sing}(X)/B_n^\text{sing}(X)$ is the $n$-th \emph{singular homology group}.
 \end{defn}
 
-\begin{rem}
+\begin{rmk}
 We have that $\partial_{n-1}\circ \partial_n = 0$ exactly as before.
-\end{rem}
+\end{rmk}
 
 \begin{ex}
 Suppose $X$ is a single point, then there is a unique $\Delta$-complex structure on $X$.
 We say $\sigma^0\colon \ZZ \to X$ is the ``constant map''.
-So $0 \to \ZZ \to 0$ is the chain complex $C_\bullet^\Delta(X)$.
+So $0 \to \ZZ \to 0$ is the chain complex $\C^\Delta(X)$.
 So
 \[
 H_n^\Delta =\begin{cases}\ZZ &n=0,\\
@@ -430,7 +429,7 @@ and so the singular homology groups are as claimed.
 \begin{thm}
 If $X$ admits a $\Delta$-complex structure then 
 \[
-H_\bullet^\Delta(X) \cong H_\bullet^\text{sing}(X).
+\H^\Delta(X) \cong \H^\text{sing}(X).
 \]
 The left hand side is generally easier to compute, but the right can be easier to prove theorems with.
 \end{thm}
@@ -478,7 +477,7 @@ If $X$ has $k$ path components, then $H_0(X) \cong \ZZ^k$ so we define the \emph
 \cdots \to C_2(X) \xrightarrow{\partial_2}C_1(X) \xrightarrow{\partial_1}C_0(X) \xrightarrow{\epsilon} \ZZ \to 0,
 \]
 where $\epsilon$ is the augmentation map from above.
-Define the \emph{reduced homology groups} $\tilde H_\bullet (X)$ to be the homology groups of this chain complex.
+Define the \emph{reduced homology groups} $\tilde \H (X)$ to be the homology groups of this chain complex.
 So $\tilde H_n(X) = H_n(X)$ is $n> 0$ and $\tilde H_0(X) = \ker(\epsilon)/\im(\partial_1)$.
 Hence if $X$ has $k$ path components
 \[
@@ -486,9 +485,9 @@ Hence if $X$ has $k$ path components
 \]
 \end{defn}
 
-Recall that $H_\bullet (X\sqcup Y) = H_\bullet(X) \oplus H_\bullet(Y)$, the reduced homology groups behave nicely with respect to many operations such as 1-point unions.
+Recall that $\H (X\sqcup Y) = \H(X) \oplus \H(Y)$, the reduced homology groups behave nicely with respect to many operations such as 1-point unions.
 In a 1-point union $X\vee Y = X\sqcup Y /x\sim y$ for some designated point $x\in X$ and $y\in Y$.
-So $\tilde H_\bullet(X\vee Y) = \tilde H_\bullet(X) \oplus \tilde H_\bullet(Y)$.
+So $\tilde \H(X\vee Y) = \tilde \H(X) \oplus \tilde \H(Y)$.
 
 \subsection{Functoriality}
 \begin{defn}
@@ -505,10 +504,160 @@ C_n(Y) \ar[r]^{\partial_n} & C_{n-1}(Y)\\
 }
 \]
 commutes.
+We denote the family of these maps $f_n$ as $f_\#$,
 \end{defn}
 
 \begin{exer}
-If $X \xrightarrow{f} Y \xrightarrow{g} Z$ then $(g\circ f)_n = g$ %TODO
+If $X \xrightarrow{f} Y \xrightarrow{g} Z$ then $(g\circ f)_n = g_n \circ f_n$.
 \end{exer}
+
+\subsection{Chain maps}
+\begin{defn}
+If $\C, D_\bullet$ are chain complexes we say that a family of homomorphisms $f_\#\colon \C \to D_\bullet$ is  a \emph{chain map} if 
+\[
+f_\#\circ \partial = \partial \circ f_\#
+\]
+\end{defn}
+
+\begin{ex}
+If $f\colon X \to Y$ is continuous then $f_\#$ is a chain map from $\C (X) \to \C(Y)$.
+\end{ex}
+\begin{ex}
+Suppose $(X,\sigma)$ is a $\Delta$-complex then 
+\[
+i\colon C_n^\Delta(X) \to C_n^\text{sing}(X)
+\]
+is also a chain map.
+\end{ex}
+
+\begin{prop}
+If $f_\#\colon \C \to D_\bullet$ is a chain map then $f_\#$ induces a homomorphism
+\[
+f_*\colon \H(C) \to \H(D)
+\]
+given by
+\[
+f_*([z]) = [f_\#(z)].
+\]
+\end{prop}
+\begin{proof}
+Check that $f_\#(Z_n^C) \le Z_n^D$ (exercise) and that $f_\#(B_n^C) \le B_n^D$.
+So $f_\#(b) = f_\#(\partial c )  = \partial f_\#(c)$.
+\end{proof}
+
+\begin{rmk}
+If $f\colon X \to Y$ is a homomorphism then there exists a continuous inverse $g\colon Y \to X$ such that
+\[
+f_* \colon \H(X) \to \H(Y)
+\]
+is inverse to
+\[
+g_* \colon \H(Y) \to \H(X).
+\]
+\end{rmk}
+
+\subsection{Homotopic spaces}
+\begin{defn}
+We say two maps $f$ and $g$ from $X \to Y$ are \emph{homotopic} if there is a map $F\colon X\times [0,1] \to Y$ such that
+$f(x) = F(x,0)$ and $g(x) = F(x,1)$.
+We write $f\sim g$.
+
+We then say two spaces $X$ and $Y$ are \emph{homotopy equivalent} if there exists maps $f\colon X\to Y$ and $g\colon Y \to X$ such that
+\[
+(g\circ f) \sim \mathrm{Id}_X \text{ and } (f\circ g) \sim \mathrm{Id}_Y.
+\]
+\end{defn}
+
+\begin{ex}
+\[
+S^n \sim \RR^{n+1}\setminus\{0\}
+\]
+via (for $n=1$)
+\begin{align*}
+i\colon S^1 &\to \RR^2\setminus\{0\}\\
+x&\mapsto x
+\end{align*}
+and
+\begin{align*}
+r\colon \RR^2\setminus\{0\}&\to S^1\\
+x&\mapsto \frac{x}{\| x\|}.
+\end{align*}
+We also have
+\[
+S^n \sim B^{n+1}\setminus\{0\}
+\]
+\end{ex}
+
+\begin{thm}
+If $X$ is homotopy equivalent to $Y$ via $f$ and $g$ then 
+\[
+f_* = g_*^{-1}\colon \H(X) \to \H(Y).
+\]
+\end{thm}
+\begin{cor}
+If $X$ is homotopy equivalent to $Y$ via $f$ then 
+\[
+f_* \colon \H(X) \to \H(Y)
+\]
+is an isomorphism.
+\end{cor}
+\begin{proof}
+\[
+(\mathrm{Id}_X)_* = \mathrm{Id}_{\H}
+\]
+\end{proof}
+
+\begin{defn}
+Suppose $f_\#,g_\#\colon\C \to D_\bullet$ are chain maps.
+A sequence of homomorphisms $P_n\colon C_n \to D_{n+1}$ is called a \emph{chain homotopy} if
+\[
+\partial_{n-1} P_n + P_{n-1} \partial_n = g_\# - f_\#
+\]
+in there is a chain homotopy between two chain maps $f_\#,g_\#$ we write $f_\# \sim g_\#$.
+\[
+\xymatrix{
+C_{n+1} \ar[r]^\partial \ar@/_/[d]^f\ar@/^/[d]^g & C_n \ar@/_/[d]^f\ar@/^/[d]^g\ar[r]^\partial & C_{n-1} \ar@/_/[d]^f\ar@/^/[d]^g\\
+D_{n+1} \ar[r]^\partial  & D_n \ar[r]^\partial & D_{n-1}
+}
+\]
+\end{defn}
+
+\begin{prop}
+If $f_\#\sim g_\#\colon \C \to D_\bullet$ then 
+\[
+f_* = g_* \colon \H(C) \to \H(D).
+\]
+\end{prop}
+\begin{proof}
+Pick any $h\in\H(C)$, we want to show $(g_* - f_*)(h) = 0$.
+Choose some $x\in Z_n(C)$ such that $h = [z]$ and compute
+\begin{align*}
+(g_* - f_*)(h) &= (g_* - f_*)([z])\\
+ &= [(g_\#- f_\#)(z)]\\
+ &= [(P\partial + \partial P)(z)]\\
+ &= [P\partial z + \partial Pz]\\
+ &= [P0 + \partial Pz]\\
+ &= [\partial(Pz)]\\
+ &= 0\text{ (as }B_n = 0\text{ in homology)}.
+\end{align*}
+\end{proof}
+
+\subsection{Prisms}
+\begin{defn}
+A \emph{prism} is a copy of $\Delta^n \times I$.
+%TODO pic
+\end{defn}
+
+We can subdivide $\Delta\times I$ into $n+1$ dimensional simplices of the form
+\[
+[v_0,v_1,\ldots,v_i,w_{i+1},\ldots,w_n],
+\]
+where $v$ are the vertices of the simplex at one end of the interval and $w$ are the vertices at the other.
+
+If we have $F\colon X\times I \to Y$ and $\sigma\colon \Delta^n \to X$ we let
+\[
+F\sigma = F\circ(\sigma \times \mathrm{Id}_I)\colon \Delta^n \times I \to Y.
+\]
+
 
 \end{document}
