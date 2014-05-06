@@ -344,16 +344,53 @@ Hence NP $\subseteq$ P and so P $=$ NP.
 \end{proof}
 
 \paragraph{An easy artificial NP-complete problem: TMSAT.}
+%TODO
 
 \paragraph{Alternative definition of NP using reductions and a representative (i.e. complete) problem of the class.}
+Given a natural NP-complete problem we can equivalently define the complexity class NP to be all problems polynomial time reducible to that problem.
 
 \paragraph{Cook-Levin theorem.}
+\begin{thm}[Cook, Levin]
+SAT is NP-complete.
+\end{thm}
+\begin{proof}
+We know SAT is in NP, in order to show that all other problems in NP reduce to it we need some more machinery!
+\end{proof}
 
 \paragraph{Oblivious Turing machines.}
+\begin{defn}
+A Turing machine is called \emph{oblivious} is its head movements do not depend on the input $x$ but only on the length $|x|$ of the input.
+\end{defn}
+
+\begin{thm}
+Given any Turing machine $M$ that decides a language in time $T_M(n)$ there exists an oblivious Turing machine that decides the same language in time $O(T_m(n)^2)$.
+\end{thm}
+\begin{proof}
+Exercise!
+\end{proof}
 
 \paragraph{Proof of the Cook-Levin theorem.}
+We will solve the problem of certificate ex %TODO
+
+Now we have established a natural NP-complete problem others are easier to do.
+To establish the NP-completeness of a given problem $Y$ we can perform the following
+\begin{itemize}
+\item[Step 1] Show $Y$ is in NP.
+\item[Step 2] Choose an appropriate NP-complete problem $X$.
+\item[Step 3] Prove $X\le_p Y$.
+\end{itemize}
+
+A major problem of complexity theory is if P $=$ NP, if it does then there are efficient algorithms for all NP-complete problems.
+If not no such algorithms are possible, and most computer scientists believe this to be the case.
+Most NP problems are known to be in P or NP-complete, factoring and graph isomorphism are exceptions.
 
 \paragraph{3-SAT is NP-complete.}
+\begin{thm}
+3-SAT is NP-complete.
+\end{thm}
+\begin{proof}
+It suffices to show that SAT $\le_p$ 3-SAT since we know that 3-SAT is in NP.%TODO
+\end{proof}
 
 \paragraph{Subset-Sum is NP-complete.}
 
@@ -457,6 +494,7 @@ Hence NP $\subseteq$ P and so P $=$ NP.
 \paragraph{Computing MEDIAN.}
 
 \paragraph{Protocol Trees.}
+
 \paragraph{EQUALITY.}
 
 \paragraph{Deciding Palindromes requires quadratic time.}
