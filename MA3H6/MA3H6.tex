@@ -1,16 +1,12 @@
 \title{MA3H6 Algebraic Topology - Lecture Notes}
-\author{Based on lectures by Dr. Saul Schleimer \\ Typeset by Alex J. Best}
+\author{Based on lectures by Dr. Saul Schleimer \\ {\normalsize Typeset by Alex J. Best}}
 \date{\today}
 
-\documentclass{article}
-\usepackage{amsfonts}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{hyperref}
-\usepackage{enumerate}
+\documentclass[12pt]{article}
+\usepackage{amsfonts, amsmath, amssymb, amsthm, hyperref, enumerate}
+\usepackage[all]{xy}
 
-
+\theoremstyle{definition}
 \newtheorem*{thm}{Theorem}
 \newtheorem*{lem}{Lemma}
 \newtheorem*{cor}{Corollary}
@@ -32,7 +28,6 @@
 \newcommand{\RR}{\mathbb{R}}
 
 \DeclareMathOperator{\im}{im}
-
 
 %TODO List:
 %Fix/complete lecture numbering
@@ -100,10 +95,6 @@ We define the $n$-simplex to be
 \end{defn}
 
 %TODO pictures
-
-\begin{exer}
-What is a ``hedron''?
-\end{exer}
 
 In general if $v_i\in \RR^m$ are a collection of $n+1$ affinely independent points (do not lie in an $n-1$ dimensional subspace) then we define
 \[[v] = [v_0,v_1,\ldots,v_n] = \left\{\sum x_i v_i \mid x_i\in \Delta^n\right\}.\]
@@ -217,7 +208,7 @@ Fix $A$ a set.
 Define $\ZZ[A]$ to be the \emph{free abelian group} on $A$ given by
 \begin{align*}
 \ZZ[A] &= \left\{ \sum_{\alpha\in A} n_\alpha \cdot \alpha \middle| n_\alpha\in\ZZ\text{ and all but finitely many are non-zero}\right\} \\
-&= \text{all finite $\ZZ$-linear sums}.
+&= \text{all finite }\ZZ\text{-linear sums of elements of }A.
 \end{align*}
 
 \begin{ex}
@@ -253,7 +244,7 @@ We define the \emph{boundary operator} as follows.
 First suppose $\sigma \colon \Delta \to X$ is a map.
 
 We then define
-\[\partial \sigma = \sum_{i=0}^{n} (-1)^i \sigma \mid_{[v_0,\ldots,\hat{v}_i, \ldots, v_n]}.\]
+\[\partial \sigma = \sum_{i=0}^{n} (-1)^i \sigma \mid[v_0,\ldots,\hat{v}_i, \ldots, v_n].\]
 Which is an $(n-1)$-chain.
 
 So we extend linearly to define 
@@ -274,14 +265,17 @@ given by
 It suffices to check this on a basis element
 \[\sigma \colon \Delta^n \to X\]
 so
-\[\partial_n \sigma = \sum_{i=0}^{n} (-1)^i \sigma \mid_{[v_0, \ldots, \hat{v}_i,\ldots,v_n]}\]
+\[\partial_n \sigma = \sum_{i=0}^{n} (-1)^i \sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,v_n]\]
 now we apply $\partial_{n-1}$:
 \begin{align*}
-\partial_{n-1} \partial_n \sigma &= \partial_{n-1} \left(\sum_{i=0}^{n} (-1)^i \sigma \mid_{[v_0, \ldots, \hat{v}_i,\ldots,v_n]} \right) = \sum_{i=0}^{n} (-1)^i \partial_{n-1} \left(\sigma \mid_{[v_0, \ldots, \hat{v}_i,\ldots,v_n]}\right)\\
-&= \sum_{i=0}^{n} (-1)^i \sum_{j= 0}^{n-1} (-1)^j\left(\sigma \mid_{[v_0, \ldots, \hat{v}_i,\ldots,v_n]}\right)\mid_{[w_0, \ldots, \hat{w}_j,\ldots,w_{n-1}]}\\
-&= \sum_{i=0}^{n} (-1)^i\left( \sum_{j< i} (-1)^j \sigma \mid_{[v_0, \ldots,\hat{v}_j, \ldots, \hat{v}_i,\ldots,v_n]} + \sum_{j> i} (-1)^{j+1} \sigma \mid_{[v_0, \ldots, \hat{v}_i,\ldots,\hat{v}_j,\ldots,v_n]}\right) \\
-&= \sum_{j< i} (-1)^{j+i} \sigma \mid_{[v_0, \ldots,\hat{v}_j, \ldots, \hat{v}_i,\ldots,v_n]} - \sum_{j> i} (-1)^{j+i} \sigma \mid_{[v_0, \ldots, \hat{v}_i,\ldots,\hat{v}_j,\ldots,v_n]} \\
-&= 0
+\partial_{n-1} \partial_n \sigma =& \partial_{n-1} \left(\sum_{i=0}^{n} (-1)^i \sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,v_n] \right) \\
+=& \sum_{i=0}^{n} (-1)^i \partial_{n-1} \left(\sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,v_n]\right)\\
+=& \sum_{i=0}^{n} (-1)^i \sum_{j= 0}^{n-1} (-1)^j\left(\sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,v_n]\right)\mid[w_0, \ldots, \hat{w}_j,\ldots,w_{n-1}]\\
+=& \sum_{i=0}^{n} (-1)^i\left( \sum_{j< i} (-1)^j \sigma \mid[v_0, \ldots,\hat{v}_j, \ldots, \hat{v}_i,\ldots,v_n] \right.\\
+&+\left. \sum_{j> i} (-1)^{j+1} \sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,\hat{v}_j,\ldots,v_n]\right) \\
+=& \sum_{j< i} (-1)^{j+i} \sigma \mid[v_0, \ldots,\hat{v}_j, \ldots, \hat{v}_i,\ldots,v_n] \\
+&- \sum_{j> i} (-1)^{j+i} \sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,\hat{v}_j,\ldots,v_n] \\
+=& 0
 \end{align*}
 \end{proof}
 
@@ -340,7 +334,7 @@ $C_0^\Delta (X) \cong \ZZ$, $C_1^\Delta (X) \cong \ZZ$ and all others are 0, so 
 \[
 \cdots \rightarrow 0 \rightarrow \ZZ \xrightarrow{\partial} \ZZ \rightarrow 0.
 \]
-We see that $\partial e = \sum_{i=0}^{1} (-1)^i e|_{[v_0,\ldots,\hat{v}_i,\ldots,v_1]} = e|_{[v_1]} - e|_{[v_0]} = v-v = 0$.
+We see that $\partial e = \sum_{i=0}^{1} (-1)^i e|[v_0,\ldots,\hat{v}_i,\ldots,v_1] = e|[v_1] - e|[v_0] = v-v = 0$.
 So 
 \[H_k^\Delta(S^1) \cong\begin{cases}
 \ZZ &\text{ if } k = 0 \text{ or }1, \\
@@ -382,7 +376,7 @@ We call $c \in C_n^\text{sing}(X)$ a singular $n$-chain.
 
 \begin{defn}
 We define $\partial\colon C_n^\text{sing}(X) \to C_{n-1}^\text{sing}(X)$ exactly as before by
-\[\partial \sigma = \sum_{i=0}^{n} (-1)^i \sigma|_{[v_0,\ldots,\hat{v}_i, \ldots, v_n]}.\]
+\[\partial \sigma = \sum_{i=0}^{n} (-1)^i \sigma|[v_0,\ldots,\hat{v}_i, \ldots, v_n].\]
 \end{defn}
 
 And again we define $Z_n^\text{sing}(X)$ (resp. $B_n^\text{sing}(X)$) exactly as above and call it the group of singular $n$-cycles (resp. $n$-boundaries).
@@ -394,5 +388,127 @@ Now $H_n^\text{sing}(X) = Z_n^\text{sing}(X)/B_n^\text{sing}(X)$ is the $n$-th \
 \begin{rem}
 We have that $\partial_{n-1}\circ \partial_n = 0$ exactly as before.
 \end{rem}
+
+\begin{ex}
+Suppose $X$ is a single point, then there is a unique $\Delta$-complex structure on $X$.
+We say $\sigma^0\colon \ZZ \to X$ is the ``constant map''.
+So $0 \to \ZZ \to 0$ is the chain complex $C_\bullet^\Delta(X)$.
+So
+\[
+H_n^\Delta =\begin{cases}\ZZ &n=0,\\
+0 &n\ge 1.
+\end{cases} 
+\]
+Suppose $X$ is as above again, then we can compute
+\[
+H_n^\text{sing} =\begin{cases}\ZZ &n=0,\\
+0 &n\ge 1.
+\end{cases}
+\]
+This is as in dimension $n$ there is only the constant map
+\[
+\sigma^n \colon \Delta^n \to X
+\]
+so $C_n^\text{sing}(X) \cong \ZZ$ and we also have that
+\begin{align*}
+\partial \sigma^n =& \sum_{i=0}^{n} (-1)^i \sigma|[v_0,\ldots,\hat v_i,\ldots,v_n] = \sum_{i=0}^{n} (-1)^i \sigma^{n-1}\\
+=& \left(\sum_{i=0}^{n} (-1)^i\right)\sigma^{n-1} =\begin{cases}
+0 &n\text{ odd},\\
+\sigma^{n-1} &n\text{ even},
+\end{cases}
+\end{align*}
+except if $n=0$.
+So $C_n$ is 
+\[
+\cdots\to \ZZ \xrightarrow{\times 0}\ZZ \xrightarrow{\times 1}\ZZ \xrightarrow{\times 0}\ZZ \xrightarrow{\times 1}\ZZ \xrightarrow{\times 0}\ZZ \to 0
+\]
+and so the singular homology groups are as claimed.
+\end{ex}
+
+\paragraph{Challenge} Compute $H_n^\text{sing}(S^1)$ from the definitions.
+
+\begin{thm}
+If $X$ admits a $\Delta$-complex structure then 
+\[
+H_\bullet^\Delta(X) \cong H_\bullet^\text{sing}(X).
+\]
+The left hand side is generally easier to compute, but the right can be easier to prove theorems with.
+\end{thm}
+
+\begin{prop}
+If $X = \bigsqcup X_\alpha$ where all $X_\alpha$ are path connected spaces then 
+\[
+H_n^\text{sing}(X) = \bigoplus_\alpha H_n^\text{sing}(X_\alpha).
+\]
+\end{prop}
+\begin{proof}
+\[
+C_n^\text{sing}(X) = \bigoplus_\alpha C_n^\text{sing}(X_\alpha).
+\]
+and $\partial$ respects this ``splitting''.
+\end{proof}
+
+\begin{prop}
+If $X \ne \emptyset$ and $X$ is path connected then $H_0^\text{sing}(X) \cong \ZZ$.
+\end{prop}
+\begin{proof}
+Define $\epsilon\colon C_0(X) \to \ZZ$ by $\sum n_\alpha v_\alpha \mapsto \sum n_\alpha$, the augmentation map, then $\epsilon$ is surjective.
+We claim that $\ker(\epsilon) = \im(\partial_1)$.
+Given any $\tau\colon \Delta^1 \to X$ that goes from $v$ to $w$ we have that $\partial\tau = w-v$ so $\epsilon(\partial \tau) = 1-1 =0$ and the image is contained in the kernel.
+Now fix $\sum n_\alpha v_\alpha$ s.t. $\epsilon(\sum n_\alpha v_\alpha) = 0$.
+Also fix some $u\in X$ and for all $\alpha$ pick $\tau_\alpha\colon\Delta^1 \to X$ a path from $u$ to $v_\alpha$.
+Consider $\sum n_\alpha \tau_\alpha\in C_1 (X)$
+\begin{align*}
+\partial(\sum n_\alpha \tau_\alpha) &= \sum \partial(n_\alpha \tau_\alpha)\\
+&= \sum n_\alpha\partial\tau_\alpha\\
+&= \sum n_\alpha(v_\alpha - u) \\
+&= \sum n_\alpha v_\alpha - \sum n_\alpha u \\
+&= \sum n_\alpha v_\alpha - u\sum n_\alpha \\
+&= \sum n_\alpha v_\alpha -u\cdot 0\in \im
+\end{align*}
+Hence $\im = \ker$ as claimed.
+
+And so $H_0 = \ker(\partial_0)/\im(\partial_1) = \ker(\partial_0)/\ker(\epsilon) = C_0(X) /\ker(\epsilon) \cong \ZZ$.
+\end{proof}
+
+\subsection{Reduced Homology}
+\begin{defn}
+If $X$ has $k$ path components, then $H_0(X) \cong \ZZ^k$ so we define the \emph{augmented chain complex}
+\[
+\cdots \to C_2(X) \xrightarrow{\partial_2}C_1(X) \xrightarrow{\partial_1}C_0(X) \xrightarrow{\epsilon} \ZZ \to 0,
+\]
+where $\epsilon$ is the augmentation map from above.
+Define the \emph{reduced homology groups} $\tilde H_\bullet (X)$ to be the homology groups of this chain complex.
+So $\tilde H_n(X) = H_n(X)$ is $n> 0$ and $\tilde H_0(X) = \ker(\epsilon)/\im(\partial_1)$.
+Hence if $X$ has $k$ path components
+\[
+\tilde H_0(X) \cong \ZZ^{k-1}.
+\]
+\end{defn}
+
+Recall that $H_\bullet (X\sqcup Y) = H_\bullet(X) \oplus H_\bullet(Y)$, the reduced homology groups behave nicely with respect to many operations such as 1-point unions.
+In a 1-point union $X\vee Y = X\sqcup Y /x\sim y$ for some designated point $x\in X$ and $y\in Y$.
+So $\tilde H_\bullet(X\vee Y) = \tilde H_\bullet(X) \oplus \tilde H_\bullet(Y)$.
+
+\subsection{Functoriality}
+\begin{defn}
+Suppose $f\colon X \to Y$ is a (continuous) map.
+Let $f_n\colon C_n(X) \to C_n(Y)$ by $\sigma \mapsto f\circ \sigma$.
+The function $f\circ \sigma$ is again a map from $\Delta^n$ to $Y$ and so still lies in $C_n(Y)$.
+
+The key property of this definition is that $\partial_n\circ f_n = f_{n-1}\circ \partial_n$.
+This is saying that the square
+\[
+\xymatrix{
+C_n(X)\ar[d]^{f_{n}} \ar[r]^{\partial_n} & C_{n-1}(X) \ar[d]^{f_{n-1}}\\
+C_n(Y) \ar[r]^{\partial_n} & C_{n-1}(Y)\\
+}
+\]
+commutes.
+\end{defn}
+
+\begin{exer}
+If $X \xrightarrow{f} Y \xrightarrow{g} Z$ then $(g\circ f)_n = g$ %TODO
+\end{exer}
 
 \end{document}
