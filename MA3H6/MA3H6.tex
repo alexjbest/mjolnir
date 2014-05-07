@@ -26,8 +26,8 @@
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\RR}{\mathbb{R}}
-\newcommand{\C}{C_\bullet}
-\renewcommand{\H}{H_\bullet}
+\newcommand{\C}{C_*}
+\renewcommand{\H}{H_*}
 
 \DeclareMathOperator{\im}{im}
 
@@ -513,7 +513,7 @@ If $X \xrightarrow{f} Y \xrightarrow{g} Z$ then $(g\circ f)_n = g_n \circ f_n$.
 
 \subsection{Chain maps}
 \begin{defn}
-If $\C, D_\bullet$ are chain complexes we say that a family of homomorphisms $f_\#\colon \C \to D_\bullet$ is  a \emph{chain map} if 
+If $\C, D_*$ are chain complexes we say that a family of homomorphisms $f_\#\colon \C \to D_*$ is  a \emph{chain map} if 
 \[
 f_\#\circ \partial = \partial \circ f_\#
 \]
@@ -531,7 +531,7 @@ is also a chain map.
 \end{ex}
 
 \begin{prop}
-If $f_\#\colon \C \to D_\bullet$ is a chain map then $f_\#$ induces a homomorphism
+If $f_\#\colon \C \to D_*$ is a chain map then $f_\#$ induces a homomorphism
 \[
 f_*\colon \H(C) \to \H(D)
 \]
@@ -608,7 +608,7 @@ is an isomorphism.
 \end{proof}
 
 \begin{defn}
-Suppose $f_\#,g_\#\colon\C \to D_\bullet$ are chain maps.
+Suppose $f_\#,g_\#\colon\C \to D_*$ are chain maps.
 A sequence of homomorphisms $P_n\colon C_n \to D_{n+1}$ is called a \emph{chain homotopy} if
 \[
 \partial_{n-1} P_n + P_{n-1} \partial_n = g_\# - f_\#
@@ -623,7 +623,7 @@ D_{n+1} \ar[r]^\partial  & D_n \ar[r]^\partial & D_{n-1}
 \end{defn}
 
 \begin{prop}
-If $f_\#\sim g_\#\colon \C \to D_\bullet$ then 
+If $f_\#\sim g_\#\colon \C \to D_*$ then 
 \[
 f_* = g_* \colon \H(C) \to \H(D).
 \]
