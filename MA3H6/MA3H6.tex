@@ -589,9 +589,9 @@ S^n \sim B^{n+1}\setminus\{0\}
 \end{ex}
 
 \begin{thm}
-If $X$ is homotopy equivalent to $Y$ via $f$ and $g$ then 
+If $f\sim g \colon X \to Y$ then 
 \[
-f_* = g_*^{-1}\colon \H(X) \to \H(Y).
+f_* = g_*\colon \H(X) \to \H(Y).
 \]
 \end{thm}
 \begin{cor}
@@ -659,5 +659,134 @@ If we have $F\colon X\times I \to Y$ and $\sigma\colon \Delta^n \to X$ we let
 F\sigma = F\circ(\sigma \times \mathrm{Id}_I)\colon \Delta^n \times I \to Y.
 \]
 
+\begin{proof}[Proof (of above theorem)]
+$f\sim g\colon X \to Y$, let $F\colon X \times I \to Y$ be the homotopy.
+Then define
+\[
+P(\sigma) = \sum_{i=0}^{n} (-1)^i F\sigma|[v_0,\ldots,v_{i},w_{i+1},\ldots,w_n]
+\]
+this is the prism operator.
+We now claim that $P$ is a chain homotopy from $f_\#$ to $g_\#$.
+To see this fix $\sigma\colon\Delta^n\to X$ and compute
+\begin{align*}
+\partial P\sigma
+&= \partial\left(\sum_{i=0}^{n} (-1)^i F\sigma|[v_0,\ldots,v_{i},w_{i+1},\ldots,w_n]\right)\\
+&= \sum_{j \le i} (-1)^{i+j} F\sigma|[v_0,\ldots,\hat{v}_{j},\ldots,w_n] + \sum_{i \le j} (-1)^{i+j+1} F\sigma|[v_0,\ldots,\hat{w}_{j},\ldots,w_n]\\
+\end{align*}
+and
+\begin{align*}
+P\partial \sigma 
+&= P\left(\sum (-1)^j \sigma|[v_0,\ldots,\hat{v}_j,\ldots,v_n]\right)\\
+&= \sum_{i<j} (-1)^{i+j} F\sigma|[v_0,\ldots,\hat{w}_j,\ldots,w_n] + \sum_{j<i} (-1)^{i+j-1} F\sigma|[v_0,\ldots,\hat{v}_j,\ldots,w_n].
+\end{align*}
+So 
+\begin{align*}
+\partial P \sigma + P \partial \sigma &= \sum (-1)^{2i} F\sigma |[v_0,\ldots,\hat v_i,w_i,\ldots,w_n] + \sum (-1)^{2i+1} F\sigma |[v_0,\ldots,v_i,\hat w_i,\ldots,w_n]\\
+&= F\sigma |[\hat v_0,w_0,\ldots,w_n] - F\sigma | [v_0,\ldots,v_n,\hat w_n] \\
+&= g_\# \sigma -  f_\# \sigma.
+\end{align*}
+\end{proof}
+
+\subsection{Exact sequences}
+\begin{defn}
+We say a complex $\C$ is \emph{exact} if $\H(C) \equiv 0$ (or equivalently if $Z_n = B_n$ for all $n$).
+
+We also say that a sequence is \emph{short} if it has at most 3 non-zero terms.
+\end{defn}
+
+\begin{ex}
+\[
+0 \to \ZZ \to \ZZ^2 \to \ZZ \to 0.
+\]
+\[
+0 \to \ZZ \xrightarrow{\times 2} \ZZ \xrightarrow{\text{mod }2} \ZZ/2\ZZ \to 0.
+\]
+\end{ex}
+
+\begin{defn}
+A short sequence of chain complexes
+\[
+0 \to A_* \xrightarrow{i_\#} B_* \xrightarrow{j_\#} C_* \to 0
+\]
+is \emph{exact} if for all $n$
+\[
+0 \to A_n \xrightarrow{i_n} B_n \xrightarrow{j_n} C_n \to 0
+\]
+is exact and $i_\#$, $j_\#$ are chain maps.
+\end{defn}
+
+\begin{defn}
+We say that $(X,A)$ is a \emph{good pair} if $A\subseteq X$ is non-empty, closed and there exists an open $V$ with $X\supset V \supset A$ such that $V$ deformation retracts to $A$.
+\end{defn}
+
+\begin{ex}
+$(\RR^2,S^1)$ is a good pair.
+\end{ex}
+
+We say $f\colon (X,A) \to (Y,B)$ is a \emph{map of pairs} if $f\colon X \to Y$ is a map and $f(A)  \subset B$.
+\begin{ex}
+\[
+f\colon (I, \partial I) \to (\RR^2, S^1).
+\]
+\end{ex}
+Similarly we can define a \emph{homotopy of maps of pairs} to be a function $F\colon X\times I \to Y$ where each $F_t\colon (X,A)\to (Y,B)$ is a map of pairs and $F_0= f$, $F_1 = g$.
+
+\subsection{Relative homology}
+Suppose $(X,A)$ is a pair.
+Note that 
+\[
+i_\# \colon \C(A) \to \C(X)
+\]
+is an inclusion.
+Define $\C(X,A) = \C(X)/\C(A)$ and we then have that $C_n(X,A) = C_n(X)/C_n(A)$ and as $\partial^X$ preserves $\C(A)$ it descends to give $\partial^{(X,A)}$.
+We have that $\partial^{(X,A)}[c] = [\partial^X c]$.
+
+\begin{exer}
+Show $\partial^{(X,A)}$ is well defined and $(\partial^{(X,A)})^2 = 0$.
+\end{exer}
+
+Note that 
+\[
+0 \to \C(A) \to \C(X) \to \C(X,A) \to 0
+\]
+is a short exact sequence of chain complexes.
+
+\begin{defn}
+$H_n(X,A) = Z_n(X,A) / B_n(X,A)$, we also say that $[z] \in Z_n(X,A)$ is a \emph{relative cycle} and $[b]\in B_n(X,A)$ is a \emph{relative boundary}.
+\end{defn}
+
+%TODO fill in
+If $z \in [z] \in Z_n(X,A)$ then $\partial^{(X,A)}[z] = 0 \in C_n(X,A)$ i.e. $\partial^{(X,A)}[z] = [a][\text{any }a\in C_n(A)]$.
+$[\partial^X z] = [a]$ i.e. $\partial^X z = C_n(A)$.
+
+\begin{ex}
+\begin{align*}
+\H(X,X) = 0,\\
+\H(X,\emptyset) = \H(X),\\
+\H(X,\{\mathrm{pt}\}) = \tilde{\H(X)} \text{ (exercise)}.
+\end{align*}
+\end{ex}
+
+\begin{prop}
+If $f$ is homotopic, $f\sim g\colon (X,A) \to (Y,B)$ then $f_* = g_*\colon\H(X,A) \to \H(Y,B)$.
+\end{prop}
+\begin{proof}
+The prism operator gives a chain homotopy.
+\end{proof}
+\begin{cor}
+If $A \subset V$ and $V$ deformation retracts to $A$ then $\H(V,A) = 0$.
+\end{cor}
+\begin{proof}
+
+\end{proof}
+
+\subsection{Long exact sequences}
+\begin{thm}
+Suppose $ 0\to A_* \xrightarrow{i_\#} B_* \xrightarrow{j_\#} C_* \to 0$ is exact then there is a $\partial_*\colon H_{* + 1}(C) \to H_*(A)$.
+This is called an exact triangle
+\[
+.
+\]
+\end{thm}
 
 \end{document}
