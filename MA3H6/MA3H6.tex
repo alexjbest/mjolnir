@@ -263,14 +263,14 @@ so
 \[\partial_n \sigma = \sum_{i=0}^{n} (-1)^i \sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,v_n]\]
 now we apply $\partial_{n-1}$:
 \begin{align*}
-\partial_{n-1} \partial_n \sigma =& \partial_{n-1} \left(\sum_{i=0}^{n} (-1)^i \sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,v_n] \right) \\
-=& \sum_{i=0}^{n} (-1)^i \partial_{n-1} \left(\sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,v_n]\right)\\
-=& \sum_{i=0}^{n} (-1)^i \sum_{j= 0}^{n-1} (-1)^j\left(\sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,v_n]\right)\mid[w_0, \ldots, \hat{w}_j,\ldots,w_{n-1}]\\
-=& \sum_{i=0}^{n} (-1)^i\left( \sum_{j< i} (-1)^j \sigma \mid[v_0, \ldots,\hat{v}_j, \ldots, \hat{v}_i,\ldots,v_n] \right.\\
-&+\left. \sum_{j> i} (-1)^{j+1} \sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,\hat{v}_j,\ldots,v_n]\right) \\
-=& \sum_{j< i} (-1)^{j+i} \sigma \mid[v_0, \ldots,\hat{v}_j, \ldots, \hat{v}_i,\ldots,v_n] \\
-&- \sum_{j> i} (-1)^{j+i} \sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,\hat{v}_j,\ldots,v_n] \\
-=& 0
+\partial_{n-1} \partial_n \sigma &= \partial_{n-1} \left(\sum_{i=0}^{n} (-1)^i \sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,v_n] \right) \\
+&= \sum_{i=0}^{n} (-1)^i \partial_{n-1} \left(\sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,v_n]\right)\\
+&= \sum_{i=0}^{n} (-1)^i \sum_{j= 0}^{n-1} (-1)^j\left(\sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,v_n]\right)\mid[w_0, \ldots, \hat{w}_j,\ldots,w_{n-1}]\\
+&= \sum_{i=0}^{n} (-1)^i\left( \sum_{j< i} (-1)^j \sigma \mid[v_0, \ldots,\hat{v}_j, \ldots, \hat{v}_i,\ldots,v_n] \right.\\
+&\ +\left. \sum_{j> i} (-1)^{j+1} \sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,\hat{v}_j,\ldots,v_n]\right) \\
+&= \sum_{j< i} (-1)^{j+i} \sigma \mid[v_0, \ldots,\hat{v}_j, \ldots, \hat{v}_i,\ldots,v_n] \\
+&\ - \sum_{j> i} (-1)^{j+i} \sigma \mid[v_0, \ldots, \hat{v}_i,\ldots,\hat{v}_j,\ldots,v_n] \\
+&= 0
 \end{align*}
 \end{proof}
 
@@ -782,10 +782,23 @@ If $A \subset V$ and $V$ deformation retracts to $A$ then $\H(V,A) = 0$.
 
 \subsection{Long exact sequences}
 \begin{thm}
-Suppose $ 0\to A_* \xrightarrow{i_\#} B_* \xrightarrow{j_\#} C_* \to 0$ is exact then there is a $\partial_*\colon H_{* + 1}(C) \to H_*(A)$.
-This is called an exact triangle
+Suppose $ 0\to A_* \xrightarrow{i_\#} B_* \xrightarrow{j_\#} C_* \to 0$ is exact then there is a $\partial_*\colon H_{* + 1}(C) \to H_*(A)$ making
 \[
-.
+\xymatrix{ \cdots\ar[r] & H_n(A) \ar[r]&
+H_n(B) \ar[r] & H_n(C)\ar `r[d] `[l]
+`[llld]_{\partial_n} `[dll] [dll]\\
+& H_{n-1}(A) \ar[r] & H_{n-1}(B)
+\ar[r] & H_{n-1}(C)\ar[r] & {\dots} }
+\]
+exact.
+
+We sometimes draw this as an exact triangle
+\[
+\xymatrix
+{
+ \H(A) \ar[rr]^{i_*}& &\H(B)\ar[dl]_{j_*} \\
+ &\H(C) \ar[ul]_{\partial_*}&
+}
 \]
 \end{thm}
 
