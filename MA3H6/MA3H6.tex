@@ -458,7 +458,7 @@ Now fix $\sum n_\alpha v_\alpha$ s.t. $\epsilon(\sum n_\alpha v_\alpha) = 0$.
 Also fix some $u\in X$ and for all $\alpha$ pick $\tau_\alpha\colon\Delta^1 \to X$ a path from $u$ to $v_\alpha$.
 Consider $\sum n_\alpha \tau_\alpha\in C_1 (X)$
 \begin{align*}
-\partial(\sum n_\alpha \tau_\alpha) &= \sum \partial(n_\alpha \tau_\alpha)\\
+\partial\left(\sum n_\alpha \tau_\alpha\right) &= \sum \partial(n_\alpha \tau_\alpha)\\
 &= \sum n_\alpha\partial\tau_\alpha\\
 &= \sum n_\alpha(v_\alpha - u) \\
 &= \sum n_\alpha v_\alpha - \sum n_\alpha u \\
@@ -782,17 +782,7 @@ If $A \subset V$ and $V$ deformation retracts to $A$ then $\H(V,A) = 0$.
 
 \subsection{Long exact sequences}
 \begin{thm}
-Suppose $ 0\to A_* \xrightarrow{i_\#} B_* \xrightarrow{j_\#} C_* \to 0$ is exact then there is a $\partial_*\colon H_{* + 1}(C) \to H_*(A)$ making
-\[
-\xymatrix{ \cdots\ar[r] & H_n(A) \ar[r]&
-H_n(B) \ar[r] & H_n(C)\ar `r[d] `[l]
-`[llld]_{\partial_n} `[dll] [dll]\\
-& H_{n-1}(A) \ar[r] & H_{n-1}(B)
-\ar[r] & H_{n-1}(C)\ar[r] & {\dots} }
-\]
-exact.
-
-We sometimes draw this as an exact triangle
+Suppose $ 0\to A_* \xrightarrow{i_\#} B_* \xrightarrow{j_\#} C_* \to 0$ is exact then there is a $\partial_*\colon H_{* + 1}(C) \to H_*(A)$ making the following triangle exact
 \[
 \xymatrix
 {
@@ -800,6 +790,91 @@ We sometimes draw this as an exact triangle
  &\H(C) \ar[ul]_{\partial_*}&
 }
 \]
+that is
+\[
+\xymatrix{ \cdots\ar[r] & H_n(A) \ar[r]&
+H_n(B) \ar[r] & H_n(C)\ar `r[d] `[l]
+`[llld]_{\partial_n} `[dll] [dll]\\
+& H_{n-1}(A) \ar[r] & H_{n-1}(B)
+\ar[r] & H_{n-1}(C)\ar[r] & {\dots} }
+\]
+is a long exact sequence of groups (an exact complex).
 \end{thm}
+
+\begin{proof}
+We define $\delta_*$.
+Fix some $[c] \in H_n(C)$, so $c\in Z_n(C) \le C_n$.
+The map $j$ is surjective so pick $b \in B_n$ such that $j(b) = c$.
+Since $c\in Z_n$ we have $\partial c = 0$ and so $j\partial b = \partial j b  = 0$.
+Now since $\ker(j) = \im(i)$ there is some $a \in A_{n-1}$ such that $ia = \partial b$.
+We then define $\delta_*[c] = [a]$, we have a few things to check:
+\begin{enumerate}
+\item $a\in Z_{n-1(A)}$: $i\partial a = 0 \iff \partial a = 0$, $i \partial a = \partial ia = \partial \partial b = 0$ as required.
+\item $\delta_*$ is well defined:
+\begin{enumerate}[(i)]
+\item Suppose we pick $c + \partial c'$ instead of $c$.
+Pick any $b'$ such that $jb' = c'$ so that $j(b + \partial b') = c + \partial c'$, however then $\partial(b + \partial b') = \partial b$ is the same.
+\item Suppose we picked $b''$ such that $jb'' = c$.
+Then $j(b- b'') = 0$ and so there is some $a'\in A_n$ such that $ia' = b - b''$, i.e. $b'' = b - ia'$.
+We then have $\partial b'' =\partial b  - \partial ia' = ia - i\partial a' = i(a - \partial a')$ so $b''$ gives $a-\partial a'$ and $b$ gives $a$.
+Since $[a ] = [a-\partial a']$ we have that $\delta_*$ is well defined.
+\end{enumerate}
+\item $\delta_*$ is a homomorphism as $i,j$ and $\partial$ are.
+\item To see that the chain complex is as claimed we have some more checks to make:
+\begin{enumerate}[(i)]
+\item $j_*i_*[a] = 0$: $j_*i_*[a]  = j_*[i_\# a] = [j_\# i_\# a ] = [0]$.
+\item $\delta_*j_*[b] = 0$: Set $jb = c$, suppose $\delta_*[c] = [a]$, we know $\partial b= 0$ so $ia = \partial b = 0$ but also that $i$ is injective.
+So $a = 0$ and hence $[a] = 0$ as required.
+\item $j_*\delta_*[c] = 0$: Set $\delta_*[c] = [a]$ and let $ia = \partial b$ and $jb = c$ as usual.
+So $i_*[a] = [ia] = [\partial b] = 0$.
+\end{enumerate}
+\item To see that the complex is exact we must show the opposite inclusions of images and kernels to the ones demonstrated above, we only show (i) here and (ii) \& (iii) are left as exercises.
+
+$\ker(j_*) \le \im (i_*)$: Pick $[b] \in \ker (j_*)$, suppose $j_*[b] = 0$ i.e. $[jb] = 0$ and if $jb = c$ then there is a $c'$ such that $c = \partial c'$.
+We know $j$ is surjective so there is $b'$ such that $jb' = c'$ and therefore $j(b - \partial b') = c - \partial c' = 0$.
+So there exists $a$ with $ia = b - \partial b'$ so $i_*[a] = [b-\partial b']  = [b]$.
+\end{enumerate}
+\end{proof}
+
+\begin{ex}
+If $(X,A)$ is a pair then 
+\[
+\xymatrix
+{
+ \H(A) \ar[rr]^{i_*}& &\H(X)\ar[dl]_{q_*} \\
+ &\H(X,A) \ar[ul]_{\partial_*}&
+}
+\]
+is exact.
+\end{ex}
+
+\begin{rmk}
+If $A = \emptyset$ then $j_*$ is an isomorphism.
+\end{rmk}
+
+\begin{thm}
+\[
+\xymatrix
+{
+ \tilde{\H}(A) \ar[rr]^{i_*}& &\tilde{\H}(X)\ar[dl]_{q_*} \\
+ &\H(X,A) \ar[ul]_{\partial_*}&
+}
+\]
+is also exact, thus $\tilde{\H}(X) \cong \H(X,X)$.
+\end{thm}
+
+\begin{ex}
+If $(X,B,A)$ is a triple then
+\[
+\xymatrix
+{
+ \H(B,A) \ar[rr]^{i_*}& &\H(X,A)\ar[dl]_{q_*} \\
+ &\H(X,B) \ar[ul]_{\partial_*}&
+}
+\]
+is exact.
+\end{ex}
+
+
 
 \end{document}
