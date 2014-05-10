@@ -31,6 +31,8 @@
 
 \DeclareMathOperator{\im}{im}
 
+\allowdisplaybreaks
+
 \setcounter{tocdepth}{3}
 
 \begin{document}
@@ -875,6 +877,41 @@ If $(X,B,A)$ is a triple then
 is exact.
 \end{ex}
 
+\begin{ex}
+Set $(X,A) = (B^2, S^1)$ then applying the snake lemma to
+\[
+0 \to \C(A) \to \C(X)\to \C(X,A) \to 0
+\]
+gives that
+\[
+H_k(B^2, S^1) =\begin{cases}\ZZ&\text{ if }k=2,\\
+0 &\text{ otherwise}.
+\end{cases} 
+\]
+\end{ex}
+
+\begin{exer}
+For $\H^\text{sing}$ suppose that $A\xrightarrow{i} X$ and $X\xrightarrow{r} S$ is a \emph{retraction}, i.e. $r\circ i = \mathrm{id}_A$.
+Prove that
+\[
+\H(X) \cong\H(A) \oplus \H(X,A).
+\]
+\end{exer}
+
+\begin{thm}[Excision]
+
+\textbf{Version 1}
+Suppose $Z\subset A \subset X$ with $\operatorname{closure}(A) \subseteq \operatorname{interior}(A)$, then
+\[
+\H^\text{sing}(X\setminus Z, A\setminus Z) \cong \H^\text{sing}(X, A).
+\]
+
+\textbf{Version 2}
+Suppose $A,B\subseteq X$ and $X \subseteq \operatorname{interior}(A) \cup \operatorname{interior}(B)$ then 
+\[
+\H^\text{sing}(B, B\cap A) \cong \H^\text{sing}(X, A).
+\]
+\end{thm}
 
 
 \end{document}
