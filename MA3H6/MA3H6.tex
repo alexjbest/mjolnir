@@ -27,9 +27,11 @@
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\C}{C_*}
+\newcommand{\U}{\mathcal{U}}
 \renewcommand{\H}{H_*}
 
 \DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\diam}{diam}
 
 \allowdisplaybreaks
 
@@ -139,7 +141,7 @@ Fix $X$ a topological space and a collection of maps
 This is known as a \emph{$\Delta$-complex structure} on $X$ if:
 \begin{enumerate}[(i)]
 \item (Partition) for all $\alpha$ $\sigma_\alpha|\mathring{\Delta}_\alpha$ is injective and for $x\in X$ there is a \emph{unique} $\alpha\in A$ s.t. $x\in\sigma_\alpha(\mathring{\Delta}_\alpha)$.
-\item (Tiling) If $\Delta\subset \Delta_\alpha$ is a face then there is a unique $\beta\in A$ s.t. $\sigma_\setminus|\Delta = \sigma_\beta\circ f$ where $f \colon \Delta \to \Delta_\beta$ is the canonical map.
+\item (Tiling) If $\Delta\subset \Delta_\alpha$ is a face then there is a unique $\beta\in A$ s.t. $\sigma_\alpha|\Delta = \sigma_\beta\circ f$ where $f \colon \Delta \to \Delta_\beta$ is the canonical map.
 \item (Topology) $U\subset X$ is open iff $\forall \alpha\ \sigma^{-1}_\alpha (U) \subset \Delta_\alpha$ is open.
 \end{enumerate}
 \end{defn}
@@ -652,7 +654,7 @@ A \emph{prism} is a copy of $\Delta^n \times I$.
 
 We can subdivide $\Delta\times I$ into $n+1$ dimensional simplices of the form
 \[
-[v_0,v_1,\ldots,v_i,w_{i+1},\ldots,w_n],
+[v_0,v_1,\ldots,v_i,w_i,w_{i+1},\ldots,w_n],
 \]
 where $v$ are the vertices of the simplex at one end of the interval and $w$ are the vertices at the other.
 
@@ -665,7 +667,7 @@ F\sigma = F\circ(\sigma \times \mathrm{Id}_I)\colon \Delta^n \times I \to Y.
 $f\sim g\colon X \to Y$, let $F\colon X \times I \to Y$ be the homotopy.
 Then define
 \[
-P(\sigma) = \sum_{i=0}^{n} (-1)^i F\sigma|[v_0,\ldots,v_{i},w_{i+1},\ldots,w_n]
+P(\sigma) = \sum_{i=0}^{n} (-1)^i F\sigma|[v_0,\ldots,v_{i},w_i,w_{i+1},\ldots,w_n]
 \]
 this is the prism operator.
 We now claim that $P$ is a chain homotopy from $f_\#$ to $g_\#$.
@@ -898,20 +900,266 @@ Prove that
 \]
 \end{exer}
 
-\begin{thm}[Excision]
+\subsection{Excision}
 
-\textbf{Version 1}
+\begin{thm}[Excision]~\\
+\textbf{Version 1}.
 Suppose $Z\subset A \subset X$ with $\operatorname{closure}(A) \subseteq \operatorname{interior}(A)$, then
 \[
 \H^\text{sing}(X\setminus Z, A\setminus Z) \cong \H^\text{sing}(X, A).
 \]
-
-\textbf{Version 2}
+\textbf{Version 2}.
 Suppose $A,B\subseteq X$ and $X \subseteq \operatorname{interior}(A) \cup \operatorname{interior}(B)$ then 
 \[
 \H^\text{sing}(B, B\cap A) \cong \H^\text{sing}(X, A).
 \]
 \end{thm}
 
+We would like to know that
+\[
+\H(X,A) = \tilde{\H(X/A)}
+\]
+and we can prove this for good pairs $(X,A)$ using excision.
+
+Also if $X$ has a $\Delta$-complex structure excision gives that
+\[
+\H^\Delta \cong \H^s(X).
+\]
+These isomorphisms are induced by inclusion.
+We will use both versions of excision but prove version 2.
+\begin{exer}
+Show both versions of excision are equivalent.
+\end{exer}
+
+\subsubsection{Covers}
+\begin{defn}
+$\U = \{U_\alpha\}$ is an open cover of $X$ if all $U_\alpha$ are open subsets of $X$ and $X$ is contained in the union of all $U_\alpha$.
+\end{defn}
+
+Suppose $A\subset X$ we say $\sigma\colon \Delta \to X$ is subordinate to $A$ if $\sigma(\Delta) \subset A$.
+We also say that $\U = \{A_\alpha\}$ is a \emph{cover} of $X$ if $\{\operatorname{interior}A_\alpha\}$ is an open cover of $X$.
+
+\begin{defn}
+With the notation as above let
+\[
+C_n^\U(X) = \left\{ \sum n_\beta \sigma_\beta \in C_n^s(X) \middle| \forall \beta\ \exists \alpha \text{ s.t. } \sigma_\beta \text{ is subordinate to } A_\alpha\right\}.
+\]
+\end{defn}
+
+Note that $\partial\colon C_n(X) \to C_{n-1}(X)$ respects subordination i.e. restricts to give
+\[
+\partial\colon C_n^\U (X) \to C_{n-1}^\U(X).
+\]
+So $\C^\U(X) =\{C_n^\U(X),\partial\}$ is a chain complex.
+The map
+\[
+i_\# \colon \C^\U \to \C^s
+\]
+is an injective chain map.
+And we define $\H^\U$ in the usual way.
+
+\begin{prop}
+Suppose $\U = \{A,B\}$ is a cover of $X$, then there is a chain map
+\[
+p_\# \colon \C(X) \to \C^\U(X)
+\]
+called subdivision such that $p_\# \circ i_\# = \text{id}_{\C^\U}$, $i_\#\circ p_\# \sim\text{id}_{\C^\U}$ is a chain homotopy equivalence to $\C$ and $\H^\U \cong \H$.
+\end{prop}
+
+Assuming the above proposition we now prove excision version 2.
+\begin{proof}
+$\U = \{A,B\}$ is a cover of $X$ so
+\[
+i_\# \colon \C^\U \to \C
+\]
+induces isomorphism on homology by the above proposition.
+Also $i$ induces 
+\[
+\C^\U(X) /\C^s(A) \xrightarrow{i} \C^s(X)/\C^s(A)
+\]
+so we also get an isomorphism
+\[
+\C^s(B)/\C^s(B\cap A) \xrightarrow{\cong} \C^\U (X) /\C(A).
+\]
+Thus 
+\[
+C_n(B) /C_n(A\cap B) \cong C_n^\U(X)/C_n(A) \xrightarrow{\sim\text{ h.e.}} C_n(X)/C_n(A).
+\]
+So all three have isomorphisms.
+\end{proof}
+
+The subdivision operator, used to prove the above proposition is similar to the prism operator (it breaks a large object into pieces).
+
+\begin{exer}
+Suppose $X$ is a $\Delta$-complex and $A\in X$ is a subcomplex ($A\ne \emptyset$) show $(X,A)$ is a good pair.
+\end{exer}
+
+\begin{exer}
+Show that if
+\[
+A = \{0\} \cup \left\{\frac{1}{n}\middle| n \in \ZZ_{\ge 0} \right\},\ X=[0,1]
+\]
+then $(X,A)$ is not a good pair.
+\end{exer}
+
+\subsubsection{Coning}
+Suppose $Y\subset \RR^m$ is convex, that is if $x,y\in Y$ then the interval $[x,y]\subset Y$.
+
+\begin{defn}
+With $Y$ as above we let
+\[
+C_n^l(Y) =\left\{ \sum n_\alpha \sigma_\alpha \middle| \sigma_\alpha \colon \Delta^n \to Y \text{ is affine linear}\right\}.
+\]
+\end{defn}
+
+Suppose that $\sigma = [v_0,\ldots,v_n]$ is a simplex in $\RR^m$, i.e. that the $v_i$ do not lie in any affine $(n-1)$-dimensional subspace.
+Suppose $b\in \RR^m$ and that $\{b,v_0,\ldots,v_n\}$ is again a set of affinely independent points.
+
+\begin{defn}
+\[
+b\sigma = [b,v_0,\ldots,v_n]
+\]
+i.e. $b\sigma$ is the \emph{cone} of $\sigma$ (now called the \emph{base}) to $b$ (the \emph{apex}).
+
+Fixing a $b$ we can then define
+\[
+b\colon C_n^l (Y) \to C_{n+1}^l(Y)
+\text{ by }
+\sigma \mapsto b\sigma.
+\]
+\end{defn}
+
+\begin{exer}
+Show that
+\[
+\partial b + b\partial = 1.
+\]
+\end{exer}
+
+\subsubsection{Barycenters}
+\begin{defn}
+Given $\sigma \subset Y$ a simplex ($\sigma = [v_0,\ldots,v_n]$) define the \emph{barycenter}
+\[
+b_\sigma = \sum_{i=0}^{n} \frac{1}{n+1}v_i.
+\]
+Now define the \emph{subdivision operator} by $Sv = v$ in dimension 0 and otherwise
+\[
+S\sigma = b_\sigma S\partial \sigma.
+\]
+This then gives a map $S\colon C_n^l(Y) \to C_n^l(Y)$ defined by $\sigma \mapsto \sigma_\#\circ S\circ \text{id}_{\Delta^n}$.
+\end{defn}
+As this definition is recursive all proofs using it will be inductive.
+
+\begin{exer}
+If $\sigma$ is an $n$-simplex count the number of $n$-simplices in $S\sigma$.
+Challenge: count all of the faces.
+\end{exer}
+
+\begin{prop}
+The operator $S$ is a chain map.
+\end{prop}
+\begin{proof}
+Inductively
+\begin{align*}
+\partial S \sigma &= \partial(bS\partial \sigma)\\
+&= (\partial b) S\partial \sigma\\
+&= (1 - b \partial) S\partial \sigma\\
+&= (S\partial - b \partial S \partial) \sigma\\
+&= (S\partial - b S \partial^2) \sigma\\
+&= S\partial \sigma.
+\end{align*}
+\end{proof}
+
+\begin{lem}[Fine lemma]
+If $\tau$ is a simplex in $S \sigma$ then $\diam(\tau)  \le \frac{n}{n+1}\diam (\sigma)$.
+So if $\tau \in S^k \sigma$ then $\diam(\tau) \le \left(\frac{n}{n+1}\right)^k \diam(\sigma)$.
+\end{lem}
+Note that $\left(\frac{n}{n+1}\right)^k \to 0$ as $k \to \infty$.\\
+
+We want to prove that $S$ is chain homotopic to the identity.
+To do this we again subdivide $\Delta^n \times I$ (as for $P$, the prism operator).
+
+\begin{defn}
+We recursively define a new prism operator
+\[
+T\sigma = b_\sigma(\sigma - T\partial \sigma).
+\]
+Which gives the map
+\[
+T\colon C_n(X) \to C_{n+1}(X) \text{ defined by } \sigma \mapsto \sigma_\# \circ T \circ \text{id}_{\Delta^n}.
+\]
+
+We also define another map $D$ by $D_0 = 0$ and $D_{m+1} = D_m + TS^m$ so
+\[
+D_m = T\left( \sum_{i=0}^{m-1} S^i\right)
+\]
+\end{defn}
+
+\begin{prop}
+\[
+\partial D_m  + D_m \partial = 1 - S^m.
+\]
+\end{prop}
+\begin{proof}
+\begin{align*}
+\partial D_{m+1} &= \partial (D_m +  TS^m)\\
+&= \partial D_m + \partial TS^m \\
+&= 1 - S^m -  D_m\partial  + \partial TS^m \\
+&= 1 - S^m -  D_m\partial  + (1 - S - T\partial)S^m \\
+&= 1 - S^{m+1} - (D_m +  TS^m)\partial \\
+&= 1 - S^{m+1} - D_{m+1}\partial.
+\end{align*}
+\end{proof}
+
+This gives that $1 \sim S^m$ for all $m$.
+
+\begin{lem}[Fine lemma 2]
+Fix $\U$ a cover of $X$ and $\sigma \colon \Delta^n \to X$, then there exists $m$ s.t. $S^m \sigma$ is subordinate to $\U$.
+\end{lem}
+\begin{proof}
+Define $\U^\sigma = \{\sigma^{-1}(U) \mid U \in \U\}$ this is a cover of $\Delta^n$.
+$\Delta^n$ is compact so by the Lebesgue covering lemma there is some $\epsilon$ for all $x \in \Delta^n$ so that there exists $U \in \U^\sigma$ such that $B_\epsilon(x) \subset \operatorname{interior}(U)$.
+Pick $m$ such that $\sqrt{2} \left(\frac{n}{n+1} \right)^m < \frac{\epsilon}{100}$.
+Now for all $\tau \in S^m \circ \text{id}_A$ we have some $U \in \U^\sigma$ such that $\tau \subset U$ so $\sigma \circ \tau$ is in some element of $U$ i.e. $S^m\sigma$ is subordinate to $\U$.
+Hence $S^m \sigma \in C_n^\U (X)$.
+\end{proof}
+
+We now finish proving the main proposition above.
+
+\begin{defn}
+We define a function 
+\[
+m\colon \{ \sigma\colon \Delta^n \to x\} \to \NN \text{ by } \sigma \mapsto m(\sigma).
+\]
+where $m(\sigma)$ is the least natural number such that $S^m_\sigma \in C_n^\U(X)$.
+The map $m$ is well defined by Fine lemma 2.
+\end{defn}
+
+\begin{defn}
+We now let $D_\sigma = D_{m(\sigma)} \sigma$.
+\end{defn}
+We want $D$ to be the desired chain homotopy for proving the proposition.
+So we want $p\colon \C(X) \to \C^\U(X)$ so that
+\[
+p\circ i \sim 1^\U \text{ and } i \circ p \sim 1.
+\]
+
+\begin{defn}
+Define
+\[
+p(\sigma) = S_{\sigma}^{m(\sigma)} + D_{m(\sigma)} \partial \sigma - D \partial \sigma
+\]
+and extend linearly.
+\end{defn}
+
+\begin{prop}
+\[
+p\colon \C(X) \to \C^\U(X).
+\]
+\end{prop}
+\begin{proof}
+Fix $\sigma \in \C(X)$, $S_\sigma^{m(\sigma)} \in C_n^\U(X)$.
+The difference $(D_{m(\sigma)} \partial - D \partial)\sigma$ lies in $\C^\U(X)$ as well, the second term subtracts off insufficiently subdivided simplices.
+\end{proof}
 
 \end{document}
