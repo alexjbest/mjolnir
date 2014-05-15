@@ -7,19 +7,18 @@
 \usepackage[all]{xy}
 
 \theoremstyle{definition}
-\newtheorem*{thm}{Theorem}
-\newtheorem*{lem}{Lemma}
-\newtheorem*{cor}{Corollary}
-\newtheorem*{prop}{Proposition}
+\newtheorem{thm}{Theorem}[subsection]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
 \theoremstyle{definition}
-\newtheorem*{defn}{Definition}
-\newtheorem*{defns}{Definitions}
-\newtheorem*{ex}{Example}
-\newtheorem*{nex}{Non Example}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{nex}[thm]{Non Example}
 \newtheorem*{exer}{Exercise}
 \newtheorem*{rmk}{Remark}
 \newtheorem*{nota}{Notation}
-\newtheorem*{alg}{Algorithm}
 \newtheorem*{hint}{Hint}
 
 \newcommand{\ZZ}{\mathbb{Z}}
@@ -574,25 +573,25 @@ We then say two spaces $X$ and $Y$ are \emph{homotopy equivalent} if there exist
 
 \begin{ex}
 \[
-S^n \sim \RR^{n+1}\setminus\{0\}
+S^n \sim \RR^{n+1}\smallsetminus\{0\}
 \]
 via (for $n=1$)
 \begin{align*}
-i\colon S^1 &\to \RR^2\setminus\{0\}\\
+i\colon S^1 &\to \RR^2\smallsetminus\{0\}\\
 x&\mapsto x
 \end{align*}
 and
 \begin{align*}
-r\colon \RR^2\setminus\{0\}&\to S^1\\
+r\colon \RR^2\smallsetminus\{0\}&\to S^1\\
 x&\mapsto \frac{x}{\| x\|}.
 \end{align*}
 We also have
 \[
-S^n \sim B^{n+1}\setminus\{0\}
+S^n \sim B^{n+1}\smallsetminus\{0\}
 \]
 \end{ex}
 
-\begin{thm}
+\begin{thm}\label{thm:homotopicmapssamehomology}
 If $f\sim g \colon X \to Y$ then 
 \[
 f_* = g_*\colon \H(X) \to \H(Y).
@@ -612,7 +611,7 @@ is an isomorphism.
 \end{proof}
 
 \begin{defn}
-Suppose $f_\#,g_\#\colon\C \to D_*$ are chain maps.
+Suppose $f_\#,\,g_\#\colon\C \to D_*$ are chain maps.
 A sequence of homomorphisms $P_n\colon C_n \to D_{n+1}$ is called a \emph{chain homotopy} if
 \[
 \partial_{n-1} P_n + P_{n-1} \partial_n = g_\# - f_\#
@@ -620,8 +619,8 @@ A sequence of homomorphisms $P_n\colon C_n \to D_{n+1}$ is called a \emph{chain 
 in there is a chain homotopy between two chain maps $f_\#,g_\#$ we write $f_\# \sim g_\#$.
 \[
 \xymatrix{
-C_{n+1} \ar[r]^\partial \ar@/_/[d]^f\ar@/^/[d]^g & C_n \ar@/_/[d]^f\ar@/^/[d]^g\ar[r]^\partial & C_{n-1} \ar@/_/[d]^f\ar@/^/[d]^g\\
-D_{n+1} \ar[r]^\partial  & D_n \ar[r]^\partial & D_{n-1}
+\cdots \ar[r] &C_{n+1} \ar[r]^\partial \ar@/_/[d]^f\ar@/^/[d]^g & C_n \ar@/_/[d]^f\ar@/^/[d]^g\ar[r]^\partial & C_{n-1} \ar@/_/[d]^f\ar@/^/[d]^g\ar[r] & \cdots\\
+\cdots \ar[r] &D_{n+1} \ar[r]^\partial  & D_n \ar[r]^\partial & D_{n-1} \ar[r] & \cdots
 }
 \]
 \end{defn}
@@ -663,7 +662,7 @@ If we have $F\colon X\times I \to Y$ and $\sigma\colon \Delta^n \to X$ we let
 F\sigma = F\circ(\sigma \times \mathrm{Id}_I)\colon \Delta^n \times I \to Y.
 \]
 
-\begin{proof}[Proof (of above theorem)]
+\begin{proof}[Proof of theorem \ref{thm:homotopicmapssamehomology}]
 $f\sim g\colon X \to Y$, let $F\colon X \times I \to Y$ be the homotopy.
 Then define
 \[
@@ -765,9 +764,9 @@ $[\partial^X z] = [a]$ i.e. $\partial^X z = C_n(A)$.
 
 \begin{ex}
 \begin{align*}
-\H(X,X) = 0,\\
-\H(X,\emptyset) = \H(X),\\
-\H(X,\{\mathrm{pt}\}) = \tilde{\H(X)} \text{ (exercise)}.
+\H(X,X) &= 0,\\
+\H(X,\emptyset) &= \H(X),\\
+\H(X,\{\mathrm{pt}\}) &= \tilde{\H(X)} \text{ (exercise)}.
 \end{align*}
 \end{ex}
 
@@ -906,7 +905,7 @@ Prove that
 \textbf{Version 1}.
 Suppose $Z\subset A \subset X$ with $\operatorname{closure}(A) \subseteq \operatorname{interior}(A)$, then
 \[
-\H^\text{sing}(X\setminus Z, A\setminus Z) \cong \H^\text{sing}(X, A).
+\H^\text{sing}(X\smallsetminus Z, A\smallsetminus Z) \cong \H^\text{sing}(X, A).
 \]
 \textbf{Version 2}.
 Suppose $A,B\subseteq X$ and $X \subseteq \operatorname{interior}(A) \cup \operatorname{interior}(B)$ then 
@@ -1139,27 +1138,122 @@ The map $m$ is well defined by Fine lemma 2.
 We now let $D_\sigma = D_{m(\sigma)} \sigma$.
 \end{defn}
 We want $D$ to be the desired chain homotopy for proving the proposition.
-So we want $p\colon \C(X) \to \C^\U(X)$ so that
+So we want $\rho\colon \C(X) \to \C^\U(X)$ so that
 \[
-p\circ i \sim 1^\U \text{ and } i \circ p \sim 1.
+\rho\circ i \sim 1^\U \text{ and } i \circ p \sim 1.
 \]
 
 \begin{defn}
 Define
 \[
-p(\sigma) = S_{\sigma}^{m(\sigma)} + D_{m(\sigma)} \partial \sigma - D \partial \sigma
+\rho(\sigma) = S_{\sigma}^{m(\sigma)} + D_{m(\sigma)} \partial \sigma - D \partial \sigma
 \]
 and extend linearly.
 \end{defn}
 
 \begin{prop}
 \[
-p\colon \C(X) \to \C^\U(X).
+\rho\colon \C(X) \to \C^\U(X).
 \]
 \end{prop}
 \begin{proof}
 Fix $\sigma \in \C(X)$, $S_\sigma^{m(\sigma)} \in C_n^\U(X)$.
 The difference $(D_{m(\sigma)} \partial - D \partial)\sigma$ lies in $\C^\U(X)$ as well, the second term subtracts off insufficiently subdivided simplices.
 \end{proof}
+
+We call this $\rho$ a \emph{roof line}.
+If $\sum \sigma_i$ is a chain then $\rho\left(\sum \sigma_i\right)$ is called a \emph{skyline}.
+
+\begin{prop}
+\[
+\rho\sigma = \sigma - \partial D\sigma - D\partial \sigma.
+\]
+\end{prop}
+\begin{proof}
+\begin{align*}
+(S^{m(\sigma)}  + D_{m(\sigma)} \partial - D\partial)\sigma &= S^{m(\sigma)} + D_{m(\sigma)} \partial \sigma - D\partial \sigma\\
+&= (1 - \partial D_{m(\sigma)}) \sigma - D\partial \sigma \\
+&= -D_{m(\sigma)}\sigma + \sigma - D\partial \sigma\\
+&= -\partial D \sigma + \sigma - D\partial \sigma.
+\end{align*}
+\end{proof}
+
+\begin{prop}
+\[
+\partial \rho = \rho \partial
+\]
+i.e. $\rho$ is a chain map.
+\end{prop}
+\begin{proof}
+Exercise (straightforward).
+\end{proof}
+
+Note that $\partial D \sigma + D \partial \sigma = \sigma - \rho \sigma$, so
+\[
+\partial D + D\partial = 1 - i\circ\rho.
+\]
+Also by inspection we see that 
+\[
+1^{\U} = \rho \circ i.
+\]
+This then completes the proof of the above proposition and hence completes the proof of excision.
+
+\subsection{Quotients}
+Suppose $A \subset X$, so $(X,A)$ is a pair.
+Define the quotient $X/A$ to be the sect of equivalence classes 
+\[
+X/A = \{[x]\mid x\sim y \iff x=y \text{ or } x,y\in A\}.
+\]
+We equip $X/A$ with the quotient topology by defining $q\colon X\to X/A$ by $x\mapsto [x]$ and letting $U\subset X/A$ be open if and only if $q^{-1}(U)$ is open.
+
+\begin{exer}
+\[
+B^n/S^{n-1}\cong S^n.
+\]
+\end{exer}
+
+\begin{prop}\label{pairiso}%
+Suppose $(X,A)$ is a good pair with $A \ne \emptyset$.
+Then 
+\[
+\H(X,A) = \tilde\H(X/A).
+\]
+\end{prop}
+\begin{proof}
+Fix $V \subset X$ s.t. $V$ deformation retracts to $A$, then we have the following diagram
+\[
+\xymatrix
+{
+\H(X,A)\ar[d]_{j_* (1)} \ar[r]^{q_* (7) \quad\qquad} & \H(X/A,A/A) \cong \tilde\H(X/A)\ar[d]^{j_* (5)}\\
+\H(X,V) \ar[r]^{q_* (6)}  & \H(X/A,V/A)\\
+\H(X\smallsetminus A,V\smallsetminus A)\ar[u]^{i_* (2)} \ar[r]^{q_* (3)\qquad}& \H(X/A\smallsetminus A/A,V/A\smallsetminus A/A)\ar[u]_{i_* (4)}
+}
+\]
+Now both the top and bottom squares are commutative so to show that $(6)$ is an isomorphism it suffices to show $(2),(3)$ and $(4)$ are.
+Similarly to show that $(7)$ is an isomorphism it then suffices to show that $(1)$ and $(5)$ are.
+\end{proof}
+
+\begin{thm}
+The following triangle is exact
+\[
+\xymatrix
+{
+ \tilde\H(A) \ar[rr]^{i_*}& &\tilde\H(X)\ar[dl]_{q_*} \\
+ &\tilde\H(X/A) \ar[ul]_{\delta_*}&
+}
+\]
+for good pairs $(X,A)$.
+\end{thm}
+\begin{proof}
+$\H(X,A) \cong \tilde\H(X/A)$ proposition \ref{pairiso} and the exact triangle for the relative homology of a pair.
+\[
+\xymatrix
+{
+ \tilde\H(A) \ar[rr]^{i_*}& &\tilde\H(X)\ar[dl]_{q_*} \\
+ &\H(X/A) \ar[ul]_{\delta_*}&
+}
+\]
+\end{proof}
+
 
 \end{document}
