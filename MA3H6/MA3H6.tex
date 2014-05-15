@@ -45,8 +45,7 @@ These are lecture notes that I typeset for MA3H6 Algebraic Topology in 2014, the
 However they might be useful to someone, despite the fact they lack very many pictures at present.
 If you find anything else that can be improved send me an email at a.j.best@warwick.ac.uk, thanks.
 
-\section{Basics}
-\subsection{Topological review}
+\section{Topological review}
 
 \begin{nota}
 \begin{align*}
@@ -1231,6 +1230,25 @@ Fix $V \subset X$ s.t. $V$ deformation retracts to $A$, then we have the followi
 \]
 Now both the top and bottom squares are commutative so to show that $(6)$ is an isomorphism it suffices to show $(2),(3)$ and $(4)$ are.
 Similarly to show that $(7)$ is an isomorphism it then suffices to show that $(1)$ and $(5)$ are.
+For $(1)$ consider the triple $(X,V,A)$ so
+\[
+\xymatrix
+{
+ \H(V,A) \ar[rr]^{i_*}& &\H(X,A)\ar[dl]_{j_*} \\
+ &\H(X,V) \ar[ul]_{\delta_*}&
+}
+\]
+is an exact triangle.
+But $V$ deformation retracts to $A$ so $\H(V,A) = 0$ (exercise).
+Thus $j_*$ is an isomorphism.
+
+For $(2)$ we excise $A$ from $V$ (check that $\operatorname{cl}(A) \subseteq \operatorname{int}(V)$).
+
+For $(3)$ we note that the map $q\colon (X\smallsetminus A, V\smallsetminus A) \to (X/A\smallsetminus A/A , V/A\smallsetminus A/A)$ is a homeomorphism of pairs and so $q_*$ is an isomorphism.
+
+For $(4)$ argue as in $(2)$ after (exercise) proving that if $(X,A)$ is a good pair then $(X/A,A/A)$ is too.
+
+For $(5)$ note that $(X/A,V/A,A/A)$ is a triple and $\H(V/A,A/A) = 0$ because $V/A$ deformation retracts to $A/A$ (by the exercise above).
 \end{proof}
 
 \begin{thm}
@@ -1255,5 +1273,147 @@ $\H(X,A) \cong \tilde\H(X/A)$ proposition \ref{pairiso} and the exact triangle f
 \]
 \end{proof}
 
+\begin{cor}
+\[
+\H(S^n) =\begin{cases}
+\ZZ^2 &\text{ if } n= k =0,\\
+\ZZ &\text{ if } k =0,\,n>0,\\
+\ZZ &\text{ if } n= k >0,\\
+\ZZ^2 &\text{ otherwise}.
+\end{cases} 
+\]
+\end{cor}
+\begin{proof}
+First we review some facts.
+\begin{enumerate}
+\item
+$\tilde\H(B^n) = 0$ because $B^n \sim \{\text{pt}\}$.
+\item $B^n /S^{n-1} \cong S^n$.
+\item $(B^n, S^{n-1})$ is a good pair.
+\end{enumerate}
+So
+\[
+\tilde\H(S^n) \cong \tilde\H(B^n/S^{n-1}) \cong \H(B^n, S^{n-1})
+\]
+since $\tilde\H(B^n) \cong 0$ we have
+\[
+\H(B^n,S^{n-1}) \cong H_{*-1}(S^{n-1})
+\]
+and the triangle
+\[
+\xymatrix
+{
+ \tilde\H(S^{n-1}) \ar[rr]& &\tilde\H(B^n)\ar[dl] \\
+ &\H(B^n, S^{n-1}) \ar[ul]_{\delta_*}&
+}
+\]
+The corollary then follows from induction on $n$.
+\end{proof}
+
+Note that in reduced homology we have 
+\[
+\tilde H_k(S^n) =\begin{cases}
+\ZZ &\text{ if } k=n,\\
+0 &\text{ otherwise}.
+\end{cases}
+\]
+The spheres are like atoms of homology.
+
+\subsection{Applications}
+The intermediate value theorem states that if $f\colon I \to I$ has $f(0) = 0$ and $f(1) = 1$ then $f$ is surjective.
+This follows from the fact that there is no retraction of $I$ to $\partial I$ (exercise).
+
+\begin{cor}
+$B^n$ does not retract to $\partial B^n$.
+\end{cor}
+\begin{proof}
+Suppose that it did.
+So we have $r\colon B^n \to S^{n-1}$ such that $r\circ i\colon S^{n-1} \to S^{n-1}$ is the identity.
+So \[(r\circ i)_* = \text{id}_{\tilde\H(S^{n-1}}\]
+and $(r\circ i)_* = r_* \circ i_*$.
+We have the triangle
+\[
+\xymatrix
+{
+ \ZZ=\tilde H_{n-1}(S^{n-1})\ar[dr]^{i_{n-1}} \ar[rr]^{(r\circ i)_{n-1}}& &\tilde H_{n-1}(S^{n-1}) \\
+ &\tilde\H(B^n)= 0 \ar[ur]_{r_{n-1}}&
+}
+\]
+but this is a contradiction.
+\end{proof}
+
+\begin{thm}[Brouwer fixed point theorem]
+Any $f\colon B^n \to B^n$ has a fixed point.
+\end{thm}
+Challenge: prove this directly for $n=1$ and that this is false for $B^\infty$.
+\begin{proof}
+Let $h\colon B^n \to B^n$ and suppose that for all $x$ we have $h(x) \ne x$.
+Now let $L_x$ be the line through $x$ and $h(x)$ and let $f(x) \in S^{n-1} \cap L_x$ be the point nearer to $x$.
+Now (exercise) show that $f$ is well defined, continuous and $f\colon B^n \to S^{n-1}$ is a retraction.
+\end{proof}
+
+\subsection{Local homology}
+\begin{defn}
+If $x \in X$ then $\H(X,X\smallsetminus x)$ are called the \emph{local homology groups at $x$}.
+\end{defn}
+These groups are called local as if we have an open neighbourhood $U$ of $x$ then by excision (of $X\smallsetminus U$)
+\[
+i_*\colon \H(U,U\smallsetminus x) \xrightarrow{\cong} \H(X, X\smallsetminus x).
+\]
+
+\begin{exer}
+Suppose $X$ is a finite graph, compute $\H(X,X\smallsetminus x)$ for all $x\in X$.
+\end{exer}
+
+\begin{ex}
+Recall that $\RR^n \smallsetminus 0$ is homotopy equivalent to $S^{n-1}$, so $\H(\RR^n, \RR^n\smallsetminus 0) \cong \tilde H_{*-1}(S^{n-1})$.
+We then use the exact triangle for the pair
+\[
+\xymatrix
+{
+ \tilde\H(S^{n-1})=\tilde \H (\RR^n \smallsetminus 0)\ar[rr]^{i_*} & & \tilde \H(\RR^n)=0\ar[dl]^{j_*} \\
+ &\H(\RR^n, \RR^n\smallsetminus 0) \ar[ul]_{\delta_*}&
+}
+\]
+since
+\[
+\tilde H_k(S^{n-1}) =\begin{cases}\ZZ &\text{ if } k = n-1,\\
+0 &\text{ otherwise}.
+\end{cases}
+\]
+we find
+\[
+H_k(\RR^n,\RR^n\smallsetminus 0) =\begin{cases}\ZZ &\text{ if } k = n,\\
+0 &\text{ otherwise}.
+\end{cases}
+\]
+\end{ex}
+
+\subsection{Invariance of domain}
+\begin{thm}[Invariance of domain, Brouwer]
+If $V \subseteq \RR^n$, $U \subseteq \RR^m$ are open and $h\colon V \to U$ is a homeomorphism then $m= n$.
+\end{thm}
+\begin{proof}
+If $h$ is a homeomorphism then pick $x\in V$ and $y = h(x) \in U$ so we have
+\[
+\xymatrix
+{
+\H(V,V\smallsetminus x) \ar[r]^{\cong}_{h_*} & \H(U, U\smallsetminus y) \\
+\H(\RR^n, \RR^n \smallsetminus x) \ar[u]^{\cong} & \H(\RR^m, \RR^m \smallsetminus y) \ar[u]_{\cong} \\
+\H(\RR^n, \RR^n \smallsetminus 0) \ar[u]^{\cong} & \H(\RR^m, \RR^m \smallsetminus 0) \ar[u]_{\cong} \\
+}
+\]
+this is only possible if $n = m$.
+\end{proof}
+An important corollary of this result is the fact that the dimension of a manifold is well defined.
+
+\subsection{Explicit generators for $H_n(S^n)$}
+We will now find explicit generators for the infinite cyclic groups $H_n(S^n)$.
+
+We fix homeomorphisms
+\[
+\sigma^{n+1}\colon (\Delta^{n+1}, \partial \Delta^{n+1}) \to (B^{n+1}, S^n),
+\]
+for example $\sigma^n$ could be a radial projection.
 
 \end{document}
