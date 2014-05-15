@@ -390,9 +390,41 @@ Most NP problems are known to be in P or NP-complete, factoring and graph isomor
 \end{thm}
 \begin{proof}
 It suffices to show that SAT $\le_p$ 3-SAT since we know that 3-SAT is in NP.%TODO
+Let $\Phi$ be any SAT-formula and let $C = (L_1\vee L_2 \vee \cdots \vee L_k)$ be a clause of size $k > 3$ ($L_i = x_i$ or $L_i = \overline{x_i}$).
+Introduce a new variable $z$ and replace $C$ with
+\[
+C' = (L_1 \vee L_2 \vee \cdots \vee L_{k-2} \vee z)\text{ and }C'' = (L_{k-1} \vee L_k \vee \overline{z}).
+\]
+Doing this will transform all clauses into clauses of at most 3 literals.
+Finally we turn the clauses of length $< 3$ into ones of length 3.
 \end{proof}
 
 \paragraph{Subset-Sum is NP-complete.}
+SUBSET-SUM: Given natural numbers $w_1,\ldots,w_n$ and an integer $W$, is there a subset that adds up exactly to $W$?
+
+\begin{ex}
+\[
+\{1,4,16,64,256,1040,1041,1093,1284,1344\},\ W = 3654.
+\]
+is a yes instance
+\[
+1 + 16 + 64 + 256 + 1040 + 1093 + 1284 = 3754.
+\]
+\end{ex}
+
+\begin{rem}
+With arithmetic problems, input integers are encoded in binary.
+Polynomial reduction must be polynomial in \emph{binary} encoding.
+\end{rem}
+
+\begin{claim}
+3-SAT $\le_p$ SUBSET-SUM.
+\end{claim}
+\begin{proof}
+Given an instance $\Phi$ of 3-SAT, we construct an instance of SUBSET-SUM that has a solution iff $\Phi$ is satisfiable.
+
+Given a 3-SAT instance $\Phi$ with $n$ variables and $k$ clauses, form $2n + 2k$ decimal integers, each of $n+k$ digits. %TODO
+\end{proof}
 
 \paragraph{Scheduling With Release Times is NP-complete.}
 
