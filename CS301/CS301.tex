@@ -13,14 +13,14 @@
 \newtheorem{lem}{Lemma}
 \newtheorem{cor}{Corollary}
 \newtheorem{claim}{Claim}
-\newtheorem{fact}{Fact}
+\newtheorem*{fact}{Fact}
 \newtheorem{prop}{Proposition}
 \newtheorem{defn}{Definition}
 \newtheorem{defns}{Definitions}
 \newtheorem{prob}{Problem}
-\newtheorem{ex}{Example}
-\newtheorem{rem}{Remark}
-\newtheorem{nota}{Notation}
+\newtheorem*{ex}{Example}
+\newtheorem*{rem}{Remark}
+\newtheorem*{nota}{Notation}
 \newtheorem{alg}{Algorithm}
 
 \newcommand{\QQ}{\mathbb{Q}}
@@ -29,6 +29,9 @@
 \newcommand{\ZZ}{\mathbb{Z}}
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\U}{\mathcal{U}}
+
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\out}{out}
 
 \begin{document}
 \maketitle
@@ -71,9 +74,9 @@ When the machine reaches the state $q_\text{end}$ the computation halts and the 
 \end{defn}
 
 \begin{defn}
-A Turing machine $M$ computes a function $f\colon \{0,1\}^* \to \{0,1\}^*$ in time $T\colon \NN \to \NN$ if for every $x\in \{0,1\}^*$ the output of $M$ when given $x$ initially is $f(x)$, this computation must finish after at most $T(|x|)$ steps (this implies $M$ halts on every input).
+A Turing machine $M$ \emph{computes a function $f\colon \{0,1\}^* \to \{0,1\}^*$ in time} $T\colon \NN \to \NN$ if for every $x\in \{0,1\}^*$ the output of $M$ when given $x$ initially is $f(x)$, this computation must finish after at most $T(|x|)$ steps (this implies $M$ halts on every input).
 
-We say $M$ computes $f$ if it computes $f$ in $T(n)$ time for any function $T$.
+We say $M$ \emph{computes} $f$ if it computes $f$ in $T(n)$ time for any function $T$.
 \end{defn}
 %TODO maybe examples?
 
@@ -112,7 +115,7 @@ We assume that we have picked an encoding so that every string represents a Turi
 The Turing machine encoded by a string $\alpha$ is denoted $M_\alpha$.
 \begin{thm}
 There exists a Turing machine (a universal Turing machine) that when given a pair $\langle \alpha,x\rangle$ as input outputs the result of running the Turing machine encoded by $\alpha$ with input $x$.
-Moreover if the machine encoded by $\alpha$ halts within $T(|x|)$ steps on input $x$ then the universal Turing machine halts within $C\operatorname{poly}(T(|x|))$ steps, where $C$ is independent of $|x|$.
+Moreover if the machine encoded by $\alpha$ halts within $T(|x|)$ steps on input $x$ then the universal Turing machine halts within $C\poly(T(|x|))$ steps, where $C$ is independent of $|x|$.
 \end{thm}
 
 We assume we have fixed some encoding for Turing machines and a corresponding universal Turing machine, denoted $\U$.
@@ -125,7 +128,7 @@ f\colon\{0,1\}^*\to\{0,1\}
 is uncountable.
 So as any Turing machine can be encoded as a finite string of bits under some fixed encoding, there are countably many Turing machines.
 \begin{cor}
-So there are functions
+There are functions
 \[
 f\colon\{0,1\}^*\to\{0,1\}
 \]
@@ -146,6 +149,7 @@ So if we let $x$ be a string representing the Turing machine $M$ then $M(x) = f(
 \end{ex}
 
 \paragraph{HALT is not computable.}
+\begin{claim}
 Another function that is not computable is
 \[
 \text{HALT}(\langle \alpha,x\rangle) =\begin{cases}
@@ -153,6 +157,7 @@ Another function that is not computable is
 0 &\text{otherwise}.
 \end{cases}
 \]
+\end{claim}
 \begin{proof}
 Assume that $M_{\text{HALT}}$ is a Turing machine that computes HALT, then we can design a Turing machine to compute the function $f$ in example~\ref{firstuncomp}, thus deriving a contradiction.
 
@@ -668,7 +673,7 @@ The current state of the art is that PRIMES is in P, but FACTOR is not believed 
 
 \paragraph{PSPACE.}
 \begin{defn}
-The complexity class \emph{PSPACE} is the set of decision problems that are solvable using at most polynomial \emph{space}.
+The complexity class PSPACE is the set of decision problems that are solvable using at most polynomial \emph{space}.
 \end{defn}
 
 Note that P $\subseteq$ PSPACE as a polynomial time algorithm can use at most polynomial space.
@@ -948,14 +953,82 @@ So we have ZPP $\supseteq$ RP $\cap$ coRP and can conclude that ZPP $=$ RP $\cap
 \end{proof}
 
 \paragraph{ZPP as expected poly-time.}
+We can define ZPP in an alternative way.
+\begin{defn}
+A language $L$ is in ZPP if there exists a zero error probabilistic Turing machine that computes $L$ in \emph{expected} polynomial time.
+\end{defn}
+To transform a machine satisfying the old definition to one satisfying the new one we can rerun it until it either accepts or rejects.
+The new machine either accepts or rejects without error and never returns dunno.
+In expectation the machine will run twice so as the original machine ran in polynomial time the new one runs in expected polynomial time.
+
+To go from a new machine to the old we run the new one for at most some polynomial number of steps, cutting it off and returning dunno if it takes too long.
+
+Summary:
+\begin{itemize}
+\item RP - bounded error, false negatives but no false positives.
+\item coRP - bounded error, false positives but no false negatives.
+\item BPP - bounded error, false negatives and false positives.
+\item ZPP - no errors, but may answer dunno with bounded probability.
+\end{itemize}
 
 \paragraph{IP.}
+In an interactive proof the prover writes down a sequence of symbols which the verifier can check, only true statements can be proved.
+
+\begin{defn}
+A \emph{$k$-round interaction} between two functions $f$ and $g$ on an input $x$ is a sequence of strings (called \emph{the transcript}) $a_1,\ldots,a_k$ defined by
+\begin{align*}
+a_1 &= f(\langle x, r\rangle) \\
+a_2 &= g(\langle x, a_1\rangle) \\
+a_3 &= f(\langle x, r, a_1, a_2\rangle) \\
+\vdots
+a_{2n+1} &= f(\langle x, r, a_1,\ldots, a_{2i}\rangle) \\
+a_{2n+2} &= g(\langle x, a_1,\ldots,a_{2i+1}\rangle) \\
+\vdots
+\end{align*}
+where $r$ is a random bitstring of length $\poly(|x|)$.
+The output is then $\out_{f,g}(x) = f(\langle x, r, a_1,\ldots,a_k\rangle)$.
+We assume this output is either 0 or 1.
+Since $r$ is random, the transcript and output can be random too.
+\end{defn}
+
+\begin{defn}
+A language $L$ is in the class IP is there exists a $\poly(|x|)$-round interaction between a function $V$ (verifier) and $P$ (prover) such that 
+\begin{itemize}
+\item If $x\in L$ then there exists $P$ such that $\Pr[\out_{V,P}(x) = 1] \ge \frac{2}{3}$ (completeness).
+\item If $x\not\in L$ then for all $P$ $\Pr[\out_{V,P}(x) = 0] \ge \frac{2}{3}$ (soundness).
+\end{itemize}
+Additionally we require that $V$ be computable in time $\poly(|x|)$.
+\end{defn}
+As with BPP we can use probability amplification to reduce the error probability.
+Changing the constant $2/3$ in completeness to 1 does not change the class IP.
+Changing the constant in soundness to 1 rather than $2/3$ results in the class NP (exercise).
+As only the verifier is computationally bounded the prover can use far more computational resources and this is crucial to the class.
 
 \paragraph{IP protocol for Graph-Non-Isomorphism.}
+GRAPH-NON-ISOMORPHISM: Are two given graphs $G_1$ and $G_2$ \emph{not} isomorphic.
 
-\paragraph{dIP=NP.}
+\begin{claim}
+GRAPH-NON-ISOMORPHISM is in IP.
+\end{claim}
+\begin{proof}
+First the verifier generates another graph $H$ by permuting node and edge labels of one of $G_1$ or $G_2$.
+The verifier then asks the prover which of $G_1$ or $G_2$ the graph $H$ was generated from, if the graphs are isomorphic the prover has no way to tell other than guessing and gets it wrong with probability $1/2$.
+If however the graphs are not isomorphic the prover can work out which of $G_1$ and $G_2$ the graph $H$ came from.
+So if the prover gets it right the verifier answers yes otherwise the verifier answers no.
+\end{proof}
+Here we use the fact probability amplification can be used to decrease the error probability.
+Graph isomorphism is not known to be in NP.
+Here the prover needs to be able to solve graph isomorphism which is not known to be in P, but the verifier does run in polynomial time.
+
+\paragraph{dIP $=$ NP.}
+If in the definition of IP we do not allow randomization the resulting class, dIP, is actually eqaul to NP.
+This is as the prover can anticipate all the questions a deterministic verifier could ask and give all the answers in a single certificate after one step.
 
 \paragraph{coNP is contained in IP, arithmetization, and the sumcheck protocol.}
+We now show that coNP $\subseteq$ IP by showing NON-SATISFIABILITY $\in$ IP, this works as NON-SATISFIABILITY is coNP-complete.
+
+To make an interactive proof that a formula $\Phi$ is not satisfiable we instead make an interactive proof that the \emph{number} of satisfying assignments is exactly $K$.
+%TODO
 
 \paragraph{IP.}
 
