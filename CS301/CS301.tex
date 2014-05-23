@@ -28,6 +28,7 @@
 \newcommand{\CC}{\mathbb{C}}
 \newcommand{\ZZ}{\mathbb{Z}}
 \newcommand{\NN}{\mathbb{N}}
+\newcommand{\FF}{\mathbb{F}}
 \newcommand{\U}{\mathcal{U}}
 
 \DeclareMathOperator{\poly}{poly}
@@ -805,7 +806,7 @@ This satisfies the definition for RP.
 \begin{claim}
 RP $\subseteq$ NP.
 \end{claim}
-\begin{claim}
+\begin{proof}
 The definition for NP can be seen to be the same as that of RP but where we have the line
 \begin{quote}
 If $x\in L$ then \[\Pr_{t\in \{0,1\}^{p(|x|)}}[M \text{ accepts } \langle x, t\rangle] \ge \frac{1}{2}.\]
@@ -815,7 +816,7 @@ replaced with
 If $x\in L$ then \[\Pr_{t\in \{0,1\}^{p(|x|)}}[M \text{ accepts } \langle x, t\rangle] > 0.\]
 \end{quote}
 So a machine satisfying the first condition satisfies the latter too.
-\end{claim}
+\end{proof}
 
 \paragraph{Probability Amplification.}
 Using the technique of probability amplification we can see that the $1/2$ term in
@@ -980,7 +981,7 @@ A \emph{$k$-round interaction} between two functions $f$ and $g$ on an input $x$
 a_1 &= f(\langle x, r\rangle) \\
 a_2 &= g(\langle x, a_1\rangle) \\
 a_3 &= f(\langle x, r, a_1, a_2\rangle) \\
-\vdots
+\vdots\\
 a_{2n+1} &= f(\langle x, r, a_1,\ldots, a_{2i}\rangle) \\
 a_{2n+2} &= g(\langle x, a_1,\ldots,a_{2i+1}\rangle) \\
 \vdots
@@ -1027,22 +1028,79 @@ This is as the prover can anticipate all the questions a deterministic verifier 
 \paragraph{coNP is contained in IP, arithmetization, and the sumcheck protocol.}
 We now show that coNP $\subseteq$ IP by showing NON-SATISFIABILITY $\in$ IP, this works as NON-SATISFIABILITY is coNP-complete.
 
-To make an interactive proof that a formula $\Phi$ is not satisfiable we instead make an interactive proof that the \emph{number} of satisfying assignments is exactly $K$.
-%TODO
+To make an interactive proof that a formula $\Phi$ is not satisfiable we could instead make an interactive proof that the \emph{number} of satisfying assignments is exactly $K$, the naive way of implementing this method does not work so well however as the verifier could only catch the prover lying with probability $1/2^n$.
+So we arithmetize the problem by turning the boolean formula into a polynomial over $\FF_p$ for some prime $p$ between $2^n$ and $2^{2n}$.
+We take variables $X$ to $1-X$ and $\overline{X}$ to $X$, then a clause of literals $V_1 \vee V_2 \vee V_3$ goes to $1 - V_1 V_2 V_3$ and we multiply all clauses together.
+The resulting polynomial $P_\Phi$ is of degree $3m$, where $m$ is the original number of clauses.
+We then have that the number of satisfying assignments is
+\[
+\sum_{b_1\in\{0,1\}} \sum_{b_2\in\{0,1\}} \cdots \sum_{b_n\in\{0,1\}} P_{\Phi}(b_1,\ldots,b_n).
+\]
 
-\paragraph{IP.}
+We have now reduced to a different problem for which there is a good interactive proof.
+\begin{thm}
+Given a degree $d= \poly(n)$ polynomial $g(X_1,\ldots,x_n)$ over $\FF_p$ for some prime $p \in [2^n,2^{2n}]$ and an integer $K$ there is an interactive proof for
+\[
+K= \sum_{b_1\in\{0,1\}} \sum_{b_2\in\{0,1\}} \cdots \sum_{b_n\in\{0,1\}} g(b_1,\ldots,b_n)\pmod{p}.
+\]
+\end{thm}
+\begin{proof}
+We first define a univariate degree $d$ polynomial by
+\[
+h(X_1) = \sum_{b_2\in\{0,1\}} \cdots \sum_{b_n\in\{0,1\}} g(X_1,b_2,\ldots,b_n).
+\]
+If $n = 1$ the verifier checks that $g(0) + g(1) = K$, if so the verifier accepts, otherwise it rejects.
+If however $n > 1$ the verifier asks the prover to send $h(X_1)$.
+%TODO
+\end{proof}
+
+\paragraph{IP $=$ PSPACE.}
+\begin{thm}[Shamir 1990]
+IP $=$ PSPACE.
+\end{thm}
+\begin{proof}[Proof idea]
+IP $\subseteq$ PSPACE: show an appropriate prover can be found in polynomial space.\\
+PSPACE $\subseteq$ IP: Show QSAT $\in$ IP.
+\end{proof}
 
 \paragraph{Program checking.}
+One application of interactive proofs is on the fly error checking for programs, in this scenario the program is the prover and the verifier checks in real time that the output is correct.
+As the verifier normally uses less resources than the prover this can typically be done with small overhead.
 
 \paragraph{Zero knowledge proofs.}
+Zero knowledge proofs are special interactive proofs, ones that can give the verifier no additional information, other than the fact the statement is true.
+\begin{defn}
+An interactive proof for $L$ is \emph{zero-knowledge} if for any verifier $V^*$ there is an expected polynomial time Turing machine $S$, called the simulator, that if $x\in L$ can produce the entire transcript of the interaction between $P$ and $V^*$ \emph{without} access to $P$.
+\end{defn}
+As the transcripts are randomised we want the transcripts produced by the simulator to have the same distribution as the actual transcripts.
 
 \paragraph{Zero knowledge proof protocol for graph isomorphism.}
+%TODO
 
 \paragraph{Communication Complexity.}
+In communication complexity we have two people (Alice and Bob) who each know some bits of data ($x$ and $y$) and wish to compute some function of both pieces of data ($f(x,y)$).
+They must communicate following a prearranged protocol which determines who communicates when and what they send, the cost of a given protocol is the \emph{worst case} number of bits that they exchange.
+\begin{defn}
+The \emph{communication complexity} of a given function $f$ is then the cost of the \emph{best} protocol for $f$.
+\end{defn}
 
 \paragraph{Computing OR.}
+Say Alice has $x = x_1x_2\cdots x_n$, Bob has $y = y_1y_2\cdots y_n$ and they wish to compute 
+\[
+f(x,y) = x_1 \vee x_2 \vee \cdots \vee x_n\vee y_1\vee y_2\vee \cdots \vee y_n.
+\]
+One protocol is for Alice to send $x$ to Bob then for Bob to compute $z= f(x,y)$ and send the result to Alice.
+The cost of this protocol is therefore $n+1$ bits.
+
+In fact the natural extension of this approach shows that for any $f\colon X\times Y \to Z$ we have $D(f) \le \lceil \log|X| \rceil +\lceil \log|Z| \rceil$.
+
+However for this function we can do better by having Alice compute $g(x) = x_1 \vee \cdots \vee x_n$ and send the result to Bob who can then compute the result $f(x,y) = g(x) \vee y_1 \vee \cdots \vee y_n$ and sends it to Alice.
+The cost of this protocol is 2 bits.
 
 \paragraph{Computing MEDIAN.}
+Suppose Alice has $x \subseteq \{2,4,\ldots,2n\}$ and Bob has $y \subseteq \{1,3,\ldots,2n-1\}$ together they wish to compute the median of $x\cup y$.One protocol is for Alice to send her subset to Bob ($n$ bits) and for Bob to find the median and send it back to Alice ($\lceil \log 2n\rceil$ bits).
+
+This however can be improved by having both Alice and Bob maintain an interval $[i,j] \subset [1,2n]$ which they are sure contains the median $f(x,y)$.
 
 \paragraph{Communication Complexity.}
 
@@ -1067,14 +1125,82 @@ To make an interactive proof that a formula $\Phi$ is not satisfiable we instead
 \paragraph{Area-Time tradeoffs for VLSI chips.}
 
 \paragraph{NP-hard.}
+We now look at how we can express the complexity of non-decision problems.
+\begin{defn}
+A problem $A$ is NP-\emph{hard} if for every $L\in$ NP, $L$ reduces (via a cook reduction) to $A$ in polynomial time.
+\end{defn}
+\begin{ex}
+Finding a minimum vertex cover, finding a Hamiltonian cycle and the halting problem are all NP-hard.
+\end{ex}
+Note that an NP-hard problem can be much harder than anything in NP.
 
 \paragraph{Approximation Algorithms.}
+If we want to solve NP-hard problems we probably have to sacrifice one of three things:
+\begin{enumerate}
+\item Solving the problem optimally.
+\item Solving the problem in polynomial time.
+\item Solving arbitrary instances of the problem.
+\end{enumerate}
 
-\paragraph{2-approximation for Max Sat.}
+We now look at what we can do if we sacrifice 1, but not 2 or 3.
+
+\begin{defn}
+An $\alpha$-approximation algorithm for an optimization problem is a polynomial time algorithm and will find a solution that is within $\alpha$ ratio of the optimal solution for an arbitrary instance of the problem.
+\end{defn}
+
+\paragraph{2-approximation for MAX-SAT.}
+MAX-SAT: Find an assignment that maximises the number of satisfied clauses for a formula $\Phi$.
+We denote this maximum by $M(\Phi)$.
+
+The decision version of this problem (is $M(\Phi) > k$) is NP-complete.
+
+\begin{claim}
+There is a 2-approximation algorithm for MAX-SAT that finds the number of clauses satisfied by setting all variables to true and the number satisfied when all variables are false and returns the maximum of these two numbers.
+\end{claim}
+\begin{proof}
+Say $\Phi$ has $c$ clauses in total.
+Any clause not satisfied when all variables are true must be satisfied when all variables are false.
+Therefore summing the number of satisfied clauses in each of these assignments must result in a number larger than $c$.
+Hence the maximum of the two numbers must be at least $c/2$ and so the algorithm given is a 2-approximation.
+\end{proof}
 
 \paragraph{2-approximation for Load Balancing (List Scheduling).}
+In the load balancing problem we are given $m$ identical machines and $n$ jobs to run on them, each job $j$ has a processing time $t_j$.
+A job must be run from start to finish on one machine and a machine can do at most one job at a time.
+We define the \emph{load} of a machine to be the sum of the processing times of the jobs assigned to it.
+We also say that the \emph{makespan} is the maximum load on any machine.
+The task is then to minimise the makespan.
+
+There is a greedy algorithm for this problem that fixes some ordering on the jobs and then goes through the jobs one by one assigning each job to the machine that has the least load so far.
+
+\begin{thm}[Graham, 1966]
+The greedy algorithm is a 2-approximation.
+\end{thm}
+\begin{proof}
+First observe that the optimal makespan $L^*$ must be greater than the maximum processing time for any job as this job must be processed by some machine.
+
+We also have that the optimal makespan is at least
+\[
+\frac{1}{m}\sum_{j} t_j
+\]
+as the one machine must do at least $1/m$ times the total work.
+
+Now consider the machine $i$ with the largest load after the greedy algorithm has run and let $j$ be the problem last assigned to it.
+When job $j$ was assigned to machine $i$ it must have had the least load and so we have that its load before $L_i - t_j \le L_k$ for all $1 \le k \le m$.
+So summing these inequalities and dividing by $m$ gives that
+\[
+L_i - t_j = \frac{1}{m}\sum_{k} L_k = \frac{1}{m}\sum_{k'} t_{k'} \le L^*.
+\]
+And so
+\[
+L_i = (L_i - t_j) + t_j \le 2L^*.
+\]
+\end{proof}
+
+This analysis is tight as using the right jobs we can make the greedy algorithm arbitrarily bad up to this limit.
 
 \paragraph{3/2-approximation for Load Balancing (LPT).}
+One improvement we can make to this greedy algorithm is called the longest processing time rule we first sort the jobs in descending order of processing time and then we run the greedy list scheduling algorithm.
 
 \paragraph{$O(\log n)$-approximation for Set Cover.}
 
