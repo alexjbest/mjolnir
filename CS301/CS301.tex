@@ -1101,18 +1101,44 @@ The cost of this protocol is 2 bits.
 Suppose Alice has $x \subseteq \{2,4,\ldots,2n\}$ and Bob has $y \subseteq \{1,3,\ldots,2n-1\}$ together they wish to compute the median of $x\cup y$.One protocol is for Alice to send her subset to Bob ($n$ bits) and for Bob to find the median and send it back to Alice ($\lceil \log 2n\rceil$ bits).
 
 This however can be improved by having both Alice and Bob maintain an interval $[i,j] \subset [1,2n]$ which they are sure contains the median $f(x,y)$.
+First we let $k = (i+j)/2$, Alice then computes $L_x = |[i,k] \cap x|$ and $R_x = |[k+1, j] \cap x|$, similarly Bob computes $L_y = |[i,k] \cap y|$ and $R_y = |[k+1, j] \cap y|$.
+Alice and Bob then exchange these numbers and so Alice and Bob can each decide whether $f(x,y)$ is in $[i,k]$ or in $[k+1,j]$ and then update the interval they are looking at because of this.
+They repeat this until the interval they have contains only one element, the median.
 
-\paragraph{Communication Complexity.}
-
-\paragraph{Computing MEDIAN.}
+Each iteration of this involves transmitting $O(\log n)$ bits cuts the interval in half so the total cost of this protocol is $O((\log n)^2)$.
 
 \paragraph{Protocol Trees.}
+%TODO
 
 \paragraph{EQUALITY.}
+For equality Alice and Bob have $x = x_1\cdots x_n$ and $y = y_1 \cdots y_n$ respectively and they wish to compute $f(x,y)$ which is $1$ if and only if $x = y$.
+We can do this by transferring $n + 1$ bits, Alice sends $x$ to Bob who computes $f(x,y)$ and sends it back.
+How close is this to the communication complexity of this protocol?
+\begin{claim}
+$D(f) \ge n$.
+\end{claim}
+\begin{proof}
+Suppose there is a protocol for $f$ that uses at most $n-1$ bits.
+There are then at most $2^{n-1}$ different transcripts.
+Hence there must be two inputs $(a,a)$ and $(b,b)$ with the same transcript.
+We then must have that $(a,b)$ and $(b,a)$ have the same transcript again, but this is a contradiction as the result of $(a,a)$ is different to that of $(a,b)$.
+\end{proof}
 
 \paragraph{Deciding Palindromes requires quadratic time.}
+Let PAL be the language of all $x\in \{0,1\}^*$ that are palindromes.
+We can decide this language in time $O(n^2)$ using a simple Turing machine.
+\begin{claim}
+PAL cannot be decided in under time $O(n^2)$ by a Turing machine.
+\end{claim}
+\begin{proof}
+Assume we have a Turing machine for PAL that leaves some cell $i$ in the range $n/3$ to $2n/3$ (where cells of the tape are indexed starting from the far left) at most $k$ times, we can use this Turing machine to find a $O(k)$ bit communication protocol for EQUALITY.
+To do this we write $x$ in the first $n/3$ cells and $y$ in reverse in the cells from $2n/3$ to $n$ and fill the gap in the middle with zeroes.
+For the protocol Alice will simulate the Turing machine on cells $0$ to $i$ and Bob simulates the Turing machine on $i+1$ to $n$.
+When the head of the machine crosses between cell $i$ and cell $i+1$ Alice and Bob communicate to hand over the simulation, this takes $O(1)$ bits each time.
 
-\paragraph{Communication Complexity.}
+We know that EQUALITY requires $\Omega(n)$ communication and so $k$ must be $\Omega(n)$.
+Hence every Turing machine for PAL must leave each cell in the middle range at least $\Omega(n)$ times and so these Turing machines must take $\Omega(n^2)$ steps.
+\end{proof}
 
 \paragraph{Protocol trees and combinatorial rectangles.}
 
