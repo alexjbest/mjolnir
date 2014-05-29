@@ -487,7 +487,7 @@ d(u,v) =\begin{cases}
 0, &\text{ if } (u,v) \not\in E.\\
 \end{cases} 
 \]
-This TSP instance has a tour of length $\le n$ iff $G$ is Hamiltonian.
+This TSP instance has a tour of length $\le n$ if and only if $G$ is Hamiltonian.
 \end{proof}
 
 \paragraph{3-Colouring is NP-complete.}
@@ -496,7 +496,7 @@ This TSP instance has a tour of length $\le n$ iff $G$ is Hamiltonian.
 REGISTER-ALLOCATION: Is there an assignment of program variables to no more than $k$ machine registers such that no two program variables that are used at the same time are assigned to the same register?
 
 We can form a graph to study this problem by making nodes for variables and edges if there is an operation that uses both variables at the same time.
-We can then observe that we can solve the register allocation problem iff this graph is $k$-colourable.
+We can then observe that we can solve the register allocation problem if and only if this graph is $k$-colourable.
 
 \begin{fact}
 3-COLOUR $\le_p$ $k$-REGISTER-ALLOCATION.
@@ -1022,7 +1022,7 @@ Graph isomorphism is not known to be in NP.
 Here the prover needs to be able to solve graph isomorphism which is not known to be in P, but the verifier does run in polynomial time.
 
 \paragraph{dIP $=$ NP.}
-If in the definition of IP we do not allow randomization the resulting class, dIP, is actually eqaul to NP.
+If in the definition of IP we do not allow randomization the resulting class, dIP, is actually equal to NP.
 This is as the prover can anticipate all the questions a deterministic verifier could ask and give all the answers in a single certificate after one step.
 
 \paragraph{coNP is contained in IP, arithmetization, and the sumcheck protocol.}
@@ -1226,15 +1226,72 @@ L_i = (L_i - t_j) + t_j \le 2L^*.
 This analysis is tight as using the right jobs we can make the greedy algorithm arbitrarily bad up to this limit.
 
 \paragraph{3/2-approximation for Load Balancing (LPT).}
-One improvement we can make to this greedy algorithm is called the longest processing time rule we first sort the jobs in descending order of processing time and then we run the greedy list scheduling algorithm.
+One improvement we can make to this greedy algorithm is called the \emph{longest processing time} (LPT) rule, we first sort the jobs in descending order of processing time and then we run the greedy list scheduling algorithm.
+First note that if there are at most $m$ jobs then list scheduling is optimal as each job can go on its own machine.
+\begin{lem}
+If there are more than $m$ jobs then after ordering the $t_i$ in descending order we have $L^* \ge 2 t_{m+1}$.
+\end{lem}
+\begin{proof}
+Consider the first $m+1$ jobs $t_1,\ldots,t_{m+1}$.
+As we have ordered the jobs each of these takes at least time $t_{m+1}$.
+The pidgeonhole principle then gives us that some machine has two jobs assigned to it and hence has load at least $2t_{m+1}$.
+\end{proof}
+
+\begin{thm}
+The LPT rule gives us a 3/2-approximation algorithm for load balancing.
+\end{thm}
+\begin{proof}
+The approach is the same as for the above approximation
+\[
+L_i = (L_i - t_j) + t_j \le \frac{3}{2} L^*.
+\]
+\end{proof}
+However this is not tight and we have the following theorem.
+\begin{thm}[Graham, 1969]
+The LPT rule gives us a 4/3-approximation algorithm for load balancing.
+\end{thm}
+This is essentially tight as we can get arbitrarily bad examples up to this limit.
 
 \paragraph{$O(\log n)$-approximation for Set Cover.}
+SET-COVER: Given a set $U$ of elements, a collection $S_1,S_2,\ldots,S_m$ of subsets of $U$, find the smallest collection of sets whose union is equal to $U$.
+
+A natural greedy algorithm is to repeatedly include the set containing the most uncovered elements until all are covered.
+
+\begin{thm}
+This greedy algorithm is a $O(\log n)$-approximation for SET-COVER.
+\end{thm}
+\begin{proof}
+
+\end{proof}
 
 \paragraph{2-approximation for Vertex Cover.}
 
 \paragraph{PTAS and FPTAS.}
+\begin{defn}
+A \emph{polynomial time approximation scheme} (PTAS) is a family of algorithms such that for any $\epsilon > 0$ there is an algorithm $A_\epsilon$ in the family with $A_\epsilon$ a $(1+\epsilon)$-approximation algorithm.
+\end{defn}
+
+A PTAS can give us an arbitrarily good solution but trades off accuracy for time as it does not have to be polynomial in $1/\epsilon$.
+
+\begin{defn}
+A \emph{fully polynomial time approximation scheme} (FPTAS) is a PTAS where the algorithms are also required to be polynomial in $1/\epsilon$.
+\end{defn}
 
 \paragraph{An FPTAS for Knapsack.}
+In the knapsack problem we have $n$ objects and a knapsack.
+Each item has some value $v_i>0$ and weight $w_i>0$ and we can carry up to weight $W$.
+The goal is to fill the knapsack to maximise the total value.
+
+We can define the decision problem KNAPSACK by: Given a finite set $X$, nonnegative weights $w_i$, nonnegative values $v_i$, a weight limit $W$ and a target value $V$ is there a subset $S\subseteq X$ such that $\sum_{i\in S} w_i \le W$ and $\sum_{i\in S} v_i \ge V$.
+
+\begin{claim}
+SUBSET-SUM $\le_p$ KNAPSACK.
+\end{claim}
+\begin{proof}
+Given an instance $(u_1,\ldots,u_n,U)$ of SUBSET-SUM, we create a KNAPSACK instance by letting $v_i = w_i = u_i$ and $V = W = U$.
+\end{proof}
+
+This along with the observation that KNAPSACK is in NP gives that KNAPSACK is NP-complete.
 
 \paragraph{Linear Programming based approximation algorithm for Weighted Set Cover.}
 
