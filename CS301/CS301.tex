@@ -33,6 +33,7 @@
 
 \DeclareMathOperator{\poly}{poly}
 \DeclareMathOperator{\out}{out}
+\DeclareMathOperator{\OPT}{OPT}
 
 \begin{document}
 \maketitle
@@ -283,7 +284,7 @@ A special case of this is 3-SAT where we require that each clause be a disjuncti
 3-SAT $\le_p$ INDEPENDENT SET.
 \end{claim}
 \begin{proof}
-We use the given proposition formula to construct an instance of INDEPENDENT SET as follows.
+We use the given propositional formula to construct an instance of INDEPENDENT SET as follows.
 For each clause we add a triangle of vertices to a graph $G$, labelled by each literal.
 We then connect all literals appearing to all of their negations.
 Then $G$ contains an independent set of size $k$ if and only if $\Phi$ is satisfiable.
@@ -387,8 +388,8 @@ To establish the NP-completeness of a given problem $Y$ we can perform the follo
 \item[Step 3] Prove $X\le_p Y$.
 \end{itemize}
 
-A major problem of complexity theory is if P $=$ NP, if it does then there are efficient algorithms for all NP-complete problems.
-If not no such algorithms are possible, and most computer scientists believe this to be the case.
+A major problem of complexity theory is determining whether P $=$ NP or not, if they are equal then there are efficient algorithms for all NP-complete problems.
+If not, no such algorithms are possible, and most computer scientists believe this to be the case.
 Most NP problems are known to be in P or NP-complete, factoring and graph isomorphism are exceptions.
 
 \paragraph{3-SAT is NP-complete.}
@@ -411,9 +412,9 @@ SUBSET-SUM: Given natural numbers $w_1,\ldots,w_n$ and an integer $W$, is there 
 
 \begin{ex}
 \[
-\{1,4,16,64,256,1040,1041,1093,1284,1344\},\ W = 3654.
+\{1,4,16,64,256,1040,1041,1093,1284,1344\},\ W = 3754.
 \]
-is a yes instance
+is a yes instance as
 \[
 1 + 16 + 64 + 256 + 1040 + 1093 + 1284 = 3754.
 \]
@@ -421,14 +422,14 @@ is a yes instance
 
 \begin{rem}
 With arithmetic problems, input integers are encoded in binary.
-Polynomial reduction must be polynomial in \emph{binary} encoding.
+Polynomial reduction must be polynomial in the size of the \emph{binary} encoding.
 \end{rem}
 
 \begin{claim}
 3-SAT $\le_p$ SUBSET-SUM.
 \end{claim}
 \begin{proof}
-Given an instance $\Phi$ of 3-SAT, we construct an instance of SUBSET-SUM that has a solution iff $\Phi$ is satisfiable.
+Given an instance $\Phi$ of 3-SAT, we construct an instance of SUBSET-SUM that has a solution if and only if $\Phi$ is satisfiable.
 
 Given a 3-SAT instance $\Phi$ with $n$ variables and $k$ clauses, form $2n + 2k$ decimal integers, each of $n+k$ digits.
 For each variable $x_i$ we include two decimal integers with $1$ in the $(n+k-1-i)$th digit, the first with 1s in the last decimal digits corresponding to the clauses $x_i$ appears in and the second with 1s for the clauses where $\overline{x_i}$ appears.
@@ -484,7 +485,7 @@ Given an instance $G= (V,E)$ of HAM-CYCLE create $n$ cities with distance functi
 \[
 d(u,v) =\begin{cases}
 1, &\text{ if } (u,v) \in E,\\
-0, &\text{ if } (u,v) \not\in E.\\
+2, &\text{ if } (u,v) \not\in E.\\
 \end{cases} 
 \]
 This TSP instance has a tour of length $\le n$ if and only if $G$ is Hamiltonian.
@@ -1292,6 +1293,28 @@ Given an instance $(u_1,\ldots,u_n,U)$ of SUBSET-SUM, we create a KNAPSACK insta
 \end{proof}
 
 This along with the observation that KNAPSACK is in NP gives that KNAPSACK is NP-complete.
+
+There is a dynamic programming approach to the knapsack problem which is obtained by letting $\OPT(i,w)$ be the maximum value subset of items $1,\ldots,i$ with weight limit $w$, this gives the recurrence
+\[
+\OPT(i,w) =\begin{cases}
+0 &\text{ if } i = 0,\\
+\OPT(i-1,w)&\text{ if } w_i> w,\\
+\max\{\OPT(i-1,w), v_i +\OPT(i-1, w - w_i)\} &\text{ otherwise}.
+\end{cases} 
+\]
+The running time of the algorithm that uses this approach is $O(n\cdot W)$ where $W$ is the weight limit, this is not polynomial in input size!
+
+We can try another dynamic programming method by letting $\OPT(i,v)$ be the minimum weight subset of items $1,\ldots,i$ with value \emph{exactly} $v$, this gives the recurrence
+\[
+\OPT(i,v) = \begin{cases}
+0 &\text{ if } v = 0,\\
+\infty &\text{ if } i = 0,\ v > 0, \\
+\OPT(i-1,v)&\text{ if } v_i> v,\\
+\min\{\OPT(i-1,v), w_i +\OPT(i-1, v - v_i)\} &\text{ otherwise}.
+\end{cases} 
+\]
+The running time of this approach is $O(n\cdot V^*) = O(n^2 v_{\text{max}})$ where $V^*$ is the optimal value which is the maximum $v$ such that $\OPT(n,v) \le W$.
+This is still not polynomial in the input size.
 
 \paragraph{Linear Programming based approximation algorithm for Weighted Set Cover.}
 
