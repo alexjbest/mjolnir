@@ -1109,7 +1109,11 @@ They repeat this until the interval they have contains only one element, the med
 Each iteration of this involves transmitting $O(\log n)$ bits cuts the interval in half so the total cost of this protocol is $O((\log n)^2)$.
 
 \paragraph{Protocol Trees.}
-%TODO
+A protocol tree is a binary tree that describes a given protocol for Alice and Bob to compute $f\colon X \times Y \to Z$.
+It has each internal node $v$ labelled with a function, either $a_v\colon X \to \{0,1\}$ or $b_v\colon Y \to \{0,1\}$ here the $a$ functions correspond to Alice communicating the bit and the $b$ functions mean that Bob communicates.
+Each node has two children labelled 0 and 1, which teell us what Alice and Bob do as part of the protocol next.
+
+The cost of the protocol is then the length of the tree.
 
 \paragraph{EQUALITY.}
 For equality Alice and Bob have $x = x_1\cdots x_n$ and $y = y_1 \cdots y_n$ respectively and they wish to compute $f(x,y)$ which is $1$ if and only if $x = y$.
@@ -1142,14 +1146,46 @@ Hence every Turing machine for PAL must leave each cell in the middle range at l
 \end{proof}
 
 \paragraph{Protocol trees and combinatorial rectangles.}
+\begin{defn}
+For $f\colon \{0,1\}^n \times \{0,1\}^n \to \{0,1\}$ we let $M^f$ be the $2^n \times 2^n$ matrix of values of $f$, i.e. $M^f_{x,y} = f(x,y)$.
+A \emph{combinatorial rectangle} is then a subset of entries in $M^f$ of the form $A\times B$ where $A\subseteq \{0,1\}^n$ and $B\subseteq \{0,1\}^n$.
+Such a rectangle is \emph{monochromatic} if all cells in the rectangle have the same value.
+\end{defn}
+
+If we consider which possible values for $x$ and $y$ Alice and Bob have after the first $i$ messages have been exchanged we can see that the inputs not ruled out form a combinatorial rectangle, if the protocol ends at this stage the rectangle must be monochromatic as otherwise the result may not be correct.
+
+So if we let $C(f)$ be the minimum number of monochromatic rectangles that partition $M^f$ we know that no correct protocol tree for $f$ can have less than $C(f)$ leaves and hence no protocol for $f$ can use less than $\log_2 C(f)$ bits.
+So we get the following result.
+\begin{thm}
+\[
+D(f) \ge \log_2 C(f).
+\]
+\end{thm}
+This will allow us to prove lower bounds for the communication complexity of problems.
 
 \paragraph{EQUALITY (again).}
+We now try and determine $C(\text{EQ})$, the minimum number of monochromatic rectangles we can partition $M^\text{EQ}$ into.
+A rectangle that contains at least two diagonal entries (the 1s) must contain at least two off diagonal entries (the 0s), hence cannot be monochromatic.
+So we need a different rectangle for each of the $2^n$ diagonal entries and so as we need at least one for the zeroes too we have the following result.
+\begin{thm}
+\[
+D(\text{EQ}) \ge \lceil \log_2(2^n + 1) \rceil \ge n+1.
+\]
+\end{thm}
 
 \paragraph{DISJOINTNESS.}
+The function $\text{DIS}(X,Y)$ is defined to be 1 if and only if the bitwise OR of $x$ and $y$ equals 0.
 
 \paragraph{INNER PRODUCT and the rank technique.}
 
-\paragraph{Area-Time tradeoffs for VLSI chips.}
+\begin{thm}
+\[
+C(f) \ge 2\cdot \operatorname{rank}(M^f) - 1.
+\]
+\end{thm}
+\begin{proof}
+
+\end{proof}
 
 \paragraph{NP-hard.}
 We now look at how we can express the complexity of non-decision problems.
@@ -1262,10 +1298,22 @@ A natural greedy algorithm is to repeatedly include the set containing the most 
 This greedy algorithm is a $O(\log n)$-approximation for SET-COVER.
 \end{thm}
 \begin{proof}
-
+Let $x^*$ be the value of the optimal solution.
+Then let $n_t$ be the number of elements not covered after $t$ iterations, all of these elements can be covered by $x^*$ many sets so some unused set must cover at least $n_t/x^*$ of the $n_t$ elements.
+So
+\[
+n_{t+1} \le n_t - \frac{n_t}{x^*} = n_t \left(1- \frac{1}{x}\right)
+\]
+and hence
+\[
+n_t \le n_0 \left(1-\frac{1}{x^*}\right)^t = n\left(1-\frac{1}{x^*}\right)^t < n\cdot e^{-t/x^*}.
+\]
+So for $t \ge x^* \cdot \log(n)$ we have $n_t < 1$ and no elements are left.
 \end{proof}
 
 \paragraph{2-approximation for Vertex Cover.}
+In weighted vertex cover we are given an undirected graph $G = (V,E)$ with vertex weights $v_i \ge 0$ and have to find a minimum weight subset of nodes $S$ such that every edge is incident to at least one vertex in $S$.
+We can use the so called \emph{pricing method} to make a 2-approximation algorithm for weighted vertex cover.
 
 \paragraph{PTAS and FPTAS.}
 \begin{defn}
