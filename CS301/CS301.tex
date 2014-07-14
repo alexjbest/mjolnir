@@ -78,7 +78,7 @@ When the machine reaches the state $q_\text{end}$ the computation halts and the 
 \begin{defn}
 A Turing machine $M$ \emph{computes a function $f\colon \{0,1\}^* \to \{0,1\}^*$ in time} $T\colon \NN \to \NN$ if for every $x\in \{0,1\}^*$ the output of $M$ when given $x$ initially is $f(x)$, this computation must finish after at most $T(|x|)$ steps (this implies $M$ halts on every input).
 
-We say $M$ \emph{computes} $f$ if it computes $f$ in $T(n)$ time for any function $T$.
+We say $M$ \emph{computes} $f$ if it computes $f$ in $T(n)$ time for some function $T$.
 \end{defn}
 %TODO maybe examples?
 
@@ -117,7 +117,7 @@ We assume that we have picked an encoding so that every string represents a Turi
 The Turing machine encoded by a string $\alpha$ is denoted $M_\alpha$.
 \begin{thm}
 There exists a Turing machine (a universal Turing machine) that when given a pair $\langle \alpha,x\rangle$ as input outputs the result of running the Turing machine encoded by $\alpha$ with input $x$.
-Moreover if the machine encoded by $\alpha$ halts within $T(|x|)$ steps on input $x$ then the universal Turing machine halts within $C\poly(T(|x|))$ steps, where $C$ is independent of $|x|$.
+Moreover if the machine encoded by $\alpha$ halts within $T(|x|)$ steps on input $x$ then the universal Turing machine halts within $C\cdot\poly(T(|x|))$ steps, where $C$ is independent of $|x|$.
 \end{thm}
 
 We assume we have fixed some encoding for Turing machines and a corresponding universal Turing machine, denoted $\U$.
@@ -218,7 +218,7 @@ Every physically realisable computation device (be it silicon-based, DNA-based, 
 This is more controversial than the normal Church-Turing thesis as either
 \begin{enumerate}[a)]
 \item quantum mechanics does not behave as we currently understand it to,
-\item a classical computer can factor integer's in polynomial time or
+\item a classical computer can factor integers in polynomial time or
 \item the strong Church-Turing thesis is wrong.
 \end{enumerate}
 
@@ -692,7 +692,7 @@ Then we simply check each assignment in turn to see if it satisfies all clauses.
 NP $\subseteq$ PSPACE.
 \end{thm}
 \begin{proof}
-Consider some $Y$ in NP, as $Y \le_p 3-SAT$ we can decide whether $w \in Y$ by computing a function $f$ in polynomial time along with deciding if $f(w) \in$ 3-SAT.
+Consider some $Y$ in NP, as $Y \le_p$ 3-SAT we can decide whether $w \in Y$ by computing a function $f$ in polynomial time along with deciding if $f(w) \in$ 3-SAT.
 We can decide if $f(w)\in $ 3-SAT in polynomial space.
 \end{proof}
 
