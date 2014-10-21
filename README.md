@@ -1,18 +1,6 @@
-WULNR
-=====
+MJOLNIR
+=======
 
-Warwick University Lecture Note Repository
+Welcome to My Jejune but Open Lecture Note of Interest Repository (it took me at least half an hour to come up with that but acronym hey, Norse hammers are awesome). The idea is that this will contain typed lecture notes for courses/lectures that I get around to typing up.
 
-What is it then?
-
-The aim is to provide a repository of typeset lecture notes for as many Warwick University modules as possible that do not have official lecture notes availiable.
-
-Ambitious huh?
-
-Getting the files
-=================
-
-There are a few ways you can get the files depending on how geeky you are:
-- Visit http://www.dcs.warwick.ac.uk/~csulbj/ and click the links to the pdf files there.
-- Just save the raw LaTeX source from github and then compile it yourself.
-- Clone the repo on your machine and help maintain the notes!
+The files are currently organised by institution and year of study and then by course.
