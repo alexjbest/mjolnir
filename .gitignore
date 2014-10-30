@@ -33,3 +33,4 @@
 *.swp
 *.fls
 Makefile
+*.sage*
