@@ -1,0 +1,112 @@
+\title{Part III Algebraic Topology - Michelmas 2014}
+\author{Based on lectures by Dr. Jacob Rasmussen \\ Notes by Alex J. Best}
+\date{\today}
+
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{upgreek}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{stmaryrd}
+\usetikzlibrary{arrows}
+
+\newtheorem*{thm}{Theorem}
+\newtheorem*{lem}{Lemma}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem*{defns}{Definitions}
+\newtheorem*{ex}{Example}
+\newtheorem*{exs}{Examples}
+\newtheorem*{exer}{Exercise}
+\newtheorem*{rem}{Remark}
+\newtheorem*{nota}{Notation}
+\newtheorem*{alg}{Algorithm}
+\newtheorem*{fact}{Fact}
+
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\RR}{\mathbf{R}}
+\DeclareMathOperator{\CC}{\mathbf{C}}
+
+\providecommand{\newoperator}[3]{\newcommand*{#1}{\mathop{#2}#3}}
+\providecommand{\renewoperator}[3]{\renewcommand*{#1}{\mathop{#2}#3}}
+
+\newcommand{\C}{C_*}
+\renewcommand{\H}{H_*}
+
+\setcounter{tocdepth}{3}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+These are lecture notes for the 2014 Part III Algebraic Topology course taught by Dr. Jacob Rasmussen.
+
+
+The recommended books are:
+\begin{itemize}
+\item \href{http://www.math.cornell.edu/~hatcher/AT/ATpage.html}{Algebraic Topology} - Allen Hatcher,% check name + link
+\item Homology Theory - James W. Vick,
+\item Differential Forms in Algebraic Topology - Raoul Bott and Loring W. Tu.
+\end{itemize}
+\clearpage
+
+\section{Homotopy}
+\marginpar{Lecture 1}
+
+\begin{defn}
+Maps $f_0,f_1\colon X \to Y$ are said to be \emph{homotopic} if there is a continuous map $F\colon X\times I \to Y$ such that
+\[
+F(x,0) = f_0(x)\text{ and }F(x,1) = f_1(x)\ \forall x\in X.
+\]
+\end{defn}
+
+We let $\Map(X,Y) = \{f\colon X \to Y \text{ continuous}\}$.
+Then letting $f_t(x) = F(x,t)$ in the above definition we see that $f_t$ is a path from $f_0$ to $f_1$ in $\Map(X,Y)$.
+
+\begin{exs}
+\begin{enumerate}
+\item $X = Y = \RR^n$, $f_0(\overline{x}) = \overline{0}$ and $f_1(\overline{x}) = \overline{x}$ are homotopic via $f_t(\overline{x}) = t\overline{x}$.
+\item $S^1 = \{z\in \CC : |z| = 1\}$ then %TODO
+\item $S^n = \{ \overline{x} \in \RR^n : |\overline{x}| = 1\}$ %TODO
+\end{enumerate}
+\end{exs}
+
+\begin{lem}
+Homotopy is an equivalence relation on $\Map(X,Y)$.
+\end{lem}
+\begin{defn}
+\[
+[X,Y] = \Map(X,Y)/\sim = \text{set of homotopy classes of maps } X \to Y.
+\]
+\end{defn}
+
+\begin{lem}
+If $f_0 \sim f_1\colon X \to Y$ and $g_0 \sim g_1\colon Y \to Z$ then $g_0\circ f_0 \sim g_1\circ f_1$.
+\end{lem}
+
+\begin{cor}
+For any space $X$ the set $[X,\RR^n]$ has one element.
+\end{cor}
+\begin{proof}
+Def 
+\end{proof}
+
+\begin{defn}
+$X$ is \emph{contractible} if $1_X$ is homotopic to a constant map.
+\end{defn}
+
+\begin{prop}
+$Y$ is contractible $\iff$ $[X,Y]$ has one element for any space $X$.
+\end{prop}
+
+\begin{proof}
+Define $0_X\colon X \to \RR^n$ by $0_X(x) = 0 \in \RR^n$ for any $x\in X$.
+\end{proof}
+
+\end{document}
