@@ -9,7 +9,7 @@ Copyright 2014 Alex J. Best
 <mathbook>
 
     <docinfo>
-        <brandlogo url="" source="../../images/mjolnir.png" />
+        <brandlogo url="alexjbest.github.io/mjolnir/" source="../../images/mjolnir.png" />
         <macros>
         \DeclareMathOperator{\Map}{Map}
         \DeclareMathOperator{\dim}{dim}
