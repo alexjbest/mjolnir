@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--********************************************************************
+Copyright 2014 ????
+
+*********************************************************************-->
+
+<mathbook>
+
+    <docinfo>
+        <brandlogo url="http://" source="" />
+        <macros>
+        \DeclareMathOperator{\Map}{Map}
+        \DeclareMathOperator{\RR}{\mathbf{R}}
+        \DeclareMathOperator{\CC}{\mathbf{C}}
+
+        \providecommand{\newoperator}[3]{\newcommand*{#1}{\mathop{#2}#3}}
+        \providecommand{\renewoperator}[3]{\renewcommand*{#1}{\mathop{#2}#3}}
+
+        \newcommand{\C}{C_*}
+        \renewcommand{\H}{H_*}
+        </macros>
+        <initialism>AT</initialism>
+        <feedback>
+            <url>https://github.com/alexjbest/mjolnir/issues</url>
+        </feedback>
+    </docinfo>
+
+    <article xml:id="algtop">
+        <title>Part III Algebraic Topology 2014</title>
+
+        <frontmatter xml:id="index">
+            <titlepage>
+
+                <author>
+                    <personname>Jacob Rasmussen</personname>
+                    <department>DPMMS</department>
+                    <institution>University of Cambridge</institution>
+                </author>
+                <author>
+                    <personname>Alex J. Best</personname>
+                    <department>DPMMS</department>
+                    <institution>University of Cambridge</institution>
+                </author>
+
+                <date><today /></date>
+
+            </titlepage>
+
+            <abstract>
+                <p>
+                    These are lecture notes for the 2014 Part III Algebraic Topology course taught by Dr. Jacob Rasmussen.
+                </p>
+            </abstract>
+        </frontmatter>
+
+        <section>
+            <title>Introduction</title>
+
+            <p>The recommended books are:
+                <ul>
+                    <li><url href="http://www.math.cornell.edu/~hatcher/AT/ATpage.html">Algebraic Topology</url> - Allen Hatcher,</li>
+                    <li>Homology Theory - James W. Vick,</li>
+                    <li>Differential Forms in Algebraic Topology - Raoul Bott and Loring W. Tu.</li>
+                </ul>
+            </p>
+
+            <p>Generated: <today />, <timeofday /></p>
+
+        </section>
+
+        <section>
+            <title>Homotopy</title>
+
+            <definition>
+                <title>Homotopic maps</title>
+                <statement>
+                    Maps <m>f_0,f_1\colon X \to Y</m> are said to be <term>homotopic</term> if there is a
+                    continuous map <m>F\colon X\times I \to Y</m> such that
+                    <me>
+                        F(x,0) = f_0(x)\text{ and }F(x,1) = f_1(x)\ \forall x\in X.
+                    </me>
+                </statement>
+            </definition>
+
+            <p>
+                We let <m>\Map(X,Y) = \{f\colon X \to Y \text{ continuous}\}</m>.
+                Then letting <m>f_t(x) = F(x,t)</m> in the above definition we see that <m>f_t</m> is a
+                path from <m>f_0</m> to <m>f_1</m> in <m>\Map(X,Y)</m>.
+            </p>
+
+            <example>
+                <ol>
+                    <li><m>X = Y = \RR^n</m>, <m>f_0(\overline{x}) = \overline{0}</m> and <m>f_1(\overline{x}) = \overline{x}</m> are homotopic via <m>f_t(\overline{x}) = t\overline{x}</m>.</li>
+                    <li><m>S^1 = \{z\in \CC : |z| = 1\}</m> then <todo></todo></li>
+                    <li><m>S^n = \{ \overline{x} \in \RR^n : |\overline{x}| = 1\}</m> <todo></todo></li>
+                </ol>
+            </example>
+
+            <lemma>
+                <statement>
+                    Homotopy is an equivalence relation on <m>\Map(X,Y)</m>.
+                </statement>
+            </lemma>
+
+            <notation>
+                <me>
+                    [X,Y] = \Map(X,Y)/\sim = \text{set of homotopy classes of maps } X \to Y.
+                </me>
+            </notation>
+
+            <lemma>
+                <statement>
+                    If <m>f_0 \sim f_1\colon X \to Y</m> and <m>g_0 \sim g_1\colon Y \to Z</m> then
+                    <m>g_0\circ f_0 \sim g_1\circ f_1</m>.
+                </statement>
+            </lemma>
+
+            <corollary>
+                <statement>
+                    For any space <m>X</m> the set <m>[X,\RR^n]</m> has one element.
+                </statement>
+                <proof>
+                    Define <m>0_X\colon X \to \RR^n</m> by <m>0_X(x) = 0 \in \RR^n</m> for any <m>x\in X</m>.
+                </proof>
+            </corollary>
+
+            <definition>
+                <title>Contractible space</title>
+                <statement>
+                    <m>X</m> is <term>contractible</term> if <m>1_X</m> is homotopic to a constant map.
+                </statement>
+            </definition>
+
+            <proposition>
+                <statement>
+                    <m>Y</m> is contractible <m>\iff</m> <m>[X,Y]</m> has one element for any space <m>X</m>.
+                </statement>
+
+                <proof>
+                    (<m>\Rightarrow</m>) as in corollary.  (<m>\Leftarrow</m>) <m>[X,Y]</m> has one element so
+                    <m>1_Y \sim </m> a constant map.
+                </proof>
+            </proposition>
+
+            <p>
+                Given a space <m>X</m> how can we tell if <m>X</m> is contractible? If <m>X</m> is
+                contractible then it must be path connected for one.
+
+                <proof>
+                    Contractible implies that <m>[S^0, X]</m> has one element and so <m>f \colon
+                    S^0 \to X</m> extends to <m>D^1</m>, and therefore <m>X</m> is path connected. <todo></todo>
+                </proof>
+
+                Similarly if <m>[S^1, X]</m> has more than one element then <m>X</m> is not
+                contractible.
+            </p>
+
+            <definition>
+                <title>Simply connected</title>
+                <statement>
+                    We say <m>X</m> is <term>simply connected</term> if <m>[S^1, X]</m> has only one
+                    element.
+
+                    We say two space <m>X</m> and <m>Y</m> are <em>homotopy equivalent</em> if there
+                    exists <m>f\colon X \to Y</m> and <m>g\colon Y \to X</m> such that <m>g\circ f
+                    \sim 1_X</m> and <m>f\circ g \sim 1_Y</m>.
+                </statement>
+            </definition>
+
+            <example>
+                <p>
+                    <m>X</m> is contractible if and only if <m>X \sim \{p\}</m>.
+                </p>
+                <proof>
+                    <m>X</m> contractible <m>\implies 1_X \sim c</m>, a constant map.
+                    Choose <m>f\colon X \to \{p\}</m>, <m>f(x) = p</m> and <m>g\colon\{p\} \to X</m>,
+                    <m>g(p) = c</m>. Then <m>g\circ f = c \sim 1</m> and <m>f\circ g = 1_{\{p\}}</m>.
+                    Converse: exercise.
+                </proof>
+            </example>
+
+            <exercise>
+                If <m>X_0 \sim X_1</m> and <m>Y_0 \sim Y_1</m> then <m>[X_0, Y_0]</m> and <m>[X_1,
+                Y_1]</m> are in bijection.
+            </exercise>
+
+            <p>
+                Given <m>X</m> and <m>Y</m> how can we determine if <m>X\sim Y</m>?
+                How do we determine <m>[X,Y]</m>?
+                For example is <m>S^n \sim S^m</m>.
+            </p>
+
+        </section>
+        <section>
+            <title>Homotopy groups</title>
+
+            <definition>
+                <title>Map of pairs</title>
+                <statement>
+                    A <term>map of pairs</term> <m>f\colon (X, A) \to (Y, B)</m> is a map <m>f\colon X
+                    \to Y</m> with sets <m>A\subset X</m> and <m>B\subset Y</m> such that <m>f(A)\subset
+                    B</m>.
+
+                    If we have maps of pairs <m>f_0, f_1\colon (X,A) \to (Y,B)</m> then we
+                    write <m>f_0\sim f_1</m> if there exists <m>F\colon(X\times I, A\times I) \to
+                    (Y,B)</m> such that <m>F(x,0) = f_0(x)</m> and <m>F(x,1) = f_1(x)</m>.
+                </statement>
+            </definition>
+
+            <definition>
+                <title>Homotopy groups</title>
+                <statement>
+                    If <m>*\in X</m> then the <term><m>n</m>th homotopy group</term> is
+                    <me>\pi_n(X, *) = [(D^n, S^{n-1}) \to (X, \{*\})].</me>
+                </statement>
+            </definition>
+
+            <p>
+                We now note several properties of this definition:
+                <ol>
+                    <li> <m>\pi_0(X, *) =</m> set of path components of <m>X</m>.</li>
+
+                    <li> <m>\pi_1(X, *)</m> is a group.</li>
+
+                    <m>\pi_n(X, *)</m> is an abelian group. <todo></todo>
+
+                    <li> <m>\pi_n</m> is a functor
+                    <me>\left\{ \begin{subarray}{l}\text{pointed spaces} \\ \text{pointed
+                    maps} \end{subarray}\right\} \to \left\{\begin{subarray}{l}
+                        \text{groups}\\ \text{group homomorphisms}\end{subarray}\right\}.</me></li>
+                </ol>
+            </p>
+        </section>
+
+        <backmatter>
+            <title>Reference</title>
+
+            <section>
+                <title>Notation</title>
+                <notation-list />
+            </section>
+        </backmatter>
+
+    </article>
+
+</mathbook>
