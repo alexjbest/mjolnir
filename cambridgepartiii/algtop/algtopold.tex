@@ -1,0 +1,188 @@
+\title{Part III Algebraic Topology - Michelmas 2014}
+\author{Based on lectures by Dr. Jacob Rasmussen \\ Notes by Alex J. Best}
+\date{\today}
+
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{upgreek}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{stmaryrd}
+\usetikzlibrary{arrows}
+
+\newtheorem*{thm}{Theorem}
+\newtheorem*{lem}{Lemma}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{prop}{Proposition}
+\theoremstyle{definition}
+\newtheorem*{defn}{Definition}
+\newtheorem*{defns}{Definitions}
+\newtheorem*{ex}{Example}
+\newtheorem*{exs}{Examples}
+\newtheorem*{exer}{Exercise}
+\newtheorem*{rem}{Remark}
+\newtheorem*{nota}{Notation}
+\newtheorem*{alg}{Algorithm}
+\newtheorem*{fact}{Fact}
+
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\RR}{\mathbf{R}}
+\DeclareMathOperator{\CC}{\mathbf{C}}
+
+\providecommand{\newoperator}[3]{\newcommand*{#1}{\mathop{#2}#3}}
+\providecommand{\renewoperator}[3]{\renewcommand*{#1}{\mathop{#2}#3}}
+
+\newcommand{\C}{C_*}
+\renewcommand{\H}{H_*}
+
+\newcommand{\ts}{\textsuperscript}
+\renewcommand{\th}{\textsuperscript{th}\ }
+
+\setcounter{tocdepth}{3}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+These are lecture notes for the 2014 Part III Algebraic Topology course taught by Dr. Jacob Rasmussen.
+
+
+The recommended books are:
+\begin{itemize}
+\item \href{http://www.math.cornell.edu/~hatcher/AT/ATpage.html}{Algebraic Topology} - Allen Hatcher,% check name + link
+\item Homology Theory - James W. Vick,
+\item Differential Forms in Algebraic Topology - Raoul Bott and Loring W. Tu.
+\end{itemize}
+\clearpage
+
+\section{Homotopy}
+\marginpar{Lecture 1}
+
+\begin{defn}
+Maps $f_0,f_1\colon X \to Y$ are said to be \emph{homotopic} if there is a 
+continuous map $F\colon X\times I \to Y$ such that
+\[
+F(x,0) = f_0(x)\text{ and }F(x,1) = f_1(x)\ \forall x\in X.
+\]
+\end{defn}
+
+We let $\Map(X,Y) = \{f\colon X \to Y \text{ continuous}\}$.
+Then letting $f_t(x) = F(x,t)$ in the above definition we see that $f_t$ is a
+path from $f_0$ to $f_1$ in $\Map(X,Y)$.
+
+\begin{exs}
+\begin{enumerate}
+  \item $X = Y = \RR^n$, $f_0(\overline{x}) = \overline{0}$ and $f_1(\overline{x})
+  = \overline{x}$ are homotopic via $f_t(\overline{x}) = t\overline{x}$.
+  \item $S^1 = \{z\in \CC : |z| = 1\}$ then %TODO
+  \item $S^n = \{ \overline{x} \in \RR^n : |\overline{x}| = 1\}$ %TODO
+\end{enumerate}
+\end{exs}
+
+\begin{lem}
+  Homotopy is an equivalence relation on $\Map(X,Y)$.
+\end{lem}
+\begin{defn}
+  \[
+  [X,Y] = \Map(X,Y)/\sim = \text{set of homotopy classes of maps } X \to Y.
+  \]
+\end{defn}
+
+\begin{lem}
+  If $f_0 \sim f_1\colon X \to Y$ and $g_0 \sim g_1\colon Y \to Z$ then 
+  $g_0\circ f_0 \sim g_1\circ f_1$.
+\end{lem}
+
+\begin{cor}
+  For any space $X$ the set $[X,\RR^n]$ has one element.
+\end{cor}
+\begin{proof}
+  Define $0_X\colon X \to \RR^n$ by $0_X(x) = 0 \in \RR^n$ for any $x\in X$.
+\end{proof}
+
+\begin{defn}
+  $X$ is \emph{contractible} if $1_X$ is homotopic to a constant map.
+\end{defn}
+
+\begin{prop}
+  $Y$ is contractible $\iff$ $[X,Y]$ has one element for any space $X$.
+\end{prop}
+
+\begin{proof}
+  ($\Rightarrow$) as in corollary.  ($\Leftarrow$) $[X,Y]$ has one element so 
+  $1_Y \sim $ a constant map.
+\end{proof}
+
+Given a space $X$ how can we tell if $X$ is contractible? If $X$ is 
+contractible then it must be path connected for one.
+
+\begin{proof}
+  Contractible implies that $[S^0, X]$ has one element and so $f \colon
+  S^0 \to X$ extends to $D^1$, and therefore $X$ is path connected. %TODO
+\end{proof}
+
+Similarly if $[S^1, X]$ has more than one element then $X$ is not
+contractible.
+
+\begin{defns}
+  We say $X$ is \emph{simply connected} if $[S^1, X]$ has only one
+  element.
+
+  We say two space $X$ and $Y$ are \emph{homotopy equivalent} if there
+  exists $f\colon X \to Y$ and $g\colon Y \to X$ such that $g\circ f
+  \sim 1_X$ and $f\circ g \sim 1_Y$.
+\end{defns}
+
+\begin{ex}
+  $X$ is contractible if and only if $X \sim \{p\}$.
+\end{ex}
+\begin{proof}
+  $X$ contractible $\implies 1_X \sim c$, a constant map.
+  Choose $f\colon X \to \{p\}$, $f(x) = p$ and $g\colon\{p\} \to X$,
+  $g(p) = c$. Then $g\circ f = c \sim 1$ and $f\circ g = 1_{\{p\}}$.
+  Converse: exercise.
+\end{proof}
+
+\begin{exer}
+  If $X_0 \sim X_1$ and $Y_0 \sim Y_1$ then $[X_0, Y_0]$ and $[X_1,
+  Y_1]$ are in bijection.
+\end{exer}
+
+Given $X$ and $Y$ how can we determine if $X\sim Y$?
+How do we determine $[X,Y]$?
+For example is $S^n \sim S^m$.
+
+\section{Homotopy groups}
+
+\begin{defns}
+  A \emph{map of pairs} $f\colon (X, A) \to (Y, B)$ is a map $f\colon X
+  \to Y$ with sets $A\subset X$ and $B\subset Y$ such that $f(A)\subset
+  B$.
+
+  If we have maps of pairs $f_0, f_1\colon (X,A) \to (Y,B)$ then we
+  write $f_0\sim f_1$ if there exists $F\colon(X\times I, A\times I) \to
+  (Y,B)$ such that $F(x,0) = f_0(x)$ and $F(x,1) = f_1(x)$.
+
+  If $*\in X$ then the \emph{$n$\th homology group}
+  \[\pi_n(X, *) = [(D^n, S^{n-1}) \to (X, \{*\})].\]
+\end{defns}
+
+We now note several properties of this definition:
+\begin{enumerate}
+  \item $\pi_0(X, *) =$ set of path components of $X$.
+
+  \item $\pi_1(X, *)$ is a group.
+  
+  $\pi_n(X, *)$ is an abelian group. %TODO
+
+  \item $\pi_n$ is a functor
+    \[\left\{ \begin{subarray}{l}\text{pointed spaces} \\ \text{pointed
+    maps} \end{subarray}\right\} \to \left\{\begin{subarray}{l}
+    \text{groups}\\ \text{group homomorphisms}\end{subarray}\right\}.\]
+\end{enumerate}
+
+\end{document}
