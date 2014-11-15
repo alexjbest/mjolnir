@@ -14,7 +14,9 @@ Copyright 2014 Alex J. Best
     \DeclareMathOperator{\Map}{Map}
     \DeclareMathOperator{\dim}{dim}
     \DeclareMathOperator{\im}{im}
+    \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
     \DeclareMathOperator{\RR}{\mathbf{R}}
     \DeclareMathOperator{\ZZ}{\mathbf{Z}}
     \DeclareMathOperator{\C}{C_*}
@@ -602,6 +604,177 @@ Copyright 2014 Alex J. Best
         </exercise>
 
         <example>
+          <title>
+            Reduced homology
+          </title>
+          <statement>
+            If <m>X</m> is a space let
+            <me>
+              \tilde C_*(X) = \begin{cases}C_*(X), &amp;* \ne -1,\\\ZZ, &amp; * = -1,\end{cases}
+            </me>
+            then define <m>d(e_p)= e</m> for <m>p \in X</m>.
+            We have <m>d^2e_\gamma = d(e_{\gamma(1)} - e_{\gamma(0)}) = e - e = 0</m>.
+            So <m>\tilde C_*</m> is a chain complex.
+            <br />
+            This construction can be motivated by thinking of <m>\Delta^{-1} = \{\}</m> and then considering <m>\Map(\{\},X) = \{e\}</m>.
+            If
+            <me>
+              A_* = \begin{cases} \ZZ = \langle e \rangle, &amp; * = -1, \\ 0, &amp; * = -1.\end{cases}
+            </me>
+            Then we have a short exact sequence
+            <me>
+              0 \to A_* \to \tilde C_*(X) \to C_*(X) \to 0.
+            </me>
+            We have <m>H_*(A) = A_*</m> and so the long exact sequence of homology then says that for <m>n \ge 0</m>
+            <me>
+              \cdots \to H_n(A) = 0 \to H_n(\tilde C(X))\to H_n(C(X)) \to H_{n-1}(A)= 0 \to \cdots
+            </me>
+            giving that <m>H_n(\tilde C_*(X)) \cong H_n(C_*(X))</m> for <m>n \gt 0</m>.
+            We write <m>\tilde H_*(X)</m> for <m>H_*(\tilde C_*(X))</m>. <todo>notation</todo>
+            At <m>n = 0</m> we get
+            <me>
+              \cdots \to 0 \to \tilde H_0(X)\to H_0(X) \to \ZZ \to 0 \to\cdots
+            </me>
+            giving that <m>\tilde H_0(X)</m> has one fewer copies of <m>\ZZ</m> than <m>H_0(X)</m>.
+          </statement>
+        </example>
+
+        <example>
+          <title>
+            Homology of a pair
+          </title>
+          <statement>
+            Suppose <m>A\subset X</m>, then <m>C_*(A) \subset C_*(X)</m> is a subcomplex.
+            Define <m>C_*(X,A) = C_*(X)/C_*(A)</m> and so we have a short exact sequence
+            <me>
+              0 \to C_*(A) \to C_*(X) \to C_*(X,A) \to 0.
+            </me>
+          </statement>
+        </example>
+
+        <definition>
+          <title>
+            Homology of a pair
+          </title>
+          <statement>
+            <m>H_*(X,A) = H_*(C_*(X,A))</m> is the <term>homology of the pair</term> <m>(X,A)</m>.
+          </statement>
+        </definition>
+
+        <p>
+          From this we obtain:
+        </p>
+
+        <definition>
+          <title>
+            Long exact sequence of a pair
+          </title>
+          <statement>
+            The <term>long exact sequence of the pair <m>(X,A)</m></term> is
+            <me> \cdots \to H_n(A) \to H_n(X) \to H_n(X,A) \xrightarrow{\partial} H_{n-1} (A) \to \cdots.</me>
+          </statement>
+        </definition>
+
+        <p>
+          If <m>f\colon (X,A) \to (Y,B)</m> is a map of pairs then we get an <term>induced map</term> <m>f_\# \colon C_*(X) \to C_*(Y)</m> defined by
+          <me>
+            (\sigma\colon \Delta^n \to A) \mapsto f\circ \sigma.
+          </me>
+          Observe that <m>f_\#(C(A)) \subset C_*(B)</m> and so <m>f_\#</m> descends to a map
+          <me>
+            f_\#\colon C_*(X)/C_*(A) \to C_*(Y)/C_*(B)
+          </me>
+          or equivalently <m>f_\#\colon C_*(X,A) \to C_*(Y,B)</m> this then induces <m>f_*\colon H_*(X,A) \to H_*(Y,B)</m>.
+        </p>
+
+        <proposition>
+          <title>
+            Homotopy invariance
+          </title>
+
+          <statement>
+            If <m>f,g \colon (X,A) \to (Y,B)</m> are homotopic as maps of pairs then <m>f_* = g_* \colon H_*(X,A) \to H_*(Y,B)</m>.
+          </statement>
+
+          <proof>
+            Let <m>H\colon (X\times I, A\times I) \to (Y,B)</m> be the homotopy, <m>H</m> induces a chain homotopy <m>h \colon C_*(X) \to C_{*+1}(Y)</m> where <m>dh + hd = f_\# - g_\#</m>.
+            <m>H(A\times I) \subset B</m> so <m>h(C_*(A)) \subset C_{*+1}(B)</m> this implies that <m>h</m> descends to a map
+            <me>
+              h \colon C_*(X)/C_*(A) \to C_{*+1}(Y)/C_{*+1}(B)
+            </me>
+            with <m>hd + dh = f_\# - g_\#</m> as any relation satisfied will remain satisfied in the quotient.
+            So we have <m>h \colon C_*(X,A) \to C_{*+1}(Y,A)</m> and hence <m>f_\#,g_\#\colon C_*(X,A) \to C_*(Y,B)</m> are chain homotopic.
+          </proof>
+        </proposition>
+
+        <subsubsection>
+          <title>
+            Visualising relative homology classes
+          </title>
+
+          <p>
+            If <m>W^{n+1}</m> is a connected oriented compact manifold then we'll show that <m>H_{n+1}(W,\partial W) \cong \ZZ = \langle [W,\partial] \rangle</m> (where the <m>\partial</m> notation means relative to boundary)<todo></todo>.
+            So given <m>f\colon (W, \partial) \to (X,A)</m> we get <m>f_*([W,\partial W]) \in H_{n+1}(X,A)</m>.
+          </p>
+
+          <example>
+            <statement>
+              Let <m>X = \RR^3</m> and <m>A= S^1</m> then <m>W = D^2</m> defines a class in <m>H_2(\RR^3,S^1)</m> (the boundary of <m>W</m> lies inside of <m>A</m>).
+            </statement>
+          </example>
+        </subsubsection>
+
+        <definition>
+          <title>
+            Good pair
+          </title>
+          <statement>
+            <m>(X,A)</m> is a <term>good pair</term> if
+            <ol>
+              <li>
+                <m>\exists U \subset X</m> open and <m>A \subset U</m>
+              </li>
+              <li>
+                <m>\exists \pi \colon U \to A</m> with <m>\pi|_A = \id_A</m>.
+              </li>
+              <li>
+                <m>\pi \sim 1_{(U,A)}</m> as maps of pairs from <m>(U,A)</m> to itself.
+              </li>
+            </ol>
+            (i.e. <m>A</m> is a <emph>deformation retract</emph> of <m>U</m>).
+          </statement>
+        </definition>
+
+        <example>
+          <title>
+            Good pairs
+          </title>
+          <statement>
+            <ol>
+              <li>
+                <m>(\text{smooth manifold}, \text{closed submanifold})</m>.
+              </li>
+              <li>
+                <m>(\text{simplicial complex}, \text{subcomplex})</m>.
+              </li>
+            </ol>
+          </statement>
+        </example>
+
+        <example>
+          <title>
+            Not good pairs
+          </title>
+          <statement>
+            <ol>
+              <li>
+                <m>(\RR, \QQ)</m>.
+              </li>
+              <li>
+                Letting <m>H\subset \RR^2</m> be the Hawaiian earring then <m>(\RR^2, H)</m> is not a good pair.
+              </li>
+            </ol>
+          </statement>
         </example>
       </subsection>
     </section>
