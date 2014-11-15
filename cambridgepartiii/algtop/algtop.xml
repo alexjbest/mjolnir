@@ -8,318 +8,445 @@ Copyright 2014 Alex J. Best
 
 <mathbook>
 
-    <docinfo>
-        <brandlogo url="alexjbest.github.io/mjolnir/" source="../../images/mjolnir.png" />
-        <macros>
-        \DeclareMathOperator{\Map}{Map}
-        \DeclareMathOperator{\dim}{dim}
-        \DeclareMathOperator{\im}{im}
-        \DeclareMathOperator{\CC}{\mathbf{C}}
-        \DeclareMathOperator{\RR}{\mathbf{R}}
-        \DeclareMathOperator{\ZZ}{\mathbf{Z}}
-        \DeclareMathOperator{\C}{C_*}
-        \DeclareMathOperator{\H}{H_*}
-        </macros>
-        <initialism>AT</initialism>
-        <feedback>
-            <url>https://github.com/alexjbest/mjolnir/issues</url>
-        </feedback>
-    </docinfo>
+  <docinfo>
+    <brandlogo url="http://alexjbest.github.io/mjolnir/" source="../../images/mjolnir.png" />
+    <macros>
+    \DeclareMathOperator{\Map}{Map}
+    \DeclareMathOperator{\dim}{dim}
+    \DeclareMathOperator{\im}{im}
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\C}{C_*}
+    </macros>
+    <initialism>AT</initialism>
+    <feedback>
+      <url>https://github.com/alexjbest/mjolnir/issues</url>
+    </feedback>
+  </docinfo>
 
-    <article xml:id="algtop">
-        <title>Part III Algebraic Topology 2014</title>
+  <article xml:id="algtop">
+    <title>Part III Algebraic Topology 2014</title>
 
-        <frontmatter xml:id="index">
-            <titlepage>
-                <author>
-                    <personname>Jacob Rasmussen</personname>
-                    <department>DPMMS</department>
-                    <institution>University of Cambridge</institution>
-                </author>
-                <author>
-                    <personname>Alex J. Best</personname>
-                    <department>DPMMS</department>
-                    <institution>University of Cambridge</institution>
-                </author>
+    <frontmatter xml:id="index">
+      <titlepage>
+        <author>
+          <personname>Jacob Rasmussen</personname>
+          <department>DPMMS</department>
+          <institution>University of Cambridge</institution>
+        </author>
+        <author>
+          <personname>Alex J. Best</personname>
+          <department>DPMMS</department>
+          <institution>University of Cambridge</institution>
+        </author>
 
-                <date><today /></date>
-            </titlepage>
+        <date><today /></date>
+      </titlepage>
 
-            <abstract>
-                <p>
-                    These are lecture notes for the 2014 Part III Algebraic Topology course taught by Dr. Jacob Rasmussen.
-                </p>
-            </abstract>
-        </frontmatter>
+      <abstract>
+        <p>
+          These are lecture notes for the 2014 Part III Algebraic Topology course taught by Dr. Jacob Rasmussen.
+        </p>
+      </abstract>
+    </frontmatter>
 
-        <section>
-            <title>Introduction</title>
+    <section>
+      <title>Introduction</title>
 
-            <p>The recommended books are:
-                <ul>
-                    <li><url href="http://www.math.cornell.edu/~hatcher/AT/ATpage.html">Algebraic Topology</url> - Allen Hatcher,</li>
-                    <li>Homology Theory - James W. Vick,</li>
-                    <li>Differential Forms in Algebraic Topology - Raoul Bott and Loring W. Tu.</li>
-                </ul>
-            </p>
+      <p>The recommended books are:
+        <ul>
+          <li><url href="http://www.math.cornell.edu/~hatcher/AT/ATpage.html">Algebraic Topology</url> - Allen Hatcher,</li>
+          <li>Homology Theory - James W. Vick,</li>
+          <li>Differential Forms in Algebraic Topology - Raoul Bott and Loring W. Tu.</li>
+        </ul>
+      </p>
 
-            <p>Generated: <today />, <timeofday /></p>
+      <p>Generated: <today />, <timeofday /></p>
 
-        </section>
+    </section>
 
-        <section>
-            <title>Homotopy</title>
-            <subsection>
-                <title>Homotopies</title>
+    <section>
+      <title>Homotopy</title>
+      <subsection>
+        <title>Homotopies</title>
 
-                <definition>
-                    <title>Homotopic maps</title>
-                    <statement>
-                        Maps <m>f_0,f_1\colon X \to Y</m> are said to be <term>homotopic</term> if there is a
-                        continuous map <m>F\colon X\times I \to Y</m> such that
-                        <me>
-                            F(x,0) = f_0(x)\text{ and }F(x,1) = f_1(x)\ \forall x\in X.
-                        </me>
-                    </statement>
-                </definition>
+        <definition>
+          <title>Homotopic maps</title>
+          <statement>
+            Maps <m>f_0,f_1\colon X \to Y</m> are said to be <term>homotopic</term> if there is a
+            continuous map <m>F\colon X\times I \to Y</m> such that
+            <me>
+              F(x,0) = f_0(x)\text{ and }F(x,1) = f_1(x)\ \forall x\in X.
+            </me>
+          </statement>
+        </definition>
 
-                <p>
-                    We let <m>\Map(X,Y) = \{f\colon X \to Y \text{ continuous}\}</m>.
-                    Then letting <m>f_t(x) = F(x,t)</m> in the above definition we see that <m>f_t</m> is a
-                    path from <m>f_0</m> to <m>f_1</m> in <m>\Map(X,Y)</m>.
-                </p>
+        <p>
+          We let <m>\Map(X,Y) = \{f\colon X \to Y \text{ continuous}\}</m>.
+          Then letting <m>f_t(x) = F(x,t)</m> in the above definition we see that <m>f_t</m> is a
+          path from <m>f_0</m> to <m>f_1</m> in <m>\Map(X,Y)</m>.
+        </p>
 
-                <example>
-                    <ol>
-                        <li><m>X = Y = \RR^n</m>, <m>f_0(\overline{x}) = \overline{0}</m> and <m>f_1(\overline{x}) = \overline{x}</m> are homotopic via <m>f_t(\overline{x}) = t\overline{x}</m>.</li>
-                        <li><m>S^1 = \{z\in \CC : |z| = 1\}</m> then <todo></todo></li>
-                        <li><m>S^n = \{ \overline{x} \in \RR^n : |\overline{x}| = 1\}</m> <todo></todo></li>
-                    </ol>
-                </example>
+        <example>
+          <ol>
+            <li><m>X = Y = \RR^n</m>, <m>f_0(\overline{x}) = \overline{0}</m> and <m>f_1(\overline{x}) = \overline{x}</m> are homotopic via <m>f_t(\overline{x}) = t\overline{x}</m>.</li>
+            <li><m>S^1 = \{z\in \CC : |z| = 1\}</m> then <todo></todo></li>
+            <li><m>S^n = \{ \overline{x} \in \RR^n : |\overline{x}| = 1\}</m> <todo></todo></li>
+          </ol>
+        </example>
 
-                <lemma>
-                    <statement>
-                        Homotopy is an equivalence relation on <m>\Map(X,Y)</m>.
-                    </statement>
-                </lemma>
+        <lemma>
+          <statement>
+            Homotopy is an equivalence relation on <m>\Map(X,Y)</m>.
+          </statement>
+        </lemma>
 
-                <notation>
-                    <me>
-                        [X,Y] = \Map(X,Y)/\sim = \text{set of homotopy classes of maps } X \to Y.
-                    </me>
-                </notation>
+        <notation>
+          <me>
+            [X,Y] = \Map(X,Y)/\sim = \text{set of homotopy classes of maps } X \to Y.
+          </me>
+        </notation>
 
-                <lemma>
-                    <statement>
-                        If <m>f_0 \sim f_1\colon X \to Y</m> and <m>g_0 \sim g_1\colon Y \to Z</m> then
-                        <m>g_0\circ f_0 \sim g_1\circ f_1</m>.
-                    </statement>
-                </lemma>
+        <lemma>
+          <statement>
+            If <m>f_0 \sim f_1\colon X \to Y</m> and <m>g_0 \sim g_1\colon Y \to Z</m> then
+            <m>g_0\circ f_0 \sim g_1\circ f_1</m>.
+          </statement>
+        </lemma>
 
-                <corollary>
-                    <statement>
-                        For any space <m>X</m> the set <m>[X,\RR^n]</m> has one element.
-                    </statement>
-                    <proof>
-                        Define <m>0_X\colon X \to \RR^n</m> by <m>0_X(x) = 0 \in \RR^n</m> for any <m>x\in X</m>.
-                    </proof>
-                </corollary>
+        <corollary>
+          <statement>
+            For any space <m>X</m> the set <m>[X,\RR^n]</m> has one element.
+          </statement>
+          <proof>
+            Define <m>0_X\colon X \to \RR^n</m> by <m>0_X(x) = 0 \in \RR^n</m> for any <m>x\in X</m>.
+          </proof>
+        </corollary>
 
-                <definition>
-                    <title>Contractible space</title>
-                    <statement>
-                        <m>X</m> is <term>contractible</term> if <m>1_X</m> is homotopic to a constant map.
-                    </statement>
-                </definition>
+        <definition>
+          <title>Contractible space</title>
+          <statement>
+            <m>X</m> is <term>contractible</term> if <m>1_X</m> is homotopic to a constant map.
+          </statement>
+        </definition>
 
-                <proposition>
-                    <statement>
-                        <m>Y</m> is contractible <m>\iff</m> <m>[X,Y]</m> has one element for any space <m>X</m>.
-                    </statement>
+        <proposition>
+          <statement>
+            <m>Y</m> is contractible <m>\iff</m> <m>[X,Y]</m> has one element for any space <m>X</m>.
+          </statement>
 
-                    <proof>
-                        (<m>\Rightarrow</m>) as in corollary.  (<m>\Leftarrow</m>) <m>[X,Y]</m> has one element so
-                        <m>1_Y \sim </m> a constant map.
-                    </proof>
-                </proposition>
+          <proof>
+            (<m>\Rightarrow</m>) as in corollary.  (<m>\Leftarrow</m>) <m>[X,Y]</m> has one element so
+            <m>1_Y \sim </m> a constant map.
+          </proof>
+        </proposition>
 
-                <p>
-                    Given a space <m>X</m> how can we tell if <m>X</m> is contractible? If <m>X</m> is
-                    contractible then it must be path connected for one.
+        <p>
+          Given a space <m>X</m> how can we tell if <m>X</m> is contractible? If <m>X</m> is
+          contractible then it must be path connected for one.
 
-                    <proof>
-                        Contractible implies that <m>[S^0, X]</m> has one element and so <m>f \colon
-                        S^0 \to X</m> extends to <m>D^1</m>, and therefore <m>X</m> is path connected. <todo></todo>
-                    </proof>
+          <proof>
+            Contractible implies that <m>[S^0, X]</m> has one element and so <m>f \colon
+            S^0 \to X</m> extends to <m>D^1</m>, and therefore <m>X</m> is path connected. <todo></todo>
+          </proof>
 
-                    Similarly if <m>[S^1, X]</m> has more than one element then <m>X</m> is not
-                    contractible.
-                </p>
+          Similarly if <m>[S^1, X]</m> has more than one element then <m>X</m> is not
+          contractible.
+        </p>
 
-                <definition>
-                    <title>Simply connected</title>
-                    <statement>
-                        We say <m>X</m> is <term>simply connected</term> if <m>[S^1, X]</m> has only one
-                        element.
+        <definition>
+          <title>Simply connected</title>
+          <statement>
+            We say <m>X</m> is <term>simply connected</term> if <m>[S^1, X]</m> has only one
+            element.
 
-                        We say two space <m>X</m> and <m>Y</m> are <em>homotopy equivalent</em> if there
-                        exists <m>f\colon X \to Y</m> and <m>g\colon Y \to X</m> such that <m>g\circ f
-                        \sim 1_X</m> and <m>f\circ g \sim 1_Y</m>.
-                    </statement>
-                </definition>
+            We say two space <m>X</m> and <m>Y</m> are <em>homotopy equivalent</em> if there
+            exists <m>f\colon X \to Y</m> and <m>g\colon Y \to X</m> such that <m>g\circ f
+            \sim 1_X</m> and <m>f\circ g \sim 1_Y</m>.
+          </statement>
+        </definition>
 
-                <example>
-                    <p>
-                        <m>X</m> is contractible if and only if <m>X \sim \{p\}</m>.
-                    </p>
-                    <proof>
-                        <m>X</m> contractible <m>\implies 1_X \sim c</m>, a constant map.
-                        Choose <m>f\colon X \to \{p\}</m>, <m>f(x) = p</m> and <m>g\colon\{p\} \to X</m>,
-                        <m>g(p) = c</m>. Then <m>g\circ f = c \sim 1</m> and <m>f\circ g = 1_{\{p\}}</m>.
-                        Converse: exercise.
-                    </proof>
-                </example>
+        <example>
+          <p>
+            <m>X</m> is contractible if and only if <m>X \sim \{p\}</m>.
+          </p>
+          <proof>
+            <m>X</m> contractible <m>\implies 1_X \sim c</m>, a constant map.
+            Choose <m>f\colon X \to \{p\}</m>, <m>f(x) = p</m> and <m>g\colon\{p\} \to X</m>,
+            <m>g(p) = c</m>. Then <m>g\circ f = c \sim 1</m> and <m>f\circ g = 1_{\{p\}}</m>.
+            Converse: exercise.
+          </proof>
+        </example>
 
-                <exercise>
-                    If <m>X_0 \sim X_1</m> and <m>Y_0 \sim Y_1</m> then <m>[X_0, Y_0]</m> and <m>[X_1,
-                    Y_1]</m> are in bijection.
-                </exercise>
+        <exercise>
+          If <m>X_0 \sim X_1</m> and <m>Y_0 \sim Y_1</m> then <m>[X_0, Y_0]</m> and <m>[X_1,
+          Y_1]</m> are in bijection.
+        </exercise>
 
-                <p>
-                    Given <m>X</m> and <m>Y</m> how can we determine if <m>X\sim Y</m>?
-                    How do we determine <m>[X,Y]</m>?
-                    For example is <m>S^n \sim S^m</m>.
-                </p>
+        <p>
+          Given <m>X</m> and <m>Y</m> how can we determine if <m>X\sim Y</m>?
+          How do we determine <m>[X,Y]</m>?
+          For example is <m>S^n \sim S^m</m>.
+        </p>
 
-            </subsection>
-            <subsection>
-                <title>Homotopy groups</title>
+      </subsection>
+      <subsection>
+        <title>Homotopy groups</title>
 
-                <definition>
-                    <title>Map of pairs</title>
-                    <statement>
-                        A <term>map of pairs</term> <m>f\colon (X, A) \to (Y, B)</m> is a map <m>f\colon X
-                        \to Y</m> with sets <m>A\subset X</m> and <m>B\subset Y</m> such that <m>f(A)\subset
-                        B</m>.
+        <definition>
+          <title>Map of pairs</title>
+          <statement>
+            A <term>map of pairs</term> <m>f\colon (X, A) \to (Y, B)</m> is a map <m>f\colon X
+            \to Y</m> with sets <m>A\subset X</m> and <m>B\subset Y</m> such that <m>f(A)\subset
+            B</m>.
 
-                        If we have maps of pairs <m>f_0, f_1\colon (X,A) \to (Y,B)</m> then we
-                        write <m>f_0\sim f_1</m> if there exists <m>F\colon(X\times I, A\times I) \to
-                        (Y,B)</m> such that <m>F(x,0) = f_0(x)</m> and <m>F(x,1) = f_1(x)</m>.
-                    </statement>
-                </definition>
+            If we have maps of pairs <m>f_0, f_1\colon (X,A) \to (Y,B)</m> then we
+            write <m>f_0\sim f_1</m> if there exists <m>F\colon(X\times I, A\times I) \to
+            (Y,B)</m> such that <m>F(x,0) = f_0(x)</m> and <m>F(x,1) = f_1(x)</m>.
+          </statement>
+        </definition>
 
-                <definition>
-                    <title>Homotopy groups</title>
-                    <statement>
-                        If <m>*\in X</m> then the <term><m>n</m>th homotopy group</term> is
-                        <me>\pi_n(X, *) = [(D^n, S^{n-1}) \to (X, \{*\})].</me>
-                    </statement>
-                </definition>
+        <definition>
+          <title>Homotopy groups</title>
+          <statement>
+            If <m>*\in X</m> then the <term><m>n</m>th homotopy group</term> is
+            <me>\pi_n(X, *) = [(D^n, S^{n-1}) \to (X, \{*\})].</me>
+          </statement>
+        </definition>
 
-                <p>
-                    We now note several properties of this definition:
-                    <ol>
-                        <li><m>\pi_0(X, *) =</m> set of path components of <m>X</m>.</li>
+        <p>
+          We now note several properties of this definition:
+          <ol>
+            <li><m>\pi_0(X, *) =</m> set of path components of <m>X</m>.</li>
 
-                        <li><m>\pi_1(X, *)</m> is a group.</li>
+            <li><m>\pi_1(X, *)</m> is a group.</li>
 
-                        <m>\pi_n(X, *)</m> is an abelian group. <todo></todo>
+            <m>\pi_n(X, *)</m> is an abelian group. <todo></todo>
 
-                        <li><m>\pi_n</m> is a functor
-                            <me>
-                                \left\{ \begin{subarray}{l}\text{pointed spaces} \\ \text{pointed
-                                maps} \end{subarray}\right\} \to \left\{\begin{subarray}{l}
-                                \text{groups}\\ \text{group homomorphisms}\end{subarray}\right\}.
-                            </me>
-                            So given
-                            <me>f\colon(X, p)\to(Y,q)</me>
-                            we get
-                            <me>f_*\colon \pi_n(X,p)\to\pi_n(y,q)</me>
-                            defined by
-                            <me>f_*(\gamma) = f\circ \gamma.</me>
-                            <todo>maybe id</todo>
-                        </li>
-                    </ol>
-                </p>
+            <li><m>\pi_n</m> is a functor
+              <me>
+                \left\{ \begin{subarray}{l}\text{pointed spaces} \\ \text{pointed
+                maps} \end{subarray}\right\} \to \left\{\begin{subarray}{l}
+                \text{groups}\\ \text{group homomorphisms}\end{subarray}\right\}.
+              </me>
+              So given
+              <me>f\colon(X, p)\to(Y,q)</me>
+              we get
+              <me>f_*\colon \pi_n(X,p)\to\pi_n(y,q)</me>
+              defined by
+              <me>f_*(\gamma) = f\circ \gamma.</me>
+              <todo>maybe id</todo>
+            </li>
+          </ol>
+        </p>
 
-                <example>
-                    <title>Homotopy groups of <m>S^2</m></title>
-                    <table xml:id="table-euler1">
-                        <tgroup cols="8" align="center">
-                        <tbody>
-                        <row><entry><m>n</m></entry><entry>1</entry><entry>2</entry><entry>3</entry><entry>4</entry><entry>5</entry><entry>6</entry><entry>7</entry></row>
-                        <row><entry><m>\pi_n(S^2)</m></entry><entry>0</entry><entry><m>\ZZ</m></entry><entry><m>\ZZ</m></entry><entry><m>\ZZ/2</m></entry><entry><m>\ZZ/2</m></entry><entry><m>\ZZ/12</m></entry><entry><m>\ZZ/15</m></entry></row>
-                        </tbody>
-                        </tgroup>
-                    </table>
-                </example>
-            </subsection>
-        </section>
+        <example>
+          <title>Homotopy groups of <m>S^2</m></title>
+          <table xml:id="table-euler1">
+            <tgroup cols="8" align="center">
+            <tbody>
+            <row><entry><m>n</m></entry><entry>1</entry><entry>2</entry><entry>3</entry><entry>4</entry><entry>5</entry><entry>6</entry><entry>7</entry></row>
+            <row><entry><m>\pi_n(S^2)</m></entry><entry>0</entry><entry><m>\ZZ</m></entry><entry><m>\ZZ</m></entry><entry><m>\ZZ/2</m></entry><entry><m>\ZZ/2</m></entry><entry><m>\ZZ/12</m></entry><entry><m>\ZZ/15</m></entry></row>
+            </tbody>
+            </tgroup>
+          </table>
+        </example>
+      </subsection>
+    </section>
 
-        <section>
-            <title>Homology</title>
-            <p>
-                Our goal is to construct a functor <m>\H</m> from the category of topological spaces and continuous maps to the category of <m>\ZZ</m>-modules and <m>\ZZ</m>-linear maps.
-                This means to each space <m>X</m> we associate an abelian group <m>\H(X) = \bigoplus_{n\ge 0}H_n(X)</m>, and to each map <m>f\colon X \to Y</m> a function <m>f_*\colon H_n(X) \to H_n(Y)</m> satisfying <m>(1_X)_* = 1_{H_n(X)}</m> and <m>(f\circ g)_* = f_* \circ g_*</m>.
-            </p>
-            <p>
-                Some properties we would like to have for our construction are:
-                <ol>
-                    <li>Homotopy invariance, if <m>f \sim g \colon X \to Y</m> then <m>f_* = g_*</m>.</li>
-                    <li>The dimension axiom, <m>H_n(X) = 0</m> for any <m>n > \dim X</m>.</li>
-                </ol>
-            </p>
-            
-            <subsection>
-                <title>Chain complexes</title>
-                <definition>
-                    <title>Chain complex</title>
-                    <statement>
-                        If <m>R</m> is a commutative ring then a <term>chain complex</term> over <m>R</m> is a pair <m>(C,d)</m> satisfying:
-                        <ol>
-                            <li><m>C = \bigoplus_{n\in\ZZ} C_n</m> for <m>R</m>-modules <m>C_n</m>.</li>
-                            <li><m>d\colon C \to C</m> where <m>d = \bigoplus d_n</m> for <m>R</m>-linear maps <m>d_n</m>.</li>
-                            <li><m>d\circ d = 0</m>.</li>
-                        </ol>
-                        The indexing by <m>n</m> is called a <term>grading</term>.
-                        Usually we take <m>C_n = 0</m> for <m>n \lt 0</m>.
-                        An element of <m>\ker d_n</m> is called <term>closed</term> or a <term>cycle</term>.
-                        An element of <m>\im d_n</m> is called a <term>boundary</term>.
-                        <m>d</m> is the <term>boundary map</term> or <term>differential</term>.
-                    </statement>
-                </definition>
-                <definition>
-                    <title>Homology groups</title>
-                    <statement>
-                        If <m>(C,d)</m> is a chain complex, its <term><m>n</m>th homology group</term> is
-                        <me>H_n(C,d) = \ker d_n/\im d_{n+1}.</me>
-                        If <m>x \in \ker d_n</m> we write <m>[x]</m> for its image in <m>H_n(C)</m>.
-                    </statement>
-                </definition>
-                <example>
-                    <ol>
-                        <li>
-                            <m>C_0 = C_1 = \ZZ</m>, <m>C_i = 0</m> otherwise,
-                            <me>0\to \ZZ \xrightarrow{\cdot 3} \ZZ \to 0.</me>
-                            Then <m>H_1 = 0</m>, <m>H_0 = \ZZ/3</m>.
-                        </li>
-                        <li>
-                            <me>\ZZ</me>
-                        </li>
-                    </ol>
-                </example>
-            </subsection>
-        </section>
+    <section>
+      <title>Homology</title>
+      <p>
+        Our goal is to construct a functor <m>H_*</m> from the category of topological spaces and continuous maps to the category of <m>\ZZ</m>-modules and <m>\ZZ</m>-linear maps.
+        This means to each space <m>X</m> we associate an abelian group <m>H_*(X) = \bigoplus_{n\ge 0}H_n(X)</m>, and to each map <m>f\colon X \to Y</m> a function <m>f_*\colon H_n(X) \to H_n(Y)</m> satisfying <m>(1_X)_* = 1_{H_n(X)}</m> and <m>(f\circ g)_* = f_* \circ g_*</m>.
+      </p>
+      <p>
+        Some properties we would like to have for our construction are:
+        <ol>
+          <li>Homotopy invariance, if <m>f \sim g \colon X \to Y</m> then <m>f_* = g_*</m>.</li>
+          <li>The dimension axiom, <m>H_n(X) = 0</m> for any <m>n > \dim X</m>.</li>
+        </ol>
+      </p>
+      
+      <subsection>
+        <title>Chain complexes</title>
+        <definition>
+          <title>Chain complex</title>
+          <statement>
+            If <m>R</m> is a commutative ring then a <term>chain complex</term> over <m>R</m> is a pair <m>(C,d)</m> satisfying:
+            <ol>
+              <li><m>C = \bigoplus_{n\in\ZZ} C_n</m> for <m>R</m>-modules <m>C_n</m>.</li>
+              <li><m>d\colon C \to C</m> where <m>d = \bigoplus d_n</m> for <m>R</m>-linear maps <m>d_n</m>.</li>
+              <li><m>d\circ d = 0</m>.</li>
+            </ol>
+            The indexing by <m>n</m> is called a <term>grading</term>.
+            Usually we take <m>C_n = 0</m> for <m>n \lt 0</m>.
+            An element of <m>\ker d_n</m> is called <term>closed</term> or a <term>cycle</term>.
+            An element of <m>\im d_n</m> is called a <term>boundary</term>.
+            <m>d</m> is the <term>boundary map</term> or <term>differential</term>.
+          </statement>
+        </definition>
 
-        <backmatter>
-            <title>Reference</title>
+        <definition>
+          <title>Homology groups</title>
+          <statement>
+            If <m>(C,d)</m> is a chain complex, its <term><m>n</m>th homology group</term> is
+            <me>H_n(C,d) = \ker d_n/\im d_{n+1}.</me>
+            If <m>x \in \ker d_n</m> we write <m>[x]</m> for its image in <m>H_n(C)</m>.
+          </statement>
+        </definition>
 
-            <section>
-                <title>Notation</title>
-                <notation-list />
-            </section>
-        </backmatter>
+        <example>
+          <ol>
+            <li>
+              <m>C_0 = C_1 = \ZZ</m>, <m>C_i = 0</m> otherwise,
+              <me>0\to \ZZ \xrightarrow{\cdot 3} \ZZ \to 0.</me>
+              Then <m>H_1 = 0</m>, <m>H_0 = \ZZ/3</m>.
+            </li>
+            <li>
+              <me>\ZZ=\langle e\rangle\to\ZZ^2 = \langle f_1,f_2\rangle\to\ZZ=\langle g\rangle \to 0</me>
+              with <m>d(e) = f_1-f_2</m>, <m>d(f_1) = d(f_2) = g</m>, then <m>H_*(C) = 0</m>(exercise).
+            </li>
+          </ol>
+        </example>
+      </subsection>
 
-    </article>
+      <subsection>
+        <title>The chain complex of a simplex</title>
+
+        <definition>
+          <title><m>n</m>-simplex</title>
+          <statement>The <term><m>n</m>-dimensional simplex</term> <m>\Delta^n</m> is <me>\Delta^n = \left\{ (x_0,\ldots,x_n)\in\RR^n : \sum_{i} x_i = 1,\, x_i \ge 0 \forall i\right\}.</me>
+          <m>\Delta^n</m> has <term>vertices</term> <m>v_0,\ldots,v_n</m> which are the intersections with the coordinate axes. The <m>k</m>-dimensional <term>faces</term> are in bijection with the <m>k+1</m>element subsets of <m>\{0,\ldots,n\}</m>.
+          </statement>
+        </definition>
+
+        <todo>examples with pics</todo>
+        <definition>
+        <title>Simplicial chain complex</title>
+        <statement><m>S_*(\Delta^n)</m> is the chain complex with <m>S_k(\Delta^n)</m> the free <m>\ZZ</m>-module generated by the <m>k</m>-dimensional faces of <m>\Delta^n</m>.
+        So <me>S_k(\Delta^n) = \langle e_I : I = \{i_0,\ldots,i_k : 0 \le i_0 \le \cdots \le i_k \le n \}\rangle.</me>
+        To define <m>d</m> it suffices to define <m>d(e_I)</m>, we let <me>d(e_I) = \sum_{j = 0}^{k}(-1)^j e_{i_0,\ldots,i_{j-1}, i_{j+1},\ldots,i_k}\in S_{k-1}(\Delta^n).</me>
+        </statement>
+        </definition>
+
+        <example>
+          <ol>
+          <li>For <m>\Delta^1</m> we have <m>d(e_{0,1}) = e_1 - e_0</m>.</li>
+          <li>For <m>\Delta^2</m> we have <m>d(e_{0,1,2}) = e_{12} - e_{02} + e_{01}</m> and so <m>d^2(e_{I} = (e_2 - e_1) - (e_2 - e_0) + (e_1 - e_0) = 0</m>.</li>
+          </ol>
+        </example>
+
+        <lemma>
+        <statement><m>d^2 = 0</m></statement>
+        <proof>It suffices to show <m>d^2(e_I) = 0</m> for all <m>I</m>.
+        <md>
+        <mrow>
+        d^2(e_I) &amp;= d\left(\sum_{j = 0}^{k} (-1)^j e_{i_0,\ldots,\hat{i}_j,\ldots,i_k}\right)
+        </mrow>
+        <mrow>
+        &amp;= \sum_{j = 0}^{k} (-1)^j d\left(e_{i_0,\ldots,\hat{i}_j,\ldots,i_k} \right)
+        </mrow>
+        <mrow>
+        &amp;= \sum_{j = 0}^{k} (-1)^j\left( \sum_{l \lt j} (-1)^l e_{i_0,\ldots,\hat{i}_l,\ldots,\hat{i}_j,\ldots,i_k} + \sum_{l \gt j} (-1)^{l-1} e_{i_0,\ldots,\hat{i}_j,\ldots,\hat{i}_l,\ldots,i_k}\right)
+        </mrow>
+        <mrow>
+        &amp;= \sum_{j = 0}^{k} \left( \sum_{l \lt j} (-1)^{l+j} e_{I - i_l - i_j} - \sum_{l \gt j} (-1)^{l+j} e_{I - i_j - i_l}\right) = 0.
+        </mrow>
+        <todo></todo>
+        </md></proof>
+        </lemma>
+
+        <example>
+        <title>Computing <m>H_*(S_*(\Delta^2))</m></title>
+        <p><me>0\to \ZZ = \langle e_{012}\rangle \to \ZZ^3 = \langle e_{01}, e_{02},e_{12}\rangle \to \ZZ^3 = \langle e_0,e_1,e_2 \rangle \to 0</me>
+        with <m>d(e_{012}) = e_{12} - e_{02} + e_{01}</m>.
+        So <m>\ker d_2 = 0 \implies H_2 = 0</m>.
+        <me>d(ae_{01} + be_{02} + ce_{12}) = a(e_1 - e_0) + b (e_2 - e_1)  + c(e_2 - e_0)</me>
+        so <m>ae_{01} + be_{02} + ce_{12}\in \ker d_1 \iff -a-b=0,\,a-c = 0,\, c+b = 0 \iff a = -b = c</m>
+        hence <m>\ker d_1 = \langle e_{01} - e_{02} + e_{12} = \im d_2</m> and so <m>H_1 = 0</m>.
+        <m>\ker(d_0) = 0</m>, <m>\im d_1 = \langle e_1 - e_0, e_2 - e_1, e_2 - e_0\rangle</m> so <m>H_0 = \ZZ = \langle [e_0]\rangle</m>.
+        </p></example>
+
+        <exercise><m>H_*(S_*(\Delta^n)) = 0</m> if <m>k \ne 0</m> and <m>\ZZ</m> if <m>k = 0</m>.</exercise>
+
+      </subsection>
+
+      <subsection>
+        <title>The singular chain complex</title>
+        <definition>
+          <title>Singular chain complex </title>
+        <statement>
+        If <m>X</m> is a space, the <term>singular chain complex</term> of <m>X</m>, <m>C_*(X)</m> is defined by
+        <me>C_n(x) = \langle e_\sigma : \sigma \colon \Delta^n \to X \text{ any continuous map}\rangle.</me>
+        Where 
+        <me>d(e_\sigma) = \sum_{j=0}^{n} (-1)^j e_{\sigma\circ F_j} \in C_{n-1}(X)</me>
+        where <m>F_j\colon \Delta^{n-1} \to \Delta^n</m> is given by <m>F_j(x_0,\ldots,x_{n_1} = (x_0,\ldots,0,\ldots,x_{n-1})</m> with the <m>0</m> in the <m>j</m>th place.
+        </statement>
+        </definition>
+        <todo>missed section</todo>
+
+        <subsubsection>
+        <title>Homotopy invariance</title>
+
+          <definition>
+            <title>Chain homotopic maps</title>
+          <statement>
+          Suppose <m>\phi,\psi\colon C_* \to C_*'</m> are chain maps, we say that <m>\phi</m> are <term>chain homtopic</term> if there exists an <m>R</m>-linear map <m>h\colon C_* \to C_{*+1}'</m> such that <m>d'\circ h + h \circ d' = \phi - \psi</m>.
+          We denote this relation by <m>\phi \sim \psi</m>.
+          </statement>
+          </definition>
+
+          <lemma>
+          <statement>
+          If <m>\phi \sim \psi</m> then <m>\phi_* = \psi_*</m>.
+          </statement>
+          <proof>
+          <md>
+          <mrow>
+          \phi_*([x]) - \psi_*([x]) &amp;= [\phi(x) - \psi(x)]
+          </mrow>
+          <mrow>
+          &amp;= [d'hx + hdx] = [d'hx] = 0 \in H_*(C').
+          </mrow>
+          </md>
+          </proof>
+          </lemma>
+
+          <theorem>
+            <statement>
+              Suppose <m>f\sim g\colon X\to Y</m> via <m>H</m> then <m>f_\# \sim g_\# \implies f_* = g_*</m>.
+            </statement>
+          </theorem>
+          <proof>
+          <todo></todo>
+          </proof>
+
+          <corollary>
+            <statement>
+              If <m>X\sim Y</m> then <m>H_*(X) \cong H_*(Y)</m>.
+            </statement>
+          </corollary>
+
+          <corollary>
+            <statement>
+              If <m>X</m> is contractible then <m>H_*(X) \cong H_*(\{p\}) \cong \ZZ</m> if <m>* = 0</m>, <m>0</m> otherwise.
+            </statement>
+          </corollary>
+        </subsubsection>
+      </subsection>
+    </section>
+
+    <backmatter>
+      <title>Reference</title>
+
+      <section>
+        <title>Notation</title>
+        <notation-list />
+      </section>
+    </backmatter>
+
+  </article>
 
 </mathbook>
