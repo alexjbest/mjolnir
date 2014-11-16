@@ -1,10 +1,10 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2014-11-14T01:38:39Z    %%
+%%    on 2014-11-16T03:25:35Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
-\documentclass[10pt,]{article}
+\documentclass[10pt,]{book}
 %% Load geometry package to allow page margin adjustments
 \usepackage{geometry}
 \geometry{letterpaper,total={5.0in,9.0in}}
@@ -12,10 +12,6 @@
 %% Inline math delimiters, \(, \), made robust with next package
 \usepackage{fixltx2e}
 %% Page Layout Adjustments (latex.geometry)
-%% For unicode character support, use the "xelatex" executable
-%% If never using xelatex, the next three lines can be removed
-\usepackage{ifxetex}
-\ifxetex\usepackage{xltxtra}\fi
 %% Symbols, align environment, bracket-matrix
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -66,6 +62,9 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{exercise}[theorem]{Exercise}
+%% Equation Numbering
+%% Controlled by  numbering.equations.level  processing parameter
+\numberwithin{equation}{section}
 %% Figures, Tables, Floats
 %% The [H]ere option of the float package fixes floats in-place,
 %% in deference to web usage, where floats are totally irrelevant
@@ -80,6 +79,11 @@
 %% You can remove the [H] argument of the \newfloat command, to allow flotation and 
 %% preserve numbering, BUT the numbering may then appear "out-of-order"
 \usepackage{float}
+\newfloat{mbxfigure}{H}{lof}[section]
+\floatname{mbxfigure}{Figure}
+\renewenvironment{figure}%
+{\begin{mbxfigure}\setcounter{mbxfigure}{\value{theorem}}\stepcounter{theorem}}%
+{\end{mbxfigure}}
 \newfloat{mbxtable}{H}{lot}[section]
 \floatname{mbxtable}{Table}
 \renewenvironment{table}%
@@ -103,177 +107,194 @@
 \DeclareMathOperator{\Map}{Map}
 \DeclareMathOperator{\dim}{dim}
 \DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\CC}{\mathbf{C}}
+\DeclareMathOperator{\QQ}{\mathbf{Q}}
 \DeclareMathOperator{\RR}{\mathbf{R}}
 \DeclareMathOperator{\ZZ}{\mathbf{Z}}
 \DeclareMathOperator{\C}{C_*}
-\DeclareMathOperator{\H}{H_*}
-%% Title page information for article
+\DeclareMathOperator{\U}{\mathcal{U}}
+%% Title page information for book
 \title{Part III Algebraic Topology 2014}
-\author{Jacob Rasmussen\\
-DPMMS\\
-University of Cambridge
-\and
-Alex J. Best\\
-DPMMS\\
-University of Cambridge
-}
-\date{November 14, 2014}
+\author{}
+\date{}
 \begin{document}
-\maketitle
+\frontmatter
+%% half-title
 \thispagestyle{empty}
-\begin{abstract}
-
-                    These are lecture notes for the 2014 Part III Algebraic Topology course taught by Dr. Jacob Rasmussen.
-                %
-\end{abstract}
+\vspace*{\stretch{1}}
+\begin{center}
+{\Huge Part III Algebraic Topology 2014}
+\end{center}\par
+\vspace*{\stretch{2}}
+\clearpage
+\thispagestyle{empty}
+\clearpage
+\maketitle
+\clearpage
+\thispagestyle{empty}
+\vspace*{\stretch{2}}
+\vspace*{\stretch{1}}
+\clearpage
 \setcounter{tocdepth}{1}
 \renewcommand*\contentsname{Contents}
 \tableofcontents
-\clearpage
+\mainmatter
 \typeout{************************************************}
-\typeout{Section 1 Introduction}
+\typeout{Chapter 1 Homology}
+\typeout{************************************************}
+\chapter[Homology]{Homology}\label{chapter-1}
+\typeout{************************************************}
+\typeout{Section 1.1 Introduction}
 \typeout{************************************************}
 \section[Introduction]{Introduction}\label{section-1}
-The recommended books are:
-                \begin{itemize}
+
+          These are lecture notes for the 2014 Part III Algebraic Topology course taught by Dr. Jacob Rasmussen.
+        %
+\par
+
+          The recommended books are:
+          \begin{itemize}
 \item{}\href{http://www.math.cornell.edu/~hatcher/AT/ATpage.html}{Algebraic Topology} - Allen Hatcher,\item{}Homology Theory - James W. Vick,\item{}Differential Forms in Algebraic Topology - Raoul Bott and Loring W. Tu.\end{itemize}
 
-            %
+        %
 \par
-Generated: November 14, 2014, 01:38:39 (Z)%
+
+          Generated: November 16, 2014, 03:25:35 (Z)
+        %
 \typeout{************************************************}
-\typeout{Section 2 Homotopy}
+\typeout{Section 1.2 Homotopy}
 \typeout{************************************************}
 \section[Homotopy]{Homotopy}\label{section-2}
 \typeout{************************************************}
-\typeout{Subsection 2.1 Homotopies}
+\typeout{Subsection 1.2.1 Homotopies}
 \typeout{************************************************}
 \subsection[Homotopies]{Homotopies}\label{subsection-1}
 \begin{definition}[Homotopic maps]\label{definition-1}
 
-                        Maps \(f_0,f_1\colon X \to Y\) are said to be \terminology{homotopic} if there is a
-                        continuous map \(F\colon X\times I \to Y\) such that
-                        \[
-                            F(x,0) = f_0(x)\text{ and }F(x,1) = f_1(x)\ \forall x\in X.
-                        \]\end{definition}
+              Maps \(f_0,f_1\colon X \to Y\) are said to be \terminology{homotopic} if there is a
+              continuous map \(F\colon X\times I \to Y\) such that
+              \[
+                F(x,0) = f_0(x)\text{ and }F(x,1) = f_1(x)\ \forall x\in X.
+              \]\end{definition}
 
-                    We let \(\Map(X,Y) = \{f\colon X \to Y \text{ continuous}\}\).
-                    Then letting \(f_t(x) = F(x,t)\) in the above definition we see that \(f_t\) is a
-                    path from \(f_0\) to \(f_1\) in \(\Map(X,Y)\).
-                %
+            We let \(\Map(X,Y) = \{f\colon X \to Y \text{ continuous}\}\).
+            Then letting \(f_t(x) = F(x,t)\) in the above definition we see that \(f_t\) is a
+            path from \(f_0\) to \(f_1\) in \(\Map(X,Y)\).
+          %
 \begin{example}\label{example-1}
 \begin{enumerate}
 \item{}\(X = Y = \RR^n\), \(f_0(\overline{x}) = \overline{0}\) and \(f_1(\overline{x}) = \overline{x}\) are homotopic via \(f_t(\overline{x}) = t\overline{x}\).\item{}\(S^1 = \{z\in \CC : |z| = 1\}\) then \item{}\(S^n = \{ \overline{x} \in \RR^n : |\overline{x}| = 1\}\) \end{enumerate}
 \end{example}
 \begin{lemma}\label{lemma-1}
 
-                        Homotopy is an equivalence relation on \(\Map(X,Y)\).
-                    \end{lemma}
+              Homotopy is an equivalence relation on \(\Map(X,Y)\).
+            \end{lemma}
 \label{notation-1}
 \begin{lemma}\label{lemma-2}
 
-                        If \(f_0 \sim f_1\colon X \to Y\) and \(g_0 \sim g_1\colon Y \to Z\) then
-                        \(g_0\circ f_0 \sim g_1\circ f_1\).
-                    \end{lemma}
+              If \(f_0 \sim f_1\colon X \to Y\) and \(g_0 \sim g_1\colon Y \to Z\) then
+              \(g_0\circ f_0 \sim g_1\circ f_1\).
+            \end{lemma}
 \begin{corollary}\label{corollary-1}
 
-                        For any space \(X\) the set \([X,\RR^n]\) has one element.
-                    \end{corollary}
+              For any space \(X\) the set \([X,\RR^n]\) has one element.
+            \end{corollary}
 \begin{proof}
 
-                        Define \(0_X\colon X \to \RR^n\) by \(0_X(x) = 0 \in \RR^n\) for any \(x\in X\).
-                    \end{proof}
+              Define \(0_X\colon X \to \RR^n\) by \(0_X(x) = 0 \in \RR^n\) for any \(x\in X\).
+            \end{proof}
 \begin{definition}[Contractible space]\label{definition-2}
 \(X\) is \terminology{contractible} if \(1_X\) is homotopic to a constant map.
-                    \end{definition}
+            \end{definition}
 \begin{proposition}\label{proposition-1}
 \(Y\) is contractible \(\iff\)\([X,Y]\) has one element for any space \(X\).
-                    \end{proposition}
+            \end{proposition}
 \begin{proof}
 
-                        (\(\Rightarrow\)) as in corollary.  (\(\Leftarrow\)) \([X,Y]\) has one element so
-                        \(1_Y \sim \) a constant map.
-                    \end{proof}
+              (\(\Rightarrow\)) as in corollary.  (\(\Leftarrow\)) \([X,Y]\) has one element so
+              \(1_Y \sim \) a constant map.
+            \end{proof}
 \par
 
-                    Given a space \(X\) how can we tell if \(X\) is contractible? If \(X\) is
-                    contractible then it must be path connected for one.
+            Given a space \(X\) how can we tell if \(X\) is contractible? If \(X\) is
+            contractible then it must be path connected for one.
 
-                    \begin{proof}
+            \begin{proof}
 
-                        Contractible implies that \([S^0, X]\) has one element and so \(f \colon
-                        S^0 \to X\) extends to \(D^1\), and therefore \(X\) is path connected. \end{proof}
+              Contractible implies that \([S^0, X]\) has one element and so \(f \colon
+              S^0 \to X\) extends to \(D^1\), and therefore \(X\) is path connected. \end{proof}
 
 
-                    Similarly if \([S^1, X]\) has more than one element then \(X\) is not
-                    contractible.
-                %
+            Similarly if \([S^1, X]\) has more than one element then \(X\) is not
+            contractible.
+          %
 \begin{definition}[Simply connected]\label{definition-3}
 
-                        We say \(X\) is \terminology{simply connected} if \([S^1, X]\) has only one
-                        element.
+              We say \(X\) is \terminology{simply connected} if \([S^1, X]\) has only one
+              element.
 
-                        We say two space \(X\) and \(Y\) are \emph{homotopy equivalent} if there
-                        exists \(f\colon X \to Y\) and \(g\colon Y \to X\) such that \(g\circ f
-                        \sim 1_X\) and \(f\circ g \sim 1_Y\).
-                    \end{definition}
+              We say two space \(X\) and \(Y\) are \emph{homotopy equivalent} if there
+              exists \(f\colon X \to Y\) and \(g\colon Y \to X\) such that \(g\circ f
+              \sim 1_X\) and \(f\circ g \sim 1_Y\).
+            \end{definition}
 \begin{example}\label{example-2}
 
-                        \(X\) is contractible if and only if \(X \sim \{p\}\).
-                    %
+              \(X\) is contractible if and only if \(X \sim \{p\}\).
+            %
 \begin{proof}
 \(X\) contractible \(\implies 1_X \sim c\), a constant map.
-                        Choose \(f\colon X \to \{p\}\), \(f(x) = p\) and \(g\colon\{p\} \to X\),
-                        \(g(p) = c\). Then \(g\circ f = c \sim 1\) and \(f\circ g = 1_{\{p\}}\).
-                        Converse: exercise.
-                    \end{proof}
+              Choose \(f\colon X \to \{p\}\), \(f(x) = p\) and \(g\colon\{p\} \to X\),
+              \(g(p) = c\). Then \(g\circ f = c \sim 1\) and \(f\circ g = 1_{\{p\}}\).
+              Converse: exercise.
+            \end{proof}
 \end{example}
 \begin{exercise}\label{exercise-1}
 \end{exercise}
 \par
 
-                    Given \(X\) and \(Y\) how can we determine if \(X\sim Y\)?
-                    How do we determine \([X,Y]\)?
-                    For example is \(S^n \sim S^m\).
-                %
+            Given \(X\) and \(Y\) how can we determine if \(X\sim Y\)?
+            How do we determine \([X,Y]\)?
+            For example is \(S^n \sim S^m\).
+          %
 \typeout{************************************************}
-\typeout{Subsection 2.2 Homotopy groups}
+\typeout{Subsection 1.2.2 Homotopy groups}
 \typeout{************************************************}
 \subsection[Homotopy groups]{Homotopy groups}\label{subsection-2}
 \begin{definition}[Map of pairs]\label{definition-4}
 
-                        A \terminology{map of pairs}\(f\colon (X, A) \to (Y, B)\) is a map \(f\colon X
-                        \to Y\) with sets \(A\subset X\) and \(B\subset Y\) such that \(f(A)\subset
-                        B\).
+              A \terminology{map of pairs}\(f\colon (X, A) \to (Y, B)\) is a map \(f\colon X
+              \to Y\) with sets \(A\subset X\) and \(B\subset Y\) such that \(f(A)\subset
+              B\).
 
-                        If we have maps of pairs \(f_0, f_1\colon (X,A) \to (Y,B)\) then we
-                        write \(f_0\sim f_1\) if there exists \(F\colon(X\times I, A\times I) \to
-                        (Y,B)\) such that \(F(x,0) = f_0(x)\) and \(F(x,1) = f_1(x)\).
-                    \end{definition}
+              If we have maps of pairs \(f_0, f_1\colon (X,A) \to (Y,B)\) then we
+              write \(f_0\sim f_1\) if there exists \(F\colon(X\times I, A\times I) \to
+              (Y,B)\) such that \(F(x,0) = f_0(x)\) and \(F(x,1) = f_1(x)\).
+            \end{definition}
 \begin{definition}[Homotopy groups]\label{definition-5}
 
-                        If \(*\in X\) then the \terminology{\(n\)th homotopy group} is
-                        \[\pi_n(X, *) = [(D^n, S^{n-1}) \to (X, \{*\})].\]\end{definition}
+              If \(*\in X\) then the \terminology{\(n\)th homotopy group} is
+              \[\pi_n(X, *) = [(D^n, S^{n-1}) \to (X, \{*\})].\]\end{definition}
 
-                    We now note several properties of this definition:
-                    \begin{enumerate}
+            We now note several properties of this definition:
+            \begin{enumerate}
 \item{}\(\pi_0(X, *) =\) set of path components of \(X\).\item{}\(\pi_1(X, *)\) is a group.\(\pi_n(X, *)\) is an abelian group. \item{}\(\pi_n\) is a functor
-                            \[
-                                \left\{ \begin{subarray}{l}\text{pointed spaces} \\ \text{pointed
-                                maps} \end{subarray}\right\} \to \left\{\begin{subarray}{l}
-                                \text{groups}\\ \text{group homomorphisms}\end{subarray}\right\}.
-                            \]
-                            So given
-                            \[f\colon(X, p)\to(Y,q)\]
-                            we get
-                            \[f_*\colon \pi_n(X,p)\to\pi_n(y,q)\]
-                            defined by
-                            \[f_*(\gamma) = f\circ \gamma.\]
-                            
-                        \end{enumerate}
+                \[
+                  \left\{ \begin{subarray}{l}\text{pointed spaces} \\ \text{pointed
+                  maps} \end{subarray}\right\} \to \left\{\begin{subarray}{l}
+                  \text{groups}\\ \text{group homomorphisms}\end{subarray}\right\}.
+                \]
+                So given
+                \[f\colon(X, p)\to(Y,q)\]
+                we get
+                \[f_*\colon \pi_n(X,p)\to\pi_n(y,q)\]
+                defined by
+                \[f_*(\gamma) = f\circ \gamma.\]
+                
+              \end{enumerate}
 
-                %
+          %
 \begin{example}[Homotopy groups of \(S^2\)]\label{example-3}
 \begin{table}
 \centering
@@ -284,57 +305,613 @@ Generated: November 14, 2014, 01:38:39 (Z)%
 \end{table}
 \end{example}
 \typeout{************************************************}
-\typeout{Section 3 Homology}
+\typeout{Section 1.3 Homology}
 \typeout{************************************************}
 \section[Homology]{Homology}\label{section-3}
 
-                Our goal is to construct a functor \(\H\) from the category of topological spaces and continuous maps to the category of \(\ZZ\)-modules and \(\ZZ\)-linear maps.
-                This means to each space \(X\) we associate an abelian group \(\H(X) = \bigoplus_{n\ge 0}H_n(X)\), and to each map \(f\colon X \to Y\) a function \(f_*\colon H_n(X) \to H_n(Y)\) satisfying \((1_X)_* = 1_{H_n(X)}\) and \((f\circ g)_* = f_* \circ g_*\).
-            %
+          Our goal is to construct a functor \(H_*\) from the category of topological spaces and continuous maps to the category of \(\ZZ\)-modules and \(\ZZ\)-linear maps.
+          This means to each space \(X\) we associate an abelian group \(H_*(X) = \bigoplus_{n\ge 0}H_n(X)\), and to each map \(f\colon X \to Y\) a function \(f_*\colon H_n(X) \to H_n(Y)\) satisfying \((1_X)_* = 1_{H_n(X)}\) and \((f\circ g)_* = f_* \circ g_*\).
+        %
 \par
 
-                Some properties we would like to have for our construction are:
-                \begin{enumerate}
+          Some properties we would like to have for our construction are:
+          \begin{enumerate}
 \item{}Homotopy invariance, if \(f \sim g \colon X \to Y\) then \(f_* = g_*\).\item{}The dimension axiom, \(H_n(X) = 0\) for any \(n > \dim X\).\end{enumerate}
 
-            %
+        %
 \typeout{************************************************}
-\typeout{Subsection 3.1 Chain complexes}
+\typeout{Subsection 1.3.1 Chain complexes}
 \typeout{************************************************}
 \subsection[Chain complexes]{Chain complexes}\label{subsection-3}
 \begin{definition}[Chain complex]\label{definition-6}
 
-                        If \(R\) is a commutative ring then a \terminology{chain complex} over \(R\) is a pair \((C,d)\) satisfying:
-                        \begin{enumerate}
+              If \(R\) is a commutative ring then a \terminology{chain complex} over \(R\) is a pair \((C,d)\) satisfying:
+              \begin{enumerate}
 \item{}\(C = \bigoplus_{n\in\ZZ} C_n\) for \(R\)-modules \(C_n\).\item{}\(d\colon C \to C\) where \(d = \bigoplus d_n\) for \(R\)-linear maps \(d_n\).\item{}\(d\circ d = 0\).\end{enumerate}
 
-                        The indexing by \(n\) is called a \terminology{grading}.
-                        Usually we take \(C_n = 0\) for \(n \lt 0\).
-                        An element of \(\ker d_n\) is called \terminology{closed} or a \terminology{cycle}.
-                        An element of \(\im d_n\) is called a \terminology{boundary}.
-                        \(d\) is the \terminology{boundary map} or \terminology{differential}.
-                    \end{definition}
+              The indexing by \(n\) is called a \terminology{grading}.
+              Usually we take \(C_n = 0\) for \(n \lt 0\).
+              An element of \(\ker d_n\) is called \terminology{closed} or a \terminology{cycle}.
+              An element of \(\im d_n\) is called a \terminology{boundary}.
+              \(d\) is the \terminology{boundary map} or \terminology{differential}.
+            \end{definition}
 \begin{definition}[Homology groups]\label{definition-7}
 
-                        If \((C,d)\) is a chain complex, its \terminology{\(n\)th homology group} is
-                        \[H_n(C,d) = \ker d_n/\im d_{n+1}.\]
-                        If \(x \in \ker d_n\) we write \([x]\) for its image in \(H_n(C)\).
-                    \end{definition}
+              If \((C,d)\) is a chain complex, its \terminology{\(n\)th homology group} is
+              \[H_n(C,d) = \ker d_n/\im d_{n+1}.\]
+              If \(x \in \ker d_n\) we write \([x]\) for its image in \(H_n(C)\).
+            \end{definition}
 \begin{example}\label{example-4}
 \begin{enumerate}
 \item{}
-                            \(C_0 = C_1 = \ZZ\), \(C_i = 0\) otherwise,
-                            \[0\to \ZZ \xrightarrow{\cdot 3} \ZZ \to 0.\]
-                            Then \(H_1 = 0\), \(H_0 = \ZZ/3\).
-                        \item{}
-                            \[\ZZ\]
-                        \end{enumerate}
+                \(C_0 = C_1 = \ZZ\), \(C_i = 0\) otherwise,
+                \[
+                  0\to \ZZ \xrightarrow{\cdot 3} \ZZ \to 0.
+                \]
+                Then \(H_1 = 0\), \(H_0 = \ZZ/3\).
+              \item{}
+                \[
+                  \ZZ=\langle e\rangle\to\ZZ^2 = \langle f_1,f_2\rangle\to\ZZ=\langle g\rangle \to 0
+                \]
+                with \(d(e) = f_1-f_2\), \(d(f_1) = d(f_2) = g\), then \(H_*(C) = 0\)(exercise).
+              \end{enumerate}
 \end{example}
+\typeout{************************************************}
+\typeout{Subsection 1.3.2 
+            The chain complex of a simplex
+          }
+\typeout{************************************************}
+\subsection[
+            The chain complex of a simplex
+          ]{
+            The chain complex of a simplex
+          }\label{subsection-4}
+\begin{definition}[
+              \(n\)-simplex
+            ]\label{definition-8}
+
+              The \terminology{\(n\)-dimensional simplex}\(\Delta^n\) is \[\Delta^n = \left\{ (x_0,\ldots,x_n)\in\RR^n : \sum_{i} x_i = 1,\, x_i \ge 0 \forall i\right\}.\]\(\Delta^n\) has \terminology{vertices}\(v_0,\ldots,v_n\) which are the intersections with the coordinate axes. The \(k\)-dimensional \terminology{faces} are in bijection with the \(k+1\)element subsets of \(\{0,\ldots,n\}\).
+            \end{definition}
+\begin{definition}[Simplicial chain complex]\label{definition-9}
+\(S_*(\Delta^n)\) is the chain complex with \(S_k(\Delta^n)\) the free \(\ZZ\)-module generated by the \(k\)-dimensional faces of \(\Delta^n\).
+              So
+              \[
+                S_k(\Delta^n) = \langle e_I : I = \{i_0,\ldots,i_k : 0 \le i_0 \le \cdots \le i_k \le n \}\rangle.
+              \]
+              To define \(d\) it suffices to define \(d(e_I)\), we let \[d(e_I) = \sum_{j = 0}^{k}(-1)^j e_{i_0,\ldots,i_{j-1}, i_{j+1},\ldots,i_k}\in S_{k-1}(\Delta^n).\]\end{definition}
+\begin{example}\label{example-5}
+\begin{enumerate}
+\item{}For \(\Delta^1\) we have \(d(e_{0,1}) = e_1 - e_0\).\item{}For \(\Delta^2\) we have \(d(e_{0,1,2}) = e_{12} - e_{02} + e_{01}\) and so \(d^2(e_{I} = (e_2 - e_1) - (e_2 - e_0) + (e_1 - e_0) = 0\).\end{enumerate}
+\end{example}
+\begin{lemma}\label{lemma-3}
+\(d^2 = 0\)\end{lemma}
+\begin{proof}
+
+              It suffices to show \(d^2(e_I) = 0\) for all \(I\).
+              \begin{align*}
+
+                  d^2(e_I) &= d\left(\sum_{j = 0}^{k} (-1)^j e_{i_0,\ldots,\hat{i}_j,\ldots,i_k}\right)
+                \\
+
+                  &= \sum_{j = 0}^{k} (-1)^j d\left(e_{i_0,\ldots,\hat{i}_j,\ldots,i_k} \right)
+                \\
+
+                  &= \sum_{j = 0}^{k} (-1)^j\left( \sum_{l \lt j} (-1)^l e_{i_0,\ldots,\hat{i}_l,\ldots,\hat{i}_j,\ldots,i_k} + \sum_{l \gt j} (-1)^{l-1} e_{i_0,\ldots,\hat{i}_j,\ldots,\hat{i}_l,\ldots,i_k}\right)
+                \\
+
+                  &= \sum_{j = 0}^{k} \left( \sum_{l \lt j} (-1)^{l+j} e_{I - i_l - i_j} - \sum_{l \gt j} (-1)^{l+j} e_{I - i_j - i_l}\right) = 0.
+                
+\end{align*}\end{proof}
+\begin{example}[Computing \(H_*(S_*(\Delta^2))\)]\label{example-6}
+
+              \[
+                0\to \ZZ = \langle e_{012}\rangle \to \ZZ^3 = \langle e_{01}, e_{02},e_{12}\rangle \to \ZZ^3 = \langle e_0,e_1,e_2 \rangle \to 0
+              \]
+              with \(d(e_{012}) = e_{12} - e_{02} + e_{01}\).
+              So \(\ker d_2 = 0 \implies H_2 = 0\).
+              \[
+                d(ae_{01} + be_{02} + ce_{12}) = a(e_1 - e_0) + b (e_2 - e_1)  + c(e_2 - e_0)
+              \]
+              so \(ae_{01} + be_{02} + ce_{12}\in \ker d_1 \iff -a-b=0,\,a-c = 0,\, c+b = 0 \iff a = -b = c\) hence \(\ker d_1 = \langle e_{01} - e_{02} + e_{12} = \im d_2\) and so \(H_1 = 0\).
+              \(\ker(d_0) = 0\), \(\im d_1 = \langle e_1 - e_0, e_2 - e_1, e_2 - e_0\rangle\) so \(H_0 = \ZZ = \langle [e_0]\rangle\).
+            %
+\end{example}
+\begin{exercise}\label{exercise-2}
+
+              Show that \(H_*(S_*(\Delta^n)) = 0\) if \(k \ne 0\) and \(\ZZ\) if \(k = 0\).
+            \end{exercise}
+\typeout{************************************************}
+\typeout{Subsection 1.3.3 The singular chain complex}
+\typeout{************************************************}
+\subsection[The singular chain complex]{The singular chain complex}\label{subsection-5}
+\begin{definition}[Singular chain complex ]\label{definition-10}
+
+              If \(X\) is a space, the \terminology{singular chain complex} of \(X\), \(C_*(X)\) is defined by
+              \[C_n(x) = \langle e_\sigma : \sigma \colon \Delta^n \to X \text{ any continuous map}\rangle.\]
+              Where 
+              \[d(e_\sigma) = \sum_{j=0}^{n} (-1)^j e_{\sigma\circ F_j} \in C_{n-1}(X)\]
+              where \(F_j\colon \Delta^{n-1} \to \Delta^n\) is given by \(F_j(x_0,\ldots,x_{n_1} = (x_0,\ldots,0,\ldots,x_{n-1})\) with the \(0\) in the \(j\)th place.
+            \end{definition}
+\typeout{************************************************}
+\typeout{Subsubsection 1.3.3.1 Homotopy invariance}
+\typeout{************************************************}
+\subsubsection[Homotopy invariance]{Homotopy invariance}\label{subsubsection-1}
+\begin{definition}[Chain homotopic maps]\label{definition-11}
+
+              Suppose \(\phi,\psi\colon C_* \to C_*'\) are chain maps, we say that \(\phi\) are \terminology{chain homtopic} if there exists an \(R\)-linear map \(h\colon C_* \to C_{*+1}'\) such that \(d'\circ h + h \circ d' = \phi - \psi\).
+              We denote this relation by \(\phi \sim \psi\).
+              \end{definition}
+\begin{lemma}\label{lemma-4}
+
+                If \(\phi \sim \psi\) then \(\phi_* = \psi_*\).
+              \end{lemma}
+\begin{proof}
+\begin{align*}
+
+                    \phi_*([x]) - \psi_*([x]) &= [\phi(x) - \psi(x)]
+                  \\
+
+                    &= [d'hx + hdx] = [d'hx] = 0 \in H_*(C').
+                  
+\end{align*}\end{proof}
+\begin{theorem}\label{theorem-1}
+
+                Suppose \(f\sim g\colon X\to Y\) via \(H\) then \(f_\# \sim g_\# \implies f_* = g_*\).
+              \end{theorem}
+\begin{proof}
+\end{proof}
+\begin{corollary}\label{corollary-2}
+
+                If \(X\sim Y\) then \(H_*(X) \cong H_*(Y)\).
+              \end{corollary}
+\begin{corollary}\label{corollary-3}
+
+                If \(X\) is contractible then \(H_*(X) \cong H_*(\{p\}) \cong \ZZ\) if \(* = 0\), \(0\) otherwise.
+              \end{corollary}
+\typeout{************************************************}
+\typeout{Section 1.4 
+          Homology of a pair
+        }
+\typeout{************************************************}
+\section[
+          Homology of a pair
+        ]{
+          Homology of a pair
+        }\label{section-4}
+\typeout{************************************************}
+\typeout{Subsection 1.4.1 
+            Exact sequences
+          }
+\typeout{************************************************}
+\subsection[
+            Exact sequences
+          ]{
+            Exact sequences
+          }\label{subsection-6}
+\begin{definition}[
+              Exact sequence
+            ]\label{definition-12}
+
+              A sequence
+              \[
+                \cdots \to A_{n+1} \to A_n \to A_{n-1} \to \cdots
+              \]
+              of \(R\)-modules and \(R\)-linear maps is \terminology{exact at \(A_n\)} if \(\ker f_n = \im f_{n+1}\).
+              \newline{}
+              A sequence is \terminology{exact} if it is exact at all \(A_n\), then \((A_*,f)\) is known as a \terminology{acyclic} chain complex (the homology is zero).
+            \end{definition}
+\begin{example}\label{example-7}
+\begin{enumerate}
+\item{}
+                \(0 \to A \xrightarrow{f} B\) is exact if and only if \(f\) is surjective.
+              \item{}
+                \(B \xrightarrow{g} C \to 0\) is exact if and only if \(g\) is injective.
+              \item{}
+                \(0 \to A \xrightarrow{f} A' \to 0\) is exact if and only if \(f\) is an isomorphism.
+              \item{}
+                \(0 \to A \to B \to C \to 0\) is exact if and only if \(A\subset B\) and \(C\cong B/A\).
+              \end{enumerate}
+\end{example}
+\begin{definition}[
+              Short exact sequence
+            ]\label{definition-13}
+
+              A sequence 
+              \[
+                0 \to A_* \xrightarrow i B_* \xrightarrow{\pi} C_* \to 0
+              \]
+              is a \terminology{short exact sequence} of chain complexes if
+              \begin{enumerate}
+\item{}
+                  \(A_*,B_*,C_*\) are chain complexes.
+                \item{}
+                  \(i, \pi\) are chain maps.
+                \item{}
+                  \[
+                    0 \to A_n \xrightarrow i B_n \xrightarrow{\pi} C_n \to 0
+                  \]
+                  is exact for all \(n\).
+                \end{enumerate}
+\end{definition}
+\begin{lemma}[
+              Snake lemma
+            ]\label{lemma-5}
+
+              If
+              \[
+                0 \to A_* \xrightarrow i B_* \xrightarrow{\pi} C_* \to 0
+              \]
+              is a short exact sequence of chain complexes then there is an associated \terminology{long exact sequence} of homology groups
+              \begin{figure}
+\centering
+\[
+                  \xymatrix{ \cdots\ar[r] & H_n(A) \ar[r]&
+                  H_n(B) \ar[r] & H_n(C)\ar `r[d] `[l]
+                  `[llld]_{\partial_n} `[dll] [dll]\\
+                  & H_{n-1}(A) \ar[r] & H_{n-1}(B)
+                  \ar[r] & H_{n-1}(C)\ar[r] & {\dots} }
+                \]\end{figure}
+
+              The map \(\partial\) is called the \terminology{boundary map} in the exact sequence.
+            \end{lemma}
+\begin{proof}
+
+              We first define \(\partial\), given \([c] \in H_n(C)\) pick \(b\in B_n\) such that \(\pi(b) = c\).
+              Now \(\pi db = d\pi b = dc = 0\) and so \(db = ia\) for some \(a \in A_{n-1}\).
+              We have that \(ida = dia = ddb = 0\) and so \(da = 0\) and we can define \(\partial [c] = [a] \in H_{n-1} (A)\). \newline{}
+              We must check that the definition of \(\partial\) does not depend on the choice of \(b\) or \(c\) and also check exactness at each term.
+              Here we prove exactness at \(H_n(C)\).
+              With notation as above suppose \([c] = \pi_*([x])\) then we can take \(b = x\), \(db = 0\) implying that \(a =0\) and so \(\partial [c] = [a] = 0\).
+              We have then that \(\im \pi_* \subset \ker \partial\), so it remains to show that \(\ker \partial\subset \im \pi_*\).
+              If \([a] = da',\,a'\in A_n\) we let \(b' = b - i(a')\) then \(d(b') = db - d(ia') = db - i(da') = db - db = 0\).
+              Then \([b'] \in H_n(B)\) so \(\pi_*([b']) = [\pi(b')] = [\pi(b) - \pi(i(a'))] = [\pi(b)] = [c]\).
+            \end{proof}
+\begin{exercise}\label{exercise-3}
+
+              Suppose we have a map of short exact sequences  commuting, then show there is a map of long exact sequences of homology commuting .
+            \end{exercise}
+\begin{example}[
+              Reduced homology
+            ]\label{example-8}
+
+              If \(X\) is a space let
+              \[
+                \tilde C_*(X) = \begin{cases}C_*(X), &* \ne -1,\\\ZZ, & * = -1,\end{cases}
+              \]
+              then define \(d(e_p)= e\) for \(p \in X\).
+              We have \(d^2e_\gamma = d(e_{\gamma(1)} - e_{\gamma(0)}) = e - e = 0\).
+              So \(\tilde C_*\) is a chain complex.
+              \newline{}
+              This construction can be motivated by thinking of \(\Delta^{-1} = \{\}\) and then considering \(\Map(\{\},X) = \{e\}\).
+              If
+              \[
+                A_* = \begin{cases} \ZZ = \langle e \rangle, & * = -1, \\ 0, & * = -1.\end{cases}
+              \]
+              Then we have a short exact sequence
+              \[
+                0 \to A_* \to \tilde C_*(X) \to C_*(X) \to 0.
+              \]
+              We have \(H_*(A) = A_*\) and so the long exact sequence of homology then says that for \(n \ge 0\)\[
+                \cdots \to H_n(A) = 0 \to H_n(\tilde C(X))\to H_n(C(X)) \to H_{n-1}(A)= 0 \to \cdots
+              \]
+              giving that \(H_n(\tilde C_*(X)) \cong H_n(C_*(X))\) for \(n \gt 0\).
+              We write \(\tilde H_*(X)\) for \(H_*(\tilde C_*(X))\). 
+              At \(n = 0\) we get
+              \[
+                \cdots \to 0 \to \tilde H_0(X)\to H_0(X) \to \ZZ \to 0 \to\cdots
+              \]
+              giving that \(\tilde H_0(X)\) has one fewer copies of \(\ZZ\) than \(H_0(X)\).
+            \end{example}
+\begin{example}[Homology of a pair]\label{example-9}
+
+              Suppose \(A\subset X\), then \(C_*(A) \subset C_*(X)\) is a subcomplex.
+              Define \(C_*(X,A) = C_*(X)/C_*(A)\) and so we have a short exact sequence
+              \[
+                0 \to C_*(A) \to C_*(X) \to C_*(X,A) \to 0.
+              \]\end{example}
+\typeout{************************************************}
+\typeout{Subsection 1.4.2 Homology of a pair}
+\typeout{************************************************}
+\subsection[Homology of a pair]{Homology of a pair}\label{subsection-7}
+\begin{definition}[Homology of a pair]\label{definition-14}
+\(H_*(X,A) = H_*(C_*(X,A))\) is the \terminology{homology of the pair \((X,A)\)}.
+            \end{definition}
+
+            From this we obtain:
+          %
+\begin{definition}[Long exact sequence of a pair]\label{definition-15}
+
+              The \terminology{long exact sequence of the pair \((X,A)\)} is
+              \[ \cdots \to H_n(A) \to H_n(X) \to H_n(X,A) \xrightarrow{\partial} H_{n-1} (A) \to \cdots.\]\end{definition}
+\par
+
+            If \(f\colon (X,A) \to (Y,B)\) is a map of pairs then we get an \terminology{induced map} \(f_\# \colon C_*(X) \to C_*(Y)\) defined by
+            \[
+              (\sigma\colon \Delta^n \to A) \mapsto f\circ \sigma.
+            \]
+            Observe that \(f_\#(C(A)) \subset C_*(B)\) and so \(f_\#\) descends to a map
+            \[
+              f_\#\colon C_*(X)/C_*(A) \to C_*(Y)/C_*(B)
+            \]
+            or equivalently \(f_\#\colon C_*(X,A) \to C_*(Y,B)\) this then induces \(f_*\colon H_*(X,A) \to H_*(Y,B)\).
+          %
+\begin{proposition}[
+              Homotopy invariance
+            ]\label{proposition-2}
+
+              If \(f,g \colon (X,A) \to (Y,B)\) are homotopic as maps of pairs then \(f_* = g_* \colon H_*(X,A) \to H_*(Y,B)\).
+            \end{proposition}
+\begin{proof}
+
+              Let \(H\colon (X\times I, A\times I) \to (Y,B)\) be the homotopy, \(H\) induces a chain homotopy \(h \colon C_*(X) \to C_{*+1}(Y)\) where \(dh + hd = f_\# - g_\#\).
+              \(H(A\times I) \subset B\) so \(h(C_*(A)) \subset C_{*+1}(B)\) this implies that \(h\) descends to a map
+              \[
+                h \colon C_*(X)/C_*(A) \to C_{*+1}(Y)/C_{*+1}(B)
+              \]
+              with \(hd + dh = f_\# - g_\#\) as any relation satisfied will remain satisfied in the quotient.
+              So we have \(h \colon C_*(X,A) \to C_{*+1}(Y,A)\) and hence \(f_\#,g_\#\colon C_*(X,A) \to C_*(Y,B)\) are chain homotopic.
+            \end{proof}
+\typeout{************************************************}
+\typeout{Subsubsection 1.4.2.1 
+              Visualising relative homology classes
+            }
+\typeout{************************************************}
+\subsubsection[
+              Visualising relative homology classes
+            ]{
+              Visualising relative homology classes
+            }\label{subsubsection-2}
+
+              If \(W^{n+1}\) is a connected oriented compact manifold then we'll show that \(H_{n+1}(W,\partial W) \cong \ZZ = \langle [W,\partial] \rangle\) (where the \(\partial\) notation means relative to boundary).
+              So given \(f\colon (W, \partial) \to (X,A)\) we get \(f_*([W,\partial W]) \in H_{n+1}(X,A)\).
+            %
+\begin{example}\label{example-10}
+
+                Let \(X = \RR^3\) and \(A= S^1\) then \(W = D^2\) defines a class in \(H_2(\RR^3,S^1)\) (the boundary of \(W\) lies inside of \(A\)).
+              \end{example}
+\typeout{************************************************}
+\typeout{Subsection 1.4.3 
+            Good pairs
+          }
+\typeout{************************************************}
+\subsection[
+            Good pairs
+          ]{
+            Good pairs
+          }\label{subsection-8}
+\begin{definition}[
+              Good pair
+            ]\label{definition-16}
+\((X,A)\) is a \terminology{good pair} if
+              \begin{enumerate}
+\item{}
+                  \(\exists U \subset X\) open and \(A \subset U\)
+                \item{}
+                  \(\exists \pi \colon U \to A\) with \(\pi|_A = \id_A\).
+                \item{}
+                  \(\pi \sim 1_{(U,A)}\) as maps of pairs from \((U,A)\) to itself.
+                \end{enumerate}
+
+              (i.e. \(A\) is a deformation retract of \(U\)).
+            \end{definition}
+\begin{example}[
+              Good pairs
+            ]\label{example-11}
+\begin{enumerate}
+\item{}
+                  \((\text{smooth manifold}, \text{closed submanifold})\).
+                \item{}
+                  \((\text{simplicial complex}, \text{subcomplex})\).
+                \end{enumerate}
+\end{example}
+\begin{example}[
+              Not good pairs
+            ]\label{example-12}
+\begin{enumerate}
+\item{}
+                  \((\RR, \QQ)\).
+                \item{}
+                  Letting \(H\subset \RR^2\) be the Hawaiian earring then \((\RR^2, H)\) is not a good pair.
+                \end{enumerate}
+\end{example}
+\begin{theorem}\label{theorem-2}
+
+              Take \(A\subset X\) and let \(\pi\) be the natural map \(\pi\colon(X,A)\to(X/A,A/A)\cong (X/A,*)\).
+              Then if \((X,A)\) is a good pair the induced map \(\pi_*\colon H_*(X,A)\to H_*(X/A,*)\) is an isomorphism.
+            \end{theorem}
+\begin{proof}
+
+              Postponed.
+            \end{proof}
+\begin{exercise}\label{exercise-4}
+
+              The composite map \(\phi\) in
+              \[
+                \tilde H_*(X) \to H_*(X) \to H_*(X,*)
+              \]
+              is an isomorphism.
+              i.e.
+              \[
+                H_*(X,*) = \begin{cases} H_*(X), &* \gt 0,\\H_0(X)/\ZZ, &* \le 0.\end{cases}
+              \]\end{exercise}
+\begin{proposition}\label{sphere-homology}
+\[
+                \tilde H_*(S^n) = \begin{cases} \ZZ, &* = n,\\0, &* \ne n.\end{cases}
+              \]\end{proposition}
+\begin{proof}
+
+              We proceed by induction on \(n\).
+              For \(n = 0\) we have \(S^0 = \{p_+, p_-\}\) implying
+              \[
+                H_*(S^0) = H_*(p_+) \oplus H_*(p_-) = \begin{cases} \ZZ^2, &* = 0,\\0, &* \ne 0,\end{cases}
+              \]
+              giving
+              \[
+                \tilde H_*(S^0) = \begin{cases} \ZZ, &* = 0,\\0, &* \ne 0.\end{cases}
+              \]
+              Now consider the long exact sequence of the pair \((D^n, S^{n-1})\)\[
+                H_*(D^n) \to H_*(D^n, S^{n-1}) \to H_{*-1}(S^{n-1}) \xrightarrow{\phi} H_{*-1}(D^n),
+              \]
+              we can break this up using the kernel and cokernel to get
+              \begin{equation}
+                0 \to \coker \phi_m \to H_m(D^n, S^{n-1}) \to \ker \phi_{m-1} \to 0.
+              \label{sphere-homology-coker-sequence}\end{equation}\(D^n\) is contractible and so we get
+              \[
+                H_*(D^n) = \begin{cases} \ZZ, &* = 0,\\0, &* \ne 0.\end{cases}
+              \]
+              We have \(\phi\colon H_0(S^{n-1}) \to H_0(D^n) \cong \ZZ = \langle e_p\rangle\) given by \(\phi(e_p) = e_p\).
+              We see that \(\ker \phi = \tilde H_*(S^{n-1})\) and \(\coker \phi = 0\).
+              Now by looking at \eqref{sphere-homology-coker-sequence} we see that
+              \[
+                0 \to \tilde H_*(S^n) = H_*(S^n,*) = H_*(D^n, S^{n-1}) \to \ker\phi = \tilde H_*(S^{n-1}) \to 0
+              \]
+              is exact giving \(\tilde H_*(S^n) \cong \tilde H_*(S^{n-1})\).
+              The claim then follows by induction.
+            \end{proof}
+\begin{corollary}\label{corollary-4}
+\[
+                S^n \sim S^m \implies m = n.
+              \]\end{corollary}
+\begin{example}[
+              Chains generating \(H_n(S^n, *)\)
+            ]\label{example-13}
+\begin{enumerate}
+\item{}
+                  Choose \(f\colon \Delta^n \to \Delta^n\) a homeomorphism and let \(e\colon \Delta^n \to \Delta^n\) be the identity map.
+                  Then \(a_{n-1} = f_\#(de) \in C_*(S^{n-1})\) and we have \(d a_{n-1} = df_\#(de) = f_\# (d^2 e) = 0\) and so \(a_{n-1}\) is closed.
+                \item{}
+                  Choose \(g\colon (D^n/S^{n-1}, S^{n-1}/S^{n-1}) \to (S^n, *)\).
+                  Now let \(b_n = g_\#(f_\#(e)) \in C_n(S^n,*)\).
+                  Then \(db_n = g_\#(a_{n-1}) \in C_*(*)\) implies \(b_n\) is closed in \(C_*(S^n, *)\).
+                  \newline{}
+                  For example if \(n = 2\) we are crushing the boundary of the \(2\)-simplex to a point.
+                \end{enumerate}
+\end{example}
+\begin{proposition}\label{proposition-4}
+\([a_n]\) generates \(\tilde H_n(S^n) = \ZZ\) (statement \((A_n)\)). \newline{}\([b_n]\) generates \(\tilde H_n(S^n, *) = \ZZ\) (statement \((B_n)\)). \newline{}\end{proposition}
+\begin{proof}
+
+              Statement \((A_0)\): \(S^0 = \{p_+, p_-\}\), \(de = e_{p_+} - e_{p_-}\) so \(de\) generates \(\tilde H_0(S^0)\).\newline{}
+              We'll show that \(A_{n-1}\implies B_n\).
+              Here \(\partial\colon H_n(S^n, *)=H_n(D^n, S^{n-1}) \xrightarrow{\sim} \tilde H_{n-1}(S^{n-1})\) (by \ref{sphere-homology}).
+              So it suffices to check that \(\partial [b_n] = [a_{n-1}]\)\end{proof}
+\begin{definition}[Wedge product]\label{definition-17}
+
+              If \((X_i, p_i)\) are pointed spaces the \terminology{wedge product}\[
+                \bigvee_{i\in I} (X_i,p_i) \text{ is } \coprod_{i\in I} X_i\Big/\{p_i : i\in I\}.
+              \]
+              If \(X_i\) is such that for any \(p,q\in X_i\) there exists a homeomorphism \(f\colon X_i \to X_i\) with \(f(p) = q\) we can drop \(p_i\) from the notation (for example in the case of \(X_i\) a connected manifold we can do this).
+            \end{definition}
+\begin{example}\label{example-14}
+\end{example}
+\begin{corollary}\label{corollary-5}
+
+              If \((X_i, p_i)\) are good pairs then
+              \[
+                \tilde H_*\left(\bigvee_{i}(X_i, p_i)\right) = \bigoplus_i \tilde H_*(X_i).
+              \]\end{corollary}
+\begin{proof}
+\begin{align*}
+
+                  \tilde H_*\left(\bigvee_{i\in I} X_i\right) &\cong H_*\left(\bigvee_{i\in I} X_i, p\right) \cong H_*\left(\coprod_{i\in I} X_i, \{p_i : i\in I\}\right)
+                \\
+
+                  &\cong \bigoplus_{i\in I} H_*\left(X_i, p_i\right) \cong \bigoplus_{i\in I} \tilde H_*(X_i).
+                
+\end{align*}\end{proof}
+\begin{example}\label{example-15}
+\[
+                H_*(S^1 \vee S^2) = \begin{cases}\ZZ, &* = 0,1,2\\0, &\text{otherwise}.\end{cases}
+              \]\end{example}
+\typeout{************************************************}
+\typeout{Section 1.5 Subdivision and Excision}
+\typeout{************************************************}
+\section[Subdivision and Excision]{Subdivision and Excision}\label{section-5}
+\begin{definition}\label{definition-18}
+
+            If \(\U = \{U_i\}_{i\in I}\) is an open cover of \(X\), let
+            \[
+              C^{\U}_n(X) = \langle e_\sigma : \sigma\colon \Delta^n \to X,\,\im\sigma\subset U_i\text{ for some }i\rangle \subset C_n(X).
+            \]
+            Observe that \(\im \sigma \subset U_i\) implies \(\im \sigma \circ F_j \subset U_i\) and so \(C^{\U}_*\) is a subcomplex of \(C_*\).
+            Let \(H^{\U}_*\) be the homology of this complex, then we have a map
+            \[
+              i\colon C^{\U}_*(X) \hookrightarrow C_*(X).
+            \]\end{definition}
+\begin{lemma}[Subdivision]\label{lemma-6}
+\(C_*\colon H^{\U}_*(X) \to H_*(X)\) is an isomorphism.
+          \end{lemma}
+\typeout{************************************************}
+\typeout{Section 1.6 Degree and Orientations}
+\typeout{************************************************}
+\section[Degree and Orientations]{Degree and Orientations}\label{section-6}
+\typeout{************************************************}
+\typeout{Section 1.7 Cell Complexes}
+\typeout{************************************************}
+\section[Cell Complexes]{Cell Complexes}\label{section-7}
+\begin{definition}[Attachment of cells]\label{definition-19}
+
+            If \(f\colon S^{n-1} \to X\) then
+            \[
+              X\cup_f D^n = X\amalg D^n/\sim
+            \]
+            is the space obtained by \terminology{attaching} an \(n\)-dimensional cell to \(X\) via the map \(f\).
+          \end{definition}
+\begin{example}\label{example-16}
+
+            If \(X = \{p\}\) and \(f\colon S^{n-1} \to X\) then
+            \[
+              X\cup_f D^n\cong D^n/S^{n-1} \cong S^n.
+            \]\end{example}
+\begin{definition}[Finite cell complex]\label{definition-20}
+
+            A 0-dimensional \terminology{finite cell complex} is a finite disjoint union of points.
+            \newline{}
+            A \(k\)-dimensional finite cell complex is a space obtained by attaching finitely many \(k\)-cells to a \((k-1)\)-dimensional finite cell complex.
+          \end{definition}
+\begin{example}\label{example-17}
+\end{example}
+\begin{example}\label{example-18}
+
+            If a finite cell complex \(X\) has one 0-cell and one \(n\)-cell then \(X \cong S^n\).
+            Similarly if \(X\) has one 0-cell and \(k\)\(n\)-cells then \(X \cong \bigvee_{i=1}^{k}S^n\).
+          \end{example}
+\begin{example}\label{example-19}
+\(T^2\) is a finite cell complex with one 0-cell, two 1-cells and one 2-cell.\end{example}
+\begin{example}\label{example-20}
+
+            Any simplicial complex is a finite cell complex and any closed manifold can be given the structure of a finite cell complex.
+          \end{example}
+\typeout{************************************************}
+\typeout{Chapter 2 Cohomology and Products}
+\typeout{************************************************}
+\chapter[Cohomology and Products]{Cohomology and Products}\label{chapter-2}
+\typeout{************************************************}
+\typeout{Section 2.1 Homology with Coefficients and Cohomology}
+\typeout{************************************************}
+\section[Homology with Coefficients and Cohomology]{Homology with Coefficients and Cohomology}\label{section-8}
+\typeout{************************************************}
+\typeout{Subsection 2.1.1 Hom and \(\otimes\) for modules}
+\typeout{************************************************}
+\subsection[Hom and \(\otimes\) for modules]{Hom and \(\otimes\) for modules}\label{subsection-9}
+\begin{definition}[Tensor product of \(R\)-modules]\label{definition-21}
+
+              Let \(M,N\) be \(R\)-modules.
+              Then the \terminology{tensor product }\(M\otimes N\) is the \(R\)-modules generated by all pairs \(m\otimes n\) for \(m\in M,\,n\in N\) modulo the relations:
+              \begin{enumerate}
+\item{}
+                  \((m_1+m_2)\otimes (n_1 + n_2) = \sum m_i \otimes n_j.\)
+                \item{}
+                  \(r(m\otimes n) = (rm)\otimes n = m\otimes (rn).\)
+                \end{enumerate}
+\end{definition}
+%
+\backmatter
+%
 \typeout{************************************************}
 \typeout{Section 1 Notation}
 \typeout{************************************************}
-\section*{Notation}\label{section-4}
-\addcontentsline{toc}{section}{Notation}
+\section[Notation]{Notation}\label{section-9}
 \begin{longtable}[l]{llr}
 \textbf{Symbol}&\textbf{Description}&\textbf{Page}\\[1em]
 \endfirsthead
