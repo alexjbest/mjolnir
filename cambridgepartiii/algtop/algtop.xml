@@ -33,6 +33,7 @@ Copyright 2014 Alex J. Best
     \DeclareMathOperator{\RR}{\mathbf{R}}
     \DeclareMathOperator{\ZZ}{\mathbf{Z}}
     \DeclareMathOperator{\C}{C_*}
+    \DeclareMathOperator{\U}{\mathcal{U}}
     </macros>
 
     <initialism>AT</initialism>
@@ -53,7 +54,11 @@ Copyright 2014 Alex J. Best
       <section>
         <title>Introduction</title>
 
-        <p>The recommended books are:
+        <p>
+          These are lecture notes for the 2014 Part III Algebraic Topology course taught by Dr. Jacob Rasmussen.
+        </p>
+        <p>
+          The recommended books are:
           <ul>
             <li><url href="http://www.math.cornell.edu/~hatcher/AT/ATpage.html">Algebraic Topology</url> - Allen Hatcher,</li>
             <li>Homology Theory - James W. Vick,</li>
@@ -61,12 +66,14 @@ Copyright 2014 Alex J. Best
           </ul>
         </p>
 
-        <p>Generated: <today />, <timeofday /></p>
-
+        <p>
+          Generated: <today />, <timeofday />
+        </p>
       </section>
 
       <section>
         <title>Homotopy</title>
+
         <subsection>
           <title>Homotopies</title>
 
@@ -190,6 +197,7 @@ Copyright 2014 Alex J. Best
           </p>
 
         </subsection>
+
         <subsection>
           <title>Homotopy groups</title>
 
@@ -810,7 +818,7 @@ Copyright 2014 Alex J. Best
             </statement>
           </exercise>
 
-          <proposition>
+          <proposition xml:id="sphere-homology">
             <statement>
               <me>
                 \tilde H_*(S^n) = \begin{cases} \ZZ, &amp;* = n,\\0, &amp;* \ne n.\end{cases}
@@ -860,26 +868,123 @@ Copyright 2014 Alex J. Best
           <example>
             <title>
               Chains generating <m>H_n(S^n, *)</m>
-             </title>
-             <statement>
+            </title>
+            <statement>
               <ol>
                 <li>
                   Choose <m>f\colon \Delta^n \to \Delta^n</m> a homeomorphism and let <m>e\colon \Delta^n \to \Delta^n</m> be the identity map.
                   Then <m>a_{n-1} = f_\#(de) \in C_*(S^{n-1})</m> and we have <m>d a_{n-1} = df_\#(de) = f_\# (d^2 e) = 0</m> and so <m>a_{n-1}</m> is closed.
                 </li>
                 <li>
-                  Let <m>n = 2</m> and choose <m>g\colon </m>
+                  Choose <m>g\colon (D^n/S^{n-1}, S^{n-1}/S^{n-1}) \to (S^n, *)</m>.
+                  Now let <m>b_n = g_\#(f_\#(e)) \in C_n(S^n,*)</m>.
+                  Then <m>db_n = g_\#(a_{n-1}) \in C_*(*)</m> implies <m>b_n</m> is closed in <m>C_*(S^n, *)</m>.
+                  <br />
+                  For example if <m>n = 2</m> we are crushing the boundary of the <m>2</m>-simplex to a point.
                 </li>
               </ol>
-             </statement>
+            </statement>
           </example>
 
+          <proposition>
+            <statement>
+              <m>[a_n]</m> generates <m>\tilde H_n(S^n) = \ZZ</m> (statement <m>(A_n)</m>). <br />
+              <m>[b_n]</m> generates <m>\tilde H_n(S^n, *) = \ZZ</m> (statement <m>(B_n)</m>). <br />
+            </statement>
+            <proof>
+              Statement <m>(A_0)</m>: <m>S^0 = \{p_+, p_-\}</m>, <m>de = e_{p_+} - e_{p_-}</m> so <m>de</m> generates <m>\tilde H_0(S^0)</m>.<br />
+              We'll show that <m>A_{n-1}\implies B_n</m>.
+              Here <m>\partial\colon H_n(S^n, *)=H_n(D^n, S^{n-1}) \xrightarrow{\sim} \tilde H_{n-1}(S^{n-1})</m> (by <xref ref="sphere-homology" /><todo>check</todo>).
+              So it suffices to check that <m>\partial [b_n] = [a_{n-1}]</m>
+              <todo>finish</todo>
+            </proof>
+          </proposition>
+
+          <definition>
+            <title>Wedge product</title>
+            <statement>
+              If <m>(X_i, p_i)</m> are pointed spaces the <term>wedge product</term>
+              <me>
+                \bigvee_{i\in I} (X_i,p_i) \text{ is } \coprod_{i\in I} X_i\Big/\{p_i : i\in I\}.
+              </me>
+              If <m>X_i</m> is such that for any <m>p,q\in X_i</m> there exists a homeomorphism <m>f\colon X_i \to X_i</m> with <m>f(p) = q</m> we can drop <m>p_i</m> from the notation (for example in the case of <m>X_i</m> a connected manifold we can do this).
+            </statement>
+          </definition>
+
+          <example>
+            <statement><todo></todo></statement>
+          </example>
+
+          <corollary>
+            <statement>
+              If <m>(X_i, p_i)</m> are good pairs then
+              <me>
+                \tilde H_*\left(\bigvee_{i}(X_i, p_i)\right) = \bigoplus_i \tilde H_*(X_i).
+              </me>
+            </statement>
+            <proof>
+              <md>
+                <mrow>
+                  \tilde H_*\left(\bigvee_{i\in I} X_i\right) &amp;\cong H_*\left(\bigvee_{i\in I} X_i, p\right) \cong H_*\left(\coprod_{i\in I} X_i, \{p_i : i\in I\}\right)
+                </mrow>
+                <mrow>
+                  &amp;\cong \bigoplus_{i\in I} H_*\left(X_i, p_i\right) \cong \bigoplus_{i\in I} \tilde H_*(X_i).
+                </mrow>
+              </md>
+            </proof>
+          </corollary>
+
+          <example>
+            <statement>
+              <me>
+                H_*(S^1 \vee S^2) = \begin{cases}\ZZ, &amp;* = 0,1,2\\0, &amp;\text{otherwise}.\end{cases}
+              </me>
+            </statement>
+          </example>
         </subsection>
+      </section>
+
+      <section>
+        <title>Subdivision and Excision</title>
+
+        <definition>
+          <statement>
+            If <m>\U = \{U_i\}_{i\in I}</m> is an open cover of <m>X</m>, let
+            <me>
+              C^{\U}_n(X) = \langle e_\sigma : \sigma\colon \Delta^n \to X,\,\im\sigma\subset U_i\text{ for some }i\rangle \subset C_n(X).
+            </me><todo>notation</todo>
+            Observe that <m>\im \sigma \subset U_i</m> implies <m>\im \sigma \circ F_j \subset U_i</m> and so <m>C^{\U}_*</m> is a subcomplex of <m>C_*</m>.
+            Let <m>H^{\U}_*</m> be the homology of this complex, then we have a map
+            <me>
+              i\colon C^{\U}_*(X) \hookrightarrow C_*(X).
+            </me>
+          </statement>
+        </definition>
+
+        <lemma>
+          <title>Subdivision</title>
+          <statement>
+            <m>C_*\colon H^{\U}_*(X) \to H_*(X)</m> is an isomorphism.
+          </statement>
+        </lemma>
+        <todo>finish</todo>
+      </section>
+
+      <section>
+        <title>Degree and Orientations</title>
+      </section>
+
+      <section>
+        <title>Cell Complexes</title>
       </section>
     </chapter>
 
     <chapter>
-      <title>Cohmology and Products</title>
+      <title>Cohomology and Products</title>
+
+      <section>
+        <title>Homology with Coefficients and Cohomology</title>
+      </section>
     </chapter>
 
     <backmatter>
