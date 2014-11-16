@@ -24,7 +24,6 @@ Copyright 2014 Alex J. Best
 
     <macros>
     \DeclareMathOperator{\Map}{Map}
-    \DeclareMathOperator{\dim}{dim}
     \DeclareMathOperator{\im}{im}
     \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\coker}{coker}
@@ -275,7 +274,7 @@ Copyright 2014 Alex J. Best
             <li>The dimension axiom, <m>H_n(X) = 0</m> for any <m>n > \dim X</m>.</li>
           </ol>
         </p>
-        
+
         <subsection>
           <title>Chain complexes</title>
           <definition>
@@ -339,7 +338,7 @@ Copyright 2014 Alex J. Best
           </definition>
 
           <todo>examples with pics</todo>
-          
+
           <definition>
             <title>Simplicial chain complex</title>
             <statement>
@@ -366,18 +365,10 @@ Copyright 2014 Alex J. Best
             <proof>
               It suffices to show <m>d^2(e_I) = 0</m> for all <m>I</m>.
               <md>
-                <mrow>
-                  d^2(e_I) &amp;= d\left(\sum_{j = 0}^{k} (-1)^j e_{i_0,\ldots,\hat{i}_j,\ldots,i_k}\right)
-                </mrow>
-                <mrow>
-                  &amp;= \sum_{j = 0}^{k} (-1)^j d\left(e_{i_0,\ldots,\hat{i}_j,\ldots,i_k} \right)
-                </mrow>
-                <mrow>
-                  &amp;= \sum_{j = 0}^{k} (-1)^j\left( \sum_{l \lt j} (-1)^l e_{i_0,\ldots,\hat{i}_l,\ldots,\hat{i}_j,\ldots,i_k} + \sum_{l \gt j} (-1)^{l-1} e_{i_0,\ldots,\hat{i}_j,\ldots,\hat{i}_l,\ldots,i_k}\right)
-                </mrow>
-                <mrow>
-                  &amp;= \sum_{j = 0}^{k} \left( \sum_{l \lt j} (-1)^{l+j} e_{I - i_l - i_j} - \sum_{l \gt j} (-1)^{l+j} e_{I - i_j - i_l}\right) = 0.
-                </mrow>
+                <mrow>d^2(e_I) &amp;= d\left(\sum_{j = 0}^{k} (-1)^j e_{i_0,\ldots,\hat{i}_j,\ldots,i_k}\right)</mrow>
+                <mrow>&amp;= \sum_{j = 0}^{k} (-1)^j d\left(e_{i_0,\ldots,\hat{i}_j,\ldots,i_k} \right)</mrow>
+                <mrow>&amp;= \sum_{j = 0}^{k} (-1)^j\left( \sum_{l \lt j} (-1)^l e_{i_0,\ldots,\hat{i}_l,\ldots,\hat{i}_j,\ldots,i_k} + \sum_{l \gt j} (-1)^{l-1} e_{i_0,\ldots,\hat{i}_j,\ldots,\hat{i}_l,\ldots,i_k}\right)</mrow>
+                <mrow>&amp;= \sum_{j = 0}^{k} \left( \sum_{l \lt j} (-1)^{l+j} e_{I - i_l - i_j} - \sum_{l \gt j} (-1)^{l+j} e_{I - i_j - i_l}\right) = 0.</mrow>
                 <todo></todo>
               </md>
             </proof>
@@ -439,12 +430,8 @@ Copyright 2014 Alex J. Best
               </statement>
               <proof>
                 <md>
-                  <mrow>
-                    \phi_*([x]) - \psi_*([x]) &amp;= [\phi(x) - \psi(x)]
-                  </mrow>
-                  <mrow>
-                    &amp;= [d'hx + hdx] = [d'hx] = 0 \in H_*(C').
-                  </mrow>
+                  <mrow>\phi_*([x]) - \psi_*([x]) &amp;= [\phi(x) - \psi(x)]</mrow>
+                  <mrow>&amp;= [d'hx + hdx] = [d'hx] = 0 \in H_*(C').</mrow>
                 </md>
               </proof>
             </lemma>
@@ -876,12 +863,8 @@ Copyright 2014 Alex J. Best
             </statement>
             <proof>
               <md>
-                <mrow>
-                  \tilde H_*\left(\bigvee_{i\in I} X_i\right) &amp;\cong H_*\left(\bigvee_{i\in I} X_i, p\right) \cong H_*\left(\coprod_{i\in I} X_i, \{p_i : i\in I\}\right)
-                </mrow>
-                <mrow>
-                  &amp;\cong \bigoplus_{i\in I} H_*\left(X_i, p_i\right) \cong \bigoplus_{i\in I} \tilde H_*(X_i).
-                </mrow>
+                <mrow>\tilde H_*\left(\bigvee_{i\in I} X_i\right) &amp;\cong H_*\left(\bigvee_{i\in I} X_i, p\right) \cong H_*\left(\coprod_{i\in I} X_i, \{p_i : i\in I\}\right)</mrow>
+                <mrow>&amp;\cong \bigoplus_{i\in I} H_*\left(X_i, p_i\right) \cong \bigoplus_{i\in I} \tilde H_*(X_i).</mrow>
               </md>
             </proof>
           </corollary>
