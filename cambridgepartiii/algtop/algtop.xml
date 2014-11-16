@@ -553,37 +553,13 @@ Copyright 2014 Alex J. Best
               </me>
               is a short exact sequence of chain complexes then there is an associated <term>long exact sequence</term> of homology groups
               <figure>
-                <tikz>
-                <![CDATA[\usetikzlibrary{matrix,arrows}
-                \begin{tikzpicture}[descr/.style={fill=white,inner sep=1.5pt}]
-                        \matrix (m) [
-                            matrix of math nodes,
-                            row sep=1em,
-                            column sep=2.5em,
-                            text height=1.5ex, text depth=0.25ex
-                        ]
-                        { 0 & H^0(\mathcal A) & H^0(\mathcal B) & H^0(\mathcal C) \\
-                            & H^1(\mathcal A) & H^1(\mathcal B) & H^1(\mathcal C) \\
-                            & H^2(\mathcal A) & H^2(\mathcal B) & H^2(\mathcal C) \\
-                            & \mbox{}         &                 & \mbox{}         \\
-                            & H^n(\mathcal A) & H^n(\mathcal B) & H^n(\mathcal C) \\
-                        };
-
-                        \path[overlay,->, font=\scriptsize,>=latex]
-                        (m-1-1) edge (m-1-2)
-                        (m-1-2) edge (m-1-3)
-                        (m-1-3) edge (m-1-4)
-                        (m-1-4) edge[out=355,in=175,red] node[descr,yshift=0.3ex] {$\alpha^0$} (m-2-2)
-                        (m-2-2) edge (m-2-3)
-                        (m-2-3) edge (m-2-4)
-                        (m-2-4) edge[out=355,in=175,red] node[descr,yshift=0.3ex] {$\alpha^1$} (m-3-2)
-                        (m-3-2) edge (m-3-3)
-                        (m-3-3) edge (m-3-4)
-                        (m-3-4) edge[out=355,in=175,dashed,red] (m-5-2)
-                        (m-5-2) edge (m-5-3)
-                        (m-5-3) edge (m-5-4);
-                \end{tikzpicture}]]>
-                </tikz>
+                <me>
+                  \xymatrix{ \cdots\ar[r] &amp; H_n(A) \ar[r]&amp;
+                  H_n(B) \ar[r] &amp; H_n(C)\ar `r[d] `[l]
+                  `[llld]_{\partial_n} `[dll] [dll]\\
+                  &amp; H_{n-1}(A) \ar[r] &amp; H_{n-1}(B)
+                  \ar[r] &amp; H_{n-1}(C)\ar[r] &amp; {\dots} }
+                </me>
                 <todo>fix tikz/use xyjax</todo>
               </figure>
               The map <m>\partial</m> is called the <term>boundary map</term> in the exact sequence.
@@ -645,9 +621,7 @@ Copyright 2014 Alex J. Best
           </example>
 
           <example>
-            <title>
-              Homology of a pair
-            </title>
+            <title>Homology of a pair</title>
             <statement>
               Suppose <m>A\subset X</m>, then <m>C_*(A) \subset C_*(X)</m> is a subcomplex.
               Define <m>C_*(X,A) = C_*(X)/C_*(A)</m> and so we have a short exact sequence
@@ -659,16 +633,12 @@ Copyright 2014 Alex J. Best
         </subsection>
 
         <subsection>
-          <title>
-            Homology of a pair
-          </title>
+          <title>Homology of a pair</title>
 
           <definition>
-            <title>
-              Homology of a pair
-            </title>
+            <title>Homology of a pair</title>
             <statement>
-              <m>H_*(X,A) = H_*(C_*(X,A))</m> is the <term>homology of the pair</term> <m>(X,A)</m>.
+              <m>H_*(X,A) = H_*(C_*(X,A))</m> is the <term>homology of the pair <m>(X,A)</m></term>.
             </statement>
           </definition>
 
@@ -677,9 +647,7 @@ Copyright 2014 Alex J. Best
           </p>
 
           <definition>
-            <title>
-              Long exact sequence of a pair
-            </title>
+            <title>Long exact sequence of a pair</title>
             <statement>
               The <term>long exact sequence of the pair <m>(X,A)</m></term> is
               <me> \cdots \to H_n(A) \to H_n(X) \to H_n(X,A) \xrightarrow{\partial} H_{n-1} (A) \to \cdots.</me>
@@ -976,6 +944,58 @@ Copyright 2014 Alex J. Best
 
       <section>
         <title>Cell Complexes</title>
+
+        <definition>
+          <title>Attachment of cells</title>
+          <statement>
+            If <m>f\colon S^{n-1} \to X</m> then
+            <me>
+              X\cup_f D^n = X\amalg D^n/\sim
+            </me>
+            is the space obtained by <term>attaching</term> an <m>n</m>-dimensional cell to <m>X</m> via the map <m>f</m>.
+          </statement>
+        </definition>
+
+        <example>
+          <statement>
+            If <m>X = \{p\}</m> and <m>f\colon S^{n-1} \to X</m> then
+            <me>
+              X\cup_f D^n\cong D^n/S^{n-1} \cong S^n.
+            </me>
+          </statement>
+        </example>
+
+        <definition>
+          <title>Finite cell complex</title>
+          <statement>
+            A 0-dimensional <term>finite cell complex</term> is a finite disjoint union of points.
+            <br />
+            A <m>k</m>-dimensional finite cell complex is a space obtained by attaching finitely many <m>k</m>-cells to a <m>(k-1)</m>-dimensional finite cell complex.
+          </statement>
+        </definition>
+
+        <example>
+          <todo></todo>
+        </example>
+
+        <example>
+          <statement>
+            If a finite cell complex <m>X</m> has one 0-cell and one <m>n</m>-cell then <m>X \cong S^n</m>.
+            Similarly if <m>X</m> has one 0-cell and <m>k</m> <m>n</m>-cells then <m>X \cong \bigvee_{i=1}^{k}S^n</m>.
+          </statement>
+        </example>
+
+        <example>
+          <statement>
+            <m>T^2</m> is a finite cell complex with one 0-cell, two 1-cells and one 2-cell.<todo>pic</todo>
+          </statement>
+        </example>
+ 
+        <example>
+          <statement>
+            Any simplicial complex is a finite cell complex and any closed manifold can be given the structure of a finite cell complex.
+          </statement>
+        </example>
       </section>
     </chapter>
 
@@ -984,6 +1004,27 @@ Copyright 2014 Alex J. Best
 
       <section>
         <title>Homology with Coefficients and Cohomology</title>
+
+        <subsection>
+          <title>Hom and <m>\otimes</m> for modules</title>
+
+          <definition>
+            <title>Tensor product of <m>R</m>-modules</title>
+            <statement>
+              Let <m>M,N</m> be <m>R</m>-modules.
+              Then the <term>tensor product </term> <m>M\otimes N</m> is the <m>R</m>-modules generated by all pairs <m>m\otimes n</m> for <m>m\in M,\,n\in N</m> modulo the relations:
+              <ol>
+                <li>
+                  <m>(m_1+m_2)\otimes (n_1 + n_2) = \sum m_i \otimes n_j.</m>
+                </li>
+                <li>
+                  <m>r(m\otimes n) = (rm)\otimes n = m\otimes (rn).</m>
+                </li>
+              </ol>
+            </statement>
+          </definition>
+
+        </subsection>
       </section>
     </chapter>
 
