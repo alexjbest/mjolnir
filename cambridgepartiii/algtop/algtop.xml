@@ -543,9 +543,7 @@ Copyright 2014 Alex J. Best
           </definition>
 
           <lemma>
-            <title>
-              Snake lemma
-            </title>
+            <title>Snake lemma</title>
             <statement>
               If
               <me>
@@ -585,9 +583,7 @@ Copyright 2014 Alex J. Best
           </exercise>
 
           <example>
-            <title>
-              Reduced homology
-            </title>
+            <title>Reduced homology</title>
             <statement>
               If <m>X</m> is a space let
               <me>
@@ -667,9 +663,7 @@ Copyright 2014 Alex J. Best
           </p>
 
           <proposition>
-            <title>
-              Homotopy invariance
-            </title>
+            <title>Homotopy invariance</title>
 
             <statement>
               If <m>f,g \colon (X,A) \to (Y,B)</m> are homotopic as maps of pairs then <m>f_* = g_* \colon H_*(X,A) \to H_*(Y,B)</m>.
@@ -687,9 +681,7 @@ Copyright 2014 Alex J. Best
           </proposition>
 
           <subsubsection>
-            <title>
-              Visualising relative homology classes
-            </title>
+            <title>Visualising relative homology classes</title>
 
             <p>
               If <m>W^{n+1}</m> is a connected oriented compact manifold then we'll show that <m>H_{n+1}(W,\partial W) \cong \ZZ = \langle [W,\partial] \rangle</m> (where the <m>\partial</m> notation means relative to boundary)<todo></todo>.
@@ -705,14 +697,11 @@ Copyright 2014 Alex J. Best
         </subsection>
 
         <subsection>
-          <title>
-            Good pairs
-          </title>
+          <title>Good pairs</title>
 
           <definition>
-            <title>
-              Good pair
-            </title>
+            <title>Good pair</title>
+
             <statement>
               <m>(X,A)</m> is a <term>good pair</term> if
               <ol>
@@ -731,9 +720,8 @@ Copyright 2014 Alex J. Best
           </definition>
 
           <example>
-            <title>
-              Good pairs
-            </title>
+            <title>Good pairs</title>
+
             <statement>
               <ol>
                 <li>
@@ -747,9 +735,7 @@ Copyright 2014 Alex J. Best
           </example>
 
           <example>
-            <title>
-              Not good pairs
-            </title>
+            <title>Not good pairs</title>
             <statement>
               <ol>
                 <li>
@@ -834,9 +820,7 @@ Copyright 2014 Alex J. Best
           </corollary>
 
           <example>
-            <title>
-              Chains generating <m>H_n(S^n, *)</m>
-            </title>
+            <title>Chains generating <m>H_n(S^n, *)</m></title>
             <statement>
               <ol>
                 <li>
@@ -946,7 +930,7 @@ Copyright 2014 Alex J. Best
         <title>Cell Complexes</title>
 
         <definition>
-          <title>Attachment of cells</title>
+          <title>Attaching of cells</title>
           <statement>
             If <m>f\colon S^{n-1} \to X</m> then
             <me>
