@@ -1,0 +1,19 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2014-11-17T17:29:26Z    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="theorem-like"><h5 class="heading">
+<span class="type">Proposition</span><span class="codenumber">1.4.11</span><span class="title">Homotopy invariance</span>
+</h5>
+              If \(f,g \colon (X,A) \to (Y,B)\) are homotopic as maps of pairs then \(f_* = g_* \colon H_*(X,A) \to H_*(Y,B)\).
+            </article><article class="hiddenproof" id="proof-9"><a knowl="./knowl/proof-9.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-9" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+              Let \(H\colon (X\times I, A\times I) \to (Y,B)\) be the homotopy, \(H\) induces a chain homotopy \(h \colon C_*(X) \to C_{*+1}(Y)\) where \(dh + hd = f_\# - g_\#\).
+              \(H(A\times I) \subset B\) so \(h(C_*(A)) \subset C_{*+1}(B)\) this implies that \(h\) descends to a map
+              \[
+                h \colon C_*(X)/C_*(A) \to C_{*+1}(Y)/C_{*+1}(B)
+              \]
+              with \(hd + dh = f_\# - g_\#\) as any relation satisfied will remain satisfied in the quotient.
+              So we have \(h \colon C_*(X,A) \to C_{*+1}(Y,A)\) and hence \(f_\#,g_\#\colon C_*(X,A) \to C_*(Y,B)\) are chain homotopic.
+            </article></div><div class="context-link" style="text-align:right;"><a href="section-4.html#proposition-2">(in-context)</a></div>

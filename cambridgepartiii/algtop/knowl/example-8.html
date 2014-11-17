@@ -1,0 +1,37 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2014-11-17T17:29:26Z    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="example-like"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.4.7</span><span class="title">Reduced homology</span>
+</h5>
+              If \(X\) is a space let
+              \[
+                \tilde C_*(X) = \begin{cases}C_*(X), &amp;* \ne -1,\\\ZZ, &amp; * = -1,\end{cases}
+              \]
+              then define \(d(e_p)= e\) for \(p \in X\).
+              We have \(d^2e_\gamma = d(e_{\gamma(1)} - e_{\gamma(0)}) = e - e = 0\).
+              So \(\tilde C_*\) is a chain complex.
+              <br>
+              This construction can be motivated by thinking of \(\Delta^{-1} = \{\}\) and then considering \(\Map(\{\},X) = \{e\}\).
+              If
+              \[
+                A_* = \begin{cases} \ZZ = \langle e \rangle, &amp; * = -1, \\ 0, &amp; * = -1.\end{cases}
+              \]
+              Then we have a short exact sequence
+              \[
+                0 \to A_* \to \tilde C_*(X) \to C_*(X) \to 0.
+              \]
+              We have \(H_*(A) = A_*\) and so the long exact sequence of homology then says that for \(n \ge 0\)\[
+                \cdots \to H_n(A) = 0 \to H_n(\tilde C(X))\to H_n(C(X)) \to H_{n-1}(A)= 0 \to \cdots
+              \]
+              giving that \(H_n(\tilde C_*(X)) \cong H_n(C_*(X))\) for \(n \gt 0\).
+              We write \(\tilde H_*(X)\) for \(H_*(\tilde C_*(X))\). 
+              At \(n = 0\) we get
+              \[
+                \cdots \to 0 \to \tilde H_0(X)\to H_0(X) \to \ZZ \to 0 \to\cdots
+              \]
+              giving that \(\tilde H_0(X)\) has one fewer copies of \(\ZZ\) than \(H_0(X)\).
+            </article><div class="context-link" style="text-align:right;"><a href="section-4.html#example-8">(in-context)</a></div>

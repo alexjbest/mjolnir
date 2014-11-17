@@ -1,0 +1,35 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2014-11-17T17:29:26Z    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="hiddenproof"><h5 class="heading"><span class="type">Proof</span></h5>
+              We proceed by induction on \(n\).
+              For \(n = 0\) we have \(S^0 = \{p_+, p_-\}\) implying
+              \[
+                H_*(S^0) = H_*(p_+) \oplus H_*(p_-) = \begin{cases} \ZZ^2, &amp;* = 0,\\0, &amp;* \ne 0,\end{cases}
+              \]
+              giving
+              \[
+                \tilde H_*(S^0) = \begin{cases} \ZZ, &amp;* = 0,\\0, &amp;* \ne 0.\end{cases}
+              \]
+              Now consider the long exact sequence of the pair \((D^n, S^{n-1})\)\[
+                H_*(D^n) \to H_*(D^n, S^{n-1}) \to H_{*-1}(S^{n-1}) \xrightarrow{\phi} H_{*-1}(D^n),
+              \]
+              we can break this up using the kernel and cokernel to get
+              \begin{equation}
+                0 \to \coker \phi_m \to H_m(D^n, S^{n-1}) \to \ker \phi_{m-1} \to 0.
+              \label{sphere-homology-coker-sequence}\tag{1.4.1}\end{equation}\(D^n\) is contractible and so we get
+              \[
+                H_*(D^n) = \begin{cases} \ZZ, &amp;* = 0,\\0, &amp;* \ne 0.\end{cases}
+              \]
+              We have \(\phi\colon H_0(S^{n-1}) \to H_0(D^n) \cong \ZZ = \langle e_p\rangle\) given by \(\phi(e_p) = e_p\).
+              We see that \(\ker \phi = \tilde H_*(S^{n-1})\) and \(\coker \phi = 0\).
+              Now by looking at <a href="section-4.html#sphere-homology-coker-sequence">(1.4.1)</a> we see that
+              \[
+                0 \to \tilde H_*(S^n) = H_*(S^n,*) = H_*(D^n, S^{n-1}) \to \ker\phi = \tilde H_*(S^{n-1}) \to 0
+              \]
+              is exact giving \(\tilde H_*(S^n) \cong \tilde H_*(S^{n-1})\).
+              The claim then follows by induction.
+            </article><div class="context-link" style="text-align:right;"><a href="section-4.html#proof-11">(in-context)</a></div>

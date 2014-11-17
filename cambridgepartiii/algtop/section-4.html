@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2014-11-17T17:29:26Z    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AT 
+          Homology of a pair
+        </title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js"],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+    \DeclareMathOperator{\Map}{Map}
+    \DeclareMathOperator{\im}{im}
+    \DeclareMathOperator{\id}{id}
+    \DeclareMathOperator{\coker}{coker}
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\C}{C_*}
+    \DeclareMathOperator{\U}{\mathcal{U}}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
+<h1 class="heading"><span class="title">Part III Algebraic Topology 2014</span></h1>
+<p class="byline"></p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="section-3.html">Previous</a><a class="up-button button toolbar-item" href="chapter-1.html">Up</a><a class="next-button button toolbar-item" href="section-5.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-3.html">Previous</a><a class="up-button button toolbar-item" href="chapter-1.html">Up</a><a class="next-button button toolbar-item" href="section-5.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link active"><a href="chapter-1.html"><span class="codenumber">1</span><span class="title">Homology</span></a></h2>
+<ul>
+<li><a href="section-1.html">Introduction</a></li>
+<li><a href="section-2.html">Homotopy</a></li>
+<li><a href="section-3.html">Homology</a></li>
+<li><a href="section-4.html" class="active">
+          Homology of a pair
+        </a></li>
+<li><a href="section-5.html">Subdivision and Excision</a></li>
+<li><a href="section-6.html">Degree and Orientations</a></li>
+<li><a href="section-7.html">Cell Complexes</a></li>
+</ul>
+<h2 class="link"><a href="chapter-2.html"><span class="codenumber">2</span><span class="title">Cohomology and Products</span></a></h2>
+<ul><li><a href="section-8.html">Homology with Coefficients and Cohomology</a></li></ul>
+<h2 class="link"><a href="backmatter-1.html"><span class="title">Reference</span></a></h2>
+<ul><li><a href="section-9.html">Notation</a></li></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="section-4"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">1.4</span><span class="title">
+          Homology of a pair
+        </span>
+</h1></header><section class="subsection" id="subsection-6"><header><h1 class="heading">
+<span class="type">Subsection</span><span class="codenumber">1.4.1</span><span class="title">
+            Exact sequences
+          </span>
+</h1></header><article class="definition-like" id="definition-12"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.4.1</span><span class="title">
+              Exact sequence
+            </span>
+</h5>
+              A sequence
+              \[
+                \cdots \to A_{n+1} \to A_n \to A_{n-1} \to \cdots
+              \]
+              of \(R\)-modules and \(R\)-linear maps is <em class="terminology">exact at \(A_n\)</em> if \(\ker f_n = \im f_{n+1}\).
+              <br>
+              A sequence is <em class="terminology">exact</em> if it is exact at all \(A_n\), then \((A_*,f)\) is known as a <em class="terminology">acyclic</em> chain complex (the homology is zero).
+            </article><article class="example-like" id="example-7"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.4.2</span>
+</h5>
+<ol>
+<li>
+                \(0 \to A \xrightarrow{f} B\) is exact if and only if \(f\) is surjective.
+              </li>
+<li>
+                \(B \xrightarrow{g} C \to 0\) is exact if and only if \(g\) is injective.
+              </li>
+<li>
+                \(0 \to A \xrightarrow{f} A' \to 0\) is exact if and only if \(f\) is an isomorphism.
+              </li>
+<li>
+                \(0 \to A \to B \to C \to 0\) is exact if and only if \(A\subset B\) and \(C\cong B/A\).
+              </li>
+</ol></article><article class="definition-like" id="definition-13"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.4.3</span><span class="title">
+              Short exact sequence
+            </span>
+</h5>
+              A sequence 
+              \[
+                0 \to A_* \xrightarrow i B_* \xrightarrow{\pi} C_* \to 0
+              \]
+              is a <em class="terminology">short exact sequence</em> of chain complexes if
+              <ol>
+<li>
+                  \(A_*,B_*,C_*\) are chain complexes.
+                </li>
+<li>
+                  \(i, \pi\) are chain maps.
+                </li>
+<li>
+                  \[
+                    0 \to A_n \xrightarrow i B_n \xrightarrow{\pi} C_n \to 0
+                  \]
+                  is exact for all \(n\).
+                </li>
+</ol></article><article class="theorem-like" id="lemma-5"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">1.4.4</span><span class="title">Snake lemma</span>
+</h5>
+              If
+              \[
+                0 \to A_* \xrightarrow i B_* \xrightarrow{\pi} C_* \to 0
+              \]
+              is a short exact sequence of chain complexes then there is an associated <em class="terminology">long exact sequence</em> of homology groups
+              <figure>\[
+                  \xymatrix{ \cdots\ar[r] &amp; H_n(A) \ar[r]&amp;
+                  H_n(B) \ar[r] &amp; H_n(C)\ar `r[d] `[l]
+                  `[llld]_{\partial_n} `[dll] [dll]\\
+                  &amp; H_{n-1}(A) \ar[r] &amp; H_{n-1}(B)
+                  \ar[r] &amp; H_{n-1}(C)\ar[r] &amp; {\dots} }
+                \]</figure>
+              The map \(\partial\) is called the <em class="terminology">boundary map</em> in the exact sequence.
+            </article><article class="hiddenproof" id="proof-8"><a knowl="./knowl/proof-8.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-8" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+              We first define \(\partial\), given \([c] \in H_n(C)\) pick \(b\in B_n\) such that \(\pi(b) = c\).
+              Now \(\pi db = d\pi b = dc = 0\) and so \(db = ia\) for some \(a \in A_{n-1}\).
+              We have that \(ida = dia = ddb = 0\) and so \(da = 0\) and we can define \(\partial [c] = [a] \in H_{n-1} (A)\). <br>
+              We must check that the definition of \(\partial\) does not depend on the choice of \(b\) or \(c\) and also check exactness at each term.
+              Here we prove exactness at \(H_n(C)\).
+              With notation as above suppose \([c] = \pi_*([x])\) then we can take \(b = x\), \(db = 0\) implying that \(a =0\) and so \(\partial [c] = [a] = 0\).
+              We have then that \(\im \pi_* \subset \ker \partial\), so it remains to show that \(\ker \partial\subset \im \pi_*\).
+              If \([a] = da',\,a'\in A_n\) we let \(b' = b - i(a')\) then \(d(b') = db - d(ia') = db - i(da') = db - db = 0\).
+              Then \([b'] \in H_n(B)\) so \(\pi_*([b']) = [\pi(b')] = [\pi(b) - \pi(i(a'))] = [\pi(b)] = [c]\).
+            </article></div>
+<article class="exercise-like" id="exercise-3"><h5 class="heading">
+<span class="type">Exercise</span> <span class="codenumber">1.4.6</span>
+</h5>
+              Suppose we have a map of short exact sequences  commuting, then show there is a map of long exact sequences of homology commuting .
+            </article><article class="example-like" id="example-8"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.4.7</span><span class="title">Reduced homology</span>
+</h5>
+              If \(X\) is a space let
+              \[
+                \tilde C_*(X) = \begin{cases}C_*(X), &amp;* \ne -1,\\\ZZ, &amp; * = -1,\end{cases}
+              \]
+              then define \(d(e_p)= e\) for \(p \in X\).
+              We have \(d^2e_\gamma = d(e_{\gamma(1)} - e_{\gamma(0)}) = e - e = 0\).
+              So \(\tilde C_*\) is a chain complex.
+              <br>
+              This construction can be motivated by thinking of \(\Delta^{-1} = \{\}\) and then considering \(\Map(\{\},X) = \{e\}\).
+              If
+              \[
+                A_* = \begin{cases} \ZZ = \langle e \rangle, &amp; * = -1, \\ 0, &amp; * = -1.\end{cases}
+              \]
+              Then we have a short exact sequence
+              \[
+                0 \to A_* \to \tilde C_*(X) \to C_*(X) \to 0.
+              \]
+              We have \(H_*(A) = A_*\) and so the long exact sequence of homology then says that for \(n \ge 0\)\[
+                \cdots \to H_n(A) = 0 \to H_n(\tilde C(X))\to H_n(C(X)) \to H_{n-1}(A)= 0 \to \cdots
+              \]
+              giving that \(H_n(\tilde C_*(X)) \cong H_n(C_*(X))\) for \(n \gt 0\).
+              We write \(\tilde H_*(X)\) for \(H_*(\tilde C_*(X))\). 
+              At \(n = 0\) we get
+              \[
+                \cdots \to 0 \to \tilde H_0(X)\to H_0(X) \to \ZZ \to 0 \to\cdots
+              \]
+              giving that \(\tilde H_0(X)\) has one fewer copies of \(\ZZ\) than \(H_0(X)\).
+            </article><article class="example-like" id="example-9"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.4.8</span><span class="title">Homology of a pair</span>
+</h5>
+              Suppose \(A\subset X\), then \(C_*(A) \subset C_*(X)\) is a subcomplex.
+              Define \(C_*(X,A) = C_*(X)/C_*(A)\) and so we have a short exact sequence
+              \[
+                0 \to C_*(A) \to C_*(X) \to C_*(X,A) \to 0.
+              \]</article></section><section class="subsection" id="subsection-7"><header><h1 class="heading">
+<span class="type">Subsection</span><span class="codenumber">1.4.2</span><span class="title">Homology of a pair</span>
+</h1></header><article class="definition-like" id="definition-14"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.4.9</span><span class="title">Homology of a pair</span>
+</h5>\(H_*(X,A) = H_*(C_*(X,A))\) is the <em class="terminology">homology of the pair \((X,A)\)</em>.
+            </article><p>
+            From this we obtain:
+          </p>
+<article class="definition-like" id="definition-15"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.4.10</span><span class="title">Long exact sequence of a pair</span>
+</h5>
+              The <em class="terminology">long exact sequence of the pair \((X,A)\)</em> is
+              \[ \cdots \to H_n(A) \to H_n(X) \to H_n(X,A) \xrightarrow{\partial} H_{n-1} (A) \to \cdots.\]</article><p>
+            If \(f\colon (X,A) \to (Y,B)\) is a map of pairs then we get an <em class="terminology">induced map</em> \(f_\# \colon C_*(X) \to C_*(Y)\) defined by
+            \[
+              (\sigma\colon \Delta^n \to A) \mapsto f\circ \sigma.
+            \]
+            Observe that \(f_\#(C(A)) \subset C_*(B)\) and so \(f_\#\) descends to a map
+            \[
+              f_\#\colon C_*(X)/C_*(A) \to C_*(Y)/C_*(B)
+            \]
+            or equivalently \(f_\#\colon C_*(X,A) \to C_*(Y,B)\) this then induces \(f_*\colon H_*(X,A) \to H_*(Y,B)\).
+          </p>
+<article class="theorem-like" id="proposition-2"><h5 class="heading">
+<span class="type">Proposition</span><span class="codenumber">1.4.11</span><span class="title">Homotopy invariance</span>
+</h5>
+              If \(f,g \colon (X,A) \to (Y,B)\) are homotopic as maps of pairs then \(f_* = g_* \colon H_*(X,A) \to H_*(Y,B)\).
+            </article><article class="hiddenproof" id="proof-9"><a knowl="./knowl/proof-9.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-9" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+              Let \(H\colon (X\times I, A\times I) \to (Y,B)\) be the homotopy, \(H\) induces a chain homotopy \(h \colon C_*(X) \to C_{*+1}(Y)\) where \(dh + hd = f_\# - g_\#\).
+              \(H(A\times I) \subset B\) so \(h(C_*(A)) \subset C_{*+1}(B)\) this implies that \(h\) descends to a map
+              \[
+                h \colon C_*(X)/C_*(A) \to C_{*+1}(Y)/C_{*+1}(B)
+              \]
+              with \(hd + dh = f_\# - g_\#\) as any relation satisfied will remain satisfied in the quotient.
+              So we have \(h \colon C_*(X,A) \to C_{*+1}(Y,A)\) and hence \(f_\#,g_\#\colon C_*(X,A) \to C_*(Y,B)\) are chain homotopic.
+            </article></div>
+<section class="subsubsection" id="subsubsection-2"><header><h1 class="heading">
+<span class="type">Subsubsection</span><span class="codenumber">1.4.2.1</span><span class="title">Visualising relative homology classes</span>
+</h1></header><p>
+              If \(W^{n+1}\) is a connected oriented compact manifold then we'll show that \(H_{n+1}(W,\partial W) \cong \ZZ = \langle [W,\partial] \rangle\) (where the \(\partial\) notation means relative to boundary).
+              So given \(f\colon (W, \partial) \to (X,A)\) we get \(f_*([W,\partial W]) \in H_{n+1}(X,A)\).
+            </p>
+<article class="example-like" id="example-10"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.4.12</span>
+</h5>
+                Let \(X = \RR^3\) and \(A= S^1\) then \(W = D^2\) defines a class in \(H_2(\RR^3,S^1)\) (the boundary of \(W\) lies inside of \(A\)).
+              </article></section></section><section class="subsection" id="subsection-8"><header><h1 class="heading">
+<span class="type">Subsection</span><span class="codenumber">1.4.3</span><span class="title">Good pairs</span>
+</h1></header><article class="definition-like" id="definition-16"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.4.13</span><span class="title">Good pair</span>
+</h5>\((X,A)\) is a <em class="terminology">good pair</em> if
+              <ol>
+<li>
+                  \(\exists U \subset X\) open and \(A \subset U\)
+                </li>
+<li>
+                  \(\exists \pi \colon U \to A\) with \(\pi|_A = \id_A\).
+                </li>
+<li>
+                  \(\pi \sim 1_{(U,A)}\) as maps of pairs from \((U,A)\) to itself.
+                </li>
+</ol>
+              (i.e. \(A\) is a deformation retract of \(U\)).
+            </article><article class="example-like" id="example-11"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.4.14</span><span class="title">Good pairs</span>
+</h5>
+<ol>
+<li>
+                  \((\text{smooth manifold}, \text{closed submanifold})\).
+                </li>
+<li>
+                  \((\text{simplicial complex}, \text{subcomplex})\).
+                </li>
+</ol></article><article class="example-like" id="example-12"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.4.15</span><span class="title">Not good pairs</span>
+</h5>
+<ol>
+<li>
+                  \((\RR, \QQ)\).
+                </li>
+<li>
+                  Letting \(H\subset \RR^2\) be the Hawaiian earring then \((\RR^2, H)\) is not a good pair.
+                </li>
+</ol></article><article class="theorem-like" id="theorem-2"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">1.4.16</span>
+</h5>
+              Take \(A\subset X\) and let \(\pi\) be the natural map \(\pi\colon(X,A)\to(X/A,A/A)\cong (X/A,*)\).
+              Then if \((X,A)\) is a good pair the induced map \(\pi_*\colon H_*(X,A)\to H_*(X/A,*)\) is an isomorphism.
+            </article><article class="hiddenproof" id="proof-10"><a knowl="./knowl/proof-10.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-10" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+              Postponed.
+            </article></div>
+<article class="exercise-like" id="exercise-4"><h5 class="heading">
+<span class="type">Exercise</span> <span class="codenumber">1.4.17</span>
+</h5>
+              The composite map \(\phi\) in
+              \[
+                \tilde H_*(X) \to H_*(X) \to H_*(X,*)
+              \]
+              is an isomorphism.
+              i.e.
+              \[
+                H_*(X,*) = \begin{cases} H_*(X), &amp;* \gt 0,\\H_0(X)/\ZZ, &amp;* \le 0.\end{cases}
+              \]</article><article class="theorem-like" id="sphere-homology"><h5 class="heading">
+<span class="type">Proposition</span><span class="codenumber">1.4.18</span>
+</h5>\[
+                \tilde H_*(S^n) = \begin{cases} \ZZ, &amp;* = n,\\0, &amp;* \ne n.\end{cases}
+              \]</article><article class="hiddenproof" id="proof-11"><a knowl="./knowl/proof-11.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-11" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+              We proceed by induction on \(n\).
+              For \(n = 0\) we have \(S^0 = \{p_+, p_-\}\) implying
+              \[
+                H_*(S^0) = H_*(p_+) \oplus H_*(p_-) = \begin{cases} \ZZ^2, &amp;* = 0,\\0, &amp;* \ne 0,\end{cases}
+              \]
+              giving
+              \[
+                \tilde H_*(S^0) = \begin{cases} \ZZ, &amp;* = 0,\\0, &amp;* \ne 0.\end{cases}
+              \]
+              Now consider the long exact sequence of the pair \((D^n, S^{n-1})\)\[
+                H_*(D^n) \to H_*(D^n, S^{n-1}) \to H_{*-1}(S^{n-1}) \xrightarrow{\phi} H_{*-1}(D^n),
+              \]
+              we can break this up using the kernel and cokernel to get
+              \begin{equation}
+                0 \to \coker \phi_m \to H_m(D^n, S^{n-1}) \to \ker \phi_{m-1} \to 0.
+              \label{sphere-homology-coker-sequence}\tag{1.4.1}\end{equation}\(D^n\) is contractible and so we get
+              \[
+                H_*(D^n) = \begin{cases} \ZZ, &amp;* = 0,\\0, &amp;* \ne 0.\end{cases}
+              \]
+              We have \(\phi\colon H_0(S^{n-1}) \to H_0(D^n) \cong \ZZ = \langle e_p\rangle\) given by \(\phi(e_p) = e_p\).
+              We see that \(\ker \phi = \tilde H_*(S^{n-1})\) and \(\coker \phi = 0\).
+              Now by looking at <a href="section-4.html#sphere-homology-coker-sequence">(1.4.1)</a> we see that
+              \[
+                0 \to \tilde H_*(S^n) = H_*(S^n,*) = H_*(D^n, S^{n-1}) \to \ker\phi = \tilde H_*(S^{n-1}) \to 0
+              \]
+              is exact giving \(\tilde H_*(S^n) \cong \tilde H_*(S^{n-1})\).
+              The claim then follows by induction.
+            </article></div>
+<article class="theorem-like" id="corollary-4"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">1.4.19</span>
+</h5>\[
+                S^n \sim S^m \implies m = n.
+              \]</article><article class="example-like" id="example-13"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.4.20</span><span class="title">Chains generating \(H_n(S^n, *)\)</span>
+</h5>
+<ol>
+<li>
+                  Choose \(f\colon \Delta^n \to \Delta^n\) a homeomorphism and let \(e\colon \Delta^n \to \Delta^n\) be the identity map.
+                  Then \(a_{n-1} = f_\#(de) \in C_*(S^{n-1})\) and we have \(d a_{n-1} = df_\#(de) = f_\# (d^2 e) = 0\) and so \(a_{n-1}\) is closed.
+                </li>
+<li>
+                  Choose \(g\colon (D^n/S^{n-1}, S^{n-1}/S^{n-1}) \to (S^n, *)\).
+                  Now let \(b_n = g_\#(f_\#(e)) \in C_n(S^n,*)\).
+                  Then \(db_n = g_\#(a_{n-1}) \in C_*(*)\) implies \(b_n\) is closed in \(C_*(S^n, *)\).
+                  <br>
+                  For example if \(n = 2\) we are crushing the boundary of the \(2\)-simplex to a point.
+                </li>
+</ol></article><article class="theorem-like" id="proposition-4"><h5 class="heading">
+<span class="type">Proposition</span><span class="codenumber">1.4.21</span>
+</h5>\([a_n]\) generates \(\tilde H_n(S^n) = \ZZ\) (statement \((A_n)\)). <br>\([b_n]\) generates \(\tilde H_n(S^n, *) = \ZZ\) (statement \((B_n)\)). <br></article><article class="hiddenproof" id="proof-12"><a knowl="./knowl/proof-12.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-12" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+              Statement \((A_0)\): \(S^0 = \{p_+, p_-\}\), \(de = e_{p_+} - e_{p_-}\) so \(de\) generates \(\tilde H_0(S^0)\).<br>
+              We'll show that \(A_{n-1}\implies B_n\).
+              Here \(\partial\colon H_n(S^n, *)=H_n(D^n, S^{n-1}) \xrightarrow{\sim} \tilde H_{n-1}(S^{n-1})\) (by <a knowl="./knowl/sphere-homology.html" knowl-id="xref-sphere-homology" title="">1.4.18</a>).
+              So it suffices to check that \(\partial [b_n] = [a_{n-1}]\)</article></div>
+<article class="definition-like" id="definition-17"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.4.22</span><span class="title">Wedge product</span>
+</h5>
+              If \((X_i, p_i)\) are pointed spaces the <em class="terminology">wedge product</em>\[
+                \bigvee_{i\in I} (X_i,p_i) \text{ is } \coprod_{i\in I} X_i\Big/\{p_i : i\in I\}.
+              \]
+              If \(X_i\) is such that for any \(p,q\in X_i\) there exists a homeomorphism \(f\colon X_i \to X_i\) with \(f(p) = q\) we can drop \(p_i\) from the notation (for example in the case of \(X_i\) a connected manifold we can do this).
+            </article><article class="example-like" id="example-14"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.4.23</span>
+</h5></article><article class="theorem-like" id="corollary-5"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">1.4.24</span>
+</h5>
+              If \((X_i, p_i)\) are good pairs then
+              \[
+                \tilde H_*\left(\bigvee_{i}(X_i, p_i)\right) = \bigoplus_i \tilde H_*(X_i).
+              \]</article><article class="hiddenproof" id="proof-13"><a knowl="./knowl/proof-13.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-13" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">\begin{align*}
+\tilde H_*\left(\bigvee_{i\in I} X_i\right) &amp;\cong H_*\left(\bigvee_{i\in I} X_i, p\right) \cong H_*\left(\coprod_{i\in I} X_i, \{p_i : i\in I\}\right)\\
+&amp;\cong \bigoplus_{i\in I} H_*\left(X_i, p_i\right) \cong \bigoplus_{i\in I} \tilde H_*(X_i).
+\end{align*}</article></div>
+<article class="example-like" id="example-15"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.4.25</span>
+</h5>\[
+                H_*(S^1 \vee S^2) = \begin{cases}\ZZ, &amp;* = 0,1,2\\0, &amp;\text{otherwise}.\end{cases}
+              \]</article></section></section></div></main>
+</div>
+</body>
+</html>
