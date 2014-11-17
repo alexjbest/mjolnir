@@ -24,6 +24,7 @@ Copyright 2014 Alex J. Best
 
     <macros>
     \DeclareMathOperator{\Map}{Map}
+    \DeclareMathOperator{\Hom}{Hom}
     \DeclareMathOperator{\im}{im}
     \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\coker}{coker}
@@ -277,6 +278,7 @@ Copyright 2014 Alex J. Best
 
         <subsection>
           <title>Chain complexes</title>
+
           <definition>
             <title>Chain complex</title>
             <statement>
@@ -323,14 +325,10 @@ Copyright 2014 Alex J. Best
         </subsection>
 
         <subsection>
-          <title>
-            The chain complex of a simplex
-          </title>
+          <title>The chain complex of a simplex</title>
 
           <definition>
-            <title>
-              <m>n</m>-simplex
-            </title>
+            <title><m>n</m>-simplex</title>
             <statement>
               The <term><m>n</m>-dimensional simplex</term> <m>\Delta^n</m> is <me>\Delta^n = \left\{ (x_0,\ldots,x_n)\in\RR^n : \sum_{i} x_i = 1,\, x_i \ge 0 \forall i\right\}.</me>
               <m>\Delta^n</m> has <term>vertices</term> <m>v_0,\ldots,v_n</m> which are the intersections with the coordinate axes. The <m>k</m>-dimensional <term>faces</term> are in bijection with the <m>k+1</m>element subsets of <m>\{0,\ldots,n\}</m>.
@@ -401,7 +399,7 @@ Copyright 2014 Alex J. Best
         <subsection>
           <title>The singular chain complex</title>
           <definition>
-            <title>Singular chain complex </title>
+            <title>Singular chain complex</title>
             <statement>
               If <m>X</m> is a space, the <term>singular chain complex</term> of <m>X</m>, <m>C_*(X)</m> is defined by
               <me>C_n(x) = \langle e_\sigma : \sigma \colon \Delta^n \to X \text{ any continuous map}\rangle.</me>
@@ -461,19 +459,13 @@ Copyright 2014 Alex J. Best
       </section>
 
       <section>
-        <title>
-          Homology of a pair
-        </title>
+        <title>Homology of a pair</title>
 
         <subsection>
-          <title>
-            Exact sequences
-          </title>
+          <title>Exact sequences</title>
 
           <definition>
-            <title>
-              Exact sequence
-            </title>
+            <title>Exact sequence</title>
             <statement>
               A sequence
               <me>
@@ -503,9 +495,7 @@ Copyright 2014 Alex J. Best
           </example>
 
           <definition>
-            <title>
-              Short exact sequence
-            </title>
+            <title>Short exact sequence</title>
             <statement>
               A sequence 
               <me>
@@ -991,7 +981,83 @@ Copyright 2014 Alex J. Best
             </statement>
           </definition>
 
+          <p>
+            We have the following properties of this definition:
+            <ol>
+              <li><m>(M_1\oplus M_2) \otimes (N_1\oplus N_2) = \bigoplus M_i\otimes N_j</m>.</li>
+              <li><m>M\otimes N \cong N \otimes M</m>.</li>
+              <li><m>M\otimes R = M</m></li>
+            </ol>
+          </p>
+
+          <example>
+            <title>Tensor products</title>
+            <statement>
+              <ol>
+                <li><m>R^n \otimes R^m \cong R^{mn}</m>.</li>
+                <li>Letting <m>R = \ZZ</m>, <m> \QQ \otimes \ZZ/a\cong 0</m>.</li>
+                <li><m>\ZZ/a\otimes\ZZ/b\cong \ZZ/(a,b)</m>.</li>
+              </ol>
+            </statement>
+          </example>
+
+          <p>If <m>f\colon M_1 \to M_2</m> and <m>g\colon N_1 \to N_2</m> then there is a map
+            <md>
+              <mrow>f\otimes g \colon M_1 &amp;\otimes N_1 \to M_2 \otimes N_2,</mrow>
+              <mrow>m&amp;\otimes n \mapsto f(m) \otimes g(n).</mrow>
+            </md>
+          </p>
+
+          <example>
+            <statement>
+              If <m> f\colon R^n \to R^m</m> is given by multiplication by <m>A\in \operatorname{Mat}_{n\times m}(R)</m> then <m>f\otimes 1_M\colon M^n \to M^m</m> is given by multiplication by <m>A</m>.
+            </statement>
+          </example>
+
+          <definition>
+            <title>Hom</title>
+            <statement>
+              <me>\Hom(M, N) = \{f\colon M\to N : f \text{ is } R \text{-linear}\}</me>
+              is an <m>R</m>-module, via <m>(f + rg)(m) = f(m) + rg(m)</m>.
+            </statement>
+          </definition>
+
+          <p>From this definition we see that
+            <ol>
+              <li><m>\Hom(\bigoplus M_i, \bigoplus N_j)\cong \bigoplus_{i,j} \Hom(M_i, N_j)</m>.</li>
+              <li><m>\Hom(R, M) \cong M</m>.</li>
+            </ol>
+          </p>
+
+          <p>Note however that we do not have <m>\Hom(M,N) = \Hom(N,M)</m> as for example <m>\Hom(\ZZ/2,\ZZ) = 0</m> but <m>\Hom(\ZZ, \ZZ/2) = \ZZ/2</m>.</p>
+
+          <definition>
+            <title>Dual module</title>
+            <statement>
+              Given an <m>R</m>-module <m>M</m> the <term>dual</term> of <m>M</m> is <m>M^* = \Hom(M,R)</m>.
+            </statement>
+          </definition>
+
+          <p>Now if we have <m>f\colon M \to N</m> we get a map
+            <me>f^*\colon \Hom(N, O) \to \Hom(M, O)</me>
+            given by <m>f^*g = g\circ f</m>.
+          </p>
+
+          <example>
+            <statement>
+              If <m>f\colon R^n \to R^m</m> is multiplication by <m>A</m> then
+              <me>f^*\colon \Hom(R^m , O) \cong O^m \to \Hom(R^n, O) \cong O^n)</me>
+              is multiplication by <m>A^\top</m>.
+            </statement>
+          </example>
         </subsection>
+
+        <subsection>
+          <title>Hom and <m>\otimes</m> for chain complexes</title>
+
+          <p>If <m>(C, d)</m> is a chain complex defined over <m>R</m> then so are <m>(C_*\otimes M, d\otimes 1_M) = C_* \otimes M</m> and <m>(\Hom(C_*,M),d^*) = \Hom(C_*, M)</m>.</p>
+        </subsection>
+        <todo>work out whats going on here</todo>
       </section>
     </chapter>
 
