@@ -2,7 +2,7 @@
 <html>
 <!--*                                    *-->
 <!--* Generated from MathBook XML source *-->
-<!--*    on 2014-11-17T17:29:26Z    *-->
+<!--*    on 2014-11-17T21:56:42Z    *-->
 <!--*                                    *-->
 <!--*   http://mathbook.pugetsound.edu   *-->
 <!--*                                    *-->
@@ -50,6 +50,7 @@ $(function () {
 <body class="mathbook-book has-toc has-sidebar-left">
 <div style="display:none;">\(
     \DeclareMathOperator{\Map}{Map}
+    \DeclareMathOperator{\Hom}{Hom}
     \DeclareMathOperator{\im}{im}
     \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\coker}{coker}
@@ -110,7 +111,59 @@ $(function () {
 <li>
                   \(r(m\otimes n) = (rm)\otimes n = m\otimes (rn).\)
                 </li>
-</ol></article></section></section></div></main>
+</ol></article><p>
+            We have the following properties of this definition:
+            <ol>
+<li>\((M_1\oplus M_2) \otimes (N_1\oplus N_2) = \bigoplus M_i\otimes N_j\).</li>
+<li>\(M\otimes N \cong N \otimes M\).</li>
+<li>\(M\otimes R = M\)</li>
+</ol>
+          </p>
+<article class="example-like" id="example-21"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.1.2</span><span class="title">Tensor products</span>
+</h5>
+<ol>
+<li>\(R^n \otimes R^m \cong R^{mn}\).</li>
+<li>Letting \(R = \ZZ\), \( \QQ \otimes \ZZ/a\cong 0\).</li>
+<li>\(\ZZ/a\otimes\ZZ/b\cong \ZZ/(a,b)\).</li>
+</ol></article><p>If \(f\colon M_1 \to M_2\) and \(g\colon N_1 \to N_2\) then there is a map
+            \begin{align*}
+f\otimes g \colon M_1 &amp;\otimes N_1 \to M_2 \otimes N_2,\\
+m&amp;\otimes n \mapsto f(m) \otimes g(n).
+\end{align*}
+          </p>
+<article class="example-like" id="example-22"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.1.3</span>
+</h5>
+              If \( f\colon R^n \to R^m\) is given by multiplication by \(A\in \operatorname{Mat}_{n\times m}(R)\) then \(f\otimes 1_M\colon M^n \to M^m\) is given by multiplication by \(A\).
+            </article><article class="definition-like" id="definition-22"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">2.1.4</span><span class="title">Hom</span>
+</h5>\[\Hom(M, N) = \{f\colon M\to N : f \text{ is } R \text{-linear}\}\]
+              is an \(R\)-module, via \((f + rg)(m) = f(m) + rg(m)\).
+            </article><p>From this definition we see that
+            <ol>
+<li>\(\Hom(\bigoplus M_i, \bigoplus N_j)\cong \bigoplus_{i,j} \Hom(M_i, N_j)\).</li>
+<li>\(\Hom(R, M) \cong M\).</li>
+</ol>
+          </p>
+<p>Note however that we do not have \(\Hom(M,N) = \Hom(N,M)\) as for example \(\Hom(\ZZ/2,\ZZ) = 0\) but \(\Hom(\ZZ, \ZZ/2) = \ZZ/2\).</p>
+<article class="definition-like" id="definition-23"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">2.1.5</span><span class="title">Dual module</span>
+</h5>
+              Given an \(R\)-module \(M\) the <em class="terminology">dual</em> of \(M\) is \(M^* = \Hom(M,R)\).
+            </article><p>Now if we have \(f\colon M \to N\) we get a map
+            \[f^*\colon \Hom(N, O) \to \Hom(M, O)\]
+            given by \(f^*g = g\circ f\).
+          </p>
+<article class="example-like" id="example-23"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.1.6</span>
+</h5>
+              If \(f\colon R^n \to R^m\) is multiplication by \(A\) then
+              \[f^*\colon \Hom(R^m , O) \cong O^m \to \Hom(R^n, O) \cong O^n)\]
+              is multiplication by \(A^\top\).
+            </article></section><section class="subsection" id="subsection-10"><header><h1 class="heading">
+<span class="type">Subsection</span><span class="codenumber">2.1.2</span><span class="title">Hom and \(\otimes\) for chain complexes</span>
+</h1></header><p>If \((C, d)\) is a chain complex defined over \(R\) then so are \((C_*\otimes M, d\otimes 1_M) = C_* \otimes M\) and \((\Hom(C_*,M),d^*) = \Hom(C_*, M)\).</p></section></section></div></main>
 </div>
 </body>
 </html>
