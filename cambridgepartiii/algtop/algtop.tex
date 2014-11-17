@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2014-11-16T11:03:45Z    %%
+%%    on 2014-11-17T21:56:42Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -12,6 +12,10 @@
 %% Inline math delimiters, \(, \), made robust with next package
 \usepackage{fixltx2e}
 %% Page Layout Adjustments (latex.geometry)
+%% For unicode character support, use the "xelatex" executable
+%% If never using xelatex, the next three lines can be removed
+\usepackage{ifxetex}
+\ifxetex\usepackage{xltxtra}\fi
 %% Symbols, align environment, bracket-matrix
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -103,9 +107,10 @@
 %% If you manually remove hyperref, leave in this next command
 \providecommand\phantomsection{}
 %% Custom Preamble Entries, late (use latex.preamble.late)
+\usepackage[all]{xy}
 %% Convenience macros
 \DeclareMathOperator{\Map}{Map}
-\DeclareMathOperator{\dim}{dim}
+\DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\coker}{coker}
@@ -161,7 +166,7 @@
         %
 \par
 
-          Generated: November 16, 2014, 11:03:45 (Z)
+          Generated: November 17, 2014, 21:56:42 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Homotopy}
@@ -389,18 +394,10 @@
 
               It suffices to show \(d^2(e_I) = 0\) for all \(I\).
               \begin{align*}
-
-                  d^2(e_I) &= d\left(\sum_{j = 0}^{k} (-1)^j e_{i_0,\ldots,\hat{i}_j,\ldots,i_k}\right)
-                \\
-
-                  &= \sum_{j = 0}^{k} (-1)^j d\left(e_{i_0,\ldots,\hat{i}_j,\ldots,i_k} \right)
-                \\
-
-                  &= \sum_{j = 0}^{k} (-1)^j\left( \sum_{l \lt j} (-1)^l e_{i_0,\ldots,\hat{i}_l,\ldots,\hat{i}_j,\ldots,i_k} + \sum_{l \gt j} (-1)^{l-1} e_{i_0,\ldots,\hat{i}_j,\ldots,\hat{i}_l,\ldots,i_k}\right)
-                \\
-
-                  &= \sum_{j = 0}^{k} \left( \sum_{l \lt j} (-1)^{l+j} e_{I - i_l - i_j} - \sum_{l \gt j} (-1)^{l+j} e_{I - i_j - i_l}\right) = 0.
-                
+d^2(e_I) &= d\left(\sum_{j = 0}^{k} (-1)^j e_{i_0,\ldots,\hat{i}_j,\ldots,i_k}\right)\\
+&= \sum_{j = 0}^{k} (-1)^j d\left(e_{i_0,\ldots,\hat{i}_j,\ldots,i_k} \right)\\
+&= \sum_{j = 0}^{k} (-1)^j\left( \sum_{l \lt j} (-1)^l e_{i_0,\ldots,\hat{i}_l,\ldots,\hat{i}_j,\ldots,i_k} + \sum_{l \gt j} (-1)^{l-1} e_{i_0,\ldots,\hat{i}_j,\ldots,\hat{i}_l,\ldots,i_k}\right)\\
+&= \sum_{j = 0}^{k} \left( \sum_{l \lt j} (-1)^{l+j} e_{I - i_l - i_j} - \sum_{l \gt j} (-1)^{l+j} e_{I - i_j - i_l}\right) = 0.
 \end{align*}\end{proof}
 \begin{example}[Computing \(H_*(S_*(\Delta^2))\)]\label{example-6}
 
@@ -447,12 +444,8 @@
               \end{lemma}
 \begin{proof}
 \begin{align*}
-
-                    \phi_*([x]) - \psi_*([x]) &= [\phi(x) - \psi(x)]
-                  \\
-
-                    &= [d'hx + hdx] = [d'hx] = 0 \in H_*(C').
-                  
+\phi_*([x]) - \psi_*([x]) &= [\phi(x) - \psi(x)]\\
+&= [d'hx + hdx] = [d'hx] = 0 \in H_*(C').
 \end{align*}\end{proof}
 \begin{theorem}\label{theorem-1}
 
@@ -786,12 +779,8 @@
               \]\end{corollary}
 \begin{proof}
 \begin{align*}
-
-                  \tilde H_*\left(\bigvee_{i\in I} X_i\right) &\cong H_*\left(\bigvee_{i\in I} X_i, p\right) \cong H_*\left(\coprod_{i\in I} X_i, \{p_i : i\in I\}\right)
-                \\
-
-                  &\cong \bigoplus_{i\in I} H_*\left(X_i, p_i\right) \cong \bigoplus_{i\in I} \tilde H_*(X_i).
-                
+\tilde H_*\left(\bigvee_{i\in I} X_i\right) &\cong H_*\left(\bigvee_{i\in I} X_i, p\right) \cong H_*\left(\coprod_{i\in I} X_i, \{p_i : i\in I\}\right)\\
+&\cong \bigoplus_{i\in I} H_*\left(X_i, p_i\right) \cong \bigoplus_{i\in I} \tilde H_*(X_i).
 \end{align*}\end{proof}
 \begin{example}\label{example-15}
 \[
@@ -879,6 +868,59 @@
                   \(r(m\otimes n) = (rm)\otimes n = m\otimes (rn).\)
                 \end{enumerate}
 \end{definition}
+
+            We have the following properties of this definition:
+            \begin{enumerate}
+\item{}\((M_1\oplus M_2) \otimes (N_1\oplus N_2) = \bigoplus M_i\otimes N_j\).\item{}\(M\otimes N \cong N \otimes M\).\item{}\(M\otimes R = M\)\end{enumerate}
+
+          %
+\begin{example}[Tensor products]\label{example-21}
+\begin{enumerate}
+\item{}\(R^n \otimes R^m \cong R^{mn}\).\item{}Letting \(R = \ZZ\), \( \QQ \otimes \ZZ/a\cong 0\).\item{}\(\ZZ/a\otimes\ZZ/b\cong \ZZ/(a,b)\).\end{enumerate}
+\end{example}
+\par
+If \(f\colon M_1 \to M_2\) and \(g\colon N_1 \to N_2\) then there is a map
+            \begin{align*}
+f\otimes g \colon M_1 &\otimes N_1 \to M_2 \otimes N_2,\\
+m&\otimes n \mapsto f(m) \otimes g(n).
+\end{align*}
+          %
+\begin{example}\label{example-22}
+
+              If \( f\colon R^n \to R^m\) is given by multiplication by \(A\in \operatorname{Mat}_{n\times m}(R)\) then \(f\otimes 1_M\colon M^n \to M^m\) is given by multiplication by \(A\).
+            \end{example}
+\begin{definition}[Hom]\label{definition-22}
+\[\Hom(M, N) = \{f\colon M\to N : f \text{ is } R \text{-linear}\}\]
+              is an \(R\)-module, via \((f + rg)(m) = f(m) + rg(m)\).
+            \end{definition}
+\par
+From this definition we see that
+            \begin{enumerate}
+\item{}\(\Hom(\bigoplus M_i, \bigoplus N_j)\cong \bigoplus_{i,j} \Hom(M_i, N_j)\).\item{}\(\Hom(R, M) \cong M\).\end{enumerate}
+
+          %
+\par
+Note however that we do not have \(\Hom(M,N) = \Hom(N,M)\) as for example \(\Hom(\ZZ/2,\ZZ) = 0\) but \(\Hom(\ZZ, \ZZ/2) = \ZZ/2\).%
+\begin{definition}[Dual module]\label{definition-23}
+
+              Given an \(R\)-module \(M\) the \terminology{dual} of \(M\) is \(M^* = \Hom(M,R)\).
+            \end{definition}
+\par
+Now if we have \(f\colon M \to N\) we get a map
+            \[f^*\colon \Hom(N, O) \to \Hom(M, O)\]
+            given by \(f^*g = g\circ f\).
+          %
+\begin{example}\label{example-23}
+
+              If \(f\colon R^n \to R^m\) is multiplication by \(A\) then
+              \[f^*\colon \Hom(R^m , O) \cong O^m \to \Hom(R^n, O) \cong O^n)\]
+              is multiplication by \(A^\top\).
+            \end{example}
+\typeout{************************************************}
+\typeout{Subsection 2.1.2 Hom and \(\otimes\) for chain complexes}
+\typeout{************************************************}
+\subsection[Hom and \(\otimes\) for chain complexes]{Hom and \(\otimes\) for chain complexes}\label{subsection-10}
+If \((C, d)\) is a chain complex defined over \(R\) then so are \((C_*\otimes M, d\otimes 1_M) = C_* \otimes M\) and \((\Hom(C_*,M),d^*) = \Hom(C_*, M)\).%
 %
 \backmatter
 %
