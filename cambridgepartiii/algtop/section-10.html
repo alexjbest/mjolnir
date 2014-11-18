@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2014-11-18T01:21:38Z    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AT Products</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "[Contrib]/xyjax/xypic.js"],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+    \DeclareMathOperator{\Map}{Map}
+    \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\im}{im}
+    \DeclareMathOperator{\id}{id}
+    \DeclareMathOperator{\coker}{coker}
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\RP}{\mathbf{RP}}
+    \DeclareMathOperator{\C}{C_*}
+    \DeclareMathOperator{\U}{\mathcal{U}}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
+<h1 class="heading"><span class="title">Part III Algebraic Topology 2014</span></h1>
+<p class="byline"></p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="section-9.html">Previous</a><a class="up-button button toolbar-item" href="chapter-2.html">Up</a><a class="next-button button toolbar-item" href="backmatter-1.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-9.html">Previous</a><a class="up-button button toolbar-item" href="chapter-2.html">Up</a><a class="next-button button toolbar-item" href="backmatter-1.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link"><a href="chapter-1.html"><span class="codenumber">1</span><span class="title">Homology</span></a></h2>
+<ul>
+<li><a href="section-1.html">Introduction</a></li>
+<li><a href="section-2.html">Homotopy</a></li>
+<li><a href="section-3.html">Homology</a></li>
+<li><a href="section-4.html">Homology of a pair</a></li>
+<li><a href="section-5.html">Subdivision and Excision</a></li>
+<li><a href="section-6.html">Degree and Orientations</a></li>
+<li><a href="section-7.html">Cell Complexes</a></li>
+</ul>
+<h2 class="link active"><a href="chapter-2.html"><span class="codenumber">2</span><span class="title">Cohomology and Products</span></a></h2>
+<ul>
+<li><a href="section-8.html">Homology with Coefficients and Cohomology</a></li>
+<li><a href="section-9.html">Universal Coefficient Theorems</a></li>
+<li><a href="section-10.html" class="active">Products</a></li>
+</ul>
+<h2 class="link"><a href="backmatter-1.html"><span class="title">Reference</span></a></h2>
+<ul><li><a href="section-11.html">Notation</a></li></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="section-10"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">2.3</span><span class="title">Products</span>
+</h1></header><article class="definition-like" id="definition-24"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">2.3.1</span><span class="title">Product of chain complexes</span>
+</h5>If \(A,B\) are chain complexes the \(C=A \otimes B\) is the chain complex with
+            \[C_i = \bigoplus_{j+k = i}A_j \otimes B_k\]
+            and
+            \[d(a\otimes b) = (da)\otimes b + (-1)^{|a|} a\otimes (db)\]
+            where \(|a| = j\) if \(a \in A_j\).
+          </article><p>The following theorem is true but we will not prove it.</p>
+<article class="theorem-like" id="theorem-3"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">2.3.2</span><span class="title">Eilenberg-Zilber</span>
+</h5>\[C_*(X\times Y) \sim C_*(X) \otimes C_*(Y).\]</article><p>Given \(H_*(A)\) and \(H_*(B)\) how can we compute \(H_*(A\otimes B)\).</p>
+<article class="theorem-like" id="lemma-7"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">2.3.3</span>
+</h5>Suppose \(A\sim A'\). Then \(A\otimes B \sim A'\otimes B\).</article><article class="hiddenproof" id="proof-14"><a knowl="./knowl/proof-14.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-14" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">Easy.</article></div>
+<article class="theorem-like" id="corollary-6"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">2.3.4</span>
+</h5>Suppose \(A,B\) are finitely generated chain complexes, defined over a field. Then
+            \[H_*(A\otimes B) = \bigoplus_{j+k = i} H_j(A) \otimes H_k(B)\]
+            i.e.
+            \[H_*(A\otimes B) \cong H_*(A) \otimes H_*(B).\]</article><article class="hiddenproof" id="proof-15"><a knowl="./knowl/proof-15.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-15" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">\(A\) is a chain complex over a field, so \(A\sim A'\) where \(A'_i = H_i(A)\) and \(d \equiv 0\) on \(A'\).
+            Similarly for \(B\).
+            Then
+            \[H_*(A\otimes B) \cong H_*(A'\otimes B') \cong A'\otimes B' = H_*(A)\otimes H_*(B).\]</article></div>
+<article class="theorem-like" id="homology-product-is-tensor"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">2.3.5</span>
+</h5>If \(k\) is a field and \(X,\,Y\) are finite chain complexes then
+            \[H_*(X\times Y; k)\cong H_*(X; k) \otimes_k H_*(Y; k).\]</article><article class="definition-like" id="definition-25"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">2.3.6</span><span class="title">Poincare polynomial</span>
+</h5>The <em class="terminology">Poincare polynomial</em> of \(X\) with coefficients in \(k\) is
+            \[P_k(X) = \sum_{i\ge 0} \dim H_i(X; k) t^i.\]</article><article class="example-like" id="example-24"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.3.7</span>
+</h5>\[P_{\ZZ/2} (\RP^2) = 1 + t + t^2.\]</article><p><a knowl="./knowl/homology-product-is-tensor.html" knowl-id="xref-homology-product-is-tensor" title="">2.3.5</a> tells us that \[P_k(X\times Y) = P_k(X)P_k(Y).\]</p>
+<article class="example-like" id="example-25"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.3.8</span>
+</h5>\[P_{\ZZ/2}(\RP^3 \times \RP^2) = (1+t+t^2)(1+t+t^2+t^3).\]</article><p>For now we will suppose that \(A,B\) are finitely generated chain complexes over a PID \(R\).</p>
+<article class="theorem-like" id="free-homology-homotopic-zero-boundary"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">2.3.9</span>
+</h5>If \(H_*(A)\) is a free \(R\)-module then \(A\sim A'\) where \(A_i' = H_i(A)\) and \(d\equiv 0\) on \(A'\).
+          </article><article class="hiddenproof" id="proof-16"><a knowl="./knowl/proof-16.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-16" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">\(A\) is the direct sum of short and stupid complexes. \(H_*(A)\) being torsion free implies that every short complex is of the form
+            \[
+              \xymatrix{ C\colon R\ar@&lt;.5ex&gt;[r]^{\cdot a} &amp; R \ar@&lt;.5ex&gt;[l]^{\cdot a^{-1}}}
+            \]
+            with \(a\in R^\times\) such a \(C \sim 0\) (same proof as for a field).
+          </article></div>
+<article class="theorem-like" id="corollary-8"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">2.3.10</span>
+</h5>If \(H_*(A)\) is free then \(H_*(A\otimes B) \cong H_*(A) \otimes H_*(B)\).</article><article class="hiddenproof" id="proof-17"><a knowl="./knowl/proof-17.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-17" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">\(A\otimes B \cong A' \otimes B\) where \(A'\) is as in <a knowl="./knowl/free-homology-homotopic-zero-boundary.html" knowl-id="xref-free-homology-homotopic-zero-boundary" title="">2.3.9</a>.
+            \(A'\otimes B\) is a direct sum of copies of \(B\), one for each generator of \(A'\).
+            This gives that \(H_*(A'\otimes B)\) is  a direct sum of copies of \(H_*(B)\), one for each generator of \(H_*(A)\) which implies that
+            \[H_*(A\otimes B) \cong H_*(A) \otimes H_*(B)\]
+            (since \(H_*(A)\) is free).
+            \[R^n \otimes H_*(B) \cong (H_*(B))^n.\]</article></div>
+<article class="theorem-like" id="corollary-9"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">2.3.11</span>
+</h5>If \(X\) and \(Y\) are finite cell complexes and \(H_*(X)\) is free over \(\ZZ\), then \(H_*(X\times Y) \cong H_*(X) \otimes H_*(Y)\).</article></section></div></main>
+</div>
+</body>
+</html>

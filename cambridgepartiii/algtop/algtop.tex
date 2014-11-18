@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2014-11-17T21:56:42Z    %%
+%%    on 2014-11-18T01:21:38Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -118,6 +118,7 @@
 \DeclareMathOperator{\QQ}{\mathbf{Q}}
 \DeclareMathOperator{\RR}{\mathbf{R}}
 \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+\DeclareMathOperator{\RP}{\mathbf{RP}}
 \DeclareMathOperator{\C}{C_*}
 \DeclareMathOperator{\U}{\mathcal{U}}
 %% Title page information for book
@@ -166,7 +167,7 @@
         %
 \par
 
-          Generated: November 17, 2014, 21:56:42 (Z)
+          Generated: November 18, 2014, 01:21:38 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Homotopy}
@@ -362,18 +363,10 @@
               \end{enumerate}
 \end{example}
 \typeout{************************************************}
-\typeout{Subsection 1.3.2 
-            The chain complex of a simplex
-          }
+\typeout{Subsection 1.3.2 The chain complex of a simplex}
 \typeout{************************************************}
-\subsection[
-            The chain complex of a simplex
-          ]{
-            The chain complex of a simplex
-          }\label{subsection-4}
-\begin{definition}[
-              \(n\)-simplex
-            ]\label{definition-8}
+\subsection[The chain complex of a simplex]{The chain complex of a simplex}\label{subsection-4}
+\begin{definition}[\(n\)-simplex]\label{definition-8}
 
               The \terminology{\(n\)-dimensional simplex}\(\Delta^n\) is \[\Delta^n = \left\{ (x_0,\ldots,x_n)\in\RR^n : \sum_{i} x_i = 1,\, x_i \ge 0 \forall i\right\}.\]\(\Delta^n\) has \terminology{vertices}\(v_0,\ldots,v_n\) which are the intersections with the coordinate axes. The \(k\)-dimensional \terminology{faces} are in bijection with the \(k+1\)element subsets of \(\{0,\ldots,n\}\).
             \end{definition}
@@ -421,7 +414,7 @@ d^2(e_I) &= d\left(\sum_{j = 0}^{k} (-1)^j e_{i_0,\ldots,\hat{i}_j,\ldots,i_k}\r
 \typeout{Subsection 1.3.3 The singular chain complex}
 \typeout{************************************************}
 \subsection[The singular chain complex]{The singular chain complex}\label{subsection-5}
-\begin{definition}[Singular chain complex ]\label{definition-10}
+\begin{definition}[Singular chain complex]\label{definition-10}
 
               If \(X\) is a space, the \terminology{singular chain complex} of \(X\), \(C_*(X)\) is defined by
               \[C_n(x) = \langle e_\sigma : \sigma \colon \Delta^n \to X \text{ any continuous map}\rangle.\]
@@ -462,28 +455,14 @@ d^2(e_I) &= d\left(\sum_{j = 0}^{k} (-1)^j e_{i_0,\ldots,\hat{i}_j,\ldots,i_k}\r
                 If \(X\) is contractible then \(H_*(X) \cong H_*(\{p\}) \cong \ZZ\) if \(* = 0\), \(0\) otherwise.
               \end{corollary}
 \typeout{************************************************}
-\typeout{Section 1.4 
-          Homology of a pair
-        }
+\typeout{Section 1.4 Homology of a pair}
 \typeout{************************************************}
-\section[
-          Homology of a pair
-        ]{
-          Homology of a pair
-        }\label{section-4}
+\section[Homology of a pair]{Homology of a pair}\label{section-4}
 \typeout{************************************************}
-\typeout{Subsection 1.4.1 
-            Exact sequences
-          }
+\typeout{Subsection 1.4.1 Exact sequences}
 \typeout{************************************************}
-\subsection[
-            Exact sequences
-          ]{
-            Exact sequences
-          }\label{subsection-6}
-\begin{definition}[
-              Exact sequence
-            ]\label{definition-12}
+\subsection[Exact sequences]{Exact sequences}\label{subsection-6}
+\begin{definition}[Exact sequence]\label{definition-12}
 
               A sequence
               \[
@@ -505,9 +484,7 @@ d^2(e_I) &= d\left(\sum_{j = 0}^{k} (-1)^j e_{i_0,\ldots,\hat{i}_j,\ldots,i_k}\r
                 \(0 \to A \to B \to C \to 0\) is exact if and only if \(A\subset B\) and \(C\cong B/A\).
               \end{enumerate}
 \end{example}
-\begin{definition}[
-              Short exact sequence
-            ]\label{definition-13}
+\begin{definition}[Short exact sequence]\label{definition-13}
 
               A sequence 
               \[
@@ -921,13 +898,82 @@ Now if we have \(f\colon M \to N\) we get a map
 \typeout{************************************************}
 \subsection[Hom and \(\otimes\) for chain complexes]{Hom and \(\otimes\) for chain complexes}\label{subsection-10}
 If \((C, d)\) is a chain complex defined over \(R\) then so are \((C_*\otimes M, d\otimes 1_M) = C_* \otimes M\) and \((\Hom(C_*,M),d^*) = \Hom(C_*, M)\).%
+\typeout{************************************************}
+\typeout{Section 2.2 Universal Coefficient Theorems}
+\typeout{************************************************}
+\section[Universal Coefficient Theorems]{Universal Coefficient Theorems}\label{section-9}
+\typeout{************************************************}
+\typeout{Section 2.3 Products}
+\typeout{************************************************}
+\section[Products]{Products}\label{section-10}
+\begin{definition}[Product of chain complexes]\label{definition-24}
+If \(A,B\) are chain complexes the \(C=A \otimes B\) is the chain complex with
+            \[C_i = \bigoplus_{j+k = i}A_j \otimes B_k\]
+            and
+            \[d(a\otimes b) = (da)\otimes b + (-1)^{|a|} a\otimes (db)\]
+            where \(|a| = j\) if \(a \in A_j\).
+          \end{definition}
+The following theorem is true but we will not prove it.%
+\begin{theorem}[Eilenberg-Zilber]\label{theorem-3}
+\[C_*(X\times Y) \sim C_*(X) \otimes C_*(Y).\]\end{theorem}
+\par
+Given \(H_*(A)\) and \(H_*(B)\) how can we compute \(H_*(A\otimes B)\).%
+\begin{lemma}\label{lemma-7}
+Suppose \(A\sim A'\). Then \(A\otimes B \sim A'\otimes B\).\end{lemma}
+\begin{proof}
+Easy.\end{proof}
+\begin{corollary}\label{corollary-6}
+Suppose \(A,B\) are finitely generated chain complexes, defined over a field. Then
+            \[H_*(A\otimes B) = \bigoplus_{j+k = i} H_j(A) \otimes H_k(B)\]
+            i.e.
+            \[H_*(A\otimes B) \cong H_*(A) \otimes H_*(B).\]\end{corollary}
+\begin{proof}
+\(A\) is a chain complex over a field, so \(A\sim A'\) where \(A'_i = H_i(A)\) and \(d \equiv 0\) on \(A'\).
+            Similarly for \(B\).
+            Then
+            \[H_*(A\otimes B) \cong H_*(A'\otimes B') \cong A'\otimes B' = H_*(A)\otimes H_*(B).\]\end{proof}
+\begin{corollary}\label{homology-product-is-tensor}
+If \(k\) is a field and \(X,\,Y\) are finite chain complexes then
+            \[H_*(X\times Y; k)\cong H_*(X; k) \otimes_k H_*(Y; k).\]\end{corollary}
+\begin{definition}[Poincare polynomial]\label{definition-25}
+The \terminology{Poincare polynomial} of \(X\) with coefficients in \(k\) is
+            \[P_k(X) = \sum_{i\ge 0} \dim H_i(X; k) t^i.\]\end{definition}
+\begin{example}\label{example-24}
+\[P_{\ZZ/2} (\RP^2) = 1 + t + t^2.\]\end{example}
+\par
+\ref{homology-product-is-tensor} tells us that \[P_k(X\times Y) = P_k(X)P_k(Y).\]%
+\begin{example}\label{example-25}
+\[P_{\ZZ/2}(\RP^3 \times \RP^2) = (1+t+t^2)(1+t+t^2+t^3).\]\end{example}
+\par
+For now we will suppose that \(A,B\) are finitely generated chain complexes over a PID \(R\).%
+\begin{lemma}\label{free-homology-homotopic-zero-boundary}
+If \(H_*(A)\) is a free \(R\)-module then \(A\sim A'\) where \(A_i' = H_i(A)\) and \(d\equiv 0\) on \(A'\).
+          \end{lemma}
+\begin{proof}
+\(A\) is the direct sum of short and stupid complexes. \(H_*(A)\) being torsion free implies that every short complex is of the form
+            \[
+              \xymatrix{ C\colon R\ar@<.5ex>[r]^{\cdot a} & R \ar@<.5ex>[l]^{\cdot a^{-1}}}
+            \]
+            with \(a\in R^\times\) such a \(C \sim 0\) (same proof as for a field).
+          \end{proof}
+\begin{corollary}\label{corollary-8}
+If \(H_*(A)\) is free then \(H_*(A\otimes B) \cong H_*(A) \otimes H_*(B)\).\end{corollary}
+\begin{proof}
+\(A\otimes B \cong A' \otimes B\) where \(A'\) is as in \ref{free-homology-homotopic-zero-boundary}.
+            \(A'\otimes B\) is a direct sum of copies of \(B\), one for each generator of \(A'\).
+            This gives that \(H_*(A'\otimes B)\) is  a direct sum of copies of \(H_*(B)\), one for each generator of \(H_*(A)\) which implies that
+            \[H_*(A\otimes B) \cong H_*(A) \otimes H_*(B)\]
+            (since \(H_*(A)\) is free).
+            \[R^n \otimes H_*(B) \cong (H_*(B))^n.\]\end{proof}
+\begin{corollary}\label{corollary-9}
+If \(X\) and \(Y\) are finite cell complexes and \(H_*(X)\) is free over \(\ZZ\), then \(H_*(X\times Y) \cong H_*(X) \otimes H_*(Y)\).\end{corollary}
 %
 \backmatter
 %
 \typeout{************************************************}
 \typeout{Section 1 Notation}
 \typeout{************************************************}
-\section[Notation]{Notation}\label{section-9}
+\section[Notation]{Notation}\label{section-11}
 \begin{longtable}[l]{llr}
 \textbf{Symbol}&\textbf{Description}&\textbf{Page}\\[1em]
 \endfirsthead

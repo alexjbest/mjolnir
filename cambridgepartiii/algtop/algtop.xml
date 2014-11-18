@@ -32,6 +32,7 @@ Copyright 2014 Alex J. Best
     \DeclareMathOperator{\QQ}{\mathbf{Q}}
     \DeclareMathOperator{\RR}{\mathbf{R}}
     \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\RP}{\mathbf{RP}}
     \DeclareMathOperator{\C}{C_*}
     \DeclareMathOperator{\U}{\mathcal{U}}
     </macros>
@@ -1058,6 +1059,110 @@ Copyright 2014 Alex J. Best
           <p>If <m>(C, d)</m> is a chain complex defined over <m>R</m> then so are <m>(C_*\otimes M, d\otimes 1_M) = C_* \otimes M</m> and <m>(\Hom(C_*,M),d^*) = \Hom(C_*, M)</m>.</p>
         </subsection>
         <todo>work out whats going on here</todo>
+      </section>
+
+      <section>
+        <title>Universal Coefficient Theorems</title>
+
+      </section>
+
+      <section>
+        <title>Products</title>
+        
+        <definition>
+          <title>Product of chain complexes</title>
+          <statement>If <m>A,B</m> are chain complexes the <m>C=A \otimes B</m> is the chain complex with
+            <me>C_i = \bigoplus_{j+k = i}A_j \otimes B_k</me>
+            and
+            <me>d(a\otimes b) = (da)\otimes b + (-1)^{|a|} a\otimes (db)</me>
+            where <m>|a| = j</m> if <m>a \in A_j</m>.
+          </statement>
+        </definition>
+
+        <todo>lots</todo>
+
+        <p>The following theorem is true but we will not prove it.</p>
+
+        <theorem>
+          <title>Eilenberg-Zilber</title>
+          <statement><me>C_*(X\times Y) \sim C_*(X) \otimes C_*(Y).</me></statement>
+        </theorem>
+
+        <p>Given <m>H_*(A)</m> and <m>H_*(B)</m> how can we compute <m>H_*(A\otimes B)</m>.</p>
+
+        <lemma>
+          <statement>Suppose <m>A\sim A'</m>. Then <m>A\otimes B \sim A'\otimes B</m>.</statement>
+          <proof>Easy.</proof>
+        </lemma>
+
+        <corollary>
+          <statement>Suppose <m>A,B</m> are finitely generated chain complexes, defined over a field. Then
+            <me>H_*(A\otimes B) = \bigoplus_{j+k = i} H_j(A) \otimes H_k(B)</me>
+            i.e.
+            <me>H_*(A\otimes B) \cong H_*(A) \otimes H_*(B).</me>
+          </statement>
+          <proof><m>A</m> is a chain complex over a field, so <m>A\sim A'</m> where <m>A'_i = H_i(A)</m> and <m>d \equiv 0</m> on <m>A'</m>.
+            Similarly for <m>B</m>.
+            Then
+            <me>H_*(A\otimes B) \cong H_*(A'\otimes B') \cong A'\otimes B' = H_*(A)\otimes H_*(B).</me>
+          </proof>
+        </corollary>
+
+        <corollary xml:id="homology-product-is-tensor">
+          <statement>If <m>k</m> is a field and <m>X,\,Y</m> are finite chain complexes then
+            <me>H_*(X\times Y; k)\cong H_*(X; k) \otimes_k H_*(Y; k).</me>
+          </statement>
+        </corollary>
+
+        <definition>
+          <title>Poincare polynomial</title><todo>accent</todo>
+          <statement>The <term>Poincare polynomial</term> of <m>X</m> with coefficients in <m>k</m> is
+            <me>P_k(X) = \sum_{i\ge 0} \dim H_i(X; k) t^i.</me>
+          </statement>
+        </definition>
+
+        <example>
+          <statement>
+            <me>P_{\ZZ/2} (\RP^2) = 1 + t + t^2.</me>
+          </statement>
+        </example>
+
+        <p><xref ref="homology-product-is-tensor"/> tells us that <me>P_k(X\times Y) = P_k(X)P_k(Y).</me></p>
+
+        <example>
+          <statement>
+            <me>P_{\ZZ/2}(\RP^3 \times \RP^2) = (1+t+t^2)(1+t+t^2+t^3).</me>
+          </statement>
+        </example>
+        
+        <p>For now we will suppose that <m>A,B</m> are finitely generated chain complexes over a PID <m>R</m>.</p>
+
+        <lemma xml:id="free-homology-homotopic-zero-boundary">
+          <statement>If <m>H_*(A)</m> is a free <m>R</m>-module then <m>A\sim A'</m> where <m>A_i' = H_i(A)</m> and <m>d\equiv 0</m> on <m>A'</m>.
+          </statement>
+          <proof><m>A</m> is the direct sum of short and stupid complexes. <m>H_*(A)</m> being torsion free implies that every short complex is of the form
+            <me>
+              \xymatrix{ C\colon R\ar@&lt;.5ex&gt;[r]^{\cdot a} &amp; R \ar@&lt;.5ex&gt;[l]^{\cdot a^{-1}}}
+            </me>
+            with <m>a\in R^\times</m> such a <m>C \sim 0</m> (same proof as for a field).
+          </proof>
+        </lemma>
+
+        <corollary>
+          <statement>If <m>H_*(A)</m> is free then <m>H_*(A\otimes B) \cong H_*(A) \otimes H_*(B)</m>.</statement>
+          <proof><m>A\otimes B \cong A' \otimes B</m> where <m>A'</m> is as in <xref ref="free-homology-homotopic-zero-boundary" />.
+            <m>A'\otimes B</m> is a direct sum of copies of <m>B</m>, one for each generator of <m>A'</m>.
+            This gives that <m>H_*(A'\otimes B)</m> is  a direct sum of copies of <m>H_*(B)</m>, one for each generator of <m>H_*(A)</m> which implies that
+            <me>H_*(A\otimes B) \cong H_*(A) \otimes H_*(B)</me>
+            (since <m>H_*(A)</m> is free).
+            <me>R^n \otimes H_*(B) \cong (H_*(B))^n.</me>
+          </proof>
+        </corollary>
+
+        <corollary>
+          <statement>If <m>X</m> and <m>Y</m> are finite cell complexes and <m>H_*(X)</m> is free over <m>\ZZ</m>, then <m>H_*(X\times Y) \cong H_*(X) \otimes H_*(Y)</m>.</statement>
+        </corollary>
+
       </section>
     </chapter>
 

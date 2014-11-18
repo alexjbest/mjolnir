@@ -2,7 +2,7 @@
 <html>
 <!--*                                    *-->
 <!--* Generated from MathBook XML source *-->
-<!--*    on 2014-11-17T21:56:41Z    *-->
+<!--*    on 2014-11-18T01:21:38Z    *-->
 <!--*                                    *-->
 <!--*   http://mathbook.pugetsound.edu   *-->
 <!--*                                    *-->
@@ -12,12 +12,13 @@
 <meta name="Keywords" content="Authored in MathBook XML">
 <meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
 MathJax.Hub.Config({
     tex2jax: {
         inlineMath: [['\\(','\\)']]
     },
     TeX: {
-        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js"],
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "[Contrib]/xyjax/xypic.js"],
         equationNumbers: { autoNumber: "none",
                            useLabelIds: true,
                            formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
@@ -58,6 +59,7 @@ $(function () {
     \DeclareMathOperator{\QQ}{\mathbf{Q}}
     \DeclareMathOperator{\RR}{\mathbf{R}}
     \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\RP}{\mathbf{RP}}
     \DeclareMathOperator{\C}{C_*}
     \DeclareMathOperator{\U}{\mathcal{U}}
     \)</div>
@@ -84,17 +86,19 @@ $(function () {
 <li><a href="section-1.html">Introduction</a></li>
 <li><a href="section-2.html" class="active">Homotopy</a></li>
 <li><a href="section-3.html">Homology</a></li>
-<li><a href="section-4.html">
-          Homology of a pair
-        </a></li>
+<li><a href="section-4.html">Homology of a pair</a></li>
 <li><a href="section-5.html">Subdivision and Excision</a></li>
 <li><a href="section-6.html">Degree and Orientations</a></li>
 <li><a href="section-7.html">Cell Complexes</a></li>
 </ul>
 <h2 class="link"><a href="chapter-2.html"><span class="codenumber">2</span><span class="title">Cohomology and Products</span></a></h2>
-<ul><li><a href="section-8.html">Homology with Coefficients and Cohomology</a></li></ul>
+<ul>
+<li><a href="section-8.html">Homology with Coefficients and Cohomology</a></li>
+<li><a href="section-9.html">Universal Coefficient Theorems</a></li>
+<li><a href="section-10.html">Products</a></li>
+</ul>
 <h2 class="link"><a href="backmatter-1.html"><span class="title">Reference</span></a></h2>
-<ul><li><a href="section-9.html">Notation</a></li></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+<ul><li><a href="section-11.html">Notation</a></li></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
 </div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="section-2"><header><h1 class="heading">
 <span class="type">Section</span><span class="codenumber">1.2</span><span class="title">Homotopy</span>
 </h1></header><section class="subsection" id="subsection-1"><header><h1 class="heading">
