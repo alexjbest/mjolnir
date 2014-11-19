@@ -2,13 +2,13 @@
 <html>
 <!--*                                    *-->
 <!--* Generated from MathBook XML source *-->
-<!--*    on 2014-11-18T01:21:38Z    *-->
+<!--*    on 2014-11-19T01:27:43Z    *-->
 <!--*                                    *-->
 <!--*   http://mathbook.pugetsound.edu   *-->
 <!--*                                    *-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>AT Notation</title>
+<title>AT Cup product</title>
 <meta name="Keywords" content="Authored in MathBook XML">
 <meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <script type="text/x-mathjax-config">
@@ -52,6 +52,8 @@ $(function () {
 <div style="display:none;">\(
     \DeclareMathOperator{\Map}{Map}
     \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\Tor}{Tor}
+    \DeclareMathOperator{\Ext}{Ext}
     \DeclareMathOperator{\im}{im}
     \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\coker}{coker}
@@ -72,12 +74,12 @@ $(function () {
 <nav id="primary-navbar"><div class="container">
 <div class="navbar-top-buttons">
 <button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<a class="previous-button toolbar-item button" href="backmatter-1.html">Previous</a><a class="up-button button toolbar-item" href="backmatter-1.html">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+<a class="previous-button toolbar-item button" href="section-10.html">Previous</a><a class="up-button button toolbar-item" href="chapter-2.html">Up</a><a class="next-button button toolbar-item" href="backmatter-1.html">Next</a>
 </div>
 <button class="sidebar-right-toggle-button button active">Annotations</button>
 </div>
 <div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="backmatter-1.html">Previous</a><a class="up-button button toolbar-item" href="backmatter-1.html">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-10.html">Previous</a><a class="up-button button toolbar-item" href="chapter-2.html">Up</a><a class="next-button button toolbar-item" href="backmatter-1.html">Next</a>
 </div>
 </div></nav></header><div class="page">
 <aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
@@ -91,27 +93,54 @@ $(function () {
 <li><a href="section-6.html">Degree and Orientations</a></li>
 <li><a href="section-7.html">Cell Complexes</a></li>
 </ul>
-<h2 class="link"><a href="chapter-2.html"><span class="codenumber">2</span><span class="title">Cohomology and Products</span></a></h2>
+<h2 class="link active"><a href="chapter-2.html"><span class="codenumber">2</span><span class="title">Cohomology and Products</span></a></h2>
 <ul>
 <li><a href="section-8.html">Homology with Coefficients and Cohomology</a></li>
 <li><a href="section-9.html">Universal Coefficient Theorems</a></li>
 <li><a href="section-10.html">Products</a></li>
+<li><a href="section-11.html" class="active">Cup product</a></li>
 </ul>
-<h2 class="link active"><a href="backmatter-1.html"><span class="title">Reference</span></a></h2>
-<ul><li><a href="section-11.html" class="active">Notation</a></li></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+<h2 class="link"><a href="backmatter-1.html"><span class="title">Reference</span></a></h2>
+<ul><li><a href="section-12.html">Notation</a></li></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
 </div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="section-11"><header><h1 class="heading">
-<span class="type">Section</span><span class="codenumber">1</span><span class="title">Notation</span>
-</h1></header><table>
-<tr>
-<th style="text-align:left">Symbol</th>
-<th style="text-align:left">Description</th>
-</tr>
-<tr>
-<td>\(\)</td>
-<td> <a href="section-2.html#notation-1">[*]</a>
-</td>
-</tr>
-</table></section></div></main>
+<span class="type">Section</span><span class="codenumber">2.4</span><span class="title">Cup product</span>
+</h1></header><p>Motivation: if \(k\) is a field
+          \begin{align*}
+H^*(X\times X; k) &amp;\cong (H_*(X\times X; k))^*\\
+ &amp;\cong (H_*(X; k)\otimes H_*(X; k))^*\\
+ &amp;\cong H^*(X; k)\otimes H^*(X; k)
+\end{align*}
+          
+        </p>
+<article class="definition-like" id="definition-26"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">2.4.1</span><span class="title">Cup product</span>
+</h5>Suppose \(a\in C^i(X)\) and \(b\in C^j(X)\).
+            If \(\sigma\colon \Delta^{i+j} \to X\) then we define \(a\smile b\in C^{i+j}(X)\) by
+            \[(a\smile b)(\sigma) = a(\sigma\circ F_i^+)b(\sigma\circ F_j^-)\]
+            where
+            \begin{align*}
+F_i^+\colon \Delta^i &amp;\to \Delta^{i+j}\\
+(x_0,\ldots,x_i) &amp;\mapsto (x_0,\ldots,x_i,0,\ldots,0)
+\end{align*}
+            and
+            \begin{align*}
+F_j^-\colon \Delta^j &amp;\to \Delta^{i+j}\\
+(x_0,\ldots,x_j) &amp;\mapsto (0,\ldots,0,x_0,\ldots,x_j).
+\end{align*}</article><article class="theorem-like" id="lemma-9"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">2.4.2</span>
+</h5>\[d(a\smile b) = da\smile b + (-1)^{|a|} a\smile db.\]</article><article class="hiddenproof" id="proof-19"><a knowl="./knowl/proof-19.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-19" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">Denote by \([v_0,\ldots,v_k]\) the singular \(k\)-simplex that sends
+            \[\Delta^k\to\Delta^{i+j}\xrightarrow{\sigma} X\]\[\text{vertices of }\Delta^k\to\text{vertices }v_0,\ldots,v_k\text{ of }\Delta^{i+j}.\]
+            Then taking \(\sigma\colon \Delta^{i+j+1} \to X\)\begin{align*}
+d(a\smile b)(\sigma) &amp;=(a\smile b)(d\sigma)\\
+&amp;=\sum_{k=0}^{i+j+1}(-1)^k a\smile b([v_0,\ldots,\hat v_k,\ldots,v_n])\\
+&amp;=\sum_{k\le i}(-1)^k a([v_0,\ldots,\hat v_k,\ldots,v_{i+1}])b([v_{i+1},\ldots,v_n])\\
+&amp;+\sum_{k\gt i}(-1)^k a([v_0,\ldots,v_{i}])b([v_{i},\ldots,\hat v_k,\ldots,v_n])\\
+&amp;=\sum_{k\le i + 1}(-1)^k a([v_0,\ldots,\hat v_k,\ldots,v_{i+1}])b([v_{i+1},\ldots,v_n])\\
+&amp;+\sum_{k\ge i}(-1)^k a([v_0,\ldots,v_{i}])b([v_{i},\ldots,\hat v_k,\ldots,v_n])\\
+&amp;=a(d([v_0,\ldots,v_{i+1}]))b([v_{i+1},\ldots,v_n])\\
+&amp;+ (-1)^i a([v_0,\ldots,v_{i}])b(d([v_{i},\ldots,v_n]))\\
+&amp;= da\smile b([v_0,\ldots,v_n]) + (-1)^i a\smile db([v_0,\ldots,v_n]).
+\end{align*}</article></div></section></div></main>
 </div>
 </body>
 </html>

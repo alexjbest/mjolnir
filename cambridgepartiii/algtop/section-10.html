@@ -2,7 +2,7 @@
 <html>
 <!--*                                    *-->
 <!--* Generated from MathBook XML source *-->
-<!--*    on 2014-11-18T01:21:38Z    *-->
+<!--*    on 2014-11-19T01:27:43Z    *-->
 <!--*                                    *-->
 <!--*   http://mathbook.pugetsound.edu   *-->
 <!--*                                    *-->
@@ -52,6 +52,8 @@ $(function () {
 <div style="display:none;">\(
     \DeclareMathOperator{\Map}{Map}
     \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\Tor}{Tor}
+    \DeclareMathOperator{\Ext}{Ext}
     \DeclareMathOperator{\im}{im}
     \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\coker}{coker}
@@ -72,12 +74,12 @@ $(function () {
 <nav id="primary-navbar"><div class="container">
 <div class="navbar-top-buttons">
 <button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<a class="previous-button toolbar-item button" href="section-9.html">Previous</a><a class="up-button button toolbar-item" href="chapter-2.html">Up</a><a class="next-button button toolbar-item" href="backmatter-1.html">Next</a>
+<a class="previous-button toolbar-item button" href="section-9.html">Previous</a><a class="up-button button toolbar-item" href="chapter-2.html">Up</a><a class="next-button button toolbar-item" href="section-11.html">Next</a>
 </div>
 <button class="sidebar-right-toggle-button button active">Annotations</button>
 </div>
 <div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-9.html">Previous</a><a class="up-button button toolbar-item" href="chapter-2.html">Up</a><a class="next-button button toolbar-item" href="backmatter-1.html">Next</a>
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-9.html">Previous</a><a class="up-button button toolbar-item" href="chapter-2.html">Up</a><a class="next-button button toolbar-item" href="section-11.html">Next</a>
 </div>
 </div></nav></header><div class="page">
 <aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
@@ -96,9 +98,10 @@ $(function () {
 <li><a href="section-8.html">Homology with Coefficients and Cohomology</a></li>
 <li><a href="section-9.html">Universal Coefficient Theorems</a></li>
 <li><a href="section-10.html" class="active">Products</a></li>
+<li><a href="section-11.html">Cup product</a></li>
 </ul>
 <h2 class="link"><a href="backmatter-1.html"><span class="title">Reference</span></a></h2>
-<ul><li><a href="section-11.html">Notation</a></li></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+<ul><li><a href="section-12.html">Notation</a></li></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
 </div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="section-10"><header><h1 class="heading">
 <span class="type">Section</span><span class="codenumber">2.3</span><span class="title">Products</span>
 </h1></header><article class="definition-like" id="definition-24"><h5 class="heading">
@@ -155,7 +158,21 @@ $(function () {
             \[R^n \otimes H_*(B) \cong (H_*(B))^n.\]</article></div>
 <article class="theorem-like" id="corollary-9"><h5 class="heading">
 <span class="type">Corollary</span><span class="codenumber">2.3.11</span>
-</h5>If \(X\) and \(Y\) are finite cell complexes and \(H_*(X)\) is free over \(\ZZ\), then \(H_*(X\times Y) \cong H_*(X) \otimes H_*(Y)\).</article></section></div></main>
+</h5>If \(X\) and \(Y\) are finite cell complexes and \(H_*(X)\) is free over \(\ZZ\), then \(H_*(X\times Y) \cong H_*(X) \otimes H_*(Y)\).</article><p>Fact: If \(C_1\) is a free resolution of \(M\) and \(C_2\) is a free resolution of \(N\).
+          Then \(\Tor_i(M,N) \cong H_i(C_1 \otimes C_2) \cong H_i(C_1 \otimes N) \cong H_i(M\otimes C_2)\).
+        </p>
+<article class="theorem-like" id="theorem-4"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">2.3.12</span><span class="title">Kunneth formula</span>
+</h5>If \(A,B\) are free (finitely generated) chain complexes over a PID \(R\) then
+            \[H_i(A\otimes B) \cong \bigoplus_{j + k = i} \Tor_0(H_j(A), H_k(B)) \oplus\bigoplus_{j+k = i-1} \Tor_1(H_j(A), H_k(B)).\]</article><article class="hiddenproof" id="proof-18"><a knowl="./knowl/proof-18.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-18" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">Suffices to check the statement where \(A,B\) are short and/or stupid.
+            We just did the case where both are short.
+            The case where one or more is stupid was covered in the statement that
+            \[H_*(A\otimes B) \cong H_*(A) \otimes H_*(B)\]
+            if \(H_*(A)\) is free.
+          </article></div>
+<article class="theorem-like" id="corollary-10"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">2.3.13</span>
+</h5>We can compute \(H_*(X\times Y)\) from \(H_*(X)\) and \(H_*(Y)\).</article></section></div></main>
 </div>
 </body>
 </html>

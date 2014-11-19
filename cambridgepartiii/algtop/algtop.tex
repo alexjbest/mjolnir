@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2014-11-18T01:21:38Z    %%
+%%    on 2014-11-19T01:27:43Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -111,6 +111,8 @@
 %% Convenience macros
 \DeclareMathOperator{\Map}{Map}
 \DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\coker}{coker}
@@ -167,7 +169,7 @@
         %
 \par
 
-          Generated: November 18, 2014, 01:21:38 (Z)
+          Generated: November 19, 2014, 01:27:43 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Homotopy}
@@ -428,7 +430,7 @@ d^2(e_I) &= d\left(\sum_{j = 0}^{k} (-1)^j e_{i_0,\ldots,\hat{i}_j,\ldots,i_k}\r
 \subsubsection[Homotopy invariance]{Homotopy invariance}\label{subsubsection-1}
 \begin{definition}[Chain homotopic maps]\label{definition-11}
 
-              Suppose \(\phi,\psi\colon C_* \to C_*'\) are chain maps, we say that \(\phi\) are \terminology{chain homtopic} if there exists an \(R\)-linear map \(h\colon C_* \to C_{*+1}'\) such that \(d'\circ h + h \circ d' = \phi - \psi\).
+              Suppose \(\phi,\psi\colon C_* \to C_*'\) are chain maps, we say that \(\phi\) are \terminology{chain homotopic} if there exists an \(R\)-linear map \(h\colon C_* \to C_{*+1}'\) such that \(d'\circ h + h \circ d' = \phi - \psi\).
               We denote this relation by \(\phi \sim \psi\).
               \end{definition}
 \begin{lemma}\label{lemma-4}
@@ -967,13 +969,71 @@ If \(H_*(A)\) is free then \(H_*(A\otimes B) \cong H_*(A) \otimes H_*(B)\).\end{
             \[R^n \otimes H_*(B) \cong (H_*(B))^n.\]\end{proof}
 \begin{corollary}\label{corollary-9}
 If \(X\) and \(Y\) are finite cell complexes and \(H_*(X)\) is free over \(\ZZ\), then \(H_*(X\times Y) \cong H_*(X) \otimes H_*(Y)\).\end{corollary}
+\par
+Fact: If \(C_1\) is a free resolution of \(M\) and \(C_2\) is a free resolution of \(N\).
+          Then \(\Tor_i(M,N) \cong H_i(C_1 \otimes C_2) \cong H_i(C_1 \otimes N) \cong H_i(M\otimes C_2)\).
+        %
+\begin{theorem}[Kunneth formula]\label{theorem-4}
+If \(A,B\) are free (finitely generated) chain complexes over a PID \(R\) then
+            \[H_i(A\otimes B) \cong \bigoplus_{j + k = i} \Tor_0(H_j(A), H_k(B)) \oplus\bigoplus_{j+k = i-1} \Tor_1(H_j(A), H_k(B)).\]\end{theorem}
+\begin{proof}
+Suffices to check the statement where \(A,B\) are short and/or stupid.
+            We just did the case where both are short.
+            The case where one or more is stupid was covered in the statement that
+            \[H_*(A\otimes B) \cong H_*(A) \otimes H_*(B)\]
+            if \(H_*(A)\) is free.
+          \end{proof}
+\begin{corollary}\label{corollary-10}
+We can compute \(H_*(X\times Y)\) from \(H_*(X)\) and \(H_*(Y)\).\end{corollary}
+\typeout{************************************************}
+\typeout{Section 2.4 Cup product}
+\typeout{************************************************}
+\section[Cup product]{Cup product}\label{section-11}
+Motivation: if \(k\) is a field
+          \begin{align*}
+H^*(X\times X; k) &\cong (H_*(X\times X; k))^*\\
+ &\cong (H_*(X; k)\otimes H_*(X; k))^*\\
+ &\cong H^*(X; k)\otimes H^*(X; k)
+\end{align*}
+          
+        %
+\begin{definition}[Cup product]\label{definition-26}
+Suppose \(a\in C^i(X)\) and \(b\in C^j(X)\).
+            If \(\sigma\colon \Delta^{i+j} \to X\) then we define \(a\smile b\in C^{i+j}(X)\) by
+            \[(a\smile b)(\sigma) = a(\sigma\circ F_i^+)b(\sigma\circ F_j^-)\]
+            where
+            \begin{align*}
+F_i^+\colon \Delta^i &\to \Delta^{i+j}\\
+(x_0,\ldots,x_i) &\mapsto (x_0,\ldots,x_i,0,\ldots,0)
+\end{align*}
+            and
+            \begin{align*}
+F_j^-\colon \Delta^j &\to \Delta^{i+j}\\
+(x_0,\ldots,x_j) &\mapsto (0,\ldots,0,x_0,\ldots,x_j).
+\end{align*}\end{definition}
+\begin{lemma}\label{lemma-9}
+\[d(a\smile b) = da\smile b + (-1)^{|a|} a\smile db.\]\end{lemma}
+\begin{proof}
+Denote by \([v_0,\ldots,v_k]\) the singular \(k\)-simplex that sends
+            \[\Delta^k\to\Delta^{i+j}\xrightarrow{\sigma} X\]\[\text{vertices of }\Delta^k\to\text{vertices }v_0,\ldots,v_k\text{ of }\Delta^{i+j}.\]
+            Then taking \(\sigma\colon \Delta^{i+j+1} \to X\)\begin{align*}
+d(a\smile b)(\sigma) &=(a\smile b)(d\sigma)\\
+&=\sum_{k=0}^{i+j+1}(-1)^k a\smile b([v_0,\ldots,\hat v_k,\ldots,v_n])\\
+&=\sum_{k\le i}(-1)^k a([v_0,\ldots,\hat v_k,\ldots,v_{i+1}])b([v_{i+1},\ldots,v_n])\\
+&+\sum_{k\gt i}(-1)^k a([v_0,\ldots,v_{i}])b([v_{i},\ldots,\hat v_k,\ldots,v_n])\\
+&=\sum_{k\le i + 1}(-1)^k a([v_0,\ldots,\hat v_k,\ldots,v_{i+1}])b([v_{i+1},\ldots,v_n])\\
+&+\sum_{k\ge i}(-1)^k a([v_0,\ldots,v_{i}])b([v_{i},\ldots,\hat v_k,\ldots,v_n])\\
+&=a(d([v_0,\ldots,v_{i+1}]))b([v_{i+1},\ldots,v_n])\\
+&+ (-1)^i a([v_0,\ldots,v_{i}])b(d([v_{i},\ldots,v_n]))\\
+&= da\smile b([v_0,\ldots,v_n]) + (-1)^i a\smile db([v_0,\ldots,v_n]).
+\end{align*}\end{proof}
 %
 \backmatter
 %
 \typeout{************************************************}
 \typeout{Section 1 Notation}
 \typeout{************************************************}
-\section[Notation]{Notation}\label{section-11}
+\section[Notation]{Notation}\label{section-12}
 \begin{longtable}[l]{llr}
 \textbf{Symbol}&\textbf{Description}&\textbf{Page}\\[1em]
 \endfirsthead
