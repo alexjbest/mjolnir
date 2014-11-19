@@ -420,7 +420,7 @@ Copyright 2014 Alex J. Best
             <definition>
               <title>Chain homotopic maps</title>
               <statement>
-              Suppose <m>\phi,\psi\colon C_* \to C_*'</m> are chain maps, we say that <m>\phi</m> are <term>chain homtopic</term> if there exists an <m>R</m>-linear map <m>h\colon C_* \to C_{*+1}'</m> such that <m>d'\circ h + h \circ d' = \phi - \psi</m>.
+              Suppose <m>\phi,\psi\colon C_* \to C_*'</m> are chain maps, we say that <m>\phi</m> are <term>chain homotopic</term> if there exists an <m>R</m>-linear map <m>h\colon C_* \to C_{*+1}'</m> such that <m>d'\circ h + h \circ d' = \phi - \psi</m>.
               We denote this relation by <m>\phi \sim \psi</m>.
               </statement>
             </definition>
