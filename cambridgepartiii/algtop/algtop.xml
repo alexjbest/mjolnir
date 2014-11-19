@@ -25,6 +25,8 @@ Copyright 2014 Alex J. Best
     <macros>
     \DeclareMathOperator{\Map}{Map}
     \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\Tor}{Tor}
+    \DeclareMathOperator{\Ext}{Ext}
     \DeclareMathOperator{\im}{im}
     \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\coker}{coker}
@@ -1162,6 +1164,84 @@ Copyright 2014 Alex J. Best
         <corollary>
           <statement>If <m>X</m> and <m>Y</m> are finite cell complexes and <m>H_*(X)</m> is free over <m>\ZZ</m>, then <m>H_*(X\times Y) \cong H_*(X) \otimes H_*(Y)</m>.</statement>
         </corollary>
+
+        <todo>missed a bit</todo>
+
+        <p>Fact: If <m>C_1</m> is a free resolution of <m>M</m> and <m>C_2</m> is a free resolution of <m>N</m>.
+          Then <m>\Tor_i(M,N) \cong H_i(C_1 \otimes C_2) \cong H_i(C_1 \otimes N) \cong H_i(M\otimes C_2)</m>.
+        </p>
+
+        <theorem>
+          <title>Kunneth formula</title><todo>accent</todo>
+          <statement>If <m>A,B</m> are free (finitely generated) chain complexes over a PID <m>R</m> then
+            <me>H_i(A\otimes B) \cong \bigoplus_{j + k = i} \Tor_0(H_j(A), H_k(B)) \oplus\bigoplus_{j+k = i-1} \Tor_1(H_j(A), H_k(B)).</me>
+          </statement>
+          <proof>Suffices to check the statement where <m>A,B</m> are short and/or stupid.
+            We just did the case where both are short.
+            The case where one or more is stupid was covered in the statement that
+            <me>H_*(A\otimes B) \cong H_*(A) \otimes H_*(B)</me>
+            if <m>H_*(A)</m> is free.
+          </proof>
+        </theorem>
+
+        <corollary>
+          <statement>We can compute <m>H_*(X\times Y)</m> from <m>H_*(X)</m> and <m>H_*(Y)</m>.</statement>
+          <todo>check</todo>
+        </corollary>
+      </section>
+
+      <section>
+        <title>Cup product</title>
+
+        <p>Motivation: if <m>k</m> is a field
+          <md>
+            <mrow>H^*(X\times X; k) &amp;\cong (H_*(X\times X; k))^*</mrow>
+            <mrow> &amp;\cong (H_*(X; k)\otimes H_*(X; k))^*</mrow>
+            <mrow> &amp;\cong H^*(X; k)\otimes H^*(X; k)</mrow>
+          </md>
+          <todo>complete</todo>
+        </p>
+
+        <definition>
+          <title>Cup product</title>
+          <statement>Suppose <m>a\in C^i(X)</m> and <m>b\in C^j(X)</m>.
+            If <m>\sigma\colon \Delta^{i+j} \to X</m> then we define <m>a\smile b\in C^{i+j}(X)</m> by
+            <me>(a\smile b)(\sigma) = a(\sigma\circ F_i^+)b(\sigma\circ F_j^-)</me>
+            where
+            <md>
+              <mrow>F_i^+\colon \Delta^i &amp;\to \Delta^{i+j}</mrow>
+              <mrow>(x_0,\ldots,x_i) &amp;\mapsto (x_0,\ldots,x_i,0,\ldots,0)</mrow>
+            </md>
+            and
+            <md>
+              <mrow>F_j^-\colon \Delta^j &amp;\to \Delta^{i+j}</mrow>
+              <mrow>(x_0,\ldots,x_j) &amp;\mapsto (0,\ldots,0,x_0,\ldots,x_j).</mrow>
+            </md>
+          </statement>
+        </definition>
+
+        <lemma>
+          <statement>
+            <me>d(a\smile b) = da\smile b + (-1)^{|a|} a\smile db.</me>
+          </statement>
+          <proof>Denote by <m>[v_0,\ldots,v_k]</m> the singular <m>k</m>-simplex that sends
+            <me>\Delta^k\to\Delta^{i+j}\xrightarrow{\sigma} X</me>
+            <me>\text{vertices of }\Delta^k\to\text{vertices }v_0,\ldots,v_k\text{ of }\Delta^{i+j}.</me>
+            Then taking <m>\sigma\colon \Delta^{i+j+1} \to X</m>
+            <md>
+              <mrow>d(a\smile b)(\sigma) &amp;=(a\smile b)(d\sigma)</mrow>
+              <mrow>&amp;=\sum_{k=0}^{i+j+1}(-1)^k a\smile b([v_0,\ldots,\hat v_k,\ldots,v_n])</mrow>
+              <mrow>&amp;=\sum_{k\le i}(-1)^k a([v_0,\ldots,\hat v_k,\ldots,v_{i+1}])b([v_{i+1},\ldots,v_n])</mrow>
+              <mrow>&amp;+\sum_{k\gt i}(-1)^k a([v_0,\ldots,v_{i}])b([v_{i},\ldots,\hat v_k,\ldots,v_n])</mrow>
+              <mrow>&amp;=\sum_{k\le i + 1}(-1)^k a([v_0,\ldots,\hat v_k,\ldots,v_{i+1}])b([v_{i+1},\ldots,v_n])</mrow>
+              <mrow>&amp;+\sum_{k\ge i}(-1)^k a([v_0,\ldots,v_{i}])b([v_{i},\ldots,\hat v_k,\ldots,v_n])</mrow>
+              <mrow>&amp;=a(d([v_0,\ldots,v_{i+1}]))b([v_{i+1},\ldots,v_n])</mrow>
+              <mrow>&amp;+ (-1)^i a([v_0,\ldots,v_{i}])b(d([v_{i},\ldots,v_n]))</mrow>
+              <mrow>&amp;= da\smile b([v_0,\ldots,v_n]) + (-1)^i a\smile db([v_0,\ldots,v_n]).</mrow>
+            </md>
+          </proof>
+        </lemma>
+
 
       </section>
     </chapter>
