@@ -1,0 +1,39 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2014-11-21T18:02:05Z    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="theorem-like"><h5 class="heading">
+<span class="type">Proposition</span><span class="codenumber">2.4.4</span><span class="title">Properties of \(\smile\)</span>
+</h5>
+            Let \(\alpha,\beta,\gamma \in H^*(X)\) then
+            <ol>
+<li>(Associative) \((\alpha\smile \beta)\smile \gamma = \alpha \smile (\beta \smile \gamma)\).</li>
+<li>(Graded commutative) \(a \smile b = (-1)^{|\alpha||\beta|}\beta \smile \alpha\).</li>
+<li>(Identity) There is a class \(1 \in H^0(X)\) such that \(1\smile \alpha = \alpha \smile 1 = \alpha\) for all \(\alpha \in H^*(X)\).</li>
+<li>(Functorial) If \(f \colon X \to Y\), \(f^*(\alpha\smile \beta) = f^*(\alpha) \smile f^*(\beta)\).</li>
+</ol></article><article class="hiddenproof" id="proof-21"><a knowl="./knowl/proof-21.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-21" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol>
+<li>If \(a \in C^i(X)\), \(b \in C^j(X)\), \(c \in C^k(X)\), \(\sigma\colon\Delta^{i+j+k} \to X\) then
+                \begin{align*}
+ ((a\smile b) \smile c)(\sigma) &amp;= a(\sigma\circ F_i^+) b(\sigma \circ F_j^{\text{mid}})c(\sigma\circ F_k^-)\\
+&amp;= (a \smile (b \smile c))(\sigma).
+\end{align*}
+                Where \(F_i^+(X) = (X^i\ 0)\), \(F_k^-(X) = (0^{i+j}\ X^{i+j+k})\), \(F_j^{\text{mid}}(X) = (0^i\ X^{i+j}\ 0)\).
+              </li>
+<li>We'll do later.</li>
+<li>Let \(e\in C^0(X)\) be given by
+                \[ e(e_p) = 1 \text{ for all } p \in X\]
+                If \(\gamma\colon [0,1] \to X\) is a 1-chain then
+                \[ de(e_\gamma) = e(de_\gamma) = e(e_{\gamma(1)} - e_{\gamma(0)}) = 1- 1 =0.\]
+                Easy to see \(e \smile a = a \smile e = a\) for all \(a \in C^*(X)\) then \(1 = [e] \in H^0(X)\).
+              </li>
+<li>
+                \begin{align*}
+f^\#(a\smile b)(\sigma) &amp;= (a\smile b)( f\circ \sigma)\\
+&amp;= a(f\circ \sigma \circ F_i^+) b(f\circ \sigma \circ F_j^-)\\
+&amp;=f^\#(a)(\sigma \circ F_i^+)f^\#(b)(\sigma\circ F_j^-)\\
+&amp;= [f^\# (a)\smile f^\#(b)](\sigma).
+\end{align*}
+              </li>
+</ol></article></div><div class="context-link" style="text-align:right;"><a href="section-11.html#proposition-5">(in-context)</a></div>

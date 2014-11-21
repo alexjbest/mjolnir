@@ -1,0 +1,38 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2014-11-21T18:02:05Z    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="example-like"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.4.6</span>
+</h5>
+<ol>
+<li>\(H^*(S^n) = \langle 1, X_n\rangle\) where \(\langle X_n\rangle = H^n(S^n)\) and we have
+                  \begin{align*}
+1\smile X_n &amp;= X_n,\\
+X_n\smile 1 &amp;= X_n,\\
+1\smile 1 &amp;= 1,\\
+X_n\smile X_n &amp;= 0 \in H^{2n}(S^n) = 0.
+\end{align*}
+                </li>
+<li>For arbitrary \(X,Y\)
+                  \[C_*(X\amalg Y) \cong C_*(X) \oplus C_*(Y)\]
+                  which implies
+                  \[C^*(X\amalg Y) \cong C^*(X) \oplus C_*(Y)\]
+                  \[\implies H^*(X\amalg Y) \cong H^*(X) \oplus H_*(Y)\text{ as rings}\]
+                  with
+                  \[ (\alpha_1 \oplus \alpha_2) \smile (\beta_1 \oplus \beta2) = (\alpha_1 \smile \beta_1)\oplus (\alpha_2 \smile \beta_2).\]
+                </li>
+<li>Considering \(X\vee Y\) we have a map \(p\colon X\amalg Y \to X \vee Y\) and so Mayer-Vietoris for \(X \vee Y\) gives
+                  \[ \cdots \to H^*(X\vee Y) \xrightarrow{p^*} H^*(X)\oplus H^*(Y) \xrightarrow{i^*} H^*(\text{pt}) \to \cdots\]
+                  Now assuming \(X\) and \(Y\) are path connected \(p^*\) is injective and an isomorphism in grading \(\gt 0\).
+                  In grading 0 we have
+                  \[H^0(X \vee Y) \to H^0(X) \oplus H^0(Y) \to H^0(\text{pt})\]
+                  with \(1 \mapsto 1\oplus 1\) and \(a\oplus b \mapsto a-b\).
+                  And so as a ring we have
+                  \[ H^*(X\vee Y) \cong \ker i^* \subset H^*(X)\oplus H^*(Y)\]
+                  where elements in grading \(\gt 0\) look like \((\alpha,\beta)\) and in grading 0 look like \((n,n)\in \ZZ \times \ZZ\).
+                </li>
+<li>\(S^2 \vee S^4\), \(H^*(S^2\vee S^4) = \langle 1, X_2, X_4\rangle\) with \(X_2^2 = 0\) since \(X_2^2 = 0\) in \(H^*(S^2)\).</li>
+</ol></article><div class="context-link" style="text-align:right;"><a href="section-11.html#example-26">(in-context)</a></div>
