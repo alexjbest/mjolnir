@@ -2,13 +2,13 @@
 <html>
 <!--*                                    *-->
 <!--* Generated from MathBook XML source *-->
-<!--*    on 2014-11-21T18:02:05Z    *-->
+<!--*    on 2014-11-21T22:23:06Z    *-->
 <!--*                                    *-->
 <!--*   http://mathbook.pugetsound.edu   *-->
 <!--*                                    *-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>AT Cell Complexes</title>
+<title>AT Subdivision and Excision</title>
 <meta name="Keywords" content="Authored in MathBook XML">
 <meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <script type="text/x-mathjax-config">
@@ -74,69 +74,50 @@ $(function () {
 <nav id="primary-navbar"><div class="container">
 <div class="navbar-top-buttons">
 <button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<a class="previous-button toolbar-item button" href="section-6.html">Previous</a><a class="up-button button toolbar-item" href="chapter-1.html">Up</a><a class="next-button button toolbar-item" href="chapter-2.html">Next</a>
+<a class="previous-button toolbar-item button" href="sec-homology-pair.html">Previous</a><a class="up-button button toolbar-item" href="chap-homology.html">Up</a><a class="next-button button toolbar-item" href="sec-degrees.html">Next</a>
 </div>
 <button class="sidebar-right-toggle-button button active">Annotations</button>
 </div>
 <div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-6.html">Previous</a><a class="up-button button toolbar-item" href="chapter-1.html">Up</a><a class="next-button button toolbar-item" href="chapter-2.html">Next</a>
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-homology-pair.html">Previous</a><a class="up-button button toolbar-item" href="chap-homology.html">Up</a><a class="next-button button toolbar-item" href="sec-degrees.html">Next</a>
 </div>
 </div></nav></header><div class="page">
 <aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
-<nav id="toc"><h2 class="link active"><a href="chapter-1.html"><span class="codenumber">1</span><span class="title">Homology</span></a></h2>
+<nav id="toc"><h2 class="link active"><a href="chap-homology.html"><span class="codenumber">1</span><span class="title">Homology</span></a></h2>
 <ul>
-<li><a href="section-1.html">Introduction</a></li>
-<li><a href="section-2.html">Homotopy</a></li>
-<li><a href="section-3.html">Homology</a></li>
-<li><a href="section-4.html">Homology of a pair</a></li>
-<li><a href="section-5.html">Subdivision and Excision</a></li>
-<li><a href="section-6.html">Degree and Orientations</a></li>
-<li><a href="section-7.html" class="active">Cell Complexes</a></li>
+<li><a href="sec-introduction.html">Introduction</a></li>
+<li><a href="sec-homotopy.html">Homotopy</a></li>
+<li><a href="sec-homology.html">Homology</a></li>
+<li><a href="sec-homology-pair.html">Homology of a pair</a></li>
+<li><a href="sec-subdivision.html" class="active">Subdivision and Excision</a></li>
+<li><a href="sec-degrees.html">Degree and Orientations</a></li>
+<li><a href="sec-cell-complexes.html">Cell Complexes</a></li>
 </ul>
-<h2 class="link"><a href="chapter-2.html"><span class="codenumber">2</span><span class="title">Cohomology and Products</span></a></h2>
+<h2 class="link"><a href="chap-cohomology-products.html"><span class="codenumber">2</span><span class="title">Cohomology and Products</span></a></h2>
 <ul>
-<li><a href="section-8.html">Homology with Coefficients and Cohomology</a></li>
-<li><a href="section-9.html">Universal Coefficient Theorems</a></li>
-<li><a href="section-10.html">Products</a></li>
-<li><a href="section-11.html">Cup product</a></li>
+<li><a href="sec-homology-coefficients.html">Homology with Coefficients and Cohomology</a></li>
+<li><a href="sec-ucts.html">Universal Coefficient Theorems</a></li>
+<li><a href="sec-products.html">Products</a></li>
+<li><a href="sec-cup-product.html">Cup product</a></li>
 </ul>
 <h2 class="link"><a href="backmatter-1.html"><span class="title">Reference</span></a></h2>
-<ul><li><a href="section-12.html">Notation</a></li></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
-</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="section-7"><header><h1 class="heading">
-<span class="type">Section</span><span class="codenumber">1.7</span><span class="title">Cell Complexes</span>
-</h1></header><article class="definition-like" id="definition-19"><h5 class="heading">
-<span class="type">Definition</span><span class="codenumber">1.7.1</span><span class="title">Attaching of cells</span>
+<ul><li><a href="sec-notation.html">Notation</a></li></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-subdivision"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">1.5</span><span class="title">Subdivision and Excision</span>
+</h1></header><article class="definition-like" id="definition-18"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.5.1</span>
 </h5>
-            If \(f\colon S^{n-1} \to X\) then
+            If \(\U = \{U_i\}_{i\in I}\) is an open cover of \(X\), let
             \[
-              X\cup_f D^n = X\amalg D^n/\sim
+              C^{\U}_n(X) = \langle e_\sigma : \sigma\colon \Delta^n \to X,\,\im\sigma\subset U_i\text{ for some }i\rangle \subset C_n(X).
             \]
-            is the space obtained by <em class="terminology">attaching</em> an \(n\)-dimensional cell to \(X\) via the map \(f\).
-          </article><article class="example-like" id="example-16"><h5 class="heading">
-<span class="type">Example</span><span class="codenumber">1.7.2</span>
-</h5>
-            If \(X = \{p\}\) and \(f\colon S^{n-1} \to X\) then
+            Observe that \(\im \sigma \subset U_i\) implies \(\im \sigma \circ F_j \subset U_i\) and so \(C^{\U}_*\) is a subcomplex of \(C_*\).
+            Let \(H^{\U}_*\) be the homology of this complex, then we have a map
             \[
-              X\cup_f D^n\cong D^n/S^{n-1} \cong S^n.
-            \]</article><article class="definition-like" id="definition-20"><h5 class="heading">
-<span class="type">Definition</span><span class="codenumber">1.7.3</span><span class="title">Finite cell complex</span>
-</h5>
-            A 0-dimensional <em class="terminology">finite cell complex</em> is a finite disjoint union of points.
-            <br>
-            A \(k\)-dimensional finite cell complex is a space obtained by attaching finitely many \(k\)-cells to a \((k-1)\)-dimensional finite cell complex.
-          </article><article class="example-like" id="example-17"><h5 class="heading">
-<span class="type">Example</span><span class="codenumber">1.7.4</span>
-</h5></article><article class="example-like" id="example-18"><h5 class="heading">
-<span class="type">Example</span><span class="codenumber">1.7.5</span>
-</h5>
-            If a finite cell complex \(X\) has one 0-cell and one \(n\)-cell then \(X \cong S^n\).
-            Similarly if \(X\) has one 0-cell and \(k\)\(n\)-cells then \(X \cong \bigvee_{i=1}^{k}S^n\).
-          </article><article class="example-like" id="example-19"><h5 class="heading">
-<span class="type">Example</span><span class="codenumber">1.7.6</span>
-</h5>\(T^2\) is a finite cell complex with one 0-cell, two 1-cells and one 2-cell.</article><article class="example-like" id="example-20"><h5 class="heading">
-<span class="type">Example</span><span class="codenumber">1.7.7</span>
-</h5>
-            Any simplicial complex is a finite cell complex and any closed manifold can be given the structure of a finite cell complex.
+              i\colon C^{\U}_*(X) \hookrightarrow C_*(X).
+            \]</article><article class="theorem-like" id="lemma-6"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">1.5.2</span><span class="title">Subdivision</span>
+</h5>\(C_*\colon H^{\U}_*(X) \to H_*(X)\) is an isomorphism.
           </article></section></div></main>
 </div>
 </body>

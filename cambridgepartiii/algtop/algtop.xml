@@ -51,10 +51,10 @@ Copyright 2014 Alex J. Best
   <book xml:id="algtop">
     <title>Part III Algebraic Topology 2014</title>
 
-    <chapter>
+    <chapter xml:id="chap-homology">
       <title>Homology</title>
 
-      <section>
+      <section xml:id="sec-introduction">
         <title>Introduction</title>
 
         <p>
@@ -74,7 +74,7 @@ Copyright 2014 Alex J. Best
         </p>
       </section>
 
-      <section>
+      <section xml:id="sec-homotopy">
         <title>Homotopy</title>
 
         <subsection>
@@ -265,7 +265,7 @@ Copyright 2014 Alex J. Best
         </subsection>
       </section>
 
-      <section>
+      <section xml:id="sec-homology">
         <title>Homology</title>
         <p>
           Our goal is to construct a functor <m>H_*</m> from the category of topological spaces and continuous maps to the category of <m>\ZZ</m>-modules and <m>\ZZ</m>-linear maps.
@@ -461,7 +461,7 @@ Copyright 2014 Alex J. Best
         </subsection>
       </section>
 
-      <section>
+      <section xml:id="sec-homology-pair">
         <title>Homology of a pair</title>
 
         <subsection>
@@ -872,7 +872,7 @@ Copyright 2014 Alex J. Best
         </subsection>
       </section>
 
-      <section>
+      <section xml:id="sec-subdivision">
         <title>Subdivision and Excision</title>
 
         <definition>
@@ -898,11 +898,11 @@ Copyright 2014 Alex J. Best
         <todo>finish</todo>
       </section>
 
-      <section>
+      <section xml:id="sec-degrees">
         <title>Degree and Orientations</title>
       </section>
 
-      <section>
+      <section xml:id="sec-cell-complexes">
         <title>Cell Complexes</title>
 
         <definition>
@@ -959,10 +959,10 @@ Copyright 2014 Alex J. Best
       </section>
     </chapter>
 
-    <chapter>
+    <chapter xml:id="chap-cohomology-products">
       <title>Cohomology and Products</title>
 
-      <section>
+      <section xml:id="sec-homology-coefficients">
         <title>Homology with Coefficients and Cohomology</title>
 
         <subsection>
@@ -1063,12 +1063,12 @@ Copyright 2014 Alex J. Best
         <todo>work out whats going on here</todo>
       </section>
 
-      <section>
+      <section xml:id="sec-ucts">
         <title>Universal Coefficient Theorems</title>
 
       </section>
 
-      <section>
+      <section xml:id="sec-products">
         <title>Products</title>
 
         <definition>
@@ -1191,7 +1191,7 @@ Copyright 2014 Alex J. Best
         </corollary>
       </section>
 
-      <section>
+      <section xml:id="sec-cup-product">
         <title>Cup product</title>
 
         <p>Motivation: if <m>k</m> is a field
@@ -1386,7 +1386,7 @@ Copyright 2014 Alex J. Best
     <backmatter>
       <title>Reference</title>
 
-      <section>
+      <section xml:id="sec-notation">
         <title>Notation</title>
         <notation-list />
       </section>
