@@ -1049,7 +1049,7 @@ Copyright 2014 Alex J. Best
           <example>
             <statement>
               If <m>f\colon R^n \to R^m</m> is multiplication by <m>A</m> then
-              <me>f^*\colon \Hom(R^m , O) \cong O^m \to \Hom(R^n, O) \cong O^n)</me>
+              <me>f^*\colon \Hom(R^m , O) \cong O^m \to \Hom(R^n, O) \cong O^n</me>
               is multiplication by <m>A^\top</m>.
             </statement>
           </example>
@@ -1070,7 +1070,7 @@ Copyright 2014 Alex J. Best
 
       <section>
         <title>Products</title>
-        
+
         <definition>
           <title>Product of chain complexes</title>
           <statement>If <m>A,B</m> are chain complexes the <m>C=A \otimes B</m> is the chain complex with
@@ -1136,7 +1136,7 @@ Copyright 2014 Alex J. Best
             <me>P_{\ZZ/2}(\RP^3 \times \RP^2) = (1+t+t^2)(1+t+t^2+t^3).</me>
           </statement>
         </example>
-        
+
         <p>For now we will suppose that <m>A,B</m> are finitely generated chain complexes over a PID <m>R</m>.</p>
 
         <lemma xml:id="free-homology-homotopic-zero-boundary">
@@ -1168,7 +1168,8 @@ Copyright 2014 Alex J. Best
         <todo>missed a bit</todo>
 
         <p>Fact: If <m>C_1</m> is a free resolution of <m>M</m> and <m>C_2</m> is a free resolution of <m>N</m>.
-          Then <m>\Tor_i(M,N) \cong H_i(C_1 \otimes C_2) \cong H_i(C_1 \otimes N) \cong H_i(M\otimes C_2)</m>.
+          Then
+          <me>\Tor_i(M,N) \cong H_i(C_1 \otimes C_2) \cong H_i(C_1 \otimes N) \cong H_i(M\otimes C_2)</me>.
         </p>
 
         <theorem>
@@ -1176,7 +1177,7 @@ Copyright 2014 Alex J. Best
           <statement>If <m>A,B</m> are free (finitely generated) chain complexes over a PID <m>R</m> then
             <me>H_i(A\otimes B) \cong \bigoplus_{j + k = i} \Tor_0(H_j(A), H_k(B)) \oplus\bigoplus_{j+k = i-1} \Tor_1(H_j(A), H_k(B)).</me>
           </statement>
-          <proof>Suffices to check the statement where <m>A,B</m> are short and/or stupid.
+          <proof>It suffices to check the statement where <m>A,B</m> are short and/or stupid.
             We just did the case where both are short.
             The case where one or more is stupid was covered in the statement that
             <me>H_*(A\otimes B) \cong H_*(A) \otimes H_*(B)</me>
@@ -1242,7 +1243,143 @@ Copyright 2014 Alex J. Best
           </proof>
         </lemma>
 
+        <corollary>
+          <statement>There is a well-defined cup product
+            <md>
+              <mrow> H^i(X) \times H^j(X) \to H^{i+j}(X),</mrow>
+              <mrow> [a]    \times [b]    \mapsto [a\smile b].</mrow>
+            </md>
+          </statement>
+          <proof>Must check
+            <ol>
+              <li><m>da = c</m>, <m>db = 0 \implies d(a\smile b) = da \smile b \pm a \smile db =0</m> so ok.</li>
+              <li><m>(a+dc)\smile b = a\smile b + dc\smile b = a\smile b + d(c\smile b)</m> implies <m>[(a + dc)\smile b] = [a\smile b]</m> and so <m>\smile</m> is well defined.</li>
+            </ol>
+          </proof>
+        </corollary>
 
+        <proposition>
+          <title>Properties of <m>\smile</m></title>
+          <statement>
+            Let <m>\alpha,\beta,\gamma \in H^*(X)</m> then
+            <ol>
+              <li>(Associative) <m>(\alpha\smile \beta)\smile \gamma = \alpha \smile (\beta \smile \gamma)</m>.</li>
+              <li>(Graded commutative) <m>a \smile b = (-1)^{|\alpha||\beta|}\beta \smile \alpha</m>.</li>
+              <li>(Identity) There is a class <m>1 \in H^0(X)</m> such that <m>1\smile \alpha = \alpha \smile 1 = \alpha</m> for all <m>\alpha \in H^*(X)</m>.</li>
+              <li>(Functorial) If <m>f \colon X \to Y</m>, <m>f^*(\alpha\smile \beta) = f^*(\alpha) \smile f^*(\beta)</m>.</li>
+            </ol>
+          </statement>
+          <proof>
+            <ol>
+              <li>If <m>a \in C^i(X)</m>, <m>b \in C^j(X)</m>, <m>c \in C^k(X)</m>, <m>\sigma\colon\Delta^{i+j+k} \to X</m> then
+                <md>
+                  <mrow> ((a\smile b) \smile c)(\sigma) &amp;= a(\sigma\circ F_i^+) b(\sigma \circ F_j^{\text{mid}})c(\sigma\circ F_k^-)</mrow>
+                  <mrow>&amp;= (a \smile (b \smile c))(\sigma).</mrow>
+                </md>
+                Where <m>F_i^+(X) = (X^i\ 0)</m>, <m>F_k^-(X) = (0^{i+j}\ X^{i+j+k})</m>, <m>F_j^{\text{mid}}(X) = (0^i\ X^{i+j}\ 0)</m>.<todo></todo>
+              </li>
+              <li>We'll do later.</li>
+              <li>Let <m>e\in C^0(X)</m> be given by
+                <me> e(e_p) = 1 \text{ for all } p \in X</me>
+                If <m>\gamma\colon [0,1] \to X</m> is a 1-chain then
+                <me> de(e_\gamma) = e(de_\gamma) = e(e_{\gamma(1)} - e_{\gamma(0)}) = 1- 1 =0.</me>
+                Easy to see <m>e \smile a = a \smile e = a</m> for all <m>a \in C^*(X)</m> then <m>1 = [e] \in H^0(X)</m>.
+              </li>
+              <li>
+                <md>
+                  <mrow>f^\#(a\smile b)(\sigma) &amp;= (a\smile b)( f\circ \sigma)</mrow>
+                  <mrow>&amp;= a(f\circ \sigma \circ F_i^+) b(f\circ \sigma \circ F_j^-)</mrow>
+                  <mrow>&amp;=f^\#(a)(\sigma \circ F_i^+)f^\#(b)(\sigma\circ F_j^-)</mrow>
+                  <mrow>&amp;= [f^\# (a)\smile f^\#(b)](\sigma).</mrow>
+                </md>
+              </li>
+            </ol>
+          </proof>
+        </proposition>
+
+        <subsection>
+          <title>Digression: De Rahm Cohomology</title>
+
+          <p>Let <m>M</m> be a smooth manifold and <m>\omega\in \Omega^k(M)</m>.
+            If <m>\sigma\colon\Delta^k \to M</m> is a smooth we define <m>\omega(\sigma) = \int_\sigma \omega</m>.
+            Stokes' theorem then gives us that <m>d\omega (\sigma) = \omega (d\sigma)</m>.
+            Where on the left <m>d\colon \Omega^k(M) \to \Omega^{k+1}(M)</m> is the differential map and on the right <m>d</m> is the boundary map in the sense of (smooth) singualr chains.
+            I.e. the two <m>d</m>'s are dual to each other on <m>C_*^{\text{smooth}}(M)</m>.</p>
+
+          <theorem>
+            <title>de Rahm</title>
+            <statement>
+              <me>H_k(\Omega^*(M), d) \cong H^k(M; \RR).</me>
+              Under this correspondence
+              <me>[\omega] \smile [\nu] = [\omega \wedge \nu].</me>
+            </statement>
+          </theorem>
+
+          <example>
+            <statement>
+              <ol>
+                <li><m>H^*(S^n) = \langle 1, X_n\rangle</m> where <m>\langle X_n\rangle = H^n(S^n)</m> and we have
+                  <md>
+                    <mrow>1\smile X_n &amp;= X_n,</mrow>
+                    <mrow>X_n\smile 1 &amp;= X_n,</mrow>
+                    <mrow>1\smile 1 &amp;= 1,</mrow>
+                    <mrow>X_n\smile X_n &amp;= 0 \in H^{2n}(S^n) = 0.</mrow>
+                  </md>
+                </li>
+                <li>For arbitrary <m>X,Y</m>
+                  <me>C_*(X\amalg Y) \cong C_*(X) \oplus C_*(Y)</me>
+                  which implies
+                  <me>C^*(X\amalg Y) \cong C^*(X) \oplus C_*(Y)</me>
+                  <me>\implies H^*(X\amalg Y) \cong H^*(X) \oplus H_*(Y)\text{ as rings}</me>
+                  with
+                  <me> (\alpha_1 \oplus \alpha_2) \smile (\beta_1 \oplus \beta2) = (\alpha_1 \smile \beta_1)\oplus (\alpha_2 \smile \beta_2).</me>
+                </li>
+                <li>Considering <m>X\vee Y</m> we have a map <m>p\colon X\amalg Y \to X \vee Y</m> and so Mayer-Vietoris for <m>X \vee Y</m> gives
+                  <me> \cdots \to H^*(X\vee Y) \xrightarrow{p^*} H^*(X)\oplus H^*(Y) \xrightarrow{i^*} H^*(\text{pt}) \to \cdots</me>
+                  Now assuming <m>X</m> and <m>Y</m> are path connected <m>p^*</m> is injective and an isomorphism in grading <m>\gt 0</m>.
+                  In grading 0 we have
+                  <me>H^0(X \vee Y) \to H^0(X) \oplus H^0(Y) \to H^0(\text{pt})</me>
+                  with <m>1 \mapsto 1\oplus 1</m> and <m>a\oplus b \mapsto a-b</m>.
+                  And so as a ring we have
+                  <me> H^*(X\vee Y) \cong \ker i^* \subset H^*(X)\oplus H^*(Y)</me>
+                  where elements in grading <m>\gt 0</m> look like <m>(\alpha,\beta)</m> and in grading 0 look like <m>(n,n)\in \ZZ \times \ZZ</m>.
+                </li>
+                <li><m>S^2 \vee S^4</m>, <m>H^*(S^2\vee S^4) = \langle 1, X_2, X_4\rangle</m> with <m>X_2^2 = 0</m> since <m>X_2^2 = 0</m> in <m>H^*(S^2)</m>.</li>
+              </ol>
+            </statement>
+          </example>
+        </subsection>
+
+        <subsection>
+          <title>Exterior Product</title>
+          
+          <p>Let <m>\pi_1 \colon X\times Y \to X</m> and <m>\pi_2 \colon X \times Y \to Y</m>.</p>
+
+          <definition>
+            <title>Exterior product</title>
+            <statement>If <m>\alpha \in H^i(X)</m>, <m>\beta\in H^j(X)</m> then their <term>exterior product</term> is <m>\alpha\times \beta = \pi_1^*(\alpha) \smile \pi_2^*(\beta) \in H^{i+j}(X\times Y)</m>.
+            </statement>
+          </definition>
+
+          <proposition>
+            <statement>
+              <ol>
+                <li><m>\alpha\smile \beta = \Delta^*(\alpha\times \beta)</m> where <m>\Delta\colon X \to X\times X</m> is the diagonal map.</li>
+                <li><m>(\alpha\times\beta)\smile (\alpha' \times \beta') = (-1)^{|\beta||\alpha'|}(\alpha \smile \alpha')\times(\beta \smile \beta').</m></li>
+              </ol>
+            </statement>
+            <proof>
+              <ol>
+                <li>
+                  <md>
+                    <mrow>\Delta^*(\alpha\times\beta) &amp;= \Delta^*(\pi_1^*(\alpha) \smile \pi_2^*(\beta))</mrow>
+                  </md>
+                </li>
+              </ol>
+            </proof>
+          </proposition>
+          
+        </subsection>
       </section>
     </chapter>
 
