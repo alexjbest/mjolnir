@@ -23,6 +23,7 @@ Copyright 2014 Alex J. Best
     </author>
 
     <macros>
+    \DeclareMathOperator{\GL}{GL}
     \DeclareMathOperator{\Map}{Map}
     \DeclareMathOperator{\Hom}{Hom}
     \DeclareMathOperator{\Tor}{Tor}
@@ -1380,6 +1381,59 @@ Copyright 2014 Alex J. Best
           </proposition>
           
         </subsection>
+      </section>
+    </chapter>
+    
+    <chapter xml:id="chap-manifolds-bundles">
+      <title>Manifolds and Bundles</title>
+
+      <section xml:id="sec-vector-bundles">
+        <title>Vector Bundles</title>
+        <definition>
+          <title>Vector bundle</title>
+          <statement>An <m>n</m>-dimensional <term>real vector bundle</term> is a triple <m>(E,B,\pi)</m> such that
+            <ol>
+              <li>Each fibre <m>\pi^{-1}(p)</m> has the structure of an <m>n</m>-dimensional real vector space.</li>
+              <li>(Local triviality) For each <m>p \in B</m> there is <m>U \subset B</m> open containing <m>p</m> and a homeomorphism
+                <me>f_U\colon \pi^{-1}(U) \to U \times \RR^n</me>
+                such that
+                <ol>
+                  <li><m>\pi_1\circ f_U = \pi</m>,</li>
+                  <li><m>pi_2 \circ f_U\colon \pi^{-1}(p) \to \RR^n</m> is a linear map (it must be an isomorphism of vector spaces).</li>
+                </ol>
+              </li>
+            </ol>
+            A <term>complex vector bundle</term> is defined similarly with <m>\CC</m> replacing <m>\RR</m>.
+          </statement>
+        </definition>
+
+        <subsection>
+          <title>Transition functions</title>
+          <p>If <m>f_1\colon \pi^{-1}(U_1) \to U_1\times \RR^n</m> and <m>f_2\colon \pi^{-1}(U_2) \to U_2\times \RR^n</m> are local trivialisations of <m>E</m> then the map <m>f_1\circ F_2^{-1}\colon (U_1\cap U_2)\times \RR^n \to (U_1 \cap U_2)</m> is linear on fibres.
+            So there is a map <m>g_{12}\colon U_1\cap U_2 \to \GL_n(\RR)</m> such that <m>f_1\circ f_2^{-1}(p,v) = (p,g_{12}(p) v)</m>, <m>g_{12}</m> is called a <term>transition function</term>.</p>
+
+          <exercise>
+            <statement>If <m>f_3\colon U_3 \to U_3\times \RR^n </m> is another local trivialisation then <m>g_{32}(p)\cdot g_{21}(p) = g_{31}(p)</m>, this is called the cocycle condition.
+            </statement>
+          </exercise>
+
+          <example>
+            <statement>
+              <ol>
+                <li><m>E = B\times \RR^n</m> is the <m>n</m>-dimensional <term>trivial bundle</term> over <m>B</m>.</li>
+                <li>The Mobius band <m>M = [0,1] \times \RR/\sim</m> where <m>(0,x)\sim (1,-x)</m> is a bundle over <m>S^1</m> via <m>\pi\colon M \to [0,1]/\sim</m>.
+                  We have local trivialisations given by <m>U_1 = [0-\epsilon, 1/2 + \epsilon]\times \RR</m> and <m>U_2 = [1/2-\epsilon, 1 + \epsilon]\times \RR</m>.
+                  The transition function is <m>g_{12} \colon \{0,1/2\} \to \GL_1(\RR)</m> mapping <m>1/2\to 1</m> and <m>0\to -1</m>.
+                </li>
+                <li>If <m>M</m> is a smooth manifold with charts <m>\phi_i \colon U_i \to V_i \subset \RR^n</m> and transition functions <m>\psi_{ij} = \phi_i \circ \phi_j ^{-1}</m> where defined.
+                  Then the <term>tangent bundle</term> <m>TM</m> has local trvialisations <m>f_i = d\phi_i\colon TM|_{U_i}\to TV_i = V_i\times \RR^n</m> and transition functions
+                  <me>g_{ij} = d\phi_i\circ d\phi_j^{-1} = d(\phi_i\circ \phi_j^{-1}) = d\psi_{ij}.</me>
+                </li>
+              </ol>
+            </statement>
+          </example>
+        </subsection>
+        
       </section>
     </chapter>
 
