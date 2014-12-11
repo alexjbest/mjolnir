@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/alexjbest/mjolnir.png?label=ready&title=Ready)](https://waffle.io/alexjbest/mjolnir)
 MJOLNIR
 =======
 
