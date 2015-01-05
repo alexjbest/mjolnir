@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--********************************************************************
+
+Copyright 2014 Alex J. Best
+
+*********************************************************************-->
+
+<mathbook>
+
+  <docinfo>
+    <brandlogo url="http://alexjbest.github.io/mjolnir/" source="../../images/mjolnir.png" />
+    <author>
+      <personname>Dr. P.M.H. Wilson</personname>
+      <department>DPMMS</department>
+      <institution>University of Cambridge</institution>
+    </author>
+    <author>
+      <personname>Alex J. Best</personname>
+      <department>DPMMS</department>
+      <institution>University of Cambridge</institution>
+      <email>alex.j.best@gmail.com</email>
+    </author>
+
+    <macros>
+    \DeclareMathOperator{\GL}{GL}
+    \DeclareMathOperator{\Map}{Map}
+    \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\Tor}{Tor}
+    \DeclareMathOperator{\Ext}{Ext}
+    \DeclareMathOperator{\im}{im}
+    \DeclareMathOperator{\id}{id}
+    \DeclareMathOperator{\coker}{coker}
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\RP}{\mathbf{RP}}
+    \DeclareMathOperator{\C}{C_*}
+    \DeclareMathOperator{\A}{\mathcal{A}}
+    \DeclareMathOperator{\B}{\mathcal{B}}
+    \DeclareMathOperator{\F}{\mathcal{F}}
+    \DeclareMathOperator{\G}{\mathcal{G}}
+    \DeclareMathOperator{\O}{\mathcal{O}}
+    \DeclareMathOperator{\U}{\mathcal{U}}
+    </macros>
+
+    <initialism>AT</initialism>
+
+    <feedback>
+      <url>https://github.com/alexjbest/mjolnir/issues</url>
+    </feedback>
+
+    <date><today /></date>
+  </docinfo>
+
+  <book xml:id="alggeom">
+    <title>Part III Algebraic Geometry 2014</title>
+
+    <chapter xml:id="chap-sheaves">
+      <title>Sheaf Theory</title>
+
+      <section xml:id="sec-introduction">
+        <title>Introduction</title>
+
+        <p>
+          These are lecture notes for the 2014 Part III Algebraic Geometry course taught by Dr. P.M.H. Wilson.
+        </p>
+        <p>
+          The recommended books are: <todo></todo>
+          <ul>
+            <li>Algebraic Geometry - ??</li>
+          </ul>
+        </p>
+
+        <p>
+          Generated: <today />, <timeofday />
+        </p>
+      </section>
+
+      <section xml:id="sec-presheaves">
+        <title>Presheaves</title>
+
+        <p>Let <m>X</m> be a topological space.</p>
+
+        <definition>
+          <title>Presheaves</title>
+          <statement>A <term>presheaf</term> <m>\F</m> of abelian groups (resp. rings) on <m>X</m> consists of data:
+            <ol>
+              <li>For every open <m>U \subset X</m> an abelian group (resp. ring) <m>\F(U)</m>.</li>
+              <li>For every inclusion of open sets <m>V\subset U</m> a homomorphism called <term>restriction</term>, denoted <m>\rho^U_V\colon \F(U) \to \F(V)</m> such that
+                <ol>
+                  <li><m>\F(\emptyset) = 0.</m></li>
+                  <li><m>\rho^U_U\colon \F(U) \to \F(U)</m> is <m>\id_{\F(U)}</m>.</li>
+                  <li>If <m>W \subset V \subset U</m> open then <m>\rho^U_W = \rho^V_W \circ \rho^U_V</m>.</li>
+                </ol>
+              </li>
+            </ol>
+          </statement>
+        </definition>
+
+        <remark>
+          <statement>If <m>\U</m> denotes the category of open sets in <m>X</m> (the morphisms are inclusions) then a presheaf of abelian groups over <m>X</m> is a contravariant functor <m>\F\colon  \U \to \text{Abgp}.</m>
+          i.e. an element of <m>\text{Abgp}^{\U^\text{op}}</m>.
+          </statement>
+        </remark>
+
+        <p>An element <m>s \in \F(U)</m> is called a <term>section</term> of <m>\F</m> over <m>U</m>.
+          For <m>s\in \F(U)</m> we denote <m>\rho^U_V(s)</m> by <m>s|_V</m>.
+        </p>
+
+        <definition>
+          <title>Sheaves</title>
+          <statement>
+            A presheaf <m>\F</m> on <m>X</m> is a <term>sheaf</term> if it satisfies two further conditions:
+            <ol>
+              <li>If <m>U</m> is open and has <m>U = \bigcup_i U_i</m> an open cover and if <m>s \in \F(U)</m> is such that <m>s|_{V_i} = 0</m> for all <m>i</m> then <m>s = 0</m>.
+                (A presheaf satisfying this condition is called a <term>monopresheaf</term>).
+              </li>
+              <li>If <m>U = \bigcup_i V_i</m> is an open cover and we have <m>s_i\in \F(V_i)</m> such that <m>\forall i,j\ s_i|_{V_i\cap V_j} = s_j|_{V_i\cap V_j}</m> then there exists <m>s \in \F(U)</m> with <m>s|_{V_i} = s_i</m> for all <m>i</m>.</li>
+            </ol>
+          </statement>
+        </definition>
+
+        <example>
+          <statement><m>X</m> a topological space, <m>A</m> any abelian group (resp. ring).
+            The constant shead <m>\A</m> determined by <m>A</m> is defined as follows: <m>\A(\emptyset) = \{0\}</m>, for <m>U \ne \emptyset</m> open in <m>X</m> <me>\A(U) = \{\text{locally constant maps }U\to A\},</me> this is an abelian group (resp. ring) under pointwise operations.
+            With obvious restriction maps we obtain a sheaf.
+            If <m>U \ne \emptyset</m> is open and connected, then <m>\A(U) = A</m>.
+            If <m>U</m> an open set whose connected components are open (e.g. in a locally connected topological space <m>X</m>) then the section <m>\A(U)</m> is a direct product of copies of <m>A</m>.
+          </statement>
+        </example>
+
+        <example>
+          <statement>If <m>X</m> is a differentiable (<m>C^\infty</m>) manifold, we can define the sheaf of <m>C^\infty</m>-functions (<m>\RR</m> or <m>\CC</m> valued) on <m>X</m>.
+            Which is a sheaf of rings.
+            Similarly if <m>X</m> is a complex manifold, we can define a sheaf of holomorphic functions on <m>X</m>.
+            In both cases, the sheaf is called the <term>structure sheaf</term> of <m>X</m>, sometimes denoted <m>\O_X</m>.
+          </statement>
+        </example>
+
+        <example>
+          <statement>For <m>V</m> an (irreducible) variety (affine, projective, quasi-projective).
+            We can consider <m>V</m> as a topological space with the Zariski topology.
+            For <m>U</m> open in <m>V</m> set <me>\O_V(U)=\{\text{regular functions on } U\} = \{f\in k(V) \text{ s.t. }f \text{ regular on } U\}.</me>
+            This is a sheaf of rings with respect to the Zariski topology, and is known as the <term>structure sheaf</term> for varieties.
+            If <m>V</m> is affine we have that <m>\O_V(V) = k[V]</m>.
+          </statement>
+        </example>
+
+        <definition>
+          <title>Stalks</title>
+          <statement>If <m>\F</m> is a presheaf on a topological space <m>X</m> and <m>P\in X</m> we define the stalk <m>\F_P</m> of <m>\F</m> at <m>P</m> to be <m>\varinjlim_{U\ni P} \F(U)</m> i.e. an element of <m>\F_P</m> is represented by a pair <m>(U,s)</m> where <m>U</m> is an open neighbourhood of <m>P</m> and <m>s\in \F(U)</m>, where <m>(U,s)</m> and <m>(V,t)</m> define the same element of <m>\F_P</m> if there exists an open neighbourhood <m>W\ni P</m> with <m>W\subset V\cap U</m> such that <m>s|_W = t|_W</m> the elements <m>s_P</m> of <m>\F_P</m> are called <term>germs</term>.
+            If <m>\F</m> is a sheaf of abelian groups or rings then <m>\F_P</m> is an abelian group, ring, etc.
+          </statement>
+        </definition>
+
+        <example>
+          <statement>For the constant sheaf <m>\A</m> associated to <m>A</m> we have <m>\A_P = A</m>.
+          </statement>
+        </example>
+
+        <example>
+          <statement>For <m>X</m> a <m>C^\infty</m> manifold (resp. complex) with structure sheaf <m>\O_X</m>, the stalk <m>\O_{X,P}</m> of <m>\O_X</m> at <m>P\in V</m> consists of germs of <m>C^\infty</m> (resp. holomorphic) functions.
+          </statement>
+        </example>
+
+        <example>
+          <statement>For <m>V</m> (irreducible) affine, projective or quasi-projective variety with structure sheaf <m>\O_V</m> the stalk at <m>P\in V</m> <m>\O_{V,P} = \text{ local ring at } P</m> (defined before).
+          </statement>
+        </example>
+
+        <definition>
+          <title>Morphisms of (pre-)sheaves</title>
+          <statement>If <m>\F</m> and <m>\G</m> are presheaves (resp. sheaves) on <m>X</m> a morphism <m>\Phi\colon \F \to \G</m> consists of homomorphisms <m>\F(U) \xrightarrow{\Phi} \G(U)</m> for all open <m>U</m> such that for <m>V \subseteq U</m> open
+            <me>\xymatrix@R+2em@C+2em{
+              \F(U) \ar[r]^{\phi(U)} \ar[d]_{\rho^U_V} &amp; \G(U) \ar[d]^{\rho'^U_V} \\
+              \F(V) \ar[r]_{\phi(V)} &amp; \G(V)
+              }
+            </me>
+            commutes.
+          </statement>
+        </definition>
+
+        <p>A morphism <m>\phi\colon \F \to \G</m> induces a homomorphism <m>\phi_P\colon \F_P \to \G_P</m> for each <m>P</m>, namely <m>\phi_P[(U,s)] = [(U,\phi(U)(s))]</m>, which is well defined.</p>
+
+        <definition>
+          <title>Injections and isomorphisms</title>
+          <statement>A morphism <m>\phi\colon \F\to\G</m> of (pre-)sheaves is <term>injective</term> if <m>\F(U) \to \G(U)</m> is injective for all open <m>U</m>.
+            e.g. sheaves of subgroups or subrings where <m>\F(U) \subseteq \G(U)</m> for all <m>U</m>.
+            In this case <m>\F</m> is called a <term>subsheaf</term> of <m>\G</m>.<br />
+            A morphism <m>\phi\colon \F \to \G</m> is called an isomorphism if there exists an inverse morphism <m>\chi\colon \G\to\F</m>.
+            This is equivalent to <m>\phi(U)\colon \F(U) \to \G(U)</m> being bijective for all <m>U</m> since we can define <m>\chi(U) = \phi(U)^{-1}</m> as the inverse.
+          </statement>
+        </definition>
+
+        <lemma>
+          <statement>Let <m>\phi\colon \F\to\G</m> be a morphism of sheaves then
+            <ol>
+              <li><m>\phi</m> is injective iff <m>\phi_P\colon \F_P \to \G_P</m> is injective for all <m>P\in X</m>,</li>
+              <li><m>\phi</m> is an isomorphism iff <m>\phi_P\colon \F_P \to \G_P</m> is an isomorphism for all <m>P\in X</m>.</li>
+            </ol>
+          </statement>
+          <proof>
+            <p>(<m>\Rightarrow</m>) (true for presheaves too).
+              <ol>
+                <li>Suppose there exists a germ <m>s_P\in\F_P</m> such that <m>\phi_P(s_P) = 0\in \G_P</m>.
+                  i.e. there exists an open neighbourhood <m>W \subset U</m> with <m>P\in W</m> such that <m>\phi(U)(s|_W) = 0</m>.
+                  So by commutativity <m>\phi(W)(s|_W) = 0</m> but <m>\phi</m> injective implies <m>s|_W = 0</m>.
+                </li>
+                <li>Clear.</li>
+              </ol>
+              (<m>\Leftarrow</m>)
+              <ol>
+                <li>Needs first sheaf condition on <m>\F</m>.
+                  If <m>\phi_P</m> injective for all <m>P</m> and <m>U</m> is open in <m>X</m> it remains to prove that <m>\phi(U) \colon \F(U) \to \G(U)</m> is injective.
+                  Suppose not and there exists <m>0 \ne s \in \F(u)</m> such that <m>\phi(U)(s) = 0 \in \G(U)</m>.
+                  Let <m>s_P</m> denote the germ of <m>s</m> at <m>P \in U</m>, then <m>0 = \phi(U)(s)_P = \phi_P(s_P)</m> for all <m>P\in U</m>.
+                  So <m>s_P</m> in <m>\F_P</m> for all <m>P \in U</m>.</li></ol>
+            </p>
+          </proof>
+        </lemma>
+        
+      </section>
+    </chapter>
+
+    <backmatter>
+      <title>Reference</title>
+
+      <section xml:id="sec-notation">
+        <title>Notation</title>
+        <notation-list />
+      </section>
+    </backmatter>
+
+  </book>
+
+</mathbook>
