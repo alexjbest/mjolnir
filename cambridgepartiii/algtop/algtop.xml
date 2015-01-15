@@ -1426,7 +1426,7 @@ Copyright 2014 Alex J. Best
                   The transition function is <m>g_{12} \colon \{0,1/2\} \to \GL_1(\RR)</m> mapping <m>1/2\to 1</m> and <m>0\to -1</m>.
                 </li>
                 <li>If <m>M</m> is a smooth manifold with charts <m>\phi_i \colon U_i \to V_i \subset \RR^n</m> and transition functions <m>\psi_{ij} = \phi_i \circ \phi_j ^{-1}</m> where defined.
-                  Then the <term>tangent bundle</term> <m>TM</m> has local trvialisations <m>f_i = d\phi_i\colon TM|_{U_i}\to TV_i = V_i\times \RR^n</m> and transition functions
+                  Then the <term>tangent bundle</term> <m>TM</m> has local trivialisations <m>f_i = d\phi_i\colon TM|_{U_i}\to TV_i = V_i\times \RR^n</m> and transition functions
                   <me>g_{ij} = d\phi_i\circ d\phi_j^{-1} = d(\phi_i\circ \phi_j^{-1}) = d\psi_{ij}.</me>
                 </li>
               </ol>
