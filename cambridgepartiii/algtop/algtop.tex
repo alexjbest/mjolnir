@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2014-11-21T22:23:06Z    %%
+%%    on 2015-01-15T16:45:59Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -109,6 +109,7 @@
 %% Custom Preamble Entries, late (use latex.preamble.late)
 \usepackage[all]{xy}
 %% Convenience macros
+\DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\Map}{Map}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Tor}{Tor}
@@ -169,7 +170,7 @@
         %
 \par
 
-          Generated: November 21, 2014, 22:23:06 (Z)
+          Generated: January 15, 2015, 16:45:59 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Homotopy}
@@ -1127,21 +1128,47 @@ If \(\alpha \in H^i(X)\), \(\beta\in H^j(X)\) then their \terminology{exterior p
 \end{align*}
                 \end{enumerate}
 \end{proof}
+\typeout{************************************************}
+\typeout{Chapter 3 Manifolds and Bundles}
+\typeout{************************************************}
+\chapter[Manifolds and Bundles]{Manifolds and Bundles}\label{chap-manifolds-bundles}
+\typeout{************************************************}
+\typeout{Section 3.1 Vector Bundles}
+\typeout{************************************************}
+\section[Vector Bundles]{Vector Bundles}\label{sec-vector-bundles}
+\begin{definition}[Vector bundle]\label{definition-28}
+An \(n\)-dimensional \terminology{real vector bundle} is a triple \((E,B,\pi)\) such that
+            \begin{enumerate}
+\item{}Each fibre \(\pi^{-1}(p)\) has the structure of an \(n\)-dimensional real vector space.\item{}(Local triviality) For each \(p \in B\) there is \(U \subset B\) open containing \(p\) and a homeomorphism
+                \[f_U\colon \pi^{-1}(U) \to U \times \RR^n\]
+                such that
+                \begin{enumerate}
+\item{}\(\pi_1\circ f_U = \pi\),\item{}\(pi_2 \circ f_U\colon \pi^{-1}(p) \to \RR^n\) is a linear map (it must be an isomorphism of vector spaces).\end{enumerate}
+
+              \end{enumerate}
+
+            A \terminology{complex vector bundle} is defined similarly with \(\CC\) replacing \(\RR\).
+          \end{definition}
+\typeout{************************************************}
+\typeout{Subsection 3.1.1 Transition functions}
+\typeout{************************************************}
+\subsection[Transition functions]{Transition functions}\label{subsection-13}
+If \(f_1\colon \pi^{-1}(U_1) \to U_1\times \RR^n\) and \(f_2\colon \pi^{-1}(U_2) \to U_2\times \RR^n\) are local trivialisations of \(E\) then the map \(f_1\circ F_2^{-1}\colon (U_1\cap U_2)\times \RR^n \to (U_1 \cap U_2)\) is linear on fibres.
+            So there is a map \(g_{12}\colon U_1\cap U_2 \to \GL_n(\RR)\) such that \(f_1\circ f_2^{-1}(p,v) = (p,g_{12}(p) v)\), \(g_{12}\) is called a \terminology{transition function}.%
+\begin{exercise}\label{exercise-5}
+If \(f_3\colon U_3 \to U_3\times \RR^n \) is another local trivialisation then \(g_{32}(p)\cdot g_{21}(p) = g_{31}(p)\), this is called the cocycle condition.
+            \end{exercise}
+\begin{example}\label{example-27}
+\begin{enumerate}
+\item{}\(E = B\times \RR^n\) is the \(n\)-dimensional \terminology{trivial bundle} over \(B\).\item{}The Mobius band \(M = [0,1] \times \RR/\sim\) where \((0,x)\sim (1,-x)\) is a bundle over \(S^1\) via \(\pi\colon M \to [0,1]/\sim\).
+                  We have local trivialisations given by \(U_1 = [0-\epsilon, 1/2 + \epsilon]\times \RR\) and \(U_2 = [1/2-\epsilon, 1 + \epsilon]\times \RR\).
+                  The transition function is \(g_{12} \colon \{0,1/2\} \to \GL_1(\RR)\) mapping \(1/2\to 1\) and \(0\to -1\).
+                \item{}If \(M\) is a smooth manifold with charts \(\phi_i \colon U_i \to V_i \subset \RR^n\) and transition functions \(\psi_{ij} = \phi_i \circ \phi_j ^{-1}\) where defined.
+                  Then the \terminology{tangent bundle} \(TM\) has local trvialisations \(f_i = d\phi_i\colon TM|_{U_i}\to TV_i = V_i\times \RR^n\) and transition functions
+                  \[g_{ij} = d\phi_i\circ d\phi_j^{-1} = d(\phi_i\circ \phi_j^{-1}) = d\psi_{ij}.\]
+                \end{enumerate}
+\end{example}
 %
 \backmatter
 %
-\typeout{************************************************}
-\typeout{Section 1 Notation}
-\typeout{************************************************}
-\section[Notation]{Notation}\label{sec-notation}
-\begin{longtable}[l]{llr}
-\textbf{Symbol}&\textbf{Description}&\textbf{Page}\\[1em]
-\endfirsthead
-\textbf{Symbol}&\textbf{Description}&\textbf{Page}\\[1em]
-\endhead
-\multicolumn{3}{r}{(Continued on next page)}\\
-\endfoot
-\endlastfoot
-$$&&\pageref{notation-1}\\
-\end{longtable}
 \end{document}

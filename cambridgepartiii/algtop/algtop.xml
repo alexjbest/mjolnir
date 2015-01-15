@@ -1437,14 +1437,14 @@ Copyright 2014 Alex J. Best
       </section>
     </chapter>
 
-    <backmatter>
+    <!--<backmatter>
       <title>Reference</title>
 
       <section xml:id="sec-notation">
         <title>Notation</title>
         <notation-list />
       </section>
-    </backmatter>
+    </backmatter>-->
 
   </book>
 
