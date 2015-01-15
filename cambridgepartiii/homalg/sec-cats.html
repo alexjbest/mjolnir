@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2015-01-15T16:29:17Z    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HH Categorical notions</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "[Contrib]/xyjax/xypic.js"],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+    \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\Tor}{Tor}
+    \DeclareMathOperator{\Ext}{Ext}
+    \DeclareMathOperator{\id}{id}
+    \DeclareMathOperator{\im}{im}
+    \DeclareMathOperator{\coim}{coim}
+    \DeclareMathOperator{\coker}{coker}
+    \DeclareMathOperator{\eq}{eq}
+    \DeclareMathOperator{\coeq}{coeq}
+    \DeclareMathOperator{\Ch}{Ch}
+    \DeclareMathOperator{\Abgp}{\text{Abgp}}
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\PP}{\mathbf{P}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\Rmod}{R\text{mod}}
+    \DeclareMathOperator{\cA}{\mathcal{A}}
+    \DeclareMathOperator{\cB}{\mathcal{B}}
+    \DeclareMathOperator{\cO}{\mathcal{O}}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
+<h1 class="heading"><span class="title">Part III Homological and Homotopical Algebra 2014</span></h1>
+<p class="byline"></p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="sec-motivation.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-chain-complexes.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-motivation.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-chain-complexes.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link active"><a href="chap-hom-alg.html"><span class="codenumber">1</span><span class="title">Elements of Homological Algebra</span></a></h2>
+<ul>
+<li><a href="sec-introduction.html">Introduction</a></li>
+<li><a href="sec-motivation.html">Motivation</a></li>
+<li><a href="sec-cats.html" class="active">Categorical notions</a></li>
+<li><a href="sec-chain-complexes.html">Chain complexes</a></li>
+</ul>
+<h2 class="link"><a href="chap-apps.html"><span class="codenumber">2</span><span class="title">Applications</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-spec-seq.html"><span class="codenumber">3</span><span class="title">Spectral Sequences</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-model-cats.html"><span class="codenumber">4</span><span class="title">Model Categories</span></a></h2>
+<ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-cats"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">1.3</span><span class="title">Categorical notions</span>
+</h1></header><section class="subsection" id="sec-ab-cats"><header><h1 class="heading">
+<span class="type">Subsection</span><span class="codenumber">1.3.1</span><span class="title">Abelian Categories</span>
+</h1></header><article class="example-like" id="example-1"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.3.1</span>
+</h5>\(\Rmod\) - the category of left \(R\)-modules for \(R\) an associative ring is an abelian category.  </article><article class="example-like" id="example-2"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.3.2</span>
+</h5>The categories of sheaves of abelian groups on a topological space, sheaves of \(\cO\)-modules on a scheme and (quasi-)coherent sheaves on a scheme are all abelian.</article><article class="definition-like" id="definition-1"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.3.3</span><span class="title">Additive categories</span>
+</h5>An <em class="terminology">additive category</em> is a category in which:
+              <ol>
+<li>Every hom-space has the structure of an abelian group.</li>
+<li>There exists a 0-object (one with exactly one map to and from every other object).</li>
+<li>Finite products exist (these are automatically equal to sums \(A\times B = A \oplus B = A \amalg B\)).</li>
+</ol>
+              In such a category we let \[\ker(f) = \eq(\xymatrix@+=2pc{A \ar@&lt;0.5ex&gt;[r]^f \ar@&lt;-0.5ex&gt;[r]_0 &amp; B})\] and \[\coker(f) = \coeq(\xymatrix@+=2pc{A \ar@&lt;0.5ex&gt;[r]^f \ar@&lt;-0.5ex&gt;[r]_0 &amp; B}).\]</article><article class="definition-like" id="definition-2"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.3.4</span><span class="title">Abelian categories</span>
+</h5>An <em class="terminology">abelian category</em>\(\cA\) is an additive category in which:
+              <ol>
+<li>Every map \(f\) has a kernel and cokernel.</li>
+<li>For all \(f\) we have \(\coker(\ker(f)) = \im(f) = \coim(f) = \ker(\coker(f))\).</li>
+</ol></article><article class="example-like" id="example-3"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.3.5</span>
+</h5>Let \(\cB\) be the category of pairs of vector spaces \(V\subset W\), with morphisms the compatible linear maps.
+              Consider the natural map \(f\colon 0\subset V \to V\subset V\), we then have \(\im f \cong 0\subset V\) but \(\coim f \cong V\subset V\).
+              So this category is not abelian.
+            </article><p>From now on we take \(\cA\) to be any abelian category.</p></section><section class="subsection" id="sec-exactness"><header><h1 class="heading">
+<span class="type">Subsection</span><span class="codenumber">1.3.2</span><span class="title">Exactness</span>
+</h1></header><article class="definition-like" id="definition-3"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.3.6</span><span class="title">Exact sequences</span>
+</h5>A sequence of morphisms \[A\xrightarrow{f} B \xrightarrow{g}C\] in \(\cA\) is <em class="terminology">exact at \(B\)</em> if \(\im f = \ker g\).
+              A sequence is then exact if it is exact everywhere.
+              An exact sequence of the form \[0\to A \to B \to C \to 0\] is called a <em class="terminology">short exact sequence</em>.
+            </article><article class="definition-like" id="definition-4"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.3.7</span><span class="title">Mono and epi morphisms</span>
+</h5>A morphism \(f\) is a <em class="terminology">monomorphism</em> if \(fg = fh \implies g=h\) and it is an <em class="terminology">epimorphism</em> is \(gf = hf \implies g=h\).</article><article class="example-like" id="example-4"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.3.8</span>
+</h5>In \(\Abgp\) the following are exact sequences:
+              \begin{gather*}
+0\to \ZZ/2 \to \ZZ/2 \oplus \ZZ/2 \to \ZZ/2 \to 0\\
+0\to \ZZ/2 \to \ZZ/4\to \ZZ/2 \to 0\\
+0\to \ZZ \xrightarrow{\cdot 3} \ZZ\to \ZZ/3 \to 0
+\end{gather*}</article><article class="definition-like" id="definition-5"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.3.9</span><span class="title">Additive functors</span>
+</h5>A functor of additive categories is <em class="terminology">additive</em> if it is a homomorphism on hom-sets.</article></section></section></div></main>
+</div>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--********************************************************************
+
+Copyright 2014 Alex J. Best
+
+*********************************************************************-->
+
+<mathbook>
+
+  <docinfo>
+    <brandlogo url="http://alexjbest.github.io/mjolnir/" source="../../images/mjolnir.png" />
+    <author>
+      <personname>Dr. Julian Holstein</personname>
+      <department>DPMMS</department>
+      <institution>University of Cambridge</institution>
+    </author>
+    <author>
+      <personname>Alex J. Best</personname>
+      <department>DPMMS</department>
+      <institution>University of Cambridge</institution>
+      <email>alex.j.best@gmail.com</email>
+    </author>
+
+    <macros>
+    \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\Tor}{Tor}
+    \DeclareMathOperator{\Ext}{Ext}
+    \DeclareMathOperator{\id}{id}
+    \DeclareMathOperator{\im}{im}
+    \DeclareMathOperator{\coim}{coim}
+    \DeclareMathOperator{\coker}{coker}
+    \DeclareMathOperator{\eq}{eq}
+    \DeclareMathOperator{\coeq}{coeq}
+    \DeclareMathOperator{\Ch}{Ch}
+    \DeclareMathOperator{\Abgp}{\text{Abgp}}
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\PP}{\mathbf{P}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\Rmod}{R\text{mod}}
+    \DeclareMathOperator{\cA}{\mathcal{A}}
+    \DeclareMathOperator{\cB}{\mathcal{B}}
+    \DeclareMathOperator{\cO}{\mathcal{O}}
+    </macros>
+
+    <initialism>HH</initialism>
+
+    <feedback>
+      <url>https://github.com/alexjbest/mjolnir/issues</url>
+    </feedback>
+
+    <date><today /></date>
+  </docinfo>
+
+  <book xml:id="homalg">
+    <title>Part III Homological and Homotopical Algebra 2014</title>
+
+    <chapter xml:id="chap-hom-alg">
+      <title>Elements of Homological Algebra</title>
+
+      <section xml:id="sec-introduction">
+        <title>Introduction</title>
+
+        <p>These are lecture notes for the 2014 Part III Homological and Homotopical Algebra course taught by Dr. Julian Holstein, these notes are part of <url href="https://alexjbest.github.io/mjolnir/">MJOLNIR</url>.</p> 
+        <p>The recommended books are: <todo></todo>
+          <ul>
+            <li>W. G. Dwyer and J. Spalinski, Homotopy theories and model categories</li>
+            <li>S. I. Gelfand and Yu. I. Manin, Methods of Homological Algebra</li>
+            <li>C. Weibel, An introduction to homological algebra</li>
+          </ul>
+        </p>
+
+        <p>
+          Generated: <today />, <timeofday />
+        </p>
+      </section>
+
+      <section xml:id="sec-motivation">
+        <title>Motivation</title>
+
+        <p>Start with a graded ring <m>\CC[x_0,\ldots,x_n]</m> with <m>\deg x_i = 1</m>.
+          Consider a graded module <m>M = \bigoplus_d M_d</m> over <m>R</m>.
+          Hilbert looked at the map <m>d\mapsto H_M (d)= \dim_{\CC} M_d</m>.
+          For example we can take <m>R</m> to be the homogeneous coordinate ring of <m>\PP^n</m> and <m>V(I)\subset \PP^n</m> a subvariety where <m>I</m> is a homogeneous ideal.
+          We then take <m>M = R/I</m>, if <m>V</m> is a curve <m>C</m> then <m>H_{R/I}(d) = \deg(V)\cdot d + (1 -g(C))</m>.
+          Hilbert showed that the function <m>H_M(d)</m> is eventually polynomial.
+          We can compute this function easily if <m>M</m> is free so we try to replace <m>M</m> by free modules.
+          First we take
+          <me>K_0\to F_0 \to M</me>
+          where <m>K_0</m> is the kernel of the surjective map from <m>F_0</m> to <m>M</m>.
+          We can continue this getting
+          <md>
+            <mrow>K_1\to F_1 \to K_0</mrow>
+            <mrow>K_2\to F_2 \to K_1</mrow>
+            <mrow>\vdots</mrow>
+          </md>
+          we can then write
+          <me>\cdots \to F_2\to F_1\to F_0 \to M \to 0,</me>
+          this is a free resolution of <m>M</m>.
+          We also have the following.
+        </p>
+
+        <theorem>
+          <title>Hilbert</title>
+          <statement><m>F_{n+1} = 0</m>.</statement>
+        </theorem>
+
+        <corollary>
+          <statement><m>H_M(d) = \sum_i (-1)^i H_{F_i}(d)</m>.</statement>
+        </corollary>
+        <todo></todo>
+      </section>
+
+      <section xml:id="sec-cats">
+        <title>Categorical notions</title>
+
+        <subsection xml:id="sec-ab-cats">
+          <title>Abelian Categories</title>
+          
+          <example>
+            <statement><m>\Rmod</m> - the category of left <m>R</m>-modules for <m>R</m> an associative ring is an abelian category.  </statement>
+          </example>
+
+          <example>
+            <statement>The categories of sheaves of abelian groups on a topological space, sheaves of <m>\cO</m>-modules on a scheme and (quasi-)coherent sheaves on a scheme are all abelian.</statement>
+          </example>
+
+          <definition>
+            <title>Additive categories</title>
+            <statement>An <term>additive category</term> is a category in which:
+              <ol>
+                <li>Every hom-space has the structure of an abelian group.</li>
+                <li>There exists a 0-object (one with exactly one map to and from every other object).</li>
+                <li>Finite products exist (these are automatically equal to sums <m>A\times B = A \oplus B = A \amalg B</m>).</li>
+              </ol>
+              In such a category we let <me>\ker(f) = \eq(\xymatrix@+=2pc{A \ar@&lt;0.5ex&gt;[r]^f \ar@&lt;-0.5ex&gt;[r]_0 &amp; B})</me> and <me>\coker(f) = \coeq(\xymatrix@+=2pc{A \ar@&lt;0.5ex&gt;[r]^f \ar@&lt;-0.5ex&gt;[r]_0 &amp; B}).</me>
+            </statement>
+          </definition>
+
+          <definition>
+            <title>Abelian categories</title>
+            <statement>An <term>abelian category</term> <m>\cA</m> is an additive category in which:
+              <ol>
+                <li>Every map <m>f</m> has a kernel and cokernel.</li>
+                <li>For all <m>f</m> we have <m>\coker(\ker(f)) = \im(f) = \coim(f) = \ker(\coker(f))</m>.</li>
+              </ol>
+            </statement>
+          </definition>
+
+          <example>
+            <statement>Let <m>\cB</m> be the category of pairs of vector spaces <m>V\subset W</m>, with morphisms the compatible linear maps.
+              Consider the natural map <m>f\colon 0\subset V \to V\subset V</m>, we then have <m>\im f \cong 0\subset V</m> but <m>\coim f \cong V\subset V</m>.
+              So this category is not abelian.
+            </statement>
+          </example>
+          
+          <p>From now on we take <m>\cA</m> to be any abelian category.</p>
+        </subsection>
+
+        <subsection xml:id="sec-exactness">
+          <title>Exactness</title>
+          
+          <definition>
+            <title>Exact sequences</title>
+            <statement>A sequence of morphisms <me>A\xrightarrow{f} B \xrightarrow{g}C</me> in <m>\cA</m> is <term>exact at <m>B</m></term> if <m>\im f = \ker g</m>.
+              A sequence is then exact if it is exact everywhere.
+              An exact sequence of the form <me>0\to A \to B \to C \to 0</me> is called a <term>short exact sequence</term>.
+            </statement>
+          </definition>
+          
+          <definition>
+            <title>Mono and epi morphisms</title>
+            <statement>A morphism <m>f</m> is a <term>monomorphism</term> if <m>fg = fh \implies g=h</m> and it is an <term>epimorphism</term> is <m>gf = hf \implies g=h</m>.</statement>
+          </definition>
+          
+          <example>
+            <statement>In <m>\Abgp</m> the following are exact sequences:
+              <md>
+                <mrow>0\to \ZZ/2 \to \ZZ/2 \oplus \ZZ/2 \to \ZZ/2 \to 0</mrow>
+                <mrow>0\to \ZZ/2 \to \ZZ/4\to \ZZ/2 \to 0</mrow>
+                <mrow>0\to \ZZ \xrightarrow{\cdot 3} \ZZ\to \ZZ/3 \to 0</mrow>
+              </md>
+            </statement>
+          </example>
+          
+          <definition>
+            <title>Additive functors</title>
+            <statement>A functor of additive categories is <term>additive</term> if it is a homomorphism on hom-sets.</statement>
+          </definition>
+        </subsection>
+      </section>
+
+      <section xml:id="sec-chain-complexes">
+        <title>Chain complexes</title>
+
+        <definition>
+          <title>Chain complexes</title>
+          <statement>A <term>chain complex</term> <m>C_\bullet</m> is a collection of objects <m>(C_i)_{i\in \ZZ}</m> in <m>\cA</m> with maps <m>d_i\colon C_i \to C_{i-1}</m> such that <m>d_{i-1}\circ d_i = 0</m>.</statement>
+        </definition>
+
+        <definition>
+          <title>Cycles, boundaries, homology objects</title>
+          <statement>We define the <term>cycles</term> <m>Z_i = \ker d_i</m> and <term>boundaries</term> <m>B_i= \im d_{i+1}</m> and the <m>i</m>th <term>homology object</term> <m>H_i(C) = \coker(B_i\to Z_i)</m>.
+            A complex is <term>acyclic</term> if it is exact i.e. <m>H_\bullet(C) = 0</m>.
+          </statement>
+        </definition>
+
+        <definition>
+          <title>Cochain complexes</title>
+          <statement>A <term>cochain complex</term> <m>C^\bullet</m> is a collection of objects <m>(C^i)_{i\in \ZZ}</m> in <m>\cA</m> with maps <m>d_i\colon C_i \to C_{i+1}</m> such that <m>d_{i+1}\circ d_i = 0</m>.
+            We then have as above <m>H^i</m> the <m>i</m>th <term>cohomology object</term>.
+          </statement>
+        </definition>
+
+        <p>We can switch between chain complexes and cochain complexes via <m>C^i = C_{-i}</m>.</p>
+
+        <example>
+          <statement>We have many such complexes:
+            <ul>
+              <li>Singular (co-)chain complex on a top space.</li>
+              <li>de Rahm complex.</li>
+              <li>Cellular chain complex.</li>
+              <li>Flabby resolution of a sheaf.</li>
+              <li>Bar resolution of a group.</li>
+              <li>Koszul complex.</li>
+            </ul>
+          </statement>
+        </example>
+
+        <definition>
+          <title>Chain maps</title>
+          <statement>Given <m>B,C</m> chain complexes, a <term>chain map</term> <m>f\colon B\to C</m> is  a collection of maps <m>f_i\colon B_i \to C_i</m> such that <m>df=fd.</m></statement>
+        </definition>
+
+        <p>We now have formed the <term>category of chain complexes</term> <m>\Ch(\cA)</m> using these maps.</p>
+      </section>
+    </chapter>
+
+    <chapter xml:id="chap-apps">
+      <title>Applications</title>
+
+    </chapter>
+
+    <chapter xml:id="chap-spec-seq">
+      <title>Spectral Sequences</title>
+
+    </chapter>
+
+    <chapter xml:id="chap-model-cats">
+      <title>Model Categories</title>
+
+    </chapter>
+
+    <!--<backmatter>
+      <title>Reference</title>
+
+      <section xml:id="sec-notation">
+        <title>Notation</title>
+        <notation-list />
+      </section>
+    </backmatter> -->
+
+  </book>
+
+</mathbook>

@@ -1,0 +1,265 @@
+%%                                    %%
+%% Generated from MathBook XML source %%
+%%    on 2015-01-15T16:29:17Z    %%
+%%                                    %%
+%%   http://mathbook.pugetsound.edu   %%
+%%                                    %%
+\documentclass[10pt,]{book}
+%% Load geometry package to allow page margin adjustments
+\usepackage{geometry}
+\geometry{letterpaper,total={5.0in,9.0in}}
+%% Custom Preamble Entries, early (use latex.preamble.early)
+%% Inline math delimiters, \(, \), made robust with next package
+\usepackage{fixltx2e}
+%% Page Layout Adjustments (latex.geometry)
+%% For unicode character support, use the "xelatex" executable
+%% If never using xelatex, the next three lines can be removed
+\usepackage{ifxetex}
+\ifxetex\usepackage{xltxtra}\fi
+%% Symbols, align environment, bracket-matrix
+\usepackage{amsmath}
+\usepackage{amssymb}
+%% extpfeil package for certain extensible arrows,
+%% as also provided by MathJax extension of the same name
+\usepackage{extpfeil}
+%% allow more columns to a matrix
+%% can make this even bigger by overiding with  latex.preamble.late  processing option
+\setcounter{MaxMatrixCols}{30}
+%% XML, MathJax Conflict Macros
+%% Two nonstandard macros that MathJax supports automatically
+%% so we always define them in order to allow their use and
+%% maintain source level compatibility
+%% This avoids using two XML entities in source mathematics
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+%% Semantic Macros
+%% To preserve meaning in a LaTeX file
+%% Only defined here if required in this document
+%% Used for inline definitions of terms
+\newcommand{\terminology}[1]{\textbf{#1}}
+%% Subdivision Numbering, Chapters, Sections, Subsections, etc
+%% Subdivision numbers may be turned off at some level ("depth")
+%% A section *always* has depth 1, contrary to us counting from the document root
+%% The latex default is 3.  If a larger number is present here, then
+%% removing this command may make some cross-references ambiguous
+%% The precursor variable $numbering-maxlevel is checked for consistency in the common XSL file
+\setcounter{secnumdepth}{3}
+%% Environments with amsthm package
+%% Theorem-like enviroments in "plain" style, with or without proof
+\usepackage{amsthm}
+\theoremstyle{plain}
+%% Numbering for Theorems, Conjectures, Examples, Figures, etc
+%% Controlled by  numbering.theorems.level  processing parameter
+%% Always need a theorem environment to set base numbering scheme
+%% even if document has no theorems (but has other environments)
+\newtheorem{theorem}{Theorem}[section]
+\renewcommand*{\proofname}{Proof}%% Only variants actually used in document appear here
+%% Numbering: all theorem-like numbered consecutively
+%% i.e. Corollary 4.3 follows Theorem 4.2
+\newtheorem{corollary}[theorem]{Corollary}
+%% Definition-like environments, normal text
+%% Numbering for definition, examples is in sync with theorems, etc
+%% also for free-form exercises, not in exercise sections
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+%% Equation Numbering
+%% Controlled by  numbering.equations.level  processing parameter
+\numberwithin{equation}{section}
+%% Raster graphics inclusion, wrapped figures in paragraphs
+\usepackage{graphicx}
+%% Colors for Sage boxes and author tools (red hilites)
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+%% hyperref driver does not need to be specified
+\usepackage{hyperref}
+%% Hyperlinking active in PDFs, all links solid and blue
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue}
+\hypersetup{pdftitle={Part III Homological and Homotopical Algebra 2014}}
+%% If you manually remove hyperref, leave in this next command
+\providecommand\phantomsection{}
+%% Custom Preamble Entries, late (use latex.preamble.late)
+\usepackage[all]{xy}
+%% Convenience macros
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coim}{coim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\eq}{eq}
+\DeclareMathOperator{\coeq}{coeq}
+\DeclareMathOperator{\Ch}{Ch}
+\DeclareMathOperator{\Abgp}{\text{Abgp}}
+\DeclareMathOperator{\CC}{\mathbf{C}}
+\DeclareMathOperator{\PP}{\mathbf{P}}
+\DeclareMathOperator{\QQ}{\mathbf{Q}}
+\DeclareMathOperator{\RR}{\mathbf{R}}
+\DeclareMathOperator{\ZZ}{\mathbf{Z}}
+\DeclareMathOperator{\Rmod}{R\text{mod}}
+\DeclareMathOperator{\cA}{\mathcal{A}}
+\DeclareMathOperator{\cB}{\mathcal{B}}
+\DeclareMathOperator{\cO}{\mathcal{O}}
+%% Title page information for book
+\title{Part III Homological and Homotopical Algebra 2014}
+\author{}
+\date{}
+\begin{document}
+\frontmatter
+%% half-title
+\thispagestyle{empty}
+\vspace*{\stretch{1}}
+\begin{center}
+{\Huge Part III Homological and Homotopical Algebra 2014}
+\end{center}\par
+\vspace*{\stretch{2}}
+\clearpage
+\thispagestyle{empty}
+\clearpage
+\maketitle
+\clearpage
+\thispagestyle{empty}
+\vspace*{\stretch{2}}
+\vspace*{\stretch{1}}
+\clearpage
+\setcounter{tocdepth}{1}
+\renewcommand*\contentsname{Contents}
+\tableofcontents
+\mainmatter
+\typeout{************************************************}
+\typeout{Chapter 1 Elements of Homological Algebra}
+\typeout{************************************************}
+\chapter[Elements of Homological Algebra]{Elements of Homological Algebra}\label{chap-hom-alg}
+\typeout{************************************************}
+\typeout{Section 1.1 Introduction}
+\typeout{************************************************}
+\section[Introduction]{Introduction}\label{sec-introduction}
+These are lecture notes for the 2014 Part III Homological and Homotopical Algebra course taught by Dr. Julian Holstein, these notes are part of \href{https://alexjbest.github.io/mjolnir/}{MJOLNIR}.%
+\par
+The recommended books are: 
+          \begin{itemize}
+\item{}W. G. Dwyer and J. Spalinski, Homotopy theories and model categories\item{}S. I. Gelfand and Yu. I. Manin, Methods of Homological Algebra\item{}C. Weibel, An introduction to homological algebra\end{itemize}
+
+        %
+\par
+
+          Generated: January 15, 2015, 16:29:17 (Z)
+        %
+\typeout{************************************************}
+\typeout{Section 1.2 Motivation}
+\typeout{************************************************}
+\section[Motivation]{Motivation}\label{sec-motivation}
+Start with a graded ring \(\CC[x_0,\ldots,x_n]\) with \(\deg x_i = 1\).
+          Consider a graded module \(M = \bigoplus_d M_d\) over \(R\).
+          Hilbert looked at the map \(d\mapsto H_M (d)= \dim_{\CC} M_d\).
+          For example we can take \(R\) to be the homogeneous coordinate ring of \(\PP^n\) and \(V(I)\subset \PP^n\) a subvariety where \(I\) is a homogeneous ideal.
+          We then take \(M = R/I\), if \(V\) is a curve \(C\) then \(H_{R/I}(d) = \deg(V)\cdot d + (1 -g(C))\).
+          Hilbert showed that the function \(H_M(d)\) is eventually polynomial.
+          We can compute this function easily if \(M\) is free so we try to replace \(M\) by free modules.
+          First we take
+          \[K_0\to F_0 \to M\]
+          where \(K_0\) is the kernel of the surjective map from \(F_0\) to \(M\).
+          We can continue this getting
+          \begin{gather*}
+K_1\to F_1 \to K_0\\
+K_2\to F_2 \to K_1\\
+\vdots
+\end{gather*}
+          we can then write
+          \[\cdots \to F_2\to F_1\to F_0 \to M \to 0,\]
+          this is a free resolution of \(M\).
+          We also have the following.
+        %
+\begin{theorem}[Hilbert]\label{theorem-1}
+\(F_{n+1} = 0\).\end{theorem}
+\begin{corollary}\label{corollary-1}
+\(H_M(d) = \sum_i (-1)^i H_{F_i}(d)\).\end{corollary}
+\typeout{************************************************}
+\typeout{Section 1.3 Categorical notions}
+\typeout{************************************************}
+\section[Categorical notions]{Categorical notions}\label{sec-cats}
+\typeout{************************************************}
+\typeout{Subsection 1.3.1 Abelian Categories}
+\typeout{************************************************}
+\subsection[Abelian Categories]{Abelian Categories}\label{sec-ab-cats}
+\begin{example}\label{example-1}
+\(\Rmod\) - the category of left \(R\)-modules for \(R\) an associative ring is an abelian category.  \end{example}
+\begin{example}\label{example-2}
+The categories of sheaves of abelian groups on a topological space, sheaves of \(\cO\)-modules on a scheme and (quasi-)coherent sheaves on a scheme are all abelian.\end{example}
+\begin{definition}[Additive categories]\label{definition-1}
+An \terminology{additive category} is a category in which:
+              \begin{enumerate}
+\item{}Every hom-space has the structure of an abelian group.\item{}There exists a 0-object (one with exactly one map to and from every other object).\item{}Finite products exist (these are automatically equal to sums \(A\times B = A \oplus B = A \amalg B\)).\end{enumerate}
+
+              In such a category we let \[\ker(f) = \eq(\xymatrix@+=2pc{A \ar@<0.5ex>[r]^f \ar@<-0.5ex>[r]_0 & B})\] and \[\coker(f) = \coeq(\xymatrix@+=2pc{A \ar@<0.5ex>[r]^f \ar@<-0.5ex>[r]_0 & B}).\]\end{definition}
+\begin{definition}[Abelian categories]\label{definition-2}
+An \terminology{abelian category}\(\cA\) is an additive category in which:
+              \begin{enumerate}
+\item{}Every map \(f\) has a kernel and cokernel.\item{}For all \(f\) we have \(\coker(\ker(f)) = \im(f) = \coim(f) = \ker(\coker(f))\).\end{enumerate}
+\end{definition}
+\begin{example}\label{example-3}
+Let \(\cB\) be the category of pairs of vector spaces \(V\subset W\), with morphisms the compatible linear maps.
+              Consider the natural map \(f\colon 0\subset V \to V\subset V\), we then have \(\im f \cong 0\subset V\) but \(\coim f \cong V\subset V\).
+              So this category is not abelian.
+            \end{example}
+From now on we take \(\cA\) to be any abelian category.%
+\typeout{************************************************}
+\typeout{Subsection 1.3.2 Exactness}
+\typeout{************************************************}
+\subsection[Exactness]{Exactness}\label{sec-exactness}
+\begin{definition}[Exact sequences]\label{definition-3}
+A sequence of morphisms \[A\xrightarrow{f} B \xrightarrow{g}C\] in \(\cA\) is \terminology{exact at \(B\)} if \(\im f = \ker g\).
+              A sequence is then exact if it is exact everywhere.
+              An exact sequence of the form \[0\to A \to B \to C \to 0\] is called a \terminology{short exact sequence}.
+            \end{definition}
+\begin{definition}[Mono and epi morphisms]\label{definition-4}
+A morphism \(f\) is a \terminology{monomorphism} if \(fg = fh \implies g=h\) and it is an \terminology{epimorphism} is \(gf = hf \implies g=h\).\end{definition}
+\begin{example}\label{example-4}
+In \(\Abgp\) the following are exact sequences:
+              \begin{gather*}
+0\to \ZZ/2 \to \ZZ/2 \oplus \ZZ/2 \to \ZZ/2 \to 0\\
+0\to \ZZ/2 \to \ZZ/4\to \ZZ/2 \to 0\\
+0\to \ZZ \xrightarrow{\cdot 3} \ZZ\to \ZZ/3 \to 0
+\end{gather*}\end{example}
+\begin{definition}[Additive functors]\label{definition-5}
+A functor of additive categories is \terminology{additive} if it is a homomorphism on hom-sets.\end{definition}
+\typeout{************************************************}
+\typeout{Section 1.4 Chain complexes}
+\typeout{************************************************}
+\section[Chain complexes]{Chain complexes}\label{sec-chain-complexes}
+\begin{definition}[Chain complexes]\label{definition-6}
+A \terminology{chain complex}\(C_\bullet\) is a collection of objects \((C_i)_{i\in \ZZ}\) in \(\cA\) with maps \(d_i\colon C_i \to C_{i-1}\) such that \(d_{i-1}\circ d_i = 0\).\end{definition}
+\begin{definition}[Cycles, boundaries, homology objects]\label{definition-7}
+We define the \terminology{cycles}\(Z_i = \ker d_i\) and \terminology{boundaries}\(B_i= \im d_{i+1}\) and the \(i\)th \terminology{homology object}\(H_i(C) = \coker(B_i\to Z_i)\).
+            A complex is \terminology{acyclic} if it is exact i.e. \(H_\bullet(C) = 0\).
+          \end{definition}
+\begin{definition}[Cochain complexes]\label{definition-8}
+A \terminology{cochain complex}\(C^\bullet\) is a collection of objects \((C^i)_{i\in \ZZ}\) in \(\cA\) with maps \(d_i\colon C_i \to C_{i+1}\) such that \(d_{i+1}\circ d_i = 0\).
+            We then have as above \(H^i\) the \(i\)th \terminology{cohomology object}.
+          \end{definition}
+We can switch between chain complexes and cochain complexes via \(C^i = C_{-i}\).%
+\begin{example}\label{example-5}
+We have many such complexes:
+            \begin{itemize}
+\item{}Singular (co-)chain complex on a top space.\item{}de Rahm complex.\item{}Cellular chain complex.\item{}Flabby resolution of a sheaf.\item{}Bar resolution of a group.\item{}Koszul complex.\end{itemize}
+\end{example}
+\begin{definition}[Chain maps]\label{definition-9}
+Given \(B,C\) chain complexes, a \terminology{chain map}\(f\colon B\to C\) is  a collection of maps \(f_i\colon B_i \to C_i\) such that \(df=fd.\)\end{definition}
+\par
+We now have formed the \terminology{category of chain complexes} \(\Ch(\cA)\) using these maps.%
+\typeout{************************************************}
+\typeout{Chapter 2 Applications}
+\typeout{************************************************}
+\chapter[Applications]{Applications}\label{chap-apps}
+\typeout{************************************************}
+\typeout{Chapter 3 Spectral Sequences}
+\typeout{************************************************}
+\chapter[Spectral Sequences]{Spectral Sequences}\label{chap-spec-seq}
+\typeout{************************************************}
+\typeout{Chapter 4 Model Categories}
+\typeout{************************************************}
+\chapter[Model Categories]{Model Categories}\label{chap-model-cats}
+%
+\backmatter
+%
+\end{document}
