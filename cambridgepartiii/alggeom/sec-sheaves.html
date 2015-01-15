@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2015-01-15T16:44:11Z    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AG Sheaves</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "[Contrib]/xyjax/xypic.js"],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+    \DeclareMathOperator{\GL}{GL}
+    \DeclareMathOperator{\Map}{Map}
+    \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\Tor}{Tor}
+    \DeclareMathOperator{\Ext}{Ext}
+    \DeclareMathOperator{\im}{im}
+    \DeclareMathOperator{\id}{id}
+    \DeclareMathOperator{\coker}{coker}
+    \DeclareMathOperator{\bfA}{\mathbf{A}}
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\RP}{\mathbf{RP}}
+    \DeclareMathOperator{\C}{C_*}
+    \DeclareMathOperator{\A}{\mathcal{A}}
+    \DeclareMathOperator{\B}{\mathcal{B}}
+    \DeclareMathOperator{\F}{\mathcal{F}}
+    \DeclareMathOperator{\G}{\mathcal{G}}
+    \DeclareMathOperator{\cI}{\mathcal{I}}
+    \DeclareMathOperator{\cO}{\mathcal{O}}
+    \DeclareMathOperator{\U}{\mathcal{U}}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
+<h1 class="heading"><span class="title">Part III Algebraic Geometry 2014</span></h1>
+<p class="byline"></p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="sec-introduction.html">Previous</a><a class="up-button button toolbar-item" href="chap-sheaves.html">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-introduction.html">Previous</a><a class="up-button button toolbar-item" href="chap-sheaves.html">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link active"><a href="chap-sheaves.html"><span class="codenumber">1</span><span class="title">Sheaf Theory</span></a></h2>
+<ul>
+<li><a href="sec-introduction.html">Introduction</a></li>
+<li><a href="sec-sheaves.html" class="active">Sheaves</a></li>
+</ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-sheaves"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">1.2</span><span class="title">Sheaves</span>
+</h1></header><p>Let \(X\) be a topological space.</p>
+<article class="definition-like" id="definition-1"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.1</span><span class="title">Presheaves</span>
+</h5>A <em class="terminology">presheaf</em>\(\F\) of abelian groups (resp. rings) on \(X\) consists of data:
+            <ol>
+<li>For every open \(U \subset X\) an abelian group (resp. ring) \(\F(U)\).</li>
+<li>For every inclusion of open sets \(V\subset U\) a homomorphism called <em class="terminology">restriction</em>, denoted \(\rho^U_V\colon \F(U) \to \F(V)\) such that
+                <ol>
+<li>\(\F(\emptyset) = 0.\)</li>
+<li>\(\rho^U_U\colon \F(U) \to \F(U)\) is \(\id_{\F(U)}\).</li>
+<li>If \(W \subset V \subset U\) open then \(\rho^U_W = \rho^V_W \circ \rho^U_V\).</li>
+</ol>
+              </li>
+</ol></article><article class="example-like" id="remark-1"><h5 class="heading">
+<span class="type">Remark</span><span class="codenumber">1.2.2</span>
+</h5>If \(\U\) denotes the category of open sets in \(X\) (the morphisms are inclusions) then a presheaf of abelian groups over \(X\) is a contravariant functor \(\F\colon  \U \to \text{Abgp}.\)
+          i.e. an element of \(\text{Abgp}^{\U^\text{op}}\).
+          </article><p>An element \(s \in \F(U)\) is called a <em class="terminology">section</em> of \(\F\) over \(U\).
+          For \(s\in \F(U)\) we denote \(\rho^U_V(s)\) by \(s|_V\).
+        </p>
+<article class="definition-like" id="definition-2"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.3</span><span class="title">Sheaves</span>
+</h5>
+            A presheaf \(\F\) on \(X\) is a <em class="terminology">sheaf</em> if it satisfies two further conditions:
+            <ol>
+<li>If \(U\) is open and has \(U = \bigcup_i U_i\) an open cover and if \(s \in \F(U)\) is such that \(s|_{V_i} = 0\) for all \(i\) then \(s = 0\).
+                (A presheaf satisfying this condition is called a <em class="terminology">monopresheaf</em>).
+              </li>
+<li>If \(U = \bigcup_i V_i\) is an open cover and we have \(s_i\in \F(V_i)\) such that \(\forall i,j\ s_i|_{V_i\cap V_j} = s_j|_{V_i\cap V_j}\) then there exists \(s \in \F(U)\) with \(s|_{V_i} = s_i\) for all \(i\).</li>
+</ol></article><article class="example-like" id="example-1"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.2.4</span>
+</h5>\(X\) a topological space, \(A\) any abelian group (resp. ring).
+            The constant shead \(\A\) determined by \(A\) is defined as follows: \(\A(\emptyset) = \{0\}\), for \(U \ne \emptyset\) open in \(X\)\[\A(U) = \{\text{locally constant maps }U\to A\},\] this is an abelian group (resp. ring) under pointwise operations.
+            With obvious restriction maps we obtain a sheaf.
+            If \(U \ne \emptyset\) is open and connected, then \(\A(U) = A\).
+            If \(U\) an open set whose connected components are open (e.g. in a locally connected topological space \(X\)) then the section \(\A(U)\) is a direct product of copies of \(A\).
+          </article><article class="example-like" id="example-2"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.2.5</span>
+</h5>If \(X\) is a differentiable (\(C^\infty\)) manifold, we can define the sheaf of \(C^\infty\)-functions (\(\RR\) or \(\CC\) valued) on \(X\).
+            Which is a sheaf of rings.
+            Similarly if \(X\) is a complex manifold, we can define a sheaf of holomorphic functions on \(X\).
+            In both cases, the sheaf is called the <em class="terminology">structure sheaf</em> of \(X\), sometimes denoted \(\cO_X\).
+          </article><article class="example-like" id="example-3"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.2.6</span>
+</h5>For \(V\) an (irreducible) variety (affine, projective, quasi-projective).
+            We can consider \(V\) as a topological space with the Zariski topology.
+            For \(U\) open in \(V\) set \[\cO_V(U)=\{\text{regular functions on } U\} = \{f\in k(V) \text{ s.t. }f \text{ regular on } U\}.\]
+            This is a sheaf of rings with respect to the Zariski topology, and is known as the <em class="terminology">structure sheaf</em> for varieties.
+            If \(V\) is affine we have that \(\cO_V(V) = k[V]\).
+          </article><article class="definition-like" id="definition-3"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.7</span><span class="title">Stalks</span>
+</h5>If \(\F\) is a presheaf on a topological space \(X\) and \(P\in X\) we define the stalk \(\F_P\) of \(\F\) at \(P\) to be \(\varinjlim_{U\ni P} \F(U)\) i.e. an element of \(\F_P\) is represented by a pair \((U,s)\) where \(U\) is an open neighbourhood of \(P\) and \(s\in \F(U)\), where \((U,s)\) and \((V,t)\) define the same element of \(\F_P\) if there exists an open neighbourhood \(W\ni P\) with \(W\subset V\cap U\) such that \(s|_W = t|_W\) the elements \(s_P\) of \(\F_P\) are called <em class="terminology">germs</em>.
+            If \(\F\) is a sheaf of abelian groups or rings then \(\F_P\) is an abelian group, ring, etc.
+          </article><article class="example-like" id="example-4"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.2.8</span>
+</h5>For the constant sheaf \(\A\) associated to \(A\) we have \(\A_P = A\).
+          </article><article class="example-like" id="example-5"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.2.9</span>
+</h5>For \(X\) a \(C^\infty\) manifold (resp. complex) with structure sheaf \(\cO_X\), the stalk \(\cO_{X,P}\) of \(\cO_X\) at \(P\in V\) consists of germs of \(C^\infty\) (resp. holomorphic) functions.
+          </article><article class="example-like" id="example-6"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.2.10</span>
+</h5>For \(V\) (irreducible) affine, projective or quasi-projective variety with structure sheaf \(\cO_V\) the stalk at \(P\in V\)\(\cO_{V,P} = \text{ local ring at } P\) (defined before).
+          </article><article class="definition-like" id="definition-4"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.11</span><span class="title">Morphisms of (pre)sheaves</span>
+</h5>If \(\F\) and \(\G\) are presheaves (resp. sheaves) on \(X\) a morphism \(\Phi\colon \F \to \G\) consists of homomorphisms \(\F(U) \xrightarrow{\Phi} \G(U)\) for all open \(U\) such that for \(V \subseteq U\) open
+            \[\xymatrix@R+2em@C+2em{
+              \F(U) \ar[r]^{\phi(U)} \ar[d]_{\rho^U_V} &amp; \G(U) \ar[d]^{\rho'^U_V} \\
+              \F(V) \ar[r]_{\phi(V)} &amp; \G(V)
+              }
+            \]
+            commutes.
+          </article><p>A morphism \(\phi\colon \F \to \G\) induces a homomorphism \(\phi_P\colon \F_P \to \G_P\) for each \(P\), namely \(\phi_P[(U,s)] = [(U,\phi(U)(s))]\), which is well defined.</p>
+<article class="definition-like" id="definition-5"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.12</span><span class="title">Injective and isomorphic sheaf morphisms</span>
+</h5>A morphism \(\phi\colon \F\to\G\) of (pre)sheaves is <em class="terminology">injective</em> if \(\F(U) \to \G(U)\) is injective for all open \(U\).
+            e.g. sheaves of subgroups or subrings where \(\F(U) \subseteq \G(U)\) for all \(U\).
+            In this case \(\F\) is called a <em class="terminology">subsheaf</em> of \(\G\).<br>
+            A morphism \(\phi\colon \F \to \G\) is called an isomorphism if there exists an inverse morphism \(\chi\colon \G\to\F\).
+            This is equivalent to \(\phi(U)\colon \F(U) \to \G(U)\) being bijective for all \(U\) since we can define \(\chi(U) = \phi(U)^{-1}\) as the inverse.
+          </article><article class="theorem-like" id="lemma-1"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">1.2.13</span>
+</h5>Let \(\phi\colon \F\to\G\) be a morphism of sheaves then
+            <ol>
+<li>\(\phi\) is injective iff \(\phi_P\colon \F_P \to \G_P\) is injective for all \(P\in X\),</li>
+<li>\(\phi\) is an isomorphism iff \(\phi_P\colon \F_P \to \G_P\) is an isomorphism for all \(P\in X\).</li>
+</ol></article><article class="hiddenproof" id="proof-1"><a knowl="./knowl/proof-1.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-1" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><p>(\(\Rightarrow\)) (true for presheaves too).
+              <ol>
+<li>Suppose there exists a germ \(s_P\in\F_P\) such that \(\phi_P(s_P) = 0\in \G_P\).
+                  i.e. there exists an open neighbourhood \(W \subset U\) with \(P\in W\) such that \(\phi(U)(s|_W) = 0\).
+                  So by commutativity \(\phi(W)(s|_W) = 0\) but \(\phi\) injective implies \(s|_W = 0\).
+                </li>
+<li>Clear.</li>
+</ol>
+              (\(\Leftarrow\))
+              <ol>
+<li>Needs first sheaf condition on \(\F\).
+                  If \(\phi_P\) injective for all \(P\) and \(U\) is open in \(X\) it remains to prove that \(\phi(U) \colon \F(U) \to \G(U)\) is injective.
+                  Suppose not and there exists \(0 \ne s \in \F(u)\) such that \(\phi(U)(s) = 0 \in \G(U)\).
+                  Let \(s_P\) denote the germ of \(s\) at \(P \in U\), then \(0 = \phi(U)(s)_P = \phi_P(s_P)\) for all \(P\in U\).
+                  So \(s_P\) in \(\F_P\) for all \(P \in U\).
+                  Hence for all \(P\in U\) we have anopen neighbourhood \(U \supset W \ni P\) such that \(s|_W = 0\).
+                  So \(U\) is covered by open sets \(U_\alpha\) such that \(s|_{U_\alpha} = 0\) for all \(\alpha\), which implies that \(s = 0\).
+                </li>
+<li>\(\phi(U) \colon \F(U) \to \G(U)\) is an injection for all open \(U\) by the first part, so it remains to prove that it is surjective also.
+                  Suppose \(t \in \G(U)\) and let \(t_P\in\G_P\) be its germ at \(P\in U\).
+                  Since \(\phi_P\) is surjective we have some \(s_P\in \F_P\) such that \(\phi_P(s_P) = t_P\).
+                  Now suppose that \(s_P\) is represented by a pair \((V,s)\) with \(P\in V \subseteq U\) and \(s\in \F(V)\).
+                  We then have that \(t_P\) is represented by \(\phi(V)(s)\), i.e. \((U,t)\sim (V,\phi(V)(s))\).
+                  Shrinking \(V\) we may assume that we have an ope neighbourhood \(V_P\ni P\) such that \(\phi(V)(s)|_{V_P} = t|_{V_P}\).
+                  In this way we cover \(U\) by open sets giving \(U = = \bigcup_{\alpha} U_\alpha\) to obtain sections \(s_\alpha \in\F_\alpha\) such that \(\phi(U_\alpha)(s_\alpha) = t|_{U_\alpha}\).
+                  On the overlaps \(U_{\alpha\beta} = U_\alpha \cap U_\beta\) we have \(\phi(U_{\alpha\beta})(s_\alpha|_{U_{\alpha\beta}}) = t|_{U_{\alpha\beta}} = \phi(U_{\alpha\beta})(s_\beta|_{U_{\alpha\beta}})\), therefore the injectivity of \(\phi(U_{\alpha\beta})\) gives that \(s_\alpha|_{U_{\alpha\beta}} = s_\beta|_{U_{\alpha\beta}}\).
+                  Since \(\F\) is a sheaf the \(s_\alpha\) patch together to give a section \(s \in \F(U)\) wuch that \(s|_{U_\alpha} = s_\alpha\) (using the second sheaf condition for \(\F\)).
+                  But then \(\phi(U)(s)\) and \(t\) are sections of \(\G(U)\) such that \(\phi(U)(s)|_{U_{\alpha}}  = \phi(U_\alpha)(s_\alpha) = t|_{U_\alpha}\) for all \(\alpha\).
+                  The first sheaf condition for \(\G\) now gives that \(\phi(U)(s) = t\) as required.
+                </li>
+</ol>
+            </p></article></div>
+<article class="definition-like" id="definition-6"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.14</span><span class="title">Surjective sheaf morphisms</span>
+</h5>A morphism of sheaves \(\phi\colon \F \to \G\) is called <em class="terminology">surjective</em> if \(\phi_P\colon \F_P\to\G_P \) is surjective for all \(P \in X\).</article><article class="definition-like" id="definition-7"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.15</span><span class="title">Induced (pre)sheaves</span>
+</h5>Given a (pre)sheaf \(\F\) on a space \(X\) and a continuous map \(f\colon X \to Y\) we have an <em class="terminology">induced (pre)sheaf</em>, denoted \(f_*\F\) on \(Y\) defined by
+            \[(f_*\F)(U) = \F(f^{-1}(U))\]
+            for \(U\) open in \(Y\).
+            With the restriction maps coming from \(\F\) as \(V \subset U\) implies \(f^{-1}(V)\subset f^{-1}(U)\).
+            It should be checked that indeed \(\F\) being a (pre)sheaf implies \(f_*\F\) is a (pre)sheaf.
+          </article><article class="definition-like" id="definition-8"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.16</span><span class="title">Ringed spaces</span>
+</h5>A <em class="terminology">ringed space</em> is a pair \((X,\cO_X)\) where \(X\) is a topological space and \(\cO_X\) is a sheaf of rings on \(X\).</article><article class="definition-like" id="definition-9"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.17</span><span class="title">Morphisms of ringed spaces</span>
+</h5>Given two ringed spaces \((X,\cO_X)\) and \((Y, \cO_Y)\) a <em class="terminology">morphism of ringed spaces</em>\((X,\cO_X)\to (Y,\cO_Y)\) is a pair \((f,f^\#)\) where \(f\colon X \to Y\) is continuous and \(f^\#\colon \cO_Y \to f_*\cO_X\) is a morphism of sheaves of rings.
+            So \(f^\#\) defines homomorphisms \(\cO_Y(U) \to \cO_X(f^{-1}(U))\) for all \(U\) open in \(Y\), compatible with restrictions.
+            Hence he have homomorphisms on stalks too \(\cO_{Y,f(P)} \to \cO_{X,P}\).
+          </article><article class="definition-like" id="definition-10"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.18</span><span class="title">Ringed spaces over a ring</span>
+</h5>If \(R\) is a commutative ring (e.g. a field), a <em class="terminology">ringed space over \(R\)</em> is a ringed space with \(\cO_X\) a sheaf of \(R\)-algebras.
+            (Therefore the restriction maps are homomorphisms of \(R\)-algebras.)
+            A morphism of ringed spaces over \(R\) is defined in the obvious way.
+          </article><article class="definition-like" id="definition-11"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.19</span><span class="title">Locally ringed spaces</span>
+</h5>A ringed space \((X, \cO_X)\) is a <em class="terminology">locally ringed space</em> (also known as a geometric space) if all \(\cO_{X,P}\) are local rings.</article><article class="definition-like" id="definition-12"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.20</span><span class="title">Morphisms of locally ringed spaces</span>
+</h5>A <em class="terminology">morphism of locally ringed spaces</em> is a morphism of ringed spaces as above where all the induced maps \(f_P^\#\colon \cO_{Y,f(P)} \to \cO_{X,P}\) are local homomorphisms of local rings.</article><article class="example-like" id="example-7"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.2.21</span>
+</h5>\((X,\ZZ)\) is a ringed space but not locally ringed.</article><article class="example-like" id="example-8"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.2.22</span>
+</h5>If \(X\) is a \(C^\infty\) (resp. complex) manifold with structure sheaf \(\cO_X\) then \((X, \cO_X)\) is a locally ringed space over \(\RR\) (resp. over \(\CC\)).
+            A smooth (resp. holomorphic) map of manifolds \(f\colon X\to Y\) yields a morphism of \(\RR\) (resp. \(\CC\))-algebras \(f^\#\colon \cO_Y\to f_* \cO_X\) namely \(f^\#\colon\cO_Y(U) \to\cO_X(f^{-1}U)\) given by \(g\to g\circ f\) (smooth (resp. holomorphic) functions on \(Y\) pullback to ones on \(X\)).
+            Clearly \(g(f(P)) = 0 \iff f^\#(g)(P) = 0\) and so \(f^\#(m_{Y,f(P)} \subseteq m_{X,P}\).
+            So \((f,f^\#)\) is a morphism of locally ringed spaces over \(\RR\) (resp. \(\CC\)).
+          </article><article class="example-like" id="example-9"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.2.23</span>
+</h5>\((V,\cO_V)\) for \(V\) an irreducible affine variety \(V\) is a ringed space via its structure sheaf, it is locally ringed over the base field \(k\).
+            If \(\Phi\colon V \to W\) is a morphism of affine varieties then there exists a morphism of lcoally ringed spaces over \(k\)\((\phi, \phi^\#)\colon (V, \cO_V) \to (W, \cO_W)\) given by \(\phi^\#(g) = g\circ \phi \in \cO_V(\phi^{-1}U)\) for \(g\in\cO_W(U)\).
+          </article><article class="theorem-like" id="lemma-2"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">1.2.24</span>
+</h5>If \(V,W\) are (irreducible) affine varieties and \((f,f^\#)\colon (V,\cO_V)\to (W,\cO_W)\) is a morphism of locally ringed spaces over \(k\) then \(f\) is induced from a morphism of varities \(\phi\colon V\to W\) with \(f^\# = \phi^\#\) defined as above.</article><article class="hiddenproof" id="proof-2"><a knowl="./knowl/proof-2.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-2" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">Suppose \(V\subseteq \bfA^n,\ W\subseteq\bfA^m\) let \(y_j\) be the \(j\)th coordinate function on \(W\) and define \(g_j = f^\#(y_j) \in \cO_V(V) = k[V]\).
+            Let \(\phi = (g_1,\ldots,g_m)\), this is a morphism \(V \to \bfA^m\).
+            Suppose that \(f(P) = (b_1,\ldots,b_m)\) for \(P\in V\) then \(y_j - b_j \in m_{W,f(P)}\) for all \(j\) which implies that \(g_j(P) = b_j\) for all \(j\).
+            Since \(f^\#\) is local we have that \(\phi(P) = f(P)\) and so \(\phi \colon V \to W\) is the same map as \(f\) on topological spaces.
+            Moreover \(y_1,\ldots,y_m\) generate \(k[V]\) as a \(k\)-algebra and also generate \(k(W)\) as a field over \(k\). \(f^\#(y_j) = g_j = y_j\circ\phi = \phi^\#(y_j)\) and it follows that \(f^\# = \phi^\#\) on any \(\cO_W(U)\).
+            \(k[W] \subset \cO_W(U)\subset k(W)\) for \(U\) open in \(W\).
+          </article></div>
+<article class="definition-like" id="definition-13"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.25</span><span class="title">Morphisms of varieties</span>
+</h5>Given \(V\) and \(W\) (irreducible) quasi-projective varieties, we define a <em class="terminology">morphism</em> of varieties \(V \to W\) to be a morphism of the corresponding locally ringed spaces over \(k\)\((V,\cO_V)\to (W,\cO_W)\).</article><section class="subsection" id="subsection-1"><header><h1 class="heading">
+<span class="type">Subsection</span><span class="codenumber">1.2.1</span><span class="title">\(\cO_X\)-modules</span>
+</h1></header><article class="definition-like" id="definition-14"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.26</span><span class="title">\(\cO_X\)-modules</span>
+</h5>Let \(M\) be a sheaf of abelian groups on a ringed space \((X,\cO_X)\), \(M\) is said to be an <em class="terminology">\(\cO_X\)-module</em> if for every open set \(U\subset X\)\(M(U)\) is an open \(\cO_X(U)\)-module and for any \(W\subseteq U\) open \(\alpha \in \cO_X(U)\), \(m\in M(U)\), we have \((\alpha m)|_W = (\alpha|_W)(m|_W)\).
+              Similarly we have the obvious definition for morphisms of \(\cO_X\)-modules \(\phi\colon M \to N\) (all maps respect the \(\cO_X\)-module structure).
+            </article><article class="example-like" id="example-10"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.2.27</span>
+</h5>For \(V\) a (irreducible) quasi-projective variety with structure sheaf \(\cO_V\) and \(W \subset V\) a closed subvariety we have the <em class="terminology">sheaf of ideals</em>\(\cI_W \subset \cO_V\) a subsheaf of \(\cO_V\) given by \[\cI_W(U) = \{f\in \cO_V(U) : f|_{W\cap U} \equiv 0\}.\]
+              This is clearly an \(\cO_V\)-module.
+            </article><p>Most things go through unchanged e.g. if \(M\) is an \(\cO_X\)-module then any stalk \(M_P\) is an \(\cO_{X,P}\)-module etc.<br>
+            However 
+          </p></section></section></div></main>
+</div>
+</body>
+</html>

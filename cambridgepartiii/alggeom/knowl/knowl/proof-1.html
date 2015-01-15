@@ -1,0 +1,39 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*    on 2015-01-15T16:44:11Z    *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="hiddenproof"><h5 class="heading"><span class="type">Proof</span></h5>
+<p>(\(\Rightarrow\)) (true for presheaves too).
+              <ol>
+<li>Suppose there exists a germ \(s_P\in\F_P\) such that \(\phi_P(s_P) = 0\in \G_P\).
+                  i.e. there exists an open neighbourhood \(W \subset U\) with \(P\in W\) such that \(\phi(U)(s|_W) = 0\).
+                  So by commutativity \(\phi(W)(s|_W) = 0\) but \(\phi\) injective implies \(s|_W = 0\).
+                </li>
+<li>Clear.</li>
+</ol>
+              (\(\Leftarrow\))
+              <ol>
+<li>Needs first sheaf condition on \(\F\).
+                  If \(\phi_P\) injective for all \(P\) and \(U\) is open in \(X\) it remains to prove that \(\phi(U) \colon \F(U) \to \G(U)\) is injective.
+                  Suppose not and there exists \(0 \ne s \in \F(u)\) such that \(\phi(U)(s) = 0 \in \G(U)\).
+                  Let \(s_P\) denote the germ of \(s\) at \(P \in U\), then \(0 = \phi(U)(s)_P = \phi_P(s_P)\) for all \(P\in U\).
+                  So \(s_P\) in \(\F_P\) for all \(P \in U\).
+                  Hence for all \(P\in U\) we have anopen neighbourhood \(U \supset W \ni P\) such that \(s|_W = 0\).
+                  So \(U\) is covered by open sets \(U_\alpha\) such that \(s|_{U_\alpha} = 0\) for all \(\alpha\), which implies that \(s = 0\).
+                </li>
+<li>\(\phi(U) \colon \F(U) \to \G(U)\) is an injection for all open \(U\) by the first part, so it remains to prove that it is surjective also.
+                  Suppose \(t \in \G(U)\) and let \(t_P\in\G_P\) be its germ at \(P\in U\).
+                  Since \(\phi_P\) is surjective we have some \(s_P\in \F_P\) such that \(\phi_P(s_P) = t_P\).
+                  Now suppose that \(s_P\) is represented by a pair \((V,s)\) with \(P\in V \subseteq U\) and \(s\in \F(V)\).
+                  We then have that \(t_P\) is represented by \(\phi(V)(s)\), i.e. \((U,t)\sim (V,\phi(V)(s))\).
+                  Shrinking \(V\) we may assume that we have an ope neighbourhood \(V_P\ni P\) such that \(\phi(V)(s)|_{V_P} = t|_{V_P}\).
+                  In this way we cover \(U\) by open sets giving \(U = = \bigcup_{\alpha} U_\alpha\) to obtain sections \(s_\alpha \in\F_\alpha\) such that \(\phi(U_\alpha)(s_\alpha) = t|_{U_\alpha}\).
+                  On the overlaps \(U_{\alpha\beta} = U_\alpha \cap U_\beta\) we have \(\phi(U_{\alpha\beta})(s_\alpha|_{U_{\alpha\beta}}) = t|_{U_{\alpha\beta}} = \phi(U_{\alpha\beta})(s_\beta|_{U_{\alpha\beta}})\), therefore the injectivity of \(\phi(U_{\alpha\beta})\) gives that \(s_\alpha|_{U_{\alpha\beta}} = s_\beta|_{U_{\alpha\beta}}\).
+                  Since \(\F\) is a sheaf the \(s_\alpha\) patch together to give a section \(s \in \F(U)\) wuch that \(s|_{U_\alpha} = s_\alpha\) (using the second sheaf condition for \(\F\)).
+                  But then \(\phi(U)(s)\) and \(t\) are sections of \(\G(U)\) such that \(\phi(U)(s)|_{U_{\alpha}}  = \phi(U_\alpha)(s_\alpha) = t|_{U_\alpha}\) for all \(\alpha\).
+                  The first sheaf condition for \(\G\) now gives that \(\phi(U)(s) = t\) as required.
+                </li>
+</ol>
+            </p></article><div class="context-link" style="text-align:right;"><a href="sec-sheaves.html#proof-1">(in-context)</a></div>

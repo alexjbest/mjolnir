@@ -31,6 +31,7 @@ Copyright 2014 Alex J. Best
     \DeclareMathOperator{\im}{im}
     \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\coker}{coker}
+    \DeclareMathOperator{\bfA}{\mathbf{A}}
     \DeclareMathOperator{\CC}{\mathbf{C}}
     \DeclareMathOperator{\QQ}{\mathbf{Q}}
     \DeclareMathOperator{\RR}{\mathbf{R}}
@@ -41,11 +42,12 @@ Copyright 2014 Alex J. Best
     \DeclareMathOperator{\B}{\mathcal{B}}
     \DeclareMathOperator{\F}{\mathcal{F}}
     \DeclareMathOperator{\G}{\mathcal{G}}
-    \DeclareMathOperator{\O}{\mathcal{O}}
+    \DeclareMathOperator{\cI}{\mathcal{I}}
+    \DeclareMathOperator{\cO}{\mathcal{O}}
     \DeclareMathOperator{\U}{\mathcal{U}}
     </macros>
 
-    <initialism>AT</initialism>
+    <initialism>AG</initialism>
 
     <feedback>
       <url>https://github.com/alexjbest/mjolnir/issues</url>
@@ -78,8 +80,8 @@ Copyright 2014 Alex J. Best
         </p>
       </section>
 
-      <section xml:id="sec-presheaves">
-        <title>Presheaves</title>
+      <section xml:id="sec-sheaves">
+        <title>Sheaves</title>
 
         <p>Let <m>X</m> be a topological space.</p>
 
@@ -135,16 +137,16 @@ Copyright 2014 Alex J. Best
           <statement>If <m>X</m> is a differentiable (<m>C^\infty</m>) manifold, we can define the sheaf of <m>C^\infty</m>-functions (<m>\RR</m> or <m>\CC</m> valued) on <m>X</m>.
             Which is a sheaf of rings.
             Similarly if <m>X</m> is a complex manifold, we can define a sheaf of holomorphic functions on <m>X</m>.
-            In both cases, the sheaf is called the <term>structure sheaf</term> of <m>X</m>, sometimes denoted <m>\O_X</m>.
+            In both cases, the sheaf is called the <term>structure sheaf</term> of <m>X</m>, sometimes denoted <m>\cO_X</m>.
           </statement>
         </example>
 
         <example>
           <statement>For <m>V</m> an (irreducible) variety (affine, projective, quasi-projective).
             We can consider <m>V</m> as a topological space with the Zariski topology.
-            For <m>U</m> open in <m>V</m> set <me>\O_V(U)=\{\text{regular functions on } U\} = \{f\in k(V) \text{ s.t. }f \text{ regular on } U\}.</me>
+            For <m>U</m> open in <m>V</m> set <me>\cO_V(U)=\{\text{regular functions on } U\} = \{f\in k(V) \text{ s.t. }f \text{ regular on } U\}.</me>
             This is a sheaf of rings with respect to the Zariski topology, and is known as the <term>structure sheaf</term> for varieties.
-            If <m>V</m> is affine we have that <m>\O_V(V) = k[V]</m>.
+            If <m>V</m> is affine we have that <m>\cO_V(V) = k[V]</m>.
           </statement>
         </example>
 
@@ -161,17 +163,17 @@ Copyright 2014 Alex J. Best
         </example>
 
         <example>
-          <statement>For <m>X</m> a <m>C^\infty</m> manifold (resp. complex) with structure sheaf <m>\O_X</m>, the stalk <m>\O_{X,P}</m> of <m>\O_X</m> at <m>P\in V</m> consists of germs of <m>C^\infty</m> (resp. holomorphic) functions.
+          <statement>For <m>X</m> a <m>C^\infty</m> manifold (resp. complex) with structure sheaf <m>\cO_X</m>, the stalk <m>\cO_{X,P}</m> of <m>\cO_X</m> at <m>P\in V</m> consists of germs of <m>C^\infty</m> (resp. holomorphic) functions.
           </statement>
         </example>
 
         <example>
-          <statement>For <m>V</m> (irreducible) affine, projective or quasi-projective variety with structure sheaf <m>\O_V</m> the stalk at <m>P\in V</m> <m>\O_{V,P} = \text{ local ring at } P</m> (defined before).
+          <statement>For <m>V</m> (irreducible) affine, projective or quasi-projective variety with structure sheaf <m>\cO_V</m> the stalk at <m>P\in V</m> <m>\cO_{V,P} = \text{ local ring at } P</m> (defined before).
           </statement>
         </example>
 
         <definition>
-          <title>Morphisms of (pre-)sheaves</title>
+          <title>Morphisms of (pre)sheaves</title>
           <statement>If <m>\F</m> and <m>\G</m> are presheaves (resp. sheaves) on <m>X</m> a morphism <m>\Phi\colon \F \to \G</m> consists of homomorphisms <m>\F(U) \xrightarrow{\Phi} \G(U)</m> for all open <m>U</m> such that for <m>V \subseteq U</m> open
             <me>\xymatrix@R+2em@C+2em{
               \F(U) \ar[r]^{\phi(U)} \ar[d]_{\rho^U_V} &amp; \G(U) \ar[d]^{\rho'^U_V} \\
@@ -185,8 +187,8 @@ Copyright 2014 Alex J. Best
         <p>A morphism <m>\phi\colon \F \to \G</m> induces a homomorphism <m>\phi_P\colon \F_P \to \G_P</m> for each <m>P</m>, namely <m>\phi_P[(U,s)] = [(U,\phi(U)(s))]</m>, which is well defined.</p>
 
         <definition>
-          <title>Injections and isomorphisms</title>
-          <statement>A morphism <m>\phi\colon \F\to\G</m> of (pre-)sheaves is <term>injective</term> if <m>\F(U) \to \G(U)</m> is injective for all open <m>U</m>.
+          <title>Injective and isomorphic sheaf morphisms</title>
+          <statement>A morphism <m>\phi\colon \F\to\G</m> of (pre)sheaves is <term>injective</term> if <m>\F(U) \to \G(U)</m> is injective for all open <m>U</m>.
             e.g. sheaves of subgroups or subrings where <m>\F(U) \subseteq \G(U)</m> for all <m>U</m>.
             In this case <m>\F</m> is called a <term>subsheaf</term> of <m>\G</m>.<br />
             A morphism <m>\phi\colon \F \to \G</m> is called an isomorphism if there exists an inverse morphism <m>\chi\colon \G\to\F</m>.
@@ -216,22 +218,141 @@ Copyright 2014 Alex J. Best
                   If <m>\phi_P</m> injective for all <m>P</m> and <m>U</m> is open in <m>X</m> it remains to prove that <m>\phi(U) \colon \F(U) \to \G(U)</m> is injective.
                   Suppose not and there exists <m>0 \ne s \in \F(u)</m> such that <m>\phi(U)(s) = 0 \in \G(U)</m>.
                   Let <m>s_P</m> denote the germ of <m>s</m> at <m>P \in U</m>, then <m>0 = \phi(U)(s)_P = \phi_P(s_P)</m> for all <m>P\in U</m>.
-                  So <m>s_P</m> in <m>\F_P</m> for all <m>P \in U</m>.</li></ol>
+                  So <m>s_P</m> in <m>\F_P</m> for all <m>P \in U</m>.
+                  Hence for all <m>P\in U</m> we have anopen neighbourhood <m>U \supset W \ni P</m> such that <m>s|_W = 0</m>.
+                  So <m>U</m> is covered by open sets <m>U_\alpha</m> such that <m>s|_{U_\alpha} = 0</m> for all <m>\alpha</m>, which implies that <m>s = 0</m>.
+                </li>
+                <li><m>\phi(U) \colon \F(U) \to \G(U)</m> is an injection for all open <m>U</m> by the first part, so it remains to prove that it is surjective also.
+                  Suppose <m>t \in \G(U)</m> and let <m>t_P\in\G_P</m> be its germ at <m>P\in U</m>.
+                  Since <m>\phi_P</m> is surjective we have some <m>s_P\in \F_P</m> such that <m>\phi_P(s_P) = t_P</m>.
+                  Now suppose that <m>s_P</m> is represented by a pair <m>(V,s)</m> with <m>P\in V \subseteq U</m> and <m>s\in \F(V)</m>.
+                  We then have that <m>t_P</m> is represented by <m>\phi(V)(s)</m>, i.e. <m>(U,t)\sim (V,\phi(V)(s))</m>.
+                  Shrinking <m>V</m> we may assume that we have an ope neighbourhood <m>V_P\ni P</m> such that <m>\phi(V)(s)|_{V_P} = t|_{V_P}</m>.
+                  In this way we cover <m>U</m> by open sets giving <m>U = = \bigcup_{\alpha} U_\alpha</m> to obtain sections <m>s_\alpha \in\F_\alpha</m> such that <m>\phi(U_\alpha)(s_\alpha) = t|_{U_\alpha}</m>.
+                  On the overlaps <m>U_{\alpha\beta} = U_\alpha \cap U_\beta</m> we have <m>\phi(U_{\alpha\beta})(s_\alpha|_{U_{\alpha\beta}}) = t|_{U_{\alpha\beta}} = \phi(U_{\alpha\beta})(s_\beta|_{U_{\alpha\beta}})</m>, therefore the injectivity of <m>\phi(U_{\alpha\beta})</m> gives that <m>s_\alpha|_{U_{\alpha\beta}} = s_\beta|_{U_{\alpha\beta}}</m>.
+                  Since <m>\F</m> is a sheaf the <m>s_\alpha</m> patch together to give a section <m>s \in \F(U)</m> wuch that <m>s|_{U_\alpha} = s_\alpha</m> (using the second sheaf condition for <m>\F</m>).
+                  But then <m>\phi(U)(s)</m> and <m>t</m> are sections of <m>\G(U)</m> such that <m>\phi(U)(s)|_{U_{\alpha}}  = \phi(U_\alpha)(s_\alpha) = t|_{U_\alpha}</m> for all <m>\alpha</m>.
+                  The first sheaf condition for <m>\G</m> now gives that <m>\phi(U)(s) = t</m> as required.
+                </li>
+              </ol>
             </p>
           </proof>
         </lemma>
-        
+
+        <definition>
+          <title>Surjective sheaf morphisms</title>
+          <statement>A morphism of sheaves <m>\phi\colon \F \to \G</m> is called <term>surjective</term> if <m>\phi_P\colon \F_P\to\G_P </m> is surjective for all <m>P \in X</m>.</statement>
+        </definition>
+
+        <definition>
+          <title>Induced (pre)sheaves</title>
+          <statement>Given a (pre)sheaf <m>\F</m> on a space <m>X</m> and a continuous map <m>f\colon X \to Y</m> we have an <term>induced (pre)sheaf</term>, denoted <m>f_*\F</m> on <m>Y</m> defined by
+            <me>(f_*\F)(U) = \F(f^{-1}(U))</me>
+            for <m>U</m> open in <m>Y</m>.
+            With the restriction maps coming from <m>\F</m> as <m>V \subset U</m> implies <m>f^{-1}(V)\subset f^{-1}(U)</m>.
+            It should be checked that indeed <m>\F</m> being a (pre)sheaf implies <m>f_*\F</m> is a (pre)sheaf.
+          </statement>
+        </definition>
+
+        <definition>
+          <title>Ringed spaces</title>
+          <statement>A <term>ringed space</term> is a pair <m>(X,\cO_X)</m> where <m>X</m> is a topological space and <m>\cO_X</m> is a sheaf of rings on <m>X</m>.</statement>
+        </definition>
+
+        <definition>
+          <title>Morphisms of ringed spaces</title>
+          <statement>Given two ringed spaces <m>(X,\cO_X)</m> and <m>(Y, \cO_Y)</m> a <term>morphism of ringed spaces</term> <m>(X,\cO_X)\to (Y,\cO_Y)</m> is a pair <m>(f,f^\#)</m> where <m>f\colon X \to Y</m> is continuous and <m>f^\#\colon \cO_Y \to f_*\cO_X</m> is a morphism of sheaves of rings.
+            So <m>f^\#</m> defines homomorphisms <m>\cO_Y(U) \to \cO_X(f^{-1}(U))</m> for all <m>U</m> open in <m>Y</m>, compatible with restrictions.
+            Hence he have homomorphisms on stalks too <m>\cO_{Y,f(P)} \to \cO_{X,P}</m>.
+          </statement>
+        </definition>
+
+        <definition>
+          <title>Ringed spaces over a ring</title>
+          <statement>If <m>R</m> is a commutative ring (e.g. a field), a <term>ringed space over <m>R</m></term> is a ringed space with <m>\cO_X</m> a sheaf of <m>R</m>-algebras.
+            (Therefore the restriction maps are homomorphisms of <m>R</m>-algebras.)
+            A morphism of ringed spaces over <m>R</m> is defined in the obvious way.
+          </statement>
+        </definition>
+
+        <definition>
+          <title>Locally ringed spaces</title>
+          <statement>A ringed space <m>(X, \cO_X)</m> is a <term>locally ringed space</term> (also known as a geometric space) if all <m>\cO_{X,P}</m> are local rings.</statement>
+        </definition>
+
+        <definition>
+          <title>Morphisms of locally ringed spaces</title>
+          <statement>A <term>morphism of locally ringed spaces</term> is a morphism of ringed spaces as above where all the induced maps <m>f_P^\#\colon \cO_{Y,f(P)} \to \cO_{X,P}</m> are local homomorphisms of local rings.</statement>
+        </definition>
+
+        <example>
+          <statement><m>(X,\ZZ)</m> is a ringed space but not locally ringed.</statement>
+        </example>
+
+        <example>
+          <statement>If <m>X</m> is a <m>C^\infty</m> (resp. complex) manifold with structure sheaf <m>\cO_X</m> then <m>(X, \cO_X)</m> is a locally ringed space over <m>\RR</m> (resp. over <m>\CC</m>).
+            A smooth (resp. holomorphic) map of manifolds <m>f\colon X\to Y</m> yields a morphism of <m>\RR</m> (resp. <m>\CC</m>)-algebras <m>f^\#\colon \cO_Y\to f_* \cO_X</m> namely <m>f^\#\colon\cO_Y(U) \to\cO_X(f^{-1}U)</m> given by <m>g\to g\circ f</m> (smooth (resp. holomorphic) functions on <m>Y</m> pullback to ones on <m>X</m>).
+            Clearly <m>g(f(P)) = 0 \iff f^\#(g)(P) = 0</m> and so <m>f^\#(m_{Y,f(P)} \subseteq m_{X,P}</m>.
+            So <m>(f,f^\#)</m> is a morphism of locally ringed spaces over <m>\RR</m> (resp. <m>\CC</m>).
+          </statement>
+        </example>
+
+
+        <example>
+          <statement><m>(V,\cO_V)</m> for <m>V</m> an irreducible affine variety <m>V</m> is a ringed space via its structure sheaf, it is locally ringed over the base field <m>k</m>.
+            If <m>\Phi\colon V \to W</m> is a morphism of affine varieties then there exists a morphism of lcoally ringed spaces over <m>k</m> <m>(\phi, \phi^\#)\colon (V, \cO_V) \to (W, \cO_W)</m> given by <m>\phi^\#(g) = g\circ \phi \in \cO_V(\phi^{-1}U)</m> for <m>g\in\cO_W(U)</m>.
+          </statement>
+        </example>
+
+        <lemma>
+          <statement>If <m>V,W</m> are (irreducible) affine varieties and <m>(f,f^\#)\colon (V,\cO_V)\to (W,\cO_W)</m> is a morphism of locally ringed spaces over <m>k</m> then <m>f</m> is induced from a morphism of varities <m>\phi\colon V\to W</m> with <m>f^\# = \phi^\#</m> defined as above.</statement>
+          <proof>Suppose <m>V\subseteq \bfA^n,\ W\subseteq\bfA^m</m> let <m>y_j</m> be the <m>j</m>th coordinate function on <m>W</m> and define <m>g_j = f^\#(y_j) \in \cO_V(V) = k[V]</m>.
+            Let <m>\phi = (g_1,\ldots,g_m)</m>, this is a morphism <m>V \to \bfA^m</m>.
+            Suppose that <m>f(P) = (b_1,\ldots,b_m)</m> for <m>P\in V</m> then <m>y_j - b_j \in m_{W,f(P)}</m> for all <m>j</m> which implies that <m>g_j(P) = b_j</m> for all <m>j</m>.
+            Since <m>f^\#</m> is local we have that <m>\phi(P) = f(P)</m> and so <m>\phi \colon V \to W</m> is the same map as <m>f</m> on topological spaces.
+            Moreover <m>y_1,\ldots,y_m</m> generate <m>k[V]</m> as a <m>k</m>-algebra and also generate <m>k(W)</m> as a field over <m>k</m>. <todo></todo>
+            <m>f^\#(y_j) = g_j = y_j\circ\phi = \phi^\#(y_j)</m> and it follows that <m>f^\# = \phi^\#</m> on any <m>\cO_W(U)</m>.
+            <m>k[W] \subset \cO_W(U)\subset k(W)</m> for <m>U</m> open in <m>W</m>.
+          </proof>
+        </lemma>
+
+        <definition>
+          <title>Morphisms of varieties</title>
+          <statement>Given <m>V</m> and <m>W</m> (irreducible) quasi-projective varieties, we define a <term>morphism</term> of varieties <m>V \to W</m> to be a morphism of the corresponding locally ringed spaces over <m>k</m> <m>(V,\cO_V)\to (W,\cO_W)</m>.</statement>
+        </definition>
+
+        <subsection>
+          <title><m>\cO_X</m>-modules</title>
+          
+          <definition>
+            <title><m>\cO_X</m>-modules</title>
+            <statement>Let <m>M</m> be a sheaf of abelian groups on a ringed space <m>(X,\cO_X)</m>, <m>M</m> is said to be an <term><m>\cO_X</m>-module</term> if for every open set <m>U\subset X</m> <m>M(U)</m> is an open <m>\cO_X(U)</m>-module and for any <m>W\subseteq U</m> open <m>\alpha \in \cO_X(U)</m>, <m>m\in M(U)</m>, we have <m>(\alpha m)|_W = (\alpha|_W)(m|_W)</m>.
+              Similarly we have the obvious definition for morphisms of <m>\cO_X</m>-modules <m>\phi\colon M \to N</m> (all maps respect the <m>\cO_X</m>-module structure).
+            </statement>
+          </definition>
+
+          <example>
+            <statement>For <m>V</m> a (irreducible) quasi-projective variety with structure sheaf <m>\cO_V</m> and <m>W \subset V</m> a closed subvariety we have the <term>sheaf of ideals</term> <m>\cI_W \subset \cO_V</m> a subsheaf of <m>\cO_V</m> given by <me>\cI_W(U) = \{f\in \cO_V(U) : f|_{W\cap U} \equiv 0\}.</me>
+              This is clearly an <m>\cO_V</m>-module.
+            </statement>
+          </example>
+          
+          <p>Most things go through unchanged e.g. if <m>M</m> is an <m>\cO_X</m>-module then any stalk <m>M_P</m> is an <m>\cO_{X,P}</m>-module etc.<br />
+            However 
+          </p>
+          
+        </subsection>
       </section>
     </chapter>
 
-    <backmatter>
+<!--    <backmatter>
       <title>Reference</title>
 
       <section xml:id="sec-notation">
         <title>Notation</title>
         <notation-list />
       </section>
-    </backmatter>
+    </backmatter>-->
 
   </book>
 
