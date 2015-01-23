@@ -56,6 +56,7 @@
 %% Numbering: all theorem-like numbered consecutively
 %% i.e. Corollary 4.3 follows Theorem 4.2
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
 %% Definition-like environments, normal text
 %% Numbering for definition, examples is in sync with theorems, etc
 %% also for free-form exercises, not in exercise sections
@@ -65,6 +66,25 @@
 %% Equation Numbering
 %% Controlled by  numbering.equations.level  processing parameter
 \numberwithin{equation}{section}
+%% Figures, Tables, Floats
+%% The [H]ere option of the float package fixes floats in-place,
+%% in deference to web usage, where floats are totally irrelevant
+%% We redefine the figure and table environments, if used
+%%   1) New mbxfigure and/or mbxtable environments are defined with float package
+%%   2) Standard LaTeX environments redefined to use new environments
+%%   3) Standard LaTeX environments redefined to step theorem counter
+%%   4) Counter for new enviroments is set to the theorem counter before caption
+%% You can remove all this figure/table setup, to restore standard LaTeX behavior
+%% HOWEVER, numbering of figures/tables AND theorems/examples/remarks, etc
+%% WILL ALL de-synchronize with the numbering in the HTML version
+%% You can remove the [H] argument of the \newfloat command, to allow flotation and 
+%% preserve numbering, BUT the numbering may then appear "out-of-order"
+\usepackage{float}
+\newfloat{mbxfigure}{H}{lof}[section]
+\floatname{mbxfigure}{Figure}
+\renewenvironment{figure}%
+{\begin{mbxfigure}\setcounter{mbxfigure}{\value{theorem}}\stepcounter{theorem}}%
+{\end{mbxfigure}}
 %% Raster graphics inclusion, wrapped figures in paragraphs
 \usepackage{graphicx}
 %% Colors for Sage boxes and author tools (red hilites)
@@ -80,6 +100,7 @@
 \usepackage[all]{xy}
 %% Convenience macros
 \DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\cHom}{\underline{Hom}}
 \DeclareMathOperator{\Tor}{Tor}
 \DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\id}{id}
@@ -88,6 +109,7 @@
 \DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\eq}{eq}
 \DeclareMathOperator{\coeq}{coeq}
+\DeclareMathOperator{\cone}{cone}
 \DeclareMathOperator{\Ch}{Ch}
 \DeclareMathOperator{\Abgp}{\text{Abgp}}
 \DeclareMathOperator{\CC}{\mathbf{C}}
@@ -99,6 +121,7 @@
 \DeclareMathOperator{\cA}{\mathcal{A}}
 \DeclareMathOperator{\cB}{\mathcal{B}}
 \DeclareMathOperator{\cO}{\mathcal{O}}
+\DeclareMathOperator{\dd}{\partial}
 %% Title page information for book
 \title{Part III Homological and Homotopical Algebra 2014}
 \author{}
@@ -133,7 +156,7 @@
 \typeout{Section 1.1 Introduction}
 \typeout{************************************************}
 \section[Introduction]{Introduction}\label{sec-introduction}
-These are lecture notes for the 2014 Part III Homological and Homotopical Algebra course taught by Dr. Julian Holstein, these notes are part of \href{https://alexjbest.github.io/mjolnir/}{MJOLNIR}.%
+These are lecture notes for the 2014 Part III Homological and Homotopical Algebra course taught by Dr. Julian Holstein, these notes are part of \href{https://alexjbest.github.io/mjolnir/}{Mjolnir}.%
 \par
 The recommended books are: 
           \begin{itemize}
@@ -142,7 +165,7 @@ The recommended books are:
         %
 \par
 
-          Generated: January 20, 2015, 21:35:01 (Z)
+          Generated: January 23, 2015, 01:57:58 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Motivation}
@@ -212,7 +235,7 @@ A sequence of morphisms \[A\xrightarrow{f} B \xrightarrow{g}C\] in \(\cA\) is \t
               An exact sequence of the form \[0\to A \to B \to C \to 0\] is called a \terminology{short exact sequence}.
             \end{definition}
 \begin{definition}[Mono and epi morphisms]\label{definition-4}
-A morphism \(f\) is a \terminology{monomorphism} if \(fg = fh \implies g=h\) and it is an \terminology{epimorphism} is \(gf = hf \implies g=h\).\end{definition}
+A morphism \(f\) is a \terminology{monomorphism} if \(fg = fh \implies g=h\) and it is an \terminology{epimorphism} if \(gf = hf \implies g=h\).\end{definition}
 \begin{example}\label{example-4}
 In \(\Abgp\) the following are exact sequences:
               \begin{gather*}
@@ -243,9 +266,87 @@ We have many such complexes:
 \item{}Singular (co-)chain complex on a top space.\item{}de Rahm complex.\item{}Cellular chain complex.\item{}Flabby resolution of a sheaf.\item{}Bar resolution of a group.\item{}Koszul complex.\end{itemize}
 \end{example}
 \begin{definition}[Chain maps]\label{definition-9}
-Given \(B,C\) chain complexes, a \terminology{chain map}\(f\colon B\to C\) is  a collection of maps \(f_i\colon B_i \to C_i\) such that \(df=fd.\)\end{definition}
+Given \(B,C\) chain complexes, a \terminology{chain map}\(f\colon B\to C\) is  a collection of maps \(f_i\colon B_i \to C_i\) such that \(df=fd\).\end{definition}
 \par
-We now have formed the \terminology{category of chain complexes} \(\Ch(\cA)\) using these maps.%
+We now have formed the \terminology{category of chain complexes} \(\Ch(\cA)\) using these maps.
+          We write \(\Ch(R)\) for \(\Ch(\Rmod)\).
+          Note that \(\Ch(\cA)\) is an additive category moreover it is an abelian category, we can define and check everything level-wise.
+          For example \(\ker(A\to B)_n = \ker(A_n\to B_n)\).
+          Note that the \(H_n\) form a functor \(\Ch(\cA)\to \cA\).
+          Define \(f_*\colon H_n A \to H_n B\) in the natural wat and check it works.
+          \(H_n\) is additive.
+        %
+\begin{lemma}[Snake lemma]\label{lemma-1}
+Let \(0\to A \to B \to C \to 0\) be a short exact sequence then there exist natural boundary maps \(\dd_n\) which fit into a long exact sequence of homology objects
+            \begin{figure}
+\centering
+\[
+                \xymatrix{ \cdots\ar[r] & H_n(A) \ar[r]^{f_*}&
+                H_n(B) \ar[r]^{g_*} & H_n(C)\ar `r[d] `[l]
+                `[llld]_{\dd_n} `[dll] [dll]\\
+                & H_{n-1}(A) \ar[r] & H_{n-1}(B)
+                \ar[r] & H_{n-1}(C)\ar[r] & {\dots} }
+              \]\end{figure}
+\end{lemma}
+\begin{proof}
+Exercise.\end{proof}
+\par
+Naturality here means given two short exact sequences and compatible chain maps the induced maps on homology are compatible with \(\dd_n\).
+          (The obvious diagram commutes.)
+        %
+\par
+Recall that \(f\) is a chain map if \(\dd f - f\dd = 0\).%
+\begin{definition}[]\label{definition-10}
+Let \(\cHom_n(A,B)\) consist of functions \(\{f_i \colon A_i \to B_{i+n}\} \) and define \(df = d\cdot f - (-1)^n fd\) if \(f\in\cHom_n\).
+            Check that \[d^2 f = d\cdot (d\cdot f - (-1)^fd ) - (-1) (d\cdot f - (-1)^n f\cdot d)\cdot d = 0.\]\end{definition}
+\par
+We use the ``Sign rule'' to help with definitions, this states that if \(a\) moves past \(b\) we pick a sign \((-1)^{\deg a\deg b}\).%
+\par
+\(\Ch(\cA)\) can be enriched over \(\Ch(\ZZ)\).%
+\begin{definition}[Shifted complexes]\label{definition-11}
+The \terminology{shifted complex}\(C[n]\) for \(C\in \Ch(\cA)\) is defined by \(C[n]_i = C_{n+i}\) and \(d_i^{C[n]} = (-1)^n d_{n+i}^C\).\end{definition}
+\par
+Note that \(H_i(C) = H_0(C[i])\).%
+\par
+So a chain map \(f\colon A \to B[n]\) is exactly a cycle in \(\cHom_n(A,B)\).%
+\par
+Now \(\Hom(A,B) = Z_0(\cHom(A,B))\), so what is \(H_0(\cHom(A,B))\)?%
+\begin{definition}[Chain homotopies]\label{definition-12}
+
+            A \terminology{chain homotopy}\(S\) between chain maps \(f,g\colon A \to B\) is a collection \(S_i \colon A_i \to B_i\) such that \(\dd S + S\dd = f-g\).
+            Equivalently we could say a map \(A \to B[1]\) such that \(dS = g -f\) (note: not a chain map).
+            We write \(f \simeq g\) to denote the fact that \(f\) is chain homotopic to \(g\).
+          \end{definition}
+\begin{definition}[Chain homotopy equivalences]\label{definition-13}
+
+            Two chain complexes \(A\) and \(B\) are said to be \terminology{chain homotopy equivalent} if there are some \(f\colon A\to b\), \(g\colon B \to A\) such that \(gf \simeq 1_A\) and \(fg\simeq 1_B\).
+          \end{definition}
+\begin{lemma}\label{lemma-2}
+If \(f\simeq g\) then \(f_* = g_*\) on homology.\end{lemma}
+\begin{proof}
+Check.\end{proof}
+\begin{definition}[Quasi-isomorphisms]\label{definition-14}
+
+            A chain map \(f\) inducing isomorphisms on homology is called a \terminology{quasi-isomorphism}.
+            Two chains \(A,B\) are quasi-isomorphic if there is a quasi-isomorphism \(A \to B\) and \(B\to A\).
+          \end{definition}
+\begin{example}\label{example-6}
+\begin{figure}
+\centering
+\[
+                \xymatrix{
+                  \dots\ar[r] &\ZZ \ar[r]\ar[d]_n &0 \ar[r]\ar[d] &\dots \\
+                  \dots\ar[r] &\ZZ \ar[r]^{\text{pr}} &\ZZ \ar[r] &\dots
+                }
+              \]\end{figure}
+
+            is a quasi-isomorphism.
+          \end{example}
+\par
+Any chain homotopy equivalence is a quasi-isomorphism, the converse is false however.%
+\begin{definition}[Cones]\label{definition-15}
+
+            Given \(f\colon A \to B\) we define a chain complex called the \terminology{cone} of \(f\) by \(\cone(f)_n = A_{n-1} \oplus B_n\) with maps \[d = \begin{pmatrix}-d_A & 0 \\ -f & d_B\end{pmatrix}.\]\end{definition}
 \typeout{************************************************}
 \typeout{Chapter 2 Applications}
 \typeout{************************************************}

@@ -24,6 +24,7 @@ Copyright 2014 Alex J. Best
 
     <macros>
     \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\cHom}{\underline{Hom}}
     \DeclareMathOperator{\Tor}{Tor}
     \DeclareMathOperator{\Ext}{Ext}
     \DeclareMathOperator{\id}{id}
@@ -32,6 +33,7 @@ Copyright 2014 Alex J. Best
     \DeclareMathOperator{\coker}{coker}
     \DeclareMathOperator{\eq}{eq}
     \DeclareMathOperator{\coeq}{coeq}
+    \DeclareMathOperator{\cone}{cone}
     \DeclareMathOperator{\Ch}{Ch}
     \DeclareMathOperator{\Abgp}{\text{Abgp}}
     \DeclareMathOperator{\CC}{\mathbf{C}}
@@ -43,6 +45,7 @@ Copyright 2014 Alex J. Best
     \DeclareMathOperator{\cA}{\mathcal{A}}
     \DeclareMathOperator{\cB}{\mathcal{B}}
     \DeclareMathOperator{\cO}{\mathcal{O}}
+    \DeclareMathOperator{\dd}{\partial}
     </macros>
 
     <initialism>HH</initialism>
@@ -54,7 +57,7 @@ Copyright 2014 Alex J. Best
     <date><today /></date>
   </docinfo>
 
-  <book xml:id="homalg">
+  <book xml:id="homhom">
     <title>Part III Homological and Homotopical Algebra 2014</title>
 
     <chapter xml:id="chap-hom-alg">
@@ -63,7 +66,7 @@ Copyright 2014 Alex J. Best
       <section xml:id="sec-introduction">
         <title>Introduction</title>
 
-        <p>These are lecture notes for the 2014 Part III Homological and Homotopical Algebra course taught by Dr. Julian Holstein, these notes are part of <url href="https://alexjbest.github.io/mjolnir/">MJOLNIR</url>.</p> 
+        <p>These are lecture notes for the 2014 Part III Homological and Homotopical Algebra course taught by Dr. Julian Holstein, these notes are part of <url href="https://alexjbest.github.io/mjolnir/">Mjolnir</url>.</p> 
         <p>The recommended books are: <todo></todo>
           <ul>
             <li>W. G. Dwyer and J. Spalinski, Homotopy theories and model categories</li>
@@ -172,7 +175,7 @@ Copyright 2014 Alex J. Best
           
           <definition>
             <title>Mono and epi morphisms</title>
-            <statement>A morphism <m>f</m> is a <term>monomorphism</term> if <m>fg = fh \implies g=h</m> and it is an <term>epimorphism</term> is <m>gf = hf \implies g=h</m>.</statement>
+            <statement>A morphism <m>f</m> is a <term>monomorphism</term> if <m>fg = fh \implies g=h</m> and it is an <term>epimorphism</term> if <m>gf = hf \implies g=h</m>.</statement>
           </definition>
           
           <example>
@@ -231,10 +234,114 @@ Copyright 2014 Alex J. Best
 
         <definition>
           <title>Chain maps</title>
-          <statement>Given <m>B,C</m> chain complexes, a <term>chain map</term> <m>f\colon B\to C</m> is  a collection of maps <m>f_i\colon B_i \to C_i</m> such that <m>df=fd.</m></statement>
+          <statement>Given <m>B,C</m> chain complexes, a <term>chain map</term> <m>f\colon B\to C</m> is  a collection of maps <m>f_i\colon B_i \to C_i</m> such that <m>df=fd</m>.</statement>
         </definition>
 
-        <p>We now have formed the <term>category of chain complexes</term> <m>\Ch(\cA)</m> using these maps.</p>
+        <p>We now have formed the <term>category of chain complexes</term> <m>\Ch(\cA)</m> using these maps.
+          We write <m>\Ch(R)</m> for <m>\Ch(\Rmod)</m>.
+          Note that <m>\Ch(\cA)</m> is an additive category moreover it is an abelian category, we can define and check everything level-wise.
+          For example <m>\ker(A\to B)_n = \ker(A_n\to B_n)</m>.
+          Note that the <m>H_n</m> form a functor <m>\Ch(\cA)\to \cA</m>.
+          Define <m>f_*\colon H_n A \to H_n B</m> in the natural wat and check it works.
+          <m>H_n</m> is additive.
+        </p>
+
+        <lemma>
+          <title>Snake lemma</title>
+          <statement>Let <m>0\to A \to B \to C \to 0</m> be a short exact sequence then there exist natural boundary maps <m>\dd_n</m> which fit into a long exact sequence of homology objects
+            <figure>
+              <me>
+                \xymatrix{ \cdots\ar[r] &amp; H_n(A) \ar[r]^{f_*}&amp;
+                H_n(B) \ar[r]^{g_*} &amp; H_n(C)\ar `r[d] `[l]
+                `[llld]_{\dd_n} `[dll] [dll]\\
+                &amp; H_{n-1}(A) \ar[r] &amp; H_{n-1}(B)
+                \ar[r] &amp; H_{n-1}(C)\ar[r] &amp; {\dots} }
+              </me>
+            </figure>
+          </statement>
+          <proof>Exercise.</proof>
+        </lemma>
+        
+        <p>Naturality here means given two short exact sequences and compatible chain maps the induced maps on homology are compatible with <m>\dd_n</m>.
+          (The obvious diagram commutes.)
+        </p>
+
+        <p>Recall that <m>f</m> is a chain map if <m>\dd f - f\dd = 0</m>.</p>
+
+        <definition>
+          <title></title>
+          <statement>Let <m>\cHom_n(A,B)</m> consist of functions <m>\{f_i \colon A_i \to B_{i+n}\} </m> and define <m>df = d\cdot f - (-1)^n fd</m> if <m>f\in\cHom_n</m>.
+            Check that <me>d^2 f = d\cdot (d\cdot f - (-1)^fd ) - (-1) (d\cdot f - (-1)^n f\cdot d)\cdot d = 0.</me><todo>doublecheck</todo>
+          </statement>
+        </definition>
+
+        <p>We use the ``Sign rule'' to help with definitions, this states that if <m>a</m> moves past <m>b</m> we pick a sign <m>(-1)^{\deg a\deg b}</m>.</p>
+
+        <p><m>\Ch(\cA)</m> can be enriched over <m>\Ch(\ZZ)</m>.</p>
+
+        <definition>
+          <title>Shifted complexes</title>
+          <statement>The <term>shifted complex</term> <m>C[n]</m> for <m>C\in \Ch(\cA)</m> is defined by <m>C[n]_i = C_{n+i}</m> and <m>d_i^{C[n]} = (-1)^n d_{n+i}^C</m>.</statement>
+        </definition>
+
+        <p>Note that <m>H_i(C) = H_0(C[i])</m>.</p>
+
+        <p>So a chain map <m>f\colon A \to B[n]</m> is exactly a cycle in <m>\cHom_n(A,B)</m>.</p>
+
+        <p>Now <m>\Hom(A,B) = Z_0(\cHom(A,B))</m>, so what is <m>H_0(\cHom(A,B))</m>?</p>
+
+        <definition>
+          <title>Chain homotopies</title>
+
+          <statement>
+            A <term>chain homotopy</term> <m>S</m> between chain maps <m>f,g\colon A \to B</m> is a collection <m>S_i \colon A_i \to B_i</m> such that <m>\dd S + S\dd = f-g</m>.
+            Equivalently we could say a map <m>A \to B[1]</m> such that <m>dS = g -f</m> (note: not a chain map).
+            We write <m>f \simeq g</m> to denote the fact that <m>f</m> is chain homotopic to <m>g</m>.
+          </statement>
+        </definition>
+
+        <definition>
+          <title>Chain homotopy equivalences</title>
+          <statement>
+            Two chain complexes <m>A</m> and <m>B</m> are said to be <term>chain homotopy equivalent</term> if there are some <m>f\colon A\to b</m>, <m>g\colon B \to A</m> such that <m>gf \simeq 1_A</m> and <m>fg\simeq 1_B</m>.
+          </statement>
+        </definition>
+
+        <lemma>
+          <statement>If <m>f\simeq g</m> then <m>f_* = g_*</m> on homology.</statement>
+          <proof>Check.</proof>
+        </lemma>
+
+        <definition>
+          <title>Quasi-isomorphisms</title>
+          <statement>
+            A chain map <m>f</m> inducing isomorphisms on homology is called a <term>quasi-isomorphism</term>.
+            Two chains <m>A,B</m> are quasi-isomorphic if there is a quasi-isomorphism <m>A \to B</m> and <m>B\to A</m>.
+          </statement>
+        </definition>
+
+        <example>
+          <statement>
+            <figure>
+              <me>
+                \xymatrix{
+                  \dots\ar[r] &amp;\ZZ \ar[r]\ar[d]_n &amp;0 \ar[r]\ar[d] &amp;\dots \\
+                  \dots\ar[r] &amp;\ZZ \ar[r]^{\text{pr}} &amp;\ZZ \ar[r] &amp;\dots
+                }
+              </me>
+            </figure>
+            is a quasi-isomorphism.
+          </statement>
+        </example>
+
+        <p>Any chain homotopy equivalence is a quasi-isomorphism, the converse is false however.</p>
+
+        <definition>
+          <title>Cones</title>
+          <statement>
+            Given <m>f\colon A \to B</m> we define a chain complex called the <term>cone</term> of <m>f</m> by <m>\cone(f)_n = A_{n-1} \oplus B_n</m> with maps <me>d = \begin{pmatrix}-d_A &amp; 0 \\ -f &amp; d_B\end{pmatrix}.</me>
+          </statement>
+        </definition>
       </section>
     </chapter>
 

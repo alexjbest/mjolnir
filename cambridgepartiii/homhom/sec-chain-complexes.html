@@ -2,7 +2,7 @@
 <html>
 <!--*                                    *-->
 <!--* Generated from MathBook XML source *-->
-<!--*    on 2015-01-20T21:35:01Z    *-->
+<!--*    on 2015-01-23T01:57:58Z    *-->
 <!--*                                    *-->
 <!--*   http://mathbook.pugetsound.edu   *-->
 <!--*                                    *-->
@@ -51,6 +51,7 @@ $(function () {
 <body class="mathbook-book has-toc has-sidebar-left">
 <div style="display:none;">\(
     \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\cHom}{\underline{Hom}}
     \DeclareMathOperator{\Tor}{Tor}
     \DeclareMathOperator{\Ext}{Ext}
     \DeclareMathOperator{\id}{id}
@@ -59,6 +60,7 @@ $(function () {
     \DeclareMathOperator{\coker}{coker}
     \DeclareMathOperator{\eq}{eq}
     \DeclareMathOperator{\coeq}{coeq}
+    \DeclareMathOperator{\cone}{cone}
     \DeclareMathOperator{\Ch}{Ch}
     \DeclareMathOperator{\Abgp}{\text{Abgp}}
     \DeclareMathOperator{\CC}{\mathbf{C}}
@@ -70,6 +72,7 @@ $(function () {
     \DeclareMathOperator{\cA}{\mathcal{A}}
     \DeclareMathOperator{\cB}{\mathcal{B}}
     \DeclareMathOperator{\cO}{\mathcal{O}}
+    \DeclareMathOperator{\dd}{\partial}
     \)</div>
 <header id="masthead"><div class="banner"><div class="container">
 <a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
@@ -127,7 +130,71 @@ $(function () {
 <li>Koszul complex.</li>
 </ul></article><article class="definition-like" id="definition-9"><h5 class="heading">
 <span class="type">Definition</span><span class="codenumber">1.4.5</span><span class="title">Chain maps</span>
-</h5>Given \(B,C\) chain complexes, a <em class="terminology">chain map</em>\(f\colon B\to C\) is  a collection of maps \(f_i\colon B_i \to C_i\) such that \(df=fd.\)</article><p>We now have formed the <em class="terminology">category of chain complexes</em> \(\Ch(\cA)\) using these maps.</p></section></div></main>
+</h5>Given \(B,C\) chain complexes, a <em class="terminology">chain map</em>\(f\colon B\to C\) is  a collection of maps \(f_i\colon B_i \to C_i\) such that \(df=fd\).</article><p>We now have formed the <em class="terminology">category of chain complexes</em> \(\Ch(\cA)\) using these maps.
+          We write \(\Ch(R)\) for \(\Ch(\Rmod)\).
+          Note that \(\Ch(\cA)\) is an additive category moreover it is an abelian category, we can define and check everything level-wise.
+          For example \(\ker(A\to B)_n = \ker(A_n\to B_n)\).
+          Note that the \(H_n\) form a functor \(\Ch(\cA)\to \cA\).
+          Define \(f_*\colon H_n A \to H_n B\) in the natural wat and check it works.
+          \(H_n\) is additive.
+        </p>
+<article class="theorem-like" id="lemma-1"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">1.4.6</span><span class="title">Snake lemma</span>
+</h5>Let \(0\to A \to B \to C \to 0\) be a short exact sequence then there exist natural boundary maps \(\dd_n\) which fit into a long exact sequence of homology objects
+            <figure>\[
+                \xymatrix{ \cdots\ar[r] &amp; H_n(A) \ar[r]^{f_*}&amp;
+                H_n(B) \ar[r]^{g_*} &amp; H_n(C)\ar `r[d] `[l]
+                `[llld]_{\dd_n} `[dll] [dll]\\
+                &amp; H_{n-1}(A) \ar[r] &amp; H_{n-1}(B)
+                \ar[r] &amp; H_{n-1}(C)\ar[r] &amp; {\dots} }
+              \]</figure></article><article class="hiddenproof" id="proof-1"><a knowl="./knowl/proof-1.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-1" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">Exercise.</article></div>
+<p>Naturality here means given two short exact sequences and compatible chain maps the induced maps on homology are compatible with \(\dd_n\).
+          (The obvious diagram commutes.)
+        </p>
+<p>Recall that \(f\) is a chain map if \(\dd f - f\dd = 0\).</p>
+<article class="definition-like" id="definition-10"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.4.8</span><span class="title"></span>
+</h5>Let \(\cHom_n(A,B)\) consist of functions \(\{f_i \colon A_i \to B_{i+n}\} \) and define \(df = d\cdot f - (-1)^n fd\) if \(f\in\cHom_n\).
+            Check that \[d^2 f = d\cdot (d\cdot f - (-1)^fd ) - (-1) (d\cdot f - (-1)^n f\cdot d)\cdot d = 0.\]</article><p>We use the ``Sign rule'' to help with definitions, this states that if \(a\) moves past \(b\) we pick a sign \((-1)^{\deg a\deg b}\).</p>
+<p>\(\Ch(\cA)\) can be enriched over \(\Ch(\ZZ)\).</p>
+<article class="definition-like" id="definition-11"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.4.9</span><span class="title">Shifted complexes</span>
+</h5>The <em class="terminology">shifted complex</em>\(C[n]\) for \(C\in \Ch(\cA)\) is defined by \(C[n]_i = C_{n+i}\) and \(d_i^{C[n]} = (-1)^n d_{n+i}^C\).</article><p>Note that \(H_i(C) = H_0(C[i])\).</p>
+<p>So a chain map \(f\colon A \to B[n]\) is exactly a cycle in \(\cHom_n(A,B)\).</p>
+<p>Now \(\Hom(A,B) = Z_0(\cHom(A,B))\), so what is \(H_0(\cHom(A,B))\)?</p>
+<article class="definition-like" id="definition-12"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.4.10</span><span class="title">Chain homotopies</span>
+</h5>
+            A <em class="terminology">chain homotopy</em>\(S\) between chain maps \(f,g\colon A \to B\) is a collection \(S_i \colon A_i \to B_i\) such that \(\dd S + S\dd = f-g\).
+            Equivalently we could say a map \(A \to B[1]\) such that \(dS = g -f\) (note: not a chain map).
+            We write \(f \simeq g\) to denote the fact that \(f\) is chain homotopic to \(g\).
+          </article><article class="definition-like" id="definition-13"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.4.11</span><span class="title">Chain homotopy equivalences</span>
+</h5>
+            Two chain complexes \(A\) and \(B\) are said to be <em class="terminology">chain homotopy equivalent</em> if there are some \(f\colon A\to b\), \(g\colon B \to A\) such that \(gf \simeq 1_A\) and \(fg\simeq 1_B\).
+          </article><article class="theorem-like" id="lemma-2"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">1.4.12</span>
+</h5>If \(f\simeq g\) then \(f_* = g_*\) on homology.</article><article class="hiddenproof" id="proof-2"><a knowl="./knowl/proof-2.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-2" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">Check.</article></div>
+<article class="definition-like" id="definition-14"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.4.13</span><span class="title">Quasi-isomorphisms</span>
+</h5>
+            A chain map \(f\) inducing isomorphisms on homology is called a <em class="terminology">quasi-isomorphism</em>.
+            Two chains \(A,B\) are quasi-isomorphic if there is a quasi-isomorphism \(A \to B\) and \(B\to A\).
+          </article><article class="example-like" id="example-6"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.4.14</span>
+</h5>
+<figure>\[
+                \xymatrix{
+                  \dots\ar[r] &amp;\ZZ \ar[r]\ar[d]_n &amp;0 \ar[r]\ar[d] &amp;\dots \\
+                  \dots\ar[r] &amp;\ZZ \ar[r]^{\text{pr}} &amp;\ZZ \ar[r] &amp;\dots
+                }
+              \]</figure>
+            is a quasi-isomorphism.
+          </article><p>Any chain homotopy equivalence is a quasi-isomorphism, the converse is false however.</p>
+<article class="definition-like" id="definition-15"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.4.16</span><span class="title">Cones</span>
+</h5>
+            Given \(f\colon A \to B\) we define a chain complex called the <em class="terminology">cone</em> of \(f\) by \(\cone(f)_n = A_{n-1} \oplus B_n\) with maps \[d = \begin{pmatrix}-d_A &amp; 0 \\ -f &amp; d_B\end{pmatrix}.\]</article></section></div></main>
 </div>
 </body>
 </html>
