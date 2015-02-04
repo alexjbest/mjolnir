@@ -1,0 +1,27 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="theorem-like"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">1.7.7</span><span class="title">Horseshoe Lemma</span>
+</h5>
+            Given a short exact sequence
+            \[
+              A^1 \to A^2 \to A^3
+            \]
+            and projective resolutions \(P^1 \to A^1\) and \(P^3 \to A^3\) there exists a projective resolution \(P^2\) of \(A^2\) with \(P^2_i = P^1_i \oplus P^3_i\) and the inclusion and projection maps lift.
+            So we have the following situation
+            \[
+              \xymatrix{
+              &amp;P_1^1 \ar[d] &amp; P_1^2 \ar[d]&amp;P_1^3\ar[d]&amp;\\
+              &amp;P_0^1 \ar[d]_{\epsilon^1} &amp; P_0^2 \ar[d]_{\epsilon^2}&amp;P_0^3\ar[d]_{\epsilon^3}&amp;\\
+              0 \ar[r]&amp; A^1 \ar[r]_i &amp; A^2\ar[r]_p &amp;A^3 \ar[r]&amp;0
+              }
+            \]</article><article class="hiddenproof" id="proof-8"><a knowl="./knowl/proof-8.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-8" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            By induction: To get \(\epsilon^2 \colon P_0^i \oplus P_0^3 \to A^2\) we use \(i\) and \(\epsilon^1\) and a lift of \(p\).
+            Now the <a knowl="./knowl/lemma-snake.html" knowl-id="xref-lemma-snake" title="Snake lemma">Snake lemma&nbsp;1.4.6</a> shows that \(\coker \epsilon^i\) and \(\ker \epsilon^i\) fit into a long exact sequence and hence \(\coker \epsilon^3 = 0\).
+            Now apply the induction assumption to the short exact sequence of kernels 
+            \[
+              0 \to \ker \epsilon^1 \to \ker \epsilon^2\to \ker \epsilon^3 \to \coker \epsilon^1 = 0.
+            \]</article></div><div class="context-link" style="text-align:right;"><a href="sec-derived-proofs.html#lemma-horse">(in-context)</a></div>

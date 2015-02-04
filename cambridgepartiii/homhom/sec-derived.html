@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HH The Derived Category</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "[Contrib]/xyjax/xypic.js"],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+    \DeclareMathOperator{\Coh}{Coh}
+    \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\cHom}{\underline{Hom}}
+    \DeclareMathOperator{\Tor}{Tor}
+    \DeclareMathOperator{\Ext}{Ext}
+    \DeclareMathOperator{\inj}{inj}
+    \DeclareMathOperator{\id}{id}
+    \DeclareMathOperator{\im}{im}
+    \DeclareMathOperator{\coim}{coim}
+    \DeclareMathOperator{\coker}{coker}
+    \DeclareMathOperator{\eq}{eq}
+    \DeclareMathOperator{\op}{op}
+    \DeclareMathOperator{\coeq}{coeq}
+    \DeclareMathOperator{\cone}{cone}
+    \DeclareMathOperator{\Ch}{Ch}
+    \DeclareMathOperator{\Ab}{\text{Ab}}
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\PP}{\mathbf{P}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\Rmod}{R\text{mod}}
+    \DeclareMathOperator{\cA}{\mathcal{A}}
+    \DeclareMathOperator{\cB}{\mathcal{B}}
+    \DeclareMathOperator{\cC}{\mathcal{C}}
+    \DeclareMathOperator{\cO}{\mathcal{O}}
+    \DeclareMathOperator{\dd}{\partial}
+    \DeclareMathOperator{\Mat}{Mat}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
+<h1 class="heading"><span class="title">Part III Homological and Homotopical Algebra 2014</span></h1>
+<p class="byline"></p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="sec-derived-proofs.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-total-derived.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-derived-proofs.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-total-derived.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link active"><a href="chap-hom-alg.html"><span class="codenumber">1</span><span class="title">Elements of Homological Algebra</span></a></h2>
+<ul>
+<li><a href="sec-introduction.html">Introduction</a></li>
+<li><a href="sec-motivation.html">Motivation</a></li>
+<li><a href="sec-cats.html">Categorical notions</a></li>
+<li><a href="sec-chain-complexes.html">Chain complexes</a></li>
+<li><a href="sec-exact.html">Exact Functors</a></li>
+<li><a href="sec-derived-intro.html">Derived Functors, Introduction</a></li>
+<li><a href="sec-derived-proofs.html">Derived Functors, Proofs</a></li>
+<li><a href="sec-derived.html" class="active">The Derived Category</a></li>
+<li><a href="sec-total-derived.html">Total derived functors</a></li>
+</ul>
+<h2 class="link"><a href="chap-apps.html"><span class="codenumber">2</span><span class="title">Applications</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-spec-seq.html"><span class="codenumber">3</span><span class="title">Spectral Sequences</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-model-cats.html"><span class="codenumber">4</span><span class="title">Model Categories</span></a></h2>
+<ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-derived"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">1.8</span><span class="title">The Derived Category</span>
+</h1></header><p>
+          Idea: We want to talk about complexes up to quasi-isomorphism.
+          We will reinterpret derived functors as ways of lifting functors to derived categories.
+        </p>
+<article class="example-like" id="remark-1"><h5 class="heading">
+<span class="type">Remark</span><span class="codenumber">1.8.1</span>
+</h5>
+            If we add simply inverses of quasi-isomorphisms we get nasty stuff!
+          </article><article class="definition-like" id="definition-21"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.8.2</span><span class="title">Homotopy categories</span>
+</h5>
+            Let the homotopy category \(K(\cA)\) of \(\cA\) have objects the objects of \(\Ch(\cA)\) and morphism the chain homotopy classes of chain maps.
+            We can add boundedness conditions to our categories.
+            So we let \(\Ch_{+}(\cA)\) be only those chain complexes \(A\) with \(A_n = 0\) when \(n \lt \lt 0\), these are <em class="terminology">bounded below</em> chain complexes.
+            Similarly we define \(\Ch_-(\cA)\) and \(\Ch_b(\cA) = \Ch_-(\cA) \cap \Ch_+(\cA)\).
+            We also define \(\Ch^+(\cA)\) etc. for cochain complexes.
+            Finally we define \(K^+(\cA)\) etc. in the obvious way.
+          </article><article class="definition-like" id="definition-22"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.8.3</span><span class="title">Localisations of categories</span>
+</h5>
+            Given a category \(\cC\) and a class of morphisms \(S\) define the localisation of \(\cC\) at \(S\) to be a category \(\cC[S^{-1}]\) with a functor \(\cC \xrightarrow{Q} \cC[S^{-1}]\) such that \(Q\) sends any \(s\in S\) to an isomorphism, and also such that \(Q\) is universal with respect to having this property.
+            If \(\cC \xrightarrow{R} \cB\) sends \(S\) to isomorphisms then there exists some \(P\) so that we have
+            \[
+              \xymatrix{
+              \cC \ar[rr]^R\ar[dr]_Q &amp;&amp;\cB\\
+              &amp;\cC[S^{-1}] \ar[ur]_{P}&amp;
+              }
+            \]</article><article class="definition-like" id="definition-23"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.8.4</span>
+</h5>
+            Let \(D(\cA)\), the <em class="terminology">derived category</em> of \(\cA\), be the localisation of \(K(\cA)\) at the quasi-isomorphisms.
+            Similarly define the usual suspects \(D^b = K^b(\cA)[\text{quasi-isomorphisms}]\), etc.
+          </article><article class="theorem-like" id="theorem-3"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">1.8.5</span>
+</h5>\(D(\cA)\) exists.
+          </article><article class="hiddenproof" id="proof-11"><a knowl="./knowl/proof-11.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-11" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">See Weibel 10.3, Gelfand-Manin III 2. </article></div>
+<p>
+          Although we didn't prove this we should note that we can write morphisms in \(D(\cA)\) as 
+          \[
+            A \xleftarrow{\sim} A' \xrightarrow{f} B
+          \]
+          with \(f\in \Hom_{K(\cA)}(A', B)\) and \(q\in \Hom_{K(\cA)}(A', A)\).
+        </p>
+<article class="example-like" id="remark-2"><h5 class="heading">
+<span class="type">Remark</span><span class="codenumber">1.8.6</span>
+</h5>\(D^b(\cA)\) is equivalent to the subcategory of \(D(\cA)\) with cohomology in bounded degrees.
+          </article><article class="example-like" id="example-13"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.8.7</span>
+</h5>
+            Let \(X\) be a scheme, \(\Coh(X)\) the abelian category of coherent sheaves on \(X\).
+            Then the derived category of \(X\) is defined to be \(D^b(X) = D^b(\Coh(X))\).
+          </article><p>
+          Note that \(D(\cA)\) is an additive, but not necessarily abelian category.
+        </p>
+<article class="theorem-like" id="thm-inj-der-hom"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">1.8.8</span>
+</h5>
+            Given a complex \(I^\bullet \in K^+(\cA)\) of injective objects and any chain complex \(A^\bullet\) then \[\Hom_{D(\cA)}(A^\bullet , I^\bullet) \cong \Hom_{K(\cA)}(A^\bullet, I^\bullet).\]</article><article class="hiddenproof" id="proof-12"><a knowl="./knowl/proof-12.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-12" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            (Sketch) Crucial ingredient: \(\Hom_{K(\cA)}(-, I ^\bullet)\) sends quasi-isomorphisms to quasi-isomorphisms.
+            So we can replace 
+            \[
+              A \xleftarrow{\sim} A' \xrightarrow{} I
+            \]
+            by \(A \to I\).
+            By considering cones it suffices to check that \(\cHom_{K(\cA)}(-, I)\) sends acyclics to complexes homotopy equivalent to \(0\).
+            One can construct the homotopy equivalence by hand, using injectivity.
+          </article></div>
+<article class="theorem-like" id="corollary-5"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">1.8.9</span>
+</h5>\[
+              \Hom_{D(\cA)}(A,B[i]) = \Ext^i_{\cA}(A,B).
+            \]</article><article class="hiddenproof" id="proof-13"><a knowl="./knowl/proof-13.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-13" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            Let \(B \to I^\bullet\) be an injective resolution.
+            Then both sides are isomorphic to 
+            \[
+              \Hom_{K(\cA)}(A,I[i]) = H^0 \cHom_{K(\cA)}(A, I[i]).
+            \]</article></div>
+<article class="theorem-like" id="corollary-6"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">1.8.10</span>
+</h5>
+            Assume \(\cA\) has enough injectives and write \(\inj \cA \subset \cA\) for the full subcategory of injective objects.
+            Then
+            \[
+              K^+(\inj \cA) \cong D^+(\cA).
+            \]</article><article class="hiddenproof" id="proof-14"><a knowl="./knowl/proof-14.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-14" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            We have fully faithfullnes by <a knowl="./knowl/thm-inj-der-hom.html" knowl-id="xref-thm-inj-der-hom" title="">1.8.8</a>.
+            To see that it is essentially surjective write down injective resolutions for complexes (see later).
+          </article></div></section></div></main>
+</div>
+</body>
+</html>

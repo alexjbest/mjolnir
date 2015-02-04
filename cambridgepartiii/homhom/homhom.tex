@@ -1,5 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
+%%    on 2015-02-04T23:34:55Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -57,12 +58,14 @@
 %% i.e. Corollary 4.3 follows Theorem 4.2
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
 %% Definition-like environments, normal text
 %% Numbering for definition, examples is in sync with theorems, etc
 %% also for free-form exercises, not in exercise sections
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
 %% Equation Numbering
 %% Controlled by  numbering.equations.level  processing parameter
 \numberwithin{equation}{section}
@@ -99,19 +102,22 @@
 %% Custom Preamble Entries, late (use latex.preamble.late)
 \usepackage[all]{xy}
 %% Convenience macros
+\DeclareMathOperator{\Coh}{Coh}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\cHom}{\underline{Hom}}
 \DeclareMathOperator{\Tor}{Tor}
 \DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\inj}{inj}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\coim}{coim}
 \DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\eq}{eq}
+\DeclareMathOperator{\op}{op}
 \DeclareMathOperator{\coeq}{coeq}
 \DeclareMathOperator{\cone}{cone}
 \DeclareMathOperator{\Ch}{Ch}
-\DeclareMathOperator{\Abgp}{\text{Abgp}}
+\DeclareMathOperator{\Ab}{\text{Ab}}
 \DeclareMathOperator{\CC}{\mathbf{C}}
 \DeclareMathOperator{\PP}{\mathbf{P}}
 \DeclareMathOperator{\QQ}{\mathbf{Q}}
@@ -120,8 +126,10 @@
 \DeclareMathOperator{\Rmod}{R\text{mod}}
 \DeclareMathOperator{\cA}{\mathcal{A}}
 \DeclareMathOperator{\cB}{\mathcal{B}}
+\DeclareMathOperator{\cC}{\mathcal{C}}
 \DeclareMathOperator{\cO}{\mathcal{O}}
 \DeclareMathOperator{\dd}{\partial}
+\DeclareMathOperator{\Mat}{Mat}
 %% Title page information for book
 \title{Part III Homological and Homotopical Algebra 2014}
 \author{}
@@ -165,7 +173,7 @@ The recommended books are:
         %
 \par
 
-          Generated: January 23, 2015, 01:57:58 (Z)
+          Generated: February 4, 2015, 23:34:55 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Motivation}
@@ -237,7 +245,7 @@ A sequence of morphisms \[A\xrightarrow{f} B \xrightarrow{g}C\] in \(\cA\) is \t
 \begin{definition}[Mono and epi morphisms]\label{definition-4}
 A morphism \(f\) is a \terminology{monomorphism} if \(fg = fh \implies g=h\) and it is an \terminology{epimorphism} if \(gf = hf \implies g=h\).\end{definition}
 \begin{example}\label{example-4}
-In \(\Abgp\) the following are exact sequences:
+In \(\Ab\) the following are exact sequences:
               \begin{gather*}
 0\to \ZZ/2 \to \ZZ/2 \oplus \ZZ/2 \to \ZZ/2 \to 0\\
 0\to \ZZ/2 \to \ZZ/4\to \ZZ/2 \to 0\\
@@ -276,7 +284,7 @@ We now have formed the \terminology{category of chain complexes} \(\Ch(\cA)\) us
           Define \(f_*\colon H_n A \to H_n B\) in the natural wat and check it works.
           \(H_n\) is additive.
         %
-\begin{lemma}[Snake lemma]\label{lemma-1}
+\begin{lemma}[Snake lemma]\label{lemma-snake}
 Let \(0\to A \to B \to C \to 0\) be a short exact sequence then there exist natural boundary maps \(\dd_n\) which fit into a long exact sequence of homology objects
             \begin{figure}
 \centering
@@ -347,6 +355,373 @@ Any chain homotopy equivalence is a quasi-isomorphism, the converse is false how
 \begin{definition}[Cones]\label{definition-15}
 
             Given \(f\colon A \to B\) we define a chain complex called the \terminology{cone} of \(f\) by \(\cone(f)_n = A_{n-1} \oplus B_n\) with maps \[d = \begin{pmatrix}-d_A & 0 \\ -f & d_B\end{pmatrix}.\]\end{definition}
+\par
+
+          Note that there exists a short exact sequence
+          \[
+            \xymatrix{B \ar[r]_{b\mapsto (0,b)}& \cone(f) \ar[r]_{(a,b)\mapsto -a}& A[-1].}
+          \]
+          Doing the diagram chase of the \hyperref[lemma-snake]{Snake lemma~\ref*{lemma-snake}} we see that the boundary map is induced by \(f\) on homology i.e. \[f_*\colon H_{n-1}A \to H_{n-1}B.\]
+          This proves the following.
+        %
+\begin{lemma}\label{lemma-3}
+\(f\) is a quasi-isomorphism if and only if \(\cone(f)\) is exact.\end{lemma}
+\begin{proof}
+
+            Look at the long exact sequence of \(B \to \cone(f) \to A[-1]\)\[
+              H_{n}(\cone(f)) \to H_n(A) \xrightarrow{f_*} H_{n-1}(B) \to H_{n-1}(\cone(f)).
+            \]\end{proof}
+\typeout{************************************************}
+\typeout{Section 1.5 Exact Functors}
+\typeout{************************************************}
+\section[Exact Functors]{Exact Functors}\label{sec-exact}
+\begin{definition}[Exact functors]\label{definition-16}
+An additive functor \(F\) is \terminology{exact} if it preserves short exact sequences.
+            It is \terminology{left exact} if it sends a short exact sequence of the form
+            \[
+              0\to A \to B \to C \to 0
+            \]
+            to an exact sequence
+            \[
+              0 \to FA \to FB \to FC.
+            \]
+            We have a similar definition for \terminology{right exact}.
+          \end{definition}
+\begin{example}\label{example-7}
+
+            The functor \(\Hom_{\cA}(M, -)\) is left exact from \(\cA\) to \(\Ab = \ZZ\text{mod}\).
+            The functor \(\Hom_{\cA}( -, M)\colon \cA^{\op} \to\Ab\) is left exact.\newline{}\end{example}
+
+          Note that left adjoint functors are right exact as they preserve colimits.
+        %
+\begin{example}\label{example-8}
+
+            Let \(M\) be an \(R,S\)-bimodule (i.e. a left \(R\)-module and a right \(S\)-module).
+            Then for \(A \in S\text{mod}\), \(B\in \Rmod\)\[
+              \Hom_{R}(M \otimes_S A, B) \cong Hom_{S}(M, \Hom_R(A,B))
+            \]\end{example}
+\par
+
+          Clearly not all functors are exact.
+          However they all preserve split exact sequences, i.e. those of the form
+          \[0 \to A \to A\oplus C \to C.\]
+          Because they preserve finite direct sums
+          \[
+            \xymatrix{
+              A \ar@<-0.5ex>[r]_f \ar@{=}[d]& B\ar@<-0.5ex>[l]_r \ar@<-0.5ex>[d]_{(f,g)}  \ar@<-0.5ex>[r]_g & C\ar@<-0.5ex>[l]_s \ar@{=}[d]\\
+              A \ar[r]& A \oplus C \ar@<-0.5ex>[u]_{(r,s)}\ar[r] &C
+            }
+          \]
+          \((r,g),(f,s)\) are inverse isomorphisms if and only if \(_B = fr + sg\). 
+        %
+\typeout{************************************************}
+\typeout{Section 1.6 Derived Functors, Introduction}
+\typeout{************************************************}
+\section[Derived Functors, Introduction]{Derived Functors, Introduction}\label{sec-derived-intro}
+
+          We fix \(\cA\), and \(\Ch(\cA)\).
+          If we have some right exact functor \(F\) we obtain exact sequences of the form
+          \[FA \to FB \to FC \to 0\]
+          and the question arises, can we extend this exact sequence by placing objects to the left of it?\newline{}
+          If \(F\) is exact on short exact sequences of complexes we get a long exact sequence of homology \(H_iFA\).
+          \(F\) is exact on complexes if it is level wise exact, but \(F\) is exact if it is level wise exact.
+          We know \(F\) is exact on split exact sequences.
+          So we can try to force a short exact sequence to be exact by replacing objects by complexes.
+        %
+\begin{definition}[Projective and injective objects]\label{definition-17}
+
+            An object \(M\) is \terminology{projective} if for all epimorphisms \(q\) and maps \(M \xrightarrow{f} B\) there exists a lift making
+            \[
+              \xymatrix{ & M \ar[d]_f \ar@{-->}[dl]&\\
+              A \ar[r]^q &B \ar[r] & 0}
+            \]
+            commute.
+            The dual notion is called \terminology{injective}\[
+              \xymatrix{ & I&\\
+              0 \ar[r] &B \ar[u] \ar[r] & A  \ar@{-->}[ul]}
+            \]\end{definition}
+\begin{example}\label{example-9}
+
+            Free modules in \(\Rmod\) are projective.
+            In \(\Mat_n(R)\text{-mod}\) the column vectors \(R^n\) form a projective object.
+            \(\QQ\) is injective in \(\Ab\).
+          \end{example}
+\begin{lemma}\label{lemma-proj-inj-split}
+
+            If \(C\) is projective or \(A\) is injective then
+            \[
+              0 \to A \to B \to C \to 0
+            \]
+            is split.
+          \end{lemma}
+\begin{proof}
+
+            (We prove the \(C\) projective case) Consider 
+            \[
+              \xymatrix{ & C \ar@{=}[d]_f \ar[dl]^s&\\
+              B \ar[r]^q &C \ar[r] & 0}
+            \]
+            then \(gs = 1\).
+            Now produce \(r\) such that \(rf = 1_A\), \(fr + sg = 1_B\) and \(rs = 0\).
+            Let \(h  = 1 -sg\).
+            Now \(gh = 0\) giving that \(h = fr\) by the properties of the kernel.
+            \[
+              \xymatrix{B \ar[rr]^h\ar[rd]^{\exists ! r} &&B \ar[r]^g &C \\ & A \ar[ur] &}
+            \]
+            Now check \(rf = 1_A\) and \(rs = 0\).
+          \end{proof}
+\par
+
+          Note that in \(\Rmod\) this shows projectives are exactly summands of free modules.
+          
+        %
+\begin{definition}[Projective resolutions]\label{definition-18}
+
+            A \terminology{projective resolution}\(P_\bullet \xrightarrow{\epsilon} A\) of \(A\) is a non-negative chain comlex such that all \(P_i\) are projective and \(\epsilon\) is a quasi-isomorphism.
+            So \(H_i P = 0\) if \(i \gt 0\) and \(H_0 P = A\).
+          \end{definition}
+\begin{definition}[Derived functors]\label{definition-19}
+
+            The \(i\)th \terminology{left derived functor}\(L_i F(A)\) of a right exact functor \(F\) is defined as \(H_iF(P)\) for some projective resolution \(P\) of \(A\).\newline{}\end{definition}
+\par
+
+          Dually we may define injective resolutions \(B \xrightarrow{\sim} I^\bullet\) with \(I \in \Ch^{\ge 0}(\cA)\) and we get \terminology{right derived functors} of a left exact functor,
+          \[
+            R^i F(B) = H^i (FI ).
+          \]
+          Note \(L_{\lt 0} F(A) = 0\) and \(L_0= fP_0 / FP_1 = F(P_0/P_1) = F(A)\).
+        %
+\begin{example}[\(\Tor\)]\label{example-10}
+
+            Define \(\Tor^R_i(A, B)\) to be \(L_i(- \otimes_R B)(A)\).
+            Let \(\cA = \Ab\). What is \(\Tor_i(\ZZ/p , B)\)?
+            \[
+              \xymatrix{\ZZ\ar[d]^p &\\ \ZZ \ar[r]^{\sim} &\ZZ_p}
+            \]
+            is a projective resolution.
+            So \(\Tor_* = H_*(B \xrightarrow{p} B)\) and we have \(\Tor^{\ZZ}_0 (\ZZ/p, B) = B/pB\) and \(\Tor^{\ZZ}_1(\ZZ/p, B) = {}_pB = \{b : pb = 0\}\).
+          \end{example}
+\begin{example}[\(\Ext\)]\label{example-11}
+
+            Define \(\Ext^i_R(A, B)\) to be \(R^i\Hom_R(-, B)(A)\).
+            Injective in \(\Rmod^{\op}\) correspond to projectives in \(\Rmod\).
+            So \(\Ext_{\ZZ}^*i(\ZZ/p\ZZ, B) = H_*(B \xrightarrow{p} B)\) hence \(\Ext^0 (\ZZ/p, B) = {}_pB\) and \(\Ext^1(\ZZ/p, B) = B/pB\).
+          \end{example}
+\typeout{************************************************}
+\typeout{Section 1.7 Derived Functors, Proofs}
+\typeout{************************************************}
+\section[Derived Functors, Proofs]{Derived Functors, Proofs}\label{sec-derived-proofs}
+\begin{definition}\label{definition-20}
+\(\cA\) has \terminology{enough projectives} if for all \(M\in \cA\) there exists a projective \(P\) such that \(P \to M \to 0\).\end{definition}
+\begin{example}\label{example-12}
+\(\Rmod\) has enough projectives.
+          \end{example}
+
+          Warning: The category of abelian sheaves on a topological space does not have enough projectives in general.
+        %
+\begin{lemma}\label{lemma-5}
+
+            Projective resolutions exist in \(\cA\) if \(\cA\) has enough projectives.
+          \end{lemma}
+\begin{proof}
+
+            Let \(A\in \cA\), then there exists
+            \[
+              0 \to K_0 \to P_0 \to A \to 0
+            \]
+            and inductively
+            \[
+              0 \to K_{n+1} \to P_{n+1} \to K_n \to 0
+            \]
+            with \(P_i\) projective.
+            We can splice these together to get 
+            \[
+              \cdots \to P_2 \to P_1 \to P_0 \to A \to 0.
+            \]\end{proof}
+\begin{theorem}[Comparison Theorem]\label{theorem-2}
+
+            Let \(\epsilon \colon P \to M\) and \(\eta \colon Q \to N\) be two projective resolutions and let \(f\colon M \to N\) then there exists a lift \(\tilde{f} \colon P \to Q\) (a chain map) unique up to chain homotopy.
+            \[
+              \xymatrix{
+                P_1 \ar[d] & Q_1\ar[d]\\
+                P_0 \ar[d] & Q_0\ar[d]\\
+                M \ar[r]^{f} & N\\
+              }
+            \]\end{theorem}
+\begin{proof}
+Exercise.\end{proof}
+\begin{corollary}\label{corollary-2}
+
+            Projective resolutions are well defined up to chain homotopy equivalence and so derived functors are well defined.
+          \end{corollary}
+\begin{proof}
+
+            Lift the identity to get chain maps in both directions.
+            Uniqueness implies that they are inverse up to homotopy.
+          \end{proof}
+\begin{corollary}\label{corollary-3}
+\(L_iF\) are functors.
+          \end{corollary}
+\begin{lemma}[Horseshoe Lemma]\label{lemma-horse}
+
+            Given a short exact sequence
+            \[
+              A^1 \to A^2 \to A^3
+            \]
+            and projective resolutions \(P^1 \to A^1\) and \(P^3 \to A^3\) there exists a projective resolution \(P^2\) of \(A^2\) with \(P^2_i = P^1_i \oplus P^3_i\) and the inclusion and projection maps lift.
+            So we have the following situation
+            \[
+              \xymatrix{
+              &P_1^1 \ar[d] & P_1^2 \ar[d]&P_1^3\ar[d]&\\
+              &P_0^1 \ar[d]_{\epsilon^1} & P_0^2 \ar[d]_{\epsilon^2}&P_0^3\ar[d]_{\epsilon^3}&\\
+              0 \ar[r]& A^1 \ar[r]_i & A^2\ar[r]_p &A^3 \ar[r]&0
+              }
+            \]\end{lemma}
+\begin{proof}
+
+            By induction: To get \(\epsilon^2 \colon P_0^i \oplus P_0^3 \to A^2\) we use \(i\) and \(\epsilon^1\) and a lift of \(p\).
+            Now the \hyperref[lemma-snake]{Snake lemma~\ref*{lemma-snake}} shows that \(\coker \epsilon^i\) and \(\ker \epsilon^i\) fit into a long exact sequence and hence \(\coker \epsilon^3 = 0\).
+            Now apply the induction assumption to the short exact sequence of kernels 
+            \[
+              0 \to \ker \epsilon^1 \to \ker \epsilon^2\to \ker \epsilon^3 \to \coker \epsilon^1 = 0.
+            \]\end{proof}
+\begin{corollary}\label{corollary-4}
+
+            A short exact sequence \(0 \to A \to B \to C \to 0\) in \(\cA\) gives a long exact sequence of left derived functors
+            \[
+              \to L_2FC \to L_1FA \to L_1 FB \to L_1FC\to FA \to FB \to FC \to 0.
+            \]\end{corollary}
+\begin{proof}
+
+            Combine \hyperref[lemma-horse]{Horseshoe Lemma~\ref*{lemma-horse}}, \ref{lemma-proj-inj-split} and \hyperref[lemma-snake]{Snake lemma~\ref*{lemma-snake}}.
+          \end{proof}
+\begin{proposition}\label{proposition-1}
+
+            The boundary map \(\dd\) is natural, i.e. given 
+            \[
+              \xymatrix{
+                A^1 \ar[r]\ar[d]^{f^1} &
+                A^2 \ar[r]\ar[d]^{f^2} &
+                A^2 \ar[d]^{f^3} \\
+                B^1 \ar[r] &
+                B^2 \ar[r] &
+                B^3 \\
+              }
+            \]
+            we have lifts \(\dd\circ L_i f_3 = L_{i-1} f_1 \circ \dd\).
+          \end{proposition}
+\begin{proof}
+See Weibel theorem 2.4.6 \end{proof}
+\par
+
+          Note that there is no extra work needed to do all of this for right derived functors.
+        %
+\typeout{************************************************}
+\typeout{Section 1.8 The Derived Category}
+\typeout{************************************************}
+\section[The Derived Category]{The Derived Category}\label{sec-derived}
+
+          Idea: We want to talk about complexes up to quasi-isomorphism.
+          We will reinterpret derived functors as ways of lifting functors to derived categories.
+        %
+\begin{remark}\label{remark-1}
+
+            If we add simply inverses of quasi-isomorphisms we get nasty stuff!
+          \end{remark}
+\begin{definition}[Homotopy categories]\label{definition-21}
+
+            Let the homotopy category \(K(\cA)\) of \(\cA\) have objects the objects of \(\Ch(\cA)\) and morphism the chain homotopy classes of chain maps.
+            We can add boundedness conditions to our categories.
+            So we let \(\Ch_{+}(\cA)\) be only those chain complexes \(A\) with \(A_n = 0\) when \(n \lt \lt 0\), these are \terminology{bounded below} chain complexes.
+            Similarly we define \(\Ch_-(\cA)\) and \(\Ch_b(\cA) = \Ch_-(\cA) \cap \Ch_+(\cA)\).
+            We also define \(\Ch^+(\cA)\) etc. for cochain complexes.
+            Finally we define \(K^+(\cA)\) etc. in the obvious way.
+          \end{definition}
+\begin{definition}[Localisations of categories]\label{definition-22}
+
+            Given a category \(\cC\) and a class of morphisms \(S\) define the localisation of \(\cC\) at \(S\) to be a category \(\cC[S^{-1}]\) with a functor \(\cC \xrightarrow{Q} \cC[S^{-1}]\) such that \(Q\) sends any \(s\in S\) to an isomorphism, and also such that \(Q\) is universal with respect to having this property.
+            If \(\cC \xrightarrow{R} \cB\) sends \(S\) to isomorphisms then there exists some \(P\) so that we have
+            \[
+              \xymatrix{
+              \cC \ar[rr]^R\ar[dr]_Q &&\cB\\
+              &\cC[S^{-1}] \ar[ur]_{P}&
+              }
+            \]\end{definition}
+\begin{definition}\label{definition-23}
+
+            Let \(D(\cA)\), the \terminology{derived category} of \(\cA\), be the localisation of \(K(\cA)\) at the quasi-isomorphisms.
+            Similarly define the usual suspects \(D^b = K^b(\cA)[\text{quasi-isomorphisms}]\), etc.
+          \end{definition}
+\begin{theorem}\label{theorem-3}
+\(D(\cA)\) exists.
+          \end{theorem}
+\begin{proof}
+See Weibel 10.3, Gelfand-Manin III 2. \end{proof}
+\par
+
+          Although we didn't prove this we should note that we can write morphisms in \(D(\cA)\) as 
+          \[
+            A \xleftarrow{\sim} A' \xrightarrow{f} B
+          \]
+          with \(f\in \Hom_{K(\cA)}(A', B)\) and \(q\in \Hom_{K(\cA)}(A', A)\).
+        %
+\begin{remark}\label{remark-2}
+\(D^b(\cA)\) is equivalent to the subcategory of \(D(\cA)\) with cohomology in bounded degrees.
+          \end{remark}
+\begin{example}\label{example-13}
+
+            Let \(X\) be a scheme, \(\Coh(X)\) the abelian category of coherent sheaves on \(X\).
+            Then the derived category of \(X\) is defined to be \(D^b(X) = D^b(\Coh(X))\).
+          \end{example}
+\par
+
+          Note that \(D(\cA)\) is an additive, but not necessarily abelian category.
+        %
+\begin{theorem}\label{thm-inj-der-hom}
+
+            Given a complex \(I^\bullet \in K^+(\cA)\) of injective objects and any chain complex \(A^\bullet\) then \[\Hom_{D(\cA)}(A^\bullet , I^\bullet) \cong \Hom_{K(\cA)}(A^\bullet, I^\bullet).\]\end{theorem}
+\begin{proof}
+
+            (Sketch) Crucial ingredient: \(\Hom_{K(\cA)}(-, I ^\bullet)\) sends quasi-isomorphisms to quasi-isomorphisms.
+            So we can replace 
+            \[
+              A \xleftarrow{\sim} A' \xrightarrow{} I
+            \]
+            by \(A \to I\).
+            By considering cones it suffices to check that \(\cHom_{K(\cA)}(-, I)\) sends acyclics to complexes homotopy equivalent to \(0\).
+            One can construct the homotopy equivalence by hand, using injectivity.
+          \end{proof}
+\begin{corollary}\label{corollary-5}
+\[
+              \Hom_{D(\cA)}(A,B[i]) = \Ext^i_{\cA}(A,B).
+            \]\end{corollary}
+\begin{proof}
+
+            Let \(B \to I^\bullet\) be an injective resolution.
+            Then both sides are isomorphic to 
+            \[
+              \Hom_{K(\cA)}(A,I[i]) = H^0 \cHom_{K(\cA)}(A, I[i]).
+            \]\end{proof}
+\begin{corollary}\label{corollary-6}
+
+            Assume \(\cA\) has enough injectives and write \(\inj \cA \subset \cA\) for the full subcategory of injective objects.
+            Then
+            \[
+              K^+(\inj \cA) \cong D^+(\cA).
+            \]\end{corollary}
+\begin{proof}
+
+            We have fully faithfullnes by \ref{thm-inj-der-hom}.
+            To see that it is essentially surjective write down injective resolutions for complexes (see later).
+          \end{proof}
+\typeout{************************************************}
+\typeout{Section 1.9 Total derived functors}
+\typeout{************************************************}
+\section[Total derived functors]{Total derived functors}\label{sec-total-derived}
+We now interpret/redefine derived functors as lifts to the derived category.%
+\begin{definition}\label{definition-24}
+
+            Let \(F\colon\)\end{definition}
 \typeout{************************************************}
 \typeout{Chapter 2 Applications}
 \typeout{************************************************}

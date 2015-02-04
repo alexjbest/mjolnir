@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HH Derived Functors, Introduction</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "[Contrib]/xyjax/xypic.js"],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+    \DeclareMathOperator{\Coh}{Coh}
+    \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\cHom}{\underline{Hom}}
+    \DeclareMathOperator{\Tor}{Tor}
+    \DeclareMathOperator{\Ext}{Ext}
+    \DeclareMathOperator{\inj}{inj}
+    \DeclareMathOperator{\id}{id}
+    \DeclareMathOperator{\im}{im}
+    \DeclareMathOperator{\coim}{coim}
+    \DeclareMathOperator{\coker}{coker}
+    \DeclareMathOperator{\eq}{eq}
+    \DeclareMathOperator{\op}{op}
+    \DeclareMathOperator{\coeq}{coeq}
+    \DeclareMathOperator{\cone}{cone}
+    \DeclareMathOperator{\Ch}{Ch}
+    \DeclareMathOperator{\Ab}{\text{Ab}}
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\PP}{\mathbf{P}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\Rmod}{R\text{mod}}
+    \DeclareMathOperator{\cA}{\mathcal{A}}
+    \DeclareMathOperator{\cB}{\mathcal{B}}
+    \DeclareMathOperator{\cC}{\mathcal{C}}
+    \DeclareMathOperator{\cO}{\mathcal{O}}
+    \DeclareMathOperator{\dd}{\partial}
+    \DeclareMathOperator{\Mat}{Mat}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
+<h1 class="heading"><span class="title">Part III Homological and Homotopical Algebra 2014</span></h1>
+<p class="byline"></p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="sec-exact.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-derived-proofs.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-exact.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-derived-proofs.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link active"><a href="chap-hom-alg.html"><span class="codenumber">1</span><span class="title">Elements of Homological Algebra</span></a></h2>
+<ul>
+<li><a href="sec-introduction.html">Introduction</a></li>
+<li><a href="sec-motivation.html">Motivation</a></li>
+<li><a href="sec-cats.html">Categorical notions</a></li>
+<li><a href="sec-chain-complexes.html">Chain complexes</a></li>
+<li><a href="sec-exact.html">Exact Functors</a></li>
+<li><a href="sec-derived-intro.html" class="active">Derived Functors, Introduction</a></li>
+<li><a href="sec-derived-proofs.html">Derived Functors, Proofs</a></li>
+<li><a href="sec-derived.html">The Derived Category</a></li>
+<li><a href="sec-total-derived.html">Total derived functors</a></li>
+</ul>
+<h2 class="link"><a href="chap-apps.html"><span class="codenumber">2</span><span class="title">Applications</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-spec-seq.html"><span class="codenumber">3</span><span class="title">Spectral Sequences</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-model-cats.html"><span class="codenumber">4</span><span class="title">Model Categories</span></a></h2>
+<ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-derived-intro"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">1.6</span><span class="title">Derived Functors, Introduction</span>
+</h1></header><p>
+          We fix \(\cA\), and \(\Ch(\cA)\).
+          If we have some right exact functor \(F\) we obtain exact sequences of the form
+          \[FA \to FB \to FC \to 0\]
+          and the question arises, can we extend this exact sequence by placing objects to the left of it?<br>
+          If \(F\) is exact on short exact sequences of complexes we get a long exact sequence of homology \(H_iFA\).
+          \(F\) is exact on complexes if it is level wise exact, but \(F\) is exact if it is level wise exact.
+          We know \(F\) is exact on split exact sequences.
+          So we can try to force a short exact sequence to be exact by replacing objects by complexes.
+        </p>
+<article class="definition-like" id="definition-17"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.6.1</span><span class="title">Projective and injective objects</span>
+</h5>
+            An object \(M\) is <em class="terminology">projective</em> if for all epimorphisms \(q\) and maps \(M \xrightarrow{f} B\) there exists a lift making
+            \[
+              \xymatrix{ &amp; M \ar[d]_f \ar@{--&gt;}[dl]&amp;\\
+              A \ar[r]^q &amp;B \ar[r] &amp; 0}
+            \]
+            commute.
+            The dual notion is called <em class="terminology">injective</em>\[
+              \xymatrix{ &amp; I&amp;\\
+              0 \ar[r] &amp;B \ar[u] \ar[r] &amp; A  \ar@{--&gt;}[ul]}
+            \]</article><article class="example-like" id="example-9"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.6.2</span>
+</h5>
+            Free modules in \(\Rmod\) are projective.
+            In \(\Mat_n(R)\text{-mod}\) the column vectors \(R^n\) form a projective object.
+            \(\QQ\) is injective in \(\Ab\).
+          </article><article class="theorem-like" id="lemma-proj-inj-split"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">1.6.3</span>
+</h5>
+            If \(C\) is projective or \(A\) is injective then
+            \[
+              0 \to A \to B \to C \to 0
+            \]
+            is split.
+          </article><article class="hiddenproof" id="proof-4"><a knowl="./knowl/proof-4.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-4" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            (We prove the \(C\) projective case) Consider 
+            \[
+              \xymatrix{ &amp; C \ar@{=}[d]_f \ar[dl]^s&amp;\\
+              B \ar[r]^q &amp;C \ar[r] &amp; 0}
+            \]
+            then \(gs = 1\).
+            Now produce \(r\) such that \(rf = 1_A\), \(fr + sg = 1_B\) and \(rs = 0\).
+            Let \(h  = 1 -sg\).
+            Now \(gh = 0\) giving that \(h = fr\) by the properties of the kernel.
+            \[
+              \xymatrix{B \ar[rr]^h\ar[rd]^{\exists ! r} &amp;&amp;B \ar[r]^g &amp;C \\ &amp; A \ar[ur] &amp;}
+            \]
+            Now check \(rf = 1_A\) and \(rs = 0\).
+          </article></div>
+<p>
+          Note that in \(\Rmod\) this shows projectives are exactly summands of free modules.
+          
+        </p>
+<article class="definition-like" id="definition-18"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.6.4</span><span class="title">Projective resolutions</span>
+</h5>
+            A <em class="terminology">projective resolution</em>\(P_\bullet \xrightarrow{\epsilon} A\) of \(A\) is a non-negative chain comlex such that all \(P_i\) are projective and \(\epsilon\) is a quasi-isomorphism.
+            So \(H_i P = 0\) if \(i \gt 0\) and \(H_0 P = A\).
+          </article><article class="definition-like" id="definition-19"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.6.5</span><span class="title">Derived functors</span>
+</h5>
+            The \(i\)th <em class="terminology">left derived functor</em>\(L_i F(A)\) of a right exact functor \(F\) is defined as \(H_iF(P)\) for some projective resolution \(P\) of \(A\).<br></article><p>
+          Dually we may define injective resolutions \(B \xrightarrow{\sim} I^\bullet\) with \(I \in \Ch^{\ge 0}(\cA)\) and we get <em class="terminology">right derived functors</em> of a left exact functor,
+          \[
+            R^i F(B) = H^i (FI ).
+          \]
+          Note \(L_{\lt 0} F(A) = 0\) and \(L_0= fP_0 / FP_1 = F(P_0/P_1) = F(A)\).
+        </p>
+<article class="example-like" id="example-10"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.6.6</span><span class="title">\(\Tor\)</span>
+</h5>
+            Define \(\Tor^R_i(A, B)\) to be \(L_i(- \otimes_R B)(A)\).
+            Let \(\cA = \Ab\). What is \(\Tor_i(\ZZ/p , B)\)?
+            \[
+              \xymatrix{\ZZ\ar[d]^p &amp;\\ \ZZ \ar[r]^{\sim} &amp;\ZZ_p}
+            \]
+            is a projective resolution.
+            So \(\Tor_* = H_*(B \xrightarrow{p} B)\) and we have \(\Tor^{\ZZ}_0 (\ZZ/p, B) = B/pB\) and \(\Tor^{\ZZ}_1(\ZZ/p, B) = {}_pB = \{b : pb = 0\}\).
+          </article><article class="example-like" id="example-11"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.6.7</span><span class="title">\(\Ext\)</span>
+</h5>
+            Define \(\Ext^i_R(A, B)\) to be \(R^i\Hom_R(-, B)(A)\).
+            Injective in \(\Rmod^{\op}\) correspond to projectives in \(\Rmod\).
+            So \(\Ext_{\ZZ}^*i(\ZZ/p\ZZ, B) = H_*(B \xrightarrow{p} B)\) hence \(\Ext^0 (\ZZ/p, B) = {}_pB\) and \(\Ext^1(\ZZ/p, B) = B/pB\).
+          </article></section></div></main>
+</div>
+</body>
+</html>

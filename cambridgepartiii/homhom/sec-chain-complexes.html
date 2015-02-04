@@ -2,7 +2,6 @@
 <html>
 <!--*                                    *-->
 <!--* Generated from MathBook XML source *-->
-<!--*    on 2015-01-23T01:57:58Z    *-->
 <!--*                                    *-->
 <!--*   http://mathbook.pugetsound.edu   *-->
 <!--*                                    *-->
@@ -30,7 +29,7 @@ MathJax.Hub.Config({
         scale: 88,
     },
 });
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+    </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
 $(function () {
     // Make *any* div with class 'sage-compute' an executable Sage cell
     sagecell.makeSagecell({inputLocation: 'div.sage-compute',
@@ -50,19 +49,22 @@ $(function () {
 </head>
 <body class="mathbook-book has-toc has-sidebar-left">
 <div style="display:none;">\(
+    \DeclareMathOperator{\Coh}{Coh}
     \DeclareMathOperator{\Hom}{Hom}
     \DeclareMathOperator{\cHom}{\underline{Hom}}
     \DeclareMathOperator{\Tor}{Tor}
     \DeclareMathOperator{\Ext}{Ext}
+    \DeclareMathOperator{\inj}{inj}
     \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\im}{im}
     \DeclareMathOperator{\coim}{coim}
     \DeclareMathOperator{\coker}{coker}
     \DeclareMathOperator{\eq}{eq}
+    \DeclareMathOperator{\op}{op}
     \DeclareMathOperator{\coeq}{coeq}
     \DeclareMathOperator{\cone}{cone}
     \DeclareMathOperator{\Ch}{Ch}
-    \DeclareMathOperator{\Abgp}{\text{Abgp}}
+    \DeclareMathOperator{\Ab}{\text{Ab}}
     \DeclareMathOperator{\CC}{\mathbf{C}}
     \DeclareMathOperator{\PP}{\mathbf{P}}
     \DeclareMathOperator{\QQ}{\mathbf{Q}}
@@ -71,8 +73,10 @@ $(function () {
     \DeclareMathOperator{\Rmod}{R\text{mod}}
     \DeclareMathOperator{\cA}{\mathcal{A}}
     \DeclareMathOperator{\cB}{\mathcal{B}}
+    \DeclareMathOperator{\cC}{\mathcal{C}}
     \DeclareMathOperator{\cO}{\mathcal{O}}
     \DeclareMathOperator{\dd}{\partial}
+    \DeclareMathOperator{\Mat}{Mat}
     \)</div>
 <header id="masthead"><div class="banner"><div class="container">
 <a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
@@ -83,12 +87,12 @@ $(function () {
 <nav id="primary-navbar"><div class="container">
 <div class="navbar-top-buttons">
 <button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<a class="previous-button toolbar-item button" href="sec-cats.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="chap-apps.html">Next</a>
+<a class="previous-button toolbar-item button" href="sec-cats.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-exact.html">Next</a>
 </div>
 <button class="sidebar-right-toggle-button button active">Annotations</button>
 </div>
 <div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-cats.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="chap-apps.html">Next</a>
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-cats.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-exact.html">Next</a>
 </div>
 </div></nav></header><div class="page">
 <aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
@@ -98,6 +102,11 @@ $(function () {
 <li><a href="sec-motivation.html">Motivation</a></li>
 <li><a href="sec-cats.html">Categorical notions</a></li>
 <li><a href="sec-chain-complexes.html" class="active">Chain complexes</a></li>
+<li><a href="sec-exact.html">Exact Functors</a></li>
+<li><a href="sec-derived-intro.html">Derived Functors, Introduction</a></li>
+<li><a href="sec-derived-proofs.html">Derived Functors, Proofs</a></li>
+<li><a href="sec-derived.html">The Derived Category</a></li>
+<li><a href="sec-total-derived.html">Total derived functors</a></li>
 </ul>
 <h2 class="link"><a href="chap-apps.html"><span class="codenumber">2</span><span class="title">Applications</span></a></h2>
 <ul></ul>
@@ -138,7 +147,7 @@ $(function () {
           Define \(f_*\colon H_n A \to H_n B\) in the natural wat and check it works.
           \(H_n\) is additive.
         </p>
-<article class="theorem-like" id="lemma-1"><h5 class="heading">
+<article class="theorem-like" id="lemma-snake"><h5 class="heading">
 <span class="type">Lemma</span><span class="codenumber">1.4.6</span><span class="title">Snake lemma</span>
 </h5>Let \(0\to A \to B \to C \to 0\) be a short exact sequence then there exist natural boundary maps \(\dd_n\) which fit into a long exact sequence of homology objects
             <figure>\[
@@ -194,7 +203,20 @@ $(function () {
 <article class="definition-like" id="definition-15"><h5 class="heading">
 <span class="type">Definition</span><span class="codenumber">1.4.16</span><span class="title">Cones</span>
 </h5>
-            Given \(f\colon A \to B\) we define a chain complex called the <em class="terminology">cone</em> of \(f\) by \(\cone(f)_n = A_{n-1} \oplus B_n\) with maps \[d = \begin{pmatrix}-d_A &amp; 0 \\ -f &amp; d_B\end{pmatrix}.\]</article></section></div></main>
+            Given \(f\colon A \to B\) we define a chain complex called the <em class="terminology">cone</em> of \(f\) by \(\cone(f)_n = A_{n-1} \oplus B_n\) with maps \[d = \begin{pmatrix}-d_A &amp; 0 \\ -f &amp; d_B\end{pmatrix}.\]</article><p>
+          Note that there exists a short exact sequence
+          \[
+            \xymatrix{B \ar[r]_{b\mapsto (0,b)}&amp; \cone(f) \ar[r]_{(a,b)\mapsto -a}&amp; A[-1].}
+          \]
+          Doing the diagram chase of the <a knowl="./knowl/lemma-snake.html" knowl-id="xref-lemma-snake" title="Snake lemma">Snake lemma&nbsp;1.4.6</a> we see that the boundary map is induced by \(f\) on homology i.e. \[f_*\colon H_{n-1}A \to H_{n-1}B.\]
+          This proves the following.
+        </p>
+<article class="theorem-like" id="lemma-3"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">1.4.17</span>
+</h5>\(f\) is a quasi-isomorphism if and only if \(\cone(f)\) is exact.</article><article class="hiddenproof" id="proof-3"><a knowl="./knowl/proof-3.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-3" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            Look at the long exact sequence of \(B \to \cone(f) \to A[-1]\)\[
+              H_{n}(\cone(f)) \to H_n(A) \xrightarrow{f_*} H_{n-1}(B) \to H_{n-1}(\cone(f)).
+            \]</article></div></section></div></main>
 </div>
 </body>
 </html>

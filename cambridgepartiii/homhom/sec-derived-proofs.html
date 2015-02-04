@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HH Derived Functors, Proofs</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "[Contrib]/xyjax/xypic.js"],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+    \DeclareMathOperator{\Coh}{Coh}
+    \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\cHom}{\underline{Hom}}
+    \DeclareMathOperator{\Tor}{Tor}
+    \DeclareMathOperator{\Ext}{Ext}
+    \DeclareMathOperator{\inj}{inj}
+    \DeclareMathOperator{\id}{id}
+    \DeclareMathOperator{\im}{im}
+    \DeclareMathOperator{\coim}{coim}
+    \DeclareMathOperator{\coker}{coker}
+    \DeclareMathOperator{\eq}{eq}
+    \DeclareMathOperator{\op}{op}
+    \DeclareMathOperator{\coeq}{coeq}
+    \DeclareMathOperator{\cone}{cone}
+    \DeclareMathOperator{\Ch}{Ch}
+    \DeclareMathOperator{\Ab}{\text{Ab}}
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\PP}{\mathbf{P}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\Rmod}{R\text{mod}}
+    \DeclareMathOperator{\cA}{\mathcal{A}}
+    \DeclareMathOperator{\cB}{\mathcal{B}}
+    \DeclareMathOperator{\cC}{\mathcal{C}}
+    \DeclareMathOperator{\cO}{\mathcal{O}}
+    \DeclareMathOperator{\dd}{\partial}
+    \DeclareMathOperator{\Mat}{Mat}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
+<h1 class="heading"><span class="title">Part III Homological and Homotopical Algebra 2014</span></h1>
+<p class="byline"></p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="sec-derived-intro.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-derived.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-derived-intro.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-derived.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link active"><a href="chap-hom-alg.html"><span class="codenumber">1</span><span class="title">Elements of Homological Algebra</span></a></h2>
+<ul>
+<li><a href="sec-introduction.html">Introduction</a></li>
+<li><a href="sec-motivation.html">Motivation</a></li>
+<li><a href="sec-cats.html">Categorical notions</a></li>
+<li><a href="sec-chain-complexes.html">Chain complexes</a></li>
+<li><a href="sec-exact.html">Exact Functors</a></li>
+<li><a href="sec-derived-intro.html">Derived Functors, Introduction</a></li>
+<li><a href="sec-derived-proofs.html" class="active">Derived Functors, Proofs</a></li>
+<li><a href="sec-derived.html">The Derived Category</a></li>
+<li><a href="sec-total-derived.html">Total derived functors</a></li>
+</ul>
+<h2 class="link"><a href="chap-apps.html"><span class="codenumber">2</span><span class="title">Applications</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-spec-seq.html"><span class="codenumber">3</span><span class="title">Spectral Sequences</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-model-cats.html"><span class="codenumber">4</span><span class="title">Model Categories</span></a></h2>
+<ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-derived-proofs"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">1.7</span><span class="title">Derived Functors, Proofs</span>
+</h1></header><article class="definition-like" id="definition-20"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.7.1</span>
+</h5>\(\cA\) has <em class="terminology">enough projectives</em> if for all \(M\in \cA\) there exists a projective \(P\) such that \(P \to M \to 0\).</article><article class="example-like" id="example-12"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.7.2</span>
+</h5>\(\Rmod\) has enough projectives.
+          </article><p>
+          Warning: The category of abelian sheaves on a topological space does not have enough projectives in general.
+        </p>
+<article class="theorem-like" id="lemma-5"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">1.7.3</span>
+</h5>
+            Projective resolutions exist in \(\cA\) if \(\cA\) has enough projectives.
+          </article><article class="hiddenproof" id="proof-5"><a knowl="./knowl/proof-5.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-5" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            Let \(A\in \cA\), then there exists
+            \[
+              0 \to K_0 \to P_0 \to A \to 0
+            \]
+            and inductively
+            \[
+              0 \to K_{n+1} \to P_{n+1} \to K_n \to 0
+            \]
+            with \(P_i\) projective.
+            We can splice these together to get 
+            \[
+              \cdots \to P_2 \to P_1 \to P_0 \to A \to 0.
+            \]</article></div>
+<article class="theorem-like" id="theorem-2"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">1.7.4</span><span class="title">Comparison Theorem</span>
+</h5>
+            Let \(\epsilon \colon P \to M\) and \(\eta \colon Q \to N\) be two projective resolutions and let \(f\colon M \to N\) then there exists a lift \(\tilde{f} \colon P \to Q\) (a chain map) unique up to chain homotopy.
+            \[
+              \xymatrix{
+                P_1 \ar[d] &amp; Q_1\ar[d]\\
+                P_0 \ar[d] &amp; Q_0\ar[d]\\
+                M \ar[r]^{f} &amp; N\\
+              }
+            \]</article><article class="hiddenproof" id="proof-6"><a knowl="./knowl/proof-6.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-6" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">Exercise.</article></div>
+<article class="theorem-like" id="corollary-2"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">1.7.5</span>
+</h5>
+            Projective resolutions are well defined up to chain homotopy equivalence and so derived functors are well defined.
+          </article><article class="hiddenproof" id="proof-7"><a knowl="./knowl/proof-7.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-7" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            Lift the identity to get chain maps in both directions.
+            Uniqueness implies that they are inverse up to homotopy.
+          </article></div>
+<article class="theorem-like" id="corollary-3"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">1.7.6</span>
+</h5>\(L_iF\) are functors.
+          </article><article class="theorem-like" id="lemma-horse"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">1.7.7</span><span class="title">Horseshoe Lemma</span>
+</h5>
+            Given a short exact sequence
+            \[
+              A^1 \to A^2 \to A^3
+            \]
+            and projective resolutions \(P^1 \to A^1\) and \(P^3 \to A^3\) there exists a projective resolution \(P^2\) of \(A^2\) with \(P^2_i = P^1_i \oplus P^3_i\) and the inclusion and projection maps lift.
+            So we have the following situation
+            \[
+              \xymatrix{
+              &amp;P_1^1 \ar[d] &amp; P_1^2 \ar[d]&amp;P_1^3\ar[d]&amp;\\
+              &amp;P_0^1 \ar[d]_{\epsilon^1} &amp; P_0^2 \ar[d]_{\epsilon^2}&amp;P_0^3\ar[d]_{\epsilon^3}&amp;\\
+              0 \ar[r]&amp; A^1 \ar[r]_i &amp; A^2\ar[r]_p &amp;A^3 \ar[r]&amp;0
+              }
+            \]</article><article class="hiddenproof" id="proof-8"><a knowl="./knowl/proof-8.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-8" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            By induction: To get \(\epsilon^2 \colon P_0^i \oplus P_0^3 \to A^2\) we use \(i\) and \(\epsilon^1\) and a lift of \(p\).
+            Now the <a knowl="./knowl/lemma-snake.html" knowl-id="xref-lemma-snake" title="Snake lemma">Snake lemma&nbsp;1.4.6</a> shows that \(\coker \epsilon^i\) and \(\ker \epsilon^i\) fit into a long exact sequence and hence \(\coker \epsilon^3 = 0\).
+            Now apply the induction assumption to the short exact sequence of kernels 
+            \[
+              0 \to \ker \epsilon^1 \to \ker \epsilon^2\to \ker \epsilon^3 \to \coker \epsilon^1 = 0.
+            \]</article></div>
+<article class="theorem-like" id="corollary-4"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">1.7.8</span>
+</h5>
+            A short exact sequence \(0 \to A \to B \to C \to 0\) in \(\cA\) gives a long exact sequence of left derived functors
+            \[
+              \to L_2FC \to L_1FA \to L_1 FB \to L_1FC\to FA \to FB \to FC \to 0.
+            \]</article><article class="hiddenproof" id="proof-9"><a knowl="./knowl/proof-9.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-9" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            Combine <a knowl="./knowl/lemma-horse.html" knowl-id="xref-lemma-horse" title="Horseshoe Lemma">Horseshoe Lemma&nbsp;1.7.7</a>, <a knowl="./knowl/lemma-proj-inj-split.html" knowl-id="xref-lemma-proj-inj-split" title="">1.6.3</a> and <a knowl="./knowl/lemma-snake.html" knowl-id="xref-lemma-snake" title="Snake lemma">Snake lemma&nbsp;1.4.6</a>.
+          </article></div>
+<article class="theorem-like" id="proposition-1"><h5 class="heading">
+<span class="type">Proposition</span><span class="codenumber">1.7.9</span>
+</h5>
+            The boundary map \(\dd\) is natural, i.e. given 
+            \[
+              \xymatrix{
+                A^1 \ar[r]\ar[d]^{f^1} &amp;
+                A^2 \ar[r]\ar[d]^{f^2} &amp;
+                A^2 \ar[d]^{f^3} \\
+                B^1 \ar[r] &amp;
+                B^2 \ar[r] &amp;
+                B^3 \\
+              }
+            \]
+            we have lifts \(\dd\circ L_i f_3 = L_{i-1} f_1 \circ \dd\).
+          </article><article class="hiddenproof" id="proof-10"><a knowl="./knowl/proof-10.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-10" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">See Weibel theorem 2.4.6 </article></div>
+<p>
+          Note that there is no extra work needed to do all of this for right derived functors.
+        </p></section></div></main>
+</div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HH Exact Functors</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "[Contrib]/xyjax/xypic.js"],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+    \DeclareMathOperator{\Coh}{Coh}
+    \DeclareMathOperator{\Hom}{Hom}
+    \DeclareMathOperator{\cHom}{\underline{Hom}}
+    \DeclareMathOperator{\Tor}{Tor}
+    \DeclareMathOperator{\Ext}{Ext}
+    \DeclareMathOperator{\inj}{inj}
+    \DeclareMathOperator{\id}{id}
+    \DeclareMathOperator{\im}{im}
+    \DeclareMathOperator{\coim}{coim}
+    \DeclareMathOperator{\coker}{coker}
+    \DeclareMathOperator{\eq}{eq}
+    \DeclareMathOperator{\op}{op}
+    \DeclareMathOperator{\coeq}{coeq}
+    \DeclareMathOperator{\cone}{cone}
+    \DeclareMathOperator{\Ch}{Ch}
+    \DeclareMathOperator{\Ab}{\text{Ab}}
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\PP}{\mathbf{P}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\Rmod}{R\text{mod}}
+    \DeclareMathOperator{\cA}{\mathcal{A}}
+    \DeclareMathOperator{\cB}{\mathcal{B}}
+    \DeclareMathOperator{\cC}{\mathcal{C}}
+    \DeclareMathOperator{\cO}{\mathcal{O}}
+    \DeclareMathOperator{\dd}{\partial}
+    \DeclareMathOperator{\Mat}{Mat}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
+<h1 class="heading"><span class="title">Part III Homological and Homotopical Algebra 2014</span></h1>
+<p class="byline"></p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="sec-chain-complexes.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-derived-intro.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-chain-complexes.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-derived-intro.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link active"><a href="chap-hom-alg.html"><span class="codenumber">1</span><span class="title">Elements of Homological Algebra</span></a></h2>
+<ul>
+<li><a href="sec-introduction.html">Introduction</a></li>
+<li><a href="sec-motivation.html">Motivation</a></li>
+<li><a href="sec-cats.html">Categorical notions</a></li>
+<li><a href="sec-chain-complexes.html">Chain complexes</a></li>
+<li><a href="sec-exact.html" class="active">Exact Functors</a></li>
+<li><a href="sec-derived-intro.html">Derived Functors, Introduction</a></li>
+<li><a href="sec-derived-proofs.html">Derived Functors, Proofs</a></li>
+<li><a href="sec-derived.html">The Derived Category</a></li>
+<li><a href="sec-total-derived.html">Total derived functors</a></li>
+</ul>
+<h2 class="link"><a href="chap-apps.html"><span class="codenumber">2</span><span class="title">Applications</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-spec-seq.html"><span class="codenumber">3</span><span class="title">Spectral Sequences</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-model-cats.html"><span class="codenumber">4</span><span class="title">Model Categories</span></a></h2>
+<ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-exact"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">1.5</span><span class="title">Exact Functors</span>
+</h1></header><article class="definition-like" id="definition-16"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.5.1</span><span class="title">Exact functors</span>
+</h5>An additive functor \(F\) is <em class="terminology">exact</em> if it preserves short exact sequences.
+            It is <em class="terminology">left exact</em> if it sends a short exact sequence of the form
+            \[
+              0\to A \to B \to C \to 0
+            \]
+            to an exact sequence
+            \[
+              0 \to FA \to FB \to FC.
+            \]
+            We have a similar definition for <em class="terminology">right exact</em>.
+          </article><article class="example-like" id="example-7"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.5.2</span>
+</h5>
+            The functor \(\Hom_{\cA}(M, -)\) is left exact from \(\cA\) to \(\Ab = \ZZ\text{mod}\).
+            The functor \(\Hom_{\cA}( -, M)\colon \cA^{\op} \to\Ab\) is left exact.<br></article><p>
+          Note that left adjoint functors are right exact as they preserve colimits.
+        </p>
+<article class="example-like" id="example-8"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.5.3</span>
+</h5>
+            Let \(M\) be an \(R,S\)-bimodule (i.e. a left \(R\)-module and a right \(S\)-module).
+            Then for \(A \in S\text{mod}\), \(B\in \Rmod\)\[
+              \Hom_{R}(M \otimes_S A, B) \cong Hom_{S}(M, \Hom_R(A,B))
+            \]</article><p>
+          Clearly not all functors are exact.
+          However they all preserve split exact sequences, i.e. those of the form
+          \[0 \to A \to A\oplus C \to C.\]
+          Because they preserve finite direct sums
+          \[
+            \xymatrix{
+              A \ar@&lt;-0.5ex&gt;[r]_f \ar@{=}[d]&amp; B\ar@&lt;-0.5ex&gt;[l]_r \ar@&lt;-0.5ex&gt;[d]_{(f,g)}  \ar@&lt;-0.5ex&gt;[r]_g &amp; C\ar@&lt;-0.5ex&gt;[l]_s \ar@{=}[d]\\
+              A \ar[r]&amp; A \oplus C \ar@&lt;-0.5ex&gt;[u]_{(r,s)}\ar[r] &amp;C
+            }
+          \]
+          \((r,g),(f,s)\) are inverse isomorphisms if and only if \(_B = fr + sg\). 
+        </p></section></div></main>
+</div>
+</body>
+</html>
