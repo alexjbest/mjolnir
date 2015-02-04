@@ -539,7 +539,6 @@ Copyright 2014 Alex J. Best
                   &amp; H_{n-1}(A) \ar[r] &amp; H_{n-1}(B)
                   \ar[r] &amp; H_{n-1}(C)\ar[r] &amp; {\dots} }
                 </me>
-                <todo>fix tikz/use xyjax</todo>
               </figure>
               The map <m>\partial</m> is called the <term>boundary map</term> in the exact sequence.
             </statement>
@@ -1304,7 +1303,7 @@ Copyright 2014 Alex J. Best
           <p>Let <m>M</m> be a smooth manifold and <m>\omega\in \Omega^k(M)</m>.
             If <m>\sigma\colon\Delta^k \to M</m> is a smooth we define <m>\omega(\sigma) = \int_\sigma \omega</m>.
             Stokes' theorem then gives us that <m>d\omega (\sigma) = \omega (d\sigma)</m>.
-            Where on the left <m>d\colon \Omega^k(M) \to \Omega^{k+1}(M)</m> is the differential map and on the right <m>d</m> is the boundary map in the sense of (smooth) singualr chains.
+            Where on the left <m>d\colon \Omega^k(M) \to \Omega^{k+1}(M)</m> is the differential map and on the right <m>d</m> is the boundary map in the sense of (smooth) singular chains.
             I.e. the two <m>d</m>'s are dual to each other on <m>C_*^{\text{smooth}}(M)</m>.</p>
 
           <theorem>
@@ -1393,13 +1392,14 @@ Copyright 2014 Alex J. Best
           <title>Vector bundle</title>
           <statement>An <m>n</m>-dimensional <term>real vector bundle</term> is a triple <m>(E,B,\pi)</m> such that
             <ol>
+              <li><m>\pi \colon E \to B</m>.</li>
               <li>Each fibre <m>\pi^{-1}(p)</m> has the structure of an <m>n</m>-dimensional real vector space.</li>
               <li>(Local triviality) For each <m>p \in B</m> there is <m>U \subset B</m> open containing <m>p</m> and a homeomorphism
                 <me>f_U\colon \pi^{-1}(U) \to U \times \RR^n</me>
                 such that
                 <ol>
                   <li><m>\pi_1\circ f_U = \pi</m>,</li>
-                  <li><m>pi_2 \circ f_U\colon \pi^{-1}(p) \to \RR^n</m> is a linear map (it must be an isomorphism of vector spaces).</li>
+                  <li><m>\pi_2 \circ f_U\colon \pi^{-1}(p) \to \RR^n</m> is a linear map (it must be an isomorphism of vector spaces).</li>
                 </ol>
               </li>
             </ol>
@@ -1413,8 +1413,7 @@ Copyright 2014 Alex J. Best
             So there is a map <m>g_{12}\colon U_1\cap U_2 \to \GL_n(\RR)</m> such that <m>f_1\circ f_2^{-1}(p,v) = (p,g_{12}(p) v)</m>, <m>g_{12}</m> is called a <term>transition function</term>.</p>
 
           <exercise>
-            <statement>If <m>f_3\colon U_3 \to U_3\times \RR^n </m> is another local trivialisation then <m>g_{32}(p)\cdot g_{21}(p) = g_{31}(p)</m>, this is called the cocycle condition.
-            </statement>
+            <statement>If <m>f_3\colon U_3 \to U_3\times \RR^n </m> is another local trivialisation then <m>g_{32}(p)\cdot g_{21}(p) = g_{31}(p)</m>, this is called the cocycle condition.</statement>
           </exercise>
 
           <example>

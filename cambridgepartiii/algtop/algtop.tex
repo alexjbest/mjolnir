@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2015-01-15T16:55:24Z    %%
+%%    on 2015-02-04T23:36:23Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -170,7 +170,7 @@
         %
 \par
 
-          Generated: January 15, 2015, 16:55:24 (Z)
+          Generated: February 4, 2015, 23:36:23 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Homotopy}
@@ -1075,7 +1075,7 @@ f^\#(a\smile b)(\sigma) &= (a\smile b)( f\circ \sigma)\\
 Let \(M\) be a smooth manifold and \(\omega\in \Omega^k(M)\).
             If \(\sigma\colon\Delta^k \to M\) is a smooth we define \(\omega(\sigma) = \int_\sigma \omega\).
             Stokes' theorem then gives us that \(d\omega (\sigma) = \omega (d\sigma)\).
-            Where on the left \(d\colon \Omega^k(M) \to \Omega^{k+1}(M)\) is the differential map and on the right \(d\) is the boundary map in the sense of (smooth) singualr chains.
+            Where on the left \(d\colon \Omega^k(M) \to \Omega^{k+1}(M)\) is the differential map and on the right \(d\) is the boundary map in the sense of (smooth) singular chains.
             I.e. the two \(d\)'s are dual to each other on \(C_*^{\text{smooth}}(M)\).%
 \begin{theorem}[de Rahm]\label{theorem-5}
 \[H_k(\Omega^*(M), d) \cong H^k(M; \RR).\]
@@ -1139,11 +1139,11 @@ If \(\alpha \in H^i(X)\), \(\beta\in H^j(X)\) then their \terminology{exterior p
 \begin{definition}[Vector bundle]\label{definition-28}
 An \(n\)-dimensional \terminology{real vector bundle} is a triple \((E,B,\pi)\) such that
             \begin{enumerate}
-\item{}Each fibre \(\pi^{-1}(p)\) has the structure of an \(n\)-dimensional real vector space.\item{}(Local triviality) For each \(p \in B\) there is \(U \subset B\) open containing \(p\) and a homeomorphism
+\item{}\(\pi \colon E \to B\).\item{}Each fibre \(\pi^{-1}(p)\) has the structure of an \(n\)-dimensional real vector space.\item{}(Local triviality) For each \(p \in B\) there is \(U \subset B\) open containing \(p\) and a homeomorphism
                 \[f_U\colon \pi^{-1}(U) \to U \times \RR^n\]
                 such that
                 \begin{enumerate}
-\item{}\(\pi_1\circ f_U = \pi\),\item{}\(pi_2 \circ f_U\colon \pi^{-1}(p) \to \RR^n\) is a linear map (it must be an isomorphism of vector spaces).\end{enumerate}
+\item{}\(\pi_1\circ f_U = \pi\),\item{}\(\pi_2 \circ f_U\colon \pi^{-1}(p) \to \RR^n\) is a linear map (it must be an isomorphism of vector spaces).\end{enumerate}
 
               \end{enumerate}
 
@@ -1156,8 +1156,7 @@ An \(n\)-dimensional \terminology{real vector bundle} is a triple \((E,B,\pi)\) 
 If \(f_1\colon \pi^{-1}(U_1) \to U_1\times \RR^n\) and \(f_2\colon \pi^{-1}(U_2) \to U_2\times \RR^n\) are local trivialisations of \(E\) then the map \(f_1\circ F_2^{-1}\colon (U_1\cap U_2)\times \RR^n \to (U_1 \cap U_2)\) is linear on fibres.
             So there is a map \(g_{12}\colon U_1\cap U_2 \to \GL_n(\RR)\) such that \(f_1\circ f_2^{-1}(p,v) = (p,g_{12}(p) v)\), \(g_{12}\) is called a \terminology{transition function}.%
 \begin{exercise}\label{exercise-5}
-If \(f_3\colon U_3 \to U_3\times \RR^n \) is another local trivialisation then \(g_{32}(p)\cdot g_{21}(p) = g_{31}(p)\), this is called the cocycle condition.
-            \end{exercise}
+If \(f_3\colon U_3 \to U_3\times \RR^n \) is another local trivialisation then \(g_{32}(p)\cdot g_{21}(p) = g_{31}(p)\), this is called the cocycle condition.\end{exercise}
 \begin{example}\label{example-27}
 \begin{enumerate}
 \item{}\(E = B\times \RR^n\) is the \(n\)-dimensional \terminology{trivial bundle} over \(B\).\item{}The Mobius band \(M = [0,1] \times \RR/\sim\) where \((0,x)\sim (1,-x)\) is a bundle over \(S^1\) via \(\pi\colon M \to [0,1]/\sim\).
