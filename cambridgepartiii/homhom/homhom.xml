@@ -247,7 +247,7 @@ Copyright 2014 Alex J. Best
           Note that <m>\Ch(\cA)</m> is an additive category moreover it is an abelian category, we can define and check everything level-wise.
           For example <m>\ker(A\to B)_n = \ker(A_n\to B_n)</m>.
           Note that the <m>H_n</m> form a functor <m>\Ch(\cA)\to \cA</m>.
-          Define <m>f_*\colon H_n A \to H_n B</m> in the natural wat and check it works.
+          Define <m>f_*\colon H_n A \to H_n B</m> in the natural way and check it works.
           <m>H_n</m> is additive.
         </p>
 
@@ -492,7 +492,7 @@ Copyright 2014 Alex J. Best
         <definition>
           <title>Projective resolutions</title>
           <statement>
-            A <term>projective resolution</term> <m>P_\bullet \xrightarrow{\epsilon} A</m> of <m>A</m> is a non-negative chain comlex such that all <m>P_i</m> are projective and <m>\epsilon</m> is a quasi-isomorphism.
+            A <term>projective resolution</term> <m>P_\bullet \xrightarrow{\epsilon} A</m> of <m>A</m> is a non-negative chain complex such that all <m>P_i</m> are projective and <m>\epsilon</m> is a quasi-isomorphism.
             So <m>H_i P = 0</m> if <m>i \gt 0</m> and <m>H_0 P = A</m>.
           </statement>
         </definition>
