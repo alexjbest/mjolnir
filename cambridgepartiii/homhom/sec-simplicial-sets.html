@@ -7,7 +7,7 @@
 <!--*                                    *-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>HH Motivation</title>
+<title>HH Simplicial Sets</title>
 <meta name="Keywords" content="Authored in MathBook XML">
 <meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <script type="text/x-mathjax-config">
@@ -97,19 +97,19 @@ $(function () {
 <nav id="primary-navbar"><div class="container">
 <div class="navbar-top-buttons">
 <button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<a class="previous-button toolbar-item button" href="sec-introduction.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-cats.html">Next</a>
+<a class="previous-button toolbar-item button" href="chap-homotopical.html">Previous</a><a class="up-button button toolbar-item" href="chap-homotopical.html">Up</a><a class="next-button button toolbar-item" href="sec-simp-chain-complexes.html">Next</a>
 </div>
 <button class="sidebar-right-toggle-button button active">Annotations</button>
 </div>
 <div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-introduction.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-cats.html">Next</a>
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="chap-homotopical.html">Previous</a><a class="up-button button toolbar-item" href="chap-homotopical.html">Up</a><a class="next-button button toolbar-item" href="sec-simp-chain-complexes.html">Next</a>
 </div>
 </div></nav></header><div class="page">
 <aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
-<nav id="toc"><h2 class="link active"><a href="chap-hom-alg.html"><span class="codenumber">1</span><span class="title">Elements of Homological Algebra</span></a></h2>
+<nav id="toc"><h2 class="link"><a href="chap-hom-alg.html"><span class="codenumber">1</span><span class="title">Elements of Homological Algebra</span></a></h2>
 <ul>
 <li><a href="sec-introduction.html">Introduction</a></li>
-<li><a href="sec-motivation.html" class="active">Motivation</a></li>
+<li><a href="sec-motivation.html">Motivation</a></li>
 <li><a href="sec-cats.html">Categorical notions</a></li>
 <li><a href="sec-chain-complexes.html">Chain complexes</a></li>
 <li><a href="sec-exact.html">Exact Functors</a></li>
@@ -122,42 +122,68 @@ $(function () {
 <ul></ul>
 <h2 class="link"><a href="chap-spec-seq.html"><span class="codenumber">3</span><span class="title">Spectral Sequences</span></a></h2>
 <ul></ul>
-<h2 class="link"><a href="chap-homotopical.html"><span class="codenumber">4</span><span class="title">Homotopical Algebra</span></a></h2>
+<h2 class="link active"><a href="chap-homotopical.html"><span class="codenumber">4</span><span class="title">Homotopical Algebra</span></a></h2>
 <ul>
-<li><a href="sec-simplicial-sets.html">Simplicial Sets</a></li>
+<li><a href="sec-simplicial-sets.html" class="active">Simplicial Sets</a></li>
 <li><a href="sec-simp-chain-complexes.html">Chain Complexes</a></li>
 <li><a href="sec-top-examples.html">Topological spaces and more examples</a></li>
 </ul>
 <h2 class="link"><a href="chap-model-cats.html"><span class="codenumber">5</span><span class="title">Model Categories</span></a></h2>
 <ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
-</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-motivation"><header><h1 class="heading">
-<span class="type">Section</span><span class="codenumber">1.2</span><span class="title">Motivation</span>
-</h1></header><p>Start with a graded ring \(\CC[x_0,\ldots,x_n]\) with \(\deg x_i = 1\).
-          Consider a graded module \(M = \bigoplus_d M_d\) over \(R\).
-          Hilbert looked at the map \(d\mapsto H_M (d)= \dim_{\CC} M_d\).
-          For example we can take \(R\) to be the homogeneous coordinate ring of \(\PP^n\) and \(V(I)\subset \PP^n\) a subvariety where \(I\) is a homogeneous ideal.
-          We then take \(M = R/I\), if \(V\) is a curve \(C\) then \(H_{R/I}(d) = \deg(V)\cdot d + (1 -g(C))\).
-          Hilbert showed that the function \(H_M(d)\) is eventually polynomial.
-          We can compute this function easily if \(M\) is free so we try to replace \(M\) by free modules.
-          First we take
-          \[K_0\to F_0 \to M\]
-          where \(K_0\) is the kernel of the surjective map from \(F_0\) to \(M\).
-          We can continue this getting
-          \begin{gather*}
-K_1\to F_1 \to K_0\\
-K_2\to F_2 \to K_1\\
-\vdots
-\end{gather*}
-          we can then write
-          \[\cdots \to F_2\to F_1\to F_0 \to M \to 0,\]
-          this is a free resolution of \(M\).
-          We also have the following.
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-simplicial-sets"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">4.1</span><span class="title">Simplicial Sets</span>
+</h1></header><article class="definition-like" id="definition-25"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">4.1.1</span><span class="title">Simplex category</span>
+</h5>
+            The <em class="terminology">simplex category</em>\(\Delta\) has objects the sets \(\{0,\ldots,n\} = [n]\) and morphisms the non-decreasing maps between such sets.
+            A simplicial object in a category \(\cC\) is a functor \(\Delta^{\op} \to \cC\).
+            These objects form a category, denoted \(s(\cC)\) or just \(s\cC\), where the morphisms are natural transformations.
+          </article><article class="example-like" id="example-14"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">4.1.2</span>
+</h5>\(\sSet\) is the category of simplicial sets, and \(\sAb\) is the category of simplicial groups.
+          </article><article class="example-like" id="example-15"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">4.1.3</span>
+</h5>
+            Given a topological space \(X\), \(\Sing X\) is the singular simplicial set.
+            We can then form \(\ZZ\Sing X\), the free abelian group on \((\Sing X)_n\) for each \(n\).
+          </article><p>
+          The \(i\)th face map \(\epsilon_i\colon[n-1] \to [n]\) is the unique injection only leaving out \(i \in [n]\).
+          The \(i\)th degeneracy map \(\eta_i\colon [n+1] \to [n]\) is the unique surjective map mapping two elements to \(i\in [n]\).
         </p>
-<article class="theorem-like" id="theorem-1"><h5 class="heading">
-<span class="type">Theorem</span><span class="codenumber">1.2.1</span><span class="title">Hilbert</span>
-</h5>\(F_{n+1} = 0\).</article><article class="theorem-like" id="corollary-1"><h5 class="heading">
-<span class="type">Corollary</span><span class="codenumber">1.2.2</span>
-</h5>\(H_M(d) = \sum_i (-1)^i H_{F_i}(d)\).</article></section></div></main>
+<article class="theorem-like" id="proposition-2"><h5 class="heading">
+<span class="type">Proposition</span><span class="codenumber">4.1.4</span>
+</h5>
+            Any \(\alpha\colon [m] \to [n]\) in \(\Delta\) can be factored uniquely as
+            \[
+              \alpha = \epsilon_{i_1}\cdots \epsilon_{i_k}\eta_{j_1}\cdots \eta_{j_l}.
+            \]</article><article class="hiddenproof" id="proof-15"><a knowl="./knowl/proof-15.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-15" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">See, for example, Weibel.</article></div>
+<p>
+          Hence for the purposes of understanding a simplicial object it is enough to understand \(A(\epsilon_i) = \dd_i\) and \(A(\eta_j) = \sigma_j\).
+          These maps satisfy (after checking!) the relations
+          \begin{align*}
+\dd_i\dd_j &amp;= \dd_{j-1}\dd_i \text{ if } i \lt j.\\
+\sigma_i\sigma_j &amp;= \sigma_{j+1}\sigma_i \text{ if } i \leq j.\\
+\dd_i\sigma_j &amp;= \begin{cases}\sigma_{j-1}\dd_i &amp; \text{ if } i \lt j, \\ 1 &amp;\text{ if } i=j,j+1,\\\sigma_i\dd_{j+1} &amp;\text{ if }i \gt j + 1.\end{cases}
+\end{align*}
+        </p>
+<article class="example-like" id="example-16"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">4.1.5</span>
+</h5>
+            Define the <em class="terminology">standard simplex</em>\(\Delta[n]\) to be the image of \([n]\) under contravariant Yoneda, i.e. \(\Delta[n]_i = \Hom_{\Delta}(i,[n])\).
+            This is universal i n the sense that \(\Delta_n = \Hom_{\sSet}(\Delta[n], A)\).
+            We call \(A_m\) the simplices of \(\Delta\) (by Yoneda).
+          </article><article class="example-like" id="example-17"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">4.1.6</span>
+</h5>\(\Delta[1]_n\) is the set of maps \([n] \to [1]\), we can write these as \(0\cdots 0 1\cdots 1\) where \(0\) appears \(k\) times and \(1\) occurs \(n-k +1\) times.
+            So
+            \begin{align*}
+\Delta[1]_0 &amp;= \{0, 1\},\\
+\Delta[1]_1 &amp;= \{0, 01, 11\},\\
+\Delta[1]_2 &amp;= \{000, 001, 011, 111\}.
+\end{align*}
+            All the expressions here with repeat digits are \(\sigma_i(a)\) for some \(n\), so they all called degenerate.
+            We only have 3 non-degenerate maps here.
+            </article></section></div></main>
 </div>
 </body>
 </html>

@@ -49,34 +49,44 @@ $(function () {
 </head>
 <body class="mathbook-book has-toc has-sidebar-left">
 <div style="display:none;">\(
+    \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\Coh}{Coh}
     \DeclareMathOperator{\Hom}{Hom}
     \DeclareMathOperator{\cHom}{\underline{Hom}}
     \DeclareMathOperator{\Tor}{Tor}
     \DeclareMathOperator{\Ext}{Ext}
     \DeclareMathOperator{\inj}{inj}
-    \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\im}{im}
     \DeclareMathOperator{\coim}{coim}
     \DeclareMathOperator{\coker}{coker}
     \DeclareMathOperator{\eq}{eq}
     \DeclareMathOperator{\op}{op}
+    \DeclareMathOperator{\ob}{ob}
     \DeclareMathOperator{\coeq}{coeq}
     \DeclareMathOperator{\cone}{cone}
+    \DeclareMathOperator{\Sing}{Sing}
+
     \DeclareMathOperator{\Ch}{Ch}
     \DeclareMathOperator{\Ab}{\text{Ab}}
+    \DeclareMathOperator{\Top}{\text{Top}}
+    \DeclareMathOperator{\Rmod}{R\text{mod}}
+    \DeclareMathOperator{\sSet}{\text{sSet}}
+    \DeclareMathOperator{\sAb}{\text{sAb}}
+    \DeclareMathOperator{\cA}{\mathcal{A}}
+    \DeclareMathOperator{\cB}{\mathcal{B}}
+    \DeclareMathOperator{\cC}{\mathcal{C}}
+    \DeclareMathOperator{\cO}{\mathcal{O}}
+
+    \DeclareMathOperator{\dd}{\partial}
+    \DeclareMathOperator{\rd}{\mathrm{d}}
+
+    % Rings
+    \DeclareMathOperator{\Mat}{Mat}
     \DeclareMathOperator{\CC}{\mathbf{C}}
     \DeclareMathOperator{\PP}{\mathbf{P}}
     \DeclareMathOperator{\QQ}{\mathbf{Q}}
     \DeclareMathOperator{\RR}{\mathbf{R}}
     \DeclareMathOperator{\ZZ}{\mathbf{Z}}
-    \DeclareMathOperator{\Rmod}{R\text{mod}}
-    \DeclareMathOperator{\cA}{\mathcal{A}}
-    \DeclareMathOperator{\cB}{\mathcal{B}}
-    \DeclareMathOperator{\cC}{\mathcal{C}}
-    \DeclareMathOperator{\cO}{\mathcal{O}}
-    \DeclareMathOperator{\dd}{\partial}
-    \DeclareMathOperator{\Mat}{Mat}
     \)</div>
 <header id="masthead"><div class="banner"><div class="container">
 <a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
@@ -112,7 +122,13 @@ $(function () {
 <ul></ul>
 <h2 class="link"><a href="chap-spec-seq.html"><span class="codenumber">3</span><span class="title">Spectral Sequences</span></a></h2>
 <ul></ul>
-<h2 class="link"><a href="chap-model-cats.html"><span class="codenumber">4</span><span class="title">Model Categories</span></a></h2>
+<h2 class="link"><a href="chap-homotopical.html"><span class="codenumber">4</span><span class="title">Homotopical Algebra</span></a></h2>
+<ul>
+<li><a href="sec-simplicial-sets.html">Simplicial Sets</a></li>
+<li><a href="sec-simp-chain-complexes.html">Chain Complexes</a></li>
+<li><a href="sec-top-examples.html">Topological spaces and more examples</a></li>
+</ul>
+<h2 class="link"><a href="chap-model-cats.html"><span class="codenumber">5</span><span class="title">Model Categories</span></a></h2>
 <ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
 </div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-derived"><header><h1 class="heading">
 <span class="type">Section</span><span class="codenumber">1.8</span><span class="title">The Derived Category</span>
@@ -201,7 +217,7 @@ $(function () {
             \[
               K^+(\inj \cA) \cong D^+(\cA).
             \]</article><article class="hiddenproof" id="proof-14"><a knowl="./knowl/proof-14.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-14" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
-            We have fully faithfullnes by <a knowl="./knowl/thm-inj-der-hom.html" knowl-id="xref-thm-inj-der-hom" title="">1.8.8</a>.
+            We have fully faithfulness by <a knowl="./knowl/thm-inj-der-hom.html" knowl-id="xref-thm-inj-der-hom" title="">1.8.8</a>.
             To see that it is essentially surjective write down injective resolutions for complexes (see later).
           </article></div></section></div></main>
 </div>

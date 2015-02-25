@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2015-02-06T14:50:26Z    %%
+%%    on 2015-02-25T16:47:07Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -102,34 +102,44 @@
 %% Custom Preamble Entries, late (use latex.preamble.late)
 \usepackage[all]{xy}
 %% Convenience macros
+\DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Coh}{Coh}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\cHom}{\underline{Hom}}
 \DeclareMathOperator{\Tor}{Tor}
 \DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\inj}{inj}
-\DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\coim}{coim}
 \DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\eq}{eq}
 \DeclareMathOperator{\op}{op}
+\DeclareMathOperator{\ob}{ob}
 \DeclareMathOperator{\coeq}{coeq}
 \DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\Sing}{Sing}
+
 \DeclareMathOperator{\Ch}{Ch}
 \DeclareMathOperator{\Ab}{\text{Ab}}
+\DeclareMathOperator{\Top}{\text{Top}}
+\DeclareMathOperator{\Rmod}{R\text{mod}}
+\DeclareMathOperator{\sSet}{\text{sSet}}
+\DeclareMathOperator{\sAb}{\text{sAb}}
+\DeclareMathOperator{\cA}{\mathcal{A}}
+\DeclareMathOperator{\cB}{\mathcal{B}}
+\DeclareMathOperator{\cC}{\mathcal{C}}
+\DeclareMathOperator{\cO}{\mathcal{O}}
+
+\DeclareMathOperator{\dd}{\partial}
+\DeclareMathOperator{\rd}{\mathrm{d}}
+
+% Rings
+\DeclareMathOperator{\Mat}{Mat}
 \DeclareMathOperator{\CC}{\mathbf{C}}
 \DeclareMathOperator{\PP}{\mathbf{P}}
 \DeclareMathOperator{\QQ}{\mathbf{Q}}
 \DeclareMathOperator{\RR}{\mathbf{R}}
 \DeclareMathOperator{\ZZ}{\mathbf{Z}}
-\DeclareMathOperator{\Rmod}{R\text{mod}}
-\DeclareMathOperator{\cA}{\mathcal{A}}
-\DeclareMathOperator{\cB}{\mathcal{B}}
-\DeclareMathOperator{\cC}{\mathcal{C}}
-\DeclareMathOperator{\cO}{\mathcal{O}}
-\DeclareMathOperator{\dd}{\partial}
-\DeclareMathOperator{\Mat}{Mat}
 %% Title page information for book
 \title{Part III Homological and Homotopical Algebra 2014}
 \author{}
@@ -173,7 +183,7 @@ The recommended books are:
         %
 \par
 
-          Generated: February 6, 2015, 14:50:26 (Z)
+          Generated: February 25, 2015, 16:47:07 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Motivation}
@@ -711,7 +721,7 @@ See Weibel 10.3, Gelfand-Manin III 2. \end{proof}
             \]\end{corollary}
 \begin{proof}
 
-            We have fully faithfullnes by \ref{thm-inj-der-hom}.
+            We have fully faithfulness by \ref{thm-inj-der-hom}.
             To see that it is essentially surjective write down injective resolutions for complexes (see later).
           \end{proof}
 \typeout{************************************************}
@@ -731,7 +741,138 @@ We now interpret/redefine derived functors as lifts to the derived category.%
 \typeout{************************************************}
 \chapter[Spectral Sequences]{Spectral Sequences}\label{chap-spec-seq}
 \typeout{************************************************}
-\typeout{Chapter 4 Model Categories}
+\typeout{Chapter 4 Homotopical Algebra}
+\typeout{************************************************}
+\chapter[Homotopical Algebra]{Homotopical Algebra}\label{chap-homotopical}
+\typeout{************************************************}
+\typeout{Section 4.1 Simplicial Sets}
+\typeout{************************************************}
+\section[Simplicial Sets]{Simplicial Sets}\label{sec-simplicial-sets}
+\begin{definition}[Simplex category]\label{definition-25}
+
+            The \terminology{simplex category}\(\Delta\) has objects the sets \(\{0,\ldots,n\} = [n]\) and morphisms the non-decreasing maps between such sets.
+            A simplicial object in a category \(\cC\) is a functor \(\Delta^{\op} \to \cC\).
+            These objects form a category, denoted \(s(\cC)\) or just \(s\cC\), where the morphisms are natural transformations.
+          \end{definition}
+\begin{example}\label{example-14}
+\(\sSet\) is the category of simplicial sets, and \(\sAb\) is the category of simplicial groups.
+          \end{example}
+\begin{example}\label{example-15}
+
+            Given a topological space \(X\), \(\Sing X\) is the singular simplicial set.
+            We can then form \(\ZZ\Sing X\), the free abelian group on \((\Sing X)_n\) for each \(n\).
+          \end{example}
+
+          The \(i\)th face map \(\epsilon_i\colon[n-1] \to [n]\) is the unique injection only leaving out \(i \in [n]\).
+          The \(i\)th degeneracy map \(\eta_i\colon [n+1] \to [n]\) is the unique surjective map mapping two elements to \(i\in [n]\).
+        %
+\begin{proposition}\label{proposition-2}
+
+            Any \(\alpha\colon [m] \to [n]\) in \(\Delta\) can be factored uniquely as
+            \[
+              \alpha = \epsilon_{i_1}\cdots \epsilon_{i_k}\eta_{j_1}\cdots \eta_{j_l}.
+            \]\end{proposition}
+\begin{proof}
+See, for example, Weibel.\end{proof}
+\par
+
+          Hence for the purposes of understanding a simplicial object it is enough to understand \(A(\epsilon_i) = \dd_i\) and \(A(\eta_j) = \sigma_j\).
+          These maps satisfy (after checking!) the relations
+          \begin{align*}
+\dd_i\dd_j &= \dd_{j-1}\dd_i \text{ if } i \lt j.\\
+\sigma_i\sigma_j &= \sigma_{j+1}\sigma_i \text{ if } i \leq j.\\
+\dd_i\sigma_j &= \begin{cases}\sigma_{j-1}\dd_i & \text{ if } i \lt j, \\ 1 &\text{ if } i=j,j+1,\\\sigma_i\dd_{j+1} &\text{ if }i \gt j + 1.\end{cases}
+\end{align*}
+        %
+\begin{example}\label{example-16}
+
+            Define the \terminology{standard simplex}\(\Delta[n]\) to be the image of \([n]\) under contravariant Yoneda, i.e. \(\Delta[n]_i = \Hom_{\Delta}(i,[n])\).
+            This is universal i n the sense that \(\Delta_n = \Hom_{\sSet}(\Delta[n], A)\).
+            We call \(A_m\) the simplices of \(\Delta\) (by Yoneda).
+          \end{example}
+\begin{example}\label{example-17}
+\(\Delta[1]_n\) is the set of maps \([n] \to [1]\), we can write these as \(0\cdots 0 1\cdots 1\) where \(0\) appears \(k\) times and \(1\) occurs \(n-k +1\) times.
+            So
+            \begin{align*}
+\Delta[1]_0 &= \{0, 1\},\\
+\Delta[1]_1 &= \{0, 01, 11\},\\
+\Delta[1]_2 &= \{000, 001, 011, 111\}.
+\end{align*}
+            All the expressions here with repeat digits are \(\sigma_i(a)\) for some \(n\), so they all called degenerate.
+            We only have 3 non-degenerate maps here.
+            \end{example}
+\typeout{************************************************}
+\typeout{Section 4.2 Chain Complexes}
+\typeout{************************************************}
+\section[Chain Complexes]{Chain Complexes}\label{sec-simp-chain-complexes}
+\begin{definition}[Chain complex of a simplicial set]\label{definition-26}
+
+            Let \(A \in S(\cA)\) and define the associated chain complex \(CA\) to have \(CA_n = A_n\) with differential \(\rd_n = \sum (-1)^i \dd_i\).
+          \end{definition}
+\begin{example}\label{example-18}
+\(C_\bullet(X; \ZZ) = C\ZZ\Sing X\).
+          \end{example}
+\begin{remark}\label{remark-3}
+
+            Kozul complexes and Cech complexes can be seen as coming from \terminology{semi-simplicial sets}, i.e. those without degeneracies.
+          \end{remark}
+\begin{definition}[Normalised chain complexes]\label{definition-27}
+
+            The \terminology{normalised chain complex}\(NA\) of a simplicial object is \(NA_n = \bigcap_{i=0}^{n-1} \ker(\dd_i)\) with \(\rd_n = (-1)^n \dd_n\). \end{definition}
+
+          In fact we have \(NA \simeq CA\).
+          And then we have 
+        %
+\begin{theorem}[Dold-Kan]\label{theorem-5}
+\(N\) induces an equivalence of categories \(s\cA \to \Ch_{\ge 0}(\cA)\).
+          \end{theorem}
+\begin{proof}
+Omitted, idea is to write down an explicit inverse \(\Gamma\) e.g. \(\Gamma C_n = \bigoplus_{[n]\twoheadrightarrow [k]} C_k\).\end{proof}
+\typeout{************************************************}
+\typeout{Section 4.3 Topological spaces and more examples}
+\typeout{************************************************}
+\section[Topological spaces and more examples]{Topological spaces and more examples}\label{sec-top-examples}
+\begin{example}\label{example-19}
+
+            Let \(\Delta^n\) be the geometric \(n\)' simplex
+            \[\Delta^n = \{(t_0,\ldots,t_n) \in \RR_{\ge 0}^{n+1} : \sum t_i = 1\}.\]
+
+            Any \([m]\xrightarrow{\alpha} [n] \in \Delta\) induces a set map on the vertices which extends linearly to \(\Delta^m \xrightarrow{\sigma_*} \Delta^n\).
+            This makes \(\Delta^{\bullet}\) into a cosimplicial topological space.
+            Then \(\Hom_{\Top}(\Delta^{\bullet}, X)\) is naturally a simplicial set.
+            It is \(\Sing X\).
+
+            So we have a functor \(\Sing \colon \Top \to \sSet\) and we want an adjoint.
+          \end{example}
+\begin{definition}[??]\label{definition-28}
+
+            There is a functor \(|\cdot |\colon \sSet \to \Top\) defined by
+            \[
+              |A_n| = \coprod_n A_n \times \Delta^n / \sim.
+            \]
+            Where for \(\alpha \colon [m] \to [n]\) we identify \(A_m \times \Delta^n \ni (\alpha^* x, y)\) with \((x, \alpha_* y) \in A_n \times \Delta^n\).
+          \end{definition}
+\begin{example}\label{example-20}
+\[|\Delta[n]| = \Delta^n\].
+          \end{example}
+
+          We are going to restrict these functors.
+        %
+\begin{example}\label{example-21}
+
+            Let \(G\) be a group, now let \(BG_n = G^{\times n}\) and
+            \[\dd_i(g_1,\ldots,g_n) = \begin{cases}(g_2,\ldots,g_n) & i = 0, \\(g_1\ldots,g_ig_{i+1},\ldots,g_n) & i = 1,\ldots,n-1,\\(g_1,\ldots,g_{n-1} & i = n.\end{cases}\]\[\sigma_i(g_1,\ldots,g_n) = (g_1,\ldots,1,\ldots,g_n)\]
+            where the \(1\) goes in the \(i\)th place.
+            \(|BG|\) is called the \terminology{classifying space} of \(G\) and it is a \(K(G,1)\).
+          \end{example}
+\begin{example}\label{example-22}
+
+            A group is just a category with only one object and where all arrows are isomorphisms.
+            So for a small category \(\cC\) we let \(B\cC_0\) be \(\ob \cC\) and \(B\cC_{n\ge 1}\) be all compatible \(n\)-tuples of morphisms.
+            We define the face and degeneracy maps by composition and identity as above.
+          \end{example}
+\typeout{************************************************}
+\typeout{Chapter 5 Model Categories}
 \typeout{************************************************}
 \chapter[Model Categories]{Model Categories}\label{chap-model-cats}
 %

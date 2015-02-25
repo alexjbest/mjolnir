@@ -7,7 +7,7 @@
 <!--*                                    *-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>HH Motivation</title>
+<title>HH Topological spaces and more examples</title>
 <meta name="Keywords" content="Authored in MathBook XML">
 <meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <script type="text/x-mathjax-config">
@@ -97,19 +97,19 @@ $(function () {
 <nav id="primary-navbar"><div class="container">
 <div class="navbar-top-buttons">
 <button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<a class="previous-button toolbar-item button" href="sec-introduction.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-cats.html">Next</a>
+<a class="previous-button toolbar-item button" href="sec-simp-chain-complexes.html">Previous</a><a class="up-button button toolbar-item" href="chap-homotopical.html">Up</a><a class="next-button button toolbar-item" href="chap-model-cats.html">Next</a>
 </div>
 <button class="sidebar-right-toggle-button button active">Annotations</button>
 </div>
 <div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-introduction.html">Previous</a><a class="up-button button toolbar-item" href="chap-hom-alg.html">Up</a><a class="next-button button toolbar-item" href="sec-cats.html">Next</a>
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-simp-chain-complexes.html">Previous</a><a class="up-button button toolbar-item" href="chap-homotopical.html">Up</a><a class="next-button button toolbar-item" href="chap-model-cats.html">Next</a>
 </div>
 </div></nav></header><div class="page">
 <aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
-<nav id="toc"><h2 class="link active"><a href="chap-hom-alg.html"><span class="codenumber">1</span><span class="title">Elements of Homological Algebra</span></a></h2>
+<nav id="toc"><h2 class="link"><a href="chap-hom-alg.html"><span class="codenumber">1</span><span class="title">Elements of Homological Algebra</span></a></h2>
 <ul>
 <li><a href="sec-introduction.html">Introduction</a></li>
-<li><a href="sec-motivation.html" class="active">Motivation</a></li>
+<li><a href="sec-motivation.html">Motivation</a></li>
 <li><a href="sec-cats.html">Categorical notions</a></li>
 <li><a href="sec-chain-complexes.html">Chain complexes</a></li>
 <li><a href="sec-exact.html">Exact Functors</a></li>
@@ -122,42 +122,56 @@ $(function () {
 <ul></ul>
 <h2 class="link"><a href="chap-spec-seq.html"><span class="codenumber">3</span><span class="title">Spectral Sequences</span></a></h2>
 <ul></ul>
-<h2 class="link"><a href="chap-homotopical.html"><span class="codenumber">4</span><span class="title">Homotopical Algebra</span></a></h2>
+<h2 class="link active"><a href="chap-homotopical.html"><span class="codenumber">4</span><span class="title">Homotopical Algebra</span></a></h2>
 <ul>
 <li><a href="sec-simplicial-sets.html">Simplicial Sets</a></li>
 <li><a href="sec-simp-chain-complexes.html">Chain Complexes</a></li>
-<li><a href="sec-top-examples.html">Topological spaces and more examples</a></li>
+<li><a href="sec-top-examples.html" class="active">Topological spaces and more examples</a></li>
 </ul>
 <h2 class="link"><a href="chap-model-cats.html"><span class="codenumber">5</span><span class="title">Model Categories</span></a></h2>
 <ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
-</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-motivation"><header><h1 class="heading">
-<span class="type">Section</span><span class="codenumber">1.2</span><span class="title">Motivation</span>
-</h1></header><p>Start with a graded ring \(\CC[x_0,\ldots,x_n]\) with \(\deg x_i = 1\).
-          Consider a graded module \(M = \bigoplus_d M_d\) over \(R\).
-          Hilbert looked at the map \(d\mapsto H_M (d)= \dim_{\CC} M_d\).
-          For example we can take \(R\) to be the homogeneous coordinate ring of \(\PP^n\) and \(V(I)\subset \PP^n\) a subvariety where \(I\) is a homogeneous ideal.
-          We then take \(M = R/I\), if \(V\) is a curve \(C\) then \(H_{R/I}(d) = \deg(V)\cdot d + (1 -g(C))\).
-          Hilbert showed that the function \(H_M(d)\) is eventually polynomial.
-          We can compute this function easily if \(M\) is free so we try to replace \(M\) by free modules.
-          First we take
-          \[K_0\to F_0 \to M\]
-          where \(K_0\) is the kernel of the surjective map from \(F_0\) to \(M\).
-          We can continue this getting
-          \begin{gather*}
-K_1\to F_1 \to K_0\\
-K_2\to F_2 \to K_1\\
-\vdots
-\end{gather*}
-          we can then write
-          \[\cdots \to F_2\to F_1\to F_0 \to M \to 0,\]
-          this is a free resolution of \(M\).
-          We also have the following.
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-top-examples"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">4.3</span><span class="title">Topological spaces and more examples</span>
+</h1></header><article class="example-like" id="example-19"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">4.3.1</span>
+</h5>
+            Let \(\Delta^n\) be the geometric \(n\)' simplex
+            \[\Delta^n = \{(t_0,\ldots,t_n) \in \RR_{\ge 0}^{n+1} : \sum t_i = 1\}.\]
+
+            Any \([m]\xrightarrow{\alpha} [n] \in \Delta\) induces a set map on the vertices which extends linearly to \(\Delta^m \xrightarrow{\sigma_*} \Delta^n\).
+            This makes \(\Delta^{\bullet}\) into a cosimplicial topological space.
+            Then \(\Hom_{\Top}(\Delta^{\bullet}, X)\) is naturally a simplicial set.
+            It is \(\Sing X\).
+
+            So we have a functor \(\Sing \colon \Top \to \sSet\) and we want an adjoint.
+          </article><article class="definition-like" id="definition-28"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">4.3.2</span><span class="title">??</span>
+</h5>
+            There is a functor \(|\cdot |\colon \sSet \to \Top\) defined by
+            \[
+              |A_n| = \coprod_n A_n \times \Delta^n / \sim.
+            \]
+            Where for \(\alpha \colon [m] \to [n]\) we identify \(A_m \times \Delta^n \ni (\alpha^* x, y)\) with \((x, \alpha_* y) \in A_n \times \Delta^n\).
+          </article><article class="example-like" id="example-20"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">4.3.3</span>
+</h5>\[|\Delta[n]| = \Delta^n\].
+          </article><p>
+          We are going to restrict these functors.
         </p>
-<article class="theorem-like" id="theorem-1"><h5 class="heading">
-<span class="type">Theorem</span><span class="codenumber">1.2.1</span><span class="title">Hilbert</span>
-</h5>\(F_{n+1} = 0\).</article><article class="theorem-like" id="corollary-1"><h5 class="heading">
-<span class="type">Corollary</span><span class="codenumber">1.2.2</span>
-</h5>\(H_M(d) = \sum_i (-1)^i H_{F_i}(d)\).</article></section></div></main>
+<article class="example-like" id="example-21"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">4.3.4</span>
+</h5>
+            Let \(G\) be a group, now let \(BG_n = G^{\times n}\) and
+            \[\dd_i(g_1,\ldots,g_n) = \begin{cases}(g_2,\ldots,g_n) &amp; i = 0, \\(g_1\ldots,g_ig_{i+1},\ldots,g_n) &amp; i = 1,\ldots,n-1,\\(g_1,\ldots,g_{n-1} &amp; i = n.\end{cases}\]\[\sigma_i(g_1,\ldots,g_n) = (g_1,\ldots,1,\ldots,g_n)\]
+            where the \(1\) goes in the \(i\)th place.
+            \(|BG|\) is called the <em class="terminology">classifying space</em> of \(G\) and it is a \(K(G,1)\).
+          </article><article class="example-like" id="example-22"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">4.3.5</span>
+</h5>
+            A group is just a category with only one object and where all arrows are isomorphisms.
+            So for a small category \(\cC\) we let \(B\cC_0\) be \(\ob \cC\) and \(B\cC_{n\ge 1}\) be all compatible \(n\)-tuples of morphisms.
+            We define the face and degeneracy maps by composition and identity as above.
+          </article></section></div></main>
 </div>
 </body>
 </html>
