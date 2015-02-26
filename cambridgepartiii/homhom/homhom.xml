@@ -44,7 +44,7 @@ Copyright 2014 Alex J. Best
     \DeclareMathOperator{\Ab}{\text{Ab}}
     \DeclareMathOperator{\Top}{\text{Top}}
     \DeclareMathOperator{\Rmod}{R\text{mod}}
-    \DeclareMathOperator{\sSet}{\text{sSet}}
+    \DeclareMathOperator{\SSet}{\text{SSet}}
     \DeclareMathOperator{\sAb}{\text{sAb}}
     \DeclareMathOperator{\cA}{\mathcal{A}}
     \DeclareMathOperator{\cB}{\mathcal{B}}
@@ -804,7 +804,7 @@ Copyright 2014 Alex J. Best
       </section>
 
       <section xml:id="sec-total-derived">
-        <title>Total derived functors</title>
+        <title>Total Derived Functors</title>
 
         <p>We now interpret/redefine derived functors as lifts to the derived category.</p>
 
@@ -843,7 +843,7 @@ Copyright 2014 Alex J. Best
 
         <example>
           <statement>
-            <m>\sSet</m> is the category of simplicial sets, and <m>\sAb</m> is the category of simplicial groups.
+            <m>\SSet</m> is the category of simplicial sets, and <m>\sAb</m> is the category of simplicial groups.
           </statement>
         </example>
 
@@ -884,7 +884,7 @@ Copyright 2014 Alex J. Best
         <example>
           <statement>
             Define the <term>standard simplex</term> <m>\Delta[n]</m> to be the image of <m>[n]</m> under contravariant Yoneda, i.e. <m>\Delta[n]_i = \Hom_{\Delta}(i,[n])</m>.
-            This is universal i n the sense that <m>\Delta_n = \Hom_{\sSet}(\Delta[n], A)</m>.
+            This is universal i n the sense that <m>\Delta_n = \Hom_{\SSet}(\Delta[n], A)</m>.
             We call <m>A_m</m> the simplices of <m>\Delta</m> (by Yoneda).
           </statement>
         </example>
@@ -954,26 +954,26 @@ Copyright 2014 Alex J. Best
       </section>
 
       <section xml:id="sec-top-examples">
-        <title>Topological spaces and more examples</title>
+        <title>Topological Spaces and More Examples</title>
 
         <example>
           <statement>
-            Let <m>\Delta^n</m> be the geometric <m>n</m>' simplex
+            Let <m>\Delta^n</m> be the geometric <m>n</m> simplex
             <me>\Delta^n = \{(t_0,\ldots,t_n) \in \RR_{\ge 0}^{n+1} : \sum t_i = 1\}.</me>
 
-            Any <m>[m]\xrightarrow{\alpha} [n] \in \Delta</m> induces a set map on the vertices which extends linearly to <m>\Delta^m \xrightarrow{\sigma_*} \Delta^n</m>.
+            Any <m>[m]\xrightarrow{\alpha} [n] \in \Delta</m> induces a set map on the vertices which extends linearly to <m>\Delta^m \xrightarrow{\alpha_*} \Delta^n</m>.
             This makes <m>\Delta^{\bullet}</m> into a cosimplicial topological space.
             Then <m>\Hom_{\Top}(\Delta^{\bullet}, X)</m> is naturally a simplicial set.
             It is <m>\Sing X</m>.
 
-            So we have a functor <m>\Sing \colon \Top \to \sSet</m> and we want an adjoint.
+            So we have a functor <m>\Sing \colon \Top \to \SSet</m> and we want an adjoint.
           </statement>
         </example>
 
         <definition>
           <title>??</title>
           <statement>
-            There is a functor <m>|\cdot |\colon \sSet \to \Top</m> defined by
+            There is a functor <m>|\cdot |\colon \SSet \to \Top</m> defined by
             <me>
               |A_n| = \coprod_n A_n \times \Delta^n / \sim.
             </me>
@@ -983,7 +983,7 @@ Copyright 2014 Alex J. Best
 
         <example>
           <statement>
-            <me>|\Delta[n]| = \Delta^n</me>.
+            <me>|\Delta[n]| = \Delta^n.</me>
           </statement>
         </example>
 
@@ -994,7 +994,7 @@ Copyright 2014 Alex J. Best
         <example>
           <statement>
             Let <m>G</m> be a group, now let <m>BG_n = G^{\times n}</m> and
-            <me>\dd_i(g_1,\ldots,g_n) = \begin{cases}(g_2,\ldots,g_n) &amp; i = 0, \\(g_1\ldots,g_ig_{i+1},\ldots,g_n) &amp; i = 1,\ldots,n-1,\\(g_1,\ldots,g_{n-1} &amp; i = n.\end{cases}</me>
+            <me>\dd_i(g_1,\ldots,g_n) = \begin{cases}(g_2,\ldots,g_n) &amp; i = 0, \\(g_1\ldots,g_ig_{i+1},\ldots,g_n) &amp; i = 1,\ldots,n-1,\\(g_1,\ldots,g_{n-1}) &amp; i = n.\end{cases}</me>
             <me>\sigma_i(g_1,\ldots,g_n) = (g_1,\ldots,1,\ldots,g_n)</me>
             where the <m>1</m> goes in the <m>i</m>th place.
             <m>|BG|</m> is called the <term>classifying space</term> of <m>G</m> and it is a <m>K(G,1)</m>.

@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2015-02-25T16:47:07Z    %%
+%%    on 2015-02-26T11:52:51Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -123,7 +123,7 @@
 \DeclareMathOperator{\Ab}{\text{Ab}}
 \DeclareMathOperator{\Top}{\text{Top}}
 \DeclareMathOperator{\Rmod}{R\text{mod}}
-\DeclareMathOperator{\sSet}{\text{sSet}}
+\DeclareMathOperator{\SSet}{\text{SSet}}
 \DeclareMathOperator{\sAb}{\text{sAb}}
 \DeclareMathOperator{\cA}{\mathcal{A}}
 \DeclareMathOperator{\cB}{\mathcal{B}}
@@ -183,7 +183,7 @@ The recommended books are:
         %
 \par
 
-          Generated: February 25, 2015, 16:47:07 (Z)
+          Generated: February 26, 2015, 11:52:51 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Motivation}
@@ -725,9 +725,9 @@ See Weibel 10.3, Gelfand-Manin III 2. \end{proof}
             To see that it is essentially surjective write down injective resolutions for complexes (see later).
           \end{proof}
 \typeout{************************************************}
-\typeout{Section 1.9 Total derived functors}
+\typeout{Section 1.9 Total Derived Functors}
 \typeout{************************************************}
-\section[Total derived functors]{Total derived functors}\label{sec-total-derived}
+\section[Total Derived Functors]{Total Derived Functors}\label{sec-total-derived}
 We now interpret/redefine derived functors as lifts to the derived category.%
 \begin{definition}\label{definition-24}
 
@@ -755,7 +755,7 @@ We now interpret/redefine derived functors as lifts to the derived category.%
             These objects form a category, denoted \(s(\cC)\) or just \(s\cC\), where the morphisms are natural transformations.
           \end{definition}
 \begin{example}\label{example-14}
-\(\sSet\) is the category of simplicial sets, and \(\sAb\) is the category of simplicial groups.
+\(\SSet\) is the category of simplicial sets, and \(\sAb\) is the category of simplicial groups.
           \end{example}
 \begin{example}\label{example-15}
 
@@ -787,7 +787,7 @@ See, for example, Weibel.\end{proof}
 \begin{example}\label{example-16}
 
             Define the \terminology{standard simplex}\(\Delta[n]\) to be the image of \([n]\) under contravariant Yoneda, i.e. \(\Delta[n]_i = \Hom_{\Delta}(i,[n])\).
-            This is universal i n the sense that \(\Delta_n = \Hom_{\sSet}(\Delta[n], A)\).
+            This is universal i n the sense that \(\Delta_n = \Hom_{\SSet}(\Delta[n], A)\).
             We call \(A_m\) the simplices of \(\Delta\) (by Yoneda).
           \end{example}
 \begin{example}\label{example-17}
@@ -829,39 +829,38 @@ See, for example, Weibel.\end{proof}
 \begin{proof}
 Omitted, idea is to write down an explicit inverse \(\Gamma\) e.g. \(\Gamma C_n = \bigoplus_{[n]\twoheadrightarrow [k]} C_k\).\end{proof}
 \typeout{************************************************}
-\typeout{Section 4.3 Topological spaces and more examples}
+\typeout{Section 4.3 Topological Spaces and More Examples}
 \typeout{************************************************}
-\section[Topological spaces and more examples]{Topological spaces and more examples}\label{sec-top-examples}
+\section[Topological Spaces and More Examples]{Topological Spaces and More Examples}\label{sec-top-examples}
 \begin{example}\label{example-19}
 
-            Let \(\Delta^n\) be the geometric \(n\)' simplex
+            Let \(\Delta^n\) be the geometric \(n\) simplex
             \[\Delta^n = \{(t_0,\ldots,t_n) \in \RR_{\ge 0}^{n+1} : \sum t_i = 1\}.\]
 
-            Any \([m]\xrightarrow{\alpha} [n] \in \Delta\) induces a set map on the vertices which extends linearly to \(\Delta^m \xrightarrow{\sigma_*} \Delta^n\).
+            Any \([m]\xrightarrow{\alpha} [n] \in \Delta\) induces a set map on the vertices which extends linearly to \(\Delta^m \xrightarrow{\alpha_*} \Delta^n\).
             This makes \(\Delta^{\bullet}\) into a cosimplicial topological space.
             Then \(\Hom_{\Top}(\Delta^{\bullet}, X)\) is naturally a simplicial set.
             It is \(\Sing X\).
 
-            So we have a functor \(\Sing \colon \Top \to \sSet\) and we want an adjoint.
+            So we have a functor \(\Sing \colon \Top \to \SSet\) and we want an adjoint.
           \end{example}
 \begin{definition}[??]\label{definition-28}
 
-            There is a functor \(|\cdot |\colon \sSet \to \Top\) defined by
+            There is a functor \(|\cdot |\colon \SSet \to \Top\) defined by
             \[
               |A_n| = \coprod_n A_n \times \Delta^n / \sim.
             \]
             Where for \(\alpha \colon [m] \to [n]\) we identify \(A_m \times \Delta^n \ni (\alpha^* x, y)\) with \((x, \alpha_* y) \in A_n \times \Delta^n\).
           \end{definition}
 \begin{example}\label{example-20}
-\[|\Delta[n]| = \Delta^n\].
-          \end{example}
+\[|\Delta[n]| = \Delta^n.\]\end{example}
 
           We are going to restrict these functors.
         %
 \begin{example}\label{example-21}
 
             Let \(G\) be a group, now let \(BG_n = G^{\times n}\) and
-            \[\dd_i(g_1,\ldots,g_n) = \begin{cases}(g_2,\ldots,g_n) & i = 0, \\(g_1\ldots,g_ig_{i+1},\ldots,g_n) & i = 1,\ldots,n-1,\\(g_1,\ldots,g_{n-1} & i = n.\end{cases}\]\[\sigma_i(g_1,\ldots,g_n) = (g_1,\ldots,1,\ldots,g_n)\]
+            \[\dd_i(g_1,\ldots,g_n) = \begin{cases}(g_2,\ldots,g_n) & i = 0, \\(g_1\ldots,g_ig_{i+1},\ldots,g_n) & i = 1,\ldots,n-1,\\(g_1,\ldots,g_{n-1}) & i = n.\end{cases}\]\[\sigma_i(g_1,\ldots,g_n) = (g_1,\ldots,1,\ldots,g_n)\]
             where the \(1\) goes in the \(i\)th place.
             \(|BG|\) is called the \terminology{classifying space} of \(G\) and it is a \(K(G,1)\).
           \end{example}
