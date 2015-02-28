@@ -23,6 +23,7 @@ Copyright 2014 Alex J. Best
     </author>
 
     <macros>
+    \usepackage{mathrsfs}
     \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\Coh}{Coh}
     \DeclareMathOperator{\Hom}{Hom}
@@ -50,6 +51,10 @@ Copyright 2014 Alex J. Best
     \DeclareMathOperator{\cB}{\mathcal{B}}
     \DeclareMathOperator{\cC}{\mathcal{C}}
     \DeclareMathOperator{\cO}{\mathcal{O}}
+    \DeclareMathOperator{\cM}{\mathcal{M}}
+    \DeclareMathOperator{\sC}{\mathscr{C}}
+    \DeclareMathOperator{\sF}{\mathscr{F}}
+    \DeclareMathOperator{\sW}{\mathscr{W}}
 
     \DeclareMathOperator{\dd}{\partial}
     \DeclareMathOperator{\rd}{\mathrm{d}}
@@ -939,14 +944,14 @@ Copyright 2014 Alex J. Best
 
         <p>
           In fact we have <m>NA \simeq CA</m>.
-          And then we have 
+          And then we have:
         </p>
 
         <theorem>
           <title>Dold-Kan</title>
 
           <statement>
-            <m>N</m> induces an equivalence of categories <m>s\cA \to \Ch_{\ge 0}(\cA)</m>.
+            <m>N</m> induces an equivalence of categories <m>s(\cA) \to \Ch_{\ge 0}(\cA)</m>.
           </statement>
 
           <proof>Omitted, idea is to write down an explicit inverse <m>\Gamma</m> e.g. <m>\Gamma C_n = \bigoplus_{[n]\twoheadrightarrow [k]} C_k</m>.</proof>
@@ -971,7 +976,7 @@ Copyright 2014 Alex J. Best
         </example>
 
         <definition>
-          <title>??</title>
+          <title>Geometric realisation</title>
           <statement>
             There is a functor <m>|\cdot |\colon \SSet \to \Top</m> defined by
             <me>
@@ -1014,6 +1019,102 @@ Copyright 2014 Alex J. Best
 
     <chapter xml:id="chap-model-cats">
       <title>Model Categories</title>
+
+      <section xml:id="sec-model-cats">
+        <title>Model Categories</title>
+
+        <definition>
+          <title>Left lifting property</title>
+
+          <statement>
+            A map <m>i</m> satisfies the left lifting property with respect to a map <m>p</m> if in any diagram
+            <me>
+              \xymatrix{
+                A \ar[r]^f \ar[d]_i &amp; X \ar[d]^p\\B\ar@{..>}[ur]^h \ar[r]_g&amp; Y
+              }
+            </me>
+            the map <m>h</m> exists making the diagram commute.
+          </statement>
+        </definition>
+
+        <p>
+          So in a category <m>\cA</m> a map <m>P</m> is projective if and only if <m>0\to P</m> has the left lifting property with respect to all surjections.
+          Similarly a map <m>I</m> is injective if and only if <m>I\to 0</m> has the right lifting property with respect to all injections.
+        </p>
+
+        <definition>
+          <title>Retracts</title>
+
+          <statement>
+            A map <m>f\colon A \to B</m> is a <term>retract</term> if a map <m>g\colon A' \to B'</m> if there exists a diagram
+            <me>
+              \xymatrix{
+                A \ar@{=}@/^/[rr] \ar[r]\ar[d]_f &amp;A' \ar[r] \ar[d]^g &amp;A\ar[d]^f \\
+                B \ar@{=}@/_/[rr] \ar[r] &amp; B'\ar[r] &amp; B
+              }
+            </me>
+          </statement>
+        </definition>
+
+        <definition>
+          <title>Model categories</title>
+
+          <statement>
+            A <term>model category</term> is a category <m>\cM</m> with three classes of maps, <m>\sW</m> (<term>weak equivalences</term>), <m>\sF</m> (<term>fibrations</term>), <m>\sC</m> (<term>cofibrations</term>).
+            We call maps in <m>\sW \cap \sF</m> <term>acyclic fibrations</term> and those in <m>\sW \cap \sC</m> <term>acyclic cofibrations</term>.
+            We require these categories and classes to satisfy the following:
+            <ol>
+              <li><m>\cM</m> has all small limits and colimits.</li>
+              <li>If <m>f,g,gf</m> are morphisms of <m>\cM</m> then any two lying in <m>\sW</m> implies the third does also.</li>
+              <li><m>\sF,\sC,\sW</m> are all closed under retracts.</li>
+              <li>
+                <ol>
+                  <li>Any map in <m>\sC</m> has the left lifting property with respect to any map in <m>\sW\cap\sF</m>.</li>
+                  <li>Any map in <m>\sF</m> has the left lifting property with respect to any map in <m>\sW\cap\sC</m>.</li>
+                </ol>
+              </li>
+              <li>
+                Any map <m>f</m> may be functorially factored as
+                <ol>
+                  <li><m>f = p \circ i</m> for some <m>i\in \sC</m>, <m>p\in \sF \cap \sW</m>.</li>
+                  <li><m>f = q \circ j</m> for some <m>j\in \sC\cap \sW</m>, <m>q\in \sF</m>.</li>
+                </ol>
+              </li>
+            </ol>
+          </statement>
+        </definition>
+
+        <example>
+          <statement>
+            <m>\Ch_{\ge 0} R</m> forms a model category with <m>\sW</m> being the class of quasi-isomorphisms, <m>\sF</m> the class of chain maps surjective in strictly positive grading, and <m>\sC</m> bein chain maps <m>f</m> where <m>f_n</m> is injective with projective cokernel for all <m>n</m>.
+            This is called the projective model structure on <m>\Ch_{\ge 0} R</m>
+          </statement>
+        </example>
+
+
+        <definition>
+          <title>Fibrant and cofibrant objects</title>
+          <statement>
+            <m>A\in \cM</m> is <term>cofibrant</term> if <m>0 \to A</m> is a cofibration.
+            <m>A\in \cM</m> is <term>fibrant</term> if <m>A\to 0</m> is a fibration.
+          </statement>
+        </definition>
+
+        <lemma>
+          <statement>
+            If <m>\cM</m> is a model category then <m>f \in \sC</m> if and only if <m>f</m> has the left lifting property with respect to all maps in <m>\sW \cap \sF</m>.
+            The three analogous statements also hold.
+          </statement>
+
+          <proof>
+            <m>f\colon K \to L</m>
+          </proof>
+        </lemma>
+
+
+
+      </section>
+      
 
     </chapter>
 

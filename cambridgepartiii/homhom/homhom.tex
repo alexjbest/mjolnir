@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2015-02-26T11:52:51Z    %%
+%%    on 2015-02-28T15:28:42Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -102,6 +102,7 @@
 %% Custom Preamble Entries, late (use latex.preamble.late)
 \usepackage[all]{xy}
 %% Convenience macros
+\usepackage{mathrsfs}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Coh}{Coh}
 \DeclareMathOperator{\Hom}{Hom}
@@ -129,6 +130,10 @@
 \DeclareMathOperator{\cB}{\mathcal{B}}
 \DeclareMathOperator{\cC}{\mathcal{C}}
 \DeclareMathOperator{\cO}{\mathcal{O}}
+\DeclareMathOperator{\cM}{\mathcal{M}}
+\DeclareMathOperator{\sC}{\mathscr{C}}
+\DeclareMathOperator{\sF}{\mathscr{F}}
+\DeclareMathOperator{\sW}{\mathscr{W}}
 
 \DeclareMathOperator{\dd}{\partial}
 \DeclareMathOperator{\rd}{\mathrm{d}}
@@ -183,7 +188,7 @@ The recommended books are:
         %
 \par
 
-          Generated: February 26, 2015, 11:52:51 (Z)
+          Generated: February 28, 2015, 15:28:42 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Motivation}
@@ -821,10 +826,10 @@ See, for example, Weibel.\end{proof}
             The \terminology{normalised chain complex}\(NA\) of a simplicial object is \(NA_n = \bigcap_{i=0}^{n-1} \ker(\dd_i)\) with \(\rd_n = (-1)^n \dd_n\). \end{definition}
 
           In fact we have \(NA \simeq CA\).
-          And then we have 
+          And then we have:
         %
 \begin{theorem}[Dold-Kan]\label{theorem-5}
-\(N\) induces an equivalence of categories \(s\cA \to \Ch_{\ge 0}(\cA)\).
+\(N\) induces an equivalence of categories \(s(\cA) \to \Ch_{\ge 0}(\cA)\).
           \end{theorem}
 \begin{proof}
 Omitted, idea is to write down an explicit inverse \(\Gamma\) e.g. \(\Gamma C_n = \bigoplus_{[n]\twoheadrightarrow [k]} C_k\).\end{proof}
@@ -844,7 +849,7 @@ Omitted, idea is to write down an explicit inverse \(\Gamma\) e.g. \(\Gamma C_n 
 
             So we have a functor \(\Sing \colon \Top \to \SSet\) and we want an adjoint.
           \end{example}
-\begin{definition}[??]\label{definition-28}
+\begin{definition}[Geometric realisation]\label{definition-28}
 
             There is a functor \(|\cdot |\colon \SSet \to \Top\) defined by
             \[
@@ -874,6 +879,64 @@ Omitted, idea is to write down an explicit inverse \(\Gamma\) e.g. \(\Gamma C_n 
 \typeout{Chapter 5 Model Categories}
 \typeout{************************************************}
 \chapter[Model Categories]{Model Categories}\label{chap-model-cats}
+\typeout{************************************************}
+\typeout{Section 5.1 Model Categories}
+\typeout{************************************************}
+\section[Model Categories]{Model Categories}\label{sec-model-cats}
+\begin{definition}[Left lifting property]\label{definition-29}
+
+            A map \(i\) satisfies the left lifting property with respect to a map \(p\) if in any diagram
+            \[
+              \xymatrix{
+                A \ar[r]^f \ar[d]_i & X \ar[d]^p\\B\ar@{..>}[ur]^h \ar[r]_g& Y
+              }
+            \]
+            the map \(h\) exists making the diagram commute.
+          \end{definition}
+
+          So in a category \(\cA\) a map \(P\) is projective if and only if \(0\to P\) has the left lifting property with respect to all surjections.
+          Similarly a map \(I\) is injective if and only if \(I\to 0\) has the right lifting property with respect to all injections.
+        %
+\begin{definition}[Retracts]\label{definition-30}
+
+            A map \(f\colon A \to B\) is a \terminology{retract} if a map \(g\colon A' \to B'\) if there exists a diagram
+            \[
+              \xymatrix{
+                A \ar@{=}@/^/[rr] \ar[r]\ar[d]_f &A' \ar[r] \ar[d]^g &A\ar[d]^f \\
+                B \ar@{=}@/_/[rr] \ar[r] & B'\ar[r] & B
+              }
+            \]\end{definition}
+\begin{definition}[Model categories]\label{definition-31}
+
+            A \terminology{model category} is a category \(\cM\) with three classes of maps, \(\sW\) (\terminology{weak equivalences}), \(\sF\) (\terminology{fibrations}), \(\sC\) (\terminology{cofibrations}).
+            We call maps in \(\sW \cap \sF\)\terminology{acyclic fibrations} and those in \(\sW \cap \sC\)\terminology{acyclic cofibrations}.
+            We require these categories and classes to satisfy the following:
+            \begin{enumerate}
+\item{}\(\cM\) has all small limits and colimits.\item{}If \(f,g,gf\) are morphisms of \(\cM\) then any two lying in \(\sW\) implies the third does also.\item{}\(\sF,\sC,\sW\) are all closed under retracts.\item{}
+                \begin{enumerate}
+\item{}Any map in \(\sC\) has the left lifting property with respect to any map in \(\sW\cap\sF\).\item{}Any map in \(\sF\) has the left lifting property with respect to any map in \(\sW\cap\sC\).\end{enumerate}
+
+              \item{}
+                Any map \(f\) may be functorially factored as
+                \begin{enumerate}
+\item{}\(f = p \circ i\) for some \(i\in \sC\), \(p\in \sF \cap \sW\).\item{}\(f = q \circ j\) for some \(j\in \sC\cap \sW\), \(q\in \sF\).\end{enumerate}
+
+              \end{enumerate}
+\end{definition}
+\begin{example}\label{example-23}
+\(\Ch_{\ge 0} R\) forms a model category with \(\sW\) being the class of quasi-isomorphisms, \(\sF\) the class of chain maps surjective in strictly positive grading, and \(\sC\) bein chain maps \(f\) where \(f_n\) is injective with projective cokernel for all \(n\).
+            This is called the projective model structure on \(\Ch_{\ge 0} R\)\end{example}
+\begin{definition}[Fibrant and cofibrant objects]\label{definition-32}
+\(A\in \cM\) is \terminology{cofibrant} if \(0 \to A\) is a cofibration.
+            \(A\in \cM\) is \terminology{fibrant} if \(A\to 0\) is a fibration.
+          \end{definition}
+\begin{lemma}\label{lemma-7}
+
+            If \(\cM\) is a model category then \(f \in \sC\) if and only if \(f\) has the left lifting property with respect to all maps in \(\sW \cap \sF\).
+            The three analogous statements also hold.
+          \end{lemma}
+\begin{proof}
+\(f\colon K \to L\)\end{proof}
 %
 \backmatter
 %
