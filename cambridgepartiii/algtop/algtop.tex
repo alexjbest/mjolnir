@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2015-02-04T23:36:23Z    %%
+%%    on 2015-03-03T11:09:42Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -170,7 +170,7 @@
         %
 \par
 
-          Generated: February 4, 2015, 23:36:23 (Z)
+          Generated: March 3, 2015, 11:09:42 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Homotopy}
@@ -244,7 +244,7 @@
               We say \(X\) is \terminology{simply connected} if \([S^1, X]\) has only one
               element.
 
-              We say two space \(X\) and \(Y\) are \emph{homotopy equivalent} if there
+              We say two spaces \(X\) and \(Y\) are \emph{homotopy equivalent} if there
               exists \(f\colon X \to Y\) and \(g\colon Y \to X\) such that \(g\circ f
               \sim 1_X\) and \(f\circ g \sim 1_Y\).
             \end{definition}
@@ -260,7 +260,10 @@
             \end{proof}
 \end{example}
 \begin{exercise}\label{exercise-1}
-\end{exercise}
+
+              If \(X_0 \sim X_1\) and \(Y_0 \sim Y_1\) then \([X_0, Y_0]\) and
+              \([X_1, Y_1]\) are in bijection.
+            \end{exercise}
 \par
 
             Given \(X\) and \(Y\) how can we determine if \(X\sim Y\)?
@@ -770,7 +773,7 @@ d^2(e_I) &= d\left(\sum_{j = 0}^{k} (-1)^j e_{i_0,\ldots,\hat{i}_j,\ldots,i_k}\r
 \typeout{Section 1.5 Subdivision and Excision}
 \typeout{************************************************}
 \section[Subdivision and Excision]{Subdivision and Excision}\label{sec-subdivision}
-\begin{definition}\label{definition-18}
+\begin{definition}[Singular chain complexes with respect to open covers.]\label{definition-18}
 
             If \(\U = \{U_i\}_{i\in I}\) is an open cover of \(X\), let
             \[
@@ -973,7 +976,7 @@ If \(X\) and \(Y\) are finite cell complexes and \(H_*(X)\) is free over \(\ZZ\)
 \par
 Fact: If \(C_1\) is a free resolution of \(M\) and \(C_2\) is a free resolution of \(N\).
           Then
-          \[\Tor_i(M,N) \cong H_i(C_1 \otimes C_2) \cong H_i(C_1 \otimes N) \cong H_i(M\otimes C_2)\].
+          \[\Tor_i(M,N) \cong H_i(C_1 \otimes C_2) \cong H_i(C_1 \otimes N) \cong H_i(M\otimes C_2).\]
         %
 \begin{theorem}[Kunneth formula]\label{theorem-4}
 If \(A,B\) are free (finitely generated) chain complexes over a PID \(R\) then

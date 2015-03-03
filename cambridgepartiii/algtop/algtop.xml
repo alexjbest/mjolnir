@@ -171,7 +171,7 @@ Copyright 2014 Alex J. Best
               We say <m>X</m> is <term>simply connected</term> if <m>[S^1, X]</m> has only one
               element.
 
-              We say two space <m>X</m> and <m>Y</m> are <em>homotopy equivalent</em> if there
+              We say two spaces <m>X</m> and <m>Y</m> are <em>homotopy equivalent</em> if there
               exists <m>f\colon X \to Y</m> and <m>g\colon Y \to X</m> such that <m>g\circ f
               \sim 1_X</m> and <m>f\circ g \sim 1_Y</m>.
             </statement>
@@ -190,8 +190,10 @@ Copyright 2014 Alex J. Best
           </example>
 
           <exercise>
-            If <m>X_0 \sim X_1</m> and <m>Y_0 \sim Y_1</m> then <m>[X_0, Y_0]</m> and <m>[X_1,
-            Y_1]</m> are in bijection.
+            <statement>
+              If <m>X_0 \sim X_1</m> and <m>Y_0 \sim Y_1</m> then <m>[X_0, Y_0]</m> and
+              <m>[X_1, Y_1]</m> are in bijection.
+            </statement>
           </exercise>
 
           <p>
@@ -876,6 +878,7 @@ Copyright 2014 Alex J. Best
         <title>Subdivision and Excision</title>
 
         <definition>
+          <title>Singular chain complexes with respect to open covers.</title>
           <statement>
             If <m>\U = \{U_i\}_{i\in I}</m> is an open cover of <m>X</m>, let
             <me>
@@ -1169,7 +1172,7 @@ Copyright 2014 Alex J. Best
 
         <p>Fact: If <m>C_1</m> is a free resolution of <m>M</m> and <m>C_2</m> is a free resolution of <m>N</m>.
           Then
-          <me>\Tor_i(M,N) \cong H_i(C_1 \otimes C_2) \cong H_i(C_1 \otimes N) \cong H_i(M\otimes C_2)</me>.
+          <me>\Tor_i(M,N) \cong H_i(C_1 \otimes C_2) \cong H_i(C_1 \otimes N) \cong H_i(M\otimes C_2).</me>
         </p>
 
         <theorem>
@@ -1378,11 +1381,11 @@ Copyright 2014 Alex J. Best
               </ol>
             </proof>
           </proposition>
-          
+
         </subsection>
       </section>
     </chapter>
-    
+
     <chapter xml:id="chap-manifolds-bundles">
       <title>Manifolds and Bundles</title>
 
