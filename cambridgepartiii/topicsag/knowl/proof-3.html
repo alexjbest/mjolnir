@@ -1,0 +1,24 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="hiddenproof"><h5 class="heading"><span class="type">Proof</span></h5>
+            Integral implies reduced is clear. <br>
+            Suppose \(X  = Y_1 \cup Y_2\) with \(Y_1,Y_2 \subset X\) closed \(Y_1,Y_2 \ne X\).
+            So we find that \(U_1 = Y_1 \smallsetminus Y_2 = X_1 \smallsetminus Y_2\) and \(U_2 = Y_2 \smallsetminus Y_1 = X_2 \smallsetminus Y_1\) are open disjoint sets.
+
+            Then \(\sO_X(U_1\cup U_2) = \sO_X(U_1) \times \sO_X(U_2)\) by the sheaf axioms <span>&lt;&lt;Unresolved xref, ref="defn-sheaf"; check spelling or use "provisional" attribute&gt;&gt;</span>.
+            But this is not an integral domain.
+            Conversely suppose \(X\) is reduced and irreducible.
+            If \(U \subset X\) open, \(f,g\in \sO_X(U)\) with \(fg = 0\) we want to show that either \(f=0\) or \(g= 0\).
+            Let \(Y  =\{x\in U : f_x \in \fm_x\}\) where \(f_x\) is the germ of \(f\) in \(\sO_{X,x}\) and \(\fm_x\subset \sO_{X,x}\) is the maximal ideal.
+            Let \(Z = \{x\in  : g_x \in \fm_x\}\) then \(Y\) and \(Z\) are closed subsets of \(U\) (its enough to check this on an open cover of \(U\) which we can assume to be affine, but if \(U = \Spec A\) is affine \(Y = V(f)\), which is closed).
+            Since \(fg = 0\) we have \(f_x g_x = 0\) for all \(x\) and so \(U = Z\cup Y\).
+            \(U\) is an open subset of \(X\) which is irreducible so \(U\) is irreducible (exercise!).
+            So \(U = Y\) or \(U = Z\).
+            Assume \(U = Y\), we will show \(f = 0\).
+            We can restrict to affine open subsets of \(U\) and hence \(U =\Spec A\) is affine. Thus \(\emptyset = U \smallsetminus Y = D(f)\).
+            Thus \(f = \bigcap_{p\in\Spec A} p = \sqrt{(0)}\).
+            Thus \(f\) is nilpotent so \(f = 0\) since \(X\) is reduced, therefore \(\sO_X(U)\) is an integral domain.
+          </article><div class="context-link" style="text-align:right;"><a href="sec-props-schemes.html#proof-3">(in-context)</a></div>

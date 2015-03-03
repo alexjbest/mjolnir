@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>TAG Motivation</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "[Contrib]/xyjax/xypic.js"],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\aff}{\mathbf{A}}
+    \DeclareMathOperator{\sO}{\mathcal{O}}
+    \DeclareMathOperator{\fm}{\mathfrak{m}}
+    \DeclareMathOperator{\Spec}{Spec}
+    \DeclareMathOperator{\Gal}{Gal}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
+<h1 class="heading"><span class="title">Part III Topics in Algebraic Geometry 2014</span></h1>
+<p class="byline"></p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="sec-introduction.html">Previous</a><a class="up-button button toolbar-item" href="chap-schemes.html">Up</a><a class="next-button button toolbar-item" href="sec-props-schemes.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-introduction.html">Previous</a><a class="up-button button toolbar-item" href="chap-schemes.html">Up</a><a class="next-button button toolbar-item" href="sec-props-schemes.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link active"><a href="chap-schemes.html"><span class="codenumber">1</span><span class="title">Schemes</span></a></h2>
+<ul>
+<li><a href="sec-introduction.html">Introduction</a></li>
+<li><a href="sec-motivation.html" class="active">Motivation</a></li>
+<li><a href="sec-props-schemes.html">Properties of Schemes</a></li>
+</ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-motivation"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">1.2</span><span class="title">Motivation</span>
+</h1></header><p>Take \(I \subset k[x_1,\ldots,x_n]\) then \(X = V(I) \subset \aff^n\) and \((X,\sO_X)\) is a ringed space.
+          \(A(X) = k[x_1,\ldots,x_n]/\sqrt{I}\).
+          A point of \(X\) is given by a map of \(k\)-algebras \(\phi\colon A(X) \to k\) \(x_i\mapsto a_i\), giving the point \((a_1,\ldots,a_n)\in X\).
+          The kernel of \(\phi\) is a maximal ideal and conversely given a maximal ideal \(m\subset A(C)\) we get a map \(A(X) \to A(X)/m  = k\) if \(k = \bar{k}\) by the nullstellensatz.
+          Similarly if \(l\) is a field extension of \(k\) then a \(k\)-algebra homomorphism \(A(X) \to l\) can be viewed as giving a solution to the system of equations with values in \(l\).
+          Note that the group \(\Gal(l|k)\) acts on the set of solutions over \(l\) by postcomposition.
+          We might as well consider all possible field extensions \(l|k\), then \(\ker(A(X) \to l)\) might not be maximal.
+        </p>
+<article class="example-like" id="example-1"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.2.1</span>
+</h5>\(X = \aff^1\)\(k[X] \hookrightarrow k(X)\).
+            This is a \(k(X)\)-valued point on \(\aff^1\).
+          </article><p>More generally if \(R\) is a \(k\)-algebra an \(R\)-valued point of \(X\) is given by a \(k\)-algebra homomorphism \(\phi\colon A(X) \to R\).</p>
+<article class="example-like" id="example-2"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.2.2</span>
+</h5>\(R =k[t]/(t^2)\)  and the \(k\)-algebra homomorphism \(\phi\colon A(X) \to R\) induces by composition with \(t\mapsto 0\) a \(k\)-valued point \(x\in X\). (Assuming now \(k = \bar{k}\)) \(x\) corresponds to a maximal ideal \(m_x = \ker(A(X) \to k)\) and \(\phi(m_x) \subseteq (t)\).
+            So \(\phi(m_x^2) = 0\). 
+            Thus we get a map \(\phi \colon m_x/m_x^2 \to (t) = k\).
+
+            <article class="exercise-like" id="exercise-1"><h5 class="heading">
+<span class="type">Exercise</span> <span class="codenumber">1.2.3</span>
+</h5>Check that giving \(x\in X\) and a map \(m_x/m_x^2 \to k\) is equivalent to giving a map \(\phi\colon A(X) \to R\).</article>
+
+            A map \(m_x/m_x^2 \to k\) is an element of \((m_x/m_x^2)^*\).
+          </article><p>Recall that if \(X,Y\) are affine varieties, giving a morphism \(X\to Y\) is equivalent to giving a \(k\)-algebra homomorphism \(A(Y) \to A(X)\).
+          This suggests that we should allow any \(k\)-algebra to be a coordinate ring and if \(A,B\) are \(k\)-algebras then a map of \(k\)-algebras \(A\to B\) should be equivalent to giving a morphism of the corresponding ``varieties'' .
+          More generally we could work over a ring \(R\), rather than a field \(k\).
+          \(A\) and \(B\) could then be \(R\)-algebras.
+          This includes the case where \(R= \ZZ\) and \(A\) and \(B\) are just rings.
+        </p>
+<article class="definition-like" id="definition-1"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.4</span><span class="title"></span>
+</h5>The category of affine schemes is the opposite category of the category of commutative rings.</article><article class="definition-like" id="definition-2"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.5</span><span class="title"></span>
+</h5>A <em class="terminology">scheme</em> is a geometric object covered by affine schemes.</article><p>In general we tend to work with schemes over a base scheme \(S\) (e.g. \(S\leftrightarrow k\)) and consider morphisms defined over \(S\) i.e. diagrams .
+        
+        For \(T,X\) schemes over \(S\) a \(T\)-valued point of \(X\) is a diagram .</p>
+<article class="definition-like" id="definition-3"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.6</span><span class="title"></span>
+</h5>If \(A\) is a commutative ring \[\Spec A = \{p\subset A : p \text{ is a prime ideal}\}.\]
+            If \(I\subset A\) is an ideal (or set) we define \(V(I) = \{p\in \Spec A : p\supseteq I\}\).
+          </article><p>Note that if \(k = \bar{k}\) and \(A = k[x_1,\ldots,x_n]\), \(m = (x_1 - a_1,\ldots,x_n - a_n)\) contains \(I\) if and only if \((a_1,\ldots,a_n) \in V(I)\).</p>
+<article class="exercise-like" id="exercise-2"><h5 class="heading">
+<span class="type">Exercise</span> <span class="codenumber">1.2.7</span>
+</h5>Show that the sets \(V(I)\) form the closed sets of a topology on \(\Spec A\), the <em class="terminology">Zariski topology</em>.</article><p>
+          \(\Gamma(X,\sO_X) = A(X)\).
+          Our goal is to construct a sheaf \(\sO_{\Spec A}\) with stalks \(\sO_{\Spec A, p} = A_p\) and \(\Gamma(\Spec A, \sO_{\Spec A}) = A\).
+        </p>
+<article class="definition-like" id="definition-4"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.8</span><span class="title"></span>
+</h5>Let \(\sO\) be the sheaf on \(\Spec A\) whose sections over \(U\) open are functions \[s\colon U \to \coprod_{p\in U} A_p\]
+            such that 
+            <ol>
+<li>\(s(p)\in A_p\)</li>
+<li>for \(p\in U\) there exists some open \(V \subset U\) with \(p\in V\) and \(f,g\in A\) such that for all \(q\in V\) we have \(g\in q\) and \(s(q) = f/g \in A_q\)</li>
+</ol></article><article class="definition-like" id="definition-5"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.9</span><span class="title">Spectrums of rings</span>
+</h5>The spectrum of \(A\) is the locally ringed space \((\Spec A,\sO_{\Spec A})\).</article><p>Here locally ringed space means \(\sO_{\Spec A,p}\) is local for all \(p\in \Spec A\).</p>
+<article class="theorem-like" id="proposition-1"><h5 class="heading">
+<span class="type">Proposition</span><span class="codenumber">1.2.10</span>
+</h5>
+<ol>
+<li>For any \(p\in \Spec A\) \(\sO_p = A_p\).</li>
+<li>For any \(f\in A\) let \(D(f) = \{p\in \Spec A : f\notin p\} = \Spec A \smallsetminus V(f)\).</li>
+<li>\(\Gamma(\Spec A,\sO) = A\).</li>
+</ol>
+<article class="exercise-like" id="exercise-3"><h5 class="heading">
+<span class="type">Exercise</span> <span class="codenumber">1.2.11</span>
+</h5>Show that sets of the form \(D(f)\) form a basis of the topology on \(\Spec A\).</article></article><article class="hiddenproof" id="proof-1"><a knowl="./knowl/proof-1.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-1" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol><li>Define a map \(\sO_p\to A_p\) by \((U,s)\mapsto s(p)\).
+                To see this is surjective we take \(f/g\in A_p\) (\(g\in p\)) then \((D(g),f/g) \in \sO_p\) which maps to \(f/g\).
+                To see injectivity we let \((U,s),\,(V,t) \in \sO_p\) with \(s(p) = t(p)\).
+                By shrinking \(U\) and \(V\) we can assume \(U = V\) and \(s\) is given by \(f/g\) with \(t\) given by \(f'/g'\) where \(g,g'\notin p\).
+                Thus \(f/g = f'/g' \in A_p\) and hence there exists some \(h\notin p\) with \((f'g - g'f)h = 0\).
+                Then for and
+                
+              </li></ol></article></div>
+<article class="definition-like" id="definition-6"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.12</span><span class="title">Morphisms of locally ringed spaces</span>
+</h5>
+            A morphism \((X,\sO_x) \to (Y,\sO_Y)\) of locally ringed spaces is a continuous map \(f\colon X \to Y\) along with a morphism of sheaves of rings 
+            \[
+              f^\# \colon \sO_Y \to \sO_X
+            \]
+            such that the induced maps \(f_p^\# \colon \sO_{Y,f(p)} \to \sO_{X,p}\) are local homomorphisms for all \(p\).
+            The maps \(f_p^\#\) are induced by \((U,s) \mapsto (U,f^\#(s))\). </article><article class="theorem-like" id="proposition-2"><h5 class="heading">
+<span class="type">Proposition</span><span class="codenumber">1.2.13</span>
+</h5>
+<ol>
+<li>If \(\phi\colon A \to B\) is a ring homomorphism then \(\phi\) induces a morphism of locally ringed spaces \[(f,f^\#)\colon (\Spec B, \sO_{\Spec B}) \to (\Spec A, \sO_{\Spec A}).\]</li>
+<li>Any morphism of locally ringed spaces is induced in this way.</li>
+</ol></article><article class="hiddenproof" id="proof-2"><a knowl="./knowl/proof-2.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-2" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol>
+<li>
+                Define \(f\colon \Spec B \to \Spec A\) by \(f(p) = \phi^{-1}(p) \in \Spec A\).
+                This is continuous as
+                \begin{align*}
+f^{-1}(V(I)) &amp;= \{p\in \Spec B : \phi^{-1}(p) \supseteq I\}\\
+             &amp;= \{p\in \Spec B : p \supseteq \phi(I)\}\\
+             &amp;= V(\phi(I)).
+\end{align*}
+                For any \(p\in \Spec B\) we have a ring map 
+                \begin{align*}
+\phi_p \colon A_{\phi^{-1} (p)} &amp;\to B_p\\
+\frac as &amp;\mapsto \frac{\phi(a)}{\phi(s)}.
+\end{align*}
+                Define
+                \begin{align*}
+f^\# \colon \sO_{\Spec A}(V) &amp;\to \sO_{\Spec B}(f^{-1}(V) = (f_*\sO_{\Spec B})(V)\\
+\left(s\colon V \to \coprod_{p\in V}A_p\right)&amp;\mapsto \left(f^\#(s)\colon f^{-1}(V) \to \coprod_{q\in f^{-1} (V)}B_q\right)
+\end{align*}
+                with \((f^\#(s))(q) = \phi_{f(q)}(s(f(q)))\), \(s(f(q)) \in A_{f(q)} = A_{\phi^{-1}(q)}\).
+                Note that \(f^\#\) induces the map \(\phi_q\) on stalks and \(\phi_q\) is a local homomorphism.
+              </li>
+<li>
+                Suppose we are given \((f, f^\#)\colon (\Spec B, \sO_{\Spec B}) \to (\Spec A, \sO_{\Spec A})\), then we can get \(\phi\colon \Gamma(\Spec A, \sO_{\Spec A}) = A \xrightarrow{f^\#} \Gamma(\Spec B, \sO_{\Spec B}) = B\).
+                For \(p\in \Spec B\) we get 
+                \begin{align*}
+f^\#_p \colon \sO_{\Spec A, f(p)} &amp; \to \sO_{\Spec B, p}\\
+A_{f(p)} &amp;\to B_p
+\end{align*}
+                a local homomorphism.
+                We also have a commutative diagram
+                \[
+                  \xymatrix{
+                  A \ar[r]^{\phi} \ar[d]_{\substack{a\\\downarrow\\a/1}}&amp; B \ar[d]^{\substack{b\\ b/1}}\\
+                  A_{f(p)} \ar[r]_{f_p^\#} &amp; B_p
+                  }
+                \]
+              </li>
+</ol></article></div></section></div></main>
+</div>
+</body>
+</html>

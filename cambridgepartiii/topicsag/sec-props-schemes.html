@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>TAG Properties of Schemes</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "[Contrib]/xyjax/xypic.js"],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\aff}{\mathbf{A}}
+    \DeclareMathOperator{\sO}{\mathcal{O}}
+    \DeclareMathOperator{\fm}{\mathfrak{m}}
+    \DeclareMathOperator{\Spec}{Spec}
+    \DeclareMathOperator{\Gal}{Gal}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
+<h1 class="heading"><span class="title">Part III Topics in Algebraic Geometry 2014</span></h1>
+<p class="byline"></p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="sec-motivation.html">Previous</a><a class="up-button button toolbar-item" href="chap-schemes.html">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-motivation.html">Previous</a><a class="up-button button toolbar-item" href="chap-schemes.html">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link active"><a href="chap-schemes.html"><span class="codenumber">1</span><span class="title">Schemes</span></a></h2>
+<ul>
+<li><a href="sec-introduction.html">Introduction</a></li>
+<li><a href="sec-motivation.html">Motivation</a></li>
+<li><a href="sec-props-schemes.html" class="active">Properties of Schemes</a></li>
+</ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-props-schemes"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">1.3</span><span class="title">Properties of Schemes</span>
+</h1></header><article class="definition-like" id="definition-7"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.3.1</span><span class="title">Irreducible schemes</span>
+</h5>
+            A scheme \((X, \sO_X)\) is said to be <em class="terminology">irreducible</em> if \(X\) is irreducible as a topological space.
+          </article><article class="definition-like" id="definition-8"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.3.2</span><span class="title">Reduced schemes</span>
+</h5>
+            A scheme is <em class="terminology">reduced</em> if \(\sO_X(U)\) is an integral domain for any \(U \subset X\) open.
+          </article><article class="theorem-like" id="proposition-3"><h5 class="heading">
+<span class="type">Proposition</span><span class="codenumber">1.3.3</span>
+</h5>
+            A scheme is integral if and only if it is reduced and irreducible.
+          </article><article class="hiddenproof" id="proof-3"><a knowl="./knowl/proof-3.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-3" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            Integral implies reduced is clear. <br>
+            Suppose \(X  = Y_1 \cup Y_2\) with \(Y_1,Y_2 \subset X\) closed \(Y_1,Y_2 \ne X\).
+            So we find that \(U_1 = Y_1 \smallsetminus Y_2 = X_1 \smallsetminus Y_2\) and \(U_2 = Y_2 \smallsetminus Y_1 = X_2 \smallsetminus Y_1\) are open disjoint sets.
+
+            Then \(\sO_X(U_1\cup U_2) = \sO_X(U_1) \times \sO_X(U_2)\) by the sheaf axioms <span>&lt;&lt;Unresolved xref, ref="defn-sheaf"; check spelling or use "provisional" attribute&gt;&gt;</span>.
+            But this is not an integral domain.
+            Conversely suppose \(X\) is reduced and irreducible.
+            If \(U \subset X\) open, \(f,g\in \sO_X(U)\) with \(fg = 0\) we want to show that either \(f=0\) or \(g= 0\).
+            Let \(Y  =\{x\in U : f_x \in \fm_x\}\) where \(f_x\) is the germ of \(f\) in \(\sO_{X,x}\) and \(\fm_x\subset \sO_{X,x}\) is the maximal ideal.
+            Let \(Z = \{x\in  : g_x \in \fm_x\}\) then \(Y\) and \(Z\) are closed subsets of \(U\) (its enough to check this on an open cover of \(U\) which we can assume to be affine, but if \(U = \Spec A\) is affine \(Y = V(f)\), which is closed).
+            Since \(fg = 0\) we have \(f_x g_x = 0\) for all \(x\) and so \(U = Z\cup Y\).
+            \(U\) is an open subset of \(X\) which is irreducible so \(U\) is irreducible (exercise!).
+            So \(U = Y\) or \(U = Z\).
+            Assume \(U = Y\), we will show \(f = 0\).
+            We can restrict to affine open subsets of \(U\) and hence \(U =\Spec A\) is affine. Thus \(\emptyset = U \smallsetminus Y = D(f)\).
+            Thus \(f = \bigcap_{p\in\Spec A} p = \sqrt{(0)}\).
+            Thus \(f\) is nilpotent so \(f = 0\) since \(X\) is reduced, therefore \(\sO_X(U)\) is an integral domain.
+          </article></div>
+<article class="example-like" id="example-3"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">1.3.4</span>
+</h5>\(\Spec k[x,y]/(xy)\) is the two axes, and not irreducible.<br>\(\Spec k[t]/(t^2)\) is a point, with global sections \(k[t]/(t^2)\).<br></article><article class="definition-like" id="definition-9"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.3.5</span><span class="title">(Locally) Noetherian schemes</span>
+</h5>
+            A scheme \(X\) is said to be <em class="terminology">locally Noetherian</em> if it can be covered by opne affines of the form \(\Spec A\) with \(A\) a Noetherian ring.
+            It is said to be <em class="terminology">Noetherian</em> if there is a finite such cover.
+          </article><article class="theorem-like" id="proposition-4"><h5 class="heading">
+<span class="type">Proposition</span><span class="codenumber">1.3.6</span>
+</h5>\(X\) is locally Noetherian is and only if for every affine open subset \(\Spec A \subset X\) we have \(A\) Noetherian.
+            In particular \(\Spec A\) is noetherian if and only if \(A\) is Noetherian.
+          </article><article class="hiddenproof" id="proof-4"><a knowl="./knowl/proof-4.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-4" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">\(\Leftarrow\) clear, \(\Rightarrow\) let \(U \subset X\) be open affine, \(U = \Spec A\).
+            In general if \(B\) is Notherian and \(f \in B\) then \(B_f\) is Noetherian and \(D(f) \cong \Spec B_p\) as schemes.
+            Also the \(D(f)\)s form a basis for the topology on \(\Spec B\).
+            Thus any open set of \(\Spec B\) can be covered by open affines of the form \(\Spec B_f \) with \(B_f\) Noetherian.
+            \(U \cap \Spec B\) can be covered by affine schemes of the form \(\Spec B_f\) with \(B_f \) Noetherian.
+            We need to show that if \(\Spec A\) can be covered by sets of the form \(\Spec B\) with \(B\) Noetherian, then \(A\) is Noetherian.
+          </article></div></section></div></main>
+</div>
+</body>
+</html>

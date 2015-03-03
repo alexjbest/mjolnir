@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--********************************************************************
+
+Copyright 2014 Alex J. Best
+
+*********************************************************************-->
+
+<mathbook>
+
+  <docinfo>
+    <brandlogo url="http://alexjbest.github.io/mjolnir/" source="../../images/mjolnir.png" />
+    <author>
+      <personname>Dr. Mark Gross</personname>
+      <department>DPMMS</department>
+      <institution>University of Cambridge</institution>
+    </author>
+    <author>
+      <personname>Alex J. Best</personname>
+      <department>DPMMS</department>
+      <institution>University of Cambridge</institution>
+      <email>alex.j.best@gmail.com</email>
+    </author>
+
+    <macros>
+    \DeclareMathOperator{\CC}{\mathbf{C}}
+    \DeclareMathOperator{\QQ}{\mathbf{Q}}
+    \DeclareMathOperator{\RR}{\mathbf{R}}
+    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
+    \DeclareMathOperator{\aff}{\mathbf{A}}
+    \DeclareMathOperator{\sO}{\mathcal{O}}
+    \DeclareMathOperator{\fm}{\mathfrak{m}}
+    \DeclareMathOperator{\Spec}{Spec}
+    \DeclareMathOperator{\Gal}{Gal}
+    </macros>
+
+    <initialism>TAG</initialism>
+
+    <feedback>
+      <url>https://github.com/alexjbest/mjolnir/issues</url>
+    </feedback>
+
+    <date><today /></date>
+  </docinfo>
+
+  <book xml:id="topicsag">
+    <title>Part III Topics in Algebraic Geometry 2014</title>
+
+    <chapter xml:id="chap-schemes">
+      <title>Schemes</title>
+
+      <section xml:id="sec-introduction">
+        <title>Introduction</title>
+
+        <p>These are lecture notes for the 2014 Part III Topics in Algebraic Geometry course taught by Dr. Mark Gross, these notes are part of <url href="https://alexjbest.github.io/mjolnir/">Mjolnir</url>.</p>
+        <p>Some reference for commutative algebra:<todo></todo>
+          <ul>
+            <li>Atiyah-Macdonald</li>
+            <li>Matsumura - Commutative Algebra </li>
+            <li>Matsumura - Commutative Ring Theory</li>
+          </ul>
+          The general course reference is Hartshorne.
+        </p>
+
+        <p>
+          Generated: <today />, <timeofday />
+        </p>
+      </section>
+
+      <section xml:id="sec-motivation">
+        <title>Motivation</title>
+
+        <p>Take <m>I \subset k[x_1,\ldots,x_n]</m> then <m>X = V(I) \subset \aff^n</m> and <m>(X,\sO_X)</m> is a ringed space.
+          <m>A(X) = k[x_1,\ldots,x_n]/\sqrt{I}</m>.
+          A point of <m>X</m> is given by a map of <m>k</m>-algebras <m>\phi\colon A(X) \to k</m> <m>x_i\mapsto a_i</m>, giving the point <m>(a_1,\ldots,a_n)\in X</m>.
+          The kernel of <m>\phi</m> is a maximal ideal and conversely given a maximal ideal <m>m\subset A(C)</m> we get a map <m>A(X) \to A(X)/m  = k</m> if <m>k = \bar{k}</m> by the nullstellensatz.
+          Similarly if <m>l</m> is a field extension of <m>k</m> then a <m>k</m>-algebra homomorphism <m>A(X) \to l</m> can be viewed as giving a solution to the system of equations with values in <m>l</m>.
+          Note that the group <m>\Gal(l|k)</m> acts on the set of solutions over <m>l</m> by postcomposition.
+          We might as well consider all possible field extensions <m>l|k</m>, then <m>\ker(A(X) \to l)</m> might not be maximal.
+        </p>
+
+        <example>
+          <statement><m>X = \aff^1</m> <m>k[X] \hookrightarrow k(X)</m>.
+            This is a <m>k(X)</m>-valued point on <m>\aff^1</m>.
+          </statement>
+        </example>
+
+        <p>More generally if <m>R</m> is a <m>k</m>-algebra an <m>R</m>-valued point of <m>X</m> is given by a <m>k</m>-algebra homomorphism <m>\phi\colon A(X) \to R</m>.</p>
+
+        <example>
+          <statement><m>R =k[t]/(t^2)</m>  and the <m>k</m>-algebra homomorphism <m>\phi\colon A(X) \to R</m> induces by composition with <m>t\mapsto 0</m> a <m>k</m>-valued point <m>x\in X</m>. (Assuming now <m>k = \bar{k}</m>) <m>x</m> corresponds to a maximal ideal <m>m_x = \ker(A(X) \to k)</m> and <m>\phi(m_x) \subseteq (t)</m>.
+            So <m>\phi(m_x^2) = 0</m>. 
+            Thus we get a map <m>\phi \colon m_x/m_x^2 \to (t) = k</m>.
+
+            <exercise>
+              <statement>Check that giving <m>x\in X</m> and a map <m>m_x/m_x^2 \to k</m> is equivalent to giving a map <m>\phi\colon A(X) \to R</m>.</statement>
+            </exercise>
+
+            A map <m>m_x/m_x^2 \to k</m> is an element of <m>(m_x/m_x^2)^*</m>.
+          </statement>
+        </example>
+
+        <p>Recall that if <m>X,Y</m> are affine varieties, giving a morphism <m>X\to Y</m> is equivalent to giving a <m>k</m>-algebra homomorphism <m>A(Y) \to A(X)</m>.
+          This suggests that we should allow any <m>k</m>-algebra to be a coordinate ring and if <m>A,B</m> are <m>k</m>-algebras then a map of <m>k</m>-algebras <m>A\to B</m> should be equivalent to giving a morphism of the corresponding ``varieties'' <todo></todo>.
+          More generally we could work over a ring <m>R</m>, rather than a field <m>k</m>.
+          <m>A</m> and <m>B</m> could then be <m>R</m>-algebras.
+          This includes the case where <m>R= \ZZ</m> and <m>A</m> and <m>B</m> are just rings.
+        </p>
+
+        <todo></todo>
+        <definition>
+          <title></title>
+          <statement>The category of affine schemes is the opposite category of the category of commutative rings.</statement>
+        </definition>
+
+        <definition>
+          <title></title>
+          <statement>A <term>scheme</term> is a geometric object covered by affine schemes.</statement>
+        </definition>
+
+        <p>In general we tend to work with schemes over a base scheme <m>S</m> (e.g. <m>S\leftrightarrow k</m>) and consider morphisms defined over <m>S</m> i.e. diagrams <todo></todo>.
+        
+        For <m>T,X</m> schemes over <m>S</m> a <m>T</m>-valued point of <m>X</m> is a diagram <todo></todo>.</p>
+
+        <definition>
+          <title></title>
+          <statement>If <m>A</m> is a commutative ring <me>\Spec A = \{p\subset A : p \text{ is a prime ideal}\}.</me>
+            If <m>I\subset A</m> is an ideal (or set) we define <m>V(I) = \{p\in \Spec A : p\supseteq I\}</m>.
+          </statement>
+        </definition>
+
+        <p>Note that if <m>k = \bar{k}</m> and <m>A = k[x_1,\ldots,x_n]</m>, <m>m = (x_1 - a_1,\ldots,x_n - a_n)</m> contains <m>I</m> if and only if <m>(a_1,\ldots,a_n) \in V(I)</m>.</p>
+
+        <exercise>
+          <statement>Show that the sets <m>V(I)</m> form the closed sets of a topology on <m>\Spec A</m>, the <term>Zariski topology</term>.</statement>
+        </exercise>
+
+        <todo></todo>
+
+
+        <p>
+          <m>\Gamma(X,\sO_X) = A(X)</m>.
+          Our goal is to construct a sheaf <m>\sO_{\Spec A}</m> with stalks <m>\sO_{\Spec A, p} = A_p</m> and <m>\Gamma(\Spec A, \sO_{\Spec A}) = A</m>.
+        </p>
+
+        <definition>
+          <title></title>
+          <statement>Let <m>\sO</m> be the sheaf on <m>\Spec A</m> whose sections over <m>U</m> open are functions <me>s\colon U \to \coprod_{p\in U} A_p</me>
+            such that 
+            <ol>
+              <li><m>s(p)\in A_p</m></li>
+              <li>for <m>p\in U</m> there exists some open <m>V \subset U</m> with <m>p\in V</m> and <m>f,g\in A</m> such that for all <m>q\in V</m> we have <m>g\in q</m> and <m>s(q) = f/g \in A_q</m></li>
+            </ol>
+          </statement>
+        </definition>
+
+        <definition>
+          <title>Spectrums of rings</title>
+          <statement>The spectrum of <m>A</m> is the locally ringed space <m>(\Spec A,\sO_{\Spec A})</m>.</statement>
+        </definition>
+
+        <p>Here locally ringed space means <m>\sO_{\Spec A,p}</m> is local for all <m>p\in \Spec A</m>.</p>
+
+        <proposition>
+          <statement>
+            <ol>
+              <li>For any <m>p\in \Spec A</m> <m>\sO_p = A_p</m>.</li>
+              <li>For any <m>f\in A</m> let <m>D(f) = \{p\in \Spec A : f\notin p\} = \Spec A \smallsetminus V(f)</m>.</li>
+              <li><m>\Gamma(\Spec A,\sO) = A</m>.</li>
+            </ol>
+
+            <exercise>
+              <statement>Show that sets of the form <m>D(f)</m> form a basis of the topology on <m>\Spec A</m>.</statement>
+            </exercise>
+          </statement>
+
+          <proof>
+            <ol>
+              <li>Define a map <m>\sO_p\to A_p</m> by <m>(U,s)\mapsto s(p)</m>.
+                To see this is surjective we take <m>f/g\in A_p</m> (<m>g\in p</m>) then <m>(D(g),f/g) \in \sO_p</m> which maps to <m>f/g</m>.
+                To see injectivity we let <m>(U,s),\,(V,t) \in \sO_p</m> with <m>s(p) = t(p)</m>.
+                By shrinking <m>U</m> and <m>V</m> we can assume <m>U = V</m> and <m>s</m> is given by <m>f/g</m> with <m>t</m> given by <m>f'/g'</m> where <m>g,g'\notin p</m>.
+                Thus <m>f/g = f'/g' \in A_p</m> and hence there exists some <m>h\notin p</m> with <m>(f'g - g'f)h = 0</m>.
+                Then for and
+                <todo></todo>
+              </li>
+            </ol>
+          </proof>
+        </proposition>
+
+        <definition>
+          <title>Morphisms of locally ringed spaces</title>
+
+          <statement>
+            A morphism <m>(X,\sO_x) \to (Y,\sO_Y)</m> of locally ringed spaces is a continuous map <m>f\colon X \to Y</m> along with a morphism of sheaves of rings 
+            <me>
+              f^\# \colon \sO_Y \to \sO_X
+            </me>
+            such that the induced maps <m>f_p^\# \colon \sO_{Y,f(p)} \to \sO_{X,p}</m> are local homomorphisms for all <m>p</m>.
+            The maps <m>f_p^\#</m> are induced by <m>(U,s) \mapsto (U,f^\#(s))</m>. <todo></todo>
+          </statement>
+        </definition>
+
+        <proposition>
+          <statement>
+            <ol>
+              <li>If <m>\phi\colon A \to B</m> is a ring homomorphism then <m>\phi</m> induces a morphism of locally ringed spaces <me>(f,f^\#)\colon (\Spec B, \sO_{\Spec B}) \to (\Spec A, \sO_{\Spec A}).</me></li>
+              <li>Any morphism of locally ringed spaces is induced in this way.</li>
+            </ol>
+          </statement>
+          <proof>
+            <ol>
+              <li>
+                Define <m>f\colon \Spec B \to \Spec A</m> by <m>f(p) = \phi^{-1}(p) \in \Spec A</m>.
+                This is continuous as
+                <md>
+                  <mrow>f^{-1}(V(I)) &amp;= \{p\in \Spec B : \phi^{-1}(p) \supseteq I\}</mrow>
+                  <mrow>             &amp;= \{p\in \Spec B : p \supseteq \phi(I)\}</mrow>
+                  <mrow>             &amp;= V(\phi(I)).</mrow>
+                </md>
+                For any <m>p\in \Spec B</m> we have a ring map 
+                <md>
+                  <mrow>\phi_p \colon A_{\phi^{-1} (p)} &amp;\to B_p</mrow>
+                  <mrow>\frac as &amp;\mapsto \frac{\phi(a)}{\phi(s)}.</mrow>
+                </md>
+                Define
+                <md>
+                  <mrow>f^\# \colon \sO_{\Spec A}(V) &amp;\to \sO_{\Spec B}(f^{-1}(V) = (f_*\sO_{\Spec B})(V)</mrow>
+                  <mrow>\left(s\colon V \to \coprod_{p\in V}A_p\right)&amp;\mapsto \left(f^\#(s)\colon f^{-1}(V) \to \coprod_{q\in f^{-1} (V)}B_q\right)</mrow>
+                </md>
+                with <m>(f^\#(s))(q) = \phi_{f(q)}(s(f(q)))</m>, <m>s(f(q)) \in A_{f(q)} = A_{\phi^{-1}(q)}</m>.
+                Note that <m>f^\#</m> induces the map <m>\phi_q</m> on stalks and <m>\phi_q</m> is a local homomorphism.
+              </li>
+              <li>
+                Suppose we are given <m>(f, f^\#)\colon (\Spec B, \sO_{\Spec B}) \to (\Spec A, \sO_{\Spec A})</m>, then we can get <m>\phi\colon \Gamma(\Spec A, \sO_{\Spec A}) = A \xrightarrow{f^\#} \Gamma(\Spec B, \sO_{\Spec B}) = B</m>.
+                For <m>p\in \Spec B</m> we get 
+                <md>
+                  <mrow>f^\#_p \colon \sO_{\Spec A, f(p)} &amp; \to \sO_{\Spec B, p}</mrow>
+                  <mrow>A_{f(p)} &amp;\to B_p</mrow>
+                </md>
+                a local homomorphism.
+                We also have a commutative diagram
+                <me>
+                  \xymatrix{
+                  A \ar[r]^{\phi} \ar[d]_{\substack{a\\\downarrow\\a/1}}&amp; B \ar[d]^{\substack{b\\ b/1}}\\
+                  A_{f(p)} \ar[r]_{f_p^\#} &amp; B_p
+                  }
+                </me>
+              </li>
+            </ol>
+          </proof>
+        </proposition>
+        <todo></todo>
+      </section>
+
+      <section xml:id="sec-props-schemes">
+        <title>Properties of Schemes</title>
+
+        <definition>
+          <title>Irreducible schemes</title>
+          <statement>
+            A scheme <m>(X, \sO_X)</m> is said to be <term>irreducible</term> if <m>X</m> is irreducible as a topological space.
+          </statement>
+        </definition>
+
+        <definition>
+          <title>Reduced schemes</title>
+          <statement>
+            A scheme is <term>reduced</term> if <m>\sO_X(U)</m> is an integral domain for any <m>U \subset X</m> open.
+          </statement>
+        </definition>
+
+        <proposition>
+          <statement>
+            A scheme is integral if and only if it is reduced and irreducible.
+          </statement>
+
+          <proof>
+            Integral implies reduced is clear. <br />
+            Suppose <m>X  = Y_1 \cup Y_2</m> with <m>Y_1,Y_2 \subset X</m> closed <m>Y_1,Y_2 \ne X</m>.
+            So we find that <m>U_1 = Y_1 \smallsetminus Y_2 = X_1 \smallsetminus Y_2</m> and <m>U_2 = Y_2 \smallsetminus Y_1 = X_2 \smallsetminus Y_1</m> are open disjoint sets.
+
+            Then <m>\sO_X(U_1\cup U_2) = \sO_X(U_1) \times \sO_X(U_2)</m> by the sheaf axioms <xref ref="defn-sheaf"></xref> <todo></todo>.
+            But this is not an integral domain.
+            Conversely suppose <m>X</m> is reduced and irreducible.
+            If <m>U \subset X</m> open, <m>f,g\in \sO_X(U)</m> with <m>fg = 0</m> we want to show that either <m>f=0</m> or <m>g= 0</m>.
+            Let <m>Y  =\{x\in U : f_x \in \fm_x\}</m> where <m>f_x</m> is the germ of <m>f</m> in <m>\sO_{X,x}</m> and <m>\fm_x\subset \sO_{X,x}</m> is the maximal ideal.
+            Let <m>Z = \{x\in  : g_x \in \fm_x\}</m> then <m>Y</m> and <m>Z</m> are closed subsets of <m>U</m> (its enough to check this on an open cover of <m>U</m> which we can assume to be affine, but if <m>U = \Spec A</m> is affine <m>Y = V(f)</m>, which is closed).
+            Since <m>fg = 0</m> we have <m>f_x g_x = 0</m> for all <m>x</m> and so <m>U = Z\cup Y</m>.
+            <m>U</m> is an open subset of <m>X</m> which is irreducible so <m>U</m> is irreducible (exercise!).
+            So <m>U = Y</m> or <m>U = Z</m>.
+            Assume <m>U = Y</m>, we will show <m>f = 0</m>.
+            We can restrict to affine open subsets of <m>U</m> and hence <m>U =\Spec A</m> is affine. Thus <m>\emptyset = U \smallsetminus Y = D(f)</m>.
+            Thus <m>f = \bigcap_{p\in\Spec A} p = \sqrt{(0)}</m>.
+            Thus <m>f</m> is nilpotent so <m>f = 0</m> since <m>X</m> is reduced, therefore <m>\sO_X(U)</m> is an integral domain.
+          </proof>
+        </proposition>
+
+        <example>
+          <statement>
+            <m>\Spec k[x,y]/(xy)</m> is the two axes, and not irreducible.<br />
+            <m>\Spec k[t]/(t^2)</m> is a point, with global sections <m>k[t]/(t^2)</m>.<br />
+          </statement>
+        </example>
+
+        <definition>
+          <title>(Locally) Noetherian schemes</title>
+          <statement>
+            A scheme <m>X</m> is said to be <term>locally Noetherian</term> if it can be covered by opne affines of the form <m>\Spec A</m> with <m>A</m> a Noetherian ring.
+            It is said to be <term>Noetherian</term> if there is a finite such cover.
+          </statement>
+        </definition>
+
+        <proposition>
+          <statement>
+            <m>X</m> is locally Noetherian is and only if for every affine open subset <m>\Spec A \subset X</m> we have <m>A</m> Noetherian.
+            In particular <m>\Spec A</m> is noetherian if and only if <m>A</m> is Noetherian.
+          </statement>
+
+          <proof>
+            <m>\Leftarrow</m> clear, <m>\Rightarrow</m> let <m>U \subset X</m> be open affine, <m>U = \Spec A</m>.
+            In general if <m>B</m> is Notherian and <m>f \in B</m> then <m>B_f</m> is Noetherian and <m>D(f) \cong \Spec B_p</m> as schemes.
+            Also the <m>D(f)</m>s form a basis for the topology on <m>\Spec B</m>.
+            Thus any open set of <m>\Spec B</m> can be covered by open affines of the form <m>\Spec B_f </m> with <m>B_f</m> Noetherian.
+            <m>U \cap \Spec B</m> can be covered by affine schemes of the form <m>\Spec B_f</m> with <m>B_f </m> Noetherian.
+            We need to show that if <m>\Spec A</m> can be covered by sets of the form <m>\Spec B</m> with <m>B</m> Noetherian, then <m>A</m> is Noetherian.
+          </proof>
+        </proposition>
+      </section>
+    </chapter>
+
+    <!--<backmatter>
+      <title>Reference</title>
+
+      <section xml:id="sec-notation">
+        <title>Notation</title>
+        <notation-list />
+      </section>
+    </backmatter>-->
+
+  </book>
+
+</mathbook>

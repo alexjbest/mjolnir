@@ -1,0 +1,45 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="hiddenproof"><h5 class="heading"><span class="type">Proof</span></h5>
+<ol>
+<li>
+                Define \(f\colon \Spec B \to \Spec A\) by \(f(p) = \phi^{-1}(p) \in \Spec A\).
+                This is continuous as
+                \begin{align*}
+f^{-1}(V(I)) &amp;= \{p\in \Spec B : \phi^{-1}(p) \supseteq I\}\\
+             &amp;= \{p\in \Spec B : p \supseteq \phi(I)\}\\
+             &amp;= V(\phi(I)).
+\end{align*}
+                For any \(p\in \Spec B\) we have a ring map 
+                \begin{align*}
+\phi_p \colon A_{\phi^{-1} (p)} &amp;\to B_p\\
+\frac as &amp;\mapsto \frac{\phi(a)}{\phi(s)}.
+\end{align*}
+                Define
+                \begin{align*}
+f^\# \colon \sO_{\Spec A}(V) &amp;\to \sO_{\Spec B}(f^{-1}(V) = (f_*\sO_{\Spec B})(V)\\
+\left(s\colon V \to \coprod_{p\in V}A_p\right)&amp;\mapsto \left(f^\#(s)\colon f^{-1}(V) \to \coprod_{q\in f^{-1} (V)}B_q\right)
+\end{align*}
+                with \((f^\#(s))(q) = \phi_{f(q)}(s(f(q)))\), \(s(f(q)) \in A_{f(q)} = A_{\phi^{-1}(q)}\).
+                Note that \(f^\#\) induces the map \(\phi_q\) on stalks and \(\phi_q\) is a local homomorphism.
+              </li>
+<li>
+                Suppose we are given \((f, f^\#)\colon (\Spec B, \sO_{\Spec B}) \to (\Spec A, \sO_{\Spec A})\), then we can get \(\phi\colon \Gamma(\Spec A, \sO_{\Spec A}) = A \xrightarrow{f^\#} \Gamma(\Spec B, \sO_{\Spec B}) = B\).
+                For \(p\in \Spec B\) we get 
+                \begin{align*}
+f^\#_p \colon \sO_{\Spec A, f(p)} &amp; \to \sO_{\Spec B, p}\\
+A_{f(p)} &amp;\to B_p
+\end{align*}
+                a local homomorphism.
+                We also have a commutative diagram
+                \[
+                  \xymatrix{
+                  A \ar[r]^{\phi} \ar[d]_{\substack{a\\\downarrow\\a/1}}&amp; B \ar[d]^{\substack{b\\ b/1}}\\
+                  A_{f(p)} \ar[r]_{f_p^\#} &amp; B_p
+                  }
+                \]
+              </li>
+</ol></article><div class="context-link" style="text-align:right;"><a href="sec-motivation.html#proof-2">(in-context)</a></div>
