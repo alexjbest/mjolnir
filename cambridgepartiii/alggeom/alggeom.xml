@@ -219,7 +219,7 @@ Copyright 2014 Alex J. Best
                   Suppose not and there exists <m>0 \ne s \in \F(u)</m> such that <m>\phi(U)(s) = 0 \in \G(U)</m>.
                   Let <m>s_P</m> denote the germ of <m>s</m> at <m>P \in U</m>, then <m>0 = \phi(U)(s)_P = \phi_P(s_P)</m> for all <m>P\in U</m>.
                   So <m>s_P</m> in <m>\F_P</m> for all <m>P \in U</m>.
-                  Hence for all <m>P\in U</m> we have anopen neighbourhood <m>U \supset W \ni P</m> such that <m>s|_W = 0</m>.
+                  Hence for all <m>P\in U</m> we have an open neighbourhood <m>U \supset W \ni P</m> such that <m>s|_W = 0</m>.
                   So <m>U</m> is covered by open sets <m>U_\alpha</m> such that <m>s|_{U_\alpha} = 0</m> for all <m>\alpha</m>, which implies that <m>s = 0</m>.
                 </li>
                 <li><m>\phi(U) \colon \F(U) \to \G(U)</m> is an injection for all open <m>U</m> by the first part, so it remains to prove that it is surjective also.
@@ -263,7 +263,7 @@ Copyright 2014 Alex J. Best
           <title>Morphisms of ringed spaces</title>
           <statement>Given two ringed spaces <m>(X,\cO_X)</m> and <m>(Y, \cO_Y)</m> a <term>morphism of ringed spaces</term> <m>(X,\cO_X)\to (Y,\cO_Y)</m> is a pair <m>(f,f^\#)</m> where <m>f\colon X \to Y</m> is continuous and <m>f^\#\colon \cO_Y \to f_*\cO_X</m> is a morphism of sheaves of rings.
             So <m>f^\#</m> defines homomorphisms <m>\cO_Y(U) \to \cO_X(f^{-1}(U))</m> for all <m>U</m> open in <m>Y</m>, compatible with restrictions.
-            Hence he have homomorphisms on stalks too <m>\cO_{Y,f(P)} \to \cO_{X,P}</m>.
+            Hence we have homomorphisms on stalks too <m>\cO_{Y,f(P)} \to \cO_{X,P}</m>.
           </statement>
         </definition>
 
@@ -300,12 +300,12 @@ Copyright 2014 Alex J. Best
 
         <example>
           <statement><m>(V,\cO_V)</m> for <m>V</m> an irreducible affine variety <m>V</m> is a ringed space via its structure sheaf, it is locally ringed over the base field <m>k</m>.
-            If <m>\Phi\colon V \to W</m> is a morphism of affine varieties then there exists a morphism of lcoally ringed spaces over <m>k</m> <m>(\phi, \phi^\#)\colon (V, \cO_V) \to (W, \cO_W)</m> given by <m>\phi^\#(g) = g\circ \phi \in \cO_V(\phi^{-1}U)</m> for <m>g\in\cO_W(U)</m>.
+            If <m>\Phi\colon V \to W</m> is a morphism of affine varieties then there exists a morphism of locally ringed spaces over <m>k</m> <m>(\phi, \phi^\#)\colon (V, \cO_V) \to (W, \cO_W)</m> given by <m>\phi^\#(g) = g\circ \phi \in \cO_V(\phi^{-1}U)</m> for <m>g\in\cO_W(U)</m>.
           </statement>
         </example>
 
         <lemma>
-          <statement>If <m>V,W</m> are (irreducible) affine varieties and <m>(f,f^\#)\colon (V,\cO_V)\to (W,\cO_W)</m> is a morphism of locally ringed spaces over <m>k</m> then <m>f</m> is induced from a morphism of varities <m>\phi\colon V\to W</m> with <m>f^\# = \phi^\#</m> defined as above.</statement>
+          <statement>If <m>V,W</m> are (irreducible) affine varieties and <m>(f,f^\#)\colon (V,\cO_V)\to (W,\cO_W)</m> is a morphism of locally ringed spaces over <m>k</m> then <m>f</m> is induced from a morphism of varieties <m>\phi\colon V\to W</m> with <m>f^\# = \phi^\#</m> defined as above.</statement>
           <proof>Suppose <m>V\subseteq \bfA^n,\ W\subseteq\bfA^m</m> let <m>y_j</m> be the <m>j</m>th coordinate function on <m>W</m> and define <m>g_j = f^\#(y_j) \in \cO_V(V) = k[V]</m>.
             Let <m>\phi = (g_1,\ldots,g_m)</m>, this is a morphism <m>V \to \bfA^m</m>.
             Suppose that <m>f(P) = (b_1,\ldots,b_m)</m> for <m>P\in V</m> then <m>y_j - b_j \in m_{W,f(P)}</m> for all <m>j</m> which implies that <m>g_j(P) = b_j</m> for all <m>j</m>.

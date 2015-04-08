@@ -2,7 +2,6 @@
 <html>
 <!--*                                    *-->
 <!--* Generated from MathBook XML source *-->
-<!--*    on 2015-01-15T16:44:11Z    *-->
 <!--*                                    *-->
 <!--*   http://mathbook.pugetsound.edu   *-->
 <!--*                                    *-->
@@ -30,7 +29,7 @@ MathJax.Hub.Config({
         scale: 88,
     },
 });
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+    </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
 $(function () {
     // Make *any* div with class 'sage-compute' an executable Sage cell
     sagecell.makeSagecell({inputLocation: 'div.sage-compute',
@@ -198,7 +197,7 @@ $(function () {
                   Suppose not and there exists \(0 \ne s \in \F(u)\) such that \(\phi(U)(s) = 0 \in \G(U)\).
                   Let \(s_P\) denote the germ of \(s\) at \(P \in U\), then \(0 = \phi(U)(s)_P = \phi_P(s_P)\) for all \(P\in U\).
                   So \(s_P\) in \(\F_P\) for all \(P \in U\).
-                  Hence for all \(P\in U\) we have anopen neighbourhood \(U \supset W \ni P\) such that \(s|_W = 0\).
+                  Hence for all \(P\in U\) we have an open neighbourhood \(U \supset W \ni P\) such that \(s|_W = 0\).
                   So \(U\) is covered by open sets \(U_\alpha\) such that \(s|_{U_\alpha} = 0\) for all \(\alpha\), which implies that \(s = 0\).
                 </li>
 <li>\(\phi(U) \colon \F(U) \to \G(U)\) is an injection for all open \(U\) by the first part, so it remains to prove that it is surjective also.
@@ -230,7 +229,7 @@ $(function () {
 <span class="type">Definition</span><span class="codenumber">1.2.17</span><span class="title">Morphisms of ringed spaces</span>
 </h5>Given two ringed spaces \((X,\cO_X)\) and \((Y, \cO_Y)\) a <em class="terminology">morphism of ringed spaces</em>\((X,\cO_X)\to (Y,\cO_Y)\) is a pair \((f,f^\#)\) where \(f\colon X \to Y\) is continuous and \(f^\#\colon \cO_Y \to f_*\cO_X\) is a morphism of sheaves of rings.
             So \(f^\#\) defines homomorphisms \(\cO_Y(U) \to \cO_X(f^{-1}(U))\) for all \(U\) open in \(Y\), compatible with restrictions.
-            Hence he have homomorphisms on stalks too \(\cO_{Y,f(P)} \to \cO_{X,P}\).
+            Hence we have homomorphisms on stalks too \(\cO_{Y,f(P)} \to \cO_{X,P}\).
           </article><article class="definition-like" id="definition-10"><h5 class="heading">
 <span class="type">Definition</span><span class="codenumber">1.2.18</span><span class="title">Ringed spaces over a ring</span>
 </h5>If \(R\) is a commutative ring (e.g. a field), a <em class="terminology">ringed space over \(R\)</em> is a ringed space with \(\cO_X\) a sheaf of \(R\)-algebras.
@@ -251,10 +250,10 @@ $(function () {
           </article><article class="example-like" id="example-9"><h5 class="heading">
 <span class="type">Example</span><span class="codenumber">1.2.23</span>
 </h5>\((V,\cO_V)\) for \(V\) an irreducible affine variety \(V\) is a ringed space via its structure sheaf, it is locally ringed over the base field \(k\).
-            If \(\Phi\colon V \to W\) is a morphism of affine varieties then there exists a morphism of lcoally ringed spaces over \(k\)\((\phi, \phi^\#)\colon (V, \cO_V) \to (W, \cO_W)\) given by \(\phi^\#(g) = g\circ \phi \in \cO_V(\phi^{-1}U)\) for \(g\in\cO_W(U)\).
+            If \(\Phi\colon V \to W\) is a morphism of affine varieties then there exists a morphism of locally ringed spaces over \(k\)\((\phi, \phi^\#)\colon (V, \cO_V) \to (W, \cO_W)\) given by \(\phi^\#(g) = g\circ \phi \in \cO_V(\phi^{-1}U)\) for \(g\in\cO_W(U)\).
           </article><article class="theorem-like" id="lemma-2"><h5 class="heading">
 <span class="type">Lemma</span><span class="codenumber">1.2.24</span>
-</h5>If \(V,W\) are (irreducible) affine varieties and \((f,f^\#)\colon (V,\cO_V)\to (W,\cO_W)\) is a morphism of locally ringed spaces over \(k\) then \(f\) is induced from a morphism of varities \(\phi\colon V\to W\) with \(f^\# = \phi^\#\) defined as above.</article><article class="hiddenproof" id="proof-2"><a knowl="./knowl/proof-2.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-2" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">Suppose \(V\subseteq \bfA^n,\ W\subseteq\bfA^m\) let \(y_j\) be the \(j\)th coordinate function on \(W\) and define \(g_j = f^\#(y_j) \in \cO_V(V) = k[V]\).
+</h5>If \(V,W\) are (irreducible) affine varieties and \((f,f^\#)\colon (V,\cO_V)\to (W,\cO_W)\) is a morphism of locally ringed spaces over \(k\) then \(f\) is induced from a morphism of varieties \(\phi\colon V\to W\) with \(f^\# = \phi^\#\) defined as above.</article><article class="hiddenproof" id="proof-2"><a knowl="./knowl/proof-2.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-2" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">Suppose \(V\subseteq \bfA^n,\ W\subseteq\bfA^m\) let \(y_j\) be the \(j\)th coordinate function on \(W\) and define \(g_j = f^\#(y_j) \in \cO_V(V) = k[V]\).
             Let \(\phi = (g_1,\ldots,g_m)\), this is a morphism \(V \to \bfA^m\).
             Suppose that \(f(P) = (b_1,\ldots,b_m)\) for \(P\in V\) then \(y_j - b_j \in m_{W,f(P)}\) for all \(j\) which implies that \(g_j(P) = b_j\) for all \(j\).
             Since \(f^\#\) is local we have that \(\phi(P) = f(P)\) and so \(\phi \colon V \to W\) is the same map as \(f\) on topological spaces.
