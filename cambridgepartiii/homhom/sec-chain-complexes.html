@@ -170,7 +170,7 @@ $(function () {
         </p>
 <article class="theorem-like" id="lemma-snake"><h5 class="heading">
 <span class="type">Lemma</span><span class="codenumber">1.4.6</span><span class="title">Snake lemma</span>
-</h5>Let \(0\to A \to B \to C \to 0\) be a short exact sequence then there exist natural boundary maps \(\dd_n\) which fit into a long exact sequence of homology objects
+</h5>Let \(0\to A \to B \to C \to 0\) be a short exact sequence, then there exist natural boundary maps \(\dd_n\) which fit into a long exact sequence of homology objects
             <figure>\[
                 \xymatrix{ \cdots\ar[r] &amp; H_n(A) \ar[r]^{f_*}&amp;
                 H_n(B) \ar[r]^{g_*} &amp; H_n(C)\ar `r[d] `[l]
@@ -178,14 +178,18 @@ $(function () {
                 &amp; H_{n-1}(A) \ar[r] &amp; H_{n-1}(B)
                 \ar[r] &amp; H_{n-1}(C)\ar[r] &amp; {\dots} }
               \]</figure></article><article class="hiddenproof" id="proof-1"><a knowl="./knowl/proof-1.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-1" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">Exercise.</article></div>
-<p>Naturality here means given two short exact sequences and compatible chain maps the induced maps on homology are compatible with \(\dd_n\).
+<p>
+          Naturality here means given two short exact sequences and compatible chain maps the induced maps on homology are compatible with \(\dd_n\).
           (The obvious diagram commutes.)
         </p>
 <p>Recall that \(f\) is a chain map if \(\dd f - f\dd = 0\).</p>
 <article class="definition-like" id="definition-10"><h5 class="heading">
 <span class="type">Definition</span><span class="codenumber">1.4.8</span><span class="title"></span>
 </h5>Let \(\cHom_n(A,B)\) consist of functions \(\{f_i \colon A_i \to B_{i+n}\} \) and define \(df = d\cdot f - (-1)^n fd\) if \(f\in\cHom_n\).
-            Check that \[d^2 f = d\cdot (d\cdot f - (-1)^fd ) - (-1) (d\cdot f - (-1)^n f\cdot d)\cdot d = 0.\]</article><p>We use the ``Sign rule'' to help with definitions, this states that if \(a\) moves past \(b\) we pick a sign \((-1)^{\deg a\deg b}\).</p>
+          </article><p>
+          Check that \[d^2 f = d\cdot (d\cdot f - (-1)^fd ) - (-1) (d\cdot f - (-1)^n f\cdot d)\cdot d = 0.\]
+        </p>
+<p>We use the ``Sign rule'' to help with definitions, this states that if \(a\) moves past \(b\) we pick a sign \((-1)^{\deg a\deg b}\).</p>
 <p>\(\Ch(\cA)\) can be enriched over \(\Ch(\ZZ)\).</p>
 <article class="definition-like" id="definition-11"><h5 class="heading">
 <span class="type">Definition</span><span class="codenumber">1.4.9</span><span class="title">Shifted complexes</span>

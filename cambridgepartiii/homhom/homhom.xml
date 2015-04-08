@@ -268,7 +268,7 @@ Copyright 2014 Alex J. Best
 
         <lemma xml:id="lemma-snake">
           <title>Snake lemma</title>
-          <statement>Let <m>0\to A \to B \to C \to 0</m> be a short exact sequence then there exist natural boundary maps <m>\dd_n</m> which fit into a long exact sequence of homology objects
+          <statement>Let <m>0\to A \to B \to C \to 0</m> be a short exact sequence, then there exist natural boundary maps <m>\dd_n</m> which fit into a long exact sequence of homology objects
             <figure>
               <me>
                 \xymatrix{ \cdots\ar[r] &amp; H_n(A) \ar[r]^{f_*}&amp;
@@ -281,19 +281,23 @@ Copyright 2014 Alex J. Best
           </statement>
           <proof>Exercise.</proof>
         </lemma>
-        
-        <p>Naturality here means given two short exact sequences and compatible chain maps the induced maps on homology are compatible with <m>\dd_n</m>.
+
+        <p>
+          Naturality here means given two short exact sequences and compatible chain maps the induced maps on homology are compatible with <m>\dd_n</m>.
           (The obvious diagram commutes.)
         </p>
 
         <p>Recall that <m>f</m> is a chain map if <m>\dd f - f\dd = 0</m>.</p>
 
         <definition>
-          <title></title>
+          <title></title><todo></todo>
           <statement>Let <m>\cHom_n(A,B)</m> consist of functions <m>\{f_i \colon A_i \to B_{i+n}\} </m> and define <m>df = d\cdot f - (-1)^n fd</m> if <m>f\in\cHom_n</m>.
-            Check that <me>d^2 f = d\cdot (d\cdot f - (-1)^fd ) - (-1) (d\cdot f - (-1)^n f\cdot d)\cdot d = 0.</me><todo>doublecheck</todo>
           </statement>
         </definition>
+          
+        <p>
+          Check that <me>d^2 f = d\cdot (d\cdot f - (-1)^fd ) - (-1) (d\cdot f - (-1)^n f\cdot d)\cdot d = 0.</me><todo>doublecheck</todo>
+        </p>
 
         <p>We use the ``Sign rule'' to help with definitions, this states that if <m>a</m> moves past <m>b</m> we pick a sign <m>(-1)^{\deg a\deg b}</m>.</p>
 
@@ -420,6 +424,7 @@ Copyright 2014 Alex J. Best
             </me><todo></todo>
           </statement>
         </example>
+
         <p>
           Clearly not all functors are exact.
           However they all preserve split exact sequences, i.e. those of the form
@@ -555,7 +560,8 @@ Copyright 2014 Alex J. Best
         <title>Derived Functors, Proofs</title>
 
         <definition>
-          <statement><m>\cA</m> has <term>enough projectives</term> if for all <m>M\in \cA</m> there exists a projective <m>P</m> such that <m>P \to M \to 0</m>.</statement>
+          <title>Enough projectives</title>
+          <statement><m>\cA</m> has <term>enough projectives</term> if for all <m>M\in \cA</m> there exists a projective <m>P</m> such that <m>P \to M \to 0</m> is exact.</statement>
         </definition>
 
         <example>
@@ -724,6 +730,7 @@ Copyright 2014 Alex J. Best
         </definition>
 
         <definition>
+          <title>Derived categories</title>
           <statement>
             Let <m>D(\cA)</m>, the <term>derived category</term> of <m>\cA</m>, be the localisation of <m>K(\cA)</m> at the quasi-isomorphisms.
             Similarly define the usual suspects <m>D^b = K^b(\cA)[\text{quasi-isomorphisms}]</m>, etc.

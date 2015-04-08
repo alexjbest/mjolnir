@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2015-02-28T15:28:42Z    %%
+%%    on 2015-04-08T12:51:36Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -188,7 +188,7 @@ The recommended books are:
         %
 \par
 
-          Generated: February 28, 2015, 15:28:42 (Z)
+          Generated: April 8, 2015, 12:51:36 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Motivation}
@@ -300,7 +300,7 @@ We now have formed the \terminology{category of chain complexes} \(\Ch(\cA)\) us
           \(H_n\) is additive.
         %
 \begin{lemma}[Snake lemma]\label{lemma-snake}
-Let \(0\to A \to B \to C \to 0\) be a short exact sequence then there exist natural boundary maps \(\dd_n\) which fit into a long exact sequence of homology objects
+Let \(0\to A \to B \to C \to 0\) be a short exact sequence, then there exist natural boundary maps \(\dd_n\) which fit into a long exact sequence of homology objects
             \begin{figure}
 \centering
 \[
@@ -314,14 +314,19 @@ Let \(0\to A \to B \to C \to 0\) be a short exact sequence then there exist natu
 \begin{proof}
 Exercise.\end{proof}
 \par
-Naturality here means given two short exact sequences and compatible chain maps the induced maps on homology are compatible with \(\dd_n\).
+
+          Naturality here means given two short exact sequences and compatible chain maps the induced maps on homology are compatible with \(\dd_n\).
           (The obvious diagram commutes.)
         %
 \par
 Recall that \(f\) is a chain map if \(\dd f - f\dd = 0\).%
 \begin{definition}[]\label{definition-10}
 Let \(\cHom_n(A,B)\) consist of functions \(\{f_i \colon A_i \to B_{i+n}\} \) and define \(df = d\cdot f - (-1)^n fd\) if \(f\in\cHom_n\).
-            Check that \[d^2 f = d\cdot (d\cdot f - (-1)^fd ) - (-1) (d\cdot f - (-1)^n f\cdot d)\cdot d = 0.\]\end{definition}
+          \end{definition}
+\par
+
+          Check that \[d^2 f = d\cdot (d\cdot f - (-1)^fd ) - (-1) (d\cdot f - (-1)^n f\cdot d)\cdot d = 0.\]
+        %
 \par
 We use the ``Sign rule'' to help with definitions, this states that if \(a\) moves past \(b\) we pick a sign \((-1)^{\deg a\deg b}\).%
 \par
@@ -526,8 +531,8 @@ An additive functor \(F\) is \terminology{exact} if it preserves short exact seq
 \typeout{Section 1.7 Derived Functors, Proofs}
 \typeout{************************************************}
 \section[Derived Functors, Proofs]{Derived Functors, Proofs}\label{sec-derived-proofs}
-\begin{definition}\label{definition-20}
-\(\cA\) has \terminology{enough projectives} if for all \(M\in \cA\) there exists a projective \(P\) such that \(P \to M \to 0\).\end{definition}
+\begin{definition}[Enough projectives]\label{definition-20}
+\(\cA\) has \terminology{enough projectives} if for all \(M\in \cA\) there exists a projective \(P\) such that \(P \to M \to 0\) is exact.\end{definition}
 \begin{example}\label{example-12}
 \(\Rmod\) has enough projectives.
           \end{example}
@@ -662,7 +667,7 @@ See Weibel theorem 2.4.6 \end{proof}
               &\cC[S^{-1}] \ar[ur]_{P}&
               }
             \]\end{definition}
-\begin{definition}\label{definition-23}
+\begin{definition}[Derived categories]\label{definition-23}
 
             Let \(D(\cA)\), the \terminology{derived category} of \(\cA\), be the localisation of \(K(\cA)\) at the quasi-isomorphisms.
             Similarly define the usual suspects \(D^b = K^b(\cA)[\text{quasi-isomorphisms}]\), etc.
