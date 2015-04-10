@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2015-03-03T12:20:37Z    %%
+%%    on 2015-04-10T14:26:52Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -134,7 +134,7 @@ Some reference for commutative algebra:
         %
 \par
 
-          Generated: March 3, 2015, 12:20:37 (Z)
+          Generated: April 10, 2015, 14:26:52 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Motivation}
@@ -193,9 +193,10 @@ Show that the sets \(V(I)\) form the closed sets of a topology on \(\Spec A\), t
           \(\Gamma(X,\sO_X) = A(X)\).
           Our goal is to construct a sheaf \(\sO_{\Spec A}\) with stalks \(\sO_{\Spec A, p} = A_p\) and \(\Gamma(\Spec A, \sO_{\Spec A}) = A\).
         %
-\begin{definition}[]\label{definition-4}
-Let \(\sO\) be the sheaf on \(\Spec A\) whose sections over \(U\) open are functions \[s\colon U \to \coprod_{p\in U} A_p\]
-            such that 
+\begin{definition}[Structure sheaf on Spec]\label{definition-4}
+
+            Let \(\sO_{\Spec A}\) be the sheaf on \(\Spec A\) whose sections over \(U\) open are functions \[s\colon U \to \coprod_{p\in U} A_p\]
+            such that
             \begin{enumerate}
 \item{}\(s(p)\in A_p\)\item{}for \(p\in U\) there exists some open \(V \subset U\) with \(p\in V\) and \(f,g\in A\) such that for all \(q\in V\) we have \(g\in q\) and \(s(q) = f/g \in A_q\)\end{enumerate}
 \end{definition}
@@ -256,7 +257,7 @@ f^\# \colon \sO_{\Spec A}(V) &\to \sO_{\Spec B}(f^{-1}(V) = (f_*\sO_{\Spec B})(V
                 Note that \(f^\#\) induces the map \(\phi_q\) on stalks and \(\phi_q\) is a local homomorphism.
               \item{}
                 Suppose we are given \((f, f^\#)\colon (\Spec B, \sO_{\Spec B}) \to (\Spec A, \sO_{\Spec A})\), then we can get \(\phi\colon \Gamma(\Spec A, \sO_{\Spec A}) = A \xrightarrow{f^\#} \Gamma(\Spec B, \sO_{\Spec B}) = B\).
-                For \(p\in \Spec B\) we get 
+                For \(p\in \Spec B\) we get
                 \begin{align*}
 f^\#_p \colon \sO_{\Spec A, f(p)} & \to \sO_{\Spec B, p}\\
 A_{f(p)} &\to B_p
@@ -298,7 +299,7 @@ A_{f(p)} &\to B_p
             Conversely suppose \(X\) is reduced and irreducible.
             If \(U \subset X\) open, \(f,g\in \sO_X(U)\) with \(fg = 0\) we want to show that either \(f=0\) or \(g= 0\).
             Let \(Y  =\{x\in U : f_x \in \fm_x\}\) where \(f_x\) is the germ of \(f\) in \(\sO_{X,x}\) and \(\fm_x\subset \sO_{X,x}\) is the maximal ideal.
-            Let \(Z = \{x\in  : g_x \in \fm_x\}\) then \(Y\) and \(Z\) are closed subsets of \(U\) (its enough to check this on an open cover of \(U\) which we can assume to be affine, but if \(U = \Spec A\) is affine \(Y = V(f)\), which is closed).
+            Let \(Z = \{x\in  U: g_x \in \fm_x\}\) then \(Y\) and \(Z\) are closed subsets of \(U\) (its enough to check this on an open cover of \(U\) which we can assume to be affine, but if \(U = \Spec A\) is affine \(Y = V(f)\), which is closed).
             Since \(fg = 0\) we have \(f_x g_x = 0\) for all \(x\) and so \(U = Z\cup Y\).
             \(U\) is an open subset of \(X\) which is irreducible so \(U\) is irreducible (exercise!).
             So \(U = Y\) or \(U = Z\).
@@ -311,7 +312,7 @@ A_{f(p)} &\to B_p
 \(\Spec k[x,y]/(xy)\) is the two axes, and not irreducible.\newline{}\(\Spec k[t]/(t^2)\) is a point, with global sections \(k[t]/(t^2)\).\newline{}\end{example}
 \begin{definition}[(Locally) Noetherian schemes]\label{definition-9}
 
-            A scheme \(X\) is said to be \terminology{locally Noetherian} if it can be covered by opne affines of the form \(\Spec A\) with \(A\) a Noetherian ring.
+            A scheme \(X\) is said to be \terminology{locally Noetherian} if it can be covered by open affines of the form \(\Spec A\) with \(A\) a Noetherian ring.
             It is said to be \terminology{Noetherian} if there is a finite such cover.
           \end{definition}
 \begin{proposition}\label{proposition-4}

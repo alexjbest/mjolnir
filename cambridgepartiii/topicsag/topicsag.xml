@@ -144,9 +144,10 @@ Copyright 2014 Alex J. Best
         </p>
 
         <definition>
-          <title></title>
-          <statement>Let <m>\sO</m> be the sheaf on <m>\Spec A</m> whose sections over <m>U</m> open are functions <me>s\colon U \to \coprod_{p\in U} A_p</me>
-            such that 
+          <title>Structure sheaf on Spec</title>
+          <statement>
+            Let <m>\sO_{\Spec A}</m> be the sheaf on <m>\Spec A</m> whose sections over <m>U</m> open are functions <me>s\colon U \to \coprod_{p\in U} A_p</me>
+            such that
             <ol>
               <li><m>s(p)\in A_p</m></li>
               <li>for <m>p\in U</m> there exists some open <m>V \subset U</m> with <m>p\in V</m> and <m>f,g\in A</m> such that for all <m>q\in V</m> we have <m>g\in q</m> and <m>s(q) = f/g \in A_q</m></li>
@@ -233,7 +234,7 @@ Copyright 2014 Alex J. Best
               </li>
               <li>
                 Suppose we are given <m>(f, f^\#)\colon (\Spec B, \sO_{\Spec B}) \to (\Spec A, \sO_{\Spec A})</m>, then we can get <m>\phi\colon \Gamma(\Spec A, \sO_{\Spec A}) = A \xrightarrow{f^\#} \Gamma(\Spec B, \sO_{\Spec B}) = B</m>.
-                For <m>p\in \Spec B</m> we get 
+                For <m>p\in \Spec B</m> we get
                 <md>
                   <mrow>f^\#_p \colon \sO_{\Spec A, f(p)} &amp; \to \sO_{\Spec B, p}</mrow>
                   <mrow>A_{f(p)} &amp;\to B_p</mrow>
@@ -285,7 +286,7 @@ Copyright 2014 Alex J. Best
             Conversely suppose <m>X</m> is reduced and irreducible.
             If <m>U \subset X</m> open, <m>f,g\in \sO_X(U)</m> with <m>fg = 0</m> we want to show that either <m>f=0</m> or <m>g= 0</m>.
             Let <m>Y  =\{x\in U : f_x \in \fm_x\}</m> where <m>f_x</m> is the germ of <m>f</m> in <m>\sO_{X,x}</m> and <m>\fm_x\subset \sO_{X,x}</m> is the maximal ideal.
-            Let <m>Z = \{x\in  : g_x \in \fm_x\}</m> then <m>Y</m> and <m>Z</m> are closed subsets of <m>U</m> (its enough to check this on an open cover of <m>U</m> which we can assume to be affine, but if <m>U = \Spec A</m> is affine <m>Y = V(f)</m>, which is closed).
+            Let <m>Z = \{x\in  U: g_x \in \fm_x\}</m> then <m>Y</m> and <m>Z</m> are closed subsets of <m>U</m> (its enough to check this on an open cover of <m>U</m> which we can assume to be affine, but if <m>U = \Spec A</m> is affine <m>Y = V(f)</m>, which is closed).
             Since <m>fg = 0</m> we have <m>f_x g_x = 0</m> for all <m>x</m> and so <m>U = Z\cup Y</m>.
             <m>U</m> is an open subset of <m>X</m> which is irreducible so <m>U</m> is irreducible (exercise!).
             So <m>U = Y</m> or <m>U = Z</m>.
@@ -306,7 +307,7 @@ Copyright 2014 Alex J. Best
         <definition>
           <title>(Locally) Noetherian schemes</title>
           <statement>
-            A scheme <m>X</m> is said to be <term>locally Noetherian</term> if it can be covered by opne affines of the form <m>\Spec A</m> with <m>A</m> a Noetherian ring.
+            A scheme <m>X</m> is said to be <term>locally Noetherian</term> if it can be covered by open affines of the form <m>\Spec A</m> with <m>A</m> a Noetherian ring.
             It is said to be <term>Noetherian</term> if there is a finite such cover.
           </statement>
         </definition>
