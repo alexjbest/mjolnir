@@ -31,6 +31,7 @@
 *.xdy
 *.tdo
 *.swp
+*.swo
 *.fls
 Makefile
 *.sage*
