@@ -1,0 +1,32 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="hiddenproof"><h5 class="heading"><span class="type">Proof</span></h5>
+            Let \(r = v(f'(a))\).
+            We construct a sequence \((x_n)\in \cO\) s.t.
+            <ol>
+<li>\(f(x_n) \equiv 0 \pmod{\pi^{n + 2r}}\),</li>
+<li>\(x_{n+1} \equiv x_n \pmod{\pi^{n + r}}\).</li>
+</ol>
+            We put \(x_1 = a\).
+            Let \(n\ge 1\) and suppose \(x_n\) satisfies 1, i.e. \(f(x_n) = c\pi^{n + 2r}\) for some \(c\in \cO\).
+            We'll put \(x_{n+1} = x_n + b\pi^{n+r}\) for some \(b \in \cO\).
+            We have that
+            \[f(X+Y) = f_0(X) + f_1(X) Y + f_2(X) Y^2 + \cdots\]
+            for some \(f_i\in \cO[X]\).
+            We have \(f_0 = f\), \(f_1  =f'\).
+            \(f(x_{n+1}) = f(x_n + b\pi^{n +r}) \equiv f(x_n) + f'(x_n)b\pi^{n+r} \pmod{\pi^{n + 2r + 1}}\)
+            But \(x_n \equiv a \pmod{\pi^{r+1}}\) which implies that \(f'(x_n) \equiv f'(a) \pmod{\pi^{r+1}}\), implying \(f'(x_n) = u \pi^r\) for some \(u \in \cO^*\).
+            Note that this argument shows that if \(x \in \cO\) and \(|x-a| \lt |f'(a)|\) then \(|f'(a)| = |f'(x)|\).
+            Therefore \(f(x_{n+1}) \equiv c\pi^{n+2r} + u \pi^r b\pi^n \pmod{\pi^{n+2r + 1}} \equiv (c + ub) \pi ^{n + 2r}\pmod{\pi^{n+2r+1}}\).
+            Taking \(b = -c/u\) (note \(b \in \cO\)) gives that \(f(x_{n+1}) \equiv 0 \pmod{\pi^{n + 2r + 1}}\), so the first property holds for \(n+1\).
+            The second property implies that \((x_n)\) is Cauchy and the first gives that \(x = \lim_{n\to \infty}x_n\) is a root of \(f\).
+            Note that \(x_n \equiv a \pmod{\pi^{n + 1}}\) for all \(n\) implies that \(x \equiv a \pmod{\pi^{r+1}}\) and so \(|x-a| \lt f'(a)|\).
+            <br>
+            To see uniqueness suppose \(x\) and \(y\) both satisfy the above note .
+            Assume moreover that \(s = x-y \ne 0\).
+            The inequalities \(|x-a| \lt |f'(a)|\) and \(|y-a| \lt |f'(a)|\) together imply that \(|s| \lt |f'(a)|\).
+            Now \(0 = f(y) = f(x + s) = f(x) + f'(x) s + \cdots\) and therefore \(|f'(x)s |\lt |s|^2\) and so \(|f'(a)| = |f'(x)| \le |s|\) which contradicts the above.
+          </article><div class="context-link" style="text-align:right;"><a href="sec-valuations.html#proof-10">(in-context)</a></div>

@@ -1,0 +1,28 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="hiddenproof"><h5 class="heading"><span class="type">Proof</span></h5>
+          First let \(\ab\) be archimidean.
+          Let \(a,b\gt 1\) be integer.
+          Write \(b^n\) in base \(a\)\[b^n = c_m a^m + \cdots + c_1a + c_0\]
+          where \(0\le c_i\lt a\) and \(m\le n\log_a b\).
+          Let \(B= \max\{c : 0 \le c \lt a\}\) then \(|b^n| \le (m+1)B \max\{|a|^m,1\}\).
+          This implies \(|b| \le ((n\log_a b + 1)B)^{\frac{1}{n}}\max(|a|^{\frac{m}{n}}, 1)\) taking the limit as\(n \to \infty\) gives that \(|b| \le \max(|a|^{\log_a b}, 1)\).
+          Since \(\ab\) is archimidean we may pick an integer \(b\gt 1\) s.t. \(|b| \gt 1\).
+          Applying the above inequality for any integer \(a \gt 1\) we get \(|b| \le |a|6{\log_a b}\).
+          So \(|a| \gt 1\).
+          Swapping \(a\) and \(b\) in the inequality we get \(|a| \le |b|^{\log_b a}\).
+          So \[\frac{\log|a|}{\log a} = \frac{\log|b|}{\log b} = \lambda.\]
+          Then \(|a| = a^{\lambda}\) for all \(a\in \ZZ_{\ge 1}\) implying \(\ab \sim \ab_\infty\).
+          <br>
+          Now for non-archimidean \(\ab\).
+          The ultrametric law implies that \(|n| \le 1\) for all \(n\in \ZZ\),
+          \(\ab\) being non-trivial implies that \(|u| \lt 1\) for some \(n\in \ZZ_{\gt 1}\).
+          Writing \(n = p_1^{e_1}\cdots p_k^{e_k}\) we get \(|p| \lt 1\) for some \(p\).
+          Suppose that \(|p| \lt 1\) and \(|q| \lt 1\) for \(p\ne q\).
+          Write \(1 = rp + sq\) so that \(1 = |rp + sq| \le \max \lt 1\) a contradiction.
+          So \(|p| =\alpha \) for some \(p\) and \(\ab\) is 1 for all other primes.
+          Hence \(\ab \sim\ab_p\).
+        </article><div class="context-link" style="text-align:right;"><a href="chap-padic.html#proof-4">(in-context)</a></div>

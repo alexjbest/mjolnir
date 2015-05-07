@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LF Localisation</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "[Contrib]/xyjax/xypic.js"],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+    \newcommand{\CC}{\mathbf{C}}
+    \newcommand{\FF}{\mathbf{F}}
+    \newcommand{\PP}{\mathbf{P}}
+    \newcommand{\QQ}{\mathbf{Q}}
+    \newcommand{\RR}{\mathbf{R}}
+    \newcommand{\ZZ}{\mathbf{Z}}
+    \newcommand{\cO}{\mathcal{O}}
+    \newcommand{\fp}{\mathfrak{p}}
+    \newcommand{\ab}{|\cdot|}
+    \DeclareMathOperator{\chara}{char}
+    \DeclareMathOperator{\tr}{tr}
+    \DeclareMathOperator{\Frac}{Frac}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
+<h1 class="heading"><span class="title">Part III Local Fields 2014</span></h1>
+<p class="byline"></p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="sec-dedekind.html">Previous</a><a class="up-button button toolbar-item" href="chap-dedekind.html">Up</a><a class="next-button button toolbar-item" href="chap-relative.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-dedekind.html">Previous</a><a class="up-button button toolbar-item" href="chap-dedekind.html">Up</a><a class="next-button button toolbar-item" href="chap-relative.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link"><a href="chap-introduction.html"><span class="codenumber">1</span><span class="title">Introduction</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-padic.html"><span class="codenumber">2</span><span class="title">\(p\)-adic numbers</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-valuations.html"><span class="codenumber">3</span><span class="title">Valuations</span></a></h2>
+<ul>
+<li><a href="sec-valuations.html">Valuations</a></li>
+<li><a href="sec-dvrs.html">Examples of DVR's continued</a></li>
+<li><a href="sec-teichmuller.html">The Teichmuller map</a></li>
+</ul>
+<h2 class="link active"><a href="chap-dedekind.html"><span class="codenumber">4</span><span class="title">Dedekind domains</span></a></h2>
+<ul>
+<li><a href="sec-dedekind.html">Dedekind domains</a></li>
+<li><a href="sec-localisation.html" class="active">Localisation</a></li>
+</ul>
+<h2 class="link"><a href="chap-relative.html"><span class="codenumber">5</span><span class="title">Relative extensions</span></a></h2>
+<ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-localisation"><header><h1 class="heading">
+<span class="type">Section</span><span class="codenumber">4.2</span><span class="title">Localisation</span>
+</h1></header><p>Let \(R\) be an integral domain and \(p \subset R\) a prime ideal.
+          Let \(S = R\smallsetminus p\) and \(S^{-1}R = \{\frac{r}{s} : r\in R,\, s\in S\}\subset\Frac R\).
+          This is a local ring with maximal ideal \(S^{-1}p\).
+          \(R\) being Dedekind implies \(S^{-1}R\) is, and hence \(S^{-1}R\) is a DVR by the above theorem 
+        </p>
+<article class="theorem-like" id="theorem-5"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">4.2.1</span>
+</h5>
+            Let \(\cO_K\) be a Dedekind domain, \(K = \Frac \cO_K\) and \(L/K\) a finite field extension.
+            Then take \(\cO_L\) to be the integral closure of \(\cO_K\) in \(L\), then \(\cO_L\) is a Dedekind domain.
+          </article><article class="hiddenproof" id="proof-18"><a knowl="./knowl/proof-18.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-18" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            That \(\cO_L\) is a domain is clear.<br>
+            It is also clear that it is integrally closed.<br>
+            To see it is Noetherian we suppose that \(L/K\) is a separable and write \(n = [L:K]\).
+            There are \(n\) distinct embeddings \(\sigma_1,\ldots,\sigma_n\colon L \to \bar K\).
+            The trace form \(L\times L \to K\) given by \((x,y)\mapsto \tr xy\) is a non-degenerate \(K\)0bilinear form.
+            (Using primitive element and expressing as a Vandermonde determinant)
+            Let \(x_1,\ldots,x_n\) be a basis for \(L\) as  \(K\)-vector space.
+            Clearing denominators allows us to take \(x_i \in \cO_L\).
+            Let \(y_1,\ldots,y_n\) be the dual basis w.r.t. the trace form.
+            Let \(z\in \cO_L\) then \(z = \sum_{j =1}^{n}\lambda_j y_j\) for some \(\lambda_i \in K\), giving that \(\lambda_i = \tr_{L/K}(x_i z)\in \cO_K\).
+            So \(\cO_L \subset y_1\cO_K + \cdots + y_n \cO_K\).
+            \(\cO_K\) being noetherian gives that \(\cO_L\) is a f.g. \(\cO_K\)-module and so \(a\cO_L\) is noetherian too.<br>
+            Now to see that all non-zero primes are maximal we fix \(P\) a non-zero prime of \(\cO_L\).
+            Then taking \(p = P \cap \cO_K\) we have a prime of \(\cO_K\).
+            We can find \(x \in p \smallsetminus 0\) so that \(0 \ne N_{L/K} (x) \in P \cap \cO_K = p\).
+            \(\cO_K\) being Dedekind gives \(p\) maximal and so \(k = \cO_K/p \hookrightarrow \cO_L/P\) gives that \(\cO_L/P\) is a f.d. \(k\)-algebra.
+            But \(\cO_L/P\) is an integral domain and so applying rank-nullity to \(\cdot x\) gives \(\cO_L/P\) is a field.
+          </article></div>
+<article class="theorem-like" id="lemma-13"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">4.2.2</span>
+</h5>
+            If \(R\) is a Dedekind domain and \(K = \Frac R\) with an absolute value \(\ab\) on \(K\) with \(|x| \le 1 \) for all \(x\in R\) then \(\ab \sim \ab_p\) for some prime \(p\) of \(R\).
+          </article><article class="hiddenproof" id="proof-19"><a knowl="./knowl/proof-19.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-19" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            Lemma 1.1  implies \(\ab\) is non-archimidean.
+            Let \(p = \{x\in R : |x| \lt 1\}\), this is a prime ideal.
+            Localising at \(R\smallsetminus p\) gives a DVR by Theorem 3.2  this has valuation \(v_p\).
+            Take \(\pi \in p \smallsetminus p^2 \) so we can write \(x \in K^*\) as \(x= u\pi^r\) where \(|u|_p = 1\) and \(r\in \ZZ\).
+            To prove \(\ab\sim\ab_p\) we need to show that \(|\pi| \lt 1\) (which is true as \(\pi \in p\)) and also that \(|u| = 1\).
+            We have \(|u|_p \le 1\) which gives \(u \in S^{-1}R\) so \(u = r/s\) for \(r\in R, s\in R\) we know \(|r| \le 1\) and \(|s| = 1\) so \(|u| \le 1\).
+            We can do the same for \(u^{-1}\) to get \(|u| = 1\).
+          </article></div>
+<article class="theorem-like" id="theorem-6"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">4.2.3</span>
+</h5>\(\cO_K\) is a Dedekind domain, \(K = \Frac\cO_K\), \(L/K\) finite field extension, \(\cO_L\) integral closure of \(\cO_K\) in \(L\).
+            Let \(p \subset \cO_K\) be a prime ideal, then \(p \cO_L = P_1^{e_1} \cdots P_r^{e_r}\) for distinct primes \(P_i\).
+            Then the absolute values on \(L\) extending \(\ab_p\) on \(K\) are (up to equivalence) \(\ab_{P_1},\ldots,\ab_{P_r}\).
+          </article><article class="hiddenproof" id="proof-20"><a knowl="./knowl/proof-20.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-20" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">\(\cO_L\) is Dedekind .
+            Take \(x \in K^*\) we have \(v_{P_i}(x) = e_i v_p(x)\) so \(\ab_{P_i}\) is equivalent to an absolute value extending \(\ab_p\).
+            Now let \(\ab\) be any such absolute value on \(L\), it will be non-archimidean by .
+            \(\cO_K \subset \{x\in L : |x\ \le 1\}\) so taking integral closures in \(L\) we get \(\cO_L \subset \{x\in L : |x| \le 1\}\).
+            Lemma 3.4  gives that \(\ab\sim \ab_P\) for some prime \(P\subset \cO_L\).
+            But \(\ab\) extends \(\ab_p\) so \(P \cap \cO_K = p\) giving \(P = P_i\) for some  \(i\).
+          </article></div>
+<article class="theorem-like" id="corollary-4"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">4.2.4</span>
+</h5>
+            The non-archimidean places of a number field \(K\) are \(\ab_p\) for \(p\) a prime of \(\cO_K\).
+          </article></section></div></main>
+</div>
+</body>
+</html>

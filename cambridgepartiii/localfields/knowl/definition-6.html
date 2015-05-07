@@ -1,0 +1,23 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="definition-like"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">3.1.1</span><span class="title">Valuations, discrete, normalised, valuation ring, units maximal ideal</span>
+</h5>\(v\colon K^* \to \RR\) is called a valuation if
+            <ol>
+<li>\(v(xy) = v(x)+v(y)\)</li>
+<li>\(v(x+y) \ge \min(v(x),v(y))\).</li>
+</ol>
+            Fix some \(0\lt \alpha\lt 1\), then a valuation \(v\) determines a non-archimidean absolute value, via \[|x| = \begin{cases} \alpha^{v(x)} \text{ if } x \ne 0,\\ 0 \text{ if } x =0.\end{cases}\]
+            Conversely given some \(\ab\) we can put \(v(x) = \log|x| / \log\alpha\).
+            We ignore the trivial valuation.
+            We say two valuations \(v_1,v_2\) are equivalent if for some \(c\in \RR_{\gt 0}\)\( v_1(x )= cv_2(x)\) for all \(x\in K^*\).
+            The image \(v(K^*)\) is a subgroup of \(\RR\).
+            If it is discrete (i.e. isomorphic to \(\ZZ\)) we say that \(v\) is a discrete valuation, we say it is normalised if \(v(K^*) = \ZZ\).
+            We let \(\cO_v = \{x \in K : v(x) \le 1\}\) be the valuation ring.
+            \(\cO_v^* = \{x \in K : v(x) = 1\}\) is its unit group.
+            \(m = \{x\in K: |x| \lt 1\}\) is a maximal ideal.
+            \(k =\cO_v/m\) is the residue field.
+          </article><div class="context-link" style="text-align:right;"><a href="sec-valuations.html#definition-6">(in-context)</a></div>

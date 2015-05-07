@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LF \(p\)-adic numbers</title>
+<meta name="Keywords" content="Authored in MathBook XML">
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<script type="text/x-mathjax-config">
+MathJax.Ajax.config.path["Contrib"] = "//cdn.mathjax.org/mathjax/contrib";
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['\\(','\\)']]
+    },
+    TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "extpfeil.js", "autobold.js", "[Contrib]/xyjax/xypic.js"],
+        equationNumbers: { autoNumber: "none",
+                           useLabelIds: true,
+                           formatID: function (n) {return String(n).replace(/[:'"<>&]/g,"")},
+                         },
+        TagSide: "right",
+        TagIndent: ".8em",
+    },
+    "HTML-CSS": {
+        scale: 88,
+    },
+});
+    </script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full"></script><script src="http://sagecell.sagemath.org/static/jquery.min.js"></script><script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script><script>
+$(function () {
+    // Make *any* div with class 'sage-compute' an executable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-compute',
+                           linked: true,
+                           evalButtonText: 'Evaluate'});
+});
+$(function () {
+    // Make *any* div with class 'sage-display' a visible, uneditable Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.sage-display',
+                           editor: 'codemirror-readonly',
+                           hide: ['evalButton', 'editorToggle', 'language']});
+});
+    </script><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script><link href="http://aimath.org/knowlstyle.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://aimath.org/knowl.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.sticky.js"></script><script src="http://aimath.org/mathbook/js/lib/jquery.espy.min.js"></script><script src="http://aimath.org/mathbook/js/Mathbook.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic%7CSource+Code+Pro:400" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/stylesheets/mathbook-3.css" rel="stylesheet" type="text/css">
+<link href="http://aimath.org/mathbook/mathbook-add-on.css" rel="stylesheet" type="text/css">
+</head>
+<body class="mathbook-book has-toc has-sidebar-left">
+<div style="display:none;">\(
+    \newcommand{\CC}{\mathbf{C}}
+    \newcommand{\FF}{\mathbf{F}}
+    \newcommand{\PP}{\mathbf{P}}
+    \newcommand{\QQ}{\mathbf{Q}}
+    \newcommand{\RR}{\mathbf{R}}
+    \newcommand{\ZZ}{\mathbf{Z}}
+    \newcommand{\cO}{\mathcal{O}}
+    \newcommand{\fp}{\mathfrak{p}}
+    \newcommand{\ab}{|\cdot|}
+    \DeclareMathOperator{\chara}{char}
+    \DeclareMathOperator{\tr}{tr}
+    \DeclareMathOperator{\Frac}{Frac}
+    \)</div>
+<header id="masthead"><div class="banner"><div class="container">
+<a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
+<h1 class="heading"><span class="title">Part III Local Fields 2014</span></h1>
+<p class="byline"></p>
+</div>
+</div></div>
+<nav id="primary-navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="previous-button toolbar-item button" href="chap-introduction.html">Previous</a><a class="up-button button toolbar-item" href="localfields.html">Up</a><a class="next-button button toolbar-item" href="chap-valuations.html">Next</a>
+</div>
+<button class="sidebar-right-toggle-button button active">Annotations</button>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="chap-introduction.html">Previous</a><a class="up-button button toolbar-item" href="localfields.html">Up</a><a class="next-button button toolbar-item" href="chap-valuations.html">Next</a>
+</div>
+</div></nav></header><div class="page">
+<aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
+<nav id="toc"><h2 class="link"><a href="chap-introduction.html"><span class="codenumber">1</span><span class="title">Introduction</span></a></h2>
+<ul></ul>
+<h2 class="link active"><a href="chap-padic.html"><span class="codenumber">2</span><span class="title">\(p\)-adic numbers</span></a></h2>
+<ul></ul>
+<h2 class="link"><a href="chap-valuations.html"><span class="codenumber">3</span><span class="title">Valuations</span></a></h2>
+<ul>
+<li><a href="sec-valuations.html">Valuations</a></li>
+<li><a href="sec-dvrs.html">Examples of DVR's continued</a></li>
+<li><a href="sec-teichmuller.html">The Teichmuller map</a></li>
+</ul>
+<h2 class="link"><a href="chap-dedekind.html"><span class="codenumber">4</span><span class="title">Dedekind domains</span></a></h2>
+<ul>
+<li><a href="sec-dedekind.html">Dedekind domains</a></li>
+<li><a href="sec-localisation.html">Localisation</a></li>
+</ul>
+<h2 class="link"><a href="chap-relative.html"><span class="codenumber">5</span><span class="title">Relative extensions</span></a></h2>
+<ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="chapter" id="chap-padic"><header><h1 class="heading">
+<span class="type">Chapter</span><span class="codenumber">2</span><span class="title">\(p\)-adic numbers</span>
+</h1></header><article class="definition-like" id="definition-1"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">2.0.1</span><span class="title">Absolute value</span>
+</h5>An <em class="terminology">absolute value</em> on a field \(K\) is a function \(\ab\colon K \to \RR\) such that
+          <ol>
+<li>\(|x|\ge 0\) and \(|x| = 0 \iff x = 0\).</li>
+<li>\(|xy| = |x||y|\).</li>
+<li>\(|x + y| \le |x| + |y|\).</li>
+</ol></article><article class="example-like" id="example-1"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.0.2</span>
+</h5>
+<ol>
+<li>\(K \subset \CC\), \(|a+bi|_{\infty} = \sqrt{a^2 + b^2}\).</li>
+<li>\(K\) any field, \(|x| = 0\) if \(x = 0\) and \(|x| = 1\) otherwise, this is called the <em class="terminology">trivial absolute value</em>.</li>
+</ol></article><article class="example-like" id="remark-1"><h5 class="heading">
+<span class="type">Remark</span><span class="codenumber">2.0.3</span>
+</h5>
+<ol>
+<li>If \(x^n = 1\) then \(|x|  = 1\) and hence finite fields can only be given the trivial absolute value.</li>
+<li>In particular \(| -1| = 1\) and so \(|x| = |-x|\) for all \(x \in K\).</li>
+</ol></article><p>A valued field \((K, \ab)\) becomes a metric space with \(d(xy,) = |x-y|\), and hence a topological space, i.e. open sets are unions of open balls \(B(x,r) = \{y\in K : |x-y| \lt r\}\).</p>
+<article class="exercise-like" id="exercise-1"><h5 class="heading">
+<span class="type">Exercise</span> <span class="codenumber">2.0.4</span>
+</h5>Show that the functions \(+,\cdot \colon K\times K \to K\) and \(\ab\colon K \to \RR\) are continuous with respect to this topology.</article><article class="example-like" id="example-2"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.0.5</span>
+</h5>Let \(K = \QQ,\, p\) be a prime and \(0 \lt \alpha \lt 1\).
+          For \(x\in \QQ^*\) let \(\nu_p(x) = r\) where \(x = p^r u/ v\) and \(p\nmid uv\).
+          Then the \(p\)-adic absolute value if given by \[|x|_p = \begin{cases} 0 &amp; x = 0,\\ \alpha^{\nu_p(x)} &amp; \text{otherwise}.\end{cases}\]
+          Usually we take \(\alpha = 1/p\).
+          In this case we get the inequality \(|x+ y|_p \le \max\{|x|_p, |y|_p\}\), this is the <em class="terminology">ultrametric triangle inequality</em>.
+        </article><article class="definition-like" id="definition-2"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">2.0.6</span><span class="title">(non-)Archimidean absolute values</span>
+</h5>Absolute values are called <em class="terminology">non-archimidean</em> if this inequality holds, otherwise they are called <em class="terminology">archimidean</em>.
+        </article><p>Recall that if \(R\) is any ring then there exists a unique ring homomorphism \(\ZZ \to R\).</p>
+<article class="theorem-like" id="lemma-1"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">2.0.7</span>
+</h5>\(\ab\) is non-archimidean if and only if \(|n|\) is bounded for all \(n \in \ZZ\).</article><article class="hiddenproof" id="proof-1"><a knowl="./knowl/proof-1.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-1" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+          (\(\Rightarrow\)) \(|n| \le \max\{|1|\} = 1\).<br>
+          (\(\Leftarrow\)) Suppose \(|n| \le B\) for all \(n \in \ZZ\) then \[|x+ y|^m = \left| \sum_{r = 0}^{m} \binom{m}{r} x^{m-r}y^r\right| \le \sum_{r=0}^m\left|\binom{m}{r}\right||x|^{m-r}|y|^r \le (m+1)B \max\{|x|^m, |y|^m\}.\]
+          Now letting \(m \to \infty\) we get that \(|x+y| \le \max\{|x|, |y|\}\).
+        </article></div>
+<article class="theorem-like" id="corollary-1"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">2.0.8</span>
+</h5>All absolute values on fields of characteristic \(p\) are non-archimidean.</article><article class="example-like" id="example-3"><h5 class="heading">
+<span class="type">Example</span><span class="codenumber">2.0.9</span>
+</h5>
+<ol>
+<li>\(K = \QQ\), \(p = 5\) \(\ab = \ab_5\).
+            Let \(a_1 =3,a_2=33,a_3=33\), etc.
+            So \(a_n \equiv a_m \pmod{5^n}\) for all \(m \ge n\).
+            Then \(|a_n -a_m|_5 \le 5^{-n}\) for all \(m \ge n\) and so \((a_n)_{n\ge1}\) is a Cauchy sequence.
+            Now \(a_n = \frac{10^n - 1}{3}\) so \(|a_n - \frac13| = 5^{-n}\to 0\) as \(n \to \infty\) i.e. \( a_n\to-\frac13\) w.r.t. \(\ab_5\)
+          </li>
+<li>
+            We'll construct \((a_n)\) such that for all \(n \ge 1\)
+            \[
+              \begin{cases}a_n^2 +1  \equiv 0 \pmod{5^n}\\
+              a_{n+1} \equiv a_n \pmod{5^n}
+              \end{cases}
+            \]
+            Take \(a_1 = 2\).
+            Suppose \(a_n\) is chosen and it satisfies \(a_n^2  + 1 = 5^n c\).
+            \((a_n + 5^n b)^2 + 1 \equiv a_n^2 + 1 + 2\cdot 5^n a_nb \equiv 5^n(c+2ba_n) \pmod{5^{n+1}}\).
+            We solve for \(b\) s.t. \(2ba_n + c \equiv 0\pmod{5}\).
+            Since \((2a_n,5) = 1\) this is always possible.
+            Now put \(a_{n+1} = a_n+5^nb\).
+            Condition (ii) implies that \(a_n\) is Cauchy.
+            Suppose it converges and \(a_n\to l\in \QQ\).
+            Then \(|l^2 + 1|_5 \le |a_n^2 + 1|_5 +|a_n^2 - l^2|_5\), both of these terms tend to 0 which gives \(l^2 = -1\) a contradiction.
+            This shows that \(\QQ\) is not complete under \(\ab_5\).
+          </li>
+</ol></article><article class="definition-like" id="definition-3"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">2.0.10</span>
+</h5>\(\QQ_p\) is the completion of \(\QQ\) w.r.t. \(\ab_p\).
+          Note that \(\QQ_p\) has \(+,\cdot,\ab_p\) as they extend from \(\QQ\) by continuity.
+          It is easy to check that \((\QQ_p,\ab_p)\) is a non-archimidean valued field.
+        </article><article class="definition-like" id="definition-4"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">2.0.11</span>
+</h5>\(\ZZ_p=\{x\in\QQ_p : |x|_p \le 1\}.\)</article><article class="theorem-like" id="lemma-2"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">2.0.12</span>
+</h5>\(\ZZ\) is dense in \(\ZZ_p\), in particular \(\ZZ_p\) is the completion of \(\ZZ\) w.r.t. \(\ab_p\).</article><article class="hiddenproof" id="proof-2"><a knowl="./knowl/proof-2.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-2" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">\(\QQ\cap \ZZ_p = \{x\in\QQ: |x|_p \le 1\}= \{\frac{a}{b} \in \QQ : p \nmid b,a,b\in\ZZ\} = \ZZ_{(p)}\).
+        Let \(\frac{a}{b} \in \ZZ_{(p)}\) i.e. \(a,b \in \ZZ\), \(p\nmid b\).
+        For each \(n \ge 1\) we can pick \(y_n \in \ZZ\) s.t. \(by_n \equiv 1 \pmod{p^n}\) implying \(by_n \to_p 1\) as \(n \to \infty\).
+        This implies that \(ay_n \to \frac{a}{b}\) as \(n\to \infty\).
+        Hence \(\ZZ\) is dense in \(\ZZ_{(p)}\).
+
+        Now for\(\QQ\) is dense in \(\QQ_p\) and \(\ZZ_p \subset \QQ_p\) being open give that \(\QQ\cap \ZZ_p\) is dense in \(\ZZ_p\).
+        </article></div>
+<p>
+        The global situation is as follows.
+        \([K: \QQ] \lt \infty  \) \(\cO_K = \) integral closure of \(\ZZ\) in \(K\).
+        \(\cO_K\) need not be a UFD.
+      </p>
+<p>
+        The local situation is as follows.
+        \([K: \QQ] \lt \infty  \) \(\cO_K = \) integral closure of \(\ZZ_p\) in \(K\).
+        \(\cO_K\) is always a UFD! In fact it is a DVR.
+        \(K\) number field \(\fp \subset\cO_K\) a prime ideal \(0\lt \alpha\lt 1\).
+        For \(x\in K^*\) \(v_{\fp}(x) = \) power of \(\fp\) in the factorisation of \(x\cO_K\).
+        Define \[|x|_p = \begin{cases} \alpha^{v_p(x)} \text{if } x\ne 0\\0 \text{otw}\end{cases}\]
+        \(\ab_{\fp}\) is an absolute value on \(K\).
+        \(K_{\fp}\) is the completion of \(K\) w.r.t. \(\ab_{\fp}\).
+        Note that for a suitable choice of \(\alpha\) \(\ab_{\fp}\) extends \(\ab_p\) on \(\QQ\) (where \(\fp \cap \ZZ = p\ZZ\)).
+      </p>
+<article class="example-like" id="remark-2"><h5 class="heading">
+<span class="type">Remark</span><span class="codenumber">2.0.13</span>
+</h5>\([K_{\fp} : \QQ_p] \le [K: \QQ]\).
+          Every finite extension of\(\QQ_p\) arises as the completion of some number field.
+          Proofs later.
+        </article><article class="theorem-like" id="lemma-3"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">2.0.14</span>
+</h5>
+          Let \(\ab_1\) and \(\ab_2\) be non-trivial absolute values on a field \(K\) then TFAE:
+          <ol>
+<li>\(\ab_1\) and \(\ab_2\) define the same topology on \(K\).</li>
+<li>\(|x|_1\lt 1 \iff |x|_2 \lt 1\).</li>
+<li>\(|x|_2 = |x|_1^c\) for some \(c \gt 0\).</li>
+</ol>
+          If these conditions hold we say that \(\ab_1\) and \(\ab_2\) are equivalent.
+        </article><article class="hiddenproof" id="proof-3"><a knowl="./knowl/proof-3.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-3" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+          1) \(\implies\) 2) \(|x|_1 \lt 1 \iff x^n \to 0\) as \(n \to \infty\) w.r.t. \(\ab_1 \iff x^n \to 0\) w.r.t. \(\ab_2\) iff \(|x|_2 \lt 1\).<br>
+          2) \(\implies\) 3) Pick \(a \in K^*\) with \(|a|_1 \lt 1\).
+          Let \(x\in K^*\)\(m,n\in \ZZ\)\(n \gt 0\).
+          </article></div>
+<article class="definition-like" id="definition-5"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">2.0.15</span>
+</h5>
+          A <em class="terminology">place</em> of \(K\) is an equivalence class of absolute values on \(K\).
+        </article><article class="theorem-like" id="theorem-1"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">2.0.16</span>
+</h5>
+          A non-trivial absolute value on \(\QQ\) is equivalent to either \(\ab_\infty\) or \(\ab_p\) for some prime \(p\).
+        </article><article class="hiddenproof" id="proof-4"><a knowl="./knowl/proof-4.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-4" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+          First let \(\ab\) be archimidean.
+          Let \(a,b\gt 1\) be integer.
+          Write \(b^n\) in base \(a\)\[b^n = c_m a^m + \cdots + c_1a + c_0\]
+          where \(0\le c_i\lt a\) and \(m\le n\log_a b\).
+          Let \(B= \max\{c : 0 \le c \lt a\}\) then \(|b^n| \le (m+1)B \max\{|a|^m,1\}\).
+          This implies \(|b| \le ((n\log_a b + 1)B)^{\frac{1}{n}}\max(|a|^{\frac{m}{n}}, 1)\) taking the limit as\(n \to \infty\) gives that \(|b| \le \max(|a|^{\log_a b}, 1)\).
+          Since \(\ab\) is archimidean we may pick an integer \(b\gt 1\) s.t. \(|b| \gt 1\).
+          Applying the above inequality for any integer \(a \gt 1\) we get \(|b| \le |a|6{\log_a b}\).
+          So \(|a| \gt 1\).
+          Swapping \(a\) and \(b\) in the inequality we get \(|a| \le |b|^{\log_b a}\).
+          So \[\frac{\log|a|}{\log a} = \frac{\log|b|}{\log b} = \lambda.\]
+          Then \(|a| = a^{\lambda}\) for all \(a\in \ZZ_{\ge 1}\) implying \(\ab \sim \ab_\infty\).
+          <br>
+          Now for non-archimidean \(\ab\).
+          The ultrametric law implies that \(|n| \le 1\) for all \(n\in \ZZ\),
+          \(\ab\) being non-trivial implies that \(|u| \lt 1\) for some \(n\in \ZZ_{\gt 1}\).
+          Writing \(n = p_1^{e_1}\cdots p_k^{e_k}\) we get \(|p| \lt 1\) for some \(p\).
+          Suppose that \(|p| \lt 1\) and \(|q| \lt 1\) for \(p\ne q\).
+          Write \(1 = rp + sq\) so that \(1 = |rp + sq| \le \max \lt 1\) a contradiction.
+          So \(|p| =\alpha \) for some \(p\) and \(\ab\) is 1 for all other primes.
+          Hence \(\ab \sim\ab_p\).
+        </article></div>
+<article class="example-like" id="remark-3"><h5 class="heading">
+<span class="type">Remark</span><span class="codenumber">2.0.17</span>
+</h5>
+          If \((K,\ab)\) is archimidean then \(\chara(K) = 0\) and so \(\QQ \subset K\).
+          Ostrowski  then impliees that restriction of \(\ab\) to \(\QQ\) is equivalent to \(\ab_\infty\).
+          so if \(K\) is complete then it contains a copy of \(\RR\).
+        </article><p>
+        Fact: If \((K,\ab)\) is complete and archimidean then \(K= \RR\) or \(K= \CC\) and \(\ab \sim \ab_\infty\) (see Cassels).
+      </p>
+<article class="theorem-like" id="corollary-2"><h5 class="heading">
+<span class="type">Corollary</span><span class="codenumber">2.0.18</span>
+</h5></article><p>From now on we take \(K\) non-archimidean.</p>
+<article class="theorem-like" id="lemma-4"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">2.0.19</span>
+</h5>
+          Let \((K,\ab)\) be non-archimidean.
+          Then
+          <ol>
+<li>\(|x| \gt|y|\) implies \(|x+y | = |x|\).</li>
+<li>\(|x_1 +\cdots + x_n| \le \max\{|x_i|\}\) with equality only .</li>
+<li>If \((K,\ab)\) is complete then \(\sum_{n=1}^\infty a_n\) converges iff \(a_n\to 0\).</li>
+</ol></article><article class="hiddenproof" id="proof-5"><a knowl="./knowl/proof-5.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-5" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol>
+<li>\(|x+y| \le \max(|x|,|y|) = |x| \le \max(|x+y|, |y|) = |x + y|\).</li>
+<li>Ultrametric + induction. Apply (i) with \(x = x_1\) and \(y = x_1 + \cdots + x_n\).</li>
+<li>Let \(s_n = \sum_{i=0}^{n} a_i\), if \(s_n \to l\) then \(a_n = s_n - s_{n-1} \to 0\) as \(n \to \infty\), conversely for \(m \ge n\) we have \(s_m - s_n = |a_{n+1} + \cdots + a_m| \le \max_{i = n+1,\ldots,m}(|a_i|) \lt \max_{i \gt n} |a_i| \to 0\) as \(n \to \infty\) so \(s_n\) is Cauchy, hence convergent.</li>
+</ol></article></div>
+<p>For \(x\in L\) \(r \gt 0\) we let \(B(x,r) = \{y\in K : |x - y| \lt r\}\) and \(\overline{B}(x,r) = \{y\in K : |x - y| \le r\}\).</p>
+<article class="theorem-like" id="lemma-5"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">2.0.20</span>
+</h5>
+<ol>
+<li>If \(y\in B(x,r)\) then \(B (x,r ) = B(y,r)\).</li>
+<li>If \(y\in \bar{B}(x,r)\) then \(\bar{B}(x,r) = \bar{B}(y,r)\).</li>
+<li>\(B(x,r)\) is both open and closed.</li>
+<li>\(\bar{B}(x,r)\) is both open and closed.</li>
+<li>\(K\) is totally disconnected (i.e. the only connected subsets are singletons).</li>
+</ol></article><article class="hiddenproof" id="proof-6"><a knowl="./knowl/proof-6.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-6" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol>
+<li>Ultrametric.</li>
+<li>Ultrametric.</li>
+<li>\(B(x,r)\) is open, it is closed since if \(y \not\in B(x,r)\) then \(B(x,r)\cap B(y,r) = \emptyset\) as they are not the same ball.</li>
+<li>\(\bar{B}(x,r)\) is closed since if \(y\in \bar{B}(x,r)\) then \(B(y,r/2)\subset\bar{B}(y,) = \bar{B}(x,r)\).</li>
+<li>Given any \(x,y\in K\) distinct, let \(r = |x-y|/2 \gt 0\) then \(B (x,r)\) and its complement are open sets, one containing \(x\), the other \(y\).</li>
+</ol></article></div></section></div></main>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="theorem-like"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">2.0.19</span>
+</h5>
+          Let \((K,\ab)\) be non-archimidean.
+          Then
+          <ol>
+<li>\(|x| \gt|y|\) implies \(|x+y | = |x|\).</li>
+<li>\(|x_1 +\cdots + x_n| \le \max\{|x_i|\}\) with equality only .</li>
+<li>If \((K,\ab)\) is complete then \(\sum_{n=1}^\infty a_n\) converges iff \(a_n\to 0\).</li>
+</ol></article><article class="hiddenproof" id="proof-5"><a knowl="./knowl/proof-5.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-5" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol>
+<li>\(|x+y| \le \max(|x|,|y|) = |x| \le \max(|x+y|, |y|) = |x + y|\).</li>
+<li>Ultrametric + induction. Apply (i) with \(x = x_1\) and \(y = x_1 + \cdots + x_n\).</li>
+<li>Let \(s_n = \sum_{i=0}^{n} a_i\), if \(s_n \to l\) then \(a_n = s_n - s_{n-1} \to 0\) as \(n \to \infty\), conversely for \(m \ge n\) we have \(s_m - s_n = |a_{n+1} + \cdots + a_m| \le \max_{i = n+1,\ldots,m}(|a_i|) \lt \max_{i \gt n} |a_i| \to 0\) as \(n \to \infty\) so \(s_n\) is Cauchy, hence convergent.</li>
+</ol></article></div><div class="context-link" style="text-align:right;"><a href="chap-padic.html#lemma-4">(in-context)</a></div>

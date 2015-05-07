@@ -1,0 +1,29 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="theorem-like"><h5 class="heading">
+<span class="type">Proposition</span><span class="codenumber">3.1.13</span>
+</h5>\[\QQ_p^* /(\QQ_p^*)^2\cong \begin{cases} (\ZZ/2\ZZ)^2&amp; \text{ if } p \ne 2,\\ (\ZZ/2\ZZ)^3&amp; \text{ if } p= 2.\end{cases}\]</article><article class="hiddenproof" id="proof-12"><a knowl="./knowl/proof-12.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-12" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol>
+<li>
+                Assume \(p \ne 2\).
+                For \(b \in \ZZ_p^*\) we have \(b \in (\ZZ_p^*)^2 \iff \bar b \in (\FF_p^*)^2\) (applying Hensel's lemma  to \(f(x) = x^2 -b\)).
+                Therefore \(\ZZ_p^*/(\ZZ_p^*)^2 \xrightarrow{\sim} \FF_p^*/(\FF_p^*)^2 \cong \ZZ/2\ZZ\).
+                But \(\QQ_p^* \cong \ZZ_p^* \times \ZZ\) via the map \(u p^r \mapsto (u,r)\).
+                Therefore \(\QQ_p^*/(\QQ_p^*)^2\cong \ZZ_p^*/(\ZZ_p^*)^2 \times \ZZ/2\ZZ\cong (\ZZ/2\ZZ)^2\).
+                We have coset reps \(1,p,u,pu\) where \(u\) is a non-square mod \(p\).
+              </li>
+<li>
+                Let \(p = 2\).
+                Take \(b \in \ZZ_2^*\) with \(b \equiv 1 \pmod{8}\), let \(f(x) = x^2 -b\).
+                Then \(|f(1) | \le 2^{-3}\lt 2^{-2} = |f'(1)|^2\).
+                Hensel's lemma  now gives us that \(f\) has a root in \(\ZZ_2\).
+                So \(\ZZ_2 ^* \to (\ZZ/8\ZZ)^* \cong (\ZZ/2\ZZ)^2\).
+                Clearly \((\ZZ_2^*) \subset \ker\).
+                We just checked that \(\ker \subset (\ZZ_2^*)^2\).
+                Therefore \(\ZZ_2^*/(\ZZ_2^*)^2  \cong (\ZZ/2\ZZ)^2\).
+                Hence \(\QQ_2^*/(\QQ_2^*)^2\cong (\ZZ/2\ZZ)^3\).
+                We have coset reps \(2^a(-1)^b5^c\) where \(a,b,c\in\{0,1\}\).
+              </li>
+</ol></article></div><div class="context-link" style="text-align:right;"><a href="sec-valuations.html#proposition-1">(in-context)</a></div>

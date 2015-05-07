@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--********************************************************************
+
+Copyright 2014 Alex J. Best
+
+*********************************************************************-->
+
+<mathbook>
+
+  <docinfo>
+    <brandlogo url="http://alexjbest.github.io/mjolnir/" source="../../images/mjolnir.png" />
+    <author>
+      <personname>Dr. Tom Fisher</personname>
+      <department>DPMMS</department>
+      <institution>University of Cambridge</institution>
+    </author>
+    <author>
+      <personname>Alex J. Best</personname>
+      <department>DPMMS</department>
+      <institution>University of Cambridge</institution>
+      <email>alex.j.best@gmail.com</email>
+    </author>
+
+    <macros>
+    \newcommand{\CC}{\mathbf{C}}
+    \newcommand{\FF}{\mathbf{F}}
+    \newcommand{\PP}{\mathbf{P}}
+    \newcommand{\QQ}{\mathbf{Q}}
+    \newcommand{\RR}{\mathbf{R}}
+    \newcommand{\ZZ}{\mathbf{Z}}
+    \newcommand{\cO}{\mathcal{O}}
+    \newcommand{\fp}{\mathfrak{p}}
+    \newcommand{\ab}{|\cdot|}
+    \DeclareMathOperator{\chara}{char}
+    \DeclareMathOperator{\tr}{tr}
+    \DeclareMathOperator{\Frac}{Frac}
+    </macros>
+
+    <initialism>LF</initialism>
+
+    <feedback>
+      <url>https://github.com/alexjbest/mjolnir/issues</url>
+    </feedback>
+
+    <date><today /></date>
+  </docinfo>
+
+  <book xml:id="localfields">
+    <title>Part III Local Fields 2014</title>
+    <chapter xml:id="chap-introduction">
+      <title>Introduction</title>
+
+      <p>These are lecture notes for the 2014 Part III Local Fields course taught by Dr. Tom Fisher.</p>
+
+      <p>The recommended books are:<todo></todo>
+        <ul>
+          <li>Cassels</li>
+          <li>Serre</li>
+          <li>Koblitz</li>
+        </ul>
+      </p>
+
+      <p>Generated: <today />, <timeofday /></p>
+    </chapter>
+
+    <chapter xml:id="chap-padic">
+      <title><m>p</m>-adic numbers</title>
+
+      <definition>
+        <title>Absolute value</title>
+        <statement>An <term>absolute value</term> on a field <m>K</m> is a function <m>\ab\colon K \to \RR</m> such that
+          <ol>
+            <li><m>|x|\ge 0</m> and <m>|x| = 0 \iff x = 0</m>.</li>
+            <li><m>|xy| = |x||y|</m>.</li>
+            <li><m>|x + y| \le |x| + |y|</m>.</li>
+          </ol>
+        </statement>
+      </definition>
+
+      <example>
+        <ol>
+          <li><m>K \subset \CC</m>, <m>|a+bi|_{\infty} = \sqrt{a^2 + b^2}</m>.</li>
+          <li><m>K</m> any field, <m>|x| = 0</m> if <m>x = 0</m> and <m>|x| = 1</m> otherwise, this is called the <term>trivial absolute value</term>.</li>
+        </ol>
+      </example>
+
+      <remark>
+        <statement>
+          <ol>
+            <li>If <m>x^n = 1</m> then <m>|x|  = 1</m> and hence finite fields can only be given the trivial absolute value.</li>
+            <li>In particular <m>| -1| = 1</m> and so <m>|x| = |-x|</m> for all <m>x \in K</m>.</li>
+          </ol>
+        </statement>
+      </remark>
+
+      <p>A valued field <m>(K, \ab)</m> becomes a metric space with <m>d(xy,) = |x-y|</m>, and hence a topological space, i.e. open sets are unions of open balls <m>B(x,r) = \{y\in K : |x-y| \lt r\}</m>.</p>
+
+      <exercise>
+        <statement>Show that the functions <m>+,\cdot \colon K\times K \to K</m> and <m>\ab\colon K \to \RR</m> are continuous with respect to this topology.</statement>
+      </exercise>
+
+      <example>
+        <statement>Let <m>K = \QQ,\, p</m> be a prime and <m>0 \lt \alpha \lt 1</m>.
+          For <m>x\in \QQ^*</m> let <m>\nu_p(x) = r</m> where <m>x = p^r u/ v</m> and <m>p\nmid uv</m>.
+          Then the <m>p</m>-adic absolute value if given by <me>|x|_p = \begin{cases} 0 &amp; x = 0,\\ \alpha^{\nu_p(x)} &amp; \text{otherwise}.\end{cases}</me>
+          Usually we take <m>\alpha = 1/p</m>.
+          In this case we get the inequality <m>|x+ y|_p \le \max\{|x|_p, |y|_p\}</m>, this is the <term>ultrametric triangle inequality</term>.
+        </statement>
+      </example>
+
+      <definition>
+        <title>(non-)Archimidean absolute values</title>
+        <statement>Absolute values are called <term>non-archimidean</term> if this inequality holds, otherwise they are called <term>archimidean</term>.
+        </statement>
+      </definition>
+
+      <p>Recall that if <m>R</m> is any ring then there exists a unique ring homomorphism <m>\ZZ \to R</m>.</p>
+
+      <lemma>
+        <statement><m>\ab</m> is non-archimidean if and only if <m>|n|</m> is bounded for all <m>n \in \ZZ</m>.</statement>
+        <proof>
+          (<m>\Rightarrow</m>) <m>|n| \le \max\{|1|\} = 1</m>.<br />
+          (<m>\Leftarrow</m>) Suppose <m>|n| \le B</m> for all <m>n \in \ZZ</m> then <me>|x+ y|^m = \left| \sum_{r = 0}^{m} \binom{m}{r} x^{m-r}y^r\right| \le \sum_{r=0}^m\left|\binom{m}{r}\right||x|^{m-r}|y|^r \le (m+1)B \max\{|x|^m, |y|^m\}.</me>
+          Now letting <m>m \to \infty</m> we get that <m>|x+y| \le \max\{|x|, |y|\}</m>.
+        </proof>
+      </lemma>
+
+      <corollary>
+        <statement>All absolute values on fields of characteristic <m>p</m> are non-archimidean.</statement>
+      </corollary>
+
+      <example>
+        <ol>
+          <li><m>K = \QQ</m>, <m>p = 5</m> <m>\ab = \ab_5</m>.
+            Let <m>a_1 =3,a_2=33,a_3=33</m>, etc.
+            So <m>a_n \equiv a_m \pmod{5^n}</m> for all <m>m \ge n</m>.
+            Then <m>|a_n -a_m|_5 \le 5^{-n}</m> for all <m>m \ge n</m> and so <m>(a_n)_{n\ge1}</m> is a Cauchy sequence.
+            Now <m>a_n = \frac{10^n - 1}{3}</m> so <m>|a_n - \frac13| = 5^{-n}\to 0</m> as <m>n \to \infty</m> i.e. <m> a_n\to-\frac13</m> w.r.t. <m>\ab_5</m>
+          </li>
+          <li>
+            We'll construct <m>(a_n)</m> such that for all <m>n \ge 1</m>
+            <me>
+              \begin{cases}a_n^2 +1  \equiv 0 \pmod{5^n}\\
+              a_{n+1} \equiv a_n \pmod{5^n}
+              \end{cases}
+            </me>
+            Take <m>a_1 = 2</m>.
+            Suppose <m>a_n</m> is chosen and it satisfies <m>a_n^2  + 1 = 5^n c</m>.
+            <m>(a_n + 5^n b)^2 + 1 \equiv a_n^2 + 1 + 2\cdot 5^n a_nb \equiv 5^n(c+2ba_n) \pmod{5^{n+1}}</m>.
+            We solve for <m>b</m> s.t. <m>2ba_n + c \equiv 0\pmod{5}</m>.
+            Since <m>(2a_n,5) = 1</m> this is always possible.
+            Now put <m>a_{n+1} = a_n+5^nb</m>.
+            Condition (ii) implies that <m>a_n</m> is Cauchy.
+            Suppose it converges and <m>a_n\to l\in \QQ</m>.
+            Then <m>|l^2 + 1|_5 \le |a_n^2 + 1|_5 +|a_n^2 - l^2|_5</m>, both of these terms tend to 0 which gives <m>l^2 = -1</m> a contradiction.
+            This shows that <m>\QQ</m> is not complete under <m>\ab_5</m>.
+          </li>
+        </ol>
+      </example>
+
+      <definition>
+        <statement><m>\QQ_p</m> is the completion of <m>\QQ</m> w.r.t. <m>\ab_p</m>.
+          Note that <m>\QQ_p</m> has <m>+,\cdot,\ab_p</m> as they extend from <m>\QQ</m> by continuity.
+          It is easy to check that <m>(\QQ_p,\ab_p)</m> is a non-archimidean valued field.
+        </statement>
+      </definition>
+
+      <definition>
+        <statement>
+          <m>\ZZ_p=\{x\in\QQ_p : |x|_p \le 1\}.</m>
+        </statement>
+      </definition>
+
+      <lemma>
+        <statement><m>\ZZ</m> is dense in <m>\ZZ_p</m>, in particular <m>\ZZ_p</m> is the completion of <m>\ZZ</m> w.r.t. <m>\ab_p</m>.</statement>
+        <proof><m>\QQ\cap \ZZ_p = \{x\in\QQ: |x|_p \le 1\}= \{\frac{a}{b} \in \QQ : p \nmid b,a,b\in\ZZ\} = \ZZ_{(p)}</m>.
+        Let <m>\frac{a}{b} \in \ZZ_{(p)}</m> i.e. <m>a,b \in \ZZ</m>, <m>p\nmid b</m>.
+        For each <m>n \ge 1</m> we can pick <m>y_n \in \ZZ</m> s.t. <m>by_n \equiv 1 \pmod{p^n}</m> implying <m>by_n \to_p 1</m> as <m>n \to \infty</m>.
+        This implies that <m>ay_n \to \frac{a}{b}</m> as <m>n\to \infty</m>.
+        Hence <m>\ZZ</m> is dense in <m>\ZZ_{(p)}</m>.
+
+        Now for<m>\QQ</m> is dense in <m>\QQ_p</m> and <m>\ZZ_p \subset \QQ_p</m> being open give that <m>\QQ\cap \ZZ_p</m> is dense in <m>\ZZ_p</m>.
+        </proof>
+      </lemma>
+
+      <p>
+        The global situation is as follows.
+        <m>[K: \QQ] \lt \infty  </m> <m>\cO_K = </m> integral closure of <m>\ZZ</m> in <m>K</m>.
+        <m>\cO_K</m> need not be a UFD.
+      </p>
+      <p>
+        The local situation is as follows.
+        <m>[K: \QQ] \lt \infty  </m> <m>\cO_K = </m> integral closure of <m>\ZZ_p</m> in <m>K</m>.
+        <m>\cO_K</m> is always a UFD! In fact it is a DVR.
+        <m>K</m> number field <m>\fp \subset\cO_K</m> a prime ideal <m>0\lt \alpha\lt 1</m>.
+        For <m>x\in K^*</m> <m>v_{\fp}(x) = </m> power of <m>\fp</m> in the factorisation of <m>x\cO_K</m>.
+        Define <me>|x|_p = \begin{cases} \alpha^{v_p(x)} \text{if } x\ne 0\\0 \text{otw}\end{cases}</me>
+        <m>\ab_{\fp}</m> is an absolute value on <m>K</m>.
+        <m>K_{\fp}</m> is the completion of <m>K</m> w.r.t. <m>\ab_{\fp}</m>.
+        Note that for a suitable choice of <m>\alpha</m> <m>\ab_{\fp}</m> extends <m>\ab_p</m> on <m>\QQ</m> (where <m>\fp \cap \ZZ = p\ZZ</m>).
+      </p>
+
+      <remark>
+        <statement>
+          <m>[K_{\fp} : \QQ_p] \le [K: \QQ]</m>.
+          Every finite extension of<m>\QQ_p</m> arises as the completion of some number field.
+          Proofs later.
+        </statement>
+      </remark>
+
+
+      <lemma>
+        <statement>
+          Let <m>\ab_1</m> and <m>\ab_2</m> be non-trivial absolute values on a field <m>K</m> then TFAE:
+          <ol>
+            <li><m>\ab_1</m> and <m>\ab_2</m> define the same topology on <m>K</m>.</li>
+            <li><m>|x|_1\lt 1 \iff |x|_2 \lt 1</m>.</li>
+            <li><m>|x|_2 = |x|_1^c</m> for some <m>c \gt 0</m>.</li>
+          </ol>
+          If these conditions hold we say that <m>\ab_1</m> and <m>\ab_2</m> are equivalent.
+        </statement>
+        <proof>
+          1) <m>\implies</m> 2) <m>|x|_1 \lt 1 \iff x^n \to 0</m> as <m>n \to \infty</m> w.r.t. <m>\ab_1 \iff x^n \to 0</m> w.r.t. <m>\ab_2</m> iff <m>|x|_2 \lt 1</m>.<br />
+          2) <m>\implies</m> 3) Pick <m>a \in K^*</m> with <m>|a|_1 \lt 1</m>.
+          Let <m>x\in K^*</m> <m>m,n\in \ZZ</m> <m>n \gt 0</m>.
+          <todo></todo>
+        </proof>
+      </lemma>
+      
+      <definition>
+        <statement>
+          A <term>place</term> of <m>K</m> is an equivalence class of absolute values on <m>K</m>.
+        </statement>
+      </definition>
+
+      <theorem>
+        <statement>
+          A non-trivial absolute value on <m>\QQ</m> is equivalent to either <m>\ab_\infty</m> or <m>\ab_p</m> for some prime <m>p</m>.
+        </statement>
+        <proof>
+          First let <m>\ab</m> be archimidean.
+          Let <m>a,b\gt 1</m> be integer.
+          Write <m>b^n</m> in base <m>a</m>
+          <me>b^n = c_m a^m + \cdots + c_1a + c_0</me>
+          where <m>0\le c_i\lt a</m> and <m>m\le n\log_a b</m>.
+          Let <m>B= \max\{c : 0 \le c \lt a\}</m> then <m>|b^n| \le (m+1)B \max\{|a|^m,1\}</m>.
+          This implies <m>|b| \le ((n\log_a b + 1)B)^{\frac{1}{n}}\max(|a|^{\frac{m}{n}}, 1)</m> taking the limit as<m>n \to \infty</m> gives that <m>|b| \le \max(|a|^{\log_a b}, 1)</m><todo>ref up</todo>.
+          Since <m>\ab</m> is archimidean we may pick an integer <m>b\gt 1</m> s.t. <m>|b| \gt 1</m>.
+          Applying the above inequality for any integer <m>a \gt 1</m> we get <m>|b| \le |a|6{\log_a b}</m>.
+          So <m>|a| \gt 1</m>.
+          Swapping <m>a</m> and <m>b</m> in the inequality we get <m>|a| \le |b|^{\log_b a}</m>.
+          So <me>\frac{\log|a|}{\log a} = \frac{\log|b|}{\log b} = \lambda.</me>
+          Then <m>|a| = a^{\lambda}</m> for all <m>a\in \ZZ_{\ge 1}</m> implying <m>\ab \sim \ab_\infty</m>.
+          <br />
+          Now for non-archimidean <m>\ab</m>.
+          The ultrametric law implies that <m>|n| \le 1</m> for all <m>n\in \ZZ</m>,
+          <m>\ab</m> being non-trivial implies that <m>|u| \lt 1</m> for some <m>n\in \ZZ_{\gt 1}</m>.
+          Writing <m>n = p_1^{e_1}\cdots p_k^{e_k}</m> we get <m>|p| \lt 1</m> for some <m>p</m>.
+          Suppose that <m>|p| \lt 1</m> and <m>|q| \lt 1</m> for <m>p\ne q</m>.
+          Write <m>1 = rp + sq</m> so that <m>1 = |rp + sq| \le \max \lt 1</m> a contradiction.
+          So <m>|p| =\alpha </m> for some <m>p</m> and <m>\ab</m> is 1 for all other primes.
+          Hence <m>\ab \sim\ab_p</m>.
+        </proof>
+      </theorem>
+
+      <remark>
+        <statement>
+          If <m>(K,\ab)</m> is archimidean then <m>\chara(K) = 0</m> and so <m>\QQ \subset K</m>.
+          Ostrowski <todo>ref</todo> then impliees that restriction of <m>\ab</m> to <m>\QQ</m> is equivalent to <m>\ab_\infty</m>.
+          so if <m>K</m> is complete then it contains a copy of <m>\RR</m>.
+        </statement>
+      </remark>
+
+      <p>
+        Fact: If <m>(K,\ab)</m> is complete and archimidean then <m>K= \RR</m> or <m>K= \CC</m> and <m>\ab \sim \ab_\infty</m> (see Cassels).
+      </p>
+      
+      <corollary>
+        <ol>
+          <li>Every archimidean field is a subfield of <m>\CC</m>.</li>
+          <li>The archimidean places of a number field <m>K</m> correspond to the real embedding <m>K\hookrightarrow \RR</m> and the complex conjugate pairs of embeddings <m>K \hookrightarrow \CC</m>.</li>
+        </ol>
+      </corollary>
+
+      <p>From now on we take <m>K</m> non-archimidean.</p>
+
+      <lemma>
+        <statement>
+          Let <m>(K,\ab)</m> be non-archimidean.
+          Then
+          <ol>
+            <li><m>|x| \gt|y|</m> implies <m>|x+y | = |x|</m>.</li>
+            <li><m>|x_1 +\cdots + x_n| \le \max\{|x_i|\}</m> with equality only <todo></todo>.</li>
+            <li>If <m>(K,\ab)</m> is complete then <m>\sum_{n=1}^\infty a_n</m> converges iff <m>a_n\to 0</m>.</li>
+          </ol>
+        </statement>
+        <proof>
+          <ol>
+            <li><m>|x+y| \le \max(|x|,|y|) = |x| \le \max(|x+y|, |y|) = |x + y|</m>.</li>
+            <li>Ultrametric + induction. Apply (i) with <m>x = x_1</m> and <m>y = x_1 + \cdots + x_n</m>.</li>
+            <li>Let <m>s_n = \sum_{i=0}^{n} a_i</m>, if <m>s_n \to l</m> then <m>a_n = s_n - s_{n-1} \to 0</m> as <m>n \to \infty</m>, conversely for <m>m \ge n</m> we have <m>s_m - s_n = |a_{n+1} + \cdots + a_m| \le \max_{i = n+1,\ldots,m}(|a_i|) \lt \max_{i \gt n} |a_i| \to 0</m> as <m>n \to \infty</m> so <m>s_n</m> is Cauchy, hence convergent.</li>
+          </ol>
+        </proof>
+      </lemma>
+
+
+      <p>For <m>x\in L</m> <m>r \gt 0</m> we let <m>B(x,r) = \{y\in K : |x - y| \lt r\}</m> and <m>\overline{B}(x,r) = \{y\in K : |x - y| \le r\}</m>.</p>
+
+      <lemma>
+        <statement>
+          <ol>
+            <li>If <m>y\in B(x,r)</m> then <m>B (x,r ) = B(y,r)</m>.</li>
+            <li>If <m>y\in \bar{B}(x,r)</m> then <m>\bar{B}(x,r) = \bar{B}(y,r)</m>.</li>
+            <li><m>B(x,r)</m> is both open and closed.</li>
+            <li><m>\bar{B}(x,r)</m> is both open and closed.</li>
+            <li><m>K</m> is totally disconnected (i.e. the only connected subsets are singletons).</li>
+          </ol>
+        </statement>
+        <proof>
+          <ol>
+            <li>Ultrametric.</li>
+            <li>Ultrametric.</li>
+            <li><m>B(x,r)</m> is open, it is closed since if <m>y \not\in B(x,r)</m> then <m>B(x,r)\cap B(y,r) = \emptyset</m> as they are not the same ball.</li>
+            <li><m>\bar{B}(x,r)</m> is closed since if <m>y\in \bar{B}(x,r)</m> then <m>B(y,r/2)\subset\bar{B}(y,) = \bar{B}(x,r)</m>.</li>
+            <li>Given any <m>x,y\in K</m> distinct, let <m>r = |x-y|/2 \gt 0</m> then <m>B (x,r)</m> and its complement are open sets, one containing <m>x</m>, the other <m>y</m>.</li>
+          </ol>
+        </proof>
+      </lemma>
+    </chapter>
+
+    <chapter xml:id="chap-valuations">
+      <title>Valuations</title>
+
+      <section xml:id="sec-valuations">
+        <title>Valuations</title>
+
+        <p>Let <m>K</m> be a field.</p>
+
+        <definition>
+          <title>Valuations, discrete, normalised, valuation ring, units maximal ideal</title>
+          <statement>
+            <m>v\colon K^* \to \RR</m> is called a valuation if
+            <ol>
+              <li><m>v(xy) = v(x)+v(y)</m></li>
+              <li><m>v(x+y) \ge \min(v(x),v(y))</m>.</li>
+            </ol>
+            Fix some <m>0\lt \alpha\lt 1</m>, then a valuation <m>v</m> determines a non-archimidean absolute value, via <me>|x| = \begin{cases} \alpha^{v(x)} \text{ if } x \ne 0,\\ 0 \text{ if } x =0.\end{cases}</me>
+            Conversely given some <m>\ab</m> we can put <m>v(x) = \log|x| / \log\alpha</m>.
+            We ignore the trivial valuation.
+            We say two valuations <m>v_1,v_2</m> are equivalent if for some <m>c\in \RR_{\gt 0}</m> <m> v_1(x )= cv_2(x)</m> for all <m>x\in K^*</m>.
+            The image <m>v(K^*)</m> is a subgroup of <m>\RR</m>.
+            If it is discrete (i.e. isomorphic to <m>\ZZ</m>) we say that <m>v</m> is a discrete valuation, we say it is normalised if <m>v(K^*) = \ZZ</m>.
+            We let <m>\cO_v = \{x \in K : v(x) \le 1\}</m> be the valuation ring.
+            <m>\cO_v^* = \{x \in K : v(x) = 1\}</m> is its unit group.
+            <m>m = \{x\in K: |x| \lt 1\}</m> is a maximal ideal.
+            <m>k =\cO_v/m</m> is the residue field.
+          </statement>
+        </definition>
+
+        <remark>
+          <statement>
+            <ol>
+              <li><m>m = \cO_v \smallsetminus \cO_v^*</m> so <m>m</m> is the unique maximal ideal, hence <m>\cO_v</m> is a local ring.</li>
+              <li>Let <m>x,y \in K^*</m>, then <m>x\cO_v \subset y\cO_v \iff x/y \in \cO_v\iff |x/y| \le 1\iff |x| \le |y|</m>.</li>
+              <li>If <m>0 \ne x \in m</m> then <m>K = \cO_v[1/x] = \Frac(\cO_v)</m>.</li>
+              <li><m>\cO_v</m> is integrally closed in <m>K</m>.
+              This is as if <m>x\in K</m> satisfies <m>x^n + \cdots + a_0 = 0</m> with <m>a_i \in \cO_v</m> then <m>|x^n| \le \max_{i = 0,\ldots,n-1} |a_ix^i| \le \max(1,|x|^{n-1})</m> which implies <m>|x| \le 1</m> i.e. <m>x\in \cO_v</m>.</li>
+            </ol>
+          </statement>
+        </remark>
+
+        <lemma>
+          <statement>
+            TFAE:
+            <ol>
+              <li><m>v</m> is discrete.</li>
+              <li><m>\cO_v</m> is a PID.</li>
+              <li><m>\cO_v</m> is a Noetherian.</li>
+              <li><m>m</m> is principal.</li>
+            </ol>
+          </statement>
+          <proof>
+            Note that <m>x\cO_v \subset u \cO_v \iff |x| \le |y|</m>.
+            For i) <m>\implies</m> ii) Take <m>I \subset \cO_v</m> and pick <m>a\in I</m> with <m>|a| = \max\{|x| : x\in I\}</m> equivalently <m>v(a) = \min\{v(x) : x\in I\}</m>.
+            This minimum exists as <m>v</m> is discrete.
+            Then <m>I = a\cO_v</m>.
+            ii) <m>\implies</m> iii) is clear.
+            For iii) <m>\implies</m> iv) assume <m>m = x_1 \cO_v + \cdots + x_n \cO_v</m> wlog <m>|x_1|\ge \cdots \ge |x_n|</m> then <m>m = x_1 \cO_v</m>.
+            For iv) <m>\implies</m> i) Write <m>m = \pi \cO_v</m> and let <m>c = v(\pi) \gt 0</m>. If <m>x\in K^*</m> with <m>v(x) \gt 0</m> then <m>x\in m</m> and so <m>v(X) \ge c</m> and therefore <m>v</m> is discrete.
+          </proof>
+        </lemma>
+
+        <definition>
+          <title>DVR</title>
+          <statement>
+            A DVR is a PID with exactly one non-zero prime ideal.
+          </statement>
+        </definition>
+
+        <lemma>
+          <statement>
+            <ol>
+              <li>
+                If <m>v</m> is discrete then <m>\cO_v</m> is a DVR.
+              </li>
+              <li>Let <m>R</m> be a DVR, then there exists a discrete valuation on <m>K = \Frac(R)</m> s.t. <m>R = \cO_v</m> with <m>v</m> unique up to normalisation.</li>
+            </ol>
+          </statement>
+          <proof>
+            <ol>
+              <li><m>\cO_v</m> is a local ring, lemma 2.1 <todo>ref</todo> implies that <m>\cO_c</m> is a PID, this gives that <m>\cO_v</m> is a DVR</li>
+              <li>Let <m>R</m> be a DVR with prime element <m>\pi</m>.
+              Every <m>x\in R\smallsetminus \{0\}</m> can be written as <m>u\pi^m</m> with <m>u\in R^*</m>, <m>m\ge 0</m>.
+              Every <m>x\in K^*</m> can be written as <m>u\pi^m</m> with <m>u\in R^*</m>, <m>m\in \ZZ</m>.
+              We define <m>v \colon K^* \to \ZZ</m> by <m>u\pi^m \mapsto m</m>, this is a discrete valuation with <m>\cO_v = R</m>.</li>
+            </ol>
+          </proof>
+        </lemma>
+
+        <example>
+          <statement>
+            <m>\ZZ_{(p)} = \{x\in \QQ : |x|_p \le 1\}</m> is a DVR with field of fractions <m>\QQ</m>.
+            <m>\ZZ_{(p)} = \{x\in \QQ_p : |x|_p \le 1\}</m> is a DVR with field of fraction <m>\QQ_p</m>.
+            In both of these examples the residue field is <m>\FF_p</m>.
+          </statement>
+        </example>
+
+        <p>
+          For the rest of this section let <m>v\colon K^* \to \ZZ</m> be a normalised discrete valuation.
+          Additionally pick <m>\pi \in K^*</m> with <m>v(\pi) = 1</m> so that <m>m = \pi\cO_v</m> (<m>\pi</m> is called the uniformiser).
+        </p>
+
+        <lemma>
+          <title>Hensel's lemma (version 1)</title>
+          <statement>
+            Assume <m>K</m> is complete w.r.t. <m>v</m> and let <m>f \in \cO[x]</m>.
+            Suppose that the reduction <m>\bar{f} \in k[x]</m> has a simple root in <m>k</m> i.e. there exists <m>a\in \cO</m> s.t. <m>f(a) \equiv 0 \pmod{\pi}</m> (i.e <m>|f(a)| \lt 1</m>) and  <m>f'(a) \not\equiv 0 \pmod{\pi}</m> (i.e <m>|f'(a)| = 1</m>).
+            Then there exists a unique <m>x\in \cO</m> s.t.
+            <m>f(x) = 0</m> and <m>x\equiv a\pmod{\pi}</m>.
+          </statement>
+          <proof>Follows from version 2 of Hensel's Lemma <todo>ref</todo>.</proof>
+        </lemma>
+
+        <lemma>
+          <title>Hensel's lemma (version 2)</title>
+          <statement>
+            Assume <m>K</m> is complete w.r.t. <m>v</m> and let <m>f \in \cO[x]</m>.
+            Suppose that there exists <m>a\in \cO</m> s.t. <m>|f(a)| \lt |f'(a)|^2</m>).
+            Then there exists a unique <m>x\in \cO</m> s.t.
+            <m>f(x) = 0</m> and <m>|x-a| \lt |f'(a)|</m>.
+          </statement>
+          <proof>
+            Let <m>r = v(f'(a))</m>.
+            We construct a sequence <m>(x_n)\in \cO</m> s.t.
+            <ol>
+              <li><m>f(x_n) \equiv 0 \pmod{\pi^{n + 2r}}</m>,</li>
+              <li><m>x_{n+1} \equiv x_n \pmod{\pi^{n + r}}</m>.</li>
+            </ol>
+            We put <m>x_1 = a</m>.
+            Let <m>n\ge 1</m> and suppose <m>x_n</m> satisfies 1, i.e. <m>f(x_n) = c\pi^{n + 2r}</m> for some <m>c\in \cO</m>.
+            We'll put <m>x_{n+1} = x_n + b\pi^{n+r}</m> for some <m>b \in \cO</m>.
+            We have that
+            <me>f(X+Y) = f_0(X) + f_1(X) Y + f_2(X) Y^2 + \cdots</me>
+            for some <m>f_i\in \cO[X]</m>.
+            We have <m>f_0 = f</m>, <m>f_1  =f'</m>.
+            <m>f(x_{n+1}) = f(x_n + b\pi^{n +r}) \equiv f(x_n) + f'(x_n)b\pi^{n+r} \pmod{\pi^{n + 2r + 1}}</m>
+            But <m>x_n \equiv a \pmod{\pi^{r+1}}</m> which implies that <m>f'(x_n) \equiv f'(a) \pmod{\pi^{r+1}}</m>, implying <m>f'(x_n) = u \pi^r</m> for some <m>u \in \cO^*</m>.
+            Note that this argument shows that if <m>x \in \cO</m> and <m>|x-a| \lt |f'(a)|</m> then <m>|f'(a)| = |f'(x)|</m>.
+            Therefore <m>f(x_{n+1}) \equiv c\pi^{n+2r} + u \pi^r b\pi^n \pmod{\pi^{n+2r + 1}} \equiv (c + ub) \pi ^{n + 2r}\pmod{\pi^{n+2r+1}}</m>.
+            Taking <m>b = -c/u</m> (note <m>b \in \cO</m>) gives that <m>f(x_{n+1}) \equiv 0 \pmod{\pi^{n + 2r + 1}}</m>, so the first property holds for <m>n+1</m>.
+            The second property implies that <m>(x_n)</m> is Cauchy and the first gives that <m>x = \lim_{n\to \infty}x_n</m> is a root of <m>f</m>.
+            Note that <m>x_n \equiv a \pmod{\pi^{n + 1}}</m> for all <m>n</m> implies that <m>x \equiv a \pmod{\pi^{r+1}}</m> and so <m>|x-a| \lt f'(a)|</m>.
+            <br />
+            To see uniqueness suppose <m>x</m> and <m>y</m> both satisfy the above note <todo></todo>.
+            Assume moreover that <m>s = x-y \ne 0</m>.
+            The inequalities <m>|x-a| \lt |f'(a)|</m> and <m>|y-a| \lt |f'(a)|</m> together imply that <m>|s| \lt |f'(a)|</m>.
+            Now <m>0 = f(y) = f(x + s) = f(x) + f'(x) s + \cdots</m> and therefore <m>|f'(x)s |\lt |s|^2</m> and so <m>|f'(a)| = |f'(x)| \le |s|</m> which contradicts the above.
+          </proof>
+        </lemma>
+
+        <remark>
+          <statement>
+            In the proof of Hensel's lemma <todo></todo> <m>x_{n+1} = x_n - f(x_n)/f'(x_n)</m> which is as in the Newton-Raphson method.
+          </statement>
+        </remark>
+
+        <remark>
+          <statement>
+            Uniqueness in Hensel's <todo></todo>.
+            We saw that every element of <m>K^*</m> is of the form <m> u \pi^r</m> for some <m>u \in R^*</m> and <m>m \in \ZZ</m>.
+            If <m>R= \cO_v</m> for some valuation <m>v \colon K^* \to \RR</m> then <m>v(x) \ge 0</m> for all <m>x \in R</m>.
+            So if <m>u \in R^*</m> then <m>v(u) = 0</m>.
+            In particular <m>v(u\pi^m) = m v(\pi)</m>, i.e. <m>v</m> is uniquely determined by <m>v(\pi)</m> so it is unique if we normalise it.
+          </statement>
+        </remark>
+
+        <lemma>
+          <statement>
+            Let <m>A \subset \cO_v</m> be a set of coset representatives for <m>k = \cO_v/m</m>.
+            Then every <m>x \in \cO_v</m> can be written uniquely as <me>x = \sum_{n=0}^\infty a_n \pi ^n</me> with <m>a_n \in A</m>.
+          </statement>
+          <proof>
+            There exists a unique <m>a_0 \in A</m> s.t. <m>x \equiv a_0 \pmod{\pi}</m>.
+            So <m>x = a_0 + \pi x_1</m> for some <m>x_1 \in \cO_v</m>.
+            There now exists a unique <m>a_1 \in A</m> s.t. <m>x_1 \equiv a_1 \pmod{\pi}</m>.
+            So <m>x = a_0 + \pi a_1 + \pi^2 x_2</m> for some <m>x_2 \in \cO_v</m>.
+            We may continue this process.
+            Letting <m>s_N = \sum_{n=0}^\infty a_n \pi ^n</m> we get <m>v(x - s_N) \gt N</m>.
+            This gives that <m>s_N \to x</m> as <m>N \to \infty</m>.
+            So <m>x = \lim_{N \to \infty} s_N = \sum_{n=0}^\infty a_n \pi ^n</m>.
+            Uniqueness is clear.
+          </proof>
+        </lemma>
+
+        <remark>
+          <statement>
+            <m>K</m> being complete is equivalent to every sequence <m>\sum_{n=0}^\infty a_n \pi^n</m> converging.
+            One direction is trivial the other is an exercise.
+          </statement>
+        </remark>
+
+        <proposition>
+          <statement>
+            <me>\QQ_p^* /(\QQ_p^*)^2\cong \begin{cases} (\ZZ/2\ZZ)^2&amp; \text{ if } p \ne 2,\\ (\ZZ/2\ZZ)^3&amp; \text{ if } p= 2.\end{cases}</me>
+          </statement>
+          <proof>
+            <ol>
+              <li>
+                Assume <m>p \ne 2</m>.
+                For <m>b \in \ZZ_p^*</m> we have <m>b \in (\ZZ_p^*)^2 \iff \bar b \in (\FF_p^*)^2</m> (applying Hensel's lemma <todo></todo> to <m>f(x) = x^2 -b</m>).
+                Therefore <m>\ZZ_p^*/(\ZZ_p^*)^2 \xrightarrow{\sim} \FF_p^*/(\FF_p^*)^2 \cong \ZZ/2\ZZ</m>.
+                But <m>\QQ_p^* \cong \ZZ_p^* \times \ZZ</m> via the map <m>u p^r \mapsto (u,r)</m>.
+                Therefore <m>\QQ_p^*/(\QQ_p^*)^2\cong \ZZ_p^*/(\ZZ_p^*)^2 \times \ZZ/2\ZZ\cong (\ZZ/2\ZZ)^2</m>.
+                We have coset reps <m>1,p,u,pu</m> where <m>u</m> is a non-square mod <m>p</m>.
+              </li>
+              <li>
+                Let <m>p = 2</m>.
+                Take <m>b \in \ZZ_2^*</m> with <m>b \equiv 1 \pmod{8}</m>, let <m>f(x) = x^2 -b</m>.
+                Then <m>|f(1) | \le 2^{-3}\lt 2^{-2} = |f'(1)|^2</m>.
+                Hensel's lemma <todo></todo> now gives us that <m>f</m> has a root in <m>\ZZ_2</m>.
+                So <m>\ZZ_2 ^* \to (\ZZ/8\ZZ)^* \cong (\ZZ/2\ZZ)^2</m>.
+                Clearly <m>(\ZZ_2^*) \subset \ker</m>.
+                We just checked that <m>\ker \subset (\ZZ_2^*)^2</m>.
+                Therefore <m>\ZZ_2^*/(\ZZ_2^*)^2  \cong (\ZZ/2\ZZ)^2</m>.
+                Hence <m>\QQ_2^*/(\QQ_2^*)^2\cong (\ZZ/2\ZZ)^3</m>.
+                We have coset reps <m>2^a(-1)^b5^c</m> where <m>a,b,c\in\{0,1\}</m>.
+              </li>
+            </ol>
+          </proof>
+        </proposition>
+
+        <corollary>
+          <statement>
+            <m>\QQ_p</m> (for <m>p \ne 2</m>) has exactly 3 quadratic extensions.
+            <m>\QQ_2</m> has exactly 7.
+          </statement>
+        </corollary>
+      </section>
+
+      <section xml:id="sec-dvrs">
+        <title>Examples of DVR's continued</title>
+
+        <example>
+          <statement>
+            Let <m>k</m> be any field, <m>K = k(t)</m>, <m>v_0(t^n p(t)/q(t)) = n</m>, where <m>p,q\in k[t]</m> and <m>p(0),q(0) \ne 0</m>.
+            Then <m>\cO = \{f(t) = p(t)/q(t) : f(0)\text{ is defined i.e. } q(0) \ne 0\}</m>.
+            And <m>\cO^* = \{f(t) = p(t)/q(t) : f(0)\text{ is defined and non-zero}\}</m>.
+            <m>m = \{f(t) : f(0) = 0\}</m>.
+            <m>\cO/m \cong k</m> via the map <m>f\mapsto f(0)</m>.
+            Likewise for other <m>a \in k</m>, <m>v_a((t-a)^n p(t)/q(t)) = n</m>, where <m>p,q\in k[t]</m> and <m>p(a),q(a) \ne 0</m>, this is the order of zero/pole at <m>t = a</m>.
+            We also have <m>v_\infty(p(t) / q(t)) = v_0 (p (1/\epsilon)/q(1/\epsilon)) = \deg (q) - \deg (p)</m>.
+          </statement>
+        </example>
+
+        <remark>
+          <statement>
+            <ol>
+              <li>
+                If <m>k = \bar k</m> then these are the only valuations on <m>K = k(t)</m> with <m>v (k^* ) = 0</m>.
+              </li>
+              <li>
+                <m>K = k(t)</m> is the function field of <m>\PP^1</m>.
+                Similar examples arise for any smooth point of an algebraic curve/Riemann surface.
+              </li>
+            </ol>
+          </statement>
+        </remark>
+
+        <example>
+          <statement>
+            <m>K = k((t)) = </m> the field of Laurent power series <me> = \left\{ \sum_{n \ge n_0} a_n t^n : a_n \in k\right\}.</me>
+            We have <m>v ( \sum a_n t^n ) = \min \{n : a_n  \ne 0\}</m>.
+            Then <m>\cO = k[[t]] =</m> ring of power series in <m>t</m>.
+            We get <m>m = \{ f \in k[[t]]: f(0) = 0\}</m> and we have <m>\cO/m = k</m>.
+          </statement>
+        </example>
+
+        <lemma>
+          <statement>
+            <ol>
+              <li><m>k[[t]]^* = \{\sum _{n=0}^\infty a_n t^n : a_0 \ne 0\}</m>.</li>
+              <li><m>k((t))</m> is a field and <m>v</m> extends to <m>v_0</m> on <m>k(t)</m>.</li>
+              <li><m>k[[t]]</m> is the completion of <m>k[t]</m> w.r.t. <m>v_0</m>.</li>
+              <li><m>k((t))</m> is the completion of <m>k(t)</m> w.r.t. <m>v_0</m>.</li>
+            </ol>
+          </statement>
+          <proof>
+            <ol>
+              <li>
+                Let <m>\sum_{n=0}^\infty a_n t^n\in k[[t]]</m> with <m>a_0 \ne 0</m>.
+                We solve for <m>b_n</m> such that <me>\left(\sum_{n=0}^\infty a_n t^n\right)\left(\sum_{n=0}^\infty b_n t^n\right) = 1.</me>
+              </li>
+              <li>
+                By (i) we have <m>k((t)) = \Frac k[[t]]</m>.
+                In particular <m>k((t))</m> is a field containing <m>k[t]</m> so <m>k(t) \subset k((t))</m>.
+                If <m>f(t) = t^n p(t)/q(t)</m> with <m>p,q\in k[t]</m> and <m>p(o),q(o) \ne 0</m> then by (i) <m>p,,q \in k[[t]]^*</m> so <m>v(f) = n  = v_0 (f)</m>.
+              </li>
+              <li>
+                Let <m>f_1,f_2,\ldots</m> be a Cauchy sequence in <m>k[[t]]</m>.
+                Then given <m>r</m> there exists <m>N</m> s.t. for all <m>m,n \ge N</m> we have <m>f_m \equiv f_n \pmod{t^{n+1}}</m>.
+                Let <m>c_r  = </m> coefficient of <m>t^r</m> in <m>f^N</m>.
+                Then <m>f_n \to g</m> where <m>g = \sum_{r=0}^\infty c_r t^r</m> and therefore <m>k[[t]]</m> is complete.
+                But <m>k[t] \subset k[[t]]</m> is a dense subset, therefore <m>k[[t]]</m> is the completion of <m>k[t]</m>.
+              </li>
+              <li>
+                Likewise.
+              </li>
+            </ol>
+          </proof>
+        </lemma>
+      </section>
+
+      <section xml:id="sec-teichmuller">
+        <title>The Teichmuller map</title>
+
+        <definition>
+          <title>Teichmuller representatives</title>
+          <statement>
+            Let <m>k</m> be complete w.r.t. a discrete valuation <m>v</m>.
+            Suppose that the residue field <m>k</m> is finite, say <m>|k| = q</m>.
+            Let <m>f(x) = x^q - x \in \cO[X]</m>.
+            Each <m>\alpha \in k</m> is a simple root of <m>\bar f \in k[x]</m>.
+            Hensel's lemma implies that there is a unique <m>a \in\cO</m> s.t. <m>a^q = a</m> and <m>a \equiv \alpha \pmod{\pi}</m>.
+            The <m>a \in \cO</m> constructed here is the <term>Teichmuller representative</term> for <m>\alpha \in k</m>.
+          </statement>
+        </definition>
+
+        <lemma>
+          <statement>
+            The map <m>[\cdot]\colon k \to \cO</m> given by <m>\alpha \mapsto a</m> is multiplicative.
+          </statement>
+          <proof>
+            Let <m>\alpha,\beta \in k</m> we have <m>([\alpha][\beta])^q = [\alpha]^q[\beta]^q = [\alpha][\beta]</m> and <m>[\alpha][\beta] \equiv \alpha\beta \pmod{\pi}</m> giving <m>[\alpha\beta]  =[\alpha][\beta]</m>.
+          </proof>
+        </lemma>
+
+        <example>
+          <statement>
+            <m>\mu_{p-1} \subset \ZZ_p^*</m>.
+          </statement>
+        </example>
+
+        <theorem>
+          <statement>
+            Let <m>K</m> be field complete w.r.t. a discrete valuation <m>v</m>.
+            If <m>\chara K \gt 0</m> and <m>k</m> is finite then <m>K \cong k((t))</m>.
+          </statement>
+          <proof>
+            <m>\chara(K) = \chara(k) = p</m> and <m>|k| = q = p^l</m>.
+            Let <m>\alpha,\beta \in k</m> so we have <m>([\alpha] + [\beta])^q = [\alpha]^q + [\beta]^q = [\alpha] + [\beta]</m> and hence <m>[\alpha + \beta] = [\alpha] + [\beta]</m>.
+            Therefore the Teichmuller map <m>k \hookrightarrow K</m> is a field embedding.
+            By lemma 2.3 <todo></todo>
+            <me>K = \left\{ \sum_{n \ge n_0}^\infty a_n \pi^n : a_n \in k\right\}\xrightarrow{\sim} k((t))</me>
+            via the map <m>\pi \mapsto t</m>.
+          </proof>
+        </theorem>
+      </section>
+    </chapter>
+
+    <chapter xml:id="chap-dedekind">
+      <title>Dedekind domains</title>
+
+      <section xml:id="sec-dedekind">
+        <title>Dedekind domains</title>
+
+        <definition>
+          <title>Dedekind domains</title>
+          <statement>
+            A <term>Dedekind domain</term> is a ring <m>R</m> that is
+            <ol>
+              <li>an integral domain,</li>
+              <li>Noetherian,</li>
+              <li>integrally closed,</li>
+              <li>has all non-zero prime ideals maximal (Krull dimension <m>\le 1</m>).</li>
+            </ol>
+          </statement>
+        </definition>
+
+        <example>
+          <statement>
+            Any PID is a Dedekind domain.<br />
+            The ring of integers of a number field is a Dedekind domain.
+          </statement>
+        </example>
+
+        <theorem>
+          <statement>
+            Let <m>R</m> be a Dedekind domain.
+            Then every non-zero ideal <m>I \subset R</m> can be written uniquely as a product of prime ideals <m>I = p_1^{\alpha_1} \cdots p_r^{\alpha_r}</m>.
+          </statement>
+          <proof>
+            Omitted.
+          </proof>
+        </theorem>
+
+        <remark>
+          <statement>
+            If <m>R</m> is a PID then the above theorem <todo></todo> follows from PID implying UFD.
+          </statement>
+        </remark>
+
+        <theorem>
+          <statement>
+            <m>R</m> is a DVR if and only if it is a Dedekind domain with exactly one non-zero prime.
+          </statement>
+          <proof>
+            <m>\implies</m> is clear since being a PID implies being Dedekind.<br />
+            <todo></todo>
+          </proof>
+        </theorem>
+      </section>
+
+      <section xml:id="sec-localisation">
+        <title>Localisation</title>
+
+        <p>Let <m>R</m> be an integral domain and <m>p \subset R</m> a prime ideal.
+          Let <m>S = R\smallsetminus p</m> and <m>S^{-1}R = \{\frac{r}{s} : r\in R,\, s\in S\}\subset\Frac R</m>.
+          This is a local ring with maximal ideal <m>S^{-1}p</m>.
+          <m>R</m> being Dedekind implies <m>S^{-1}R</m> is, and hence <m>S^{-1}R</m> is a DVR by the above theorem <todo></todo>
+        </p>
+
+        <todo></todo>
+
+        <theorem>
+          <statement>
+            Let <m>\cO_K</m> be a Dedekind domain, <m>K = \Frac \cO_K</m> and <m>L/K</m> a finite field extension.
+            Then take <m>\cO_L</m> to be the integral closure of <m>\cO_K</m> in <m>L</m>, then <m>\cO_L</m> is a Dedekind domain.
+          </statement>
+          <proof>
+            That <m>\cO_L</m> is a domain is clear.<br />
+            It is also clear that it is integrally closed.<br />
+            To see it is Noetherian we suppose that <m>L/K</m> is a separable and write <m>n = [L:K]</m>.
+            There are <m>n</m> distinct embeddings <m>\sigma_1,\ldots,\sigma_n\colon L \to \bar K</m>.
+            The trace form <m>L\times L \to K</m> given by <m>(x,y)\mapsto \tr xy</m> is a non-degenerate <m>K</m>0bilinear form.
+            (Using primitive element and expressing as a Vandermonde determinant)
+            Let <m>x_1,\ldots,x_n</m> be a basis for <m>L</m> as  <m>K</m>-vector space.
+            Clearing denominators allows us to take <m>x_i \in \cO_L</m>.
+            Let <m>y_1,\ldots,y_n</m> be the dual basis w.r.t. the trace form.
+            Let <m>z\in \cO_L</m> then <m>z = \sum_{j =1}^{n}\lambda_j y_j</m> for some <m>\lambda_i \in K</m>, giving that <m>\lambda_i = \tr_{L/K}(x_i z)\in \cO_K</m>.
+            So <m>\cO_L \subset y_1\cO_K + \cdots + y_n \cO_K</m>.
+            <m>\cO_K</m> being noetherian gives that <m>\cO_L</m> is a f.g. <m>\cO_K</m>-module and so <m>a\cO_L</m> is noetherian too.<br />
+            Now to see that all non-zero primes are maximal we fix <m>P</m> a non-zero prime of <m>\cO_L</m>.
+            Then taking <m>p = P \cap \cO_K</m> we have a prime of <m>\cO_K</m>.
+            We can find <m>x \in p \smallsetminus 0</m> so that <m>0 \ne N_{L/K} (x) \in P \cap \cO_K = p</m>.
+            <m>\cO_K</m> being Dedekind gives <m>p</m> maximal and so <m>k = \cO_K/p \hookrightarrow \cO_L/P</m> gives that <m>\cO_L/P</m> is a f.d. <m>k</m>-algebra.
+            But <m>\cO_L/P</m> is an integral domain and so applying rank-nullity to <m>\cdot x</m> gives <m>\cO_L/P</m> is a field.
+          </proof>
+        </theorem>
+
+        <lemma>
+          <statement>
+            If <m>R</m> is a Dedekind domain and <m>K = \Frac R</m> with an absolute value <m>\ab</m> on <m>K</m> with <m>|x| \le 1 </m> for all <m>x\in R</m> then <m>\ab \sim \ab_p</m> for some prime <m>p</m> of <m>R</m>.
+          </statement>
+          <proof>
+            Lemma 1.1 <todo></todo> implies <m>\ab</m> is non-archimidean.
+            Let <m>p = \{x\in R : |x| \lt 1\}</m>, this is a prime ideal.
+            Localising at <m>R\smallsetminus p</m> gives a DVR by Theorem 3.2 <todo></todo> this has valuation <m>v_p</m>.
+            Take <m>\pi \in p \smallsetminus p^2 </m> so we can write <m>x \in K^*</m> as <m>x= u\pi^r</m> where <m>|u|_p = 1</m> and <m>r\in \ZZ</m>.
+            To prove <m>\ab\sim\ab_p</m> we need to show that <m>|\pi| \lt 1</m> (which is true as <m>\pi \in p</m>) and also that <m>|u| = 1</m>.
+            We have <m>|u|_p \le 1</m> which gives <m>u \in S^{-1}R</m> so <m>u = r/s</m> for <m>r\in R, s\in R</m> we know <m>|r| \le 1</m> and <m>|s| = 1</m> so <m>|u| \le 1</m>.
+            We can do the same for <m>u^{-1}</m> to get <m>|u| = 1</m>.
+          </proof>
+        </lemma>
+
+        <theorem>
+          <statement>
+            <m>\cO_K</m> is a Dedekind domain, <m>K = \Frac\cO_K</m>, <m>L/K</m> finite field extension, <m>\cO_L</m> integral closure of <m>\cO_K</m> in <m>L</m>.
+            Let <m>p \subset \cO_K</m> be a prime ideal, then <m>p \cO_L = P_1^{e_1} \cdots P_r^{e_r}</m> for distinct primes <m>P_i</m>.
+            Then the absolute values on <m>L</m> extending <m>\ab_p</m> on <m>K</m> are (up to equivalence) <m>\ab_{P_1},\ldots,\ab_{P_r}</m>.
+          </statement>
+          <proof>
+            <m>\cO_L</m> is Dedekind <todo></todo>.
+            Take <m>x \in K^*</m> we have <m>v_{P_i}(x) = e_i v_p(x)</m> so <m>\ab_{P_i}</m> is equivalent to an absolute value extending <m>\ab_p</m>.
+            Now let <m>\ab</m> be any such absolute value on <m>L</m>, it will be non-archimidean by <todo></todo>.
+            <m>\cO_K \subset \{x\in L : |x\ \le 1\}</m> so taking integral closures in <m>L</m> we get <m>\cO_L \subset \{x\in L : |x| \le 1\}</m>.
+            Lemma 3.4 <todo></todo> gives that <m>\ab\sim \ab_P</m> for some prime <m>P\subset \cO_L</m>.
+            But <m>\ab</m> extends <m>\ab_p</m> so <m>P \cap \cO_K = p</m> giving <m>P = P_i</m> for some  <m>i</m>.
+          </proof>
+        </theorem>
+
+        <corollary>
+          <statement>
+            The non-archimidean places of a number field <m>K</m> are <m>\ab_p</m> for <m>p</m> a prime of <m>\cO_K</m>.
+          </statement>
+        </corollary>
+      </section>
+    </chapter>
+
+    <chapter xml:id="chap-relative">
+      <title>Relative extensions</title>
+
+      <theorem>
+        <statement>
+          <m>(K,\ab)</m> complete <m>L/K</m> finite extension.
+          If <m>\ab_1,\ab_2</m> absolute values on <m>L</m> extending <m>ab</m> on <m>K</m> then <m>\ab_1=\ab_2</m> and <m>L</m> is complete w.r.t. <m>\ab_1</m>.
+        </statement>
+      </theorem>
+
+      <definition>
+        <title>Norms</title>
+        <statement>
+          Let <m>V</m> be a vector space over<m>K</m>.
+          A <term>norm</term> on <m>v</m> is a map <m>||\cdot||\colon V \to \RR</m> s.t.
+          <ol>
+            <li><m>||v|| \ge 0</m> with equality iff <m>v = 0</m>.</li>
+            <li><m>||\lambda v|| = |\lambda| ||v||</m></li>
+            <li> <m>||v+w|| \le ||v|| + ||w||</m> .</li>
+          </ol>
+        </statement>
+      </definition>
+
+    </chapter>
+  </book>
+</mathbook>

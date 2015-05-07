@@ -1,0 +1,29 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="theorem-like"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">4.2.1</span>
+</h5>
+            Let \(\cO_K\) be a Dedekind domain, \(K = \Frac \cO_K\) and \(L/K\) a finite field extension.
+            Then take \(\cO_L\) to be the integral closure of \(\cO_K\) in \(L\), then \(\cO_L\) is a Dedekind domain.
+          </article><article class="hiddenproof" id="proof-18"><a knowl="./knowl/proof-18.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-18" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+            That \(\cO_L\) is a domain is clear.<br>
+            It is also clear that it is integrally closed.<br>
+            To see it is Noetherian we suppose that \(L/K\) is a separable and write \(n = [L:K]\).
+            There are \(n\) distinct embeddings \(\sigma_1,\ldots,\sigma_n\colon L \to \bar K\).
+            The trace form \(L\times L \to K\) given by \((x,y)\mapsto \tr xy\) is a non-degenerate \(K\)0bilinear form.
+            (Using primitive element and expressing as a Vandermonde determinant)
+            Let \(x_1,\ldots,x_n\) be a basis for \(L\) as  \(K\)-vector space.
+            Clearing denominators allows us to take \(x_i \in \cO_L\).
+            Let \(y_1,\ldots,y_n\) be the dual basis w.r.t. the trace form.
+            Let \(z\in \cO_L\) then \(z = \sum_{j =1}^{n}\lambda_j y_j\) for some \(\lambda_i \in K\), giving that \(\lambda_i = \tr_{L/K}(x_i z)\in \cO_K\).
+            So \(\cO_L \subset y_1\cO_K + \cdots + y_n \cO_K\).
+            \(\cO_K\) being noetherian gives that \(\cO_L\) is a f.g. \(\cO_K\)-module and so \(a\cO_L\) is noetherian too.<br>
+            Now to see that all non-zero primes are maximal we fix \(P\) a non-zero prime of \(\cO_L\).
+            Then taking \(p = P \cap \cO_K\) we have a prime of \(\cO_K\).
+            We can find \(x \in p \smallsetminus 0\) so that \(0 \ne N_{L/K} (x) \in P \cap \cO_K = p\).
+            \(\cO_K\) being Dedekind gives \(p\) maximal and so \(k = \cO_K/p \hookrightarrow \cO_L/P\) gives that \(\cO_L/P\) is a f.d. \(k\)-algebra.
+            But \(\cO_L/P\) is an integral domain and so applying rank-nullity to \(\cdot x\) gives \(\cO_L/P\) is a field.
+          </article></div><div class="context-link" style="text-align:right;"><a href="sec-localisation.html#theorem-5">(in-context)</a></div>
