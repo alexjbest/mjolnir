@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--********************************************************************
+
+Copyright 2014 Alex J. Best
+
+*********************************************************************-->
+
+<mathbook>
+
+  <docinfo>
+    <brandlogo url="http://alexjbest.github.io/mjolnir/" source="../../images/mjolnir.png" />
+    <author>
+      <personname>Dr. Jack Thorne</personname>
+      <department>DPMMS</department>
+      <institution>University of Cambridge</institution>
+    </author>
+    <author>
+      <personname>Alex J. Best</personname>
+      <department>DPMMS</department>
+      <institution>University of Cambridge</institution>
+      <email>alex.j.best@gmail.com</email>
+    </author>
+
+    <macros>
+    \newcommand{\CC}{\mathbf{C}}
+    \newcommand{\QQ}{\mathbf{Q}}
+    \newcommand{\RR}{\mathbf{R}}
+    \newcommand{\ZZ}{\mathbf{Z}}
+    \newcommand{\cO}{\mathcal{O}}
+    \newcommand{\cI}{\mathcal{I}}
+    \newcommand{\fa}{\mathfrak{a}}
+    \newcommand{\fb}{\mathfrak{b}}
+    \newcommand{\fc}{\mathfrak{c}}
+    \newcommand{\fp}{\mathfrak{p}}
+    \newcommand{\fq}{\mathfrak{q}}
+    \newcommand{\fr}{\mathfrak{r}}
+    \DeclareMathOperator{\Frac}{Frac}
+    </macros>
+
+    <initialism>ANT</initialism>
+
+    <feedback>
+      <url>https://github.com/alexjbest/mjolnir/issues</url>
+    </feedback>
+
+    <date><today /></date>
+  </docinfo>
+
+  <book xml:id="ant">
+    <title>Part III Algebraic Number Theory 2014</title>
+
+    <chapter xml:id="chap-dedekind">
+      <title>Dedekind domains</title>
+
+      <section xml:id="sec-introduction">
+        <title>Introduction</title>
+
+        <p>These are lecture notes for the 2014 Part III Algebraic Number Theory course taught by Dr. Jack Thorne, these notes are part of <url href="https://alexjbest.github.io/mjolnir/">Mjolnir</url>.</p> 
+        <p>The recommended books are: <todo></todo>
+          <ul>
+            <li>H. P. F. Swinnerton-Dyer - A Brief Guide to Algebraic Number Theory</li>
+            <li>Serge Lang - Algebraic Number Theory</li>
+          </ul>
+        </p>
+
+        <p>
+          Generated: <today />, <timeofday />
+        </p>
+      </section>
+
+      <section xml:id="sec-basics">
+        <title>Basics</title>
+
+        <definition>
+          <title>Number fields</title>
+          <statement>A <term>number field</term> <m>K</m> is a finite degree field extension of <m>\QQ</m>.</statement>
+        </definition>
+
+        <definition>
+          <title>Integral elements</title>
+          <statement>If <m>K</m> is a number field and <m>\alpha\in K</m> then we say <m>\alpha</m> is <term>integral</term> if there exists a <m>f\in\ZZ[x]</m> monic with <m>f(\alpha) = 0</m>.</statement>
+        </definition>
+
+        <p>If <m>\alpha</m> is integral than <m>\ZZ[\alpha] \subset K</m> is finitely generated.
+          Conversely if <m>\alpha\in K</m> and <m>\ZZ[\alpha]</m> is a finitely generated <m>\ZZ</m>-module then <m>\alpha</m> is integral over <m>K</m>.
+          (If <m>\ZZ[\alpha]</m> is spanned by <m>f_1(\alpha),\ldots,f_k(\alpha)\ f_i\in \ZZ[x]</m> then for any <m>n \gt \max\deg f_i</m> we can write <m>\alpha^n = \sum_{i=1}^k a_i f_i(\alpha)</m> for some <m>\alpha_i\in \ZZ</m>.
+          This implies that <m>\alpha</m> is a zero of <m>x^n - \sum_{i=1}^k a_i f_i(x) \in \ZZ[x]</m>.
+          We have shown that if <m>\alpha,\beta \in K</m> are integral over <m>\ZZ</m> then so are <m>\alpha\pm\beta</m> and <m>\alpha\beta</m> (as it is easy to see <m>\ZZ[\alpha,\beta]</m> is a finitely generated <m>\ZZ</m>-module).)
+        </p>
+
+        <definition>
+          <title>Rings of integers</title>
+          <statement>If <m>K</m> is a number field let <m>\cO_K</m> be the <term>ring of integers</term>, defined by <me>\cO_K = \{\alpha\in K : \alpha \text{ integral over }\ZZ\}.</me>
+            This is the integral closure of <m>\ZZ</m> in <m>K</m>.
+          </statement>
+        </definition>
+      </section>
+
+      <section xml:id="sec-dedekind">
+        <title>Dedekind domains</title>
+        
+        <p>Let <m>R</m> be an integral domain, <m>K = \Frac(R)</m>.</p>
+        
+        <definition>
+          <title>Dedekind domains</title>
+          <statement>We then say that <m>R</m> is a <term>dedekind domain</term> if it is
+            <ol>
+              <li>Noetherian,</li>
+              <li>integrally closed in <m>K</m>,</li>
+              <li>and in it every non-zero prime is maximal.</li>
+            </ol>
+          </statement>
+        </definition>
+
+        <exercise>
+          <statement>Show that every PID is a dedekind domain.</statement>
+        </exercise>
+
+        <definition>
+          <title>Fractional ideals</title>
+          <statement>If <m>R</m> is a dedekind domain we call every finitely generated <m>R</m>-submodule of <m>K</m> a fractional ideal.</statement>
+        </definition>
+
+        <p>This definition includes ideals <m>I\subset R</m>.</p>
+
+        <proposition>
+          <statement>Let <m>R</m> be a dedekind domain and let <m>\cI</m> be the set of non-zero fractional ideals of <m>R</m>, then <m>\cI</m> is a group under multiplication.</statement>
+          <proof>We deonte ideals of <m>R</m> by <m>\fa,\fb,\fc\subset R</m> and (non-zero) prime ideals by <m>\fp,\fq,\fr\subset R</m>.
+            Multiplication is given by <me>\fa\fb = \left\{ \sum a_ib_i : a_i \in \fa,\,b_i\in \fb\right\}.</me>
+            Then the identity for this operation is <m>(1) = R</m>.
+            The key part of this proof is the construction of inverses.
+            <claim>
+              <statement>For any non-zero ideal <m>\fa \subset R</m> there exist non-zero prime ideals <m>\fp_1,\ldots,\fp_m\subset R</m> such that <m>\fp_1\cdots \fp_m\subset \fa</m>.</statement>
+              <proof>Suppose not, then we can find an <m>\fa \subset R</m> which is maximal among such ideals having this property (as <m>R</m> is noetherian).
+                Then <m>\fa</m> is not prime, as otherwise the claim is clearly true, so there exists some <m>\alpha,\beta\in R</m> with <m>\alpha\beta \in \fa</m> but <m>\alpha,\beta \notin \fa</m>.
+                So we have that <m>\fa \subsetneq \fa + (\alpha)</m> and <m>\fa \subsetneq \fa + (\beta)</m>.
+                By the maximality of <m>\fa</m> we can find <m>\fp_1 \cdots \fp_m \subseteq \fa + (\alpha) </m> and <m>\fq_1 \cdots \fq_n \subseteq \fa + (\beta)</m> but now
+                <me>\fp_1 \cdots \fp_m\fq_1\cdots \fq_n\subseteq(\fa + (\alpha))(\fa + (\beta)) \subseteq \fa + (\alpha\beta) \subseteq \fa,</me>
+                contradiction.
+              </proof>
+            </claim>
+            <claim>
+              <statement>For any non-zero prime ideal <m>\fp\subset R</m> there exists <m>\delta \in K\smallsetminus R</m> such that <m>\delta \fp \subseteq R</m>.</statement>
+              <proof>Choose <m>\beta\in \fp \smallsetminus \{0\}</m> and an expression <m>\fp_1\cdots \fp_m \subseteq (\beta)</m> with <m>\fp_i</m> non-zero prime ideals and <m>m</m> minimal.
+                Then there exists <m>i</m> such that <m>\fp_i\subset R</m> otherwise for all <m>i</m> there is some <m>\alpha_i \in\fp_i \smallsetminus\fp</m>, in which case <m>\alpha_1\cdots \alpha_m\in \fp_1\cdots \fp_m\subseteq (\beta) \subseteq \fp</m>, a contradiction 
+              </proof>
+            </claim>
+          </proof>
+        </proposition>
+      </section>
+    </chapter>
+
+    <!--<backmatter>
+      <title>Reference</title>
+
+      <section xml:id="sec-notation">
+        <title>Notation</title>
+        <notation-list />
+      </section>
+    </backmatter>-->
+
+  </book>
+
+</mathbook>

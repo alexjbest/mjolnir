@@ -1,0 +1,23 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="hiddenproof"><h5 class="heading"><span class="type">Proof</span></h5>We deonte ideals of \(R\) by \(\fa,\fb,\fc\subset R\) and (non-zero) prime ideals by \(\fp,\fq,\fr\subset R\).
+            Multiplication is given by \[\fa\fb = \left\{ \sum a_ib_i : a_i \in \fa,\,b_i\in \fb\right\}.\]
+            Then the identity for this operation is \((1) = R\).
+            The key part of this proof is the construction of inverses.
+            <article class="theorem-like" id="claim-1"><h5 class="heading">
+<span class="type">Claim</span><span class="codenumber">1.3.5</span>
+</h5>For any non-zero ideal \(\fa \subset R\) there exist non-zero prime ideals \(\fp_1,\ldots,\fp_m\subset R\) such that \(\fp_1\cdots \fp_m\subset \fa\).</article><article class="hiddenproof" id="proof-2"><a knowl="./knowl/proof-2.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-2" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">Suppose not, then we can find an \(\fa \subset R\) which is maximal among such ideals having this property (as \(R\) is noetherian).
+                Then \(\fa\) is not prime, as otherwise the claim is clearly true, so there exists some \(\alpha,\beta\in R\) with \(\alpha\beta \in \fa\) but \(\alpha,\beta \notin \fa\).
+                So we have that \(\fa \subsetneq \fa + (\alpha)\) and \(\fa \subsetneq \fa + (\beta)\).
+                By the maximality of \(\fa\) we can find \(\fp_1 \cdots \fp_m \subseteq \fa + (\alpha) \) and \(\fq_1 \cdots \fq_n \subseteq \fa + (\beta)\) but now
+                \[\fp_1 \cdots \fp_m\fq_1\cdots \fq_n\subseteq(\fa + (\alpha))(\fa + (\beta)) \subseteq \fa + (\alpha\beta) \subseteq \fa,\]
+                contradiction.
+              </article></div>
+<article class="theorem-like" id="claim-2"><h5 class="heading">
+<span class="type">Claim</span><span class="codenumber">1.3.6</span>
+</h5>For any non-zero prime ideal \(\fp\subset R\) there exists \(\delta \in K\smallsetminus R\) such that \(\delta \fp \subseteq R\).</article><article class="hiddenproof" id="proof-3"><a knowl="./knowl/proof-3.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-3" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">Choose \(\beta\in \fp \smallsetminus \{0\}\) and an expression \(\fp_1\cdots \fp_m \subseteq (\beta)\) with \(\fp_i\) non-zero prime ideals and \(m\) minimal.
+                Then there exists \(i\) such that \(\fp_i\subset R\) otherwise for all \(i\) there is some \(\alpha_i \in\fp_i \smallsetminus\fp\), in which case \(\alpha_1\cdots \alpha_m\in \fp_1\cdots \fp_m\subseteq (\beta) \subseteq \fp\), a contradiction 
+              </article></div></article><div class="context-link" style="text-align:right;"><a href="sec-dedekind.html#proof-1">(in-context)</a></div>
