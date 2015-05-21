@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2015-02-11T22:48:00Z    %%
+%%    on 2015-05-21T06:59:32Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -84,22 +84,23 @@
 \DeclareMathOperator{\Tor}{Tor}
 \DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\coker}{coker}
-\DeclareMathOperator{\bfA}{\mathbf{A}}
-\DeclareMathOperator{\CC}{\mathbf{C}}
-\DeclareMathOperator{\QQ}{\mathbf{Q}}
-\DeclareMathOperator{\RR}{\mathbf{R}}
-\DeclareMathOperator{\ZZ}{\mathbf{Z}}
-\DeclareMathOperator{\RP}{\mathbf{RP}}
-\DeclareMathOperator{\C}{C_*}
-\DeclareMathOperator{\A}{\mathcal{A}}
-\DeclareMathOperator{\B}{\mathcal{B}}
-\DeclareMathOperator{\F}{\mathcal{F}}
-\DeclareMathOperator{\G}{\mathcal{G}}
-\DeclareMathOperator{\cI}{\mathcal{I}}
-\DeclareMathOperator{\cO}{\mathcal{O}}
-\DeclareMathOperator{\U}{\mathcal{U}}
+\newcommand{\id}{id}
+\newcommand{\bfA}{\mathbf{A}}
+\newcommand{\CC}{\mathbf{C}}
+\newcommand{\QQ}{\mathbf{Q}}
+\newcommand{\RR}{\mathbf{R}}
+\newcommand{\ZZ}{\mathbf{Z}}
+\newcommand{\RP}{\mathbf{RP}}
+\newcommand{\C}{C_*}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\U}{\mathcal{U}}
 %% Title page information for book
 \title{Part III Algebraic Geometry 2014}
 \author{}
@@ -146,7 +147,7 @@
         %
 \par
 
-          Generated: February 11, 2015, 22:48:00 (Z)
+          Generated: May 21, 2015, 06:59:32 (Z)
         %
 \typeout{************************************************}
 \typeout{Section 1.2 Sheaves}
@@ -280,7 +281,7 @@ A \terminology{ringed space} is a pair \((X,\cO_X)\) where \(X\) is a topologica
 \begin{definition}[Morphisms of ringed spaces]\label{definition-9}
 Given two ringed spaces \((X,\cO_X)\) and \((Y, \cO_Y)\) a \terminology{morphism of ringed spaces}\((X,\cO_X)\to (Y,\cO_Y)\) is a pair \((f,f^\#)\) where \(f\colon X \to Y\) is continuous and \(f^\#\colon \cO_Y \to f_*\cO_X\) is a morphism of sheaves of rings.
             So \(f^\#\) defines homomorphisms \(\cO_Y(U) \to \cO_X(f^{-1}(U))\) for all \(U\) open in \(Y\), compatible with restrictions.
-            Hence he have homomorphisms on stalks too \(\cO_{Y,f(P)} \to \cO_{X,P}\).
+            Hence we have homomorphisms on stalks too \(\cO_{Y,f(P)} \to \cO_{X,P}\).
           \end{definition}
 \begin{definition}[Ringed spaces over a ring]\label{definition-10}
 If \(R\) is a commutative ring (e.g. a field), a \terminology{ringed space over \(R\)} is a ringed space with \(\cO_X\) a sheaf of \(R\)-algebras.
@@ -320,16 +321,59 @@ Given \(V\) and \(W\) (irreducible) quasi-projective varieties, we define a \ter
 \typeout{************************************************}
 \subsection[\(\cO_X\)-modules]{\(\cO_X\)-modules}\label{subsection-1}
 \begin{definition}[\(\cO_X\)-modules]\label{definition-14}
-Let \(M\) be a sheaf of abelian groups on a ringed space \((X,\cO_X)\), \(M\) is said to be an \terminology{\(\cO_X\)-module} if for every open set \(U\subset X\)\(M(U)\) is an open \(\cO_X(U)\)-module and for any \(W\subseteq U\) open \(\alpha \in \cO_X(U)\), \(m\in M(U)\), we have \((\alpha m)|_W = (\alpha|_W)(m|_W)\).
+
+              Let \(M\) be a sheaf of abelian groups on a ringed space \((X,\cO_X)\), \(M\) is said to be an \terminology{\(\cO_X\)-module} if for every open set \(U\subset X\)\(M(U)\) is an open \(\cO_X(U)\)-module and for any \(W\subseteq U\) open \(\alpha \in \cO_X(U)\), \(m\in M(U)\), we have \((\alpha m)|_W = (\alpha|_W)(m|_W)\).
               Similarly we have the obvious definition for morphisms of \(\cO_X\)-modules \(\phi\colon M \to N\) (all maps respect the \(\cO_X\)-module structure).
             \end{definition}
 \begin{example}\label{example-10}
-For \(V\) a (irreducible) quasi-projective variety with structure sheaf \(\cO_V\) and \(W \subset V\) a closed subvariety we have the \terminology{sheaf of ideals}\(\cI_W \subset \cO_V\) a subsheaf of \(\cO_V\) given by \[\cI_W(U) = \{f\in \cO_V(U) : f|_{W\cap U} \equiv 0\}.\]
+
+              For \(V\) a (irreducible) quasi-projective variety with structure sheaf \(\cO_V\) and \(W \subset V\) a closed subvariety we have the \terminology{sheaf of ideals}\(\cI_W \subset \cO_V\) a subsheaf of \(\cO_V\) given by \[\cI_W(U) = \{f\in \cO_V(U) : f|_{W\cap U} \equiv 0\}.\]
               This is clearly an \(\cO_V\)-module.
             \end{example}
-Most things go through unchanged e.g. if \(M\) is an \(\cO_X\)-module then any stalk \(M_P\) is an \(\cO_{X,P}\)-module etc.\newline{}
-            However 
+
+            Most things go through unchanged e.g. if \(M\) is an \(\cO_X\)-module then any stalk \(M_P\) is an \(\cO_{X,P}\)-module etc.\newline{}
+            However there is the following technicality:
+            If we take the pushforward of an \(\cO_X\)-module \(M\) under a morphism of ringed spaces \((X,\cO_X ) \xrightarrow{\phi}(Y,\cO_Y)\).
+            The sheaf \(f_* M\) is naturally an \(f_*\cO_X\)-module via the morphism \(f^\#\colon \cO_Y \to f_* \cO_X\) we can consider \(f_*M\) as an \(\cO_Y\)-module which we denote by \(\phi_* M\).
+            Explicitly for \(U\) open in \(Y\) we let 
           %
+\typeout{************************************************}
+\typeout{Subsection 1.2.2 Sheafification}
+\typeout{************************************************}
+\subsection[Sheafification]{Sheafification}\label{subsection-2}
+\begin{definition}[Sheafification]\label{definition-15}
+
+              Given a preheaf \(\F\) on \(X\) there exists an associated sheaf \(\F^+\) and a morphism \(\Theta \colon \F \to \F^+\) with the universal property that for any sheaf \(\G\) on \(X\) and morphism \(\phi\colon \F \to \G\) there is a unique morphism \(\psi\colon \F^+ \to \G\) such that \(\phi = \psi \Theta\).
+              We construct \(\F^+\) as follows:
+              For \(U\) open in \(X\) we let
+              \[\F^+(U) = \left\{ \text{functions } s\colon U \to \coprod \F_p : \forall p \in U s(p) \in \F_p,\, \forall p \in U \exists \text{ open nbhd } W,\, t\in \F(W) \text{ with } s(q) = t_q \forall q\in Q\right\}\]\end{definition}
+It is clear that this is a sheaf since sections are given in terms of functions.%
+\par
+There exists a morphism \(\Theta\colon \F\to \F^+\) where \(\Theta(U)\colon \F(U) \to \F^+(U)\) is given by \(\sigma \mapsto s\) with \(s(p) = \sigma_p\) for all \(p \in U\).%
+\typeout{************************************************}
+\typeout{Chapter 2 Locally free and coherent \(\cO_X\)-modules}
+\typeout{************************************************}
+\chapter[Locally free and coherent \(\cO_X\)-modules]{Locally free and coherent \(\cO_X\)-modules}\label{chap-ox-modules}
+\typeout{************************************************}
+\typeout{Section 2.1 Locally free and coherent \(\cO_X\)-modules}
+\typeout{************************************************}
+\section[Locally free and coherent \(\cO_X\)-modules]{Locally free and coherent \(\cO_X\)-modules}\label{sec-ox-modules}
+\begin{definition}[Locally free \(\cO_X\)-modules]\label{definition-16}
+
+            An \(\cO_X\)-module \(M\) is locally free of rank \(r\) if for each \(x\in X\) there exists an open neighbourhood \(U \ni x\) s.t. \(M|_U\) is isomorphic to \(\cO_U^r = \bigoplus_{i=1}^r \cO_U\)\end{definition}
+\begin{example}\label{example-11}
+
+            If \((X, \cO_X)\) is a \(C^\infty\) (resp. complex) manifold and \(E \to X\) a rank \(r\)\(C^\infty\) (resp. holomorphic) vector bundle over \(X\) we can define a corresponding \(\cO_X\)-module \(\E\) by letting \(\E(U)\) be the \(\C^\infty\) (resp. holomorphic) sections \(\sigma\) of \(\E\) over \(U\).
+            Since \(\E\) is locally trivial it's clear that \(\E\) is locally free of rank \(r\).
+          \end{example}
+\begin{definition}[Transition functions]\label{definition-17}
+
+            For \(M\) a locally free \(\cO_X\)-module of rank \(r\) we have an open cover \(\{U_i\}\) of \(X\) (when \(X\) is a variety we may in fact take a finite open cover) and trivialisations \(M|_{U_i} \cong \cO_{U_i}^r\) this then gives rise to isomorphisms on the overlaps \(U_{ij} = U_i \cap U_j\).
+            We write \(\psi_{ji}\) for the map from the \(i\)th trivialisation to the \(j\)th.
+            These functions are called the \terminology{transition functions}.
+            They satisfy some compatibility conditions:
+            \(\psi_{ii} = \id\), \(\psi_{ij} = \psi_{ji}^{-1}\) and \(\psi_{kj}\psi_{ji} = \psi_{ki}\).
+          \end{definition}
 %
 \backmatter
 %

@@ -55,22 +55,23 @@ $(function () {
     \DeclareMathOperator{\Tor}{Tor}
     \DeclareMathOperator{\Ext}{Ext}
     \DeclareMathOperator{\im}{im}
-    \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\coker}{coker}
-    \DeclareMathOperator{\bfA}{\mathbf{A}}
-    \DeclareMathOperator{\CC}{\mathbf{C}}
-    \DeclareMathOperator{\QQ}{\mathbf{Q}}
-    \DeclareMathOperator{\RR}{\mathbf{R}}
-    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
-    \DeclareMathOperator{\RP}{\mathbf{RP}}
-    \DeclareMathOperator{\C}{C_*}
-    \DeclareMathOperator{\A}{\mathcal{A}}
-    \DeclareMathOperator{\B}{\mathcal{B}}
-    \DeclareMathOperator{\F}{\mathcal{F}}
-    \DeclareMathOperator{\G}{\mathcal{G}}
-    \DeclareMathOperator{\cI}{\mathcal{I}}
-    \DeclareMathOperator{\cO}{\mathcal{O}}
-    \DeclareMathOperator{\U}{\mathcal{U}}
+    \newcommand{\id}{id}
+    \newcommand{\bfA}{\mathbf{A}}
+    \newcommand{\CC}{\mathbf{C}}
+    \newcommand{\QQ}{\mathbf{Q}}
+    \newcommand{\RR}{\mathbf{R}}
+    \newcommand{\ZZ}{\mathbf{Z}}
+    \newcommand{\RP}{\mathbf{RP}}
+    \newcommand{\C}{C_*}
+    \newcommand{\A}{\mathcal{A}}
+    \newcommand{\B}{\mathcal{B}}
+    \newcommand{\E}{\mathcal{E}}
+    \newcommand{\F}{\mathcal{F}}
+    \newcommand{\G}{\mathcal{G}}
+    \newcommand{\cI}{\mathcal{I}}
+    \newcommand{\cO}{\mathcal{O}}
+    \newcommand{\U}{\mathcal{U}}
     \)</div>
 <header id="masthead"><div class="banner"><div class="container">
 <a id="logo-link" href="http://alexjbest.github.io/mjolnir/" target="_blank"><img src="../../images/mjolnir.png"></a><div class="title-container">
@@ -81,12 +82,12 @@ $(function () {
 <nav id="primary-navbar"><div class="container">
 <div class="navbar-top-buttons">
 <button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<a class="previous-button toolbar-item button" href="sec-introduction.html">Previous</a><a class="up-button button toolbar-item" href="chap-sheaves.html">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+<a class="previous-button toolbar-item button" href="sec-introduction.html">Previous</a><a class="up-button button toolbar-item" href="chap-sheaves.html">Up</a><a class="next-button button toolbar-item" href="chap-ox-modules.html">Next</a>
 </div>
 <button class="sidebar-right-toggle-button button active">Annotations</button>
 </div>
 <div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-introduction.html">Previous</a><a class="up-button button toolbar-item" href="chap-sheaves.html">Up</a><span class="next-button button toolbar-item disabled">Next</span>
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-introduction.html">Previous</a><a class="up-button button toolbar-item" href="chap-sheaves.html">Up</a><a class="next-button button toolbar-item" href="chap-ox-modules.html">Next</a>
 </div>
 </div></nav></header><div class="page">
 <aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
@@ -94,7 +95,9 @@ $(function () {
 <ul>
 <li><a href="sec-introduction.html">Introduction</a></li>
 <li><a href="sec-sheaves.html" class="active">Sheaves</a></li>
-</ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
+</ul>
+<h2 class="link"><a href="chap-ox-modules.html"><span class="codenumber">2</span><span class="title">Locally free and coherent \(\cO_X\)-modules</span></a></h2>
+<ul><li><a href="sec-ox-modules.html">Locally free and coherent \(\cO_X\)-modules</a></li></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
 </div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-sheaves"><header><h1 class="heading">
 <span class="type">Section</span><span class="codenumber">1.2</span><span class="title">Sheaves</span>
 </h1></header><p>Let \(X\) be a topological space.</p>
@@ -266,15 +269,30 @@ $(function () {
 <span class="type">Subsection</span><span class="codenumber">1.2.1</span><span class="title">\(\cO_X\)-modules</span>
 </h1></header><article class="definition-like" id="definition-14"><h5 class="heading">
 <span class="type">Definition</span><span class="codenumber">1.2.26</span><span class="title">\(\cO_X\)-modules</span>
-</h5>Let \(M\) be a sheaf of abelian groups on a ringed space \((X,\cO_X)\), \(M\) is said to be an <em class="terminology">\(\cO_X\)-module</em> if for every open set \(U\subset X\)\(M(U)\) is an open \(\cO_X(U)\)-module and for any \(W\subseteq U\) open \(\alpha \in \cO_X(U)\), \(m\in M(U)\), we have \((\alpha m)|_W = (\alpha|_W)(m|_W)\).
+</h5>
+              Let \(M\) be a sheaf of abelian groups on a ringed space \((X,\cO_X)\), \(M\) is said to be an <em class="terminology">\(\cO_X\)-module</em> if for every open set \(U\subset X\)\(M(U)\) is an open \(\cO_X(U)\)-module and for any \(W\subseteq U\) open \(\alpha \in \cO_X(U)\), \(m\in M(U)\), we have \((\alpha m)|_W = (\alpha|_W)(m|_W)\).
               Similarly we have the obvious definition for morphisms of \(\cO_X\)-modules \(\phi\colon M \to N\) (all maps respect the \(\cO_X\)-module structure).
             </article><article class="example-like" id="example-10"><h5 class="heading">
 <span class="type">Example</span><span class="codenumber">1.2.27</span>
-</h5>For \(V\) a (irreducible) quasi-projective variety with structure sheaf \(\cO_V\) and \(W \subset V\) a closed subvariety we have the <em class="terminology">sheaf of ideals</em>\(\cI_W \subset \cO_V\) a subsheaf of \(\cO_V\) given by \[\cI_W(U) = \{f\in \cO_V(U) : f|_{W\cap U} \equiv 0\}.\]
+</h5>
+              For \(V\) a (irreducible) quasi-projective variety with structure sheaf \(\cO_V\) and \(W \subset V\) a closed subvariety we have the <em class="terminology">sheaf of ideals</em>\(\cI_W \subset \cO_V\) a subsheaf of \(\cO_V\) given by \[\cI_W(U) = \{f\in \cO_V(U) : f|_{W\cap U} \equiv 0\}.\]
               This is clearly an \(\cO_V\)-module.
-            </article><p>Most things go through unchanged e.g. if \(M\) is an \(\cO_X\)-module then any stalk \(M_P\) is an \(\cO_{X,P}\)-module etc.<br>
-            However 
-          </p></section></section></div></main>
+            </article><p>
+            Most things go through unchanged e.g. if \(M\) is an \(\cO_X\)-module then any stalk \(M_P\) is an \(\cO_{X,P}\)-module etc.<br>
+            However there is the following technicality:
+            If we take the pushforward of an \(\cO_X\)-module \(M\) under a morphism of ringed spaces \((X,\cO_X ) \xrightarrow{\phi}(Y,\cO_Y)\).
+            The sheaf \(f_* M\) is naturally an \(f_*\cO_X\)-module via the morphism \(f^\#\colon \cO_Y \to f_* \cO_X\) we can consider \(f_*M\) as an \(\cO_Y\)-module which we denote by \(\phi_* M\).
+            Explicitly for \(U\) open in \(Y\) we let 
+          </p></section><section class="subsection" id="subsection-2"><header><h1 class="heading">
+<span class="type">Subsection</span><span class="codenumber">1.2.2</span><span class="title">Sheafification</span>
+</h1></header><article class="definition-like" id="definition-15"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.2.28</span><span class="title">Sheafification</span>
+</h5>
+              Given a preheaf \(\F\) on \(X\) there exists an associated sheaf \(\F^+\) and a morphism \(\Theta \colon \F \to \F^+\) with the universal property that for any sheaf \(\G\) on \(X\) and morphism \(\phi\colon \F \to \G\) there is a unique morphism \(\psi\colon \F^+ \to \G\) such that \(\phi = \psi \Theta\).
+              We construct \(\F^+\) as follows:
+              For \(U\) open in \(X\) we let
+              \[\F^+(U) = \left\{ \text{functions } s\colon U \to \coprod \F_p : \forall p \in U s(p) \in \F_p,\, \forall p \in U \exists \text{ open nbhd } W,\, t\in \F(W) \text{ with } s(q) = t_q \forall q\in Q\right\}\]</article><p>It is clear that this is a sheaf since sections are given in terms of functions.</p>
+<p>There exists a morphism \(\Theta\colon \F\to \F^+\) where \(\Theta(U)\colon \F(U) \to \F^+(U)\) is given by \(\sigma \mapsto s\) with \(s(p) = \sigma_p\) for all \(p \in U\).</p></section></section></div></main>
 </div>
 </body>
 </html>

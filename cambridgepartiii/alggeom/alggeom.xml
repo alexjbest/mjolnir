@@ -29,22 +29,23 @@ Copyright 2014 Alex J. Best
     \DeclareMathOperator{\Tor}{Tor}
     \DeclareMathOperator{\Ext}{Ext}
     \DeclareMathOperator{\im}{im}
-    \DeclareMathOperator{\id}{id}
     \DeclareMathOperator{\coker}{coker}
-    \DeclareMathOperator{\bfA}{\mathbf{A}}
-    \DeclareMathOperator{\CC}{\mathbf{C}}
-    \DeclareMathOperator{\QQ}{\mathbf{Q}}
-    \DeclareMathOperator{\RR}{\mathbf{R}}
-    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
-    \DeclareMathOperator{\RP}{\mathbf{RP}}
-    \DeclareMathOperator{\C}{C_*}
-    \DeclareMathOperator{\A}{\mathcal{A}}
-    \DeclareMathOperator{\B}{\mathcal{B}}
-    \DeclareMathOperator{\F}{\mathcal{F}}
-    \DeclareMathOperator{\G}{\mathcal{G}}
-    \DeclareMathOperator{\cI}{\mathcal{I}}
-    \DeclareMathOperator{\cO}{\mathcal{O}}
-    \DeclareMathOperator{\U}{\mathcal{U}}
+    \newcommand{\id}{id}
+    \newcommand{\bfA}{\mathbf{A}}
+    \newcommand{\CC}{\mathbf{C}}
+    \newcommand{\QQ}{\mathbf{Q}}
+    \newcommand{\RR}{\mathbf{R}}
+    \newcommand{\ZZ}{\mathbf{Z}}
+    \newcommand{\RP}{\mathbf{RP}}
+    \newcommand{\C}{C_*}
+    \newcommand{\A}{\mathcal{A}}
+    \newcommand{\B}{\mathcal{B}}
+    \newcommand{\E}{\mathcal{E}}
+    \newcommand{\F}{\mathcal{F}}
+    \newcommand{\G}{\mathcal{G}}
+    \newcommand{\cI}{\mathcal{I}}
+    \newcommand{\cO}{\mathcal{O}}
+    \newcommand{\U}{\mathcal{U}}
     </macros>
 
     <initialism>AG</initialism>
@@ -326,23 +327,88 @@ Copyright 2014 Alex J. Best
           
           <definition>
             <title><m>\cO_X</m>-modules</title>
-            <statement>Let <m>M</m> be a sheaf of abelian groups on a ringed space <m>(X,\cO_X)</m>, <m>M</m> is said to be an <term><m>\cO_X</m>-module</term> if for every open set <m>U\subset X</m> <m>M(U)</m> is an open <m>\cO_X(U)</m>-module and for any <m>W\subseteq U</m> open <m>\alpha \in \cO_X(U)</m>, <m>m\in M(U)</m>, we have <m>(\alpha m)|_W = (\alpha|_W)(m|_W)</m>.
+            <statement>
+              Let <m>M</m> be a sheaf of abelian groups on a ringed space <m>(X,\cO_X)</m>, <m>M</m> is said to be an <term><m>\cO_X</m>-module</term> if for every open set <m>U\subset X</m> <m>M(U)</m> is an open <m>\cO_X(U)</m>-module and for any <m>W\subseteq U</m> open <m>\alpha \in \cO_X(U)</m>, <m>m\in M(U)</m>, we have <m>(\alpha m)|_W = (\alpha|_W)(m|_W)</m>.
               Similarly we have the obvious definition for morphisms of <m>\cO_X</m>-modules <m>\phi\colon M \to N</m> (all maps respect the <m>\cO_X</m>-module structure).
             </statement>
           </definition>
 
           <example>
-            <statement>For <m>V</m> a (irreducible) quasi-projective variety with structure sheaf <m>\cO_V</m> and <m>W \subset V</m> a closed subvariety we have the <term>sheaf of ideals</term> <m>\cI_W \subset \cO_V</m> a subsheaf of <m>\cO_V</m> given by <me>\cI_W(U) = \{f\in \cO_V(U) : f|_{W\cap U} \equiv 0\}.</me>
+            <statement>
+              For <m>V</m> a (irreducible) quasi-projective variety with structure sheaf <m>\cO_V</m> and <m>W \subset V</m> a closed subvariety we have the <term>sheaf of ideals</term> <m>\cI_W \subset \cO_V</m> a subsheaf of <m>\cO_V</m> given by <me>\cI_W(U) = \{f\in \cO_V(U) : f|_{W\cap U} \equiv 0\}.</me>
               This is clearly an <m>\cO_V</m>-module.
             </statement>
           </example>
           
-          <p>Most things go through unchanged e.g. if <m>M</m> is an <m>\cO_X</m>-module then any stalk <m>M_P</m> is an <m>\cO_{X,P}</m>-module etc.<br />
-            However 
+          <p>
+            Most things go through unchanged e.g. if <m>M</m> is an <m>\cO_X</m>-module then any stalk <m>M_P</m> is an <m>\cO_{X,P}</m>-module etc.<br />
+            However there is the following technicality:
+            If we take the pushforward of an <m>\cO_X</m>-module <m>M</m> under a morphism of ringed spaces <m>(X,\cO_X ) \xrightarrow{\phi}(Y,\cO_Y)</m>.
+            The sheaf <m>f_* M</m> is naturally an <m>f_*\cO_X</m>-module via the morphism <m>f^\#\colon \cO_Y \to f_* \cO_X</m> we can consider <m>f_*M</m> as an <m>\cO_Y</m>-module which we denote by <m>\phi_* M</m>.
+            Explicitly for <m>U</m> open in <m>Y</m> we let <todo></todo>
           </p>
-          
+        </subsection>
+
+        <subsection>
+          <title>Sheafification</title>
+
+          <definition>
+            <title>Sheafification</title>
+            <statement>
+              Given a preheaf <m>\F</m> on <m>X</m> there exists an associated sheaf <m>\F^+</m> and a morphism <m>\Theta \colon \F \to \F^+</m> with the universal property that for any sheaf <m>\G</m> on <m>X</m> and morphism <m>\phi\colon \F \to \G</m> there is a unique morphism <m>\psi\colon \F^+ \to \G</m> such that <m>\phi = \psi \Theta</m>.
+              We construct <m>\F^+</m> as follows:
+              For <m>U</m> open in <m>X</m> we let
+              <me>\F^+(U) = \left\{ \text{functions } s\colon U \to \coprod \F_p : \forall p \in U s(p) \in \F_p,\, \forall p \in U \exists \text{ open nbhd } W,\, t\in \F(W) \text{ with } s(q) = t_q \forall q\in Q\right\}</me>
+            </statement>
+          </definition>
+
+          <p>It is clear that this is a sheaf since sections are given in terms of functions.</p>
+
+          <p>There exists a morphism <m>\Theta\colon \F\to \F^+</m> where <m>\Theta(U)\colon \F(U) \to \F^+(U)</m> is given by <m>\sigma \mapsto s</m> with <m>s(p) = \sigma_p</m> for all <m>p \in U</m>.</p>
+
+          <todo>LOTS</todo>
         </subsection>
       </section>
+    </chapter>
+
+    <chapter xml:id="chap-ox-modules">
+      <title>Locally free and coherent <m>\cO_X</m>-modules</title>
+
+      <section xml:id="sec-ox-modules">
+        <title>Locally free and coherent <m>\cO_X</m>-modules</title>
+
+        <todo></todo>
+
+        <definition>
+          <title>Locally free <m>\cO_X</m>-modules</title>
+          <statement>
+            An <m>\cO_X</m>-module <m>M</m> is locally free of rank <m>r</m> if for each <m>x\in X</m> there exists an open neighbourhood <m>U \ni x</m> s.t. <m>M|_U</m> is isomorphic to <m>\cO_U^r = \bigoplus_{i=1}^r \cO_U</m>
+          </statement>
+        </definition>
+
+        <example>
+          <statement>
+            If <m>(X, \cO_X)</m> is a <m>C^\infty</m> (resp. complex) manifold and <m>E \to X</m> a rank <m>r</m> <m>C^\infty</m> (resp. holomorphic) vector bundle over <m>X</m> we can define a corresponding <m>\cO_X</m>-module <m>\E</m> by letting <m>\E(U)</m> be the <m>\C^\infty</m> (resp. holomorphic) sections <m>\sigma</m> of <m>\E</m> over <m>U</m>.
+            Since <m>\E</m> is locally trivial it's clear that <m>\E</m> is locally free of rank <m>r</m>.
+          </statement>
+        </example>
+
+        <todo>notation</todo>
+
+        <definition>
+          <title>Transition functions</title>
+          <statement>
+            For <m>M</m> a locally free <m>\cO_X</m>-module of rank <m>r</m> we have an open cover <m>\{U_i\}</m> of <m>X</m> (when <m>X</m> is a variety we may in fact take a finite open cover) and trivialisations <m>M|_{U_i} \cong \cO_{U_i}^r</m> this then gives rise to isomorphisms on the overlaps <m>U_{ij} = U_i \cap U_j</m>.
+            We write <m>\psi_{ji}</m> for the map from the <m>i</m>th trivialisation to the <m>j</m>th.
+            These functions are called the <term>transition functions</term>.
+            They satisfy some compatibility conditions:
+            <m>\psi_{ii} = \id</m>, <m>\psi_{ij} = \psi_{ji}^{-1}</m> and <m>\psi_{kj}\psi_{ji} = \psi_{ki}</m>.
+          </statement>
+        </definition>
+
+      </section>
+
+
     </chapter>
 
 <!--    <backmatter>
