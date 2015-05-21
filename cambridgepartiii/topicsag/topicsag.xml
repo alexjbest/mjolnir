@@ -23,14 +23,16 @@ Copyright 2014 Alex J. Best
     </author>
 
     <macros>
-    \DeclareMathOperator{\CC}{\mathbf{C}}
-    \DeclareMathOperator{\QQ}{\mathbf{Q}}
-    \DeclareMathOperator{\RR}{\mathbf{R}}
-    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
-    \DeclareMathOperator{\aff}{\mathbf{A}}
-    \DeclareMathOperator{\sO}{\mathcal{O}}
-    \DeclareMathOperator{\fm}{\mathfrak{m}}
+    \newcommand{\CC}{\mathbf{C}}
+    \newcommand{\PP}{\mathbf{P}}
+    \newcommand{\QQ}{\mathbf{Q}}
+    \newcommand{\RR}{\mathbf{R}}
+    \newcommand{\ZZ}{\mathbf{Z}}
+    \newcommand{\aff}{\mathbf{A}}
+    \newcommand{\sO}{\mathcal{O}}
+    \newcommand{\fm}{\mathfrak{m}}
     \DeclareMathOperator{\Spec}{Spec}
+    \DeclareMathOperator{\Proj}{Proj}
     \DeclareMathOperator{\Gal}{Gal}
     </macros>
 
@@ -243,7 +245,7 @@ Copyright 2014 Alex J. Best
                 We also have a commutative diagram
                 <me>
                   \xymatrix{
-                  A \ar[r]^{\phi} \ar[d]_{\substack{a\\\downarrow\\a/1}}&amp; B \ar[d]^{\substack{b\\ b/1}}\\
+                  A \ar[r]^{\phi} \ar[d]_{\substack{a\\\downarrow\\a/1}}&amp; B \ar[d]^{\substack{b\\\downarrow \\b/1}}\\
                   A_{f(p)} \ar[r]_{f_p^\#} &amp; B_p
                   }
                 </me>
@@ -326,7 +328,26 @@ Copyright 2014 Alex J. Best
             <m>U \cap \Spec B</m> can be covered by affine schemes of the form <m>\Spec B_f</m> with <m>B_f </m> Noetherian.
             We need to show that if <m>\Spec A</m> can be covered by sets of the form <m>\Spec B</m> with <m>B</m> Noetherian, then <m>A</m> is Noetherian.
           </proof>
-        </proposition>
+        </proposition> <todo></todo>
+
+        <definition>
+          <title>Locally of finite type morphisms</title>
+          <statement>
+            A morphism <m>F\colon X \to Y</m> of schemes is <term>locally of finite type</term> is there exists a covering of <m>Y</m> by open affines <m>V_i = \Spec A_i</m> such that <m>f^{-1}(V_i)</m> is covered by open affines <m>U_{ij} = \Spec B_{ij}</m>
+          </statement>
+        </definition>
+
+
+        <todo></todo>
+
+
+        <definition>
+          <title>Projective morphisms</title>
+          <statement>
+            If <m>Y</m> is any scheme <m>\PP_{\ZZ}^n = \Proj \ZZ[x_0,\ldots,x_n]</m> thne <m>\PP_Y^n = Y \times_{\Spec \ZZ}\PP_{\ZZ}^n</m> is projective space over <m>Y</m>.
+            A morphism <m>f\colon X \to Y </m> is projective if it factors as <m>X \xrightarrow{i} \PP_Y^n \to Y</m> with <m>i</m> a closed immersion and <m>\PP_Y^n \to Y</m> the projection.
+          </statement>
+        </definition>
       </section>
     </chapter>
 

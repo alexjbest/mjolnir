@@ -49,14 +49,16 @@ $(function () {
 </head>
 <body class="mathbook-book has-toc has-sidebar-left">
 <div style="display:none;">\(
-    \DeclareMathOperator{\CC}{\mathbf{C}}
-    \DeclareMathOperator{\QQ}{\mathbf{Q}}
-    \DeclareMathOperator{\RR}{\mathbf{R}}
-    \DeclareMathOperator{\ZZ}{\mathbf{Z}}
-    \DeclareMathOperator{\aff}{\mathbf{A}}
-    \DeclareMathOperator{\sO}{\mathcal{O}}
-    \DeclareMathOperator{\fm}{\mathfrak{m}}
+    \newcommand{\CC}{\mathbf{C}}
+    \newcommand{\PP}{\mathbf{P}}
+    \newcommand{\QQ}{\mathbf{Q}}
+    \newcommand{\RR}{\mathbf{R}}
+    \newcommand{\ZZ}{\mathbf{Z}}
+    \newcommand{\aff}{\mathbf{A}}
+    \newcommand{\sO}{\mathcal{O}}
+    \newcommand{\fm}{\mathfrak{m}}
     \DeclareMathOperator{\Spec}{Spec}
+    \DeclareMathOperator{\Proj}{Proj}
     \DeclareMathOperator{\Gal}{Gal}
     \)</div>
 <header id="masthead"><div class="banner"><div class="container">
@@ -133,7 +135,16 @@ $(function () {
             Thus any open set of \(\Spec B\) can be covered by open affines of the form \(\Spec B_f \) with \(B_f\) Noetherian.
             \(U \cap \Spec B\) can be covered by affine schemes of the form \(\Spec B_f\) with \(B_f \) Noetherian.
             We need to show that if \(\Spec A\) can be covered by sets of the form \(\Spec B\) with \(B\) Noetherian, then \(A\) is Noetherian.
-          </article></div></section></div></main>
+          </article></div>
+<article class="definition-like" id="definition-10"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.3.7</span><span class="title">Locally of finite type morphisms</span>
+</h5>
+            A morphism \(F\colon X \to Y\) of schemes is <em class="terminology">locally of finite type</em> is there exists a covering of \(Y\) by open affines \(V_i = \Spec A_i\) such that \(f^{-1}(V_i)\) is covered by open affines \(U_{ij} = \Spec B_{ij}\)</article><article class="definition-like" id="definition-11"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">1.3.8</span><span class="title">Projective morphisms</span>
+</h5>
+            If \(Y\) is any scheme \(\PP_{\ZZ}^n = \Proj \ZZ[x_0,\ldots,x_n]\) thne \(\PP_Y^n = Y \times_{\Spec \ZZ}\PP_{\ZZ}^n\) is projective space over \(Y\).
+            A morphism \(f\colon X \to Y \) is projective if it factors as \(X \xrightarrow{i} \PP_Y^n \to Y\) with \(i\) a closed immersion and \(\PP_Y^n \to Y\) the projection.
+          </article></section></div></main>
 </div>
 </body>
 </html>
