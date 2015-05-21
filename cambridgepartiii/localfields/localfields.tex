@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2015-05-07T19:29:07Z    %%
+%%    on 2015-05-21T06:56:48Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -131,7 +131,7 @@ The recommended books are:
 
       %
 \par
-Generated: May 7, 2015, 19:29:07 (Z)%
+Generated: May 21, 2015, 06:56:48 (Z)%
 \typeout{************************************************}
 \typeout{Chapter 2 \(p\)-adic numbers}
 \typeout{************************************************}
@@ -139,7 +139,7 @@ Generated: May 7, 2015, 19:29:07 (Z)%
 \begin{definition}[Absolute value]\label{definition-1}
 An \terminology{absolute value} on a field \(K\) is a function \(\ab\colon K \to \RR\) such that
           \begin{enumerate}
-\item{}\(|x|\ge 0\) and \(|x| = 0 \iff x = 0\).\item{}\(|xy| = |x||y|\).\item{}\(|x + y| \le |x| + |y|\).\end{enumerate}
+\item{}\(|x|\ge 0\) and \(|x| = 0 \iff x = 0\).\item{}\(|xy| = |x\|y|\).\item{}\(|x + y| \le |x| + |y|\).\end{enumerate}
 \end{definition}
 \begin{example}\label{example-1}
 \begin{enumerate}
@@ -169,7 +169,7 @@ Recall that if \(R\) is any ring then there exists a unique ring homomorphism \(
 \begin{proof}
 
           (\(\Rightarrow\)) \(|n| \le \max\{|1|\} = 1\).\newline{}
-          (\(\Leftarrow\)) Suppose \(|n| \le B\) for all \(n \in \ZZ\) then \[|x+ y|^m = \left| \sum_{r = 0}^{m} \binom{m}{r} x^{m-r}y^r\right| \le \sum_{r=0}^m\left|\binom{m}{r}\right||x|^{m-r}|y|^r \le (m+1)B \max\{|x|^m, |y|^m\}.\]
+          (\(\Leftarrow\)) Suppose \(|n| \le B\) for all \(n \in \ZZ\) then \[|x+ y|^m = \left| \sum_{r = 0}^{m} \binom{m}{r} x^{m-r}y^r\right| \le \sum_{r=0}^m\left|\binom{m}{r}\right\|x|^{m-r}|y|^r \le (m+1)B \max\{|x|^m, |y|^m\}.\]
           Now letting \(m \to \infty\) we get that \(|x+y| \le \max\{|x|, |y|\}\).
         \end{proof}
 \begin{corollary}\label{corollary-1}
@@ -642,7 +642,7 @@ Let \(R\) be an integral domain and \(p \subset R\) a prime ideal.
             It is also clear that it is integrally closed.\newline{}
             To see it is Noetherian we suppose that \(L/K\) is a separable and write \(n = [L:K]\).
             There are \(n\) distinct embeddings \(\sigma_1,\ldots,\sigma_n\colon L \to \bar K\).
-            The trace form \(L\times L \to K\) given by \((x,y)\mapsto \tr xy\) is a non-degenerate \(K\)0bilinear form.
+            The trace form \(L\times L \to K\) given by \((x,y)\mapsto \tr xy\) is a non-degenerate \(K\)-bilinear form.
             (Using primitive element and expressing as a Vandermonde determinant)
             Let \(x_1,\ldots,x_n\) be a basis for \(L\) as  \(K\)-vector space.
             Clearing denominators allows us to take \(x_i \in \cO_L\).
@@ -691,17 +691,40 @@ Let \(R\) be an integral domain and \(p \subset R\) a prime ideal.
 \typeout{Chapter 5 Relative extensions}
 \typeout{************************************************}
 \chapter[Relative extensions]{Relative extensions}\label{chap-relative}
-\begin{theorem}\label{theorem-7}
-\((K,\ab)\) complete \(L/K\) finite extension.
-          If \(\ab_1,\ab_2\) absolute values on \(L\) extending \(ab\) on \(K\) then \(\ab_1=\ab_2\) and \(L\) is complete w.r.t. \(\ab_1\).
-        \end{theorem}
 \begin{definition}[Norms]\label{definition-10}
 
           Let \(V\) be a vector space over\(K\).
-          A \terminology{norm} on \(v\) is a map \(||\cdot||\colon V \to \RR\) s.t.
+          A \terminology{norm} on \(v\) is a map \(\|\cdot\|\colon V \to \RR\) s.t.
           \begin{enumerate}
-\item{}\(||v|| \ge 0\) with equality iff \(v = 0\).\item{}\(||\lambda v|| = |\lambda| ||v||\)\item{} \(||v+w|| \le ||v|| + ||w||\) .\end{enumerate}
+\item{}\(\|v\| \ge 0\) with equality iff \(v = 0\).\item{}\(\|\lambda v\| = |\lambda| \|v\|\)\item{} \(\|v+w\| \le \|v\| + \|w\|\) .\end{enumerate}
 \end{definition}
+\begin{theorem}\label{theorem-7}
+
+          Let \(K\) be complete \(\ab\) on \(K\). If \(\dim_K V \lt \infty\) then any two norms on \(V\) are equivalent and \(V\) is complete (w.r.t. any one of them).
+        \end{theorem}
+\begin{proof}
+
+          WLOG \(V = K^d\) and we will show every norm is equivalent to \(\|\cdot\|_{\sup}\), the proof is via induction on \(d\).
+          For \(d = 1\)\(\|v\| = c\|v\|_{\sup}\) for some \(c \gt 0\) and the result is clear.\newline{}
+          For generl \(d\) we let \(e_1,\ldots,e_d\) be the standard basis, so
+          \[
+            \|x\| = \left\| \sum_{i=1}^d x_ie_i\right\| \le \left(\sum_{i=1}^d \|e_i\|\right)\max_{1\le i\le d}|x_i|.
+          \]
+          Let \(S = \{v\in V | \|v\|_{\sup} = 1\}\) (the equation  implies that \(\|\cdot\| \colon S\to \RR_{\ge 0}\) is continuous w.r.t. \(\|\cdot\|_{\sup}\) but we don't know \(S\) is compact).\newline{}
+          We now claim that there exists \(\epsilon \gt 0\) s.t. \(\|x\| \gt \epsilon \) for all \(x\in S\).
+          To see this suppose otherwise, i.e. that there exists a sequence \((x^{(n)})\) in\(S\) with \(\|x^(n) \|\to 0\) as \(n \to \infty\).
+          For at least one \(1\le i \le d\)\(\|x^{(n)}\|_{\sup} = |x_i^{(n}|\) for infinitely many \(n\).
+          WLOG this is \(i=d\) and we may pass to a subsequence and multiply through by \(\lambda\in K\) with \(|\lambda| = 1\) to ensure \(x_d^{(n)} = 1\) i.e. \(x^{(n)} = y^{(n)} + e_d \) for some \(y^{(n)} \in \langle e_1,\ldots,e_{d-1}\rangle\).
+          But as \( x^{(n)} \to 0\) w.r.t. \(\|\cdot\|\) we have that \(x^{(n)}\) is Cauchy and hence so is \(y^{(n)}\) w.r.t. \(\|\cdot\|\).
+          This implies that \(y^{(n)} \to y\) w.r.t. \(\|\cdot\|\) (since \(K^{d-1}\) is complete by the induction hypothesis) for some \(y \in \langle e_1,\ldots,e_{d-1}\rangle\) but \(y^{(n)} = x^{(n)} -e_d \to -e_d\) w.r.t. \(\|\cdot\|\) therefore \(y = -e_d \not\in \langle e_1,\ldots,e_{d-1}\rangle\) a  contradiction, proving the claim. \newline{}
+          Now let \(x\in V\)\(x\ne 0\) and \(\|\cdot\|_{\sup}=|x_i|\) for some \(1\le i\le d\). 
+          \(x/x_i\in S\) son \(\|x/x_i\|\gt \epsilon\) implying \(\|x\|\gt \epsilon |x_i | = \epsilon \|x\|_{\sup}\).
+          This together with the above equation give that \(\|\cdot\|\) and \(\|\cdot\|_{\sup}\) are equivalent, \(K\) complete implies that \(V\) is complete w.r.t. \(\|\cdot\|_{\sup}\).
+        \end{proof}
+\begin{theorem}\label{theorem-8}
+\((K,\ab)\) complete \(L/K\) finite extension.
+          If \(\ab_1,\ab_2\) absolute values on \(L\) extending \(ab\) on \(K\) then \(\ab_1=\ab_2\) and \(L\) is complete w.r.t. \(\ab_1\).
+        \end{theorem}
 %
 \backmatter
 %

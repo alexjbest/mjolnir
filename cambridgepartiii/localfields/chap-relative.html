@@ -99,20 +99,42 @@ $(function () {
 <ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
 </div></aside><main class="main"><div id="content" class="mathbook-content"><section class="chapter" id="chap-relative"><header><h1 class="heading">
 <span class="type">Chapter</span><span class="codenumber">5</span><span class="title">Relative extensions</span>
-</h1></header><article class="theorem-like" id="theorem-7"><h5 class="heading">
-<span class="type">Theorem</span><span class="codenumber">5.0.5</span>
-</h5>\((K,\ab)\) complete \(L/K\) finite extension.
-          If \(\ab_1,\ab_2\) absolute values on \(L\) extending \(ab\) on \(K\) then \(\ab_1=\ab_2\) and \(L\) is complete w.r.t. \(\ab_1\).
-        </article><article class="definition-like" id="definition-10"><h5 class="heading">
-<span class="type">Definition</span><span class="codenumber">5.0.6</span><span class="title">Norms</span>
+</h1></header><article class="definition-like" id="definition-10"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">5.0.5</span><span class="title">Norms</span>
 </h5>
           Let \(V\) be a vector space over\(K\).
-          A <em class="terminology">norm</em> on \(v\) is a map \(||\cdot||\colon V \to \RR\) s.t.
+          A <em class="terminology">norm</em> on \(v\) is a map \(\|\cdot\|\colon V \to \RR\) s.t.
           <ol>
-<li>\(||v|| \ge 0\) with equality iff \(v = 0\).</li>
-<li>\(||\lambda v|| = |\lambda| ||v||\)</li>
-<li> \(||v+w|| \le ||v|| + ||w||\) .</li>
-</ol></article></section></div></main>
+<li>\(\|v\| \ge 0\) with equality iff \(v = 0\).</li>
+<li>\(\|\lambda v\| = |\lambda| \|v\|\)</li>
+<li> \(\|v+w\| \le \|v\| + \|w\|\) .</li>
+</ol></article><article class="theorem-like" id="theorem-7"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">5.0.6</span>
+</h5>
+          Let \(K\) be complete \(\ab\) on \(K\). If \(\dim_K V \lt \infty\) then any two norms on \(V\) are equivalent and \(V\) is complete (w.r.t. any one of them).
+        </article><article class="hiddenproof" id="proof-21"><a knowl="./knowl/proof-21.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-21" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+          WLOG \(V = K^d\) and we will show every norm is equivalent to \(\|\cdot\|_{\sup}\), the proof is via induction on \(d\).
+          For \(d = 1\)\(\|v\| = c\|v\|_{\sup}\) for some \(c \gt 0\) and the result is clear.<br>
+          For generl \(d\) we let \(e_1,\ldots,e_d\) be the standard basis, so
+          \[
+            \|x\| = \left\| \sum_{i=1}^d x_ie_i\right\| \le \left(\sum_{i=1}^d \|e_i\|\right)\max_{1\le i\le d}|x_i|.
+          \]
+          Let \(S = \{v\in V | \|v\|_{\sup} = 1\}\) (the equation  implies that \(\|\cdot\| \colon S\to \RR_{\ge 0}\) is continuous w.r.t. \(\|\cdot\|_{\sup}\) but we don't know \(S\) is compact).<br>
+          We now claim that there exists \(\epsilon \gt 0\) s.t. \(\|x\| \gt \epsilon \) for all \(x\in S\).
+          To see this suppose otherwise, i.e. that there exists a sequence \((x^{(n)})\) in\(S\) with \(\|x^(n) \|\to 0\) as \(n \to \infty\).
+          For at least one \(1\le i \le d\)\(\|x^{(n)}\|_{\sup} = |x_i^{(n}|\) for infinitely many \(n\).
+          WLOG this is \(i=d\) and we may pass to a subsequence and multiply through by \(\lambda\in K\) with \(|\lambda| = 1\) to ensure \(x_d^{(n)} = 1\) i.e. \(x^{(n)} = y^{(n)} + e_d \) for some \(y^{(n)} \in \langle e_1,\ldots,e_{d-1}\rangle\).
+          But as \( x^{(n)} \to 0\) w.r.t. \(\|\cdot\|\) we have that \(x^{(n)}\) is Cauchy and hence so is \(y^{(n)}\) w.r.t. \(\|\cdot\|\).
+          This implies that \(y^{(n)} \to y\) w.r.t. \(\|\cdot\|\) (since \(K^{d-1}\) is complete by the induction hypothesis) for some \(y \in \langle e_1,\ldots,e_{d-1}\rangle\) but \(y^{(n)} = x^{(n)} -e_d \to -e_d\) w.r.t. \(\|\cdot\|\) therefore \(y = -e_d \not\in \langle e_1,\ldots,e_{d-1}\rangle\) a  contradiction, proving the claim. <br>
+          Now let \(x\in V\)\(x\ne 0\) and \(\|\cdot\|_{\sup}=|x_i|\) for some \(1\le i\le d\). 
+          \(x/x_i\in S\) son \(\|x/x_i\|\gt \epsilon\) implying \(\|x\|\gt \epsilon |x_i | = \epsilon \|x\|_{\sup}\).
+          This together with the above equation give that \(\|\cdot\|\) and \(\|\cdot\|_{\sup}\) are equivalent, \(K\) complete implies that \(V\) is complete w.r.t. \(\|\cdot\|_{\sup}\).
+        </article></div>
+<article class="theorem-like" id="theorem-8"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">5.0.7</span>
+</h5>\((K,\ab)\) complete \(L/K\) finite extension.
+          If \(\ab_1,\ab_2\) absolute values on \(L\) extending \(ab\) on \(K\) then \(\ab_1=\ab_2\) and \(L\) is complete w.r.t. \(\ab_1\).
+        </article></section></div></main>
 </div>
 </body>
 </html>

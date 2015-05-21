@@ -72,7 +72,7 @@ Copyright 2014 Alex J. Best
         <statement>An <term>absolute value</term> on a field <m>K</m> is a function <m>\ab\colon K \to \RR</m> such that
           <ol>
             <li><m>|x|\ge 0</m> and <m>|x| = 0 \iff x = 0</m>.</li>
-            <li><m>|xy| = |x||y|</m>.</li>
+            <li><m>|xy| = |x\|y|</m>.</li>
             <li><m>|x + y| \le |x| + |y|</m>.</li>
           </ol>
         </statement>
@@ -121,7 +121,7 @@ Copyright 2014 Alex J. Best
         <statement><m>\ab</m> is non-archimidean if and only if <m>|n|</m> is bounded for all <m>n \in \ZZ</m>.</statement>
         <proof>
           (<m>\Rightarrow</m>) <m>|n| \le \max\{|1|\} = 1</m>.<br />
-          (<m>\Leftarrow</m>) Suppose <m>|n| \le B</m> for all <m>n \in \ZZ</m> then <me>|x+ y|^m = \left| \sum_{r = 0}^{m} \binom{m}{r} x^{m-r}y^r\right| \le \sum_{r=0}^m\left|\binom{m}{r}\right||x|^{m-r}|y|^r \le (m+1)B \max\{|x|^m, |y|^m\}.</me>
+          (<m>\Leftarrow</m>) Suppose <m>|n| \le B</m> for all <m>n \in \ZZ</m> then <me>|x+ y|^m = \left| \sum_{r = 0}^{m} \binom{m}{r} x^{m-r}y^r\right| \le \sum_{r=0}^m\left|\binom{m}{r}\right\|x|^{m-r}|y|^r \le (m+1)B \max\{|x|^m, |y|^m\}.</me>
           Now letting <m>m \to \infty</m> we get that <m>|x+y| \le \max\{|x|, |y|\}</m>.
         </proof>
       </lemma>
@@ -752,7 +752,7 @@ Copyright 2014 Alex J. Best
             It is also clear that it is integrally closed.<br />
             To see it is Noetherian we suppose that <m>L/K</m> is a separable and write <m>n = [L:K]</m>.
             There are <m>n</m> distinct embeddings <m>\sigma_1,\ldots,\sigma_n\colon L \to \bar K</m>.
-            The trace form <m>L\times L \to K</m> given by <m>(x,y)\mapsto \tr xy</m> is a non-degenerate <m>K</m>0bilinear form.
+            The trace form <m>L\times L \to K</m> given by <m>(x,y)\mapsto \tr xy</m> is a non-degenerate <m>K</m>-bilinear form.
             (Using primitive element and expressing as a Vandermonde determinant)
             Let <m>x_1,\ldots,x_n</m> be a basis for <m>L</m> as  <m>K</m>-vector space.
             Clearing denominators allows us to take <m>x_i \in \cO_L</m>.
@@ -809,6 +809,42 @@ Copyright 2014 Alex J. Best
 
     <chapter xml:id="chap-relative">
       <title>Relative extensions</title>
+      <definition>
+        <title>Norms</title>
+        <statement>
+          Let <m>V</m> be a vector space over<m>K</m>.
+          A <term>norm</term> on <m>v</m> is a map <m>\|\cdot\|\colon V \to \RR</m> s.t.
+          <ol>
+            <li><m>\|v\| \ge 0</m> with equality iff <m>v = 0</m>.</li>
+            <li><m>\|\lambda v\| = |\lambda| \|v\|</m></li>
+            <li> <m>\|v+w\| \le \|v\| + \|w\|</m> .</li>
+          </ol>
+        </statement>
+      </definition>
+
+      <theorem>
+        <statement>
+          Let <m>K</m> be complete <m>\ab</m> on <m>K</m>. If <m>\dim_K V \lt \infty</m> then any two norms on <m>V</m> are equivalent and <m>V</m> is complete (w.r.t. any one of them).
+        </statement>
+        <proof>
+          WLOG <m>V = K^d</m> and we will show every norm is equivalent to <m>\|\cdot\|_{\sup}</m>, the proof is via induction on <m>d</m>.
+          For <m>d = 1</m> <m>\|v\| = c\|v\|_{\sup}</m> for some <m>c \gt 0</m> and the result is clear.<br />
+          For generl <m>d</m> we let <m>e_1,\ldots,e_d</m> be the standard basis, so
+          <me>
+            \|x\| = \left\| \sum_{i=1}^d x_ie_i\right\| \le \left(\sum_{i=1}^d \|e_i\|\right)\max_{1\le i\le d}|x_i|.
+          </me>
+          Let <m>S = \{v\in V | \|v\|_{\sup} = 1\}</m> (the equation <todo></todo> implies that <m>\|\cdot\| \colon S\to \RR_{\ge 0}</m> is continuous w.r.t. <m>\|\cdot\|_{\sup}</m> but we don't know <m>S</m> is compact).<br />
+          We now claim that there exists <m>\epsilon \gt 0</m> s.t. <m>\|x\| \gt \epsilon </m> for all <m>x\in S</m>.
+          To see this suppose otherwise, i.e. that there exists a sequence <m>(x^{(n)})</m> in<m>S</m> with <m>\|x^(n) \|\to 0</m> as <m>n \to \infty</m>.
+          For at least one <m>1\le i \le d</m> <m>\|x^{(n)}\|_{\sup} = |x_i^{(n}|</m> for infinitely many <m>n</m>.
+          WLOG this is <m>i=d</m> and we may pass to a subsequence and multiply through by <m>\lambda\in K</m> with <m>|\lambda| = 1</m> to ensure <m>x_d^{(n)} = 1</m> i.e. <m>x^{(n)} = y^{(n)} + e_d </m> for some <m>y^{(n)} \in \langle e_1,\ldots,e_{d-1}\rangle</m>.
+          But as <m> x^{(n)} \to 0</m> w.r.t. <m>\|\cdot\|</m> we have that <m>x^{(n)}</m> is Cauchy and hence so is <m>y^{(n)}</m> w.r.t. <m>\|\cdot\|</m>.
+          This implies that <m>y^{(n)} \to y</m> w.r.t. <m>\|\cdot\|</m> (since <m>K^{d-1}</m> is complete by the induction hypothesis) for some <m>y \in \langle e_1,\ldots,e_{d-1}\rangle</m> but <m>y^{(n)} = x^{(n)} -e_d \to -e_d</m> w.r.t. <m>\|\cdot\|</m> therefore <m>y = -e_d \not\in \langle e_1,\ldots,e_{d-1}\rangle</m> a  contradiction, proving the claim. <br />
+          Now let <m>x\in V</m> <m>x\ne 0</m> and <m>\|\cdot\|_{\sup}=|x_i|</m> for some <m>1\le i\le d</m>. 
+          <m>x/x_i\in S</m> son <m>\|x/x_i\|\gt \epsilon</m> implying <m>\|x\|\gt \epsilon |x_i | = \epsilon \|x\|_{\sup}</m>.
+          This together with the above equation give that <m>\|\cdot\|</m> and <m>\|\cdot\|_{\sup}</m> are equivalent, <m>K</m> complete implies that <m>V</m> is complete w.r.t. <m>\|\cdot\|_{\sup}</m>.
+        </proof>
+      </theorem>
 
       <theorem>
         <statement>
@@ -817,18 +853,6 @@ Copyright 2014 Alex J. Best
         </statement>
       </theorem>
 
-      <definition>
-        <title>Norms</title>
-        <statement>
-          Let <m>V</m> be a vector space over<m>K</m>.
-          A <term>norm</term> on <m>v</m> is a map <m>||\cdot||\colon V \to \RR</m> s.t.
-          <ol>
-            <li><m>||v|| \ge 0</m> with equality iff <m>v = 0</m>.</li>
-            <li><m>||\lambda v|| = |\lambda| ||v||</m></li>
-            <li> <m>||v+w|| \le ||v|| + ||w||</m> .</li>
-          </ol>
-        </statement>
-      </definition>
 
     </chapter>
   </book>
