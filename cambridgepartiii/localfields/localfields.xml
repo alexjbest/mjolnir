@@ -247,7 +247,7 @@ Copyright 2014 Alex J. Best
           Let <m>B= \max\{c : 0 \le c \lt a\}</m> then <m>|b^n| \le (m+1)B \max\{|a|^m,1\}</m>.
           This implies <m>|b| \le ((n\log_a b + 1)B)^{\frac{1}{n}}\max(|a|^{\frac{m}{n}}, 1)</m> taking the limit as<m>n \to \infty</m> gives that <m>|b| \le \max(|a|^{\log_a b}, 1)</m><todo>ref up</todo>.
           Since <m>\ab</m> is archimidean we may pick an integer <m>b\gt 1</m> s.t. <m>|b| \gt 1</m>.
-          Applying the above inequality for any integer <m>a \gt 1</m> we get <m>|b| \le |a|6{\log_a b}</m>.
+          Applying the above inequality for any integer <m>a \gt 1</m> we get <m>|b| \le |a|^{\log_a b}</m>.
           So <m>|a| \gt 1</m>.
           Swapping <m>a</m> and <m>b</m> in the inequality we get <m>|a| \le |b|^{\log_b a}</m>.
           So <me>\frac{\log|a|}{\log a} = \frac{\log|b|}{\log b} = \lambda.</me>
