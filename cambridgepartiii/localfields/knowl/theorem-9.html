@@ -1,0 +1,29 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="theorem-like"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">7.0.9</span>
+</h5>
+<ol style="list-style-type: decimal;">
+<li>If \(L/K\) is totally ramified then the minimal polynomial of \(\pi_L\) is Eisenstein and \(\cO_L = \cO_K[\pi_L]\).</li>
+<li>Conversely, if \(g\in \cO_K[x]\) is Eisenstein and \(\alpha\) is a root of \(g\) then \(L = K(\alpha)\) is totally ramified and \(\alpha\) is a uniformiser for \(L\).</li>
+</ol></article><article class="hiddenproof" id="proof-22"><a knowl="./knowl/proof-22.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-22" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol style="list-style-type: decimal;">
+<li>
+              Let \([L:K] = e\) \(g(x) = x^m + \sum_{i=0}^{n-1}a_i x^i\) for \(a_i\in\cO_K\) be the minimal polynomial for \(\pi_L\) over \(K\) (so \(m\le e\)) implying \(\pi_L^m = - \sum_{i=0}^{m-1} a_i \pi_L^i\).
+              So \(v_L(a_i \pi_L^i  =i + e(v_K(a_i)) \equiv i \pmod{e}\).
+              So all terms on the right have distinct valuations, giving \(m = v_L(\pi_L^m) = \min_{0\le i\le m-1}(i+ev_K(a_i))\) so \(v_K(a_i)\ge 1\) for all \(i\) and \(v_K(a_0) = 1\) and \(m =e\).
+              So \(g\) is Eisenstein and \(L = K(\pi_L)\).
+              For \(y\in L\) we write \(y  = \sum_{i=0}^{e-1}b_i \pi_L^i\) for \(b_i \in K\).
+              As before \(v_L(y) = \min_{0\le i\le e-} (i + ev_K(b_i))\).
+              So \(y \in \cO_L \iff v_L(y)\ge 0 \iff v_K(b_i) \ge 0 \forall i\iff y \in \cO_K[\pi_L]\).
+              Therefore \(\cO_L = \cO_K[\pi_L]\).
+            </li>
+<li>
+              Say \(g (x) = x^n + \sum_{i=0}^{n-1}a_i x^i \in \cO_K[x]\), Eisenstein.
+              Let \(e = e(L/K)\), then \(v_L(a_i) \ge e\) for all \(i\) anf \(v_L(a_0) = e\).
+              \(\sigma \in \cO_L\) is a root of \(g\) implies that \(\alpha^n = -\sum_{i=0}^{n-1}a_i\alpha^i\) implying that \(v_L(\alpha) \gt 0\).
+              For \(i \ne 0\) \(v_L(a_i\alpha^i) \gt e = v_L(a_0)\) so \(v_L(\alpha) =e \) which implies \(n v_L(\alpha) = e\) and \(n = [L:K] = ef\) which implies that \(v_L(\alpha) = 1\), \(n = e\) and \(f = 1\).
+            </li>
+</ol></article></div><div class="context-link" style="text-align:right;"><a href="chap-ramification.html#theorem-9">(in-context)</a></div>

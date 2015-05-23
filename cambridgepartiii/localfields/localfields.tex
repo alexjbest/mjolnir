@@ -1,6 +1,6 @@
 %%                                    %%
 %% Generated from MathBook XML source %%
-%%    on 2015-05-22T12:34:22Z    %%
+%%    on 2015-05-23T07:26:38Z    %%
 %%                                    %%
 %%   http://mathbook.pugetsound.edu   %%
 %%                                    %%
@@ -105,6 +105,7 @@
 \DeclareMathOperator{\chara}{char}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Gal}{Gal}
 %% Title page information for book
 \title{Part III Local Fields 2014}
 \author{}
@@ -162,7 +163,7 @@ The recommended books are:
 
       %
 \par
-Generated: May 22, 2015, 12:34:22 (Z)%
+Generated: May 23, 2015, 07:26:38 (Z)%
 \typeout{************************************************}
 \typeout{Chapter 2 \(p\)-adic numbers}
 \typeout{************************************************}
@@ -756,6 +757,70 @@ Let \(R\) be an integral domain and \(p \subset R\) a prime ideal.
 \((K,\ab)\) complete \(L/K\) finite extension.
           If \(\ab_1,\ab_2\) absolute values on \(L\) extending \(ab\) on \(K\) then \(\ab_1=\ab_2\) and \(L\) is complete w.r.t. \(\ab_1\).
         \end{theorem}
+\typeout{************************************************}
+\typeout{Chapter 6 Inverse limits}
+\typeout{************************************************}
+\chapter[Inverse limits]{Inverse limits}\label{chap-inverse}
+\begin{definition}[Local fields]\label{definition-11}
+
+          A local field is a locally compact valued field.
+        \end{definition}
+\typeout{************************************************}
+\typeout{Chapter 7 Ramification}
+\typeout{************************************************}
+\chapter[Ramification]{Ramification}\label{chap-ramification}
+\begin{theorem}\label{theorem-9}
+\begin{enumerate}
+\item{}If \(L/K\) is totally ramified then the minimal polynomial of \(\pi_L\) is Eisenstein and \(\cO_L = \cO_K[\pi_L]\).\item{}Conversely, if \(g\in \cO_K[x]\) is Eisenstein and \(\alpha\) is a root of \(g\) then \(L = K(\alpha)\) is totally ramified and \(\alpha\) is a uniformiser for \(L\).\end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item{}
+              Let \([L:K] = e\) \(g(x) = x^m + \sum_{i=0}^{n-1}a_i x^i\) for \(a_i\in\cO_K\) be the minimal polynomial for \(\pi_L\) over \(K\) (so \(m\le e\)) implying \(\pi_L^m = - \sum_{i=0}^{m-1} a_i \pi_L^i\).
+              So \(v_L(a_i \pi_L^i  =i + e(v_K(a_i)) \equiv i \pmod{e}\).
+              So all terms on the right have distinct valuations, giving \(m = v_L(\pi_L^m) = \min_{0\le i\le m-1}(i+ev_K(a_i))\) so \(v_K(a_i)\ge 1\) for all \(i\) and \(v_K(a_0) = 1\) and \(m =e\).
+              So \(g\) is Eisenstein and \(L = K(\pi_L)\).
+              For \(y\in L\) we write \(y  = \sum_{i=0}^{e-1}b_i \pi_L^i\) for \(b_i \in K\).
+              As before \(v_L(y) = \min_{0\le i\le e-} (i + ev_K(b_i))\).
+              So \(y \in \cO_L \iff v_L(y)\ge 0 \iff v_K(b_i) \ge 0 \forall i\iff y \in \cO_K[\pi_L]\).
+              Therefore \(\cO_L = \cO_K[\pi_L]\).
+            \item{}
+              Say \(g (x) = x^n + \sum_{i=0}^{n-1}a_i x^i \in \cO_K[x]\), Eisenstein.
+              Let \(e = e(L/K)\), then \(v_L(a_i) \ge e\) for all \(i\) anf \(v_L(a_0) = e\).
+              \(\sigma \in \cO_L\) is a root of \(g\) implies that \(\alpha^n = -\sum_{i=0}^{n-1}a_i\alpha^i\) implying that \(v_L(\alpha) \gt 0\).
+              For \(i \ne 0\) \(v_L(a_i\alpha^i) \gt e = v_L(a_0)\) so \(v_L(\alpha) =e \) which implies \(n v_L(\alpha) = e\) and \(n = [L:K] = ef\) which implies that \(v_L(\alpha) = 1\), \(n = e\) and \(f = 1\).
+            \end{enumerate}
+\end{proof}
+\begin{lemma}[Krasner's lemma]\label{lemma-14}
+
+          Let \(f(x) \in \cO_K[x]\) be irreducible and monic, with roots \(\alpha_1,\ldots,\alpha_d\) in \(K\).
+          Suppose \(\beta \in \overline{K}\) with \(|\beta-\alpha_1| \lt |\beta - \alpha_i|\) for all \(i = 2,\ldots,d\).
+          Then \(\alpha_1 \in K(\beta)\).
+        \end{lemma}
+\begin{proof}
+
+          Let \(L  = K(\beta)\), \(L' = L(\alpha_1,\ldots,\alpha_d)\).
+          Then \(L'/L\) is Galois and for \(\sigma\in \Gal(L'/L)\) we have \(|\beta-\sigma(\alpha_1)| = |\sigma(\beta-\alpha_1)| = |\beta-\alpha_1|\) implying that \(\sigma(\alpha_1) = \alpha_1\) and so \(\alpha_1 \in K(\beta)\).
+        \end{proof}
+\typeout{************************************************}
+\typeout{Chapter 8 Norm-index computations}
+\typeout{************************************************}
+\chapter[Norm-index computations]{Norm-index computations}\label{chap-norm}
+\begin{definition}[Herbrand quotients]\label{definition-12}
+
+          The Herbrand quotient is \(q(A) = |H^0(A)|/|H^1(A)|\), it is undefined if either group is infinite.
+        \end{definition}
+\begin{theorem}[Hilbert's theorem 90]\label{theorem-10}
+\(L/K\) Galois with \(\langle \sigma \rangle  = G  = \Gal(L/K)\) cyclic of order \(n\).
+          If \(x\in L\) with \(N_{L/K} (x) = 1\) then there is \(y \in L^*\) s.t. \(x = \sigma(y)/y\).
+        \end{theorem}
+\begin{proof}
+
+          Let \(a_0 = 1\), \(a_r = \prod_{i=0}^{r-1} \sigma^i(x)\).
+          As distinct automorphisms are linearly independent there is some \(z\in L\) with \(b=\sum_{i=0}^{n-1} a_i \sigma^i(z) \ne 0\).
+          Then \[\sigma(b) = \sum_{i=0}^{n-1}\sigma(a_i)\sigma^{i+1}(z) = \sum_{i=0}^{n-1}\frac{a_{i+1}}{x}\sigma^{i+1}(z) =\frac{1}{x}\sum_{i=0}^{n-1}a_i\sigma^{i}(z)\].
+          So \(x\sigma(b) = b\), giving \(x = \sigma(b^{-1})/b^{-1}\).
+        \end{proof}
 %
 \backmatter
 %

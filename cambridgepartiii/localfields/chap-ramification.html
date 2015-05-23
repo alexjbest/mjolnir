@@ -7,7 +7,7 @@
 <!--*                                    *-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>LF Examples of DVR's continued</title>
+<title>LF Ramification</title>
 <meta name="Keywords" content="Authored in MathBook XML">
 <meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <script type="text/x-mathjax-config">
@@ -72,12 +72,12 @@ $(function () {
 <nav id="primary-navbar"><div class="container">
 <div class="navbar-top-buttons">
 <button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<a class="previous-button toolbar-item button" href="sec-valuations.html">Previous</a><a class="up-button button toolbar-item" href="chap-valuations.html">Up</a><a class="next-button button toolbar-item" href="sec-teichmuller.html">Next</a>
+<a class="previous-button toolbar-item button" href="chap-inverse.html">Previous</a><a class="up-button button toolbar-item" href="localfields.html">Up</a><a class="next-button button toolbar-item" href="chap-norm.html">Next</a>
 </div>
 <button class="sidebar-right-toggle-button button active">Annotations</button>
 </div>
 <div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-valuations.html">Previous</a><a class="up-button button toolbar-item" href="chap-valuations.html">Up</a><a class="next-button button toolbar-item" href="sec-teichmuller.html">Next</a>
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="chap-inverse.html">Previous</a><a class="up-button button toolbar-item" href="localfields.html">Up</a><a class="next-button button toolbar-item" href="chap-norm.html">Next</a>
 </div>
 </div></nav></header><div class="page">
 <aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
@@ -85,10 +85,10 @@ $(function () {
 <ul></ul>
 <h2 class="link"><a href="chap-padic.html"><span class="codenumber">2</span><span class="title">\(p\)-adic numbers</span></a></h2>
 <ul></ul>
-<h2 class="link active"><a href="chap-valuations.html"><span class="codenumber">3</span><span class="title">Valuations</span></a></h2>
+<h2 class="link"><a href="chap-valuations.html"><span class="codenumber">3</span><span class="title">Valuations</span></a></h2>
 <ul>
 <li><a href="sec-valuations.html">Valuations</a></li>
-<li><a href="sec-dvrs.html" class="active">Examples of DVR's continued</a></li>
+<li><a href="sec-dvrs.html">Examples of DVR's continued</a></li>
 <li><a href="sec-teichmuller.html">The Teichmuller map</a></li>
 </ul>
 <h2 class="link"><a href="chap-dedekind.html"><span class="codenumber">4</span><span class="title">Dedekind domains</span></a></h2>
@@ -100,68 +100,46 @@ $(function () {
 <ul></ul>
 <h2 class="link"><a href="chap-inverse.html"><span class="codenumber">6</span><span class="title">Inverse limits</span></a></h2>
 <ul></ul>
-<h2 class="link"><a href="chap-ramification.html"><span class="codenumber">7</span><span class="title">Ramification</span></a></h2>
+<h2 class="link active"><a href="chap-ramification.html"><span class="codenumber">7</span><span class="title">Ramification</span></a></h2>
 <ul></ul>
 <h2 class="link"><a href="chap-norm.html"><span class="codenumber">8</span><span class="title">Norm-index computations</span></a></h2>
 <ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
-</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-dvrs"><header><h1 class="heading">
-<span class="type">Section</span><span class="codenumber">3.2</span><span class="title">Examples of DVR's continued</span>
-</h1></header><article class="example-like" id="example-5"><h5 class="heading">
-<span class="type">Example</span><span class="codenumber">3.2.1</span>
-</h5>
-            Let \(k\) be any field, \(K = k(t)\), \(v_0(t^n p(t)/q(t)) = n\), where \(p,q\in k[t]\) and \(p(0),q(0) \ne 0\).
-            Then \(\cO = \{f(t) = p(t)/q(t) : f(0)\text{ is defined i.e. } q(0) \ne 0\}\).
-            And \(\cO^* = \{f(t) = p(t)/q(t) : f(0)\text{ is defined and non-zero}\}\).
-            \(m = \{f(t) : f(0) = 0\}\).
-            \(\cO/m \cong k\) via the map \(f\mapsto f(0)\).
-            Likewise for other \(a \in k\), \(v_a((t-a)^n p(t)/q(t)) = n\), where \(p,q\in k[t]\) and \(p(a),q(a) \ne 0\), this is the order of zero/pole at \(t = a\).
-            We also have \(v_\infty(p(t) / q(t)) = v_0 (p (1/\epsilon)/q(1/\epsilon)) = \deg (q) - \deg (p)\).
-          </article><article class="example-like" id="remark-8"><h5 class="heading">
-<span class="type">Remark</span><span class="codenumber">3.2.2</span>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="chapter" id="chap-ramification"><header><h1 class="heading">
+<span class="type">Chapter</span><span class="codenumber">7</span><span class="title">Ramification</span>
+</h1></header><article class="theorem-like" id="theorem-9"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">7.0.9</span>
 </h5>
 <ol style="list-style-type: decimal;">
+<li>If \(L/K\) is totally ramified then the minimal polynomial of \(\pi_L\) is Eisenstein and \(\cO_L = \cO_K[\pi_L]\).</li>
+<li>Conversely, if \(g\in \cO_K[x]\) is Eisenstein and \(\alpha\) is a root of \(g\) then \(L = K(\alpha)\) is totally ramified and \(\alpha\) is a uniformiser for \(L\).</li>
+</ol></article><article class="hiddenproof" id="proof-22"><a knowl="./knowl/proof-22.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-22" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol style="list-style-type: decimal;">
 <li>
-                If \(k = \bar k\) then these are the only valuations on \(K = k(t)\) with \(v (k^* ) = 0\).
-              </li>
+              Let \([L:K] = e\) \(g(x) = x^m + \sum_{i=0}^{n-1}a_i x^i\) for \(a_i\in\cO_K\) be the minimal polynomial for \(\pi_L\) over \(K\) (so \(m\le e\)) implying \(\pi_L^m = - \sum_{i=0}^{m-1} a_i \pi_L^i\).
+              So \(v_L(a_i \pi_L^i  =i + e(v_K(a_i)) \equiv i \pmod{e}\).
+              So all terms on the right have distinct valuations, giving \(m = v_L(\pi_L^m) = \min_{0\le i\le m-1}(i+ev_K(a_i))\) so \(v_K(a_i)\ge 1\) for all \(i\) and \(v_K(a_0) = 1\) and \(m =e\).
+              So \(g\) is Eisenstein and \(L = K(\pi_L)\).
+              For \(y\in L\) we write \(y  = \sum_{i=0}^{e-1}b_i \pi_L^i\) for \(b_i \in K\).
+              As before \(v_L(y) = \min_{0\le i\le e-} (i + ev_K(b_i))\).
+              So \(y \in \cO_L \iff v_L(y)\ge 0 \iff v_K(b_i) \ge 0 \forall i\iff y \in \cO_K[\pi_L]\).
+              Therefore \(\cO_L = \cO_K[\pi_L]\).
+            </li>
 <li>
-                \(K = k(t)\) is the function field of \(\PP^1\).
-                Similar examples arise for any smooth point of an algebraic curve/Riemann surface.
-              </li>
-</ol></article><article class="example-like" id="example-6"><h5 class="heading">
-<span class="type">Example</span><span class="codenumber">3.2.3</span>
-</h5>\(K = k((t)) = \) the field of Laurent power series \[ = \left\{ \sum_{n \ge n_0} a_n t^n : a_n \in k\right\}.\]
-            We have \(v ( \sum a_n t^n ) = \min \{n : a_n  \ne 0\}\).
-            Then \(\cO = k[[t]] =\) ring of power series in \(t\).
-            We get \(m = \{ f \in k[[t]]: f(0) = 0\}\) and we have \(\cO/m = k\).
-          </article><article class="theorem-like" id="lemma-11"><h5 class="heading">
-<span class="type">Lemma</span><span class="codenumber">3.2.4</span>
+              Say \(g (x) = x^n + \sum_{i=0}^{n-1}a_i x^i \in \cO_K[x]\), Eisenstein.
+              Let \(e = e(L/K)\), then \(v_L(a_i) \ge e\) for all \(i\) anf \(v_L(a_0) = e\).
+              \(\sigma \in \cO_L\) is a root of \(g\) implies that \(\alpha^n = -\sum_{i=0}^{n-1}a_i\alpha^i\) implying that \(v_L(\alpha) \gt 0\).
+              For \(i \ne 0\) \(v_L(a_i\alpha^i) \gt e = v_L(a_0)\) so \(v_L(\alpha) =e \) which implies \(n v_L(\alpha) = e\) and \(n = [L:K] = ef\) which implies that \(v_L(\alpha) = 1\), \(n = e\) and \(f = 1\).
+            </li>
+</ol></article></div>
+<article class="theorem-like" id="lemma-14"><h5 class="heading">
+<span class="type">Lemma</span><span class="codenumber">7.0.10</span><span class="title">Krasner's lemma</span>
 </h5>
-<ol style="list-style-type: decimal;">
-<li>\(k[[t]]^* = \{\sum _{n=0}^\infty a_n t^n : a_0 \ne 0\}\).</li>
-<li>\(k((t))\) is a field and \(v\) extends to \(v_0\) on \(k(t)\).</li>
-<li>\(k[[t]]\) is the completion of \(k[t]\) w.r.t. \(v_0\).</li>
-<li>\(k((t))\) is the completion of \(k(t)\) w.r.t. \(v_0\).</li>
-</ol></article><article class="hiddenproof" id="proof-13"><a knowl="./knowl/proof-13.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-13" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol style="list-style-type: decimal;">
-<li>
-                Let \(\sum_{n=0}^\infty a_n t^n\in k[[t]]\) with \(a_0 \ne 0\).
-                We solve for \(b_n\) such that \[\left(\sum_{n=0}^\infty a_n t^n\right)\left(\sum_{n=0}^\infty b_n t^n\right) = 1.\]
-              </li>
-<li>
-                By (i) we have \(k((t)) = \Frac k[[t]]\).
-                In particular \(k((t))\) is a field containing \(k[t]\) so \(k(t) \subset k((t))\).
-                If \(f(t) = t^n p(t)/q(t)\) with \(p,q\in k[t]\) and \(p(o),q(o) \ne 0\) then by (i) \(p,,q \in k[[t]]^*\) so \(v(f) = n  = v_0 (f)\).
-              </li>
-<li>
-                Let \(f_1,f_2,\ldots\) be a Cauchy sequence in \(k[[t]]\).
-                Then given \(r\) there exists \(N\) s.t. for all \(m,n \ge N\) we have \(f_m \equiv f_n \pmod{t^{n+1}}\).
-                Let \(c_r  = \) coefficient of \(t^r\) in \(f^N\).
-                Then \(f_n \to g\) where \(g = \sum_{r=0}^\infty c_r t^r\) and therefore \(k[[t]]\) is complete.
-                But \(k[t] \subset k[[t]]\) is a dense subset, therefore \(k[[t]]\) is the completion of \(k[t]\).
-              </li>
-<li>
-                Likewise.
-              </li>
-</ol></article></div></section></div></main>
+          Let \(f(x) \in \cO_K[x]\) be irreducible and monic, with roots \(\alpha_1,\ldots,\alpha_d\) in \(K\).
+          Suppose \(\beta \in \overline{K}\) with \(|\beta-\alpha_1| \lt |\beta - \alpha_i|\) for all \(i = 2,\ldots,d\).
+          Then \(\alpha_1 \in K(\beta)\).
+        </article><article class="hiddenproof" id="proof-23"><a knowl="./knowl/proof-23.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-23" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+          Let \(L  = K(\beta)\), \(L' = L(\alpha_1,\ldots,\alpha_d)\).
+          Then \(L'/L\) is Galois and for \(\sigma\in \Gal(L'/L)\) we have \(|\beta-\sigma(\alpha_1)| = |\sigma(\beta-\alpha_1)| = |\beta-\alpha_1|\) implying that \(\sigma(\alpha_1) = \alpha_1\) and so \(\alpha_1 \in K(\beta)\).
+        </article></div></section></div></main>
 </div>
 </body>
 </html>

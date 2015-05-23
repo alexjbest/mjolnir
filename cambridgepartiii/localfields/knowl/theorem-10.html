@@ -1,0 +1,15 @@
+<!--*                                    *-->
+<!--* Generated from MathBook XML source *-->
+<!--*                                    *-->
+<!--*   http://mathbook.pugetsound.edu   *-->
+<!--*                                    *-->
+<article class="theorem-like"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">8.0.12</span><span class="title">Hilbert's theorem 90</span>
+</h5>\(L/K\) Galois with \(\langle \sigma \rangle  = G  = \Gal(L/K)\) cyclic of order \(n\).
+          If \(x\in L\) with \(N_{L/K} (x) = 1\) then there is \(y \in L^*\) s.t. \(x = \sigma(y)/y\).
+        </article><article class="hiddenproof" id="proof-24"><a knowl="./knowl/proof-24.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-24" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+          Let \(a_0 = 1\), \(a_r = \prod_{i=0}^{r-1} \sigma^i(x)\).
+          As distinct automorphisms are linearly independent there is some \(z\in L\) with \(b=\sum_{i=0}^{n-1} a_i \sigma^i(z) \ne 0\).
+          Then \[\sigma(b) = \sum_{i=0}^{n-1}\sigma(a_i)\sigma^{i+1}(z) = \sum_{i=0}^{n-1}\frac{a_{i+1}}{x}\sigma^{i+1}(z) =\frac{1}{x}\sum_{i=0}^{n-1}a_i\sigma^{i}(z)\].
+          So \(x\sigma(b) = b\), giving \(x = \sigma(b^{-1})/b^{-1}\).
+        </article></div><div class="context-link" style="text-align:right;"><a href="chap-norm.html#theorem-10">(in-context)</a></div>

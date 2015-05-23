@@ -7,7 +7,7 @@
 <!--*                                    *-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>LF Examples of DVR's continued</title>
+<title>LF Norm-index computations</title>
 <meta name="Keywords" content="Authored in MathBook XML">
 <meta name="viewport" content="width=device-width,  initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 <script type="text/x-mathjax-config">
@@ -72,12 +72,12 @@ $(function () {
 <nav id="primary-navbar"><div class="container">
 <div class="navbar-top-buttons">
 <button class="sidebar-left-toggle-button button active">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<a class="previous-button toolbar-item button" href="sec-valuations.html">Previous</a><a class="up-button button toolbar-item" href="chap-valuations.html">Up</a><a class="next-button button toolbar-item" href="sec-teichmuller.html">Next</a>
+<a class="previous-button toolbar-item button" href="chap-ramification.html">Previous</a><a class="up-button button toolbar-item" href="localfields.html">Up</a><span class="next-button button toolbar-item disabled">Next</span>
 </div>
 <button class="sidebar-right-toggle-button button active">Annotations</button>
 </div>
 <div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="sec-valuations.html">Previous</a><a class="up-button button toolbar-item" href="chap-valuations.html">Up</a><a class="next-button button toolbar-item" href="sec-teichmuller.html">Next</a>
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="chap-ramification.html">Previous</a><a class="up-button button toolbar-item" href="localfields.html">Up</a><span class="next-button button toolbar-item disabled">Next</span>
 </div>
 </div></nav></header><div class="page">
 <aside id="sidebar-left" class="sidebar"><div class="sidebar-content">
@@ -85,10 +85,10 @@ $(function () {
 <ul></ul>
 <h2 class="link"><a href="chap-padic.html"><span class="codenumber">2</span><span class="title">\(p\)-adic numbers</span></a></h2>
 <ul></ul>
-<h2 class="link active"><a href="chap-valuations.html"><span class="codenumber">3</span><span class="title">Valuations</span></a></h2>
+<h2 class="link"><a href="chap-valuations.html"><span class="codenumber">3</span><span class="title">Valuations</span></a></h2>
 <ul>
 <li><a href="sec-valuations.html">Valuations</a></li>
-<li><a href="sec-dvrs.html" class="active">Examples of DVR's continued</a></li>
+<li><a href="sec-dvrs.html">Examples of DVR's continued</a></li>
 <li><a href="sec-teichmuller.html">The Teichmuller map</a></li>
 </ul>
 <h2 class="link"><a href="chap-dedekind.html"><span class="codenumber">4</span><span class="title">Dedekind domains</span></a></h2>
@@ -102,66 +102,24 @@ $(function () {
 <ul></ul>
 <h2 class="link"><a href="chap-ramification.html"><span class="codenumber">7</span><span class="title">Ramification</span></a></h2>
 <ul></ul>
-<h2 class="link"><a href="chap-norm.html"><span class="codenumber">8</span><span class="title">Norm-index computations</span></a></h2>
+<h2 class="link active"><a href="chap-norm.html"><span class="codenumber">8</span><span class="title">Norm-index computations</span></a></h2>
 <ul></ul></nav><div class="extras"><nav><a class="feedback-link" href="https://github.com/alexjbest/mjolnir/issues">Feedback</a><a class="mathbook-link" href="http://mathbook.pugetsound.edu">Authored in MathBook XML</a></nav></div>
-</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="section" id="sec-dvrs"><header><h1 class="heading">
-<span class="type">Section</span><span class="codenumber">3.2</span><span class="title">Examples of DVR's continued</span>
-</h1></header><article class="example-like" id="example-5"><h5 class="heading">
-<span class="type">Example</span><span class="codenumber">3.2.1</span>
+</div></aside><main class="main"><div id="content" class="mathbook-content"><section class="chapter" id="chap-norm"><header><h1 class="heading">
+<span class="type">Chapter</span><span class="codenumber">8</span><span class="title">Norm-index computations</span>
+</h1></header><article class="definition-like" id="definition-12"><h5 class="heading">
+<span class="type">Definition</span><span class="codenumber">8.0.11</span><span class="title">Herbrand quotients</span>
 </h5>
-            Let \(k\) be any field, \(K = k(t)\), \(v_0(t^n p(t)/q(t)) = n\), where \(p,q\in k[t]\) and \(p(0),q(0) \ne 0\).
-            Then \(\cO = \{f(t) = p(t)/q(t) : f(0)\text{ is defined i.e. } q(0) \ne 0\}\).
-            And \(\cO^* = \{f(t) = p(t)/q(t) : f(0)\text{ is defined and non-zero}\}\).
-            \(m = \{f(t) : f(0) = 0\}\).
-            \(\cO/m \cong k\) via the map \(f\mapsto f(0)\).
-            Likewise for other \(a \in k\), \(v_a((t-a)^n p(t)/q(t)) = n\), where \(p,q\in k[t]\) and \(p(a),q(a) \ne 0\), this is the order of zero/pole at \(t = a\).
-            We also have \(v_\infty(p(t) / q(t)) = v_0 (p (1/\epsilon)/q(1/\epsilon)) = \deg (q) - \deg (p)\).
-          </article><article class="example-like" id="remark-8"><h5 class="heading">
-<span class="type">Remark</span><span class="codenumber">3.2.2</span>
-</h5>
-<ol style="list-style-type: decimal;">
-<li>
-                If \(k = \bar k\) then these are the only valuations on \(K = k(t)\) with \(v (k^* ) = 0\).
-              </li>
-<li>
-                \(K = k(t)\) is the function field of \(\PP^1\).
-                Similar examples arise for any smooth point of an algebraic curve/Riemann surface.
-              </li>
-</ol></article><article class="example-like" id="example-6"><h5 class="heading">
-<span class="type">Example</span><span class="codenumber">3.2.3</span>
-</h5>\(K = k((t)) = \) the field of Laurent power series \[ = \left\{ \sum_{n \ge n_0} a_n t^n : a_n \in k\right\}.\]
-            We have \(v ( \sum a_n t^n ) = \min \{n : a_n  \ne 0\}\).
-            Then \(\cO = k[[t]] =\) ring of power series in \(t\).
-            We get \(m = \{ f \in k[[t]]: f(0) = 0\}\) and we have \(\cO/m = k\).
-          </article><article class="theorem-like" id="lemma-11"><h5 class="heading">
-<span class="type">Lemma</span><span class="codenumber">3.2.4</span>
-</h5>
-<ol style="list-style-type: decimal;">
-<li>\(k[[t]]^* = \{\sum _{n=0}^\infty a_n t^n : a_0 \ne 0\}\).</li>
-<li>\(k((t))\) is a field and \(v\) extends to \(v_0\) on \(k(t)\).</li>
-<li>\(k[[t]]\) is the completion of \(k[t]\) w.r.t. \(v_0\).</li>
-<li>\(k((t))\) is the completion of \(k(t)\) w.r.t. \(v_0\).</li>
-</ol></article><article class="hiddenproof" id="proof-13"><a knowl="./knowl/proof-13.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-13" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol style="list-style-type: decimal;">
-<li>
-                Let \(\sum_{n=0}^\infty a_n t^n\in k[[t]]\) with \(a_0 \ne 0\).
-                We solve for \(b_n\) such that \[\left(\sum_{n=0}^\infty a_n t^n\right)\left(\sum_{n=0}^\infty b_n t^n\right) = 1.\]
-              </li>
-<li>
-                By (i) we have \(k((t)) = \Frac k[[t]]\).
-                In particular \(k((t))\) is a field containing \(k[t]\) so \(k(t) \subset k((t))\).
-                If \(f(t) = t^n p(t)/q(t)\) with \(p,q\in k[t]\) and \(p(o),q(o) \ne 0\) then by (i) \(p,,q \in k[[t]]^*\) so \(v(f) = n  = v_0 (f)\).
-              </li>
-<li>
-                Let \(f_1,f_2,\ldots\) be a Cauchy sequence in \(k[[t]]\).
-                Then given \(r\) there exists \(N\) s.t. for all \(m,n \ge N\) we have \(f_m \equiv f_n \pmod{t^{n+1}}\).
-                Let \(c_r  = \) coefficient of \(t^r\) in \(f^N\).
-                Then \(f_n \to g\) where \(g = \sum_{r=0}^\infty c_r t^r\) and therefore \(k[[t]]\) is complete.
-                But \(k[t] \subset k[[t]]\) is a dense subset, therefore \(k[[t]]\) is the completion of \(k[t]\).
-              </li>
-<li>
-                Likewise.
-              </li>
-</ol></article></div></section></div></main>
+          The Herbrand quotient is \(q(A) = |H^0(A)|/|H^1(A)|\), it is undefined if either group is infinite.
+        </article><article class="theorem-like" id="theorem-10"><h5 class="heading">
+<span class="type">Theorem</span><span class="codenumber">8.0.12</span><span class="title">Hilbert's theorem 90</span>
+</h5>\(L/K\) Galois with \(\langle \sigma \rangle  = G  = \Gal(L/K)\) cyclic of order \(n\).
+          If \(x\in L\) with \(N_{L/K} (x) = 1\) then there is \(y \in L^*\) s.t. \(x = \sigma(y)/y\).
+        </article><article class="hiddenproof" id="proof-24"><a knowl="./knowl/proof-24.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-24" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof">
+          Let \(a_0 = 1\), \(a_r = \prod_{i=0}^{r-1} \sigma^i(x)\).
+          As distinct automorphisms are linearly independent there is some \(z\in L\) with \(b=\sum_{i=0}^{n-1} a_i \sigma^i(z) \ne 0\).
+          Then \[\sigma(b) = \sum_{i=0}^{n-1}\sigma(a_i)\sigma^{i+1}(z) = \sum_{i=0}^{n-1}\frac{a_{i+1}}{x}\sigma^{i+1}(z) =\frac{1}{x}\sum_{i=0}^{n-1}a_i\sigma^{i}(z)\].
+          So \(x\sigma(b) = b\), giving \(x = \sigma(b^{-1})/b^{-1}\).
+        </article></div></section></div></main>
 </div>
 </body>
 </html>

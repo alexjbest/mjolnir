@@ -35,6 +35,7 @@ Copyright 2014 Alex J. Best
     \DeclareMathOperator{\chara}{char}
     \DeclareMathOperator{\tr}{tr}
     \DeclareMathOperator{\Frac}{Frac}
+    \DeclareMathOperator{\Gal}{Gal}
     </macros>
 
     <initialism>LF</initialism>
@@ -853,6 +854,92 @@ Copyright 2014 Alex J. Best
         </statement>
       </theorem>
 
+
+    </chapter>
+
+    <chapter xml:id="chap-inverse">
+      <title>Inverse limits</title>
+
+
+      <definition>
+        <title>Local fields</title>
+        <statement>
+          A local field is a locally compact valued field.
+        </statement>
+      </definition>
+    </chapter>
+
+    <chapter xml:id="chap-ramification">
+      <title>Ramification</title>
+
+      <theorem>
+        <statement>
+          <ol>
+            <li>If <m>L/K</m> is totally ramified then the minimal polynomial of <m>\pi_L</m> is Eisenstein and <m>\cO_L = \cO_K[\pi_L]</m>.</li>
+            <li>Conversely, if <m>g\in \cO_K[x]</m> is Eisenstein and <m>\alpha</m> is a root of <m>g</m> then <m>L = K(\alpha)</m> is totally ramified and <m>\alpha</m> is a uniformiser for <m>L</m>.</li>
+          </ol>
+        </statement>
+        <proof>
+          <ol>
+            <li>
+              Let <m>[L:K] = e</m> <m>g(x) = x^m + \sum_{i=0}^{n-1}a_i x^i</m> for <m>a_i\in\cO_K</m> be the minimal polynomial for <m>\pi_L</m> over <m>K</m> (so <m>m\le e</m>) implying <m>\pi_L^m = - \sum_{i=0}^{m-1} a_i \pi_L^i</m>.
+              So <m>v_L(a_i \pi_L^i  =i + e(v_K(a_i)) \equiv i \pmod{e}</m>.
+              So all terms on the right have distinct valuations, giving <m>m = v_L(\pi_L^m) = \min_{0\le i\le m-1}(i+ev_K(a_i))</m> so <m>v_K(a_i)\ge 1</m> for all <m>i</m> and <m>v_K(a_0) = 1</m> and <m>m =e</m>.
+              So <m>g</m> is Eisenstein and <m>L = K(\pi_L)</m>.
+              For <m>y\in L</m> we write <m>y  = \sum_{i=0}^{e-1}b_i \pi_L^i</m> for <m>b_i \in K</m>.
+              As before <m>v_L(y) = \min_{0\le i\le e-} (i + ev_K(b_i))</m>.
+              So <m>y \in \cO_L \iff v_L(y)\ge 0 \iff v_K(b_i) \ge 0 \forall i\iff y \in \cO_K[\pi_L]</m>.
+              Therefore <m>\cO_L = \cO_K[\pi_L]</m>.
+            </li>
+            <li>
+              Say <m>g (x) = x^n + \sum_{i=0}^{n-1}a_i x^i \in \cO_K[x]</m>, Eisenstein.
+              Let <m>e = e(L/K)</m>, then <m>v_L(a_i) \ge e</m> for all <m>i</m> anf <m>v_L(a_0) = e</m>.
+              <m>\sigma \in \cO_L</m> is a root of <m>g</m> implies that <m>\alpha^n = -\sum_{i=0}^{n-1}a_i\alpha^i</m> implying that <m>v_L(\alpha) \gt 0</m>.
+              For <m>i \ne 0</m> <m>v_L(a_i\alpha^i) \gt e = v_L(a_0)</m> so <m>v_L(\alpha) =e </m> which implies <m>n v_L(\alpha) = e</m> and <m>n = [L:K] = ef</m> which implies that <m>v_L(\alpha) = 1</m>, <m>n = e</m> and <m>f = 1</m>.
+            </li>
+          </ol>
+        </proof>
+      </theorem>
+
+
+      <lemma>
+        <title>Krasner's lemma</title>
+        <statement>
+          Let <m>f(x) \in \cO_K[x]</m> be irreducible and monic, with roots <m>\alpha_1,\ldots,\alpha_d</m> in <m>K</m>.
+          Suppose <m>\beta \in \overline{K}</m> with <m>|\beta-\alpha_1| \lt |\beta - \alpha_i|</m> for all <m>i = 2,\ldots,d</m>.
+          Then <m>\alpha_1 \in K(\beta)</m>.
+        </statement>
+        <proof>
+          Let <m>L  = K(\beta)</m>, <m>L' = L(\alpha_1,\ldots,\alpha_d)</m>.
+          Then <m>L'/L</m> is Galois and for <m>\sigma\in \Gal(L'/L)</m> we have <m>|\beta-\sigma(\alpha_1)| = |\sigma(\beta-\alpha_1)| = |\beta-\alpha_1|</m> implying that <m>\sigma(\alpha_1) = \alpha_1</m> and so <m>\alpha_1 \in K(\beta)</m>.
+        </proof>
+      </lemma>
+    </chapter>
+
+
+    <chapter xml:id="chap-norm">
+      <title>Norm-index computations</title>
+
+      <definition>
+        <title>Herbrand quotients</title>
+        <statement>
+          The Herbrand quotient is <m>q(A) = |H^0(A)|/|H^1(A)|</m>, it is undefined if either group is infinite.
+        </statement>
+      </definition>
+
+      <theorem>
+        <title>Hilbert's theorem 90</title>
+        <statement>
+          <m>L/K</m> Galois with <m>\langle \sigma \rangle  = G  = \Gal(L/K)</m> cyclic of order <m>n</m>.
+          If <m>x\in L</m> with <m>N_{L/K} (x) = 1</m> then there is <m>y \in L^*</m> s.t. <m>x = \sigma(y)/y</m>.
+        </statement>
+        <proof>
+          Let <m>a_0 = 1</m>, <m>a_r = \prod_{i=0}^{r-1} \sigma^i(x)</m>.
+          As distinct automorphisms are linearly independent there is some <m>z\in L</m> with <m>b=\sum_{i=0}^{n-1} a_i \sigma^i(z) \ne 0</m>.
+          Then <me>\sigma(b) = \sum_{i=0}^{n-1}\sigma(a_i)\sigma^{i+1}(z) = \sum_{i=0}^{n-1}\frac{a_{i+1}}{x}\sigma^{i+1}(z) =\frac{1}{x}\sum_{i=0}^{n-1}a_i\sigma^{i}(z)</me>.
+          So <m>x\sigma(b) = b</m>, giving <m>x = \sigma(b^{-1})/b^{-1}</m>.
+        </proof>
+      </theorem>
 
     </chapter>
   </book>
