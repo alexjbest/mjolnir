@@ -102,20 +102,20 @@ $(function () {
 </h1></header><article class="definition-like" id="definition-1"><h5 class="heading">
 <span class="type">Definition</span><span class="codenumber">2.0.1</span><span class="title">Absolute value</span>
 </h5>An <em class="terminology">absolute value</em> on a field \(K\) is a function \(\ab\colon K \to \RR\) such that
-          <ol>
+          <ol style="list-style-type: decimal;">
 <li>\(|x|\ge 0\) and \(|x| = 0 \iff x = 0\).</li>
 <li>\(|xy| = |x\|y|\).</li>
 <li>\(|x + y| \le |x| + |y|\).</li>
 </ol></article><article class="example-like" id="example-1"><h5 class="heading">
 <span class="type">Example</span><span class="codenumber">2.0.2</span>
 </h5>
-<ol>
+<ol style="list-style-type: decimal;">
 <li>\(K \subset \CC\), \(|a+bi|_{\infty} = \sqrt{a^2 + b^2}\).</li>
 <li>\(K\) any field, \(|x| = 0\) if \(x = 0\) and \(|x| = 1\) otherwise, this is called the <em class="terminology">trivial absolute value</em>.</li>
 </ol></article><article class="example-like" id="remark-1"><h5 class="heading">
 <span class="type">Remark</span><span class="codenumber">2.0.3</span>
 </h5>
-<ol>
+<ol style="list-style-type: decimal;">
 <li>If \(x^n = 1\) then \(|x|  = 1\) and hence finite fields can only be given the trivial absolute value.</li>
 <li>In particular \(| -1| = 1\) and so \(|x| = |-x|\) for all \(x \in K\).</li>
 </ol></article><p>A valued field \((K, \ab)\) becomes a metric space with \(d(xy,) = |x-y|\), and hence a topological space, i.e. open sets are unions of open balls \(B(x,r) = \{y\in K : |x-y| \lt r\}\).</p>
@@ -144,7 +144,7 @@ $(function () {
 </h5>All absolute values on fields of characteristic \(p\) are non-archimidean.</article><article class="example-like" id="example-3"><h5 class="heading">
 <span class="type">Example</span><span class="codenumber">2.0.9</span>
 </h5>
-<ol>
+<ol style="list-style-type: decimal;">
 <li>\(K = \QQ\), \(p = 5\) \(\ab = \ab_5\).
             Let \(a_1 =3,a_2=33,a_3=33\), etc.
             So \(a_n \equiv a_m \pmod{5^n}\) for all \(m \ge n\).
@@ -211,7 +211,7 @@ $(function () {
 <span class="type">Lemma</span><span class="codenumber">2.0.14</span>
 </h5>
           Let \(\ab_1\) and \(\ab_2\) be non-trivial absolute values on a field \(K\) then TFAE:
-          <ol>
+          <ol style="list-style-type: decimal;">
 <li>\(\ab_1\) and \(\ab_2\) define the same topology on \(K\).</li>
 <li>\(|x|_1\lt 1 \iff |x|_2 \lt 1\).</li>
 <li>\(|x|_2 = |x|_1^c\) for some \(c \gt 0\).</li>
@@ -270,11 +270,11 @@ $(function () {
 </h5>
           Let \((K,\ab)\) be non-archimidean.
           Then
-          <ol>
+          <ol style="list-style-type: decimal;">
 <li>\(|x| \gt|y|\) implies \(|x+y | = |x|\).</li>
 <li>\(|x_1 +\cdots + x_n| \le \max\{|x_i|\}\) with equality only .</li>
 <li>If \((K,\ab)\) is complete then \(\sum_{n=1}^\infty a_n\) converges iff \(a_n\to 0\).</li>
-</ol></article><article class="hiddenproof" id="proof-5"><a knowl="./knowl/proof-5.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-5" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol>
+</ol></article><article class="hiddenproof" id="proof-5"><a knowl="./knowl/proof-5.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-5" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol style="list-style-type: decimal;">
 <li>\(|x+y| \le \max(|x|,|y|) = |x| \le \max(|x+y|, |y|) = |x + y|\).</li>
 <li>Ultrametric + induction. Apply (i) with \(x = x_1\) and \(y = x_1 + \cdots + x_n\).</li>
 <li>Let \(s_n = \sum_{i=0}^{n} a_i\), if \(s_n \to l\) then \(a_n = s_n - s_{n-1} \to 0\) as \(n \to \infty\), conversely for \(m \ge n\) we have \(s_m - s_n = |a_{n+1} + \cdots + a_m| \le \max_{i = n+1,\ldots,m}(|a_i|) \lt \max_{i \gt n} |a_i| \to 0\) as \(n \to \infty\) so \(s_n\) is Cauchy, hence convergent.</li>
@@ -283,13 +283,13 @@ $(function () {
 <article class="theorem-like" id="lemma-5"><h5 class="heading">
 <span class="type">Lemma</span><span class="codenumber">2.0.20</span>
 </h5>
-<ol>
+<ol style="list-style-type: decimal;">
 <li>If \(y\in B(x,r)\) then \(B (x,r ) = B(y,r)\).</li>
 <li>If \(y\in \bar{B}(x,r)\) then \(\bar{B}(x,r) = \bar{B}(y,r)\).</li>
 <li>\(B(x,r)\) is both open and closed.</li>
 <li>\(\bar{B}(x,r)\) is both open and closed.</li>
 <li>\(K\) is totally disconnected (i.e. the only connected subsets are singletons).</li>
-</ol></article><article class="hiddenproof" id="proof-6"><a knowl="./knowl/proof-6.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-6" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol>
+</ol></article><article class="hiddenproof" id="proof-6"><a knowl="./knowl/proof-6.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-6" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><ol style="list-style-type: decimal;">
 <li>Ultrametric.</li>
 <li>Ultrametric.</li>
 <li>\(B(x,r)\) is open, it is closed since if \(y \not\in B(x,r)\) then \(B(x,r)\cap B(y,r) = \emptyset\) as they are not the same ball.</li>
