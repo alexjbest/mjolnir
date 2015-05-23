@@ -104,10 +104,10 @@ $(function () {
 <article class="definition-like" id="definition-1"><h5 class="heading">
 <span class="type">Definition</span><span class="codenumber">1.2.1</span><span class="title">Presheaves</span>
 </h5>A <em class="terminology">presheaf</em>\(\F\) of abelian groups (resp. rings) on \(X\) consists of data:
-            <ol>
+            <ol style="list-style-type: decimal;">
 <li>For every open \(U \subset X\) an abelian group (resp. ring) \(\F(U)\).</li>
 <li>For every inclusion of open sets \(V\subset U\) a homomorphism called <em class="terminology">restriction</em>, denoted \(\rho^U_V\colon \F(U) \to \F(V)\) such that
-                <ol>
+                <ol style="list-style-type: lower-alpha;">
 <li>\(\F(\emptyset) = 0.\)</li>
 <li>\(\rho^U_U\colon \F(U) \to \F(U)\) is \(\id_{\F(U)}\).</li>
 <li>If \(W \subset V \subset U\) open then \(\rho^U_W = \rho^V_W \circ \rho^U_V\).</li>
@@ -124,7 +124,7 @@ $(function () {
 <span class="type">Definition</span><span class="codenumber">1.2.3</span><span class="title">Sheaves</span>
 </h5>
             A presheaf \(\F\) on \(X\) is a <em class="terminology">sheaf</em> if it satisfies two further conditions:
-            <ol>
+            <ol style="list-style-type: decimal;">
 <li>If \(U\) is open and has \(U = \bigcup_i U_i\) an open cover and if \(s \in \F(U)\) is such that \(s|_{V_i} = 0\) for all \(i\) then \(s = 0\).
                 (A presheaf satisfying this condition is called a <em class="terminology">monopresheaf</em>).
               </li>
@@ -182,11 +182,11 @@ $(function () {
           </article><article class="theorem-like" id="lemma-1"><h5 class="heading">
 <span class="type">Lemma</span><span class="codenumber">1.2.13</span>
 </h5>Let \(\phi\colon \F\to\G\) be a morphism of sheaves then
-            <ol>
+            <ol style="list-style-type: decimal;">
 <li>\(\phi\) is injective iff \(\phi_P\colon \F_P \to \G_P\) is injective for all \(P\in X\),</li>
 <li>\(\phi\) is an isomorphism iff \(\phi_P\colon \F_P \to \G_P\) is an isomorphism for all \(P\in X\).</li>
 </ol></article><article class="hiddenproof" id="proof-1"><a knowl="./knowl/proof-1.html"><h5 class="heading"><span class="type">Proof</span></h5></a></article><div id="hk-proof-1" style="display: none;" class="tex2jax_ignore"><article class="hiddenproof"><p>(\(\Rightarrow\)) (true for presheaves too).
-              <ol>
+              <ol style="list-style-type: decimal;">
 <li>Suppose there exists a germ \(s_P\in\F_P\) such that \(\phi_P(s_P) = 0\in \G_P\).
                   i.e. there exists an open neighbourhood \(W \subset U\) with \(P\in W\) such that \(\phi(U)(s|_W) = 0\).
                   So by commutativity \(\phi(W)(s|_W) = 0\) but \(\phi\) injective implies \(s|_W = 0\).
@@ -194,7 +194,7 @@ $(function () {
 <li>Clear.</li>
 </ol>
               (\(\Leftarrow\))
-              <ol>
+              <ol style="list-style-type: decimal;">
 <li>Needs first sheaf condition on \(\F\).
                   If \(\phi_P\) injective for all \(P\) and \(U\) is open in \(X\) it remains to prove that \(\phi(U) \colon \F(U) \to \G(U)\) is injective.
                   Suppose not and there exists \(0 \ne s \in \F(u)\) such that \(\phi(U)(s) = 0 \in \G(U)\).
