@@ -333,7 +333,7 @@ Copyright 2014 Alex J. Best
         <definition>
           <title>Locally of finite type morphisms</title>
           <statement>
-            A morphism <m>F\colon X \to Y</m> of schemes is <term>locally of finite type</term> is there exists a covering of <m>Y</m> by open affines <m>V_i = \Spec A_i</m> such that <m>f^{-1}(V_i)</m> is covered by open affines <m>U_{ij} = \Spec B_{ij}</m>
+            A morphism <m>F\colon X \to Y</m> of schemes is <term>locally of finite type</term> if there exists a covering of <m>Y</m> by open affines <m>V_i = \Spec A_i</m> such that <m>f^{-1}(V_i)</m> is covered by open affines <m>U_{ij} = \Spec B_{ij}</m>
           </statement>
         </definition>
 
@@ -344,7 +344,7 @@ Copyright 2014 Alex J. Best
         <definition>
           <title>Projective morphisms</title>
           <statement>
-            If <m>Y</m> is any scheme <m>\PP_{\ZZ}^n = \Proj \ZZ[x_0,\ldots,x_n]</m> thne <m>\PP_Y^n = Y \times_{\Spec \ZZ}\PP_{\ZZ}^n</m> is projective space over <m>Y</m>.
+            If <m>Y</m> is any scheme <m>\PP_{\ZZ}^n = \Proj \ZZ[x_0,\ldots,x_n]</m> then <m>\PP_Y^n = Y \times_{\Spec \ZZ}\PP_{\ZZ}^n</m> is projective space over <m>Y</m>.
             A morphism <m>f\colon X \to Y </m> is projective if it factors as <m>X \xrightarrow{i} \PP_Y^n \to Y</m> with <m>i</m> a closed immersion and <m>\PP_Y^n \to Y</m> the projection.
           </statement>
         </definition>
