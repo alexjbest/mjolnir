@@ -86,7 +86,7 @@ Copyright 2014 Alex J. Best
       <section xml:id="sec-introduction">
         <title>Introduction</title>
 
-        <p>These are lecture notes for the 2014 Part III Homological and Homotopical Algebra course taught by Dr. Julian Holstein, these notes are part of <url href="https://alexjbest.github.io/mjolnir/">Mjolnir</url>.</p> 
+        <p>These are lecture notes for the 2014 Part III Homological and Homotopical Algebra course taught by Dr. Julian Holstein, these notes are part of <url href="https://alexjbest.github.io/mjolnir/">Mjolnir</url>.</p>
         <p>The recommended books are: <todo></todo>
           <ul>
             <li>W. G. Dwyer and J. Spalinski, Homotopy theories and model categories</li>
@@ -141,7 +141,7 @@ Copyright 2014 Alex J. Best
 
         <subsection xml:id="sec-ab-cats">
           <title>Abelian Categories</title>
-          
+
           <example>
             <statement><m>\Rmod</m> - the category of left <m>R</m>-modules for <m>R</m> an associative ring is an abelian category.  </statement>
           </example>
@@ -178,13 +178,13 @@ Copyright 2014 Alex J. Best
               So this category is not abelian.
             </statement>
           </example>
-          
+
           <p>From now on we take <m>\cA</m> to be any abelian category.</p>
         </subsection>
 
         <subsection xml:id="sec-exactness">
           <title>Exactness</title>
-          
+
           <definition>
             <title>Exact sequences</title>
             <statement>A sequence of morphisms <me>A\xrightarrow{f} B \xrightarrow{g}C</me> in <m>\cA</m> is <term>exact at <m>B</m></term> if <m>\im f = \ker g</m>.
@@ -192,12 +192,12 @@ Copyright 2014 Alex J. Best
               An exact sequence of the form <me>0\to A \to B \to C \to 0</me> is called a <term>short exact sequence</term>.
             </statement>
           </definition>
-          
+
           <definition>
             <title>Mono and epi morphisms</title>
             <statement>A morphism <m>f</m> is a <term>monomorphism</term> if <m>fg = fh \implies g=h</m> and it is an <term>epimorphism</term> if <m>gf = hf \implies g=h</m>.</statement>
           </definition>
-          
+
           <example>
             <statement>In <m>\Ab</m> the following are exact sequences:
               <md>
@@ -207,7 +207,7 @@ Copyright 2014 Alex J. Best
               </md>
             </statement>
           </example>
-          
+
           <definition>
             <title>Additive functors</title>
             <statement>A functor of additive categories is <term>additive</term> if it is a homomorphism on hom-sets.</statement>
@@ -294,7 +294,7 @@ Copyright 2014 Alex J. Best
           <statement>Let <m>\cHom_n(A,B)</m> consist of functions <m>\{f_i \colon A_i \to B_{i+n}\} </m> and define <m>df = d\cdot f - (-1)^n fd</m> if <m>f\in\cHom_n</m>.
           </statement>
         </definition>
-          
+
         <p>
           Check that <me>d^2 f = d\cdot (d\cdot f - (-1)^fd ) - (-1) (d\cdot f - (-1)^n f\cdot d)\cdot d = 0.</me><todo>doublecheck</todo>
         </p>
@@ -488,7 +488,7 @@ Copyright 2014 Alex J. Best
             is split.
           </statement>
           <proof>
-            (We prove the <m>C</m> projective case) Consider 
+            (We prove the <m>C</m> projective case) Consider
             <me>
               \xymatrix{ &amp; C \ar@{=}[d]_f \ar[dl]^s&amp;\\
               B \ar[r]^q &amp;C \ar[r] &amp; 0}
@@ -588,7 +588,7 @@ Copyright 2014 Alex J. Best
               0 \to K_{n+1} \to P_{n+1} \to K_n \to 0
             </me>
             with <m>P_i</m> projective.
-            We can splice these together to get 
+            We can splice these together to get
             <me>
               \cdots \to P_2 \to P_1 \to P_0 \to A \to 0.
             </me>
@@ -647,7 +647,7 @@ Copyright 2014 Alex J. Best
           <proof>
             By induction: To get <m>\epsilon^2 \colon P_0^i \oplus P_0^3 \to A^2</m> we use <m>i</m> and <m>\epsilon^1</m> and a lift of <m>p</m>.
             Now the <xref ref="lemma-snake" autoname="title" /> shows that <m>\coker \epsilon^i</m> and <m>\ker \epsilon^i</m> fit into a long exact sequence and hence <m>\coker \epsilon^3 = 0</m>.
-            Now apply the induction assumption to the short exact sequence of kernels 
+            Now apply the induction assumption to the short exact sequence of kernels
             <me>
               0 \to \ker \epsilon^1 \to \ker \epsilon^2\to \ker \epsilon^3 \to \coker \epsilon^1 = 0.
             </me>
@@ -668,7 +668,7 @@ Copyright 2014 Alex J. Best
 
         <proposition>
           <statement>
-            The boundary map <m>\dd</m> is natural, i.e. given 
+            The boundary map <m>\dd</m> is natural, i.e. given
             <me>
               \xymatrix{
                 A^1 \ar[r]\ar[d]^{f^1} &amp;
@@ -714,7 +714,7 @@ Copyright 2014 Alex J. Best
             Finally we define <m>K^+(\cA)</m> etc. in the obvious way.
           </statement>
         </definition>
-        
+
         <definition>
           <title>Localisations of categories</title>
           <statement>
@@ -745,7 +745,7 @@ Copyright 2014 Alex J. Best
         </theorem>
 
         <p>
-          Although we didn't prove this we should note that we can write morphisms in <m>D(\cA)</m> as 
+          Although we didn't prove this we should note that we can write morphisms in <m>D(\cA)</m> as
           <me>
             A \xleftarrow{\sim} A' \xrightarrow{f} B
           </me>
@@ -775,7 +775,7 @@ Copyright 2014 Alex J. Best
           </statement>
           <proof>
             (Sketch) Crucial ingredient: <m>\Hom_{K(\cA)}(-, I ^\bullet)</m> sends quasi-isomorphisms to quasi-isomorphisms.
-            So we can replace 
+            So we can replace
             <me>
               A \xleftarrow{\sim} A' \xrightarrow{} I
             </me>
@@ -793,7 +793,7 @@ Copyright 2014 Alex J. Best
           </statement>
           <proof>
             Let <m>B \to I^\bullet</m> be an injective resolution.
-            Then both sides are isomorphic to 
+            Then both sides are isomorphic to
             <me>
               \Hom_{K(\cA)}(A,I[i]) = H^0 \cHom_{K(\cA)}(A, I[i]).
             </me>
@@ -896,7 +896,7 @@ Copyright 2014 Alex J. Best
         <example>
           <statement>
             Define the <term>standard simplex</term> <m>\Delta[n]</m> to be the image of <m>[n]</m> under contravariant Yoneda, i.e. <m>\Delta[n]_i = \Hom_{\Delta}(i,[n])</m>.
-            This is universal i n the sense that <m>\Delta_n = \Hom_{\SSet}(\Delta[n], A)</m>.
+            This is universal in the sense that <m>\Delta_n = \Hom_{\SSet}(\Delta[n], A)</m>.
             We call <m>A_m</m> the simplices of <m>\Delta</m> (by Yoneda).
           </statement>
         </example>
@@ -1121,7 +1121,7 @@ Copyright 2014 Alex J. Best
 
 
       </section>
-      
+
 
     </chapter>
 

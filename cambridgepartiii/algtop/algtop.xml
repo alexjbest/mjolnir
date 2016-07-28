@@ -246,7 +246,7 @@ Copyright 2014 Alex J. Best
                 So given
                 <me>f\colon(X, p)\to(Y,q)</me>
                 we get
-                <me>f_*\colon \pi_n(X,p)\to\pi_n(y,q)</me>
+                <me>f_*\colon \pi_n(X,p)\to\pi_n(Y,q)</me>
                 defined by
                 <me>f_*(\gamma) = f\circ \gamma.</me>
                 <todo>maybe id</todo>
@@ -358,7 +358,7 @@ Copyright 2014 Alex J. Best
           <example>
             <ol>
             <li>For <m>\Delta^1</m> we have <m>d(e_{0,1}) = e_1 - e_0</m>.</li>
-            <li>For <m>\Delta^2</m> we have <m>d(e_{0,1,2}) = e_{12} - e_{02} + e_{01}</m> and so <m>d^2(e_{I} = (e_2 - e_1) - (e_2 - e_0) + (e_1 - e_0) = 0</m>.</li>
+            <li>For <m>\Delta^2</m> we have <m>d(e_{0,1,2}) = e_{12} - e_{02} + e_{01}</m> and so <m>d^2(e_{I}) = (e_2 - e_1) - (e_2 - e_0) + (e_1 - e_0) = 0</m>.</li>
             </ol>
           </example>
 
@@ -389,7 +389,7 @@ Copyright 2014 Alex J. Best
               <me>
                 d(ae_{01} + be_{02} + ce_{12}) = a(e_1 - e_0) + b (e_2 - e_1)  + c(e_2 - e_0)
               </me>
-              so <m>ae_{01} + be_{02} + ce_{12}\in \ker d_1 \iff -a-b=0,\,a-c = 0,\, c+b = 0 \iff a = -b = c</m> hence <m>\ker d_1 = \langle e_{01} - e_{02} + e_{12} = \im d_2</m> and so <m>H_1 = 0</m>.
+              so <m>ae_{01} + be_{02} + ce_{12}\in \ker d_1 \iff -a-b=0,\,a-c = 0,\, c+b = 0 \iff a = -b = c</m> hence <m>\ker d_1 = \langle e_{01} - e_{02} + e_{12}\rangle = \im d_2</m> and so <m>H_1 = 0</m>.
               <m>\ker(d_0) = 0</m>, <m>\im d_1 = \langle e_1 - e_0, e_2 - e_1, e_2 - e_0\rangle</m> so <m>H_0 = \ZZ = \langle [e_0]\rangle</m>.
             </p>
           </example>
@@ -409,9 +409,9 @@ Copyright 2014 Alex J. Best
             <statement>
               If <m>X</m> is a space, the <term>singular chain complex</term> of <m>X</m>, <m>C_*(X)</m> is defined by
               <me>C_n(x) = \langle e_\sigma : \sigma \colon \Delta^n \to X \text{ any continuous map}\rangle.</me>
-              Where 
+              Where
               <me>d(e_\sigma) = \sum_{j=0}^{n} (-1)^j e_{\sigma\circ F_j} \in C_{n-1}(X)</me>
-              where <m>F_j\colon \Delta^{n-1} \to \Delta^n</m> is given by <m>F_j(x_0,\ldots,x_{n_1} = (x_0,\ldots,0,\ldots,x_{n-1})</m> with the <m>0</m> in the <m>j</m>th place.
+              where <m>F_j\colon \Delta^{n-1} \to \Delta^n</m> is given by <m>F_j(x_0,\ldots,x_{n_1}) = (x_0,\ldots,0,\ldots,x_{n-1})</m> with the <m>0</m> in the <m>j</m>th place.
             </statement>
           </definition>
 
@@ -503,7 +503,7 @@ Copyright 2014 Alex J. Best
           <definition>
             <title>Short exact sequence</title>
             <statement>
-              A sequence 
+              A sequence
               <me>
                 0 \to A_* \xrightarrow i B_* \xrightarrow{\pi} C_* \to 0
               </me>
@@ -560,7 +560,7 @@ Copyright 2014 Alex J. Best
 
           <exercise>
             <statement>
-              Suppose we have a map of short exact sequences <todo>pic</todo> commuting, then show there is a map of long exact sequences of homology commuting <todo>pic</todo>.
+              Suppose we have a map of short exact sequences <todo>pic</todo> commuting, then show there is a map of long exact sequences of homology commuting<todo>pic</todo>.
             </statement>
           </exercise>
 
@@ -953,7 +953,7 @@ Copyright 2014 Alex J. Best
             <m>T^2</m> is a finite cell complex with one 0-cell, two 1-cells and one 2-cell.<todo>pic</todo>
           </statement>
         </example>
- 
+
         <example>
           <statement>
             Any simplicial complex is a finite cell complex and any closed manifold can be given the structure of a finite cell complex.
@@ -1355,12 +1355,12 @@ Copyright 2014 Alex J. Best
 
         <subsection>
           <title>Exterior Product</title>
-          
+
           <p>Let <m>\pi_1 \colon X\times Y \to X</m> and <m>\pi_2 \colon X \times Y \to Y</m>.</p>
 
           <definition>
             <title>Exterior product</title>
-            <statement>If <m>\alpha \in H^i(X)</m>, <m>\beta\in H^j(X)</m> then their <term>exterior product</term> is <m>\alpha\times \beta = \pi_1^*(\alpha) \smile \pi_2^*(\beta) \in H^{i+j}(X\times Y)</m>.
+            <statement>If <m>\alpha \in H^i(X)</m>, <m>\beta\in H^j(Y)</m> then their <term>exterior product</term> is <m>\alpha\times \beta = \pi_1^*(\alpha) \smile \pi_2^*(\beta) \in H^{i+j}(X\times Y)</m>.
             </statement>
           </definition>
 
@@ -1435,7 +1435,7 @@ Copyright 2014 Alex J. Best
             </statement>
           </example>
         </subsection>
-        
+
       </section>
     </chapter>
 

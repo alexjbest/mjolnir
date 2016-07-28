@@ -91,7 +91,7 @@ Copyright 2014 Alex J. Best
 
         <example>
           <statement><m>R =k[t]/(t^2)</m>  and the <m>k</m>-algebra homomorphism <m>\phi\colon A(X) \to R</m> induces by composition with <m>t\mapsto 0</m> a <m>k</m>-valued point <m>x\in X</m>. (Assuming now <m>k = \bar{k}</m>) <m>x</m> corresponds to a maximal ideal <m>m_x = \ker(A(X) \to k)</m> and <m>\phi(m_x) \subseteq (t)</m>.
-            So <m>\phi(m_x^2) = 0</m>. 
+            So <m>\phi(m_x^2) = 0</m>.
             Thus we get a map <m>\phi \colon m_x/m_x^2 \to (t) = k</m>.
 
             <exercise>
@@ -121,7 +121,7 @@ Copyright 2014 Alex J. Best
         </definition>
 
         <p>In general we tend to work with schemes over a base scheme <m>S</m> (e.g. <m>S\leftrightarrow k</m>) and consider morphisms defined over <m>S</m> i.e. diagrams <todo></todo>.
-        
+
         For <m>T,X</m> schemes over <m>S</m> a <m>T</m>-valued point of <m>X</m> is a diagram <todo></todo>.</p>
 
         <definition>
@@ -195,7 +195,7 @@ Copyright 2014 Alex J. Best
           <title>Morphisms of locally ringed spaces</title>
 
           <statement>
-            A morphism <m>(X,\sO_x) \to (Y,\sO_Y)</m> of locally ringed spaces is a continuous map <m>f\colon X \to Y</m> along with a morphism of sheaves of rings 
+            A morphism <m>(X,\sO_x) \to (Y,\sO_Y)</m> of locally ringed spaces is a continuous map <m>f\colon X \to Y</m> along with a morphism of sheaves of rings
             <me>
               f^\# \colon \sO_Y \to \sO_X
             </me>
@@ -221,14 +221,14 @@ Copyright 2014 Alex J. Best
                   <mrow>             &amp;= \{p\in \Spec B : p \supseteq \phi(I)\}</mrow>
                   <mrow>             &amp;= V(\phi(I)).</mrow>
                 </md>
-                For any <m>p\in \Spec B</m> we have a ring map 
+                For any <m>p\in \Spec B</m> we have a ring map
                 <md>
                   <mrow>\phi_p \colon A_{\phi^{-1} (p)} &amp;\to B_p</mrow>
                   <mrow>\frac as &amp;\mapsto \frac{\phi(a)}{\phi(s)}.</mrow>
                 </md>
                 Define
                 <md>
-                  <mrow>f^\# \colon \sO_{\Spec A}(V) &amp;\to \sO_{\Spec B}(f^{-1}(V) = (f_*\sO_{\Spec B})(V)</mrow>
+                  <mrow>f^\# \colon \sO_{\Spec A}(V) &amp;\to \sO_{\Spec B}(f^{-1}(V)) = (f_*\sO_{\Spec B})(V)</mrow>
                   <mrow>\left(s\colon V \to \coprod_{p\in V}A_p\right)&amp;\mapsto \left(f^\#(s)\colon f^{-1}(V) \to \coprod_{q\in f^{-1} (V)}B_q\right)</mrow>
                 </md>
                 with <m>(f^\#(s))(q) = \phi_{f(q)}(s(f(q)))</m>, <m>s(f(q)) \in A_{f(q)} = A_{\phi^{-1}(q)}</m>.
@@ -317,7 +317,7 @@ Copyright 2014 Alex J. Best
         <proposition>
           <statement>
             <m>X</m> is locally Noetherian is and only if for every affine open subset <m>\Spec A \subset X</m> we have <m>A</m> Noetherian.
-            In particular <m>\Spec A</m> is noetherian if and only if <m>A</m> is Noetherian.
+            In particular <m>\Spec A</m> is Noetherian if and only if <m>A</m> is Noetherian.
           </statement>
 
           <proof>
