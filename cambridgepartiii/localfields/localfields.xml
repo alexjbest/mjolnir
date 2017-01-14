@@ -73,7 +73,7 @@ Copyright 2014 Alex J. Best
         <statement>An <term>absolute value</term> on a field <m>K</m> is a function <m>\ab\colon K \to \RR</m> such that
           <ol>
             <li><m>|x|\ge 0</m> and <m>|x| = 0 \iff x = 0</m>.</li>
-            <li><m>|xy| = |x\|y|</m>.</li>
+            <li><m>|xy| = |x|\cdot |y|</m>.</li>
             <li><m>|x + y| \le |x| + |y|</m>.</li>
           </ol>
         </statement>
@@ -95,7 +95,7 @@ Copyright 2014 Alex J. Best
         </statement>
       </remark>
 
-      <p>A valued field <m>(K, \ab)</m> becomes a metric space with <m>d(xy,) = |x-y|</m>, and hence a topological space, i.e. open sets are unions of open balls <m>B(x,r) = \{y\in K : |x-y| \lt r\}</m>.</p>
+      <p>A valued field <m>(K, \ab)</m> becomes a metric space with <m>d(x,y) = |x-y|</m>, and hence a topological space, i.e. open sets are unions of open balls <m>B(x,r) = \{y\in K : |x-y| \lt r\}</m>.</p>
 
       <exercise>
         <statement>Show that the functions <m>+,\cdot \colon K\times K \to K</m> and <m>\ab\colon K \to \RR</m> are continuous with respect to this topology.</statement>
@@ -104,7 +104,7 @@ Copyright 2014 Alex J. Best
       <example>
         <statement>Let <m>K = \QQ,\, p</m> be a prime and <m>0 \lt \alpha \lt 1</m>.
           For <m>x\in \QQ^*</m> let <m>\nu_p(x) = r</m> where <m>x = p^r u/ v</m> and <m>p\nmid uv</m>.
-          Then the <m>p</m>-adic absolute value if given by <me>|x|_p = \begin{cases} 0 &amp; x = 0,\\ \alpha^{\nu_p(x)} &amp; \text{otherwise}.\end{cases}</me>
+          Then the <m>p</m>-adic absolute value is given by <me>|x|_p = \begin{cases} 0 &amp; x = 0,\\ \alpha^{\nu_p(x)} &amp; \text{otherwise}.\end{cases}</me>
           Usually we take <m>\alpha = 1/p</m>.
           In this case we get the inequality <m>|x+ y|_p \le \max\{|x|_p, |y|_p\}</m>, this is the <term>ultrametric triangle inequality</term>.
         </statement>
@@ -181,7 +181,7 @@ Copyright 2014 Alex J. Best
         This implies that <m>ay_n \to \frac{a}{b}</m> as <m>n\to \infty</m>.
         Hence <m>\ZZ</m> is dense in <m>\ZZ_{(p)}</m>.
 
-        Now for<m>\QQ</m> is dense in <m>\QQ_p</m> and <m>\ZZ_p \subset \QQ_p</m> being open give that <m>\QQ\cap \ZZ_p</m> is dense in <m>\ZZ_p</m>.
+        Now for <m>\QQ</m> is dense in <m>\QQ_p</m> and <m>\ZZ_p \subset \QQ_p</m> being open give that <m>\QQ\cap \ZZ_p</m> is dense in <m>\ZZ_p</m>.
         </proof>
       </lemma>
 
@@ -205,7 +205,7 @@ Copyright 2014 Alex J. Best
       <remark>
         <statement>
           <m>[K_{\fp} : \QQ_p] \le [K: \QQ]</m>.
-          Every finite extension of<m>\QQ_p</m> arises as the completion of some number field.
+          Every finite extension of <m>\QQ_p</m> arises as the completion of some number field.
           Proofs later.
         </statement>
       </remark>
@@ -268,7 +268,7 @@ Copyright 2014 Alex J. Best
       <remark>
         <statement>
           If <m>(K,\ab)</m> is archimidean then <m>\chara(K) = 0</m> and so <m>\QQ \subset K</m>.
-          Ostrowski <todo>ref</todo> then impliees that restriction of <m>\ab</m> to <m>\QQ</m> is equivalent to <m>\ab_\infty</m>.
+          Ostrowski <todo>ref</todo> then implies that the restriction of <m>\ab</m> to <m>\QQ</m> is equivalent to <m>\ab_\infty</m>.
           so if <m>K</m> is complete then it contains a copy of <m>\RR</m>.
         </statement>
       </remark>
