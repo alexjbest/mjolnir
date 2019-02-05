@@ -530,7 +530,7 @@ Copyright 2014 Alex J. Best
           <me>
             R^i F(B) = H^i (FI ).
           </me>
-          Note <m>L_{\lt 0} F(A) = 0</m> and <m>L_0= fP_0 / FP_1 = F(P_0/P_1) = F(A)</m>.
+          Note <m>L_{\lt 0} F(A) = 0</m> and <m>L_0= FP_0 / FP_1 = F(P_0/P_1) = F(A)</m>.
         </p>
 
         <example>
