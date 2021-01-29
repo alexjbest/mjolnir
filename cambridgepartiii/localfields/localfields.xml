@@ -73,7 +73,7 @@ Copyright 2014 Alex J. Best
         <statement>An <term>absolute value</term> on a field <m>K</m> is a function <m>\ab\colon K \to \RR</m> such that
           <ol>
             <li><m>|x|\ge 0</m> and <m>|x| = 0 \iff x = 0</m>.</li>
-            <li><m>|xy| = |x\|y|</m>.</li>
+            <li><m>|xy| = |x|\cdot |y|</m>.</li>
             <li><m>|x + y| \le |x| + |y|</m>.</li>
           </ol>
         </statement>
@@ -95,7 +95,7 @@ Copyright 2014 Alex J. Best
         </statement>
       </remark>
 
-      <p>A valued field <m>(K, \ab)</m> becomes a metric space with <m>d(xy,) = |x-y|</m>, and hence a topological space, i.e. open sets are unions of open balls <m>B(x,r) = \{y\in K : |x-y| \lt r\}</m>.</p>
+      <p>A valued field <m>(K, \ab)</m> becomes a metric space with <m>d(x,y) = |x-y|</m>, and hence a topological space, i.e. open sets are unions of open balls <m>B(x,r) = \{y\in K : |x-y| \lt r\}</m>.</p>
 
       <exercise>
         <statement>Show that the functions <m>+,\cdot \colon K\times K \to K</m> and <m>\ab\colon K \to \RR</m> are continuous with respect to this topology.</statement>
@@ -104,7 +104,7 @@ Copyright 2014 Alex J. Best
       <example>
         <statement>Let <m>K = \QQ,\, p</m> be a prime and <m>0 \lt \alpha \lt 1</m>.
           For <m>x\in \QQ^*</m> let <m>\nu_p(x) = r</m> where <m>x = p^r u/ v</m> and <m>p\nmid uv</m>.
-          Then the <m>p</m>-adic absolute value if given by <me>|x|_p = \begin{cases} 0 &amp; x = 0,\\ \alpha^{\nu_p(x)} &amp; \text{otherwise}.\end{cases}</me>
+          Then the <m>p</m>-adic absolute value is given by <me>|x|_p = \begin{cases} 0 &amp; x = 0,\\ \alpha^{\nu_p(x)} &amp; \text{otherwise}.\end{cases}</me>
           Usually we take <m>\alpha = 1/p</m>.
           In this case we get the inequality <m>|x+ y|_p \le \max\{|x|_p, |y|_p\}</m>, this is the <term>ultrametric triangle inequality</term>.
         </statement>
@@ -181,7 +181,7 @@ Copyright 2014 Alex J. Best
         This implies that <m>ay_n \to \frac{a}{b}</m> as <m>n\to \infty</m>.
         Hence <m>\ZZ</m> is dense in <m>\ZZ_{(p)}</m>.
 
-        Now for<m>\QQ</m> is dense in <m>\QQ_p</m> and <m>\ZZ_p \subset \QQ_p</m> being open give that <m>\QQ\cap \ZZ_p</m> is dense in <m>\ZZ_p</m>.
+        Now for <m>\QQ</m> is dense in <m>\QQ_p</m> and <m>\ZZ_p \subset \QQ_p</m> being open give that <m>\QQ\cap \ZZ_p</m> is dense in <m>\ZZ_p</m>.
         </proof>
       </lemma>
 
@@ -205,7 +205,7 @@ Copyright 2014 Alex J. Best
       <remark>
         <statement>
           <m>[K_{\fp} : \QQ_p] \le [K: \QQ]</m>.
-          Every finite extension of<m>\QQ_p</m> arises as the completion of some number field.
+          Every finite extension of <m>\QQ_p</m> arises as the completion of some number field.
           Proofs later.
         </statement>
       </remark>
@@ -228,7 +228,7 @@ Copyright 2014 Alex J. Best
           <todo></todo>
         </proof>
       </lemma>
-      
+
       <definition>
         <statement>
           A <term>place</term> of <m>K</m> is an equivalence class of absolute values on <m>K</m>.
@@ -268,7 +268,7 @@ Copyright 2014 Alex J. Best
       <remark>
         <statement>
           If <m>(K,\ab)</m> is archimidean then <m>\chara(K) = 0</m> and so <m>\QQ \subset K</m>.
-          Ostrowski <todo>ref</todo> then impliees that restriction of <m>\ab</m> to <m>\QQ</m> is equivalent to <m>\ab_\infty</m>.
+          Ostrowski <todo>ref</todo> then implies that the restriction of <m>\ab</m> to <m>\QQ</m> is equivalent to <m>\ab_\infty</m>.
           so if <m>K</m> is complete then it contains a copy of <m>\RR</m>.
         </statement>
       </remark>
@@ -276,7 +276,7 @@ Copyright 2014 Alex J. Best
       <p>
         Fact: If <m>(K,\ab)</m> is complete and archimidean then <m>K= \RR</m> or <m>K= \CC</m> and <m>\ab \sim \ab_\infty</m> (see Cassels).
       </p>
-      
+
       <corollary>
         <ol>
           <li>Every archimidean field is a subfield of <m>\CC</m>.</li>
@@ -836,12 +836,12 @@ Copyright 2014 Alex J. Best
           </me>
           Let <m>S = \{v\in V | \|v\|_{\sup} = 1\}</m> (the equation <todo></todo> implies that <m>\|\cdot\| \colon S\to \RR_{\ge 0}</m> is continuous w.r.t. <m>\|\cdot\|_{\sup}</m> but we don't know <m>S</m> is compact).<br />
           We now claim that there exists <m>\epsilon \gt 0</m> s.t. <m>\|x\| \gt \epsilon </m> for all <m>x\in S</m>.
-          To see this suppose otherwise, i.e. that there exists a sequence <m>(x^{(n)})</m> in<m>S</m> with <m>\|x^(n) \|\to 0</m> as <m>n \to \infty</m>.
-          For at least one <m>1\le i \le d</m> <m>\|x^{(n)}\|_{\sup} = |x_i^{(n}|</m> for infinitely many <m>n</m>.
+          To see this suppose otherwise, i.e. that there exists a sequence <m>(x^{(n)})</m> in<m>S</m> with <m>\|x^{(n)} \|\to 0</m> as <m>n \to \infty</m>.
+          For at least one <m>1\le i \le d</m> <m>\|x^{(n)}\|_{\sup} = |x_i^{(n)}|</m> for infinitely many <m>n</m>.
           WLOG this is <m>i=d</m> and we may pass to a subsequence and multiply through by <m>\lambda\in K</m> with <m>|\lambda| = 1</m> to ensure <m>x_d^{(n)} = 1</m> i.e. <m>x^{(n)} = y^{(n)} + e_d </m> for some <m>y^{(n)} \in \langle e_1,\ldots,e_{d-1}\rangle</m>.
           But as <m> x^{(n)} \to 0</m> w.r.t. <m>\|\cdot\|</m> we have that <m>x^{(n)}</m> is Cauchy and hence so is <m>y^{(n)}</m> w.r.t. <m>\|\cdot\|</m>.
           This implies that <m>y^{(n)} \to y</m> w.r.t. <m>\|\cdot\|</m> (since <m>K^{d-1}</m> is complete by the induction hypothesis) for some <m>y \in \langle e_1,\ldots,e_{d-1}\rangle</m> but <m>y^{(n)} = x^{(n)} -e_d \to -e_d</m> w.r.t. <m>\|\cdot\|</m> therefore <m>y = -e_d \not\in \langle e_1,\ldots,e_{d-1}\rangle</m> a  contradiction, proving the claim. <br />
-          Now let <m>x\in V</m> <m>x\ne 0</m> and <m>\|\cdot\|_{\sup}=|x_i|</m> for some <m>1\le i\le d</m>. 
+          Now let <m>x\in V</m> <m>x\ne 0</m> and <m>\|\cdot\|_{\sup}=|x_i|</m> for some <m>1\le i\le d</m>.
           <m>x/x_i\in S</m> son <m>\|x/x_i\|\gt \epsilon</m> implying <m>\|x\|\gt \epsilon |x_i | = \epsilon \|x\|_{\sup}</m>.
           This together with the above equation give that <m>\|\cdot\|</m> and <m>\|\cdot\|_{\sup}</m> are equivalent, <m>K</m> complete implies that <m>V</m> is complete w.r.t. <m>\|\cdot\|_{\sup}</m>.
         </proof>
@@ -883,7 +883,7 @@ Copyright 2014 Alex J. Best
           <ol>
             <li>
               Let <m>[L:K] = e</m> <m>g(x) = x^m + \sum_{i=0}^{n-1}a_i x^i</m> for <m>a_i\in\cO_K</m> be the minimal polynomial for <m>\pi_L</m> over <m>K</m> (so <m>m\le e</m>) implying <m>\pi_L^m = - \sum_{i=0}^{m-1} a_i \pi_L^i</m>.
-              So <m>v_L(a_i \pi_L^i  =i + e(v_K(a_i)) \equiv i \pmod{e}</m>.
+              So <m>v_L(a_i \pi_L^i)  =i + e(v_K(a_i)) \equiv i \pmod{e}</m>.
               So all terms on the right have distinct valuations, giving <m>m = v_L(\pi_L^m) = \min_{0\le i\le m-1}(i+ev_K(a_i))</m> so <m>v_K(a_i)\ge 1</m> for all <m>i</m> and <m>v_K(a_0) = 1</m> and <m>m =e</m>.
               So <m>g</m> is Eisenstein and <m>L = K(\pi_L)</m>.
               For <m>y\in L</m> we write <m>y  = \sum_{i=0}^{e-1}b_i \pi_L^i</m> for <m>b_i \in K</m>.
@@ -940,7 +940,6 @@ Copyright 2014 Alex J. Best
           So <m>x\sigma(b) = b</m>, giving <m>x = \sigma(b^{-1})/b^{-1}</m>.
         </proof>
       </theorem>
-
     </chapter>
   </book>
 </mathbook>

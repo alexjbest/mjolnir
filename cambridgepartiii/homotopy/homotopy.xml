@@ -57,7 +57,7 @@ Copyright 2014 Alex J. Best
       <section xml:id="sec-introduction">
         <title>Introduction</title>
 
-        <p>These are lecture notes for the 2014 Part III Homotopy Theory course taught by Dr. Oscar Randal-Williams, these notes are part of <url href="https://alexjbest.github.io/mjolnir/">MJOLNIR</url>.</p> 
+        <p>These are lecture notes for the 2014 Part III Homotopy Theory course taught by Dr. Oscar Randal-Williams, these notes are part of <url href="https://alexjbest.github.io/mjolnir/">MJOLNIR</url>.</p>
         <p>The recommended books are: <todo></todo>
           <ul>
             <li> - ??</li>
@@ -90,7 +90,7 @@ Copyright 2014 Alex J. Best
           Thus <m>\pi_n(X,x_0)</m> is the set of homotopy classes of maps <m>f\colon (I^n,\dd I^n) \to (X,\{x_0\})</m>.
         </p>
 
-        <p>For <m>n= 1</m> this is the usual fundamental ggroup of <m>(X,x_0)</m>, for <m>n= 0</m> let <m>I^n = \{*\}</m>, <m>\dd I^n = \emptyset</m> and so <m>\pi_0(X,x_0)</m> is the set of path components of <m>X</m>.</p>
+        <p>For <m>n= 1</m> this is the usual fundamental group of <m>(X,x_0)</m>, for <m>n= 0</m> let <m>I^n = \{*\}</m>, <m>\dd I^n = \emptyset</m> and so <m>\pi_0(X,x_0)</m> is the set of path components of <m>X</m>.</p>
 
         <p>We may define a composition law on <m>\pi_n(X,x_0)</m> by <me>f\cdot g(x_1,\ldots,x_n)= \begin{cases}f(2x_1,\ldots,x_n) &amp; 0\le x_1\le \frac12\\g(2x-1, \ldots,x_n)&amp;\frac12\le x_1\le 1.\end{cases}</me>
           Just as for <m>\pi_1(X,x_0)</m> this composition law makes <m>\pi_n(X,x_0)</m> into a group for <m>n\ge 1</m>.
@@ -109,8 +109,8 @@ Copyright 2014 Alex J. Best
 
         <p>We have the following consequences of this definition.
           <ol>
-            <li>If <m>x_0,x_1</m> are in the smae path component then <m>\pi_n(X,x_0) \cong \pi_n(X,x_1)</m>, but not canonically so.</li>
-            <li>Taking <m>x_1 = x_0</m> in the above we get a left action of <m>\pi_1(X,x_0)</m> on <m>\pi_n(X,x_0)</m> (i.e. for <m>n\ge 2</m> <m>pi_n(X,x_0)</m> is a <m>\ZZ \pi_1(X,x_0)</m>-module.</li>
+            <li>If <m>x_0,x_1</m> are in the same path component then <m>\pi_n(X,x_0) \cong \pi_n(X,x_1)</m>, but not canonically so.</li>
+            <li>Taking <m>x_1 = x_0</m> in the above we get a left action of <m>\pi_1(X,x_0)</m> on <m>\pi_n(X,x_0)</m> (i.e. for <m>n\ge 2</m> <m>\pi_n(X,x_0)</m> is a <m>\ZZ \pi_1(X,x_0)</m>-module.</li>
             <li><m>\pi_n(-)</m> is a functor <me>\text{based spaces} \to \begin{cases} \text{groups}&amp;n=1,\\\text{abelian groups}&amp; n\ge 2.\end{cases}</me> and if <m>f\colon (X,x_0) \to (Y,y_0)</m> then we have <m>f_*([\gamma]\cdot x) = f_*([\gamma])\cdot f_*(x)</m>.</li>
             <li>If <m>f\colon (X,x_0)\to (Y,y_0)</m> is  a based homotopy equivalence then <m>f_*</m> is  an isomorphism on all <m>\pi_n</m>. (This is still true if <m>f</m> is just a naked homotopy equivalence.)</li>
           </ol>
@@ -146,7 +146,7 @@ Copyright 2014 Alex J. Best
           <title>Compression criterion</title>
           <statement>A map <m>f\colon (D^n, \dd D^n, *)\to (X,A, x_0)</m> is trivial in <m>\pi_n(X,A,x_0)\iff f</m> is homotopic relative to <m>\dd D^n</m> to a map into <m>A</m>.</statement>
           <proof><p>(<m>\Rightarrow</m>) Let <m>f</m> be homotopic relative to <m>\dd D^n</m> to a map into <m>A</m>, call the homotopy <m>H\colon D^n\times I \to X</m>.
-            So <m>H(D^n\times \{1\}\subset A</m> and <m>H(\dd D^n \times I\subset A</m>, projection from the point <m>(0,\ldots,0,-1)</m> then gives a deformation retract of <m>D^n \times I</m> to <m>B = (\dd D^n \times I)\cup (D^n\times\{0\})</m> so it gives a homotopy from <m>H</m> to <m>H'</m> relative to <m>B</m> such that <m>H'</m> lands in <m>A</m>.
+            So <m>H(D^n\times \{1\})\subset A</m> and <m>H(\dd D^n \times I)\subset A</m>, projection from the point <m>(0,\ldots,0,-1)</m> then gives a deformation retract of <m>D^n \times I</m> to <m>B = (\dd D^n \times I)\cup (D^n\times\{0\})</m> so it gives a homotopy from <m>H</m> to <m>H'</m> relative to <m>B</m> such that <m>H'</m> lands in <m>A</m>.
             Restriction this homotopy to <m>D^n\times \{0\}</m> gives a homotopy from <m>f</m> to a <m>f'\colon D^n \to A</m> relative to <m>\dd D^n</m>.
             <br />
             (<m>\Leftarrow</m>) If <m>f\simeq g\colon( D^n,\dd D^n, *)\to (X,A,x_0) </m> and <m>g(D^n)\subset A</m> then <m>[f] = [g]</m>, now consider <m>g\colon (D^n , *) \to (A,x_0)</m>.

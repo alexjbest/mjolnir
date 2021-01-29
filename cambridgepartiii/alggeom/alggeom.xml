@@ -127,7 +127,7 @@ Copyright 2014 Alex J. Best
 
         <example>
           <statement><m>X</m> a topological space, <m>A</m> any abelian group (resp. ring).
-            The constant shead <m>\A</m> determined by <m>A</m> is defined as follows: <m>\A(\emptyset) = \{0\}</m>, for <m>U \ne \emptyset</m> open in <m>X</m> <me>\A(U) = \{\text{locally constant maps }U\to A\},</me> this is an abelian group (resp. ring) under pointwise operations.
+            The constant sheaf <m>\A</m> determined by <m>A</m> is defined as follows: <m>\A(\emptyset) = \{0\}</m>, for <m>U \ne \emptyset</m> open in <m>X</m> <me>\A(U) = \{\text{locally constant maps }U\to A\},</me> this is an abelian group (resp. ring) under pointwise operations.
             With obvious restriction maps we obtain a sheaf.
             If <m>U \ne \emptyset</m> is open and connected, then <m>\A(U) = A</m>.
             If <m>U</m> an open set whose connected components are open (e.g. in a locally connected topological space <m>X</m>) then the section <m>\A(U)</m> is a direct product of copies of <m>A</m>.
@@ -228,8 +228,8 @@ Copyright 2014 Alex J. Best
                   Since <m>\phi_P</m> is surjective we have some <m>s_P\in \F_P</m> such that <m>\phi_P(s_P) = t_P</m>.
                   Now suppose that <m>s_P</m> is represented by a pair <m>(V,s)</m> with <m>P\in V \subseteq U</m> and <m>s\in \F(V)</m>.
                   We then have that <m>t_P</m> is represented by <m>\phi(V)(s)</m>, i.e. <m>(U,t)\sim (V,\phi(V)(s))</m>.
-                  Shrinking <m>V</m> we may assume that we have an ope neighbourhood <m>V_P\ni P</m> such that <m>\phi(V)(s)|_{V_P} = t|_{V_P}</m>.
-                  In this way we cover <m>U</m> by open sets giving <m>U = = \bigcup_{\alpha} U_\alpha</m> to obtain sections <m>s_\alpha \in\F_\alpha</m> such that <m>\phi(U_\alpha)(s_\alpha) = t|_{U_\alpha}</m>.
+                  Shrinking <m>V</m> we may assume that we have an open neighbourhood <m>V_P\ni P</m> such that <m>\phi(V)(s)|_{V_P} = t|_{V_P}</m>.
+                  In this way we cover <m>U</m> by open sets giving <m>U = \bigcup_{\alpha} U_\alpha</m> to obtain sections <m>s_\alpha \in\F_\alpha</m> such that <m>\phi(U_\alpha)(s_\alpha) = t|_{U_\alpha}</m>.
                   On the overlaps <m>U_{\alpha\beta} = U_\alpha \cap U_\beta</m> we have <m>\phi(U_{\alpha\beta})(s_\alpha|_{U_{\alpha\beta}}) = t|_{U_{\alpha\beta}} = \phi(U_{\alpha\beta})(s_\beta|_{U_{\alpha\beta}})</m>, therefore the injectivity of <m>\phi(U_{\alpha\beta})</m> gives that <m>s_\alpha|_{U_{\alpha\beta}} = s_\beta|_{U_{\alpha\beta}}</m>.
                   Since <m>\F</m> is a sheaf the <m>s_\alpha</m> patch together to give a section <m>s \in \F(U)</m> wuch that <m>s|_{U_\alpha} = s_\alpha</m> (using the second sheaf condition for <m>\F</m>).
                   But then <m>\phi(U)(s)</m> and <m>t</m> are sections of <m>\G(U)</m> such that <m>\phi(U)(s)|_{U_{\alpha}}  = \phi(U_\alpha)(s_\alpha) = t|_{U_\alpha}</m> for all <m>\alpha</m>.
@@ -293,7 +293,7 @@ Copyright 2014 Alex J. Best
         <example>
           <statement>If <m>X</m> is a <m>C^\infty</m> (resp. complex) manifold with structure sheaf <m>\cO_X</m> then <m>(X, \cO_X)</m> is a locally ringed space over <m>\RR</m> (resp. over <m>\CC</m>).
             A smooth (resp. holomorphic) map of manifolds <m>f\colon X\to Y</m> yields a morphism of <m>\RR</m> (resp. <m>\CC</m>)-algebras <m>f^\#\colon \cO_Y\to f_* \cO_X</m> namely <m>f^\#\colon\cO_Y(U) \to\cO_X(f^{-1}U)</m> given by <m>g\to g\circ f</m> (smooth (resp. holomorphic) functions on <m>Y</m> pullback to ones on <m>X</m>).
-            Clearly <m>g(f(P)) = 0 \iff f^\#(g)(P) = 0</m> and so <m>f^\#(m_{Y,f(P)} \subseteq m_{X,P}</m>.
+            Clearly <m>g(f(P)) = 0 \iff f^\#(g)(P) = 0</m> and so <m>f^\#(m_{Y,f(P)}) \subseteq m_{X,P}</m>.
             So <m>(f,f^\#)</m> is a morphism of locally ringed spaces over <m>\RR</m> (resp. <m>\CC</m>).
           </statement>
         </example>
@@ -324,7 +324,7 @@ Copyright 2014 Alex J. Best
 
         <subsection>
           <title><m>\cO_X</m>-modules</title>
-          
+
           <definition>
             <title><m>\cO_X</m>-modules</title>
             <statement>
@@ -339,7 +339,7 @@ Copyright 2014 Alex J. Best
               This is clearly an <m>\cO_V</m>-module.
             </statement>
           </example>
-          
+
           <p>
             Most things go through unchanged e.g. if <m>M</m> is an <m>\cO_X</m>-module then any stalk <m>M_P</m> is an <m>\cO_{X,P}</m>-module etc.<br />
             However there is the following technicality:
@@ -355,7 +355,7 @@ Copyright 2014 Alex J. Best
           <definition>
             <title>Sheafification</title>
             <statement>
-              Given a preheaf <m>\F</m> on <m>X</m> there exists an associated sheaf <m>\F^+</m> and a morphism <m>\Theta \colon \F \to \F^+</m> with the universal property that for any sheaf <m>\G</m> on <m>X</m> and morphism <m>\phi\colon \F \to \G</m> there is a unique morphism <m>\psi\colon \F^+ \to \G</m> such that <m>\phi = \psi \Theta</m>.
+              Given a presheaf <m>\F</m> on <m>X</m> there exists an associated sheaf <m>\F^+</m> and a morphism <m>\Theta \colon \F \to \F^+</m> with the universal property that for any sheaf <m>\G</m> on <m>X</m> and morphism <m>\phi\colon \F \to \G</m> there is a unique morphism <m>\psi\colon \F^+ \to \G</m> such that <m>\phi = \psi \Theta</m>.
               We construct <m>\F^+</m> as follows:
               For <m>U</m> open in <m>X</m> we let
               <me>\F^+(U) = \left\{ \text{functions } s\colon U \to \coprod \F_p : \forall p \in U s(p) \in \F_p,\, \forall p \in U \exists \text{ open nbhd } W,\, t\in \F(W) \text{ with } s(q) = t_q \forall q\in Q\right\}</me>
